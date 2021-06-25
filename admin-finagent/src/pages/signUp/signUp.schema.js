@@ -1,0 +1,19 @@
+import * as yup from "yup";
+
+const signUpSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Email should have correct format")
+    .required("E-mail can't be blank")
+    .trim(),
+  password: yup
+    .string()
+    .required("Password can't be blank")
+    .min(8, "The password has to be at lest 8 symbols"),
+  name: yup.string().required("Name can't be blank"),
+  surname: yup.string().required("Surname can't be blank"),
+  phone: yup.string().required("Phone can't be blank"),
+  secret: yup.string().required("Secret can't be blank"),
+});
+
+export default signUpSchema;

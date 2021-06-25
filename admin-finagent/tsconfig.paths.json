@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@context/*": ["./src/_context/*"],
+      "@helpers/*": ["./src/_helpers/*"],
+      "@services/*": ["./src/_services/*"],
+      "@styles/*": ["./src/_styles/*"],
+      "@utils/*": ["./src/_utils/*"],
+      "@api/*": ["./src/api/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@redux/*": ["./src/redux/*"]
+    }
+  }
+}

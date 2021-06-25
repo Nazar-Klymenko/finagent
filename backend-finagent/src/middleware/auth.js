@@ -1,0 +1,53 @@
+import CreateError from "http-errors";
+
+import { auth, adminAuth } from "app";
+
+let verifiedEmail;
+
+export const verifyAccessTokenFirebase = async (req, res, next) => {
+  if (!req.headers.authorization) return next(CreateError.Unauthorized());
+  const header = req.headers.authorization;
+  if (
+    header !== "Bearer null" &&
+    req.headers?.authorization?.startsWith("Bearer ")
+  ) {
+    const idToken = req.headers.authorization.split("Bearer ")[1];
+    try {
+      const decodedToken = await auth.verifyIdToken(idToken);
+      // console.log(decodedToken);
+      verifiedEmail = decodedToken.email_verified;
+
+      if (decodedToken.firebase?.sign_in_provider === "facebook.com") {
+        verifiedEmail = true;
+      }
+      req["currentUser"] = decodedToken;
+    } catch (err) {
+      next(err);
+    }
+  }
+  next();
+};
+
+export const verifyAccessTokenFirebaseAdmin = async (req, res, next) => {
+  if (!req.headers.authorization) return next(CreateError.Unauthorized());
+
+  const header = req.headers.authorization;
+  if (
+    header !== "Bearer null" &&
+    req.headers?.authorization?.startsWith("Bearer ")
+  ) {
+    const idToken = req.headers.authorization.split("Bearer ")[1];
+    try {
+      const decodedToken = await adminAuth.verifyIdToken(idToken);
+      req["currentUser"] = decodedToken;
+    } catch (err) {
+      next(err);
+    }
+  }
+  next();
+};
+
+export const isEmailVerified = async (req, res, next) => {
+  if (!verifiedEmail) return next(CreateError.Unauthorized());
+  next();
+};

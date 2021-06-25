@@ -1,0 +1,513 @@
+{
+  "Form": {
+    "Error": {
+      "blank": "This field can't be blank",
+      "date": "Please enter date",
+      "noNumber": "This field can't contain numbers"
+    }
+  },
+  "Welcome": {
+    "title": "Witamy w Admin Panel",
+    "subtitle": "Tutaj możesz zarządzać wszystkimi aplikacje wysłane przez użytkowników"
+  },
+  "Navbar": {
+    "applications": "Aplikacje",
+    "clients": "Klienci",
+    "myApplications": "Moje aplikacje",
+    "history": "Historia",
+    "archive": "Archiwum",
+    "logIn": "Logowanie",
+    "signUp": "Rejestracja"
+  },
+  "UserDropdown": {
+    "operators": "Operatorzy",
+    "settings": "Ustawienia",
+    "signOut": "Wyloguj"
+  },
+  "LogIn": {
+    "title": "Zaloguj się jako operator",
+    "Form": {
+      "email": "Email",
+      "password": "Hasło",
+      "button": "Zalogować się"
+    },
+    "addActions": {
+      "forgot": "Zapomniałeś hasła?",
+      "noAccount": "Nie masz konta?",
+      "signUp": "Rejestracja"
+    }
+  },
+  "SignUp": {
+    "title": "Utwórz konto operatora",
+    "Form": {
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "email": "Email",
+      "phone": "Telefon",
+      "password": "Hasło",
+      "secret": "Sekret",
+      "button": "Zarejestrować się"
+    },
+    "addActions": {
+      "haveAccount": "Masz konto?",
+      "logIn": "Zalogować się"
+    }
+  },
+  "Applications": {
+    "title": "Wszystkie aplikacje",
+    "subtitle": " Wszystkie aplikacje, informacje przesłane przez użytkownika",
+    "all": "Wszystko",
+    "taken": "Zajęte",
+    "admin": "Admin",
+    "name": "Imię",
+    "surname": "Nazwisko",
+    "email": "Email",
+    "phone": "Telefon",
+    "service": "Usługa",
+    "type": "Typ",
+    "createdAt": "Utworzono",
+    "lastUpdate": "Ostatnia aktualizacja"
+  },
+  "Clients": {
+    "title": "Wszyscy klienci",
+    "subtitle": "Lista klientów",
+    "name": "Imię",
+    "surname": "Nazwisko",
+    "email": "Email",
+    "phone": "Telefon",
+    "language": "Język"
+  },
+  "MyApplications": {
+    "title": "Dodane aplikacje",
+    "subtitle": "Aplikacje, które dodałeś do swojego konta",
+    "name": "Imię",
+    "surname": "Nazwisko",
+    "email": "Email",
+    "phone": "Telefon",
+    "service": "Usługa",
+    "type": "Typ",
+    "createdAt": "Utworzono",
+    "lastUpdate": "Ostatnia aktualizacja"
+  },
+  "History": {
+    "title": "Historia",
+    "subtitle": "Akcje wykonywane w aplikacji",
+    "myHistory": "Moja historia",
+    "allHistory": "Cała historia",
+    "date": "Data",
+    "time": "Czas",
+    "operator": "Operator",
+    "action": "Akcja",
+    "description": "Opis",
+    "application": "Aplikacja"
+  },
+  "Archive": {
+    "title": "Archiwum",
+    "subtitle": "Wszystkie wygasłe lub odrzucone aplikacje",
+    "admin": "Operator",
+    "name": "Imię",
+    "surname": "Nazwisko",
+    "email": "Email",
+    "phone": "Telefon",
+    "service": "Usługa",
+    "type": "Typ",
+    "createdAt": "Utworzono",
+    "lastUpdate": "Ostatnia aktualizacja"
+  },
+  "Operators": {
+    "allOperators": "Wszyscy operatorzy",
+    "accepting": "Do akceptowania",
+    "name": "Imię",
+    "surname": "Nazwisko",
+    "email": "Email",
+    "secret": "Sekret",
+    "actionAccept": "Akceptuj",
+    "actionDecline": "Odrzuć"
+  },
+  "ApplicationOpen": {
+    "AdminButton": {
+      "update": "Aktualizacja",
+      "upload": "Przekazać plik",
+      "addToMyApps": "Dodaj do moich aplikacji",
+      "returnToApps": "Zwrot aplikacji",
+      "returnToMain": "Zwrot do wszystkich aplikacji"
+    },
+    "AppInfo": {
+      "name": "Imię",
+      "type": "Typ",
+      "addedAt": "Utworzono",
+      "lastUpdate": "Ostatnia aktualizacja"
+    },
+    "Summary": {
+      "title": "Informacje o użytkownikach",
+      "subtitle": "Informacje przesłane przez użytkownika",
+      "header": "Dane aplikacji"
+    },
+    "Status": {
+      "title": "Status aplikacji",
+      "subtitle": "Zmiana statusu, który widzi użytkownik",
+      "preparing": "Przygotowanie (1)",
+      "selecting": "Wybór (2)",
+      "offering": "Oferta (3)",
+      "finalizing": "Finalizacja (4)",
+      "finished": "Zakończenie (5)",
+      "currentStatus": "Obecny status to: "
+    },
+    "AttachDocument": {
+      "title": "Załącz końcowe dokumenty",
+      "subtitle": "Załącz końcowe dokumenty do użytkownika"
+    },
+    "AttachmentsAdmin": {
+      "title": "Załączniki operatora",
+      "subtitle": "Załączone dokumenty końcowe"
+    },
+    "AttachmentsUser": {
+      "title": "Załączniki użytkownika",
+      "subtitle": "Załączone dokumenty użytkownika"
+    }
+  },
+  "Settings": {
+    "ChangeInfo": {
+      "title": "Osobista informacja",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "phone": "Telefon",
+      "button": "Potwierdź",
+      "alertSuccess": "Osobista informacja została zmieniona",
+      "errorResponse": "Pomyłka przy zmianie informacji osobistej"
+    },
+    "ChangeEmail": {
+      "title": "Zmienić pocztę",
+      "currentPassword": "Wprowadź swoje aktualne hasło",
+      "newEmail": "Wprowadź swój nowy adres e-mail",
+      "button": "Potwierdź",
+      "alertSuccess": "Adres e-mail został pomyślnie zmieniony",
+      "errorResponse": "Błąd podczas zmiany adresu e-mail"
+    },
+    "ChangePassword": {
+      "title": "Change password",
+      "currentPassword": "Wprowadź swoje aktualne hasło",
+      "newPassword": "Wprowadź swoje nowe hasło",
+      "button": "Potwierdź",
+      "alertSuccess": "Hasło zostało pomyślnie zmienione",
+      "errorResponse": "Błąd podczas zmiany hasła",
+      "errorInvalidPassword": "Nieprawidłowe hasło"
+    }
+  },
+  "Summary": {
+    "yes": "Tak",
+    "no": "Nie"
+  },
+  "LoanCash": {
+    "citizenship": "Citizenship",
+    "otherCitizenship": "Your citizenship",
+    "residenceDocument": "Type and validity of your residence card",
+    "validFrom": "Valid from",
+    "validUntil": "Valid until",
+    "name": "Name",
+    "surname": "Surname",
+    "birthDate": "Date of birth",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "pesel": "PESEL",
+
+    "custody": "Number of people in family without income",
+    "lastApplications": "Were there any applications to the bank for obtaining a loan (refusal if any) in the previous 6-12 months?",
+    "loanAmount": "Desired loan amount",
+    "loanPurpose": "Purpose for obtaining the loan",
+    "paymentTerm": "Payment time frame",
+    "remainingPayOff": "Amounts remaining to pay off loans and in which banks (if any), and the amount of monthly payments on them",
+
+    "bothSpousesStart": "Do both sides take a loan?",
+    "maritalStatus": "Marital status",
+    "propertySeparation": "Is the property separated?",
+
+    "currency": "What is the currency your income source?",
+    "bank": "Which bank account receives the reward?",
+    "averageIncome": "Average monthly official net income in Poland (EU)",
+
+    "truckDriver": "Are you a truck driver?",
+    "industry": "Enter your work industry",
+    "basicIncome": "Source of basic income",
+    "contractUntil": "Contract until",
+    "contractFrom": "Contract from",
+    "pit": "Your proven net income in Poland for the last reporting year (PIT)",
+    "accountancy": "Accountancy type",
+    "firstContract": "Is it your first contract?",
+    "sameEmployer": "The same employer?",
+    "withoutPause": "Changing contract without pause?",
+
+    "married": "Married",
+    "notMarried": "Not married",
+    "other": "Other",
+    "temporaryCard": "Temporary card",
+    "permanentCard": "Permanent card",
+    "blueCard": "Blue card",
+    "indefinitePeriod": "Contract of employment with an indefinite period",
+    "specificTime": "Contract of employment on specific time frame",
+    "mandate": "Contract of mandate",
+    "contract": "Contract",
+    "economicActivity": "Entrepreneurial activity",
+    "generalRules": "General terms",
+    "lumpSum": "Lump sum",
+    "taxCard": "Tax Card",
+    "fullAccounting": "Full accounting"
+  },
+  "LoanMortgage": {
+    "citizenship": "Citizenship",
+    "otherCitizenship": "Your citizenship",
+    "residenceDocument": "Type and validity of your residence card",
+    "validFrom": "Valid from",
+    "validUntil": "Valid until",
+    "name": "Name",
+    "surname": "Surname",
+    "birthDate": "Date of birth",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "pesel": "PESEL",
+
+    "peopleInHousehold": "Amount of people in the household",
+    "monthlyExpenses": "Average monthly living expenses",
+
+    "custody": "Number of people in family without income",
+    "monthlyLoanPayments": "The amount of loans payments each month",
+    "cardLimits": "The amount of credit card limit",
+    "loanPurpose": "Purpose for obtaining the loan",
+    "rialto": "Market",
+    "propertyValue": "Property value",
+    "renovationValue": "Presumptive renovation value",
+    "contributionAmount": "Own contribution amount",
+    "paymentTerm": "Payment time frame",
+    "repayment": "Early repayment",
+    "monthlyPayments": "Monthly payment",
+    "voivodeship": "Region",
+    "town": "Town",
+
+    "bothSpousesStart": "Do both sides take a loan?",
+    "maritalStatus": "Marital status",
+    "propertySeparation": "Is the property separated?",
+
+    "currency": "What is the currency your income source?",
+    "bank": "Which bank account receives the reward?",
+    "averageIncome": "Average monthly official net income in Poland (EU)",
+
+    "truckDriver": "Are you a truck driver?",
+    "industry": "Enter your work industry",
+    "basicIncome": "Source of basic income",
+    "contractUntil": "Contract until",
+    "contractFrom": "Contract from",
+    "pit": "Your proven net income in Poland for the last reporting year (PIT)",
+    "accountancy": "Accountancy type",
+    "firstContract": "Is it your first contract?",
+    "sameEmployer": "The same employer?",
+    "withoutPause": "Changing contract without pause?"
+  },
+  "InsuranceTravel": {
+    "insuranceStart": "Insurance period starts",
+    "insuranceEnd": "Insurance period ends",
+    "inPoland": "The insured are in Poland at the moment of the signing of the contract",
+    "insuranceType": "Insurance type",
+    "peopleAmount": "The amount of people",
+    "destination": "Travel destination",
+    "purpose": "Travel purpose",
+
+    "policyholderIs": "Policyholder is",
+    "name": "Name",
+    "surname": "Surname",
+    "birthDate": "Date of birth",
+    "pesel": "PESEL",
+    "nip": "NIP",
+    "regon": "REGON",
+    "phone": "Phone",
+    "email": "Email",
+    "country": "Country",
+    "city": "City",
+    "postIndex": "Post index",
+    "street": "Street",
+    "houseNumber": "House number",
+
+    "family": "Family",
+    "group": "Group of people",
+    "natural": "Natural person",
+    "entrepreneurial": "Entrepreneurial activity"
+  },
+  "InsuranceEstate": {
+    "country": "Country",
+    "city": "City",
+    "postIndex": "Post index",
+    "street": "Street",
+    "houseNumber": "House number",
+    "estateType": "Type of real estate",
+    "floor": "Floor",
+    "structure": "Building structure",
+    "areaM2": "Area m2",
+    "constructionYear": "Year of construction",
+    "underConstruction": "Building under construction",
+    "ownershipForm": "Form of ownership",
+    "creditOwnership": "Credit ownership (assignment to a bank)",
+    "bankName": "Name of the bank",
+    "regon": "REGON",
+    "nip": "NIP",
+    "security": "Security",
+    "damagesNumber": "Number of damages in the last 5 years",
+    "insurancePeriod": "Insurance period",
+    "insuranceStart": "Protection start date",
+    "flatAndFixed": "Flat and fixed elements",
+    "householdGoods": "Household goods",
+
+    "policyholderIs": "Policyholder is",
+    "firmName": "Firm name",
+    "name": "Name",
+    "surname": "Surname",
+    "pesel": "PESEL",
+    "phone": "Phone",
+    "email": "Email",
+    "peopleNumber": "Number of people living in the apartment / house",
+
+    "house": "House",
+    "apartment": "Apartment",
+    "last": "Last",
+    "intermediate": "Intermediate",
+    "ground": "Ground",
+    "wood": "Wooden",
+    "brick": "Brick",
+    "no": "No",
+    "yes": "Yes",
+    "coOwnership": "Co-ownership",
+    "lease": "Lease",
+    "annual": "Annual",
+    "year3": "3-Year"
+  },
+  "InsuranceHealth": {
+    "insuranceStart": "Insurance period starts",
+    "insuranceEnd": "Insurance period ends",
+    "clauseOne": "Insurance of treatment costs in the territory of the Republic of Poland",
+    "clauseTwo": "Insurance in case of accidents",
+    "clauseThree": "Civil liability in private life",
+
+    "policyholderIs": "Policyholder",
+    "documentAdded": "Document number",
+    "documentType": "Document type",
+    "name": "Name",
+    "surname": "Surname",
+    "birthDate": "Date of birth",
+    "pesel": "PESEL",
+    "passport": "Passport number",
+    "citizenship": "Citizenship",
+    "country": "Country",
+    "city": "City",
+    "postIndex": "Post index",
+    "street": "Street",
+    "houseNumber": "House number",
+
+    "polish": "Polish",
+    "foreigner": "Foreigner"
+  },
+  "InsuranceDiagnostic": {
+    "insuranceStart": "Insurance period starts",
+    "insuranceEnd": "Insurance period ends",
+
+    "policyholderIs": "Policyholder is",
+    "name": "Name",
+    "surname": "Surname",
+    "nip": "NIP",
+    "regon": "REGON",
+
+    "birthDate": "Date of birth",
+    "email": "Email",
+    "pesel": "PESEL",
+    "phoneNumber": "Phone number",
+    "country": "Country",
+    "city": "City",
+    "postIndex": "Post index",
+    "street": "Street",
+    "houseNumber": "House number",
+
+    "individual": "Individual",
+    "firm": "Firm",
+    "legal": "Legal"
+  },
+  "InsuranceTransport": {
+    "insuranceCoverage": "Insurance coverage",
+    "name": "Name",
+    "surname": "Surname",
+    "phoneNumber": "Phone number",
+    "postIndex": "Post index",
+    "city": "City",
+    "voivodeship": "Voivodeship",
+    "street": "Street",
+    "houseNumber": "House number",
+    "documentAddedType": "Document type",
+    "documentAdded": "Document number",
+    "isAppropLicence": "Is Your driving license appropriate for the vehicle?",
+    "drivingLicenceDate": "Driving licence date",
+    "profession": "Profession",
+    "maritalStatus": "Marital status",
+
+    "vehicleType": "Vehicle type",
+    "brand": "Brand",
+    "model": "Model",
+    "version": "Version",
+    "regNumber": "Registration number",
+    "vinNumber": "VIN number",
+    "yearManufacture": "Year of manufacture",
+    "registeredPoland": "The car is registered in Poland",
+
+    "enginePower": "Engine power(kW)",
+    "engineVolume": "Engine volume(ccm)",
+    "fuelType": "Fuel type",
+    "vehicleRegDate": "First vehicle registration date",
+    "techExamDate": "Technical examination expiry date",
+    "purchaseYear": "Year of vehicle purchase",
+    "kilometrage": "Kilometrage",
+    "steeringWheel": "Steering wheel side",
+    "transmissionType": "Transmission type",
+    "gasInstalation": "Vehicle has gas installation",
+    "abroadImport": "Vehicle imported from abroad",
+    "polandRegDate": "Registration in Poland date",
+
+    "predictMileage": "Predicted kilometrage (km)",
+    "useAbroad": "Time of use abroad",
+    "usePurpose": "Use purpose",
+    "parkingPlace": "Vehicle parking place",
+    "security": "Security",
+
+    "oc": "OC",
+    "ac": "AC",
+    "greenCard": "Green card",
+    "assistance": "Assistance",
+    "pesel": "PESEL",
+    "regon": "REGON",
+    "passport": "Passport number",
+    "right": "Right",
+    "left": "Left",
+    "mechanical": "Mechanical",
+    "automatic": "Automatic"
+  },
+  "InsuranceBorder": {
+    "documentType": "Document type",
+    "pesel": "PESEL",
+    "passport": "Passport number",
+    "registeredNotInEU": "Vehicle registered in a country outside the European Economic Area",
+    "insurancePeriod": "Number of days of protection",
+
+    "vehicleType": "Vehicle type",
+    "brand": "Brand",
+    "model": "Model",
+    "regNumber": "Registration number",
+    "vinNumber": "VIN number",
+    "engineNumber": "Engine number",
+    "engineVolume": "Engine volume(ccm)",
+    "seatNumber": "Number of seats in vehicle",
+
+    "name": "Name",
+    "surname": "Surname",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "country": "Country",
+    "city": "City",
+    "postIndex": "Post index",
+    "street": "Street",
+    "houseNumber": "House number"
+  }
+}

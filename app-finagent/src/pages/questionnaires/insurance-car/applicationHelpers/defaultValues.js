@@ -1,0 +1,58 @@
+export const pageOneValues = (appDataValid) => ({
+  insuranceCoverage: appDataValid.insuranceCoverage || "oc",
+  name: appDataValid.name,
+  surname: appDataValid.surname,
+  phoneNumber: appDataValid.phoneNumber,
+  postIndex: appDataValid.postIndex,
+  city: appDataValid.city,
+  voivodeship: appDataValid.voivodeship,
+  street: appDataValid.street,
+  houseNumber: appDataValid.houseNumber,
+  documentAddedType: appDataValid.documentAddedType || "pesel",
+  documentAdded: appDataValid.documentAdded,
+  isAppropLicence: appDataValid.isAppropLicence || true,
+  drivingLicenceDate: appDataValid.drivingLicenceDate,
+  profession: appDataValid.profession,
+  maritalStatus: appDataValid.maritalStatus,
+});
+
+export const pageTwoValues = (appDataValid) => ({
+  vehicleType: appDataValid.vehicleType,
+  registeredPoland: appDataValid.registeredPoland,
+  brand: appDataValid.brand,
+  model: appDataValid.model,
+  version: appDataValid.version,
+  regNumber: appDataValid.regNumber,
+  vinNumber: appDataValid.vinNumber,
+  yearManufacture: appDataValid.yearManufacture,
+});
+
+export const pageThreeValues = (appDataValid) => ({
+  enginePower: appDataValid.enginePower,
+  engineVolume: appDataValid.engineVolume,
+  fuelType: appDataValid.fuelType,
+  originCountry: appDataValid.originCountry,
+  purchaseYear: appDataValid.purchaseYear,
+  kilometrage: appDataValid.kilometrage,
+  steeringWheel: appDataValid.steeringWheel || "left",
+  gasInstalation: appDataValid.gasInstalation,
+  transmissionType: appDataValid.transmissionType || "mechanical",
+  abroadImport: appDataValid.abroadImport,
+  polandRegDate: appDataValid.polandRegDate,
+});
+export const pageFourValues = (appDataValid) => ({
+  enginePower: appDataValid.enginePower,
+  engineVolume: appDataValid.engineVolume,
+  fuelType: appDataValid.fuelType,
+  originCountry: appDataValid.originCountry,
+  purchaseYear: appDataValid.purchaseYear,
+  kilometrage: appDataValid.kilometrage,
+  steeringWheel: appDataValid.steeringWheel,
+  gas: appDataValid.gas,
+  transmissionType: appDataValid.transmissionType,
+  abroadImport: appDataValid.abroadImport,
+  polandRegDate: appDataValid.polandRegDate,
+});
+export const pageFiveValues = (appDataValid) => ({
+  files: appDataValid.files,
+});

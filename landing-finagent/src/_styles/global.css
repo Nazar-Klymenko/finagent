@@ -1,0 +1,53 @@
+/* @import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "tailwindcss/components"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    box-sizing: border-box;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  html,
+  body {
+    /* background-color: "#f5f8fb"; */
+    /* background-color: black; */
+    background: rgb(249, 250, 251);
+    /* background-color: "#F9FAFB"; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
+  #__next {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+  }
+  textarea:focus,
+  input:focus,
+  button:focus {
+    outline: none;
+  }
+  ,
+  input,
+  textarea {
+    font-size: inherit;
+    font-family: inherit;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    opacity: 0.7;
+  }
+}

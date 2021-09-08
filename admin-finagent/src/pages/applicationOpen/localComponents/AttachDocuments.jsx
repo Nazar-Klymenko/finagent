@@ -1,0 +1,67 @@
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import Subheader from "@components/Subheader";
+import Section from "./Section";
+
+import { uploadDocumentsAPI } from "@api/mainAPI";
+import { FileInput } from "@components/input";
+
+const AttachDocuments = ({ id }) => {
+  const { t } = useTranslation();
+  const { handleSubmit, errors, formState, control } = useForm({
+    defaultValues: {
+      adminDocuments: null,
+    },
+    mode: "onBlur",
+    reValidateMode: "onBlur",
+    shouldFocusError: false,
+  });
+
+  const { isDirty } = formState;
+
+  const formSubmit = async (data) => {
+    try {
+      const formData = new FormData();
+
+      data.adminDocuments.forEach((file) => {
+        formData.append("files", file, file.name);
+      });
+
+      await uploadDocumentsAPI(formData, id);
+
+      alert("image added successfully");
+    } catch (error) {
+      console.log(error);
+      alert("couldn't add images");
+    }
+  };
+
+  return (
+    <Section isDirty={isDirty}>
+      <Subheader
+        subheader={t("ApplicationOpen.AttachDocument.title")}
+        description={t("ApplicationOpen.AttachDocument.subtitle")}
+      />
+      <Form id="attach-documents" onSubmit={handleSubmit(formSubmit)}>
+        <FileInput
+          control={control}
+          name="adminDocuments"
+          labelName=""
+          helperText={errors?.adminDocuments?.message}
+          showFiles
+        />
+
+        <CTA
+          isBlocked={!isDirty}
+          text={t("ApplicationOpen.AdminButton.upload")}
+          form="attach-documents"
+        ></CTA>
+      </Form>
+    </Section>
+  );
+};
+
+export default AttachDocuments;

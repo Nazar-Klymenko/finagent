@@ -24,8 +24,8 @@
   "NavbarBottom": {
     "dashboard": "Pulpit",
     "services": "Usługi",
-    "help": "Pomoc",
-    "settings": "Ustawienia"
+    "contact": "Kontakty",
+    "help": "Pomoc"
   },
   "Footer": {
     "contact": "Kontakty",
@@ -82,25 +82,21 @@
       "title": "Ubezpieczenie pojazdu",
       "subtitle": "Pomożemy Ci w uzyskaniu najlepszej oferty ubezpieczenia Twojego pojazdu."
     },
-    "Border": {
-      "title": "Transport border insurance",
-      "subtitle": "Border insurance"
-    },
     "Health": {
-      "title": "Ubezpieczenie kosztów leczenia cudzoziemców",
-      "subtitle": "Ubezpieczenie zapewni Ci ochronę w przypadku nagłego zachorowania lub nieszczęśliwego wypadku, podczas pobytu na terytorium RP. Ten rodzaj polisy ubezpieczeniowej jest niezbędny dla złożenia dokumentów na kartę pobytu."
+      "title": "Ubezpieczenie zdrowotne",
+      "subtitle": "Jesteśmy w stanie obliczyć i zaproponować najlepszą ofertę ubezpieczenia zdrowotnego."
     },
     "Diagnostic": {
-      "title": "Dostęp do lekarzy specjalistów oraz badań diagnostycznych",
-      "subtitle": "Znajdziemy dla Ciebie optymalny pakiet ubezpieczenia zdrowotnego, które zapewnia dostęp do lekarzy specjalistów oraz badań diagnostycznych."
+      "title": "Diagnostic & Specialist access",
+      "subtitle": "Some subtitle"
     },
     "Travel": {
-      "title": "Ubezpieczenie turystyczne",
-      "subtitle": "Ubezpieczenie turystyczne pozwoli Ci czuć się bezpiecznie podczas podróży zagranicznych i krajowych."
+      "title": "Travel insurance",
+      "subtitle": "Some subtitle"
     },
     "Estate": {
-      "title": "Ubezpieczenie domu lub mieszkania",
-      "subtitle": "Ubezpieczenie domu lub mieszkania to niezawodna ochrona na wypadek zdarzeń losowych i kradzieży."
+      "title": "Real estate insurance",
+      "subtitle": "Some subtitle"
     }
   },
   "Contact": {
@@ -201,7 +197,9 @@
       "pending": "Oczekujące",
       "insurances": "Ubezpieczenia",
       "loans": "Moje kredyty",
-      "noApps": "Jeszcze nie masz tu żadnych aplikacji"
+      "noInsurances": "Nie masz jeszcze ubezpieczeń",
+      "noLoans": "Nie masz jeszcze kredytów",
+      "noHistory": "Nie masz jeszcze historii"
     },
     "ApplicationCard": {
       "name": "Imię",
@@ -655,14 +653,6 @@
       "phone": "Telefon",
       "email": "Email",
       "peopleNumber": "Liczba osób zamieszkujących w  mieszkaniu/dom"
-    },
-    "SelectSecurity": {
-      "supervision": "Stały dozór fizyczny",
-      "securityDoors": "Drzwi antywłamaniowe",
-      "intercom": "Domofon",
-      "windowSecurity": "Zabezpieczenia okien",
-      "notificationAlarm": "Alarm z powiadomieniem",
-      "localAlarm": "Alarm lokalny"
     }
   },
   "InsuranceHealth": {
@@ -676,8 +666,7 @@
       "title": "Dodać wnioskodawcę",
       "addApplicant": "Dodać wnioskodawcę",
       "edit": "Zmienić",
-      "delete": "Wykasować",
-      "maxPeople": "Możesz dodać tylko 9 osób"
+      "delete": "Wykasować"
     },
     "Error": {
       "noApplicant": "Musisz podać minimum jednego wnioskodawcę"
@@ -769,8 +758,7 @@
       "title": "Dodać wnioskodawcę",
       "addApplicant": "Dodać wnioskodawcę",
       "edit": "Zmienić",
-      "delete": "Wykasować",
-      "maxPeople": "Możesz dodać tylko 14 osób"
+      "delete": "Wykasować"
     },
     "ApplicantModal": {
       "title": "Dodać kolejnego wnioskodawcę"
@@ -931,41 +919,41 @@
     }
   },
   "InsuranceBorder": {
-    "title": "Ubezpieczenie graniczne",
-    "buttonNext": "Dalej",
-    "buttonBack": "Wstecz",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
+    "title": "Transport border insurance",
+    "buttonNext": "Next",
+    "buttonBack": "Back",
+    "buttonConfirm": "Confirm",
+    "summary": "Summary",
     "Page1": {
-      "subtitle": "Informacje o ubezpieczeniu",
-      "documentType": "Typ dokumentu",
+      "subtitle": "Insurance Info",
+      "documentType": "Document type",
       "pesel": "PESEL",
-      "passportNumber": "Numer paszportu",
-      "registeredNotInEU": "Pojazd zarejestrowany w kraju poza Europejskim Obszarem Gospodarczym",
-      "insurancePeriod": "Liczba dni ochrony"
+      "passportNumber": "Passport number",
+      "registeredNotInEU": "Vehicle registered in a country outside the European Economic Area",
+      "insurancePeriod": "Number of days of protection"
     },
     "Page2": {
-      "subtitle": "Informacje o transporcie",
-      "vehicleType": "Typ pojazdu",
-      "brand": "Marka",
+      "subtitle": "Vehicle Info",
+      "vehicleType": "Vehicle type",
+      "brand": "Brand",
       "model": "Model",
-      "regNumber": "Numer rejestracyjny",
-      "vinNumber": "VIN numer",
-      "engineNumber": "Numer silnika",
-      "engineVolume": "Objętość silnika(ccm)",
-      "seatNumber": "Liczba miejsc siedzących"
+      "regNumber": "Registration number",
+      "vinNumber": "VIN number",
+      "engineNumber": "Engine number",
+      "engineVolume": "Engine volume(ccm)",
+      "seatNumber": "Number of seats in vehicle"
     },
     "Page3": {
-      "subtitle": "Dane osobiste",
-      "name": "Imię",
-      "surname": "Nazwisko",
-      "phoneNumber": "Telefon",
+      "subtitle": "Personal Info",
+      "name": "Name",
+      "surname": "Surname",
+      "phoneNumber": "Phone number",
       "email": "Email",
-      "country": "Kraj",
-      "city": "Misato",
-      "postIndex": "Kod pocztowy",
-      "street": "Ulica",
-      "houseNumber": "Numer budynku"
+      "country": "Country",
+      "city": "City",
+      "postIndex": "Post index",
+      "street": "Street",
+      "houseNumber": "House number"
     }
   }
 }

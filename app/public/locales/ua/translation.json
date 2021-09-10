@@ -24,8 +24,8 @@
   "NavbarBottom": {
     "dashboard": "Кабінет",
     "services": "Послуги",
-    "help": "Допомога",
-    "settings": "Налаштування"
+    "contact": "Контакти",
+    "help": "Допомога"
   },
   "Footer": {
     "contact": "Контакти",
@@ -60,7 +60,7 @@
   "BlockContact": {
     "question": "Маєте ще питання?",
     "phone": "Телефон",
-    "email": "Email",
+    "email": "Мейл",
     "fullName": "Ім'я Прізвище",
     "message": "Повідомлення",
     "submit": "Відправити"
@@ -82,25 +82,21 @@
       "title": "Страхування транспорту",
       "subtitle": "Ми допоможемо вам отримати найкращу страхову пропозицію для вашого транспортного засобу."
     },
-    "Border": {
-      "title": "Transport border insurance",
-      "subtitle": "Border insurance"
-    },
     "Health": {
-      "title": "Страхування витрат на лікування іноземців",
-      "subtitle": "Страховка покриває витрати на лікування іноземців на території Польщі у зв’язку з раптовим захворюванням чи нещасним випадком. Саме цей вид страхового полісу потрібен для подачі документів на карту побиту."
+      "title": "Медичне страхування",
+      "subtitle": "Ми можемо розрахувати та запропонувати найкращу можливу ціну медичного страхування."
     },
     "Diagnostic": {
-      "title": "Доступ до лікарів-спеціалістів та діагностичних досліджень",
-      "subtitle": "Знайдемо для Вас оптимальний пакет медичного страхування, яке надає доступ до лікарів-спеціалістів та діагностичних досліджень."
+      "title": "Diagnostic & Specialist access",
+      "subtitle": "Some subtitle"
     },
     "Travel": {
-      "title": "Туристична страховка",
-      "subtitle": "Туристична страховка дозволить Вам почуватися в безпеці під час подорожей за кордоном та територією Польщі."
+      "title": "Travel insurance",
+      "subtitle": "Some subtitle"
     },
     "Estate": {
-      "title": "Страхування будинку чи квартири",
-      "subtitle": "Страхування будинку чи квартири - Ваш надійний захист на випадок непередбачуваних обставин чи крадіжок."
+      "title": "Real estate insurance",
+      "subtitle": "Some subtitle"
     }
   },
   "Contact": {
@@ -109,7 +105,7 @@
     "subtitleInfo": "Зв’яжіться з нами безпосередньо",
     "Form": {
       "fullName": "Ім'я та Прізвище",
-      "email": "Email",
+      "email": "Мейл",
       "message": "Повідомлення",
       "submit": "Відправити"
     }
@@ -121,7 +117,7 @@
   "LogIn": {
     "title": "Увійди в свій аккаунт",
     "Form": {
-      "email": "Email",
+      "email": "Мейл",
       "password": "Пароль",
       "button": "Увійти"
     },
@@ -170,8 +166,8 @@
   "RestorePassword": {
     "title": "Відновлення паролю",
     "Form": {
-      "email": "Email",
-      "mistake": "Email не може бути пустим",
+      "email": "Мейл",
+      "mistake": "Мейл не може бути пустим",
       "explain": "Відправимо вам електронного листа з посиланням для відновлення паролю",
       "button": "Відновити"
     },
@@ -201,7 +197,9 @@
       "pending": "В обробці",
       "insurances": "Мої страхові поліси",
       "loans": "Мої кредити",
-      "noApps": "Ви ще не маете жодних заявок"
+      "noInsurances": "Поки що не маєш страхових полісів",
+      "noLoans": "Поки що не маєш кредитів",
+      "noHistory": "Поки що не маєш історії"
     },
     "ApplicationCard": {
       "name": "Ім'я",
@@ -503,8 +501,8 @@
       "name": "Ім'я",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
-      "phoneNumber": "Номер телефону",
-      "email": "Email",
+      "phoneNumber": "Номер телефона",
+      "email": "Електронна адресса",
       "pesel": "PESEL",
       "basicIncome": "Джерело основного доходу",
       "firstContract": "Це ваш перший контракт?",
@@ -655,14 +653,6 @@
       "phone": "Номер телефону",
       "email": "Email",
       "peopleNumber": "Кількість осіб які проживають в квартирі/домі"
-    },
-    "SelectSecurity": {
-      "supervision": "Постійне фізичне спостереження",
-      "securityDoors": "Захисні двері",
-      "intercom": "Домофон",
-      "windowSecurity": "Захищені вікна",
-      "notificationAlarm": "Сигналізація з повідомленням",
-      "localAlarm": "Місцева сигналізація"
     }
   },
   "InsuranceHealth": {
@@ -676,8 +666,7 @@
       "title": "Додати наступного заявника",
       "addApplicant": "Додати заявника",
       "edit": "Змінити",
-      "delete": "Видалити",
-      "maxPeople": "Ви можете додати лише 9 осіб"
+      "delete": "Видалити"
     },
     "Error": {
       "noHousehold": "Ви повинні додати мінімум одного заявника"
@@ -769,8 +758,7 @@
       "title": "Додати заявника",
       "addApplicant": "Додати заявника",
       "edit": "Змінити",
-      "delete": "Видалити",
-      "maxPeople": "Ви можете додати лише 14 осіб"
+      "delete": "Видалити"
     },
     "ApplicantModal": {
       "title": "Додати наступного заявника"
@@ -891,7 +879,7 @@
     "Page2": {
       "subtitle": "Інформація про транспорт",
       "vehicleType": "Тип транспортного засобу",
-      "brand": "Марка",
+      "brand": "Бренд",
       "model": "Модель",
       "version": "Версія",
       "regNumber": "Реєстраційний номер",
@@ -931,41 +919,41 @@
     }
   },
   "InsuranceBorder": {
-    "title": "Ubezpieczenie graniczne",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
-    "buttonConfirm": "Піттвердити",
-    "summary": "Підсумок",
+    "title": "Transport border insurance",
+    "buttonNext": "Next",
+    "buttonBack": "Back",
+    "buttonConfirm": "Confirm",
+    "summary": "Summary",
     "Page1": {
-      "subtitle": "Інформація про страхування",
-      "documentType": "Тип документу",
+      "subtitle": "Insurance Info",
+      "documentType": "Document type",
       "pesel": "PESEL",
-      "passportNumber": "Номер паспорту",
-      "registeredNotInEU": "Транспортний засіб, зареєстрований у країні за межами Європейського економічного простору",
-      "insurancePeriod": "Кількість днів захисту"
+      "passportNumber": "Passport number",
+      "registeredNotInEU": "Vehicle registered in a country outside the European Economic Area",
+      "insurancePeriod": "Number of days of protection"
     },
     "Page2": {
-      "subtitle": "Інформація про транспортний засіб",
-      "vehicleType": "Тип транспортного засобу",
-      "brand": "Марка",
-      "model": "Модель",
-      "regNumber": "Реєстраційний номер",
-      "vinNumber": "Номер VIN",
-      "engineNumber": "Номер двигуна",
-      "engineVolume": "Об'єм двигуна (см3)",
-      "seatNumber": "Кількість місць у транспортному засобі"
+      "subtitle": "Vehicle Info",
+      "vehicleType": "Vehicle type",
+      "brand": "Brand",
+      "model": "Model",
+      "regNumber": "Registration number",
+      "vinNumber": "VIN number",
+      "engineNumber": "Engine number",
+      "engineVolume": "Engine volume(ccm)",
+      "seatNumber": "Number of seats in vehicle"
     },
     "Page3": {
-      "subtitle": "Особиста інформація",
-      "name": "Ім'я",
-      "surname": "Прізвище",
-      "phoneNumber": "Номер телефону",
+      "subtitle": "Personal Info",
+      "name": "Name",
+      "surname": "Surname",
+      "phoneNumber": "Phone number",
       "email": "Email",
-      "country": "Країна",
-      "city": "Місто",
-      "postIndex": "Поштовий індекс",
-      "street": "Вулиця",
-      "houseNumber": "Номер будинку"
+      "country": "Country",
+      "city": "City",
+      "postIndex": "Post index",
+      "street": "Street",
+      "houseNumber": "House number"
     }
   }
 }

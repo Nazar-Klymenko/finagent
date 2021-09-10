@@ -24,8 +24,8 @@
   "NavbarBottom": {
     "dashboard": "Кабинет",
     "services": "Услуги",
-    "help": "Помощь",
-    "settings": "Настройки"
+    "contact": "Контакты",
+    "help": "Помощь"
   },
   "Footer": {
     "contact": "Контакты",
@@ -82,25 +82,21 @@
       "title": "Страхование транспортного средства",
       "subtitle": "Мы поможем вам получить лучшее страховое предложение для вашего транспортного средстваю"
     },
-    "Border": {
-      "title": "Transport border insurance",
-      "subtitle": "Border insurance"
-    },
     "Health": {
-      "title": "Страхование расходов на лечение иностранцев",
-      "subtitle": "Страховка покрывает расходы на лечение иностранцев на территории Польши в связи с неожиданной болезнью или несчастным случаем. Именно этот вид страхового полиса требуется для подачи документов на карту побыту."
+      "title": "Медицинское страхование",
+      "subtitle": "Мы можем рассчитать и предложить наилучший вариант для вашей медицинской страховки."
     },
     "Diagnostic": {
-      "title": "Доступ к врачам-специалистам и диагностическим исследованиям",
-      "subtitle": "Найдем для Вас оптимальный пакет медицинского страхования, которое предоставляет доступ к врачам-специалистам и диагностическим исследованиям."
+      "title": "Diagnostic & Specialist access",
+      "subtitle": "Some subtitle"
     },
     "Travel": {
-      "title": "Туристическая страховка",
-      "subtitle": "Туристическая страховка позволит Вам чувствовать себя безопасно во время путешествий за границей и на территории Польши."
+      "title": "Travel insurance",
+      "subtitle": "Some subtitle"
     },
     "Estate": {
-      "title": "Страхование дома или квартиры",
-      "subtitle": "Страхование дома или квартиры - Ваша надёжная защита на случай непредвиденных обстоятельств и краж."
+      "title": "Real estate insurance",
+      "subtitle": "Some subtitle"
     }
   },
   "Contact": {
@@ -201,7 +197,9 @@
       "pending": "В обработке",
       "insurances": "Мои страховки",
       "loans": "Мои кредиты",
-      "noApps": "У Вас ещё нет заявок"
+      "noInsurances": "У вас пока нет ваших страховых полисов",
+      "noLoans": "У вас пока нет кредитов",
+      "noHistory": "У вас пока нет истории"
     },
     "ApplicationCard": {
       "name": "Имя",
@@ -217,9 +215,9 @@
     "createdAt": "Создано",
     "updatedAt": "Последнее обновление",
     "Summary": {
-      "title": "Сводка анкеты",
+      "title": "Резюме анкеты",
       "subtitle": "Информация об анкете",
-      "summary": "Сводка"
+      "summary": "Резюме"
     },
     "Status": {
       "title": "Статус анкеты",
@@ -655,14 +653,6 @@
       "phone": "Телефон",
       "email": "Email",
       "peopleNumber": "Количество человек, проживающих в квартире / доме"
-    },
-    "SelectSecurity": {
-      "supervision": "Постоянное физическое наблюдение",
-      "securityDoors": "Защитные двери",
-      "intercom": "Домофон",
-      "windowSecurity": "Защищенные окна",
-      "notificationAlarm": "Сигнализация с уведомлением",
-      "localAlarm": "Местная сигнализация"
     }
   },
   "InsuranceHealth": {
@@ -676,8 +666,7 @@
       "title": "Добавить заявителя",
       "addApplicant": "Добавить заявителя",
       "edit": "Изменить",
-      "delete": "Удалить",
-      "maxPeople": "Вы можете добавить только 9 человек"
+      "delete": "Удалить"
     },
     "Error": {
       "noApplicant": "Вы должны добавить минимум одного заявителя"
@@ -769,8 +758,7 @@
       "title": "Добавить заявителя",
       "addApplicant": "Добавить заявителя",
       "edit": "Изменить",
-      "delete": "Удалить",
-      "maxPeople": "Вы можете добавить только 14 человек"
+      "delete": "Удалить"
     },
     "ApplicantModal": {
       "title": "Добавить следующего заявителя"
@@ -890,7 +878,7 @@
     },
     "Page2": {
       "subtitle": "Информация о транспорте",
-      "vehicleType": "Тип транспорта",
+      "vehicleType": "Тип машины",
       "brand": "Марка",
       "model": "Модель",
       "version": "Версия",
@@ -931,41 +919,41 @@
     }
   },
   "InsuranceBorder": {
-    "title": "Ubezpieczenie graniczne",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Сводка",
+    "title": "Transport border insurance",
+    "buttonNext": "Next",
+    "buttonBack": "Back",
+    "buttonConfirm": "Confirm",
+    "summary": "Summary",
     "Page1": {
-      "subtitle": "Информация о страховании",
-      "documentType": "Тип документа",
+      "subtitle": "Insurance Info",
+      "documentType": "Document type",
       "pesel": "PESEL",
-      "passportNumber": "Номер паспорта",
-      "registeredNotInEU": "Транспортное средство зарегистрировано в стране за пределами Европейской экономической зоны",
-      "insurancePeriod": "Количество дней защиты"
+      "passportNumber": "Passport number",
+      "registeredNotInEU": "Vehicle registered in a country outside the European Economic Area",
+      "insurancePeriod": "Number of days of protection"
     },
     "Page2": {
-      "subtitle": "Информация о транспорте",
-      "vehicleType": "Тип транспорта",
-      "brand": "Марка",
-      "model": "Модель",
-      "regNumber": "Регистрационный номер",
-      "vinNumber": "VIN номер",
-      "engineNumber": "Номер двигателя",
-      "engineVolume": "Объем двигателя(ccm)",
-      "seatNumber": "Количество сидячих мест"
+      "subtitle": "Vehicle Info",
+      "vehicleType": "Vehicle type",
+      "brand": "Brand",
+      "model": "Model",
+      "regNumber": "Registration number",
+      "vinNumber": "VIN number",
+      "engineNumber": "Engine number",
+      "engineVolume": "Engine volume(ccm)",
+      "seatNumber": "Number of seats in vehicle"
     },
     "Page3": {
-      "subtitle": "Личная информация",
-      "name": "Имя",
-      "surname": "Фамилия",
-      "phoneNumber": "Номер телефона",
+      "subtitle": "Personal Info",
+      "name": "Name",
+      "surname": "Surname",
+      "phoneNumber": "Phone number",
       "email": "Email",
-      "country": "Страна",
-      "city": "Город",
-      "postIndex": "Почтовый индекс",
-      "street": "Улица",
-      "houseNumber": "Номер дома"
+      "country": "Country",
+      "city": "City",
+      "postIndex": "Post index",
+      "street": "Street",
+      "houseNumber": "House number"
     }
   }
 }

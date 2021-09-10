@@ -24,8 +24,8 @@
   "NavbarBottom": {
     "dashboard": "Dashboard",
     "services": "Services",
-    "help": "Help",
-    "settings": "Settings"
+    "contact": "Contact",
+    "help": "Help"
   },
   "Footer": {
     "contact": "Contact",
@@ -82,25 +82,21 @@
       "title": "Transport insurance",
       "subtitle": "We will help you to get the best insurance offer for your vehicle."
     },
-    "Border": {
-      "title": "Transport border insurance",
-      "subtitle": "Border insurance"
-    },
     "Health": {
       "title": "Health insurance",
-      "subtitle": "The insurance will protect you in the case of a sudden illness or accident during your stay in Poland. This type of insurance policy is necessary to submit documents for a residence card."
+      "subtitle": "We are able to calculate and propose the best possible offer for your health insurance."
     },
     "Diagnostic": {
       "title": "Diagnostic & Specialist access",
-      "subtitle": "We will find for you the most suitable health insurance plan that provides access to specialist doctors and diagnostic tests."
+      "subtitle": "Some subtitle"
     },
     "Travel": {
       "title": "Travel insurance",
-      "subtitle": "Travel insurance allows you to feel safe when travelling abroad and in Poland."
+      "subtitle": "Some subtitle"
     },
     "Estate": {
       "title": "Real estate insurance",
-      "subtitle": "House or apartment insurance is your reliable protection in case of emergencies and theft."
+      "subtitle": "Some subtitle"
     }
   },
   "Contact": {
@@ -201,7 +197,9 @@
       "pending": "Pending",
       "insurances": "My insurances",
       "loans": "My loans",
-      "noApps": "You don't have any applications here"
+      "noInsurances": "You don't have any insurances here",
+      "noLoans": "You don't have any loans here",
+      "noHistory": "You don't have history yet"
     },
     "ApplicationCard": {
       "name": "Name",
@@ -655,14 +653,6 @@
       "phone": "Phone",
       "email": "Email",
       "peopleNumber": "Number of people living in the apartment / house"
-    },
-    "SelectSecurity": {
-      "supervision": "Permanent physical supervision",
-      "securityDoors": "Security doors",
-      "intercom": "Intercom",
-      "windowSecurity": "Window security",
-      "notificationAlarm": "Notification alarm",
-      "localAlarm": "Local alarm"
     }
   },
   "InsuranceHealth": {
@@ -676,8 +666,7 @@
       "title": "Add additional applicant",
       "addApplicant": "Add applicant",
       "edit": "Edit",
-      "delete": "Delete",
-      "maxPeople": "You can only add 9 people"
+      "delete": "Delete"
     },
     "Error": {
       "noApplicant": "You must provide minimum 1 applicant"
@@ -769,8 +758,7 @@
       "title": "Add Applicant",
       "addApplicant": "Add applicant",
       "edit": "Edit",
-      "delete": "Delete",
-      "maxPeople": "You can only add 14 people"
+      "delete": "Delete"
     },
     "ApplicantModal": {
       "title": "Add another applicant"
@@ -931,7 +919,7 @@
     }
   },
   "InsuranceBorder": {
-    "title": "Ubezpieczenie graniczne",
+    "title": "Transport border insurance",
     "buttonNext": "Next",
     "buttonBack": "Back",
     "buttonConfirm": "Confirm",

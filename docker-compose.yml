@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+  app:
+    build: ./app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    volumes:
+      - /app/node_modules
+      - ./app:/app
+    depends_on:
+      - backend
+  admin:
+    build: ./admin
+    ports:
+      - "3001:3001"
+    stdin_open: true
+    volumes:
+      - /app/node_modules
+      - ./admin:/app
+    depends_on:
+      - app
+  landing:
+    build: ./landing
+    ports:
+      - "3002:3002"
+    stdin_open: true
+    volumes:
+      - /app/node_modules
+      - ./landing:/app
+    depends_on:
+      - admin

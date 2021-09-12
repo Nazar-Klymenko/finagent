@@ -40,9 +40,9 @@ export const signUp = async (req, res, next) => {
 
 export const fetchUser = async (req, res, next) => {
   try {
-    const admin = await Admin.findById(req.currentUser.uid, "role");
+    const admin = await Admin.findById(req.currentUser.uid);
     res.status(200).send({ admin });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };

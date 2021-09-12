@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const HistorySchema = new Schema(
   {
-    assignedEmployee: { type: String, ref: "admins" },
+    employee_id: { type: String, ref: "admins" },
     action: String,
     description: String,
     application: mongoose.ObjectId,

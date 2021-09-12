@@ -25,7 +25,11 @@ export default async function InsuranceCarOCSubmit(req, res, next) {
       "AdditionalData"
     );
 
-    const updatedModel = await attachImagesUser(files, insuranceObj);
+    const updatedModel = await attachImagesUser(
+      insuranceObj._id,
+      files,
+      insuranceObj
+    );
 
     await updatedModel.save();
 

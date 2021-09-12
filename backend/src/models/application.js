@@ -5,8 +5,8 @@ mongoose.pluralize(null);
 
 const ApplicationSchema = new Schema(
   {
-    user_id: { type: String, ref: "users" },
-    assignedEmployee: { type: String, ref: "admins" },
+    user_id: String,
+    employee_id: String,
     category: String,
     type: String,
     status: {
@@ -36,6 +36,21 @@ const ApplicationSchema = new Schema(
   },
   { timestamps: true, discriminatorKey: "applicationType" }
 );
+ApplicationSchema.set("toObject", { virtuals: true });
+ApplicationSchema.set("toJSON", { virtuals: true });
+
+ApplicationSchema.virtual("user", {
+  ref: "users",
+  localField: "user_id",
+  foreignField: "_id",
+  justOne: true,
+});
+ApplicationSchema.virtual("employee", {
+  ref: "admins",
+  localField: "employee_id",
+  foreignField: "_id",
+  justOne: true,
+});
 
 const Application = mongoose.model("applications", ApplicationSchema);
 

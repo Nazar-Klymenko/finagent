@@ -3,17 +3,15 @@ import User from "models/application.js";
 import asyncHandler from "helpers/asyncHandler.js";
 import createError from "http-errors";
 
-import path from "path";
-const __dirname = path.resolve();
-
-export const getPreviewApplications = asyncHandler(async (req, res, next) => {
+export const getPreviewApplications = asyncHandler(async (req, res) => {
   let { category, status } = req.params;
-  let { page, size, count } = req.query;
+  let { page, size } = req.query;
   category = category.slice(0, -1);
   let filters = {
     user_id: req.currentUser.uid,
     category: category,
     archived: false,
+    status: { $ne: 5 },
   };
 
   if (!page || page == 0) {
@@ -28,23 +26,23 @@ export const getPreviewApplications = asyncHandler(async (req, res, next) => {
   if (status === "ready") {
     filters.status = "5";
   }
+
+  if (category === "archive") {
+    delete filters.category;
+    delete filters.status;
+    filters.archived = true;
+  }
   const query = { ...filters };
 
   const ApplicationList = await Application.find(
     query,
-    "_id user_id status type category createdAt updatedAt"
+    "_id user_id user status type category createdAt updatedAt"
   )
+    .populate("user")
     .limit(limit)
-    .skip(skip)
-    .populate("user_id", "-_id -__v -isActive -createdAt -updatedAt");
+    .skip(skip);
 
-  let maximumPages = 1;
-  if (count) {
-    maximumPages = await Application.find(
-      query,
-      "_id user_id status type category createdAt updatedAt"
-    ).count();
-  }
+  let maximumPages = await Application.find(query).countDocuments();
 
   res.send({
     ApplicationList,
@@ -52,75 +50,64 @@ export const getPreviewApplications = asyncHandler(async (req, res, next) => {
   });
 });
 
-export const getSpecificApplication = asyncHandler(async (req, res, next) => {
-  const SpecificApplication = await Application.findOne(
-    {
-      _id: req.params.id,
-      user_id: req.currentUser.uid,
-    },
-    { _id: 0, __v: 0 }
-  ).populate("user_id", "-_id -__v -isActive -createdAt -updatedAt ");
-
-  if (SpecificApplication.length === 0) {
+export const getSpecificApplication = asyncHandler(async (req, res) => {
+  const SpecificApplication = await Application.findOne({
+    _id: req.params.id,
+    user_id: req.currentUser.uid,
+  }).populate("user");
+  // .populate("user_id", "-_id -__v -isActive -createdAt -updatedAt ");
+  if (!SpecificApplication) {
+    throw createError.Forbidden();
+  } else if (SpecificApplication.length === 0) {
     throw createError.Forbidden();
   }
   res.status(200).send(SpecificApplication);
 });
 
-export const getArchivedApplications = asyncHandler(async (req, res, next) => {
-  let { page, size } = req.query;
-  if (!page) {
-    page = 1;
-  }
-  if (!size) {
-    size = 20;
-  }
-  const skip = (page - 1) * size;
-  const limit = parseInt(size);
-
-  const ApplicationList = await Application.find(
-    {
-      user_id: req.currentUser.uid,
-      archived: true,
-    },
-    "_id user_id category type status createdAt updatedAt"
-  )
-    .limit(limit)
-    .skip(skip)
-    .populate(
-      "user_id",
-      "-_id -__v -password -isActive -createdAt -updatedAt "
-    );
-
-  res.send({
-    ApplicationList,
-  });
-});
-
-export const archiveApplication = asyncHandler(async (req, res, next) => {
-  const application = await Application.findByIdAndUpdate(req.params.id, {
+export const archiveApplication = asyncHandler(async (req, res) => {
+  await Application.findByIdAndUpdate(req.params.id, {
     archived: true,
   });
 
   res.status(200).send({ message: "application updated successfully" });
 });
 
-export const autofillApplication = asyncHandler(async (req, res, next) => {
-  const application = await Application.find({ user_id: req.currentUser.uid });
-  const user = await User.findById(req.currentUser.uid);
+export const getQuantityApplications = asyncHandler(async (req, res) => {
+  let { category } = req.params;
 
-  // if (!application.length) {
-  // }
-  res.status(200).send({
-    name: user.name,
-    surname: user.surname,
-    phoneNumber: user.phone,
-    email: user.email,
-    application,
-  });
-});
+  if (category === "all") {
+    let quantityArchived = await Application.find({
+      user_id: req.currentUser.uid,
+      archived: true,
+    }).countDocuments();
+    let quantityInsurances = await Application.find({
+      user_id: req.currentUser.uid,
+      category: "insurance",
+      archived: false,
+    }).countDocuments();
+    let quantityLoans = await Application.find({
+      user_id: req.currentUser.uid,
+      category: "loan",
+      archived: false,
+    }).countDocuments();
+    res
+      .status(200)
+      .send({ quantityInsurances, quantityLoans, quantityArchived });
+  }
+  category = category.slice(0, -1);
 
-export const serveImage = asyncHandler(async (req, res, next) => {
-  const imgPath = path.resolve(__dirname, "./src/files/documents");
-  res.sendFile(`${imgPath}/${req.params.filename}`);
+  let quantityReady = await Application.find({
+    user_id: req.currentUser.uid,
+    category: category,
+    status: 5,
+    archived: false,
+  }).countDocuments();
+  let quantityPending = await Application.find({
+    user_id: req.currentUser.uid,
+    category: category,
+    status: { $ne: 5 },
+    archived: false,
+  }).countDocuments();
+
+  res.status(200).send({ quantityReady, quantityPending });
 });

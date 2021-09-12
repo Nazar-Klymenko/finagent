@@ -7,8 +7,8 @@ import { verifyAdmin, verifySupervisor } from "middleware/admin";
 import {
   allOperators,
   awaitingOperators,
-  acceptOperator,
-  declineOperator,
+  grantAdministatorRole,
+  declineAdministator,
 } from "controllers/adminPanel/supervisor";
 
 import { allUsers, SpecificUser } from "controllers/adminPanel/client";
@@ -29,18 +29,23 @@ router
   .route("/clients/:id")
   .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, SpecificUser);
 
-router.route("/operators").get(
-  verifyAccessTokenFirebaseAdmin,
+router
+  .route("/operators")
+  .get(verifyAccessTokenFirebaseAdmin, verifySupervisor, allOperators);
+router
+  .route("/operators/awaiting")
+  .get(verifyAccessTokenFirebaseAdmin, verifySupervisor, awaitingOperators);
 
-  verifySupervisor,
-  allOperators
-);
-router.route("/operators/awaiting").get(
-  verifyAccessTokenFirebaseAdmin,
-
-  verifySupervisor,
-  awaitingOperators
-);
+router
+  .route("/operators/accept/:id")
+  .post(
+    verifyAccessTokenFirebaseAdmin,
+    verifySupervisor,
+    grantAdministatorRole
+  );
+router
+  .route("/operators/decline/:id")
+  .post(verifyAccessTokenFirebaseAdmin, verifySupervisor, declineAdministator);
 
 router
   .route("/settings")

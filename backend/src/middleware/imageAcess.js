@@ -6,17 +6,38 @@ export const accessToImage = async (req, res, next) => {
     const userId = req.currentUser.uid;
 
     const app = await Application.findById(req.params.id)
-      .populate("user_id", "-__v -password -isActive -createdAt -updatedAt")
-      .populate(
-        "assignedEmployee",
-        "-__v -password -isActive -createdAt -updatedAt"
-      );
+      .populate("user")
+      .populate("employee", "-__v -password -isActive -createdAt -updatedAt");
     if (!app) throw createError.Forbidden();
 
-    if (app.user_id._id != userId) {
-      if (app.assignedEmployee._id != userId) {
+    console.log(app);
+
+    if (app.user_id != userId) {
+      if (app.employee_id._id != userId) {
         throw createError.Forbidden();
       }
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const accessToImageAdmin = async (req, res, next) => {
+  try {
+    const userId = req.currentUser.uid;
+
+    const app = await Application.findById(req.params.id).populate(
+      "employee",
+      "-__v -password -isActive -createdAt -updatedAt"
+    );
+    if (!app) throw createError.Forbidden();
+
+    console.log(app);
+
+    if (app.employee_id != userId) {
+      throw createError.Forbidden();
     }
 
     next();

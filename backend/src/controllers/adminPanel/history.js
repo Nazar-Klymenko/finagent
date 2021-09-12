@@ -4,10 +4,7 @@ import History from "models/history.js";
 
 export const getAllHistory = asyncHandler(async (req, res, next) => {
   const HistoryList = await History.find()
-    .populate(
-      "assignedEmployee",
-      "-_id -__v -password -isActive -createdAt -updatedAt"
-    )
+    .populate("employee", "-_id -__v -password -isActive -createdAt -updatedAt")
     .populate("application", "_id");
   res.send({
     HistoryList,
@@ -27,11 +24,11 @@ export const getHistory = asyncHandler(async (req, res, next) => {
   const limit = parseInt(size);
 
   const HistoryList = await History.find({
-    assignedEmployee: req.currentUser.uid,
+    employee_id: req.currentUser.uid,
   })
     .limit(limit)
     .skip(skip)
-    .populate("assignedEmployee", "name surname");
+    .populate("employee", "name surname");
   res.send({
     HistoryList,
   });

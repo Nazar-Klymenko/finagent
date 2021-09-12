@@ -4,7 +4,7 @@ import asyncHandler from "helpers/asyncHandler.js";
 import { auth } from "app";
 
 export const allOperators = asyncHandler(async (req, res) => {
-  const admin = await Admin.find({ isActive: true, role: "admin" });
+  const admin = await Admin.find({ isApproved: true, role: "admin" });
 
   if (!admin) {
     throw createError.Unauthorized();
@@ -13,7 +13,7 @@ export const allOperators = asyncHandler(async (req, res) => {
 });
 
 export const awaitingOperators = asyncHandler(async (req, res) => {
-  const admin = await Admin.find({ isActive: false, role: "admin" });
+  const admin = await Admin.find({ isApproved: false, role: "admin" });
 
   if (!admin) {
     throw createError.Unauthorized();
@@ -21,11 +21,16 @@ export const awaitingOperators = asyncHandler(async (req, res) => {
   res.send(admin);
 });
 
-export const GrantAdministatorRole = async (req, res, next) => {
-  const user = await auth.getUserByEmail(req.body.email);
+export const grantAdministatorRole = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const admin = await Admin.findByIdAndUpdate(id, { isApproved: true });
 
-  if (user.customClaims && user.customClaims.moderator === true) return;
+  res.status(200).send("success");
+});
 
-  auth.setCustomerClaims(user.uid, { moderator: true });
-  res.send("success");
-};
+export const declineAdministator = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const admin = await Admin.findByIdAndRemove(id);
+
+  res.status(200).send("success");
+});

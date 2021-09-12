@@ -6,16 +6,12 @@ const addHistoryRecord = async (
   description,
   application
 ) => {
-  try {
-    const historyRecord = await new History({
-      assignedEmployee: assignedEmployee,
-      action: action,
-      description: description,
-      application: application,
-    });
-    historyRecord.save();
-  } catch (error) {
-    next(error);
-  }
+  const historyRecord = await new History({
+    employee_id: assignedEmployee,
+    action: action,
+    description: description,
+    application: application,
+  });
+  historyRecord.save();
 };
 export default addHistoryRecord;

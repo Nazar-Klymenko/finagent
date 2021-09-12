@@ -1,17 +1,21 @@
 import express from "express";
 const router = express.Router();
 
-import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth.js";
+import {
+  verifyAccessTokenFirebase,
+  isEmailVerified,
+  verifyAccessTokenFirebaseQuery,
+} from "middleware/auth.js";
 import { accessToImage } from "middleware/imageAcess";
 
 import {
   getPreviewApplications,
-  getArchivedApplications,
   getSpecificApplication,
+  getQuantityApplications,
   archiveApplication,
 } from "controllers/frontend/applicationsActions";
 
-import { serveImage } from "controllers/frontend/applicationsActions";
+import serveDocument from "controllers/serveDocument";
 import InsuranceCarOCSubmit from "controllers/frontend/submits/InsuranceCarOC.submit.js";
 import InsuranceBorderSubmit from "controllers/frontend/submits/InsuranceBorder.submit.js";
 import InsuranceHealthMedicalSubmit from "controllers/frontend/submits/InsuranceHealthMedical.submit.js";
@@ -24,9 +28,10 @@ import LoanMortgageSubmit from "controllers/frontend/submits/LoanMortgage.submit
 router
   .route("/show/:category/:status")
   .get(verifyAccessTokenFirebase, isEmailVerified, getPreviewApplications);
+
 router
-  .route("/show/all/archive")
-  .get(verifyAccessTokenFirebase, isEmailVerified, getArchivedApplications);
+  .route("/count/:category/quantity")
+  .get(verifyAccessTokenFirebase, isEmailVerified, getQuantityApplications);
 
 router
   .route("/:id")
@@ -67,8 +72,8 @@ router
   .post(verifyAccessTokenFirebase, isEmailVerified, LoanMortgageSubmit);
 
 router
-  .route("/files/:id/:filename")
-  .get(verifyAccessTokenFirebase, accessToImage, serveImage);
+  .route("/files/:idtoken/:id/:type/:filename")
+  .get(verifyAccessTokenFirebaseQuery, accessToImage, serveDocument);
 
 export default router;
 

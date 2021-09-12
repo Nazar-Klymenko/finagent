@@ -23,6 +23,7 @@ export const verifySupervisor = async (req, res, next) => {
     const admin = await Admin.findById(req.currentUser.uid);
 
     if (admin.role === "supervisor" && admin.isApproved) {
+      req.isSupervisor = true;
       next();
     } else {
       throw createError.Forbidden();

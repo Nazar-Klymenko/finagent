@@ -1,43 +1,36 @@
 import Application from "models/application.js";
-import createError from "http-errors";
 
 import path from "path";
 const __dirname = path.resolve();
 
 async function attachImagesAdmin(appId, files) {
-  if (files.length > 0) {
-    for (const file of files) {
-      let { newPath } = deconstructFile(file, "attachments");
+  const application = await Application.findById(appId);
+  files.forEach(async (file) => {
+    let newPath = deconstructFile(appId, file, "attachments");
 
-      await Application.findByIdAndUpdate(
-        appId,
-        { $push: { attachments: { fileName: file.name } } },
-        { safe: true, upsert: true }
-      );
-      file.mv(newPath);
-    }
-  }
+    file.mv(newPath);
+    application.attachments.push({
+      filename: file.name,
+    });
+  });
+  application.save();
 }
 
-async function attachImagesUser(files, model) {
-  let documentsArray = [];
+async function attachImagesUser(id, files, model) {
   files.forEach(async (file) => {
-    let newPath = deconstructFile(file, "documents");
-    // console.log(file);
-    // console.log(file.name);
+    let newPath = deconstructFile(id, file, "documents");
     file.mv(newPath);
-    documentsArray = [...documentsArray, { fileName: file.name }];
-    console.log(documentsArray);
+    model.documents.push({
+      filename: file.name,
+    });
   });
-
-  model.documents = documentsArray;
 
   return model;
 }
 
-function deconstructFile(file, type) {
+function deconstructFile(id, file, type) {
   const imgPath = path.resolve(__dirname, "./src/files/");
-  const newPath = `${imgPath}/${type}/${file.name}`;
+  const newPath = `${imgPath}/${id}/${type}/${file.name}`;
   return newPath;
 }
 

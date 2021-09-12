@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import { getApplicationsQuantityAPI } from "@api/applicationAPI";
+import { useQuery } from "react-query";
 
 interface Props {
   category: string;
@@ -30,6 +32,17 @@ const PageToggle: React.FC<Props> = ({
     history.push(`/dashboard/${category}/${status}/1`);
   }
 
+  const fetchApplicationsQuantity = async () => {
+    const { data } = await getApplicationsQuantityAPI(category);
+    return data;
+  };
+
+  let { data } = useQuery(
+    [`applications${category}Quantity`],
+    () => fetchApplicationsQuantity(),
+    { keepPreviousData: true, staleTime: 15000 }
+  );
+
   useEffect(() => {
     if (status === "ready") {
       setTogglePage(1);
@@ -38,28 +51,34 @@ const PageToggle: React.FC<Props> = ({
     }
   }, [status]);
 
-  return (
-    <PageToggleStyled>
-      <Tab
-        onClick={() => {
-          setStatus(1, "ready");
-        }}
-        selected={togglePage === 1}
-        blocked={blocked}
-      >
-        <span>{myServiceType}</span>
-      </Tab>
-      <Tab
-        onClick={() => {
-          setStatus(2, "pending");
-        }}
-        selected={togglePage === 2}
-        blocked={blocked}
-      >
-        <span>{t("Dashboard.PageToggle.pending")}</span>
-      </Tab>
-    </PageToggleStyled>
-  );
+  if (category !== "archived") {
+    return (
+      <PageToggleStyled>
+        <Tab
+          onClick={() => {
+            setStatus(1, "ready");
+          }}
+          selected={togglePage === 1}
+          blocked={blocked}
+        >
+          <span>{myServiceType}</span>
+          {data?.quantityReady > 0 && data?.quantityReady}
+        </Tab>
+        <Tab
+          onClick={() => {
+            setStatus(2, "pending");
+          }}
+          selected={togglePage === 2}
+          blocked={blocked}
+        >
+          <span>{t("Dashboard.PageToggle.pending")}</span>
+          {data?.quantityPending > 0 && data?.quantityPending}
+        </Tab>
+      </PageToggleStyled>
+    );
+  } else {
+    return null;
+  }
 };
 
 const Tab = styled.div<Styled>`

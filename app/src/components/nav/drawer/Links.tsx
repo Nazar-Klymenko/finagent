@@ -1,13 +1,13 @@
-import React, { useCallback } from "react";
+import React from "react";
 import styled from "styled-components/macro";
 
 import { NavLink } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
-import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
+// import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 
 import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
@@ -18,8 +18,8 @@ interface Props {
 }
 
 const Links: React.FC<Props> = ({ navOpen, setNavOpen }) => {
-  const { t } = useTranslation();
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
+  // const { t } = useTranslation();
+  // const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
 
   const hadleReguralClick = () => {
     setNavOpen(false);
@@ -27,12 +27,12 @@ const Links: React.FC<Props> = ({ navOpen, setNavOpen }) => {
 
   return (
     <LinksStyled>
-      {isLoggedIn && (
+      {/* {isLoggedIn && (
         <Link to="/help">
           <GroupRoundedIcon />
           <span>Change Account</span>
         </Link>
-      )}
+      )} */}
 
       <Link onClick={hadleReguralClick} to="/services">
         <AssignmentRoundedIcon />

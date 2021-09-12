@@ -33,13 +33,20 @@ const Summary = () => {
     try {
       const formData = new FormData();
 
-      console.log(appData.AppendedImages.files);
-
-      appData.AppendedImages.files.forEach((file) => {
+      appData.AppendedImages.filesTechPassport.forEach((file) => {
         formData.append("files", file, file.name);
       });
-
-      // formData.append("files", appData.AppendedImages.files);
+      appData.AppendedImages.filesPassport.forEach((file) => {
+        formData.append("files", file, file.name);
+      });
+      appData.AppendedImages.filesInsurance.forEach((file) => {
+        formData.append("files", file, file.name);
+      });
+      if (appData?.AppendedImages?.filesCarSale) {
+        appData.AppendedImages.filesCarSale.forEach((file) => {
+          formData.append("files", file, file.name);
+        });
+      }
 
       const entries = Object.entries(appData).filter(
         (entry) => entry[0] !== "AppendedImages"

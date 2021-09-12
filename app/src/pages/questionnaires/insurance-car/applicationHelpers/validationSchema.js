@@ -1,34 +1,41 @@
 import * as yup from "yup";
 
-export const pageOneSchema = yup.object().shape({
-  name: yup
-    .string()
-    .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
-    .required("Form.Error.blank"),
-  surname: yup
-    .string()
-    .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
-    .required("Form.Error.blank"),
-  phoneNumber: yup.string().required("Form.Error.blank"),
-  postIndex: yup.string().required("Form.Error.blank"),
-  city: yup.string().required("Form.Error.blank"),
-  voivodeship: yup.string().required("Form.Error.blank"),
-  street: yup.string().required("Form.Error.blank"),
-  houseNumber: yup.string().required("Form.Error.blank"),
-  documentAddedType: yup.string(),
-  documentAdded: yup.string().required("Form.Error.blank"),
-  isAppropLicence: yup.boolean(),
-  drivingLicenceDate: yup.date().when("isAppropLicence", {
-    is: true,
-    then: yup
-      .date()
-      .required("Form.Error.missingDate")
-      .nullable()
-      .typeError("Form.Error.invalidDate"),
-  }),
-  profession: yup.string().required("Form.Error.blank"),
-  maritalStatus: yup.string().required("Form.Error.blank"),
-});
+export const pageOneSchema = yup
+  .object()
+  .shape({
+    oc: yup.boolean(),
+    ac: yup.boolean(),
+    greenCard: yup.boolean(),
+    assistance: yup.boolean(),
+    name: yup
+      .string()
+      .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
+      .required("Form.Error.blank"),
+    surname: yup
+      .string()
+      .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
+      .required("Form.Error.blank"),
+    phoneNumber: yup.string().required("Form.Error.blank"),
+    postIndex: yup.string().required("Form.Error.blank"),
+    city: yup.string().required("Form.Error.blank"),
+    voivodeship: yup.string().required("Form.Error.blank"),
+    street: yup.string().required("Form.Error.blank"),
+    houseNumber: yup.string().required("Form.Error.blank"),
+    documentAddedType: yup.string(),
+    documentAdded: yup.string().required("Form.Error.blank"),
+    isAppropLicence: yup.boolean(),
+    drivingLicenceDate: yup.date().when("isAppropLicence", {
+      is: true,
+      then: yup
+        .date()
+        .required("Form.Error.missingDate")
+        .nullable()
+        .typeError("Form.Error.invalidDate"),
+    }),
+    profession: yup.string().required("Form.Error.blank"),
+    maritalStatus: yup.string().required("Form.Error.blank"),
+  })
+  .test("atleastOneCheckbox", "Form.Error.minimumOne", checkCheckboxes);
 
 export const pageTwoSchema = yup.object().shape({
   vehicleType: yup.string().required("Form.Error.blank"),
@@ -77,5 +84,103 @@ export const pageFourSchema = yup.object().shape({
 });
 
 export const pageFiveSchema = yup.object().shape({
-  files: yup.mixed().notRequired(),
+  filesTechPassport: yup
+    .array()
+    .nullable()
+    .required("Form.Error.blank")
+    .min(1, "minimalnie 1 plik")
+    .max(5, "maksymalnie 5 plików")
+    .test(
+      "is-big-file",
+      "maksymalny rozmiar pliku to 5MB",
+      checkIfFilesAreTooBig
+    )
+    .test(
+      "is-correct-file",
+      "nieodpowiedni typ plików",
+      checkIfFilesAreCorrectType
+    ),
+  filesPassport: yup
+    .array()
+    .nullable()
+    .required("Form.Error.blank")
+    .min(1, "minimalnie 1 plik")
+    .max(5, "maksymalnie 5 plików")
+    .test(
+      "is-big-file",
+      "maksymalny rozmiar pliku to 5MB",
+      checkIfFilesAreTooBig
+    )
+    .test(
+      "is-correct-file",
+      "nieodpowiedni typ plików",
+      checkIfFilesAreCorrectType
+    ),
+  filesCarSale: yup.array().when("isFirstOwner", {
+    is: false,
+    then: yup
+      .array()
+      .nullable()
+      .required("Form.Error.blank")
+      .min(1, "minimalnie 1 plik")
+      .max(5, "maksymalnie 5 plików")
+      .test(
+        "is-big-file",
+        "maksymalny rozmiar pliku to 5MB",
+        checkIfFilesAreTooBig
+      )
+      .test(
+        "is-correct-file",
+        "nieodpowiedni typ plików",
+        checkIfFilesAreCorrectType
+      ),
+  }),
+  filesInsurance: yup
+    .array()
+    .nullable()
+    .notRequired()
+    .max(5, "maksymalnie 5 plików")
+    .test(
+      "is-big-file",
+      "maksymalny rozmiar pliku to 5MB",
+      checkIfFilesAreTooBig
+    )
+    .test(
+      "is-correct-file",
+      "nieodpowiedni typ plików",
+      checkIfFilesAreCorrectType
+    ),
 });
+
+function checkCheckboxes(obj) {
+  if (obj.ac || obj.oc || obj.greenCard || obj.assistance) {
+    return true;
+  }
+
+  return false;
+}
+
+function checkIfFilesAreTooBig(files) {
+  let valid = true;
+  if (files) {
+    files.forEach((file) => {
+      const size = file.size / 1024 / 1024;
+      if (size > 5) {
+        valid = false;
+      }
+    });
+  }
+  return valid;
+}
+
+function checkIfFilesAreCorrectType(files) {
+  let valid = true;
+  if (files) {
+    files.forEach((file) => {
+      if (!["application/pdf", "image/jpeg", "image/png"].includes(file.type)) {
+        valid = false;
+      }
+    });
+  }
+  return valid;
+}

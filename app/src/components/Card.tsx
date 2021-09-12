@@ -30,7 +30,7 @@ const Card: React.FC<Props> = ({ appDataForUser }) => {
           <StatusColor />
           <Cell>
             <span className="key">{t("Dashboard.ApplicationCard.name")}</span>
-            <span className="value">{appDataForUser.user_id?.name}</span>
+            <span className="value">{appDataForUser.user?.name}</span>
           </Cell>
           <Cell>
             <span className="key">{t("Dashboard.ApplicationCard.type")}</span>

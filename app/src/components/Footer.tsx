@@ -23,10 +23,7 @@ const Footer: React.FC = () => {
           <LogoWrap>
             <Logo fillColor="#CDCDCD" />
           </LogoWrap>
-          <p>
-            Lorem ipsum blah gloriem rawunel a lorem ipsum blah gloriem rawunel
-            a lorem ipsum blah gloriem rawune owncdh jvnwoc a qnfkxe bnoers
-          </p>
+          <p>{t("Footer.content")}</p>
         </div>
         <div className="block-container">
           <div className="block">

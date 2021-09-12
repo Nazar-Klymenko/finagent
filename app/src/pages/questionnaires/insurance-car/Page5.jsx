@@ -16,7 +16,8 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { pageFiveSchema } from "./applicationHelpers/validationSchema";
 import { pageFiveValues } from "./applicationHelpers/defaultValues";
-import { FileInput } from "@components/input";
+import { Checkbox, FileInput } from "@components/input";
+import { Subheader } from "@components/typography";
 
 const Page5 = () => {
   const { t } = useTranslation();
@@ -26,10 +27,10 @@ const Page5 = () => {
 
   const appDataValid = validateAppData(appData, "AppendedImages");
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { register, handleSubmit, errors, control, watch } = useForm({
     defaultValues: pageFiveValues(appDataValid),
-    mode: "onBlur",
-    reValidateMode: "onBlur",
+    mode: "onChange",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageFiveSchema),
   });
@@ -44,6 +45,8 @@ const Page5 = () => {
     }
   };
 
+  const firstOwner = watch("isFirstOwner");
+
   return (
     <ContentWrap fullWidth>
       <Page>
@@ -52,14 +55,62 @@ const Page5 = () => {
 
         <Subtitle>{t("InsuranceTransport.Page5.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+          <Subheader
+            subheader="Фото техпаспорта"
+            description="необходимо прикрепить полный разворот двух сторон"
+          />
           <FileInput
             control={control}
-            name="files"
-            labelName="zdjęcia dokumentów"
+            name="filesTechPassport"
+            labelName=""
             showFiles
-            error={!!errors.files}
-            helperText={errors?.files?.message}
+            error={!!errors.filesTechPassport}
+            helperText={errors?.filesTechPassport?.message}
           />
+          <Subheader
+            subheader="Фото водительских прав"
+            description="необходимо прикрепить полный разворот двух сторон"
+          />
+          <FileInput
+            control={control}
+            name="filesPassport"
+            labelName=""
+            showFiles
+            error={!!errors.filesPassport}
+            helperText={errors?.filesPassport?.message}
+          />
+
+          <Subheader subheader="Фото актуальной страховки" description="" />
+          <FileInput
+            control={control}
+            name="filesInsurance"
+            labelName=""
+            showFiles
+            error={!!errors.filesInsurance}
+            helperText={errors?.filesInsurance?.message}
+          />
+          <Checkbox
+            ref={register}
+            labelName="Транспортное средство уже зарегестрировано на меня / мою фирму"
+            value={true}
+            name="isFirstOwner"
+          />
+          {!firstOwner && (
+            <>
+              <Subheader
+                subheader="Фото договора купли продажи"
+                description="необходимо прикрепить полный разворот двух сторон"
+              />
+              <FileInput
+                control={control}
+                name="filesCarSale"
+                labelName=""
+                showFiles
+                error={!!errors.filesCarSale}
+                helperText={errors?.filesCarSale?.message}
+              />
+            </>
+          )}
         </Form>
         <ButtonsWrap multiple>
           <CTA

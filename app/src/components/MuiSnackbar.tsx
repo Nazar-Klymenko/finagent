@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import Slide, { SlideProps } from "@material-ui/core/Slide";
 import { useDispatch, useSelector } from "react-redux";
-import { setSnackbar, closeSnackbar } from "@redux/alert/actions";
+import { closeSnackbar } from "@redux/alert/actions";
+import { useTranslation } from "react-i18next";
 
 type TransitionProps = Omit<SlideProps, "direction">;
 
@@ -12,6 +13,7 @@ function TransitionUp(props: TransitionProps) {
 }
 
 const MuiSnackbar: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const severity = useSelector(
     (state: any) => state.alerts.alertInfo?.severity
@@ -41,7 +43,7 @@ const MuiSnackbar: React.FC = () => {
         onClose={handleClose}
         severity={severity}
       >
-        {message}
+        {t(message)}
       </Alert>
     </Snackbar>
   );

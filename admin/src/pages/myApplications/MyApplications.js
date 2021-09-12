@@ -70,10 +70,10 @@ const MyApplications = () => {
                     history.push(`${path}/${app._id}`);
                   }}
                 >
-                  <td>{app.user_id?.name}</td>
-                  <td>{app.user_id?.surname}</td>
-                  <td>{app.user_id?.email}</td>
-                  <td>{app.user_id?.phone}</td>
+                  <td>{app.user?.name}</td>
+                  <td>{app.user?.surname}</td>
+                  <td>{app.user?.email}</td>
+                  <td>{app.user?.phone}</td>
                   <td>{app.category}</td>
                   <td>{app.type}</td>
                   <td>{createdAt}</td>

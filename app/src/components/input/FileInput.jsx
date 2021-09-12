@@ -54,7 +54,12 @@ const FileInput = ({
                 className={styles.root}
                 {...getRootProps()}
               >
-                <input {...getInputProps()} name={name} onBlur={onBlur} />
+                <input
+                  {...getInputProps()}
+                  accept=".png,.jpg,.pdf"
+                  name={name}
+                  onBlur={onBlur}
+                />
                 <p>Dodaj zdjęcia dokumentów tutaj</p>
               </Paper>
             )}
@@ -83,7 +88,5 @@ const FileInput = ({
     />
   );
 };
-
-const remove = (id) => {};
 
 export default FileInput;

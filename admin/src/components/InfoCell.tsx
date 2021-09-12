@@ -20,7 +20,7 @@ const InfoCellStyled = styled.div`
   flex-direction: column;
   margin: 0 2rem;
   .name {
-    color: ${({ theme }) => theme.lightGray};
+    color: ${({ theme }) => theme.gray};
   }
 `;
 

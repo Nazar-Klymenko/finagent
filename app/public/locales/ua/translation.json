@@ -2,6 +2,7 @@
   "Form": {
     "Error": {
       "blank": "Це поле не може бути порожнім",
+      "minimumOne": "Будь ласка, виберіть мінімум одну опцію",
       "missingDate": "Введіть дату",
       "invalidDate": "Неправильний формат дати",
       "noNumber": "Це поле не може містити цифри",
@@ -24,10 +25,11 @@
   "NavbarBottom": {
     "dashboard": "Кабінет",
     "services": "Послуги",
-    "contact": "Контакти",
-    "help": "Допомога"
+    "help": "Допомога",
+    "settings": "Налаштування"
   },
   "Footer": {
+    "content": "Ваш інструмент для швидкого та зручного доступу до оформлення страхування та кредитних послуг. Вибір найкращої пропозиції на ринку, завдяки консультаціям з кваліфікованими спеціалістами.",
     "contact": "Контакти",
     "help": "Допомога",
     "legal": "Права",
@@ -60,7 +62,7 @@
   "BlockContact": {
     "question": "Маєте ще питання?",
     "phone": "Телефон",
-    "email": "Мейл",
+    "email": "Email",
     "fullName": "Ім'я Прізвище",
     "message": "Повідомлення",
     "submit": "Відправити"
@@ -82,21 +84,25 @@
       "title": "Страхування транспорту",
       "subtitle": "Ми допоможемо вам отримати найкращу страхову пропозицію для вашого транспортного засобу."
     },
+    "Border": {
+      "title": "Transport border insurance",
+      "subtitle": "Border insurance"
+    },
     "Health": {
-      "title": "Медичне страхування",
-      "subtitle": "Ми можемо розрахувати та запропонувати найкращу можливу ціну медичного страхування."
+      "title": "Страхування витрат на лікування іноземців",
+      "subtitle": "Страховка покриває витрати на лікування іноземців на території Польщі у зв’язку з раптовим захворюванням чи нещасним випадком. Саме цей вид страхового полісу потрібен для подачі документів на карту побиту."
     },
     "Diagnostic": {
-      "title": "Diagnostic & Specialist access",
-      "subtitle": "Some subtitle"
+      "title": "Доступ до лікарів-спеціалістів та діагностичних досліджень",
+      "subtitle": "Знайдемо для Вас оптимальний пакет медичного страхування, яке надає доступ до лікарів-спеціалістів та діагностичних досліджень."
     },
     "Travel": {
-      "title": "Travel insurance",
-      "subtitle": "Some subtitle"
+      "title": "Туристична страховка",
+      "subtitle": "Туристична страховка дозволить Вам почуватися в безпеці під час подорожей за кордоном та територією Польщі."
     },
     "Estate": {
-      "title": "Real estate insurance",
-      "subtitle": "Some subtitle"
+      "title": "Страхування будинку чи квартири",
+      "subtitle": "Страхування будинку чи квартири - Ваш надійний захист на випадок непередбачуваних обставин чи крадіжок."
     }
   },
   "Contact": {
@@ -105,7 +111,7 @@
     "subtitleInfo": "Зв’яжіться з нами безпосередньо",
     "Form": {
       "fullName": "Ім'я та Прізвище",
-      "email": "Мейл",
+      "email": "Email",
       "message": "Повідомлення",
       "submit": "Відправити"
     }
@@ -117,7 +123,7 @@
   "LogIn": {
     "title": "Увійди в свій аккаунт",
     "Form": {
-      "email": "Мейл",
+      "email": "Email",
       "password": "Пароль",
       "button": "Увійти"
     },
@@ -166,8 +172,8 @@
   "RestorePassword": {
     "title": "Відновлення паролю",
     "Form": {
-      "email": "Мейл",
-      "mistake": "Мейл не може бути пустим",
+      "email": "Email",
+      "mistake": "Email не може бути пустим",
       "explain": "Відправимо вам електронного листа з посиланням для відновлення паролю",
       "button": "Відновити"
     },
@@ -191,15 +197,13 @@
     "SideMenu": {
       "insurances": "Страховки",
       "loans": "Кредити",
-      "history": "Історія"
+      "history": "Архів"
     },
     "PageToggle": {
       "pending": "В обробці",
       "insurances": "Мої страхові поліси",
       "loans": "Мої кредити",
-      "noInsurances": "Поки що не маєш страхових полісів",
-      "noLoans": "Поки що не маєш кредитів",
-      "noHistory": "Поки що не маєш історії"
+      "noApps": "Ви ще не маете жодних заявок"
     },
     "ApplicationCard": {
       "name": "Ім'я",
@@ -278,7 +282,7 @@
       "errorInvalidPassword": "Неправильний пароль"
     },
     "Disposal": {
-      "title": "Усунення",
+      "title": "Видалення аккаунту",
       "deleteAction": "Видалити акаунт",
       "password": "Впишіть ваш пароль",
       "button": "Підтвердити",
@@ -308,7 +312,8 @@
     "IncomeBox": {
       "title": "Додати додатковий прибуток",
       "addIncome": "Додати прибуток",
-      "edit": "Змінити"
+      "edit": "Змінити",
+      "transportDriver": "Водій транспорту"
     },
     "Error": {
       "noFirstApplicant": "Ви маете заповнити форму першого заявника",
@@ -380,7 +385,7 @@
     },
     "IncomeModal": {
       "title": "Додати додатковий прибуток",
-      "truckDriver": "Ви водій вантажівки?",
+      "truckDriver": "Ви працюєте водієм міжнародних перевезень (категорія С+Е)",
       "indefinitePeriod": "Умова о праці на невизначений час",
       "specificTime": "Умова о праці на визначений час",
       "mandate": "Умова злеценя",
@@ -388,7 +393,7 @@
       "economicActivity": "Підприємницька діяльність",
       "yes": "Так",
       "no": "Ні",
-      "basicIncome": "Джерело основного доходу",
+      "basicIncome": "Джерело додаткового доходу",
       "industry": "Напишіть сферу вашої діяльності",
       "firstContract": "Це ваш перший контракт?",
       "sameEmployer": "Той самий працедавця?",
@@ -422,7 +427,8 @@
     "IncomeBox": {
       "title": "Додати додатковий прибуток",
       "addIncome": "Додати прибуток",
-      "edit": "Змінити"
+      "edit": "Змінити",
+      "transportDriver": "Водій транспорту"
     },
     "HouseholdBox": {
       "title": "Додати домашнє господарство",
@@ -501,8 +507,8 @@
       "name": "Ім'я",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
-      "phoneNumber": "Номер телефона",
-      "email": "Електронна адресса",
+      "phoneNumber": "Номер телефону",
+      "email": "Email",
       "pesel": "PESEL",
       "basicIncome": "Джерело основного доходу",
       "firstContract": "Це ваш перший контракт?",
@@ -521,7 +527,7 @@
     },
     "IncomeModal": {
       "title": "Додати додатковий прибуток",
-      "truckDriver": "Ви водій вантажівки?",
+      "truckDriver": "Ви працюєте водієм міжнародних перевезень (категорія С+Е)",
       "indefinitePeriod": "Умова о праці на невизначений час",
       "specificTime": "Умова о праці на визначений час",
       "mandate": "Умова злеценя",
@@ -529,7 +535,7 @@
       "economicActivity": "Підприємницька діяльність",
       "yes": "Так",
       "no": "Ні",
-      "basicIncome": "Джерело основного доходу",
+      "basicIncome": "Джерело додаткового доходу",
       "industry": "Напишіть сферу вашої діяльності",
       "firstContract": "Це ваш перший контракт?",
       "sameEmployer": "Той самий працедавця?",
@@ -653,6 +659,15 @@
       "phone": "Номер телефону",
       "email": "Email",
       "peopleNumber": "Кількість осіб які проживають в квартирі/домі"
+    },
+    "SelectSecurity": {
+      "supervision": "Постійне фізичне спостереження",
+      "securityDoors": "Захисні двері",
+      "intercom": "Домофон",
+      "windowSecurity": "Захищені вікна",
+      "notificationAlarm": "Сигналізація з повідомленням",
+      "localAlarm": "Місцева сигналізація",
+      "none": "Відсутня"
     }
   },
   "InsuranceHealth": {
@@ -666,7 +681,8 @@
       "title": "Додати наступного заявника",
       "addApplicant": "Додати заявника",
       "edit": "Змінити",
-      "delete": "Видалити"
+      "delete": "Видалити",
+      "maxPeople": "Ви можете додати лише 9 осіб"
     },
     "Error": {
       "noHousehold": "Ви повинні додати мінімум одного заявника"
@@ -679,8 +695,8 @@
       "clauseOne": "Страхування  витрат на лікування на території Польщі",
       "clauseTwo": "Страхування від нещасливих випадків",
       "clauseThree": "Громадянська відповідальність в приватному житті",
-      "chooseAmountEuro": "Оберіть суму страхування (Euro)",
-      "chooseAmountZlote": "Оберіть суму страхування (Zlote)"
+      "chooseAmountEuro": "Оберіть суму страхування (EUR)",
+      "chooseAmountZlote": "Оберіть суму страхування (PLN)"
     },
     "Page2": {
       "addApplicant": "Додати заявника",
@@ -758,7 +774,8 @@
       "title": "Додати заявника",
       "addApplicant": "Додати заявника",
       "edit": "Змінити",
-      "delete": "Видалити"
+      "delete": "Видалити",
+      "maxPeople": "Ви можете додати лише 14 осіб"
     },
     "ApplicantModal": {
       "title": "Додати наступного заявника"
@@ -879,7 +896,7 @@
     "Page2": {
       "subtitle": "Інформація про транспорт",
       "vehicleType": "Тип транспортного засобу",
-      "brand": "Бренд",
+      "brand": "Марка",
       "model": "Модель",
       "version": "Версія",
       "regNumber": "Реєстраційний номер",
@@ -919,41 +936,52 @@
     }
   },
   "InsuranceBorder": {
-    "title": "Transport border insurance",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+    "title": "Ubezpieczenie graniczne",
+    "buttonNext": "Далі",
+    "buttonBack": "Назад",
+    "buttonConfirm": "Піттвердити",
+    "summary": "Підсумок",
     "Page1": {
-      "subtitle": "Insurance Info",
-      "documentType": "Document type",
+      "subtitle": "Інформація про страхування",
+      "documentType": "Тип документу",
       "pesel": "PESEL",
-      "passportNumber": "Passport number",
-      "registeredNotInEU": "Vehicle registered in a country outside the European Economic Area",
-      "insurancePeriod": "Number of days of protection"
+      "passportNumber": "Номер паспорту",
+      "registeredNotInEU": "Транспортний засіб, зареєстрований у країні за межами Європейського економічного простору",
+      "insurancePeriod": "Кількість днів захисту"
     },
     "Page2": {
-      "subtitle": "Vehicle Info",
-      "vehicleType": "Vehicle type",
-      "brand": "Brand",
-      "model": "Model",
-      "regNumber": "Registration number",
-      "vinNumber": "VIN number",
-      "engineNumber": "Engine number",
-      "engineVolume": "Engine volume(ccm)",
-      "seatNumber": "Number of seats in vehicle"
+      "subtitle": "Інформація про транспортний засіб",
+      "vehicleType": "Тип транспортного засобу",
+      "brand": "Марка",
+      "model": "Модель",
+      "regNumber": "Реєстраційний номер",
+      "vinNumber": "Номер VIN",
+      "engineNumber": "Номер двигуна",
+      "engineVolume": "Об'єм двигуна (см3)",
+      "seatNumber": "Кількість місць у транспортному засобі"
     },
     "Page3": {
-      "subtitle": "Personal Info",
-      "name": "Name",
-      "surname": "Surname",
-      "phoneNumber": "Phone number",
+      "subtitle": "Особиста інформація",
+      "name": "Ім'я",
+      "surname": "Прізвище",
+      "phoneNumber": "Номер телефону",
       "email": "Email",
-      "country": "Country",
-      "city": "City",
-      "postIndex": "Post index",
-      "street": "Street",
-      "houseNumber": "House number"
+      "country": "Країна",
+      "city": "Місто",
+      "postIndex": "Поштовий індекс",
+      "street": "Вулиця",
+      "houseNumber": "Номер будинку"
     }
+  },
+  "SnackBar": {
+    "confirmEmail": "Підтвердьте електронну адресу",
+    "userExists": "Цей користувач вже існує",
+    "incorrectData": "Ви ввели неправильні дані",
+    "signUpFail": "Не вдалося зареєструватися",
+    "successfulLogginIn": "Вхід успішний",
+    "incorrectEmailOrPassword": "Невірна адреса електронної пошти або пароль",
+    "loginError": "Помилка входу",
+    "emailWasResent": "Електронну пошту було надіслано повторно",
+    "errorResendingEmail": "Помилка повторного надсилання електронної пошти"
   }
 }

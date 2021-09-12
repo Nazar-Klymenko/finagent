@@ -111,7 +111,7 @@ const SignUp = () => {
         <div className="auth-options">
           <span className="login-link-wrap">
             {t("SignUp.addActions.haveAccount")}
-            <NavLink className="login-link" to="/admin/login">
+            <NavLink className="login-link" to="/auth/login">
               {t("SignUp.addActions.logIn")}
             </NavLink>
           </span>

@@ -1,5 +1,3 @@
-import { getAuthenticationStatus } from "@helpers/firebaseHelper";
-
 import {
   FETCH_USER,
   SIGNUP_SUCCESS,
@@ -9,7 +7,7 @@ import {
 
 const initialAuthState = {
   displayName: "",
-  isLoggedIn: !!getAuthenticationStatus(),
+  isLoggedIn: false,
   isActive: false,
   isSendingRequest: true,
   photoURL: "",

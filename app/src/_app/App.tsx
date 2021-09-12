@@ -25,6 +25,8 @@ import GlobalStyle from "@styles/GlobalStyle";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "@redux/auth/actions";
 
+import ScrollToTop from "@hooks/ScrollToTop";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -49,7 +51,7 @@ const App = () => {
               <BackDropProvider>
                 <NotificationProvider>
                   <Router>
-                    {/* <PageContainer> */}
+                    <ScrollToTop />
                     <Nav />
                     <ContentMain>
                       <MuiSnackbar />
@@ -57,7 +59,6 @@ const App = () => {
                     </ContentMain>
                     <Footer />
                     <BottomNav />
-                    {/* </PageContainer> */}
                   </Router>
                 </NotificationProvider>
               </BackDropProvider>

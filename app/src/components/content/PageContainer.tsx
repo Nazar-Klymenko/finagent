@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import styled, { css } from "styled-components/macro";
+import { FC } from "react";
+import styled from "styled-components/macro";
 
 const PageContainer: FC = ({ children }) => {
   return <ContentMainStyled>{children}</ContentMainStyled>;

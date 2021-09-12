@@ -22,6 +22,11 @@ export const takenAppsAPI = () => {
     method: "GET",
   });
 };
+export const getArchivedAppsAPI = () => {
+  return axios(`/admin/application/show/archived`, {
+    method: "GET",
+  });
+};
 export const getSpecificApplicationAPI = (id) => {
   return axios(`/admin/application/${id}`, {
     method: "GET",
@@ -86,7 +91,7 @@ export const getAllHistoryAPI = () => {
 };
 
 export const uploadDocumentsAPI = (object, id) => {
-  return axios(`/admin/upload/${id}`, {
+  return axios(`/admin/application/attach/${id}`, {
     method: "POST",
     data: object,
     headers: { "Content-Type": "multipart/form-data" },

@@ -21,15 +21,15 @@ const Modal = ({ openModal, setOpenModal, header, children }) => {
   //   };
   // }, []);
 
-  const handleClickOutside = (e) => {
-    if (openModal) {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
-        setOpenModal(false);
-      }
-    } else {
-      return false;
-    }
-  };
+  // const handleClickOutside = (e) => {
+  //   if (openModal) {
+  //     if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+  //       setOpenModal(false);
+  //     }
+  //   } else {
+  //     return false;
+  //   }
+  // };
 
   const closeModal = () => {
     setOpenModal(false);

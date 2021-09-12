@@ -86,14 +86,11 @@ const TakenApplications = () => {
                         history.push(`/applications/${app._id}`);
                       }}
                     >
-                      <AssignCell
-                        id={app._id}
-                        employee={app.assignedEmployee}
-                      />
-                      <td>{app.user_id?.name}</td>
-                      <td>{app.user_id?.surname}</td>
-                      <td>{app.user_id?.email}</td>
-                      <td>{app.user_id?.phone}</td>
+                      <AssignCell id={app._id} employee={app.employee} />
+                      <td>{app.user?.name}</td>
+                      <td>{app.user?.surname}</td>
+                      <td>{app.user?.email}</td>
+                      <td>{app.user?.phone}</td>
                       <td>{app.category}</td>
                       <td>{app.type}</td>
                       <td>{createdAt}</td>

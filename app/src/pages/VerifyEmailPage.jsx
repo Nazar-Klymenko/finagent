@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 
@@ -35,4 +33,3 @@ const ResendEmail = styled.div`
   color: ${({ theme }) => theme.blue};
   cursor: pointer;
 `;
-

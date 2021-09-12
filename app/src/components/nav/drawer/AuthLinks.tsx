@@ -3,7 +3,6 @@ import styled from "styled-components/macro";
 import { NavLink } from "react-router-dom";
 
 import { UserAuth } from "@components/buttons";
-import { SignOut } from "@components/svgs";
 import { useTranslation } from "react-i18next";
 
 import { useSelector, useDispatch } from "react-redux";

@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
-import { Profile, Settings, SignOut } from "@components/svgs";
+import { Settings, SignOut } from "@components/svgs";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@redux/auth/actions";
@@ -65,7 +65,7 @@ const UserDropdown: React.FC<Props> = ({ navOpen, setNavOpen }) => {
       </MainUser>
 
       <Dropdown isOpen={isOpen} navOpen={navOpen}>
-        <MenuItem
+        {/* <MenuItem
           navOpen={navOpen}
           onClick={() => {
             setNavOpen(false);
@@ -73,7 +73,7 @@ const UserDropdown: React.FC<Props> = ({ navOpen, setNavOpen }) => {
         >
           <Profile />
           <span>{t("UserDropdown.changeProfile")}</span>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem
           navOpen={navOpen}
           onClick={() => {

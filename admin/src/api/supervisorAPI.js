@@ -1,17 +1,17 @@
 import { axios } from "./axiosConfig";
 
 export const getAllOperatorsAPI = (id) => {
-  return axios(`/admin/all_operators/`, {
+  return axios(`/admin/operators/`, {
     method: "GET",
   });
 };
 export const getAwaitingOperatorsAPI = (id) => {
-  return axios(`/admin/all_operators/awaiting`, {
+  return axios(`/admin/operators/awaiting`, {
     method: "GET",
   });
 };
 export const acceptOperatorAPI = (id) => {
-  return axios(`/admin/all_operators/accept/${id}`, {
+  return axios(`/admin/operators/accept/${id}`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -19,7 +19,7 @@ export const acceptOperatorAPI = (id) => {
   });
 };
 export const declineOperatorAPI = (id) => {
-  return axios(`/admin/all_operators/decline/${id}`, {
+  return axios(`/admin/operators/decline/${id}`, {
     method: "POST",
     headers: {
       "Content-type": "application/json",

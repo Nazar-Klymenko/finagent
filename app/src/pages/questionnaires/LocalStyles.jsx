@@ -90,3 +90,14 @@ export const ApplicantBox = styled.div`
     padding: 1rem 0;
   }
 `;
+
+export const InputErrorMessage = styled.div`
+  color: ${({ theme }) => theme.red};
+  font-size: 0.75rem;
+  letter-spacing: 0.03333em;
+  margin: 6px 0px 0px;
+  .invis-star {
+    opacity: 0;
+    pointer-events: none;
+  }
+`;

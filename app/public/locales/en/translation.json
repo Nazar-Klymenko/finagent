@@ -2,6 +2,7 @@
   "Form": {
     "Error": {
       "blank": "This field can't be blank",
+      "minimumOne": "Choose at least one option",
       "missingDate": "Please enter date",
       "invalidDate": "Invalid date format",
       "noNumber": "This field can't contain numbers",
@@ -24,10 +25,11 @@
   "NavbarBottom": {
     "dashboard": "Dashboard",
     "services": "Services",
-    "contact": "Contact",
-    "help": "Help"
+    "help": "Help",
+    "settings": "Settings"
   },
   "Footer": {
+    "content": "Your instrument for quick and comfortable access to taking out insurance and loan services. Selection of the best offer on the market through consultation with qualified specialists.",
     "contact": "Contact",
     "help": "Help",
     "legal": "Legal",
@@ -82,21 +84,25 @@
       "title": "Transport insurance",
       "subtitle": "We will help you to get the best insurance offer for your vehicle."
     },
+    "Border": {
+      "title": "Transport border insurance",
+      "subtitle": "Border insurance"
+    },
     "Health": {
       "title": "Health insurance",
-      "subtitle": "We are able to calculate and propose the best possible offer for your health insurance."
+      "subtitle": "The insurance will protect you in the case of a sudden illness or accident during your stay in Poland. This type of insurance policy is necessary to submit documents for a residence card."
     },
     "Diagnostic": {
       "title": "Diagnostic & Specialist access",
-      "subtitle": "Some subtitle"
+      "subtitle": "We will find for you the most suitable health insurance plan that provides access to specialist doctors and diagnostic tests."
     },
     "Travel": {
       "title": "Travel insurance",
-      "subtitle": "Some subtitle"
+      "subtitle": "Travel insurance allows you to feel safe when travelling abroad and in Poland."
     },
     "Estate": {
       "title": "Real estate insurance",
-      "subtitle": "Some subtitle"
+      "subtitle": "House or apartment insurance is your reliable protection in case of emergencies and theft."
     }
   },
   "Contact": {
@@ -191,15 +197,13 @@
     "SideMenu": {
       "insurances": "Insurances",
       "loans": "Loans",
-      "history": "History"
+      "history": "Archive"
     },
     "PageToggle": {
       "pending": "Pending",
       "insurances": "My insurances",
       "loans": "My loans",
-      "noInsurances": "You don't have any insurances here",
-      "noLoans": "You don't have any loans here",
-      "noHistory": "You don't have history yet"
+      "noApps": "You don't have any applications here"
     },
     "ApplicationCard": {
       "name": "Name",
@@ -308,7 +312,8 @@
     "IncomeBox": {
       "title": "Add additional income",
       "addIncome": "Add income",
-      "edit": "Edit"
+      "edit": "Edit",
+      "transportDriver": "Transport driver"
     },
     "Error": {
       "noFirstApplicant": "You must provide first applicant",
@@ -380,7 +385,7 @@
     },
     "IncomeModal": {
       "title": "Add additional income",
-      "truckDriver": "Are you a truck driver?",
+      "truckDriver": "You work as an international transport driver (category C+E)",
       "indefinitePeriod": "Contract of employment with an indefinite period",
       "specificTime": "Contract of employment on specific time frame",
       "mandate": "Contract of mandate",
@@ -388,7 +393,7 @@
       "economicActivity": "Entrepreneurial activity",
       "yes": "Yes",
       "no": "No",
-      "basicIncome": "Source of basic income",
+      "basicIncome": "Source of additional income",
       "industry": "Enter your work industry",
       "firstContract": "Is it your first contract?",
       "sameEmployer": "The same employer?",
@@ -422,7 +427,8 @@
     "IncomeBox": {
       "title": "Add additional income",
       "addIncome": "Add income",
-      "edit": "Edit"
+      "edit": "Edit",
+      "transportDriver": "Transport driver"
     },
     "HouseholdBox": {
       "title": "Add household",
@@ -521,7 +527,7 @@
     },
     "IncomeModal": {
       "title": "Add additional income",
-      "truckDriver": "Are you a truck driver?",
+      "truckDriver": "You work as an international transport driver (category C+E)",
       "indefinitePeriod": "Contract of employment with an indefinite period",
       "specificTime": "Contract of employment on specific time frame",
       "mandate": "Contract of mandate",
@@ -529,7 +535,7 @@
       "economicActivity": "Entrepreneurial activity",
       "yes": "Yes",
       "no": "No",
-      "basicIncome": "Source of basic income",
+      "basicIncome": "Source of additional income",
       "industry": "Enter your work industry",
       "firstContract": "Is it your first contract?",
       "sameEmployer": "The same employer?",
@@ -653,6 +659,15 @@
       "phone": "Phone",
       "email": "Email",
       "peopleNumber": "Number of people living in the apartment / house"
+    },
+    "SelectSecurity": {
+      "supervision": "Permanent physical supervision",
+      "securityDoors": "Security doors",
+      "intercom": "Intercom",
+      "windowSecurity": "Window security",
+      "notificationAlarm": "Notification alarm",
+      "localAlarm": "Local alarm",
+      "none": "None"
     }
   },
   "InsuranceHealth": {
@@ -666,7 +681,8 @@
       "title": "Add additional applicant",
       "addApplicant": "Add applicant",
       "edit": "Edit",
-      "delete": "Delete"
+      "delete": "Delete",
+      "maxPeople": "You can only add 9 people"
     },
     "Error": {
       "noApplicant": "You must provide minimum 1 applicant"
@@ -679,8 +695,8 @@
       "clauseOne": "Insurance of treatment costs in the territory of the Republic of Poland",
       "clauseTwo": "Insurance in case of accidents",
       "clauseThree": "Civil liability in private life",
-      "chooseAmountEuro": "Choose amount (Euro)",
-      "chooseAmountZlote": "Choose amount (Zlote)"
+      "chooseAmountEuro": "Choose amount (EUR)",
+      "chooseAmountZlote": "Choose amount (PLN)"
     },
     "Page2": {
       "addApplicant": "Add another applicant",
@@ -758,7 +774,8 @@
       "title": "Add Applicant",
       "addApplicant": "Add applicant",
       "edit": "Edit",
-      "delete": "Delete"
+      "delete": "Delete",
+      "maxPeople": "You can only add 14 people"
     },
     "ApplicantModal": {
       "title": "Add another applicant"
@@ -919,7 +936,7 @@
     }
   },
   "InsuranceBorder": {
-    "title": "Transport border insurance",
+    "title": "Ubezpieczenie graniczne",
     "buttonNext": "Next",
     "buttonBack": "Back",
     "buttonConfirm": "Confirm",
@@ -955,5 +972,16 @@
       "street": "Street",
       "houseNumber": "House number"
     }
+  },
+  "SnackBar": {
+    "confirmEmail": "Please confirm email",
+    "userExists": "This user already exists",
+    "incorrectData": "You have entered incorrect data",
+    "signUpFail": "Failed to sign up",
+    "successfulLogginIn": "Logged in successfully",
+    "incorrectEmailOrPassword": "Incorrect email or password",
+    "loginError": "Error logging in",
+    "emailWasResent": "Email was re-sent",
+    "errorResendingEmail": "Error re-sending email"
   }
 }

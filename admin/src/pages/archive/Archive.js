@@ -7,10 +7,9 @@ import Table from "@components/Table";
 
 import moment from "moment";
 
-import { allAppsAPI } from "@api/mainAPI";
+import { getArchivedAppsAPI } from "@api/mainAPI";
 
 import Pagination from "@components/Pagination";
-// import ApplicationsToggle from "./ApplicationsToggle";
 import Subheader from "@components/Subheader";
 
 const Archive = () => {
@@ -23,7 +22,7 @@ const Archive = () => {
 
   const fetchData = async () => {
     try {
-      const response = await allAppsAPI();
+      const response = await getArchivedAppsAPI();
       setApplications(response.data.ApplicationList);
     } catch (error) {
       console.log(error);
@@ -74,11 +73,11 @@ const Archive = () => {
                         history.push(`/applications/${app._id}`);
                       }}
                     >
-                      <td>{app.assignedEmployee?.name}</td>
-                      <td>{app.user_id?.name}</td>
-                      <td>{app.user_id?.surname}</td>
-                      <td>{app.user_id?.email}</td>
-                      <td>{app.user_id?.phone}</td>
+                      <td>{app.employee?.name}</td>
+                      <td>{app.user?.name}</td>
+                      <td>{app.user?.surname}</td>
+                      <td>{app.user?.email}</td>
+                      <td>{app.user?.phone}</td>
                       <td>{app.category}</td>
                       <td>{app.type}</td>
                       <td>{createdAt}</td>

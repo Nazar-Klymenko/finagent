@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useTitle from "@hooks/useTitle";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -10,7 +10,7 @@ import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
 import { Input, RadioGroup, PhoneInput, DateInput } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
-import { CTA, BackButton } from "@components/buttons";
+import { CTA } from "@components/buttons";
 
 import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";

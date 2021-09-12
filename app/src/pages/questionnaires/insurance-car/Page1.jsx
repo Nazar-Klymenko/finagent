@@ -2,7 +2,6 @@ import React from "react";
 import useTitle from "@hooks/useTitle";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import moment from "moment";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -26,9 +25,10 @@ import {
   Title,
   Subtitle,
   ButtonsWrap,
-  RadioWrap,
+  InputErrorMessage,
   Legend,
 } from "../LocalStyles";
+
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
@@ -59,8 +59,6 @@ const Page1 = () => {
   const documentTypeName = watch("documentAddedType");
 
   const formSubmit = (data) => {
-    let novajaData = new Date();
-
     setValues(data, "PersonalData");
     setCurrentPage(2);
 
@@ -76,6 +74,7 @@ const Page1 = () => {
 
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <Legend>{t("InsuranceTransport.Page1.insuranceCoverage")}</Legend>
+
           <Checkbox
             ref={register}
             labelName={t("InsuranceTransport.Page1.oc")}
@@ -100,6 +99,13 @@ const Page1 = () => {
             value={false}
             name="assistance"
           />
+
+          <InputErrorMessage>
+            <span className="invis-star">*</span>
+            {errors?.atleastOneCheckbox &&
+              t(errors?.atleastOneCheckbox?.message)}
+          </InputErrorMessage>
+
           <Input
             ref={register}
             name="name"

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllOperatorsAPI } from "@api/supervisorAPI.js";
+import { getAllOperatorsAPI } from "@api/supervisorAPI";
 import { FullPage } from "@components/content";
 import Table from "@components/Table";
 import { useTranslation } from "react-i18next";

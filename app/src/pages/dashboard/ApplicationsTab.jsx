@@ -32,15 +32,15 @@ const ApplicationsTab = () => {
     }
   }, [recount]);
 
-  const fetchProjects = async (page = 0, statusParam) => {
+  const fetchApplications = async (page = 0, statusParam) => {
     const { data } = await getApplicationsAPI(page, cat, statusParam, recount);
     setMaximumPages(data.maximumPages);
     return data;
   };
 
   let { data, error, isFetching, refetch } = useQuery(
-    [`insurances${cat}${statusParam}`, currentPage],
-    () => fetchProjects(currentPage, statusParam),
+    [`applications${cat}${statusParam}`, currentPage],
+    () => fetchApplications(currentPage, statusParam),
     { keepPreviousData: true, staleTime: 5000 }
   );
 
@@ -54,7 +54,7 @@ const ApplicationsTab = () => {
       <PageToggle
         category={cat}
         status={statusParam}
-        myServiceType={t("Dashboard.PageToggle.insurances")}
+        myServiceType={t(`Dashboard.PageToggle.${cat}`)}
       />
       {isFetching && <Loader />}
 
@@ -67,7 +67,7 @@ const ApplicationsTab = () => {
         data?.ApplicationList?.map((app) => (
           <Card key={app._id} appDataForUser={app} />
         ))}
-      {!isFetching && data?.ApplicationList?.length === 0 && (
+      {!isFetching && data?.ApplicationList?.length === 0 && !error && (
         <EmptyMessage>{t("Dashboard.PageToggle.noApps")}</EmptyMessage>
       )}
 

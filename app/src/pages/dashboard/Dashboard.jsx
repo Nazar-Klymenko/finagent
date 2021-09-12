@@ -5,12 +5,10 @@ import useTitle from "@hooks/useTitle";
 import { useTranslation } from "react-i18next";
 import { ContentWrap } from "@components/content";
 
-import CardOpen from "@pages/сardOpen";
+import CardOpen from "@pages/applicationOpen";
 
 import SideNav from "./SideNav";
 import ApplicationsTab from "./ApplicationsTab";
-// import LoanTab from "./LoanTab";
-// import ArchiveTab from "./ArchiveTab";
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -34,6 +32,11 @@ const Dashboard = () => {
           exact
           render={() => <Redirect to={`${path}/loans/ready/1`} />}
         />
+        <Route
+          path={`${path}/archived/`}
+          exact
+          render={() => <Redirect to={`${path}/archived/all/1`} />}
+        />
 
         <Route
           path={`${path}/`}
@@ -51,17 +54,6 @@ const Dashboard = () => {
   );
 };
 
-const DashboardStyled = styled.div`
-  display: flex;
-  min-height: 100vh;
-  flex: 1;
-  padding: 20px 20px;
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
-    flex-direction: column;
-    padding: 0px 0px 0px;
-  }
-`;
-
 const DashboardMain = styled.div`
   display: flex;
   width: auto;
@@ -73,6 +65,8 @@ const DashboardMain = styled.div`
   background: white;
   border-radius: 4px;
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${({ theme }) => theme.border};
+
   position: relative;
   .empty {
     text-align: center;

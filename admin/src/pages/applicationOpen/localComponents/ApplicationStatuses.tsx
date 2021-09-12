@@ -13,6 +13,8 @@ import { sendStatusAPI } from "@api/mainAPI";
 import Subheader from "@components/Subheader";
 import Section from "./Section";
 
+import { useDispatch } from "react-redux";
+import { setSnackbar } from "@redux/alert/actions";
 interface Props {
   id: string;
   currentStatus: number;
@@ -20,6 +22,8 @@ interface Props {
 
 const ApplicationStatuses: React.FC<Props> = ({ id, currentStatus }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
   const { reset, register, handleSubmit, formState } = useForm({
     defaultValues: {
       status: currentStatus,
@@ -33,10 +37,11 @@ const ApplicationStatuses: React.FC<Props> = ({ id, currentStatus }) => {
   const formSubmit = async (data: any) => {
     try {
       await sendStatusAPI(data, id);
+
+      dispatch(setSnackbar("success", "Status Changed successfully"));
       reset(data);
-      alert("Status Changed successfully");
     } catch (error) {
-      alert("couldn't change status");
+      dispatch(setSnackbar("error", "Couldn't change status"));
     }
   };
 

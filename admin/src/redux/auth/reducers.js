@@ -1,4 +1,4 @@
-import { getAuthenticationStatus } from "@helpers/authHelper";
+import { getAuthenticationStatus } from "@helpers/firebaseHelper";
 
 import {
   FETCH_USER,
@@ -9,7 +9,7 @@ import {
 
 const initialAlertState = {
   displayName: "",
-  isLoggedIn: !!getAuthenticationStatus(),
+  isLoggedIn: false,
   isActive: false,
   isApproved: false,
   role: "admin",
@@ -23,7 +23,7 @@ export const user = (state = initialAlertState, action) => {
         ...state,
         displayName: action.displayName,
         isLoggedIn: action.isLoggedIn,
-        isActive: action.isActive,
+        isApproved: action.isApproved,
         isSendingRequest: action.isSendingRequest,
         role: action.role,
       };
@@ -32,6 +32,7 @@ export const user = (state = initialAlertState, action) => {
         ...state,
         displayName: "",
         isLoggedIn: false,
+        isSendingRequest: false,
       };
     case SIGNUP_SUCCESS:
       return {
@@ -47,7 +48,7 @@ export const user = (state = initialAlertState, action) => {
         ...state,
         displayName: action.displayName,
         isLoggedIn: action.isLoggedIn,
-        isActive: action.isActive,
+        isApproved: action.isApproved,
         role: action.role,
       };
 

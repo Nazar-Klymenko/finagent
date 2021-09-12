@@ -2,6 +2,7 @@
   "Form": {
     "Error": {
       "blank": "To pole nie może być puste",
+      "minimumOne": "Proszę wybrać przynajmniej jedną opcję",
       "missingDate": "Proszę podać datę",
       "invalidDate": "Zły format daty",
       "noNumber": "To pole nie może zawierać liczb",
@@ -24,10 +25,11 @@
   "NavbarBottom": {
     "dashboard": "Pulpit",
     "services": "Usługi",
-    "contact": "Kontakty",
-    "help": "Pomoc"
+    "help": "Pomoc",
+    "settings": "Ustawienia"
   },
   "Footer": {
+    "content": "Twoje narzędzie do szybkiego i łatwego dostępu do usług ubezpieczeniowych i kredytowych. Wybór najlepszej oferty na rynku, dzięki konsultacjom z wykwalifikowanymi specjalistami.",
     "contact": "Kontakty",
     "help": "Pomoc",
     "legal": "Prawa",
@@ -82,21 +84,25 @@
       "title": "Ubezpieczenie pojazdu",
       "subtitle": "Pomożemy Ci w uzyskaniu najlepszej oferty ubezpieczenia Twojego pojazdu."
     },
+    "Border": {
+      "title": "Transport border insurance",
+      "subtitle": "Border insurance"
+    },
     "Health": {
-      "title": "Ubezpieczenie zdrowotne",
-      "subtitle": "Jesteśmy w stanie obliczyć i zaproponować najlepszą ofertę ubezpieczenia zdrowotnego."
+      "title": "Ubezpieczenie kosztów leczenia cudzoziemców",
+      "subtitle": "Ubezpieczenie zapewni Ci ochronę w przypadku nagłego zachorowania lub nieszczęśliwego wypadku, podczas pobytu na terytorium RP. Ten rodzaj polisy ubezpieczeniowej jest niezbędny dla złożenia dokumentów na kartę pobytu."
     },
     "Diagnostic": {
-      "title": "Diagnostic & Specialist access",
-      "subtitle": "Some subtitle"
+      "title": "Dostęp do lekarzy specjalistów oraz badań diagnostycznych",
+      "subtitle": "Znajdziemy dla Ciebie optymalny pakiet ubezpieczenia zdrowotnego, które zapewnia dostęp do lekarzy specjalistów oraz badań diagnostycznych."
     },
     "Travel": {
-      "title": "Travel insurance",
-      "subtitle": "Some subtitle"
+      "title": "Ubezpieczenie turystyczne",
+      "subtitle": "Ubezpieczenie turystyczne pozwoli Ci czuć się bezpiecznie podczas podróży zagranicznych i krajowych."
     },
     "Estate": {
-      "title": "Real estate insurance",
-      "subtitle": "Some subtitle"
+      "title": "Ubezpieczenie domu lub mieszkania",
+      "subtitle": "Ubezpieczenie domu lub mieszkania to niezawodna ochrona na wypadek zdarzeń losowych i kradzieży."
     }
   },
   "Contact": {
@@ -191,15 +197,13 @@
     "SideMenu": {
       "insurances": "Ubezpieczenia",
       "loans": "Kredyty",
-      "history": "Historia"
+      "history": "Archiwum"
     },
     "PageToggle": {
       "pending": "Oczekujące",
       "insurances": "Ubezpieczenia",
       "loans": "Moje kredyty",
-      "noInsurances": "Nie masz jeszcze ubezpieczeń",
-      "noLoans": "Nie masz jeszcze kredytów",
-      "noHistory": "Nie masz jeszcze historii"
+      "noApps": "Jeszcze nie masz tu żadnych aplikacji"
     },
     "ApplicationCard": {
       "name": "Imię",
@@ -261,7 +265,7 @@
       "errorResponse": "Pomyłka przy zmianie informacji osobistej"
     },
     "ChangeEmail": {
-      "title": "Zmienić pocztę",
+      "title": "Zmień email",
       "currentPassword": "Wprowadź swoje aktualne hasło",
       "newEmail": "Wprowadź swój nowy adres e-mail",
       "button": "Potwierdź",
@@ -269,7 +273,7 @@
       "errorResponse": "Błąd podczas zmiany adresu e-mail"
     },
     "ChangePassword": {
-      "title": "Change password",
+      "title": "Zmień hasło",
       "currentPassword": "Wprowadź swoje aktualne hasło",
       "newPassword": "Wprowadź swoje nowe hasło",
       "button": "Potwierdź",
@@ -278,12 +282,12 @@
       "errorInvalidPassword": "Nieprawidłowe hasło"
     },
     "Disposal": {
-      "title": "Wykasowanie",
-      "deleteAction": "Wykasować konto",
+      "title": "Usuń konto",
+      "deleteAction": "Usunąć konto",
       "password": "Wprowadź swoje hasło",
       "button": "Potwierdź",
-      "alertSuccess": "Konto zostało wykasowane",
-      "errorResponse": "Pomyłka przy wykasowaniu konta",
+      "alertSuccess": "Konto zostało usunięte",
+      "errorResponse": "Pomyłka przy usunięciu konta",
       "errorInvalidPassword": "Nieprawidłowe hasło"
     }
   },
@@ -308,18 +312,19 @@
     "IncomeBox": {
       "title": "Dodaj dodatkowy dochód",
       "addIncome": "Dodaj dochód",
-      "edit": "Zmienić"
+      "edit": "Zmienić",
+      "transportDriver": "Kierowca transportu"
     },
     "Error": {
-      "noFirstApplicant": "Musisz podać pierwszego wnioskodawcę",
-      "noSecondApplicant": "Musisz podać drugiego wnioskodawcę"
+      "noFirstApplicant": "Musisz wpisać pierwszego wnioskodawcę",
+      "noSecondApplicant": "Musisz wpisać drugiego wnioskodawcę"
     },
     "Page1": {
-      "subtitle": "Informacje o ubezpieczającym",
+      "subtitle": "Informacja osobista",
       "maritalStatus": "Stan cywilny",
       "married": "Żonaty/Mężatka",
       "notMarried": "Panna/Kawaler",
-      "propertySeparation": "Separacja majątkowa?",
+      "propertySeparation": "Rozdzielność majątkowa?",
       "bothSpousesStart": "Czy obie strony biorą pożyczkę?",
       "yes": "Tak",
       "no": "Nie"
@@ -341,12 +346,12 @@
       "indefinitePeriod": "Umowa o pracę na czas nieokreślony",
       "specificTime": "Umowa o pracę na czas określony",
       "mandate": "Umowa zlecenia",
-      "contract": "Kontract",
+      "contract": "Kontrakt",
       "economicActivity": "Działalność gospodarcza",
       "yes": "Tak",
       "no": "Nie",
-      "polish": "Polski",
-      "other": "Inny",
+      "polish": "Polskie",
+      "other": "Inne",
       "permanentCard": "Karta stałego pobytu",
       "temporaryCard": "Karta czasowego pobytu",
       "blueCard": "Niebieska karta",
@@ -367,8 +372,8 @@
       "firstContract": "To twoja pierwsza umowa?",
       "sameEmployer": "Ten sam pracodawca?",
       "withoutPause": "Zmiana kontraktu bez pauzy?",
-      "contractFrom": "Kontract od",
-      "contractUntil": "Kontract do",
+      "contractFrom": "Kontrakt od",
+      "contractUntil": "Kontrakt do",
       "averageIncome": "Średni miesięczny oficjalny dochód netto",
       "averageIncome12": "Średni miesięczny oficjalny dochód netto za ostatnie 12 (min 6) miesięcy w Polsce(UE)",
       "averageIncome6": "Średni miesięczny oficjalny dochód netto za ostatnie 6 miesięcy w Polsce(UE)",
@@ -380,21 +385,21 @@
     },
     "IncomeModal": {
       "title": "Dodaj dodatkowy dochód",
-      "truckDriver": "Czy jesteś kierowcą ciężarówki?",
+      "truckDriver": "Pracujesz jako kierowca transportu międzynarodowego (kategoria C+E)?",
       "indefinitePeriod": "Umowa o pracę na czas nieokreślony",
       "specificTime": "Umowa o pracę na czas określony",
       "mandate": "Umowa zlecenia",
-      "contract": "Kontract",
+      "contract": "Kontrakt",
       "economicActivity": "Działalność gospodarcza",
       "yes": "Tak",
       "no": "Nie",
-      "basicIncome": "Źródło dochodu podstawowego",
+      "basicIncome": "Źródło dochodu dodatkowego",
       "industry": "Branża w której pracujesz",
       "firstContract": "To twoja pierwsza umowa?",
       "sameEmployer": "Ten sam pracodawca?",
       "withoutPause": "Zmiana kontraktu bez pauzy?",
-      "contractFrom": "Kontract od",
-      "contractUntil": "Kontract do",
+      "contractFrom": "Kontrakt od",
+      "contractUntil": "Kontrakt do",
       "averageIncome12": "Średni miesięczny oficjalny dochód netto za ostatnie 12 (min 6) miesięcy w Polsce(UE)",
       "averageIncome6": "Średni miesięczny oficjalny dochód netto za ostatnie 6 miesięcy w Polsce(UE)",
       "averageIncome3": "Średni miesięczny oficjalny dochód netto za ostatnie 3 miesięcy w Polsce(UE)",
@@ -422,25 +427,26 @@
     "IncomeBox": {
       "title": "Dodaj dodatkowy dochód",
       "addIncome": "Dodaj dochód",
-      "edit": "Zmienić"
+      "edit": "Zmienić",
+      "transportDriver": "Kierowca transportu"
     },
     "HouseholdBox": {
       "title": "Dodaj gospodarstwo",
       "addHousehold": "Dodaj gospodarstwo",
       "edit": "Zmienić",
-      "delete": "Wykasować"
+      "delete": "Usunąć"
     },
     "Error": {
-      "noFirstApplicant": "Musisz podać pierwszego wnioskodawcę",
-      "noSecondApplicant": "Musisz podać drugiego wnioskodawcę",
+      "noFirstApplicant": "Musisz wpisać pierwszego wnioskodawcę",
+      "noSecondApplicant": "Musisz wpisać drugiego wnioskodawcę",
       "noHousehold": "Musisz podać minimum 1 gospodarstwo domowe"
     },
     "Page1": {
-      "subtitle": "Informacje o ubezpieczającym",
+      "subtitle": "Informacja osobista",
       "maritalStatus": "Stan cywilny",
       "married": "Żonaty/Mężatka",
       "notMarried": "Panna/Kawaler",
-      "propertySeparation": "Separacja majątkowa?",
+      "propertySeparation": "Rozdzielność majątkowa?",
       "bothSpousesStart": "Czy obie strony biorą pożyczkę?",
       "yes": "Tak",
       "no": "Nie"
@@ -458,7 +464,7 @@
       "apartPurRen": "Zakup mieszkania + remont",
       "housePurRen": "Zakup domu + remont",
       "rialto": "Rynek",
-      "primary": "Podstawowy",
+      "primary": "Pierwotny",
       "secondary": "Wtórny",
       "propertyValue": "Wartość nieruchomości",
       "renovationValue": "Przypuszczalna wartość renowacji",
@@ -469,7 +475,7 @@
       "no": "Nie",
       "monthlyPayments": "Miesięczna płatność",
       "equal": "Równa",
-      "decreasing": "Zmniejszająca",
+      "decreasing": "Malejąca",
       "propertyLocation": "Lokalizacja nieruchomości",
       "voivodeship": "Województwo",
       "town": "Miasto",
@@ -482,12 +488,12 @@
       "indefinitePeriod": "Umowa o pracę na czas nieokreślony",
       "specificTime": "Umowa o pracę na czas określony",
       "mandate": "Umowa zlecenia",
-      "contract": "Kontract",
+      "contract": "Kontrakt",
       "economicActivity": "Działalność gospodarcza",
       "yes": "Tak",
       "no": "Nie",
-      "polish": "Polski",
-      "other": "Inny",
+      "polish": "Polskie",
+      "other": "Inne",
       "permanentCard": "Karta stałego pobytu",
       "temporaryCard": "Karta czasowego pobytu",
       "blueCard": "Niebieska karta",
@@ -508,8 +514,8 @@
       "firstContract": "To twoja pierwsza umowa?",
       "sameEmployer": "Ten sam pracodawca?",
       "withoutPause": "Zmiana kontraktu bez pauzy?",
-      "contractFrom": "Kontract od",
-      "contractUntil": "Kontract do",
+      "contractFrom": "Kontrakt od",
+      "contractUntil": "Kontrakt do",
       "averageIncome": "Średni miesięczny oficjalny dochód netto",
       "averageIncome12": "Średni miesięczny oficjalny dochód netto za ostatnie 12 (min 6) miesięcy w Polsce(UE)",
       "averageIncome6": "Średni miesięczny oficjalny dochód netto za ostatnie 6 miesięcy w Polsce(UE)",
@@ -521,21 +527,21 @@
     },
     "IncomeModal": {
       "title": "Dodaj dodatkowy dochód",
-      "truckDriver": "Czy jesteś kierowcą ciężarówki?",
+      "truckDriver": "Pracujesz jako kierowca transportu międzynarodowego (kategoria C+E)?",
       "indefinitePeriod": "Umowa o pracę na czas nieokreślony",
       "specificTime": "Umowa o pracę na czas określony",
       "mandate": "Umowa zlecenia",
-      "contract": "Kontract",
+      "contract": "Kontrakt",
       "economicActivity": "Działalność gospodarcza",
       "yes": "Tak",
       "no": "Nie",
-      "basicIncome": "Źródło dochodu podstawowego",
+      "basicIncome": "Źródło dochodu dodatkowego",
       "industry": "Branża w której pracujesz",
       "firstContract": "To twoja pierwsza umowa?",
       "sameEmployer": "Ten sam pracodawca?",
       "withoutPause": "Zmiana kontraktu bez pauzy?",
-      "contractFrom": "Kontract od",
-      "contractUntil": "Kontract do",
+      "contractFrom": "Kontrakt od",
+      "contractUntil": "Kontrakt do",
       "averageIncome12": "Średni miesięczny oficjalny dochód netto za ostatnie 12 (min 6) miesięcy w Polsce(UE)",
       "averageIncome6": "Średni miesięczny oficjalny dochód netto za ostatnie 6 miesięcy w Polsce(UE)",
       "averageIncome3": "Średni miesięczny oficjalny dochód netto za ostatnie 3 miesięcy w Polsce(UE)",
@@ -653,6 +659,15 @@
       "phone": "Telefon",
       "email": "Email",
       "peopleNumber": "Liczba osób zamieszkujących w  mieszkaniu/dom"
+    },
+    "SelectSecurity": {
+      "supervision": "Stały dozór fizyczny",
+      "securityDoors": "Drzwi antywłamaniowe",
+      "intercom": "Domofon",
+      "windowSecurity": "Zabezpieczenia okien",
+      "notificationAlarm": "Alarm z powiadomieniem",
+      "localAlarm": "Alarm lokalny",
+      "none": "Nic"
     }
   },
   "InsuranceHealth": {
@@ -666,7 +681,8 @@
       "title": "Dodać wnioskodawcę",
       "addApplicant": "Dodać wnioskodawcę",
       "edit": "Zmienić",
-      "delete": "Wykasować"
+      "delete": "Usunąć",
+      "maxPeople": "Możesz dodać tylko 9 osób"
     },
     "Error": {
       "noApplicant": "Musisz podać minimum jednego wnioskodawcę"
@@ -679,12 +695,12 @@
       "clauseOne": "Ubezpieczenie kosztów leczenia na terytorium RP",
       "clauseTwo": "Ubezpieczenie NNW (Następstwa Nieszczęśliwego Wypadku)",
       "clauseThree": "Odpowiedzialność cywilna w życiu prywatnym",
-      "chooseAmountEuro": "Wybierz kwotę ubezpieczenia (Euro)",
-      "chooseAmountZlote": "Wybierz kwotę ubezpieczenia (Zlote)"
+      "chooseAmountEuro": "Wybierz kwotę ubezpieczenia (EUR)",
+      "chooseAmountZlote": "Wybierz kwotę ubezpieczenia (PLN)"
     },
     "Page2": {
       "addApplicant": "Dodaj kolejną osobę",
-      "subtitle": "Informacje o ubezpieczającym",
+      "subtitle": "Informacja osobista",
       "policyholderIs": "Ubezpieczony",
       "polish": "Polak",
       "foreigner": "Obcokrajowiec",
@@ -758,7 +774,8 @@
       "title": "Dodać wnioskodawcę",
       "addApplicant": "Dodać wnioskodawcę",
       "edit": "Zmienić",
-      "delete": "Wykasować"
+      "delete": "Usunąć",
+      "maxPeople": "Możesz dodać tylko 14 osób"
     },
     "ApplicantModal": {
       "title": "Dodać kolejnego wnioskodawcę"
@@ -829,7 +846,7 @@
       "year": "Do roku"
     },
     "SelectPurpose": {
-      "regular": "Zwyczajnie",
+      "regular": "Zwykłe",
       "taxi": "Taxi",
       "rent": "Wynajem",
       "lease": "Leasing",
@@ -919,41 +936,52 @@
     }
   },
   "InsuranceBorder": {
-    "title": "Transport border insurance",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+    "title": "Ubezpieczenie graniczne",
+    "buttonNext": "Dalej",
+    "buttonBack": "Wstecz",
+    "buttonConfirm": "Potwierdzić",
+    "summary": "Podsumowanie",
     "Page1": {
-      "subtitle": "Insurance Info",
-      "documentType": "Document type",
+      "subtitle": "Informacje o ubezpieczeniu",
+      "documentType": "Typ dokumentu",
       "pesel": "PESEL",
-      "passportNumber": "Passport number",
-      "registeredNotInEU": "Vehicle registered in a country outside the European Economic Area",
-      "insurancePeriod": "Number of days of protection"
+      "passportNumber": "Numer paszportu",
+      "registeredNotInEU": "Pojazd zarejestrowany w kraju poza Europejskim Obszarem Gospodarczym",
+      "insurancePeriod": "Liczba dni ochrony"
     },
     "Page2": {
-      "subtitle": "Vehicle Info",
-      "vehicleType": "Vehicle type",
-      "brand": "Brand",
+      "subtitle": "Informacje o transporcie",
+      "vehicleType": "Typ pojazdu",
+      "brand": "Marka",
       "model": "Model",
-      "regNumber": "Registration number",
-      "vinNumber": "VIN number",
-      "engineNumber": "Engine number",
-      "engineVolume": "Engine volume(ccm)",
-      "seatNumber": "Number of seats in vehicle"
+      "regNumber": "Numer rejestracyjny",
+      "vinNumber": "VIN numer",
+      "engineNumber": "Numer silnika",
+      "engineVolume": "Objętość silnika(ccm)",
+      "seatNumber": "Liczba miejsc siedzących"
     },
     "Page3": {
-      "subtitle": "Personal Info",
-      "name": "Name",
-      "surname": "Surname",
-      "phoneNumber": "Phone number",
+      "subtitle": "Dane osobiste",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "phoneNumber": "Telefon",
       "email": "Email",
-      "country": "Country",
-      "city": "City",
-      "postIndex": "Post index",
-      "street": "Street",
-      "houseNumber": "House number"
+      "country": "Kraj",
+      "city": "Misato",
+      "postIndex": "Kod pocztowy",
+      "street": "Ulica",
+      "houseNumber": "Numer budynku"
     }
+  },
+  "SnackBar": {
+    "confirmEmail": "Proszę potwierdzić e-mail",
+    "userExists": "Ten użytkownik już istnieje",
+    "incorrectData": "Wpisałeś nieprawidłowe dane",
+    "signUpFail": "Nie udało się zarejestrować",
+    "successfulLogginIn": "Zalogowano pomyślnie",
+    "incorrectEmailOrPassword": "nieprawidłowy email lub hasło",
+    "loginError": "Błąd podczas logowania",
+    "emailWasResent": "E-mail został wysłany ponownie",
+    "errorResendingEmail": "Błąd ponownego wysyłania e-maila"
   }
 }

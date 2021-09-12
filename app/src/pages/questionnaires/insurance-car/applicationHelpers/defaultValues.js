@@ -54,5 +54,9 @@ export const pageFourValues = (appDataValid) => ({
   polandRegDate: appDataValid.polandRegDate,
 });
 export const pageFiveValues = (appDataValid) => ({
-  files: appDataValid.files,
+  filesTechPassport: appDataValid.filesTechPassport,
+  filesPassport: appDataValid.filesPassport,
+  isFirstOwner: appDataValid.isFirstOwner || true,
+  filesCarSale: appDataValid.filesCarSale,
+  filesInsurance: appDataValid.filesInsurance,
 });

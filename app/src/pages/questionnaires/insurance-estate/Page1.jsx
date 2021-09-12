@@ -256,6 +256,7 @@ const Page1 = () => {
               "InsuranceEstate.SelectSecurity.windowSecurity",
               "InsuranceEstate.SelectSecurity.notificationAlarm",
               "InsuranceEstate.SelectSecurity.localAlarm",
+              "InsuranceEstate.SelectSecurity.none",
             ]}
             error={!!errors.security}
             helperText={errors?.security?.message}

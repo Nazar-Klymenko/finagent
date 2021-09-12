@@ -6,8 +6,9 @@ import Loader from "@components/Loader";
 import { useSelector } from "react-redux";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const isSendingRequest = useSelector((state) => state.user.isSendingRequest);
+  const { isLoggedIn, isSendingRequest, isApproved } = useSelector(
+    (state) => state.user
+  );
 
   return (
     <Route
@@ -16,16 +17,16 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
         if (isSendingRequest && isLoggedIn) {
           return <Loader />;
         }
-        // if (userData.isActive === false) {
-        //   return (
-        //     <Redirect
-        //       to={{
-        //         pathname: "/activateEmail",
-        //         state: { from: props.location },
-        //       }}
-        //     />
-        //   );
-        // }
+        if (isLoggedIn && !isApproved) {
+          return (
+            <Redirect
+              to={{
+                pathname: "/buffer",
+                state: { from: props.location },
+              }}
+            />
+          );
+        }
         if (isLoggedIn) {
           return <Component {...props} />;
         } else {

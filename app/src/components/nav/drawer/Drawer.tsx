@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components/macro";
 import { makeStyles } from "@material-ui/core/styles";
 

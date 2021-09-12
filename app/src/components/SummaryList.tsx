@@ -34,7 +34,7 @@ const SummaryList: React.FC<Props> = ({
         <ArrowWrap>
           <ArrowDown
             fill="#FFF"
-            rotation={isOpen ? 0 : 180}
+            rotation={isOpen ? 180 : 0}
             width="16"
             height="10"
           />

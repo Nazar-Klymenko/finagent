@@ -21,7 +21,7 @@ const Record = ({ row }) => {
     <tr>
       <td>{createdAt}</td>
       <td>{`${hours}:${minutes}:${seconds}`}</td>
-      <td>{row.assignedEmployee?.name}</td>
+      <td>{row.employee?.name}</td>
       <td>{row.action}</td>
       <td>{row.description}</td>
       <td

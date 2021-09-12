@@ -3,16 +3,24 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-// function matchActivePath(path: string) {
-//   switch (path) {
-//     case "insurances": {
-//       return [];
-//     }
-//   }
-// }
+import { getApplicationsQuantityAPI } from "@api/applicationAPI";
+
+import { useQuery } from "react-query";
 
 const SideNav: React.FC = () => {
   const { t } = useTranslation();
+
+  const fetchApplicationsQuantity = async () => {
+    const { data } = await getApplicationsQuantityAPI("all");
+    return data;
+  };
+
+  let { data } = useQuery(
+    [`applicationsQuantity`],
+    () => fetchApplicationsQuantity(),
+    { keepPreviousData: true, staleTime: 15000 }
+  );
+
   return (
     <Nav>
       <NavLink
@@ -21,12 +29,19 @@ const SideNav: React.FC = () => {
         to={`/dashboard/insurances/`}
       >
         <span>{t("Dashboard.SideMenu.insurances")}</span>
+        <Quantity>
+          {data?.quantityInsurances > 0 && data?.quantityInsurances}
+        </Quantity>
       </NavLink>
       <NavLink activeClassName="link--selected" strict to={`/dashboard/loans/`}>
         <span>{t("Dashboard.SideMenu.loans")}</span>
+        <Quantity> {data?.quantityLoans > 0 && data?.quantityLoans}</Quantity>
       </NavLink>
-      <NavLink activeClassName="link--selected" to={`/dashboard/archive/1`}>
+      <NavLink activeClassName="link--selected" to={`/dashboard/archived/`}>
         <span>{t("Dashboard.SideMenu.history")}</span>
+        <Quantity>
+          {data?.quantityArchived > 0 && data?.quantityArchived}
+        </Quantity>
       </NavLink>
     </Nav>
   );
@@ -43,6 +58,8 @@ const Nav = styled.div`
   z-index: 15;
   height: max-content;
   border: 1px solid ${({ theme }) => theme.border};
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
+
   a {
     cursor: pointer;
     text-transform: capitalize;
@@ -50,7 +67,7 @@ const Nav = styled.div`
     font-weight: 500;
     color: ${({ theme }) => theme.gray};
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 8px 40px;
     border-radius: 4px;
     transition: color 0.2s ease-in-out;
@@ -83,6 +100,7 @@ const Nav = styled.div`
       font-size: 0.9rem;
       padding: 8px 26px;
       margin-bottom: -1px;
+      justify-content: center;
     }
 
     .link--selected {
@@ -91,6 +109,14 @@ const Nav = styled.div`
       box-shadow: none;
     }
   }
+`;
+
+const Quantity = styled.span`
+  height: 1.5rem;
+  width: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default SideNav;

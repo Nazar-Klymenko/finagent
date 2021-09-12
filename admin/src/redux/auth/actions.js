@@ -1,7 +1,7 @@
 import { SIGNUP_SUCCESS, SIGNIN_SUCCESS } from "./actionTypes";
 import { setSnackbar } from "../alert/actions";
 
-import { auth } from "@helpers/authHelper";
+import { auth } from "@helpers/firebaseHelper";
 
 import { fetchUserAPI, signUpAPI } from "@api/userAPI";
 
@@ -50,7 +50,8 @@ export const login = (email, password, callback) => async (dispatch) => {
       displayName: response.user.displayName,
       isSendingRequest: false,
       isLoggedIn: true,
-      role: data.admin.role,
+      role: data?.admin?.role,
+      isApproved: data?.admin?.isApproved,
     });
     dispatch(setSnackbar("success", "logged in successfully"));
     callback();
@@ -75,17 +76,17 @@ export const fetchUser = () => async (dispatch) => {
   try {
     await auth.onAuthStateChanged(async function (user) {
       const { data } = await fetchUserAPI();
+      console.log(data);
       if (user) {
-        localStorage.setItem("isAuthenticated", true);
         dispatch({
           type: "FETCH_USER",
           isLoggedIn: true,
           displayName: user.displayName,
           isSendingRequest: false,
           role: data?.admin?.role || "admin",
+          isApproved: data?.admin?.isApproved,
         });
       } else {
-        localStorage.removeItem("isAuthenticated");
         dispatch({
           type: "FETCH_USER",
           isLoggedIn: false,
@@ -93,7 +94,7 @@ export const fetchUser = () => async (dispatch) => {
       }
     });
   } catch (error) {
-    throw error;
+    dispatch({ type: "LOGOUT" });
   }
 };
 

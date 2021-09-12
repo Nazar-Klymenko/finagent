@@ -171,7 +171,7 @@ const Page1 = () => {
                 </div>
                 <div className="action-place">
                   <span
-                    className="action-place__edit"
+                    className="edit"
                     onClick={() => {
                       setDefaultPerson("Applicant1");
                       setOpenModal(true);
@@ -206,7 +206,7 @@ const Page1 = () => {
                     </div>
                     <div className="action-place">
                       <span
-                        className="action-place__edit"
+                        className="edit"
                         onClick={() => {
                           setDefaultPerson("Applicant2");
                           setOpenModal(true);
@@ -238,11 +238,14 @@ const Page1 = () => {
               incomeData.map((income, idx) => (
                 <div key={idx} className="person">
                   <div className="minor-data-place">
-                    <span>{income.basicIncome}</span>
+                    <span>
+                      {income?.industry ||
+                        t("LoanCash.IncomeBox.transportDriver")}
+                    </span>
                   </div>
                   <div className="action-place">
                     <span
-                      className="action-place__edit"
+                      className="edit"
                       onClick={() => {
                         setIsEditing(true);
                         setDefaultIncome(idx);

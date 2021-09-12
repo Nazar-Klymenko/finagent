@@ -6,10 +6,10 @@ import Radio from "./Radio";
 import SelectInput from "./SelectInput";
 import Textarea from "./Textarea";
 import Checkbox from "./Checkbox";
-// import FileInput from "./fileInput/FileInput";
+import FileInput from "./FileInput";
 
 export {
-  // FileInput,
+  FileInput,
   DateInput,
   Input,
   InputPassword,

@@ -26,18 +26,18 @@ export const signup = (data, callback) => async (dispatch) => {
       isSendingRequest: false,
       isActive: false,
     });
-    dispatch(setSnackbar("success", "Please confirm your email"));
+    dispatch(setSnackbar("success", "SnackBar.confirmEmail"));
     callback();
   } catch (error) {
     switch (error.response?.status) {
       case 409: {
-        return dispatch(setSnackbar("error", "This user already exists"));
+        return dispatch(setSnackbar("error", "SnackBar.userExists"));
       }
       case 422: {
-        return dispatch(setSnackbar("error", "You have entered incorect data"));
+        return dispatch(setSnackbar("error", "SnackBar.incorrectData"));
       }
       default: {
-        return dispatch(setSnackbar("error", "failed to sign up"));
+        return dispatch(setSnackbar("error", "SnackBar.signUpFail"));
       }
     }
   }
@@ -52,15 +52,17 @@ export const login = (email, password, callback) => async (dispatch) => {
       isLoggedIn: true,
       isActive: response.user.emailVerified,
     });
-    dispatch(setSnackbar("success", "logged in successfully"));
+    dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
     callback();
   } catch (error) {
     switch (error.response?.status) {
       case 401: {
-        return dispatch(setSnackbar("error", "Incorrect email or password"));
+        return dispatch(
+          setSnackbar("error", "SnackBar.incorrectEmailOrPassword")
+        );
       }
       default: {
-        dispatch(setSnackbar("error", "error logging in"));
+        dispatch(setSnackbar("error", "SnackBar.loginError"));
       }
     }
   }
@@ -81,8 +83,10 @@ export const loginFacebook = () => async (dispatch) => {
       isActive: true,
       photoURL: response.user.photoURL,
     });
-    dispatch(setSnackbar("success", "logged in successfully"));
-  } catch (error) {}
+    dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
+  } catch (error) {
+    dispatch(setSnackbar("error", "SnackBar.loginError"));
+  }
 };
 
 export const logout = () => async (dispatch) => {
@@ -105,7 +109,6 @@ export const fetchUser = () => async (dispatch) => {
           emailVerified = user.emailVerified;
         }
 
-        localStorage.setItem("isAuthenticated", true);
         dispatch({
           type: "FETCH_USER",
           isLoggedIn: true,
@@ -115,7 +118,6 @@ export const fetchUser = () => async (dispatch) => {
           photoURL: photoURL,
         });
       } else {
-        localStorage.removeItem("isAuthenticated");
         dispatch({
           type: "FETCH_USER",
           isLoggedIn: false,
@@ -123,16 +125,16 @@ export const fetchUser = () => async (dispatch) => {
       }
     });
   } catch (error) {
-    throw error;
+    dispatch({ type: "LOGOUT" });
   }
 };
 
 export const resendVerificationEmail = () => async (dispatch) => {
   try {
     await auth.currentUser.sendEmailVerification();
-    dispatch(setSnackbar("success", "Email was re-sent"));
+    dispatch(setSnackbar("success", "SnackBar.emailWasResent"));
   } catch (error) {
-    dispatch(setSnackbar("error", "could not resend email"));
+    dispatch(setSnackbar("error", "SnackBar.errorResendingEmail"));
   }
 };
 

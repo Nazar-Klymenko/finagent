@@ -3,13 +3,12 @@ import React from "react";
 import { useCallback } from "react";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
 const Links = ({ navOpen, setNavOpen }) => {
   const { t } = useTranslation();
-  const { pathname } = useLocation();
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 

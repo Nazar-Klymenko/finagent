@@ -19,6 +19,7 @@ export default function determineType(type, object) {
   delete appDataCopy.applicationType;
   delete appDataCopy.assignedEmployee;
   delete appDataCopy.user_id;
+  delete appDataCopy.documents;
   delete appDataCopy.attachments;
   delete appDataCopy.files;
   delete appDataCopy.documentPictures;
@@ -32,24 +33,32 @@ export default function determineType(type, object) {
   delete appDataCopy.LoanData?.conditions;
   delete appDataCopy.AppendedImages;
   delete appDataCopy.attachmentsFront;
+  delete appDataCopy._id;
+  delete appDataCopy.id;
+  delete appDataCopy.__v;
+  delete appDataCopy.employee_id;
+  delete appDataCopy.user;
 
   const appDataCopyArray = Object.entries(appDataCopy);
+  const appDataCopyArrayFiltered = appDataCopyArray.filter((elem) => {
+    return elem[1] != null || undefined;
+  });
 
   if (type === "OC") {
-    return addLabelsOC(appDataCopyArray);
+    return addLabelsOC(appDataCopyArrayFiltered);
   } else if (type === "HealthSpecialist") {
-    return addLabelsSpecialist(appDataCopyArray);
+    return addLabelsSpecialist(appDataCopyArrayFiltered);
   } else if (type === "HealthMedical") {
-    return addLabelsMedical(appDataCopyArray);
+    return addLabelsMedical(appDataCopyArrayFiltered);
   } else if (type === "Cash") {
-    return addLabelsCash(appDataCopyArray);
+    return addLabelsCash(appDataCopyArrayFiltered);
   } else if (type === "Mortgage") {
-    return addLabelsMortgage(appDataCopyArray);
+    return addLabelsMortgage(appDataCopyArrayFiltered);
   } else if (type === "Travel") {
-    return addLabelsTravel(appDataCopyArray);
+    return addLabelsTravel(appDataCopyArrayFiltered);
   } else if (type === "Estate") {
-    return addLabelsEstate(appDataCopyArray);
+    return addLabelsEstate(appDataCopyArrayFiltered);
   } else if (type === "Border") {
-    return addLabelsBorder(appDataCopyArray);
+    return addLabelsBorder(appDataCopyArrayFiltered);
   }
 }

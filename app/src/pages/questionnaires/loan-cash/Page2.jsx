@@ -8,11 +8,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { pageTwoSchema } from "./applicationHelpers/loanCashSchema";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
+import {
+  Page,
+  Title,
+  Subtitle,
+  ButtonsWrap,
+  InputErrorMessage,
+} from "../LocalStyles";
 import { Input, Checkbox, Textarea } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 
-import { CTA, BackButton } from "@components/buttons";
+import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
 
@@ -121,6 +127,10 @@ const Page2 = () => {
             labelName={t("LoanCash.Page2.conditions")}
             helperText={errors?.conditions?.message}
           />
+          <InputErrorMessage>
+            <span className="invis-star">*</span>
+            {errors?.conditions && t(errors?.conditions?.message)}
+          </InputErrorMessage>
         </Form>
         <ButtonsWrap multiple>
           <CTA

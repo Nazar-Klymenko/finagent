@@ -24,9 +24,7 @@ import ApplicationStatusesPreview from "./localComponents/ApplicationStatusesPre
 import Feedback from "./localComponents/Feedback";
 import FeedbackPreview from "./localComponents/FeedbackPreview";
 import AttachDocuments from "./localComponents/AttachDocuments";
-import Attachments from "./localComponents/AdminAttachments";
-
-import UserDocuments from "./localComponents/UserAttachments";
+import Thumbnails from "@components/Thumbnails";
 
 import { FullPage } from "@components/content";
 
@@ -70,12 +68,10 @@ const ApplicationOpen = ({ returnTo }) => {
       setAppDataLabeled(determineType(application.type, application));
       setAddedAt(new Date(application.createdAt).toLocaleDateString("pl"));
       setUpdatedAt(moment(application.updatedAt).fromNow());
-      setFullName(
-        application.user_id?.name + " " + application.user_id?.surname
-      );
-      setIsTaken(!!application.assignedEmployee);
+      setFullName(application.user?.name + " " + application.user?.surname);
+      setIsTaken(!!application.employee_id);
     }
-  }, [isLoading]);
+  }, [application, isLoading]);
 
   const assignApplication = async () => {
     try {
@@ -166,21 +162,25 @@ const ApplicationOpen = ({ returnTo }) => {
                 defaultTime={application.createdAt}
               />
             )}
-            {isTaken && <AttachDocuments id={id} />}
-            <Subheader
-              subheader={t("ApplicationOpen.AttachmentsAdmin.title")}
-              description={t("ApplicationOpen.AttachmentsAdmin.subtitle")}
-            />
-            <Attachments
-              isTaken={isTaken}
-              id={id}
-              attachments={[application.attachments]}
-            />
             <Subheader
               subheader={t("ApplicationOpen.AttachmentsUser.title")}
               description={t("ApplicationOpen.AttachmentsUser.subtitle")}
             />
-            <UserDocuments id={id} attachments={[application.userDocuments]} />
+            <Thumbnails
+              id={id}
+              files={[application?.documents]}
+              type="documents"
+            />
+            <Subheader
+              subheader={t("ApplicationOpen.AttachmentsAdmin.title")}
+              description={t("ApplicationOpen.AttachmentsAdmin.subtitle")}
+            />
+            <Thumbnails
+              id={id}
+              files={[application?.attachments]}
+              type="attachments"
+            />
+            {isTaken && <AttachDocuments id={id} />}
             <ActionButtons>
               {!isTaken ? (
                 <AdminButton
@@ -196,14 +196,6 @@ const ApplicationOpen = ({ returnTo }) => {
                   red
                 />
               )}
-              {/* {isTaken && userData.role === "supervisor" && (
-                <AdminButton
-                  onClick={returnApplicationMainPool}
-                  text={t("ApplicationOpen.AdminButton.returnToMain")}
-                  loading={isReturnLoading}
-                  red
-                />
-              )} */}
             </ActionButtons>
           </ApplicationBody>
         </>

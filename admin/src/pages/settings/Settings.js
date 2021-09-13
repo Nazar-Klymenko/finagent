@@ -38,13 +38,13 @@ const Settings = () => {
           {t("Settings.ChangePassword.title")}
         </SettingsLink>
 
-        <SettingsLink
+        {/* <SettingsLink
           className="settings__menu__link"
           activeClassName="selected"
           to="/settings/danger_zone"
         >
           {t("Settings.Disposal.title")}
-        </SettingsLink>
+        </SettingsLink> */}
       </Menu>
       <Overlay>
         <PrivateRoute path="/settings">

@@ -1,39 +1,87 @@
-version: "3.9"
+version: "3.7"
 services:
+  frontend:
+    build: frontend
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    container_name: frontend
+    restart: always
+    networks:
+      - react-express
+    depends_on:
+      - backend
+
   backend:
-    build: ./backend
-    ports:
-      - "5000:5000"
-    # volumes:
-    #   - ./backend/usr/app/node_modules
-    #   - ./backend:/usr/app
-  app:
-    build: ./app
-    ports:
-      - "3000:3000"
-    tty: true
-    # volumes:
-    #   - ./app/usr/app/node_modules
-    #   - ./app:/usr/app
-    # depends_on:
-    #   - backend
-  admin:
-    build: ./admin
-    ports:
-      - "3001:3001"
-    tty: true
-    # volumes:
-    #   - ./admin/usr/app/node_modules
-    #   - ./admin:/usr/app
-    # depends_on:
-    #   - app
-  # landing:
-  #   build: ./landing
-  #   ports:
-  #     - "3002:3002"
-  #   stdin_open: true
-  #   volumes:
-  #     - ./landing/usr/app/node_modules
-  #     - ./landing:/usr/app
-  #   depends_on:
-  #     - admin
+    container_name: backend
+    restart: always
+    build: backend
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - react-express
+    expose:
+      - 3000
+networks:
+  react-express:
+
+    # version: "3.9"
+# services:
+#   backend:
+#     container_name: backend
+#     restart: always
+#     build: backend
+#     volumes:
+#       - ./backend:/usr/src/app
+#       - /usr/src/app/node_modules
+#     expose:
+#       - 5000
+
+# backend:
+#   container_name: backend
+#   build: ./backend
+#   ports:
+#     - "5000:5000"
+#   restart: always
+#   env_file:
+#     - ./backend/.env
+#   volumes:
+#     - ./backend:/usr/src/app
+#     - /usr/src/app/node_modules
+# volumes:
+# - ./backend:/usr/app/backend
+# - /usr/app/backend/node_modules
+# volumes:
+#   node_modules:
+# app:
+#   container_name: app
+#   build: ./app
+#   ports:
+#     - "3000:3000"
+#   restart: always
+#   volumes:
+#     - ./app/node_modules
+#     - ./app:/usr/src/app
+# admin:
+#   container_name: admin
+#   build: ./admin
+#   ports:
+#     - "3001:3001"
+#   restart: always
+#   volumes:
+#     - ./admin/node_modules
+#     - ./admin:/usr/src/admin
+# landing:
+#   build: ./landing
+#   ports:
+#     - "3002:3002"
+#   stdin_open: true
+#   volumes:
+#     - ./landing/usr/app/node_modules
+#     - ./landing:/usr/app
+#   depends_on:
+#     - admin

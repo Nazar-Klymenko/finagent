@@ -33,7 +33,7 @@ const theme = {
   },
 
   blue: "#1672ec",
-  lightBlue: "#e1edfc",
+  lightBlue: "#ebf4ff",
   hoverBlue: "#227ef7",
   shadowBlue: "rgba(22, 114, 236, 0.15)",
 

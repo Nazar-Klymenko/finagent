@@ -62,7 +62,7 @@ const PageToggle: React.FC<Props> = ({
           blocked={blocked}
         >
           <span>{myServiceType}</span>
-          {data?.quantityReady > 0 && data?.quantityReady}
+          <span>{data?.quantityReady > 0 && data?.quantityReady} </span>
         </Tab>
         <Tab
           onClick={() => {
@@ -72,7 +72,7 @@ const PageToggle: React.FC<Props> = ({
           blocked={blocked}
         >
           <span>{t("Dashboard.PageToggle.pending")}</span>
-          {data?.quantityPending > 0 && data?.quantityPending}
+          <span>{data?.quantityPending > 0 && data?.quantityPending}</span>
         </Tab>
       </PageToggleStyled>
     );

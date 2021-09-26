@@ -29,19 +29,20 @@ const SideNav: React.FC = () => {
         to={`/dashboard/insurances/`}
       >
         <span>{t("Dashboard.SideMenu.insurances")}</span>
-        <Quantity>
-          {data?.quantityInsurances > 0 && data?.quantityInsurances}
-        </Quantity>
+        {data?.quantityInsurances > 0 && (
+          <Quantity>{data?.quantityInsurances}</Quantity>
+        )}
       </NavLink>
       <NavLink activeClassName="link--selected" strict to={`/dashboard/loans/`}>
         <span>{t("Dashboard.SideMenu.loans")}</span>
-        <Quantity> {data?.quantityLoans > 0 && data?.quantityLoans}</Quantity>
+        {data?.quantityLoans > 0 && <Quantity>{data?.quantityLoans}</Quantity>}
       </NavLink>
       <NavLink activeClassName="link--selected" to={`/dashboard/archived/`}>
         <span>{t("Dashboard.SideMenu.history")}</span>
-        <Quantity>
-          {data?.quantityArchived > 0 && data?.quantityArchived}
-        </Quantity>
+
+        {data?.quantityArchived > 0 && (
+          <Quantity>{data?.quantityArchived}</Quantity>
+        )}
       </NavLink>
     </Nav>
   );
@@ -59,23 +60,23 @@ const Nav = styled.div`
   height: max-content;
   border: 1px solid ${({ theme }) => theme.border};
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
+  min-width: 14rem;
 
   a {
     cursor: pointer;
     text-transform: capitalize;
     text-decoration: none;
     font-weight: 500;
-    color: ${({ theme }) => theme.gray};
+    /* color: ${({ theme }) => theme.gray}; */
     display: flex;
-    justify-content: flex-start;
-    padding: 8px 40px;
+    justify-content: space-between;
+    padding: 8px 20px;
     border-radius: 4px;
     transition: color 0.2s ease-in-out;
   }
   .link--selected {
     color: ${({ theme }) => theme.blue} !important;
     background: ${({ theme }) => theme.lightBlue};
-    box-shadow: 0px 1px 5px 0px rgba(124, 183, 255, 0.251);
     &:hover {
       color: ${({ theme }) => theme.blue};
     }
@@ -117,6 +118,10 @@ const Quantity = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.lightBlue};
+  margin: 0 0 0 1.5rem;
+  font-size: 0.9rem;
 `;
 
 export default SideNav;

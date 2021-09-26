@@ -9,14 +9,12 @@ import store from "@redux/store";
 // import reportWebVitals from "./utils/reportWebVitals";
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
   document.getElementById("root")
 );
 
 serviceWorkerRegistration.register();
-// reportWebVitals(console.log);
-
-/* <React.StrictMode>
-</React.StrictMode>, */

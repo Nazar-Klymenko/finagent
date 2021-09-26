@@ -67,10 +67,15 @@ const Footer: React.FC = () => {
 
 const FooterStyled = styled.footer<Styled>`
   background-color: ${({ theme }) => theme.black};
-  padding: 100px 100px 20px;
+  padding: 100px 40px 20px;
 
   .wrap {
     display: flex;
+    margin: 0 auto;
+    max-width: 1080px;
+    @media (min-width: 1200px) {
+      max-width: 1200px;
+    }
   }
   .testimonial {
     display: flex;

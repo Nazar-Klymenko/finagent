@@ -1,12 +1,13 @@
 FROM node:lts-buster-slim
 
-WORKDIR /usr/src/app
+WORKDIR /backend
 
-COPY package.json /usr/src/app/package.json
-COPY yarn.lock /usr/src/app/yarn.lock
-RUN yarn install --frozen-lockfile
+COPY package.json .
+COPY yarn.lock .
 
-COPY . /usr/src/app
+RUN yarn install --network-timeout 1000000
+
+COPY . .
 
 EXPOSE 5000
 

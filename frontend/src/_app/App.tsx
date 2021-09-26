@@ -27,6 +27,8 @@ import { fetchUser } from "@redux/auth/actions";
 
 import ScrollToTop from "@hooks/ScrollToTop";
 
+import { ProviderComposer, provider } from "@helpers/combineProviders";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -34,39 +36,38 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
   return (
-    <>
-      <HelmetProvider>
-        <Helmet>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
-            rel="stylesheet"
-          />
-        </Helmet>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <ThemeProvider theme={theme}>
-            <Suspense fallback={<Loader />}>
-              <GlobalStyle />
-              <BackDropProvider>
-                <NotificationProvider>
-                  <Router>
-                    <ScrollToTop />
-                    <Nav />
-                    <ContentMain>
-                      <MuiSnackbar />
-                      <Routes />
-                    </ContentMain>
-                    <Footer />
-                    <BottomNav />
-                  </Router>
-                </NotificationProvider>
-              </BackDropProvider>
-            </Suspense>
-          </ThemeProvider>
-        </QueryClientProvider>
-      </HelmetProvider>
-    </>
+    <ProviderComposer
+      providers={[
+        provider(HelmetProvider),
+        provider(NotificationProvider),
+        provider(BackDropProvider),
+        provider(ThemeProvider, { theme: theme }),
+        provider(QueryClientProvider, { client: queryClient }),
+      ]}
+    >
+      <Helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Suspense fallback={<Loader />}>
+        <GlobalStyle />
+        <Router>
+          <ScrollToTop />
+          <Nav />
+          <ContentMain>
+            <MuiSnackbar />
+            <Routes />
+          </ContentMain>
+          <Footer />
+          <BottomNav />
+        </Router>
+      </Suspense>
+    </ProviderComposer>
   );
 };
 

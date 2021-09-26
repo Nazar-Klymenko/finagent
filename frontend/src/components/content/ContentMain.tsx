@@ -23,8 +23,11 @@ const ContentMainStyled = styled.div<Styled>`
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 50px);
+  padding: 0 40px;
 
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+    padding: 0 0;
+
     ${({ isLoggedIn }) =>
       isLoggedIn &&
       css`

@@ -37,50 +37,66 @@ const Nav = () => {
 
   return (
     <NavStyled>
-      {isBackdropOpen && <Backdrop />}
+      <NavInnerWrap>
+        {isBackdropOpen && <Backdrop />}
 
-      <FlexWrap f1 flexStart>
-        <LogoWrap>
-          <Logo fillColor="#1A1B1E" />
-        </LogoWrap>
-      </FlexWrap>
+        <FlexWrap f1 flexStart>
+          <LogoWrap>
+            <Logo fillColor="#1A1B1E" />
+          </LogoWrap>
+        </FlexWrap>
 
-      <FlexWrap f2>
-        {!isTabletOrMobile && (
-          <Links navOpen={navOpen} setNavOpen={setNavOpen} />
+        <FlexWrap f2>
+          {!isTabletOrMobile && (
+            <Links navOpen={navOpen} setNavOpen={setNavOpen} />
+          )}
+        </FlexWrap>
+
+        <FlexWrap f1 flexEnd>
+          <LanguageMenu />
+          <Notifications />
+
+          {!isTabletOrMobile &&
+            (isLoggedIn ? (
+              <UserDropdown navOpen={navOpen} setNavOpen={setNavOpen} />
+            ) : (
+              <UserAuth navOpen={navOpen} setNavOpen={setNavOpen} />
+            ))}
+        </FlexWrap>
+
+        <Hamburger
+          onClick={() => {
+            setNavOpen(true);
+          }}
+          navOpen={navOpen}
+        />
+        {isTabletOrMobile && (
+          <Drawer navOpen={navOpen} setNavOpen={setNavOpen} />
         )}
-      </FlexWrap>
-
-      <FlexWrap f1 flexEnd>
-        <LanguageMenu />
-        <Notifications />
-
-        {!isTabletOrMobile &&
-          (isLoggedIn ? (
-            <UserDropdown navOpen={navOpen} setNavOpen={setNavOpen} />
-          ) : (
-            <UserAuth navOpen={navOpen} setNavOpen={setNavOpen} />
-          ))}
-      </FlexWrap>
-
-      <Hamburger
-        onClick={() => {
-          setNavOpen(true);
-        }}
-        navOpen={navOpen}
-      />
-      {isTabletOrMobile && <Drawer navOpen={navOpen} setNavOpen={setNavOpen} />}
+      </NavInnerWrap>
     </NavStyled>
   );
 };
 
 export default Nav;
 
+const NavInnerWrap = styled.div`
+  max-width: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
+`;
 const NavStyled = styled.div`
   display: flex;
   position: fixed;
   justify-content: space-between;
   align-items: center;
+  justify-content: center;
 
   top: 0;
   left: 0;

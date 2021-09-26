@@ -9,6 +9,7 @@ interface Props {
   direction?: "column" | "row";
   flipDirection?: boolean;
   P0?: boolean;
+  blank?: boolean;
 }
 
 const ContentWrap: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const ContentWrap: React.FC<Props> = ({
   direction,
   flipDirection,
   P0,
+  blank,
 }) => {
   return (
     <ContentWrapStyled
@@ -30,6 +32,7 @@ const ContentWrap: React.FC<Props> = ({
       direction={direction}
       flipDirection={flipDirection}
       P0={P0}
+      blank={blank}
     >
       {children}
     </ContentWrapStyled>
@@ -49,9 +52,13 @@ const ContentWrapStyled = styled.div<Props>`
   margin: 1.5rem auto;
 
   background-color: #ffffff;
-  box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.08); */
+  box-shadow: none;
   border-radius: 6px;
-  max-width: 1400px;
+  max-width: 1080px;
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
 
   ${({ fullHeight }) =>
     fullHeight &&
@@ -65,7 +72,7 @@ const ContentWrapStyled = styled.div<Props>`
   ${({ authForm }) =>
     authForm &&
     css`
-      max-width: 500px;
+      max-width: 500px !important;
     `}
 
 
@@ -126,9 +133,18 @@ ${({ flipDirection }) =>
   ${({ P0 }) =>
     P0 &&
     css`
+      padding: 1.5rem 0 !important;
+
       @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
         padding: 0 !important;
       }
+    `}
+
+  ${({ blank }) =>
+    blank &&
+    css`
+      /* border: none; */
+      box-shadow: none;
     `}
 `;
 export default ContentWrap;

@@ -15,7 +15,7 @@ const Dashboard = () => {
   let { path } = useRouteMatch();
   useTitle(t("Dashboard.title"));
   return (
-    <ContentWrap fullWidth flipDirection P0>
+    <ContentWrap fullWidth flipDirection blank P0>
       <SideNav />
 
       <DashboardMain>

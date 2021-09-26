@@ -1,33 +1,28 @@
-version: "3.7"
+version: "3.9"
 services:
   frontend:
-    build: frontend
+    container_name: frontend
+    build: ./frontend
     ports:
       - 3000:3000
     stdin_open: true
-    volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
-    container_name: frontend
+    # volumes:
+    #   - ./frontend:/app
+    #   - /app/node_modules
     restart: always
-    networks:
-      - react-express
     depends_on:
       - backend
-
   backend:
     container_name: backend
+    build: ./backend
     restart: always
-    build: backend
-    volumes:
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
-    networks:
-      - react-express
-    expose:
-      - 3000
-networks:
-  react-express:
+    env_file:
+      - ./backend/.env
+    # volumes:
+    #   - ./backend:/backend
+    #   - /backend/node_modules
+    ports:
+      - 5000:5000
 
     # version: "3.9"
 # services:

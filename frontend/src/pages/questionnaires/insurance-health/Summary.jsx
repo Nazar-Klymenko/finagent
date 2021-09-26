@@ -45,13 +45,13 @@ const Summary = () => {
         <Title>{t("InsuranceHealth.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Summary" />
         <SummaryList
-          header={t("InsuranceHealth.summary")}
+          header={t("Basic.summary")}
           array={addDataLabeled}
           defaultOpen
         />
         <ButtonsWrap multiple>
           <CTA
-            text={t("InsuranceHealth.buttonBack")}
+            text={t("Basic.buttonBack")}
             form=""
             color="secondary"
             onClick={() => {
@@ -59,7 +59,7 @@ const Summary = () => {
             }}
           />
           <CTA
-            text={t("InsuranceHealth.buttonConfirm")}
+            text={t("Basic.buttonConfirm")}
             form=""
             color="primary"
             onClick={confirmApplication}

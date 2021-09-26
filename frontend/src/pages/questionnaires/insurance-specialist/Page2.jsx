@@ -98,7 +98,7 @@ const Page2 = () => {
         />
         <ButtonsWrap multiple>
           <CTA
-            text={t("InsuranceDiagnostic.buttonBack")}
+            text={t("Basic.buttonBack")}
             color="secondary"
             form=""
             onClick={() => {
@@ -107,7 +107,7 @@ const Page2 = () => {
           />
           <CTA
             large={true}
-            text={t("InsuranceDiagnostic.buttonNext")}
+            text={t("Basic.buttonNext")}
             form=""
             color="primary"
             onClick={() => {

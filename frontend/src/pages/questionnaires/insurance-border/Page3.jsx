@@ -132,18 +132,14 @@ const Page3 = () => {
         </Form>
         <ButtonsWrap multiple>
           <CTA
-            text={t("InsuranceBorder.buttonBack")}
+            text={t("Basic.buttonBack")}
             color="secondary"
             form=""
             onClick={() => {
               history.push("./2");
             }}
           />
-          <CTA
-            text={t("InsuranceBorder.buttonNext")}
-            form="form"
-            color="primary"
-          />
+          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
       </Page>
     </ContentWrap>

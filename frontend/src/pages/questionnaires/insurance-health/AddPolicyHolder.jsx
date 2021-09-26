@@ -193,16 +193,12 @@ const AddPolicyHolder = ({
         </Form>
         <ButtonsWrap multiple>
           <CTA
-            text={t("InsuranceHealth.buttonBack")}
+            text={t("Basic.buttonBack")}
             form=""
             color="secondary"
             onClick={() => setOpenModal(false)}
           />
-          <CTA
-            color="primary"
-            text={t("InsuranceHealth.buttonAdd")}
-            form="modal-form"
-          />
+          <CTA color="primary" text={t("Basic.buttonAdd")} form="modal-form" />
         </ButtonsWrap>
       </Modal>
     )

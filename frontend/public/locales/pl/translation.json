@@ -10,6 +10,13 @@
       "mustBeChecked": "To pole należy zaznaczyć"
     }
   },
+  "Basic": {
+    "buttonNext": "Dalej",
+    "buttonBack": "Wstecz",
+    "buttonAdd": "Dodać",
+    "buttonConfirm": "Potwierdzić",
+    "summary": "Podsumowanie"
+  },
   "Summary": {
     "yes": "Tak",
     "no": "Nie"
@@ -298,11 +305,7 @@
   },
   "LoanCash": {
     "title": "Kredyt gotówkowy",
-    "buttonNext": "Dalej",
-    "buttonBack": "Wstecz",
-    "buttonAdd": "Dodać",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
+
     "ApplicantBox": {
       "title": "Dodać wnioskodawcę",
       "addApplicant1": "Dodać wnioskodawcę 1",
@@ -413,11 +416,7 @@
   },
   "LoanMortgage": {
     "title": "Kredyt hipoteczny",
-    "buttonNext": "Dalej",
-    "buttonBack": "Wstecz",
-    "buttonAdd": "Dodać",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
+
     "ApplicantBox": {
       "title": "Dodać wnioskodawcę",
       "addApplicant1": "Dodać wnioskodawcę 1",
@@ -560,10 +559,8 @@
   },
   "InsuranceTravel": {
     "title": "Ubezpieczenie podróżne",
-    "buttonNext": "Dalej",
+
     "buttonBack": "Powrót",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
     "Page1": {
       "title": "Informacje o ubezpieczeniu",
       "insuranceStart": "Początek ubezpieczenia",
@@ -600,10 +597,8 @@
   },
   "InsuranceEstate": {
     "title": "Ubezpieczenia nieruchomości",
-    "buttonNext": "Dalej",
+
     "buttonBack": "Powrót",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
     "Page1": {
       "title": "Informacja o nieruchomości",
       "country": "Kraj",
@@ -672,11 +667,7 @@
   },
   "InsuranceHealth": {
     "title": "Ubezpieczenie zdrowotne",
-    "buttonNext": "Dalej",
-    "buttonBack": "Wstecz",
-    "buttonAdd": "Dodać",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
+
     "ApplicantBox": {
       "title": "Dodać wnioskodawcę",
       "addApplicant": "Dodać wnioskodawcę",
@@ -740,11 +731,7 @@
   },
   "InsuranceDiagnostic": {
     "title": "Dostęp do specjalistów",
-    "buttonNext": "Dalej",
-    "buttonBack": "Wstecz",
-    "buttonAdd": "Dodać",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
+
     "Error": {
       "noApplicant": "Musisz podać minimum jednego wnioskodawcę"
     },
@@ -783,10 +770,7 @@
   },
   "InsuranceTransport": {
     "title": "Ubezpieczenie transportu",
-    "buttonNext": "Dalej",
-    "buttonBack": "Wstecz",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
+
     "SelectProfession": {
       "unemployed": "Bezrobotny",
       "retired": "Emeryt / rencista",
@@ -937,10 +921,7 @@
   },
   "InsuranceBorder": {
     "title": "Ubezpieczenie graniczne",
-    "buttonNext": "Dalej",
-    "buttonBack": "Wstecz",
-    "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie",
+
     "Page1": {
       "subtitle": "Informacje o ubezpieczeniu",
       "documentType": "Typ dokumentu",

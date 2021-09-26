@@ -413,14 +413,14 @@ const AddApplicant = ({
         </Form>
         <ButtonsWrap multiple>
           <CTA
-            text={t("LoanMortgage.buttonBack")}
+            text={t("Basic.buttonBack")}
             form=""
             color="secondary"
             onClick={() => setOpenModal(false)}
           />
           <CTA
             color="primary"
-            text={t("LoanMortgage.buttonAdd")}
+            text={t("Basic.buttonAdd")}
             form="applicant-form"
           />
         </ButtonsWrap>

@@ -10,6 +10,13 @@
       "mustBeChecked": "Это поле необходимо отметить"
     }
   },
+  "Basic": {
+    "buttonNext": "Далее",
+    "buttonBack": "Назад",
+    "buttonAdd": "Добавить",
+    "buttonConfirm": "Подтвердить",
+    "summary": "Итог"
+  },
   "Summary": {
     "yes": "Да",
     "no": "Нет"
@@ -298,11 +305,6 @@
   },
   "LoanCash": {
     "title": "Кредит наличными",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonAdd": "Добавить",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Итог",
     "ApplicantBox": {
       "title": "Добавить заявителя",
       "addApplicant1": "Добавить заявителя 1",
@@ -413,11 +415,6 @@
   },
   "LoanMortgage": {
     "title": "Ипотечный заем",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonAdd": "Добавить",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Итог",
     "ApplicantBox": {
       "title": "Добавить заявителя",
       "addApplicant1": "Добавить заявителя 1",
@@ -560,10 +557,6 @@
   },
   "InsuranceTravel": {
     "title": "Туристическое страхование",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Итог",
     "Page1": {
       "title": "Информация о страховании",
       "insuranceStart": "Страхование начинается",
@@ -600,10 +593,6 @@
   },
   "InsuranceEstate": {
     "title": "Страхование недвижимости",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Итог",
     "Page1": {
       "title": "Информация про недвижимость",
       "country": "Страна",
@@ -672,11 +661,6 @@
   },
   "InsuranceHealth": {
     "title": "Медицинская страховка",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonAdd": "Добавить",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Итог",
     "ApplicantBox": {
       "title": "Добавить заявителя",
       "addApplicant": "Добавить заявителя",
@@ -740,11 +724,6 @@
   },
   "InsuranceDiagnostic": {
     "title": "Доступ к специалистам",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonAdd": "Добавить",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Итог",
     "Error": {
       "noApplicant": "Вы должны добавить минимум одного заявителя"
     },
@@ -783,10 +762,6 @@
   },
   "InsuranceTransport": {
     "title": "Страхование транспорта",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Итог",
     "SelectProfession": {
       "unemployed": "Безработный",
       "retired": "Пенсионер",
@@ -937,10 +912,6 @@
   },
   "InsuranceBorder": {
     "title": "Ubezpieczenie graniczne",
-    "buttonNext": "Далее",
-    "buttonBack": "Назад",
-    "buttonConfirm": "Подтвердить",
-    "summary": "Итог",
     "Page1": {
       "subtitle": "Информация о страховании",
       "documentType": "Тип документа",

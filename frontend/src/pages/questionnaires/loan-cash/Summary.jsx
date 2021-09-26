@@ -43,13 +43,13 @@ const Summary = () => {
         <Title>{t("LoanCash.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Summary" />
         <SummaryList
-          header={t("LoanCash.summary")}
+          header={t("Basic.summary")}
           array={addDataLabeled}
           defaultOpen
         />
         <ButtonsWrap multiple>
           <CTA
-            text={t("LoanCash.buttonBack")}
+            text={t("Basic.buttonBack")}
             color="secondary"
             form=""
             onClick={() => {
@@ -57,7 +57,7 @@ const Summary = () => {
             }}
           />
           <CTA
-            text={t("LoanCash.buttonNext")}
+            text={t("Basic.buttonNext")}
             form=""
             color="primary"
             onClick={confirmApplication}

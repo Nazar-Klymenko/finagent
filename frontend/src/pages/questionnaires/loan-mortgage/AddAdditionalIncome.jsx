@@ -287,16 +287,12 @@ const AddAdditionalIncome = ({
         </Form>
         <ButtonsWrap multiple>
           <CTA
-            text={t("LoanMortgage.buttonBack")}
+            text={t("Basic.buttonBack")}
             form=""
             color="secondary"
             onClick={() => setOpenIncomeModal(false)}
           />
-          <CTA
-            color="primary"
-            text={t("LoanMortgage.buttonAdd")}
-            form="income-form"
-          />
+          <CTA color="primary" text={t("Basic.buttonAdd")} form="income-form" />
         </ButtonsWrap>
       </Modal>
     )

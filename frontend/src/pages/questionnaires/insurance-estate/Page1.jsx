@@ -327,11 +327,7 @@ const Page1 = () => {
           />
         </Form>
         <ButtonsWrap>
-          <CTA
-            text={t("InsuranceEstate.buttonNext")}
-            form="form"
-            color="primary"
-          />
+          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
       </Page>
     </ContentWrap>

@@ -10,6 +10,13 @@
       "mustBeChecked": "This field must be checked"
     }
   },
+  "Basic": {
+    "buttonNext": "Next",
+    "buttonBack": "Back",
+    "buttonAdd": "Add",
+    "buttonConfirm": "Confirm",
+    "summary": "Summary"
+  },
   "Summary": {
     "yes": "Yes",
     "no": "No"
@@ -220,8 +227,7 @@
     "updatedAt": "Updated at",
     "Summary": {
       "title": "Application summary",
-      "subtitle": "Info about the application",
-      "summary": "Summary"
+      "subtitle": "Info about the application"
     },
     "Status": {
       "title": "Application status",
@@ -298,11 +304,7 @@
   },
   "LoanCash": {
     "title": "Cash loan",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonAdd": "Add",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+
     "ApplicantBox": {
       "title": "Add Applicant",
       "addApplicant1": "Add Applicant 1",
@@ -413,11 +415,7 @@
   },
   "LoanMortgage": {
     "title": "Mortgage loan",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonAdd": "Add",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+
     "ApplicantBox": {
       "title": "Add Applicant",
       "addApplicant1": "Add Applicant 1",
@@ -560,10 +558,7 @@
   },
   "InsuranceTravel": {
     "title": "Travel insurance",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+
     "Page1": {
       "title": "Insurance info",
       "insuranceStart": "Insurance period starts",
@@ -600,10 +595,7 @@
   },
   "InsuranceEstate": {
     "title": "Real estate insurance",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+
     "Page1": {
       "title": "Real estate info",
       "country": "Country",
@@ -672,11 +664,7 @@
   },
   "InsuranceHealth": {
     "title": "Health insurance",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonAdd": "Add",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+
     "ApplicantBox": {
       "title": "Add additional applicant",
       "addApplicant": "Add applicant",
@@ -740,11 +728,7 @@
   },
   "InsuranceDiagnostic": {
     "title": "Specialists access",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonAdd": "Add",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+
     "Error": {
       "noApplicant": "You must provide minimum 1 applicant"
     },
@@ -783,10 +767,7 @@
   },
   "InsuranceTransport": {
     "title": "Transport insurance",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
+
     "SelectProfession": {
       "unemployed": "Unemployed",
       "retired": "Retired / Pensioner",
@@ -937,10 +918,6 @@
   },
   "InsuranceBorder": {
     "title": "Ubezpieczenie graniczne",
-    "buttonNext": "Next",
-    "buttonBack": "Back",
-    "buttonConfirm": "Confirm",
-    "summary": "Summary",
     "Page1": {
       "subtitle": "Insurance Info",
       "documentType": "Document type",

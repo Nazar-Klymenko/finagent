@@ -10,6 +10,13 @@
       "mustBeChecked": "Це поле потрібно відзначити"
     }
   },
+  "Basic": {
+    "buttonNext": "Далі",
+    "buttonBack": "Назад",
+    "buttonAdd": "Додати",
+    "buttonConfirm": "Піттвердити",
+    "summary": "Підсумок"
+  },
   "Summary": {
     "yes": "Так",
     "no": "Ні"
@@ -298,11 +305,9 @@
   },
   "LoanCash": {
     "title": "Кредит готівкою",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
-    "buttonAdd": "Додати",
+
     "buttonConfirm": "Підтвердити",
-    "summary": "Підсумок",
+
     "ApplicantBox": {
       "title": "Додати заявника",
       "addApplicant1": "Додати заявника 1",
@@ -413,11 +418,9 @@
   },
   "LoanMortgage": {
     "title": "Іпотечна позика",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
-    "buttonAdd": "Додати",
+
     "buttonConfirm": "Підтвердити",
-    "summary": "Підсумок",
+
     "ApplicantBox": {
       "title": "Додати заявника",
       "addApplicant1": "Додати заявника 1",
@@ -560,10 +563,9 @@
   },
   "InsuranceTravel": {
     "title": "Страхування подорожей",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
+
     "buttonConfirm": "Підтвердити",
-    "summary": "Підсумок",
+
     "Page1": {
       "title": "Інформація про страхування",
       "insuranceStart": "Початок страхування",
@@ -600,10 +602,9 @@
   },
   "InsuranceEstate": {
     "title": "Страхування нерухомості",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
+
     "buttonConfirm": "Підтвердити",
-    "summary": "Підсумок",
+
     "Page1": {
       "title": "Інформація про нерухомість",
       "country": "Країна",
@@ -672,11 +673,7 @@
   },
   "InsuranceHealth": {
     "title": "Медична страховка",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
-    "buttonAdd": "Додати",
-    "buttonConfirm": "Піттвердити",
-    "summary": "Підсумок",
+
     "ApplicantBox": {
       "title": "Додати наступного заявника",
       "addApplicant": "Додати заявника",
@@ -740,11 +737,7 @@
   },
   "InsuranceDiagnostic": {
     "title": "Доступ спеціалістів",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
-    "buttonAdd": "Додати",
-    "buttonConfirm": "Піттвердити",
-    "summary": "Підсумок",
+
     "Error": {
       "noApplicant": "Ви повинні додати мінімум одного заявника"
     },
@@ -783,10 +776,9 @@
   },
   "InsuranceTransport": {
     "title": "Транспортне страхування",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
+
     "buttonConfirm": "Підтвердити",
-    "summary": "Підсумок",
+
     "SelectProfession": {
       "unemployed": "Безробітний",
       "retired": "Пенсіонер",
@@ -937,10 +929,7 @@
   },
   "InsuranceBorder": {
     "title": "Ubezpieczenie graniczne",
-    "buttonNext": "Далі",
-    "buttonBack": "Назад",
-    "buttonConfirm": "Піттвердити",
-    "summary": "Підсумок",
+
     "Page1": {
       "subtitle": "Інформація про страхування",
       "documentType": "Тип документу",

@@ -288,7 +288,7 @@ const Page1 = () => {
           setIsEditing={setIsEditing}
         />
         <ButtonsWrap>
-          <CTA text={t("LoanCash.buttonNext")} form="form" color="primary" />
+          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
         {isError && <FormError>{isError}</FormError>}
       </Page>

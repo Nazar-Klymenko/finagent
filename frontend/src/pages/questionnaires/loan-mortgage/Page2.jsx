@@ -304,18 +304,14 @@ const Page2 = () => {
         />
         <ButtonsWrap multiple>
           <CTA
-            text={t("LoanMortgage.buttonBack")}
+            text={t("Basic.buttonBack")}
             form=""
             color="secondary"
             onClick={() => {
               history.push("./1");
             }}
           />
-          <CTA
-            text={t("LoanMortgage.buttonNext")}
-            form="form"
-            color="primary"
-          />
+          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
         {isError && <ErrorBottom>{isError}</ErrorBottom>}
       </Page>

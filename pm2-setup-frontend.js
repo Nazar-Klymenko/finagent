@@ -1,8 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: "application",
-      cwd: "application-finagent/",
+      name: "frontend",
+      cwd: "frontend/",
       script: "serve",
       watch: true,
       env: {
@@ -14,7 +14,7 @@ module.exports = {
     },
     {
       name: "admin",
-      cwd: "admin-finagent/",
+      cwd: "admin/",
       script: "serve",
       watch: true,
       env: {
@@ -26,7 +26,7 @@ module.exports = {
     },
     {
       name: "landing",
-      cwd: "landing-finagent/",
+      cwd: "landing/",
       script: "yarn",
       watch: true,
       node_args: "port 3002",

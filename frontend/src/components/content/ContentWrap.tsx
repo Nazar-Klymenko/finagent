@@ -48,7 +48,7 @@ const ContentWrapStyled = styled.div<Props>`
   display: flex;
   justify-content: center;
   align-content: center;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 0 !important;
   margin: 1.5rem auto;
 
   background-color: #ffffff;
@@ -73,6 +73,8 @@ const ContentWrapStyled = styled.div<Props>`
     authForm &&
     css`
       max-width: 500px !important;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
     `}
 
 
@@ -90,6 +92,7 @@ const ContentWrapStyled = styled.div<Props>`
     direction === "column" &&
     css`
       flex-direction: column;
+      justify-content: flex-start;
     `}
 
 ${({ flipDirection }) =>
@@ -104,13 +107,14 @@ ${({ flipDirection }) =>
 
   @media all and (min-width: ${({ theme }) => theme.widthDesktop}) {
     width: auto;
-    border: none;
+    /* border: none; */
     box-shadow: none;
   }
 
   @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
     width: auto;
     border: none;
+    padding: 1.5rem 20px !important;
   }
 
   @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
@@ -133,8 +137,6 @@ ${({ flipDirection }) =>
   ${({ P0 }) =>
     P0 &&
     css`
-      padding: 1.5rem 0 !important;
-
       @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
         padding: 0 !important;
       }
@@ -143,7 +145,6 @@ ${({ flipDirection }) =>
   ${({ blank }) =>
     blank &&
     css`
-      /* border: none; */
       box-shadow: none;
     `}
 `;

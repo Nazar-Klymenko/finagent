@@ -42,6 +42,9 @@ const theme = {
   bg: "#ffffff",
   border: "#dfdfdf",
 
+  regularWrap: "1080px",
+  bigWrap: "1200px",
+
   widthSmallPhone: "400px",
   widthPhone: "688px",
   widthTablet: "992px",

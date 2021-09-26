@@ -88,9 +88,27 @@ const HeaderBase = styled.h1<Styled>`
     `}
 `;
 
-const H1 = styled(HeaderBase)``;
-const H2 = styled(HeaderBase)``;
-const H3 = styled(HeaderBase)``;
-const H4 = styled(HeaderBase)``;
-const H5 = styled(HeaderBase)``;
-const H6 = styled(HeaderBase)``;
+const H1 = styled(HeaderBase)`
+  font-size: 2em;
+  font-weight: bolder;
+`;
+const H2 = styled(HeaderBase)`
+  font-size: 1.5em;
+  font-weight: bolder;
+`;
+const H3 = styled(HeaderBase)`
+  font-size: 1.17em;
+  font-weight: bolder;
+`;
+const H4 = styled(HeaderBase)`
+  font-size: 1em;
+  font-weight: bolder;
+`;
+const H5 = styled(HeaderBase)`
+  font-size: 0.83em;
+  font-weight: bolder;
+`;
+const H6 = styled(HeaderBase)`
+  font-size: 0.67em;
+  font-weight: bolder;
+`;

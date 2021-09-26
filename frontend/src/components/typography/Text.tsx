@@ -1,7 +1,7 @@
 import React from "react";
 
 const Text: React.FC = ({ children }) => {
-  return <div></div>;
+  return <div>{children}</div>;
 };
 
 export default Text;

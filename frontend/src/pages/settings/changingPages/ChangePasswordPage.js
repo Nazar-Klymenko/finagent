@@ -78,6 +78,7 @@ const ChangePasswordPage = () => {
               <CTA
                 text={t("Settings.ChangePassword.button")}
                 form="settings-form"
+                color="primary"
               />
             </ButtonPosition>
           </Form>

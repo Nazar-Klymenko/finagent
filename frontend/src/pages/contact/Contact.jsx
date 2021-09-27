@@ -23,19 +23,23 @@ const Contact = () => {
           <Form id="form">
             <Input
               labelName={t("Contact.Form.fullName")}
-              placeholder="Your full name"
+              // placeholder="Your full name"
             />
             <Input
               labelName={t("Contact.Form.email")}
-              placeholder="Your email"
+              // placeholder="Your email"
             />
             <Textarea
               labelName={t("Contact.Form.message")}
               rows="8"
-              placeholder="Enter your message..."
+              // placeholder="Enter your message..."
             />
             <ButtonPlace>
-              <CTA text={t("Contact.Form.submit")} form="form" />
+              <CTA
+                text={t("Contact.Form.submit")}
+                form="form"
+                color="primary"
+              />
             </ButtonPlace>
           </Form>
         </FormSide>

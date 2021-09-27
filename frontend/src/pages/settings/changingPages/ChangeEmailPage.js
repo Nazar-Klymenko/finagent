@@ -69,7 +69,11 @@ const ChangeEmailPage = () => {
           )}
         </Form>
         <ButtonPosition>
-          <CTA text={t("Settings.ChangeEmail.button")} form="settings-form" />
+          <CTA
+            text={t("Settings.ChangeEmail.button")}
+            form="settings-form"
+            color="primary"
+          />
         </ButtonPosition>
         {isError && (
           <StatusError>

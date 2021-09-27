@@ -26,14 +26,12 @@ const CardStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid ${({ theme }) => theme.lightestGray};
   box-shadow: 0 5px 30px -16px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   max-width: 340px;
   width: 340px;
-  padding: 24px;
   transition: 0.2s ease-in-out;
-  background-color: #ffffff;
+  background: ${({ theme }) => theme.lightBlue};
 
   &:hover {
     box-shadow: 0 5px 40px -16px rgba(0, 0, 0, 0.23);
@@ -48,6 +46,7 @@ const CardStyled = styled.div`
 
 const CardImage = styled.img`
   height: 180px;
+  padding: 24px;
 `;
 
 const CardContentWrap = styled.div`
@@ -56,13 +55,16 @@ const CardContentWrap = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex: 1;
+  background-color: #ffffff;
+  padding: 24px;
+
   width: 100%;
 `;
 const CardHeader = styled.h3`
-  font-size: 1.1rem;
+  font-size: 17px;
   font-weight: 500;
 `;
 const CardDescription = styled.p`
   color: ${({ theme }) => theme.gray};
-  font-size: 0.9rem;
+  font-size: 14px;
 `;

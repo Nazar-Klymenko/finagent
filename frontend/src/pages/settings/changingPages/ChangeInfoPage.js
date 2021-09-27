@@ -96,6 +96,7 @@ const ChangePasswordPage = () => {
             isLoading={isBtnLoading}
             text={t("Settings.ChangeInfo.button")}
             form="settings-form"
+            color="primary"
           />
         </ButtonPosition>
 

@@ -10,13 +10,14 @@ import ChangePasswordPage from "./changingPages/ChangePasswordPage";
 import DangerZonePage from "./changingPages/DangerZonePage";
 
 import { PrivateRoute } from "@components/CustomRoutes/";
+import { ContentWrap } from "@components/content";
 
 const Settings = () => {
   const { t } = useTranslation();
   useTitle("Settings | FinAgent");
 
   return (
-    <SettingsStyled>
+    <ContentWrap blank flipDirection fullWidth P0>
       <Menu>
         <SettingsLink
           className="settings__menu__link"
@@ -50,54 +51,43 @@ const Settings = () => {
           {t("Settings.Disposal.title")}
         </SettingsLink>
       </Menu>
-      <Overlay>
-        <PrivateRoute path="/settings">
-          <Redirect to="/settings/change_info" />
-        </PrivateRoute>
+      <ActionZone>
+        <Overlay>
+          <PrivateRoute path="/settings">
+            <Redirect to="/settings/change_info" />
+          </PrivateRoute>
 
-        <PrivateRoute path="/settings/change_info">
-          <ChangeInfoPage />
-        </PrivateRoute>
+          <PrivateRoute path="/settings/change_info">
+            <ChangeInfoPage />
+          </PrivateRoute>
 
-        <PrivateRoute path="/settings/change_email">
-          <ChangeEmailPage />
-        </PrivateRoute>
+          <PrivateRoute path="/settings/change_email">
+            <ChangeEmailPage />
+          </PrivateRoute>
 
-        <PrivateRoute path="/settings/change_password">
-          <ChangePasswordPage />
-        </PrivateRoute>
+          <PrivateRoute path="/settings/change_password">
+            <ChangePasswordPage />
+          </PrivateRoute>
 
-        <PrivateRoute path="/settings/danger_zone">
-          <DangerZonePage />
-        </PrivateRoute>
-      </Overlay>
-    </SettingsStyled>
+          <PrivateRoute path="/settings/danger_zone">
+            <DangerZonePage />
+          </PrivateRoute>
+        </Overlay>
+      </ActionZone>
+    </ContentWrap>
   );
 };
 
 export default Settings;
 
-const SettingsStyled = styled.div`
-  width: 70%;
-  min-height: 70vh;
-  border: 1px solid $BorderGray;
-  background-color: #ffffff;
-  box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
-  display: flex;
-  margin: 0 auto;
-  @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
-    border-radius: 0;
-    flex-direction: column;
-    flex: 1;
-    width: 99%;
-  }
-`;
 const Menu = styled.div`
-  border-right: 1px solid ${({ theme }) => theme.border};
-  @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: 4px;
+  height: max-content;
+  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
     display: flex;
     flex-direction: row;
+    border-radius: 0;
     width: 100%;
     border-bottom: 1px solid $BorderGray;
     overflow-x: auto;
@@ -113,11 +103,18 @@ const Menu = styled.div`
 `;
 const SettingsLink = styled(NavLink)`
   display: block;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   font-size: 14px;
   text-decoration: none;
-  color: ${({ theme }) => theme.gray};
   white-space: nowrap;
+  border-bottom: 1px solid ${({ theme }) => theme.border};
+  &:last-of-type {
+    border-bottom: none;
+  }
+  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+    border-bottom: none;
+  }
+
   &.selected {
     background-color: #e1edfc;
     color: ${({ theme }) => theme.blue};
@@ -129,10 +126,15 @@ const SettingsLink = styled(NavLink)`
     padding: 0.5rem;
   }
 `;
-const Overlay = styled.div`
-  padding: 2rem;
+const ActionZone = styled.div`
+  padding: 0 2rem;
   width: 100%;
-  @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
-    width: unset;
+
+  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+    padding: 1rem 2rem;
   }
+`;
+
+const Overlay = styled.div`
+  max-width: 600px;
 `;

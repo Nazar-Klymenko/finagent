@@ -101,6 +101,7 @@ ${({ flipDirection }) =>
       flex-direction: row;
       @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
         flex-direction: column;
+        justify-content: flex-start;
       }
     `}
 

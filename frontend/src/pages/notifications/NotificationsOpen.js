@@ -68,7 +68,6 @@ const NotificationStyled = styled.div`
   padding: 1rem;
   padding-bottom: 90px;
   margin: 1rem auto;
-  background-color: #000000;
   border-radius: 14px;
   box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.08);
   @media all and (max-width: ${({ theme }) => theme.widthPhone}) {

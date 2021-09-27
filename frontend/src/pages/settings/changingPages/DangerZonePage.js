@@ -85,7 +85,11 @@ const DangerZonePage = () => {
             </Form>
 
             <ButtonPosition>
-              <CTA text={t("Settings.Disposal.button")} form="settings-form" />
+              <CTA
+                text={t("Settings.Disposal.button")}
+                form="settings-form"
+                color="primary"
+              />
             </ButtonPosition>
 
             {isError && (

@@ -20,7 +20,7 @@ const Help = () => {
           accusamus autem animi fuga delectus. Dolores aperiam repellat sed
           animi aspernatur ipsum dignissimos?
         </Accordion>
-        <Accordion header="asdbebeasdaksjdkajdskajsd">
+        <Accordion header="Example question">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum
           voluptate repudiandae tempora vel debitis facere omnis ratione quam.
           Voluptatum explicabo temporibus ipsam deleniti qui eaque quas pariatur
@@ -29,7 +29,7 @@ const Help = () => {
           accusamus autem animi fuga delectus. Dolores aperiam repellat sed
           animi aspernatur ipsum dignissimos?
         </Accordion>
-        <Accordion header="asdbebeasdaksjdkajdskajsd">
+        <Accordion header="Example question">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum
           voluptate repudiandae tempora vel debitis facere omnis ratione quam.
           Voluptatum explicabo temporibus ipsam deleniti qui eaque quas pariatur
@@ -38,7 +38,7 @@ const Help = () => {
           accusamus autem animi fuga delectus. Dolores aperiam repellat sed
           animi aspernatur ipsum dignissimos?
         </Accordion>
-        <Accordion header="asdbebeasdaksjdkajdskajsd">
+        <Accordion header="Example question">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum
           voluptate repudiandae tempora vel debitis facere omnis ratione quam.
           aspernatur! Autem! Sed hic saepe quidem. Amet eos voluptas error
@@ -46,16 +46,7 @@ const Help = () => {
           accusamus autem animi fuga delectus. Dolores aperiam repellat sed
           animi aspernatur ipsum dignissimos?
         </Accordion>
-        <Accordion header="asdbebeasdaksjdkajdskajsd">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum
-          voluptate repudiandae tempora vel debitis facere omnis ratione quam.
-          Voluptatum explicabo temporibus ipsam deleniti qui eaque quas pariatur
-          aspernatur! Autem! Sed hic saepe quidem. Amet eos voluptas error
-          quidem tempore sint nam, esse consequuntur quam numquam? Aliquam
-          accusamus autem animi fuga delectus. Dolores aperiam repellat sed
-          animi aspernatur ipsum dignissimos?
-        </Accordion>
-        <Accordion header="asdbebeasdaksjdkajdskajsd">
+        <Accordion header="Example question">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum
           voluptate repudiandae tempora vel debitis facere omnis ratione quam.
           Voluptatum explicabo temporibus ipsam deleniti qui eaque quas pariatur
@@ -64,7 +55,16 @@ const Help = () => {
           accusamus autem animi fuga delectus. Dolores aperiam repellat sed
           animi aspernatur ipsum dignissimos?
         </Accordion>
-        <Accordion header="asdbebeasdaksjdkajdskajsd">
+        <Accordion header="Example question">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum
+          voluptate repudiandae tempora vel debitis facere omnis ratione quam.
+          Voluptatum explicabo temporibus ipsam deleniti qui eaque quas pariatur
+          aspernatur! Autem! Sed hic saepe quidem. Amet eos voluptas error
+          quidem tempore sint nam, esse consequuntur quam numquam? Aliquam
+          accusamus autem animi fuga delectus. Dolores aperiam repellat sed
+          animi aspernatur ipsum dignissimos?
+        </Accordion>
+        <Accordion header="Example question">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum
           voluptate repudiandae tempora vel debitis facere omnis ratione quam.
           Voluptatum explicabo temporibus ipsam deleniti qui eaque quas pariatur

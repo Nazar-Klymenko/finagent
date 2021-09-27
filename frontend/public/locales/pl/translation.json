@@ -15,7 +15,9 @@
     "buttonBack": "Wstecz",
     "buttonAdd": "Dodać",
     "buttonConfirm": "Potwierdzić",
-    "summary": "Podsumowanie"
+    "summary": "Podsumowanie",
+    "no": "Nie",
+    "yes": "Tak"
   },
   "Summary": {
     "yes": "Tak",
@@ -783,7 +785,7 @@
       "operator": "Operator",
       "administration": "Pracownik administracji publicznej",
       "office": "Pracownik biurowy",
-      "it": "Pracownik dziłu IT",
+      "it": "Pracownik działu IT",
       "customer": "Pracownik działu obsługi klienta",
       "sales": "Pracownik działu sprzedaży / marketingu",
       "physical": "Pracownik fizyczny",

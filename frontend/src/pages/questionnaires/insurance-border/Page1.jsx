@@ -97,11 +97,11 @@ const Page1 = () => {
             legend={t("InsuranceBorder.Page1.registeredNotInEU")}
             options={[
               {
-                label: "No",
+                label: t("Basic.no"),
                 value: "no",
               },
               {
-                label: "Yes",
+                label: t("Basic.yes"),
                 value: "yes",
               },
             ]}

@@ -15,7 +15,9 @@
     "buttonBack": "Назад",
     "buttonAdd": "Добавить",
     "buttonConfirm": "Подтвердить",
-    "summary": "Итог"
+    "summary": "Итог",
+    "no": "Да",
+    "yes": "Нет"
   },
   "Summary": {
     "yes": "Да",

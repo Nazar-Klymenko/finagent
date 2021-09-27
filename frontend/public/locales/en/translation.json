@@ -15,7 +15,9 @@
     "buttonBack": "Back",
     "buttonAdd": "Add",
     "buttonConfirm": "Confirm",
-    "summary": "Summary"
+    "summary": "Summary",
+    "no": "No",
+    "yes": "Yes"
   },
   "Summary": {
     "yes": "Yes",

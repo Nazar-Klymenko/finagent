@@ -15,7 +15,9 @@
     "buttonBack": "Назад",
     "buttonAdd": "Додати",
     "buttonConfirm": "Піттвердити",
-    "summary": "Підсумок"
+    "summary": "Підсумок",
+    "no": "Ні",
+    "yes": "Так"
   },
   "Summary": {
     "yes": "Так",

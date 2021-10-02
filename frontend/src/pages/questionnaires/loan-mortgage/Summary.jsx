@@ -36,7 +36,7 @@ const Summary = () => {
     }
   };
   return (
-    <ContentWrap xl={true}>
+    <ContentWrap fullWidth>
       <Page>
         <Title>{t("LoanMortgage.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Summary" />

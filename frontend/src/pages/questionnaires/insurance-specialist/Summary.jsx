@@ -37,7 +37,7 @@ const Summary = () => {
   };
 
   return (
-    <ContentWrap xl>
+    <ContentWrap fullWidth>
       <Page>
         <Title>{t("InsuranceDiagnostic.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Summary" />

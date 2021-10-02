@@ -9,6 +9,7 @@ const UserSchema = new Schema(
     email: String,
     phone: String,
     isActive: Boolean,
+    provider: String,
     language: String,
   },
   {

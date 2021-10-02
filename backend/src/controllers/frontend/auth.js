@@ -5,21 +5,28 @@ import User from "models/user.js";
 import { auth } from "app";
 
 export const signUp = async (req, res, next) => {
-  const { name, surname, email, phone, language, IdToken } = req.body;
+  const { name, surname, phone, language, IdToken, provider } = req.body;
+  let { email } = req.body;
 
+  if (email == "") {
+    email = "-";
+  }
+
+  console.log({ provider });
   try {
-    const user = await User.findOne({ email: email });
-    if (user) {
-      throw createError.Conflict(
-        `user with such email (${email}) already exists`
-      );
-    }
+    // const user = await User.findOne({ email: email });
+    // if (user) {
+    //   throw createError.Conflict(
+    //     `user with such email (${email}) already exists`
+    //   );
+    // }
 
     const userObj = await new User({
       name: name,
       surname: surname,
       email: email,
       phone: phone,
+      provider: provider,
       language: language,
     });
 
@@ -58,21 +65,24 @@ export const verifyEmail = async (req, res, next) => {
 export const signUpFacebook = async (req, res, next) => {
   const language = "pl";
   const { first_name, last_name, email } = req.body.additionalUserInfo.profile;
+  let provider = req.body.additionalUserInfo.providerId;
   const { uid } = req.body.user;
+  console.log(req.body);
 
   try {
-    const user = await User.findOne({ email: email });
-    if (user) {
-      throw createError.Conflict(
-        `user with such email (${email}) already exists`
-      );
-    }
+    // const user = await User.findOne({ email: email });
+    // if (user) {
+    //   throw createError.Conflict(
+    //     `user with such email (${email}) already exists`
+    //   );
+    // }
 
     const userObj = await new User({
       _id: uid,
       name: first_name,
       surname: last_name,
       email: email,
+      provider: provider,
       language: language,
     });
 

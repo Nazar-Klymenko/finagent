@@ -44,7 +44,7 @@ export const getPreviewApplications = asyncHandler(async (req, res) => {
 
   let maximumPages = await Application.find(query).countDocuments();
 
-  res.send({
+  res.status(200).send({
     ApplicationList,
     maximumPages: Math.ceil(maximumPages / size),
   });
@@ -75,25 +75,21 @@ export const archiveApplication = asyncHandler(async (req, res) => {
 export const getQuantityApplications = asyncHandler(async (req, res) => {
   let { category } = req.params;
 
-  if (category === "all") {
-    let quantityArchived = await Application.find({
-      user_id: req.currentUser.uid,
-      archived: true,
-    }).countDocuments();
-    let quantityInsurances = await Application.find({
-      user_id: req.currentUser.uid,
-      category: "insurance",
-      archived: false,
-    }).countDocuments();
-    let quantityLoans = await Application.find({
-      user_id: req.currentUser.uid,
-      category: "loan",
-      archived: false,
-    }).countDocuments();
-    res
-      .status(200)
-      .send({ quantityInsurances, quantityLoans, quantityArchived });
-  }
+  let quantityArchived = await Application.find({
+    user_id: req.currentUser.uid,
+    archived: true,
+  }).countDocuments();
+  let quantityInsurances = await Application.find({
+    user_id: req.currentUser.uid,
+    category: "insurance",
+    archived: false,
+  }).countDocuments();
+  let quantityLoans = await Application.find({
+    user_id: req.currentUser.uid,
+    category: "loan",
+    archived: false,
+  }).countDocuments();
+
   category = category.slice(0, -1);
 
   let quantityReady = await Application.find({
@@ -109,5 +105,11 @@ export const getQuantityApplications = asyncHandler(async (req, res) => {
     archived: false,
   }).countDocuments();
 
-  res.status(200).send({ quantityReady, quantityPending });
+  res.status(200).send({
+    quantityInsurances,
+    quantityLoans,
+    quantityReady,
+    quantityArchived,
+    quantityPending,
+  });
 });

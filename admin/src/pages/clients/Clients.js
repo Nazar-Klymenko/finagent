@@ -45,6 +45,7 @@ const Clients = () => {
             <th>{t("Clients.email")}</th>
             <th>{t("Clients.phone")}</th>
             <th>{t("Clients.language")}</th>
+            <th>{t("Clients.provider")}</th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +62,7 @@ const Clients = () => {
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
                 <td>{user.language}</td>
+                <td>{user.provider}</td>
               </tr>
             ))}
         </tbody>

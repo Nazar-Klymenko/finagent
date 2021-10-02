@@ -69,7 +69,6 @@ import {
 import VerifyEmailPage from "@pages/VerifyEmailPage";
 import Error404 from "@pages/Error404";
 
-import { DataProvider } from "@context/dataContext";
 import NewPassword from "@pages/authActions/NewPassword";
 import Empty from "@pages/empty/Empty";
 import Staging from "@pages/empty/Staging";
@@ -82,165 +81,150 @@ const Routes = () => (
       exact
       render={(props) => <Redirect to="/dashboard/insurances/ready/1" />}
     />
+    <Route path="/not-found" render={(props) => <Error404 />} />
     <Route path="/empty" exact component={Empty} />
     <Route path="/staging" exact component={Staging} />
-
     <PrivateRoute path="/dashboard" component={Dashboard} />
     <Route path="/services" exact component={Services} />
     <Route path="/contact" exact component={Contact} />
-
     <Route path="/help" exact component={Help} />
-
     <PrivateRoute path="/notifications" exact component={Notifications} />
     <PrivateRoute path="/notifications/:id" component={NotificationsOpen} />
-
     <PrivateRoute path="/settings" component={Settings} />
-
     <Route path="/auth/login" exact component={Login} />
-    <Route path="/auth/signup" component={SignUp} />
+    <Route path="/auth/signup" exact component={SignUp} />
     <Route path="/auth/forgot-password" exact component={ForgotPassword} />
     <Route path="/auth/restore/confirm/:token" exact component={NewPassword} />
     <Route path="/verify-email" exact component={VerifyEmailPage} />
 
+    <QuestRoute
+      path="/quest/transport/1"
+      exact
+      component={Page1_Insurance_Car}
+    />
+    <QuestRoute
+      path="/quest/transport/2"
+      exact
+      component={Page2_Insurance_Car}
+    />
+    <QuestRoute
+      path="/quest/transport/3"
+      exact
+      component={Page3_Insurance_Car}
+    />
+    <QuestRoute
+      path="/quest/transport/4"
+      exact
+      component={Page4_Insurance_Car}
+    />
+    <QuestRoute
+      path="/quest/transport/5"
+      exact
+      component={Page5_Insurance_Car}
+    />
+    <QuestRoute
+      path="/quest/transport/summary"
+      exact
+      component={Summary_Insurance_Car}
+    />
 
-    <DataProvider>
-      <QuestRoute
-        path="/quest/transport/1"
-        exact
-        component={Page1_Insurance_Car}
-      />
-      <QuestRoute
-        path="/quest/transport/2"
-        exact
-        component={Page2_Insurance_Car}
-      />
-      <QuestRoute
-        path="/quest/transport/3"
-        exact
-        component={Page3_Insurance_Car}
-      />
-      <QuestRoute
-        path="/quest/transport/4"
-        exact
-        component={Page4_Insurance_Car}
-      />
-      <QuestRoute
-        path="/quest/transport/5"
-        exact
-        component={Page5_Insurance_Car}
-      />
-      <QuestRoute
-        path="/quest/transport/summary"
-        exact
-        component={Summary_Insurance_Car}
-      />
+    <QuestRoute
+      path="/quest/transport-border/1"
+      exact
+      component={Page1_Insurance_Border}
+    />
+    <QuestRoute
+      path="/quest/transport-border/2"
+      exact
+      component={Page2_Insurance_Border}
+    />
+    <QuestRoute
+      path="/quest/transport-border/3"
+      exact
+      component={Page3_Insurance_Border}
+    />
+    <QuestRoute
+      path="/quest/transport-border/summary"
+      exact
+      component={Summary_Insurance_Border}
+    />
 
-      <QuestRoute
-        path="/quest/transport-border/1"
-        exact
-        component={Page1_Insurance_Border}
-      />
-      <QuestRoute
-        path="/quest/transport-border/2"
-        exact
-        component={Page2_Insurance_Border}
-      />
-      <QuestRoute
-        path="/quest/transport-border/3"
-        exact
-        component={Page3_Insurance_Border}
-      />
-      <QuestRoute
-        path="/quest/transport-border/summary"
-        exact
-        component={Summary_Insurance_Border}
-      />
+    <QuestRoute
+      path="/quest/reimbursement/1"
+      exact
+      component={Page1_Insurance_Health}
+    />
+    <QuestRoute
+      path="/quest/reimbursement/2"
+      exact
+      component={Page2_Insurance_Health}
+    />
+    <QuestRoute
+      path="/quest/reimbursement/summary"
+      exact
+      component={Summary_Insurance_Health}
+    />
 
-      <QuestRoute
-        path="/quest/reimbursement/1"
-        exact
-        component={Page1_Insurance_Health}
-      />
-      <QuestRoute
-        path="/quest/reimbursement/2"
-        exact
-        component={Page2_Insurance_Health}
-      />
-      <QuestRoute
-        path="/quest/reimbursement/summary"
-        exact
-        component={Summary_Insurance_Health}
-      />
+    <QuestRoute
+      path="/quest/diagnostic/1"
+      exact
+      component={Page1_Insurance_Specialist}
+    />
+    <QuestRoute
+      path="/quest/diagnostic/2"
+      exact
+      component={Page2_Insurance_Specialist}
+    />
+    <QuestRoute
+      path="/quest/diagnostic/summary"
+      exact
+      component={Summary_Insurance_Specialist}
+    />
 
-      <QuestRoute
-        path="/quest/diagnostic/1"
-        exact
-        component={Page1_Insurance_Specialist}
-      />
-      <QuestRoute
-        path="/quest/diagnostic/2"
-        exact
-        component={Page2_Insurance_Specialist}
-      />
-      <QuestRoute
-        path="/quest/diagnostic/summary"
-        exact
-        component={Summary_Insurance_Specialist}
-      />
+    <QuestRoute
+      path="/quest/travel/1"
+      exact
+      component={Page1_Insurance_Travel}
+    />
+    <QuestRoute
+      path="/quest/travel/2"
+      exact
+      component={Page2_Insurance_Travel}
+    />
+    <QuestRoute
+      path="/quest/travel/summary"
+      exact
+      component={Summary_Insurance_Travel}
+    />
 
-      <QuestRoute
-        path="/quest/travel/1"
-        exact
-        component={Page1_Insurance_Travel}
-      />
-      <QuestRoute
-        path="/quest/travel/2"
-        exact
-        component={Page2_Insurance_Travel}
-      />
-      <QuestRoute
-        path="/quest/travel/summary"
-        exact
-        component={Summary_Insurance_Travel}
-      />
+    <QuestRoute
+      path="/quest/estate/1"
+      exact
+      component={Page1_Insurance_Estate}
+    />
+    <QuestRoute
+      path="/quest/estate/2"
+      exact
+      component={Page2_Insurance_Estate}
+    />
+    <QuestRoute
+      path="/quest/estate/summary"
+      exact
+      component={Summary_Insurance_Estate}
+    />
 
-      <QuestRoute
-        path="/quest/estate/1"
-        exact
-        component={Page1_Insurance_Estate}
-      />
-      <QuestRoute
-        path="/quest/estate/2"
-        exact
-        component={Page2_Insurance_Estate}
-      />
-      <QuestRoute
-        path="/quest/estate/summary"
-        exact
-        component={Summary_Insurance_Estate}
-      />
+    <QuestRoute path="/quest/cashloan/1" exact component={Page1_Cash} />
+    <QuestRoute path="/quest/cashloan/2" exact component={Page2_Cash} />
+    <QuestRoute path="/quest/cashloan/summary" exact component={Summary_Cash} />
 
-      <QuestRoute path="/quest/cashloan/1" exact component={Page1_Cash} />
-      <QuestRoute path="/quest/cashloan/2" exact component={Page2_Cash} />
-      <QuestRoute
-        path="/quest/cashloan/summary"
-        exact
-        component={Summary_Cash}
-      />
-
-      <QuestRoute path="/quest/mortgage/1" exact component={Page1_Mortgage} />
-      <QuestRoute path="/quest/mortgage/2" exact component={Page2_Mortgage} />
-      <QuestRoute
-        path="/quest/mortgage/summary"
-        exact
-        component={Summary_Mortgage}
-      />
-    </DataProvider>
-
-    <Route path="/not-found" render={(props) => <Error404 />} />
-    <Redirect to="not-found" />
-
-    {/* <Route component={Error404} /> */}
+    <QuestRoute path="/quest/mortgage/1" exact component={Page1_Mortgage} />
+    <QuestRoute path="/quest/mortgage/2" exact component={Page2_Mortgage} />
+    <QuestRoute
+      path="/quest/mortgage/summary"
+      exact
+      component={Summary_Mortgage}
+    />
+    <Route component={Error404} />
   </Switch>
 );
 export default Routes;

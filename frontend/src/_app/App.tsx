@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { DataProvider } from "@context/dataContext";
 
 import { NotificationProvider } from "@context/notificationContext";
 import { BackDropProvider } from "@context/backdropContext";
@@ -41,6 +42,7 @@ const App = () => {
     <ProviderComposer
       providers={[
         provider(HelmetProvider),
+        provider(DataProvider),
         provider(NotificationProvider),
         provider(BackDropProvider),
         provider(ThemeProvider, { theme: theme }),

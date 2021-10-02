@@ -21,7 +21,7 @@ import {
   putApplicationInArchive,
   attachDocumentsAdmin,
   getArchivedApplications,
-} from "controllers/adminPanel/applicationActions.js";
+} from "controllers/admin/applicationActions.js";
 
 router
   .route("/show/all")

@@ -3,7 +3,7 @@ import useTitle from "@hooks/useTitle";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { FullPage, ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/content";
 import { Header } from "@components/typography";
 
 import ServiceCard from "./ServiceCard";

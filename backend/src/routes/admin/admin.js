@@ -9,18 +9,18 @@ import {
   awaitingOperators,
   grantAdministatorRole,
   declineAdministator,
-} from "controllers/adminPanel/supervisor";
+} from "controllers/admin/supervisor";
 
-import { allUsers, SpecificUser } from "controllers/adminPanel/client";
+import { allUsers, SpecificUser } from "controllers/admin/client";
 
 import {
   changePassword,
   deleteAdmin,
   getSettingsAdmin,
   updateSettings,
-} from "controllers/adminPanel/settings.js";
+} from "controllers/admin/settings.js";
 
-import { getHistory, getAllHistory } from "controllers/adminPanel/history.js";
+import { getHistory, getAllHistory } from "controllers/admin/history.js";
 
 router
   .route("/clients")

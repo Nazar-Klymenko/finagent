@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import { signUp, fetchUser } from "controllers/adminPanel/auth";
+import { signUp, fetchUser } from "controllers/admin/auth";
 import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";
 
 router.route("/signup").post(signUp);

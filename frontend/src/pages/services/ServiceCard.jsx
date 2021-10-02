@@ -31,7 +31,7 @@ const CardStyled = styled.div`
   max-width: 340px;
   width: 340px;
   transition: 0.2s ease-in-out;
-  background: ${({ theme }) => theme.lightBlue};
+  /* background: ${({ theme }) => theme.lightBlue}; */
 
   &:hover {
     box-shadow: 0 5px 40px -16px rgba(0, 0, 0, 0.23);

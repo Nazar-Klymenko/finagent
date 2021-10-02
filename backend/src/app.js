@@ -16,13 +16,13 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import morgan from "morgan";
 
-import userRoute from "./routes/v1/frontend/user.js";
-import userAuthRoute from "./routes/v1/frontend/auth.js";
-import userApplicationRoute from "./routes/v1/frontend/application.js";
+import userRoute from "./routes/frontend/user.js";
+import userAuthRoute from "./routes/frontend/auth.js";
+import userApplicationRoute from "./routes/frontend/application.js";
 
-import adminRoute from "./routes/v1/adminPanel/admin.js";
-import adminAuthRoute from "./routes/v1/adminPanel/auth.js";
-import adminApplicationRoute from "./routes/v1/adminPanel/applications.js";
+import adminRoute from "./routes/admin/admin.js";
+import adminAuthRoute from "./routes/admin/auth.js";
+import adminApplicationRoute from "./routes/admin/applications.js";
 
 import admin from "firebase-admin";
 

@@ -290,7 +290,7 @@
       "errorInvalidPassword": "Invalid current password"
     },
     "Disposal": {
-      "title": "Disposal",
+      "title": "Delete account",
       "deleteAction": "Delete account",
       "password": "Enter your password",
       "button": "Submit",

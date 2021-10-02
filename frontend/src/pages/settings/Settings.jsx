@@ -7,7 +7,7 @@ import styled from "styled-components/macro";
 import ChangeInfoPage from "./changingPages/ChangeInfoPage";
 import ChangeEmailPage from "./changingPages/ChangeEmailPage";
 import ChangePasswordPage from "./changingPages/ChangePasswordPage";
-import DangerZonePage from "./changingPages/DangerZonePage";
+import DangerZonePage from "./changingPages/DeleteAccount";
 
 import { PrivateRoute } from "@components/CustomRoutes/";
 import { ContentWrap } from "@components/content";

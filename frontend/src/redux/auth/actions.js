@@ -16,6 +16,7 @@ export const signup = (data, callback) => async (dispatch) => {
         });
         userCredential.user.sendEmailVerification();
         data.IdToken = userCredential.user.getIdToken();
+        data.provider = userCredential.additionalUserInfo.providerId;
       });
     const response = await signUpAPI(data);
 

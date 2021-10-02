@@ -34,16 +34,21 @@ const Login: React.FC<Props> = (props) => {
     shouldFocusError: true,
   });
 
-  // const [originalRoute, setOriginalRoute] = useState("/dashboard/insurances");
+  const [originalRoute, setOriginalRoute] = useState(
+    "/dashboard/insurances/ready/1"
+  );
 
-  // useEffect(() => {
-  //   if (props.location.state) {
-  //     setOriginalRoute(props.location.state.from.pathname);
-  //   }
-  //   return () => {
-  //     setOriginalRoute("/dashboard/insurances");
-  //   };
-  // }, [props.location.state]);
+  useEffect(() => {
+    if (props.location.state) {
+      setOriginalRoute(props.location.state.from.pathname);
+    }
+    return () => {
+      setOriginalRoute("/dashboard/insurances/ready/1");
+    };
+  }, [props.location.state]);
+  useEffect(() => {
+    if (isLoggedIn) history.push(originalRoute);
+  }, [isLoggedIn, history, originalRoute]);
 
   const redirectCallback = () => {
     history.push("/dashboard/insurances/ready/1");
@@ -54,10 +59,6 @@ const Login: React.FC<Props> = (props) => {
     dispatch(login(data.email, data.password, redirectCallback));
     setIsLoading(false);
   };
-
-  useEffect(() => {
-    if (isLoggedIn) history.push("/dashboard/insurances/ready/1");
-  }, [isLoggedIn, history]);
 
   const loginWithFacebook = () => {
     dispatch(loginFacebook());

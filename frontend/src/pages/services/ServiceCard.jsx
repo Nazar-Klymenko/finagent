@@ -5,11 +5,17 @@ import styled from "styled-components";
 function ServiceCard({ to, image, imageAlt, header, description }) {
   const history = useHistory();
 
-  function openService() {
+  function openService(e) {
+    e.preventDefault();
     history.push(to);
   }
   return (
-    <CardStyled onClick={openService}>
+    <CardStyled
+      onClick={(e) => {
+        openService(e);
+      }}
+      href={to}
+    >
       <CardImage src={image} alt={imageAlt} />
       <CardContentWrap>
         <CardHeader>{header}</CardHeader>
@@ -21,7 +27,7 @@ function ServiceCard({ to, image, imageAlt, header, description }) {
 
 export default ServiceCard;
 
-const CardStyled = styled.div`
+const CardStyled = styled.a`
   cursor: pointer;
   display: flex;
   flex-direction: column;

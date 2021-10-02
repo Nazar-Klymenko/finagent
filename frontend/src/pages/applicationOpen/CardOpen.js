@@ -9,7 +9,7 @@ import { getSpecificApplication } from "@api/userAPI";
 import determineType from "@helpers/determineType";
 
 import SummaryList from "@components/SummaryList";
-import ApplicationStatus from "./ApplicationStatus";
+import ApplicationStatus from "./Status";
 import Feedback from "./Feedback";
 
 import { ArrowDown } from "@components/svgs";

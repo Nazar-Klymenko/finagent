@@ -69,9 +69,8 @@ const ButtonStyled = styled.button<ButtonStyledTypes>`
   border-radius: 3px;
   overflow: hidden;
   position: relative;
-  font-weight: 400;
-  font-size: 14px;
   transition: 0.15s ease-in-out;
+  font-weight: 500;
   ${({ isBlocked }) =>
     isBlocked &&
     css`
@@ -79,7 +78,7 @@ const ButtonStyled = styled.button<ButtonStyledTypes>`
       background-color: ${({ theme }) => theme.buttons.blockedBg} !important;
       box-shadow: none !important;
       color: gray !important;
-    `}
+    `};
 `;
 
 interface RippleProps {

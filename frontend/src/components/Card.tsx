@@ -50,7 +50,7 @@ const Card: React.FC<Props> = ({ appDataForUser }) => {
           </Cell>
           <Cell>
             <span className="key">{t("Dashboard.ApplicationCard.status")}</span>
-            <span className="value">{appDataForUser?.status}</span>
+            <span className="value">{appDataForUser?.status}/5</span>
           </Cell>
         </Info>
       </CardStyled>
@@ -124,8 +124,9 @@ const StatusColor = styled.div`
 const Cell = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 8rem;
-  padding-right: 0.5rem;
+  min-width: max-content;
+  width: 9rem;
+  padding-right: 1.5rem;
   .key {
     color: ${({ theme }) => theme.gray};
     font-size: 0.9rem;

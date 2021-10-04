@@ -70,8 +70,8 @@ import VerifyEmailPage from "@pages/VerifyEmailPage";
 import Error404 from "@pages/Error404";
 
 import NewPassword from "@pages/authActions/NewPassword";
-import Empty from "@pages/empty/Empty";
-import Staging from "@pages/empty/Staging";
+import Empty from "src/_devOnly/testPages/Empty";
+import Staging from "src/_devOnly/testPages/Staging";
 import Services from "@pages/services/Services";
 
 const Routes = () => (
@@ -81,9 +81,10 @@ const Routes = () => (
       exact
       render={(props) => <Redirect to="/dashboard/insurances/ready/1" />}
     />
-    <Route path="/not-found" render={(props) => <Error404 />} />
+
     <Route path="/empty" exact component={Empty} />
     <Route path="/staging" exact component={Staging} />
+
     <PrivateRoute path="/dashboard" component={Dashboard} />
     <Route path="/services" exact component={Services} />
     <Route path="/contact" exact component={Contact} />

@@ -4,12 +4,14 @@ import useTitle from "@hooks/useTitle";
 import { ContentWrap } from "@components/content";
 import { Header } from "@components/typography";
 import { Accordion } from "./Accordion";
+import { useTranslation } from "react-i18next";
 const Help = () => {
   useTitle("Help | FinAgent");
+  const { t } = useTranslation();
 
   return (
     <ContentWrap blank fullWidth fullHeight direction="column">
-      <Header bottomGutter>Frequently asked questions</Header>
+      <Header bottomGutter>{t("Help.title")}</Header>
       <AccordionContainer>
         <Accordion header="Example question">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum

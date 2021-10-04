@@ -8,6 +8,11 @@
       "noNumber": "To pole nie może zawierać liczb",
       "missingAmount": "Proszę podać kwotę",
       "mustBeChecked": "To pole należy zaznaczyć"
+    },
+    "Placeholder": {
+      "dateYear": "rrrr",
+      "dateYearMonth": "mm/RRRR",
+      "dateFull": "dd/mm/RRRR"
     }
   },
   "Basic": {
@@ -966,5 +971,9 @@
     "loginError": "Błąd podczas logowania",
     "emailWasResent": "E-mail został wysłany ponownie",
     "errorResendingEmail": "Błąd ponownego wysyłania e-maila"
+  },
+  "404": {
+    "title": "Podana strona nie istnieje",
+    "link": "powrót do Pulpitu"
   }
 }

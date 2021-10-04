@@ -8,6 +8,11 @@
       "noNumber": "This field can't contain numbers",
       "missingAmount": "Please enter amount",
       "mustBeChecked": "This field must be checked"
+    },
+    "Placeholder": {
+      "dateYear": "YYYY",
+      "dateYearMonth": "mm/YYYY",
+      "dateFull": "dd/mm/YYYY"
     }
   },
   "Basic": {
@@ -962,5 +967,9 @@
     "loginError": "Error logging in",
     "emailWasResent": "Email was re-sent",
     "errorResendingEmail": "Error re-sending email"
+  },
+  "404": {
+    "title": "This page doesnt exist",
+    "link": "return to Dashboard"
   }
 }

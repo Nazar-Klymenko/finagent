@@ -15,6 +15,7 @@ import { useData } from "@context/dataContext";
 import determineType from "@helpers/determineType";
 
 import { postInsuranceMedicalAPI } from "@api/userAPI";
+import { QuestState } from "@dev/QuestState";
 
 const Summary = () => {
   const { t } = useTranslation();
@@ -41,6 +42,8 @@ const Summary = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceHealth.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Summary" />

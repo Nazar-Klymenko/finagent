@@ -16,6 +16,7 @@ import ProgressBar from "@components/ProgressBar";
 
 import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
+import { QuestState } from "@dev/QuestState";
 
 const Page3 = () => {
   const { t } = useTranslation();
@@ -51,6 +52,8 @@ const Page3 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceBorder.title")}</Title>
         <ProgressBar maxSteps={3} currentStep={3} label="Personal Info" />

@@ -17,6 +17,7 @@ import determineType from "@helpers/determineType";
 import { postInsuranceOcAPI } from "@api/userAPI";
 import { useDispatch } from "react-redux";
 import { setSnackbar } from "@redux/alert/actions";
+import { QuestState } from "@dev/QuestState";
 
 const Summary = () => {
   const { t } = useTranslation();
@@ -68,6 +69,8 @@ const Summary = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
         <ProgressBar maxSteps={5} currentStep={5} label="Summary" />

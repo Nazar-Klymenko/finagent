@@ -45,7 +45,11 @@ export const pageTwoSchema = yup.object().shape({
   version: yup.string(),
   regNumber: yup.string().required("Form.Error.blank"),
   vinNumber: yup.string().required("Form.Error.blank"),
-  yearManufacture: yup.string().required("Form.Error.blank"),
+  yearManufacture: yup
+    .date()
+    .required("Form.Error.missingDate")
+    .nullable()
+    .typeError("Form.Error.invalidDate"),
 });
 
 export const pageThreeSchema = yup.object().shape({
@@ -53,7 +57,11 @@ export const pageThreeSchema = yup.object().shape({
   engineVolume: yup.string().required("Form.Error.blank"),
   fuelType: yup.string().required("Form.Error.blank").nullable(),
   abroadImport: yup.boolean(),
-  purchaseYear: yup.string().required("Form.Error.blank"),
+  purchaseYear: yup
+    .date()
+    .required("Form.Error.missingDate")
+    .nullable()
+    .typeError("Form.Error.invalidDate"),
   kilometrage: yup.string().required("Form.Error.blank"),
   techExamDate: yup
     .date()

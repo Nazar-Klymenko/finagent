@@ -16,10 +16,12 @@ import { CTA } from "@components/buttons";
 import ProgressBar from "@components/ProgressBar";
 import { useData } from "@context/dataContext";
 import AddPolicyHolder from "./AddPolicyHolder";
+import { QuestState } from "@dev/QuestState";
 
 const Page2 = () => {
   const { t } = useTranslation();
-  const { setValues, setAllowSummary, peopleData, setPeopleData } = useData();
+  const { appData, setValues, setAllowSummary, peopleData, setPeopleData } =
+    useData();
   const history = useHistory();
 
   useTitle("Health insurance | FinAgent");
@@ -46,6 +48,8 @@ const Page2 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceHealth.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Insured Info" />

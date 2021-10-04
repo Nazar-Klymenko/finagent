@@ -1,5 +1,8 @@
 export const pageOneValues = (appDataValid) => ({
-  insuranceCoverage: appDataValid.insuranceCoverage || "oc",
+  oc: appDataValid.oc,
+  ac: appDataValid.ac,
+  greenCard: appDataValid.greenCard,
+  assistance: appDataValid.assistance,
   name: appDataValid.name,
   surname: appDataValid.surname,
   phoneNumber: appDataValid.phoneNumber,

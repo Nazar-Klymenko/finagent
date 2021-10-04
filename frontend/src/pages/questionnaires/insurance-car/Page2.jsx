@@ -12,7 +12,7 @@ import { pageTwoSchema } from "./applicationHelpers/validationSchema";
 import { vehicleTypeOptions } from "./applicationHelpers/insuranceCarOptions";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { Input, Checkbox, SelectInput } from "@components/input";
+import { Input, Checkbox, SelectInput, DateInput } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -22,6 +22,8 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { pageTwoValues } from "./applicationHelpers/defaultValues";
 
+import { QuestState } from "@dev/QuestState";
+
 const Page2 = () => {
   const { t } = useTranslation();
   const { appData, setValues, setCurrentPage } = useData();
@@ -30,7 +32,7 @@ const Page2 = () => {
 
   const appDataValid = validateAppData(appData, "TransportData");
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: pageTwoValues(appDataValid),
     mode: "onBlur",
     reValidateMode: "onBlur",
@@ -46,6 +48,7 @@ const Page2 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
         <ProgressBar maxSteps={5} currentStep={2} label="Vehicle Info" />
@@ -101,14 +104,17 @@ const Page2 = () => {
             error={!!errors.vinNumber}
             helperText={errors?.vinNumber?.message}
           />
-          <Input
-            ref={register}
+          <DateInput
+            control={control}
             name="yearManufacture"
             labelName={t("InsuranceTransport.Page2.yearManufacture")}
-            type="text"
             error={!!errors.yearManufacture}
             helperText={errors?.yearManufacture?.message}
+            placeholder={t("Form.Placeholder.dateYear")}
+            view={["year"]}
+            format="yyyy"
           />
+
           <Checkbox
             ref={register}
             labelName={t("InsuranceTransport.Page2.registeredPoland")}

@@ -19,6 +19,7 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { pageFourSchema } from "./applicationHelpers/validationSchema";
 import { pageFourValues } from "./applicationHelpers/defaultValues";
+import { QuestState } from "@dev/QuestState";
 
 const Page4 = () => {
   const { t } = useTranslation();
@@ -46,6 +47,8 @@ const Page4 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
 

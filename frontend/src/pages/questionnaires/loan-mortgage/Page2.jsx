@@ -27,6 +27,7 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 
 import AddHousehold from "./AddHousehold";
+import { QuestState } from "@dev/QuestState";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -99,6 +100,7 @@ const Page2 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
       <Page>
         <Title>{t("LoanMortgage.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Loan Info" />

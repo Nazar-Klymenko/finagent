@@ -18,6 +18,7 @@ import { pageFiveSchema } from "./applicationHelpers/validationSchema";
 import { pageFiveValues } from "./applicationHelpers/defaultValues";
 import { Checkbox, FileInput } from "@components/input";
 import { Subheader } from "@components/typography";
+import { QuestState } from "@dev/QuestState";
 
 const Page5 = () => {
   const { t } = useTranslation();
@@ -49,6 +50,8 @@ const Page5 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
         <ProgressBar maxSteps={5} currentStep={5} label="Attachments" />

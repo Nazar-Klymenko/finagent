@@ -39,6 +39,8 @@ import validateAppData from "@helpers/validateAppData";
 import { pageOneValues } from "./applicationHelpers/defaultValues";
 import { pageOneSchema } from "./applicationHelpers/validationSchema";
 
+import { QuestState } from "@dev/QuestState";
+
 const Page1 = () => {
   const { t } = useTranslation();
   useTitle("Transport insurance | FinAgent");
@@ -67,6 +69,7 @@ const Page1 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
         <ProgressBar maxSteps={5} currentStep={1} label="Personal Info" />
@@ -223,6 +226,7 @@ const Page1 = () => {
               labelName={t("InsuranceTransport.Page1.drivingLicenceDate")}
               error={!!errors.drivingLicenceDate}
               helperText={errors?.drivingLicenceDate?.message}
+              placeholder={t("Form.Placeholder.dateFull")}
             />
           )}
         </Form>

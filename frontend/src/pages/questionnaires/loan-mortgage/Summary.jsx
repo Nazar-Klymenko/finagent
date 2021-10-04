@@ -14,6 +14,7 @@ import { useData } from "@context/dataContext";
 
 import determineType from "@helpers/determineType";
 import { postLoanMortgageAPI } from "@api/userAPI";
+import { QuestState } from "@dev/QuestState";
 
 const Summary = () => {
   const { t } = useTranslation();
@@ -37,6 +38,8 @@ const Summary = () => {
   };
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("LoanMortgage.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Summary" />

@@ -18,6 +18,7 @@ import { CTA } from "@components/buttons";
 
 import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
+import { QuestState } from "@dev/QuestState";
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -44,12 +45,13 @@ const Page1 = () => {
   const formSubmit = (data) => {
     setValues(data, "InsuranceData");
     setCurrentPage(2);
-
     history.push("./2");
   };
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceBorder.title")}</Title>
         <ProgressBar maxSteps={3} currentStep={1} label="Insurance Info" />

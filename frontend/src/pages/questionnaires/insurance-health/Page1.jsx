@@ -17,6 +17,7 @@ import { CTA } from "@components/buttons";
 
 import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
+import { QuestState } from "@dev/QuestState";
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -52,6 +53,8 @@ const Page1 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceHealth.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={1} label="Insurance Info" />

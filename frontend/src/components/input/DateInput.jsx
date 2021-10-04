@@ -32,6 +32,9 @@ const DateInput = ({
   name,
   defaultDate,
   disablePastDates,
+  placeholder,
+  view = ["date"],
+  format = "dd/MM/yyyy",
 }) => {
   const { i18n, t } = useTranslation();
 
@@ -69,8 +72,10 @@ const DateInput = ({
               size="small"
               error={!!error}
               inputVariant="outlined"
-              format="dd/MM/yyyy"
+              format={format}
+              placeholder={placeholder}
               helperText={null}
+              views={view}
               shouldDisableDate={(day) => {
                 if (disablePastDates) {
                   let date = new Date();

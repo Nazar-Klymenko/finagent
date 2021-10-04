@@ -32,6 +32,7 @@ import validateAppData from "@helpers/validateAppData";
 import { fuelTypeOptions } from "./applicationHelpers/insuranceCarOptions";
 import { pageThreeSchema } from "./applicationHelpers/validationSchema";
 import { pageThreeValues } from "./applicationHelpers/defaultValues";
+import { QuestState } from "@dev/QuestState";
 
 const Page3 = () => {
   const { t } = useTranslation();
@@ -58,12 +59,23 @@ const Page3 = () => {
   const abroadImport = watch("abroadImport");
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
         <ProgressBar maxSteps={5} currentStep={3} label="Vehicle Specifics" />
 
         <Subtitle>{t("InsuranceTransport.Page3.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+          <SelectInput
+            ref={register}
+            name="fuelType"
+            labelName={t("InsuranceTransport.Page3.fuelType")}
+            defaultValue={appDataValid.fuelType}
+            optionArray={fuelTypeOptions}
+            error={!!errors.fuelType}
+            helperText={errors?.fuelType?.message}
+          />
           <Input
             ref={register}
             name="enginePower"
@@ -82,15 +94,7 @@ const Page3 = () => {
             helperText={errors?.engineVolume?.message}
             placeholder="1500"
           />
-          <SelectInput
-            ref={register}
-            name="fuelType"
-            labelName={t("InsuranceTransport.Page3.fuelType")}
-            defaultValue={appDataValid.fuelType}
-            optionArray={fuelTypeOptions}
-            error={!!errors.fuelType}
-            helperText={errors?.fuelType?.message}
-          />
+
           <DateInput
             control={control}
             name="vehicleRegDate"
@@ -98,6 +102,7 @@ const Page3 = () => {
             error={!!errors.vehicleRegDate}
             helperText={errors?.vehicleRegDate?.message}
             defaultDate={appDataValid.vehicleRegDate}
+            placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
             control={control}
@@ -106,15 +111,20 @@ const Page3 = () => {
             error={!!errors.techExamDate}
             helperText={errors?.techExamDate?.message}
             defaultDate={appDataValid.techExamDate}
+            placeholder={t("Form.Placeholder.dateFull")}
           />
-          <Input
-            ref={register}
+
+          <DateInput
+            control={control}
             name="purchaseYear"
             labelName={t("InsuranceTransport.Page3.purchaseYear")}
             error={!!errors.purchaseYear}
             helperText={errors?.purchaseYear?.message}
-            placeholder="year"
+            placeholder={t("Form.Placeholder.dateYear")}
+            view={["year"]}
+            format="yyyy"
           />
+
           <Input
             ref={register}
             name="kilometrage"
@@ -177,6 +187,7 @@ const Page3 = () => {
               error={!!errors.polandRegDate}
               helperText={errors?.polandRegDate?.message}
               defaultDate={appDataValid.polandRegDate}
+              placeholder={t("Form.Placeholder.dateFull")}
             />
           )}
         </Form>

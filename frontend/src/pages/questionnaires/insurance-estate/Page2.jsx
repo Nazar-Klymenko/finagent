@@ -16,6 +16,7 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 
 import { pageTwoSchema } from "./applicationHelpers/insuranceEstateSchema";
+import { QuestState } from "@dev/QuestState";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -50,6 +51,8 @@ const Page2 = () => {
 
   return (
     <ContentWrap fullWidth>
+      <QuestState data={appData} />
+
       <Page>
         <Title>{t("InsuranceEstate.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label="Personal Info" />

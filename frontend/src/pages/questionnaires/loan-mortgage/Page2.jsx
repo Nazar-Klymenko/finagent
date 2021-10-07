@@ -16,7 +16,7 @@ import {
   ApplicantBox,
   ErrorBottom,
 } from "../LocalStyles";
-import { Input, Checkbox, SelectInput } from "@components/input";
+import { Input, MuiCheckbox, SelectInput, MuiSelect } from "@components/input";
 import { ContentWrap } from "@components/content";
 
 import { CTA } from "@components/buttons";
@@ -28,6 +28,12 @@ import validateAppData from "@helpers/validateAppData";
 
 import AddHousehold from "./AddHousehold";
 import { QuestState } from "@dev/QuestState";
+
+import { loanPurposeOptions } from "./applicationHelpers/loanMortgageOptions";
+import { rialtoOptions } from "./applicationHelpers/loanMortgageOptions";
+import { paymentTermOptions } from "./applicationHelpers/loanMortgageOptions";
+import { repaymentOptions } from "./applicationHelpers/loanMortgageOptions";
+import { monthlyPaymentsOptions } from "./applicationHelpers/loanMortgageOptions";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -52,7 +58,7 @@ const Page2 = () => {
   let [householdData, setHouseholdData] = useState(addHouseholdData || []);
   let [defaultHousehold, setDefaultHousehold] = useState(null);
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: {
       custody: appDataValid.custody,
       monthlyLoanPayments: appDataValid.monthlyLoanPayments,
@@ -175,34 +181,24 @@ const Page2 = () => {
             helperText={errors?.cardLimits?.message}
             placeholder="number"
           />
-          <SelectInput
+          <MuiSelect
             ref={register}
             name="loanPurpose"
             labelName={t("LoanMortgage.Page2.loanPurpose")}
             defaultValue={appDataValid.loanPurpose}
             placeholder="Choose purpose:"
-            optionArray={[
-              t("LoanMortgage.Page2.apartPur"),
-              t("LoanMortgage.Page2.housePur"),
-              t("LoanMortgage.Page2.landPur"),
-              t("LoanMortgage.Page2.houseConst"),
-              t("LoanMortgage.Page2.apartPurRen"),
-              t("LoanMortgage.Page2.housePurRen"),
-            ]}
+            optionArray={loanPurposeOptions}
             error={!!errors.loanPurpose}
             helperText={errors?.loanPurpose?.message}
           />
 
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="rialto"
             labelName={t("LoanMortgage.Page2.rialto")}
             defaultValue={appDataValid.rialto}
             placeholder="Choose rialto:"
-            optionArray={[
-              t("LoanMortgage.Page2.primary"),
-              t("LoanMortgage.Page2.secondary"),
-            ]}
+            optionArray={rialtoOptions}
             error={!!errors.rialto}
             helperText={errors?.rialto?.message}
           />
@@ -233,39 +229,33 @@ const Page2 = () => {
             helperText={errors?.contributionAmount?.message}
             placeholder="number"
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="paymentTerm"
             labelName={t("LoanMortgage.Page2.paymentTerm")}
             defaultValue={appDataValid.paymentTerm}
             placeholder="Choose term:"
-            optionArray={["0-10", "10-20", "20-30"]}
+            optionArray={paymentTermOptions}
             error={!!errors.paymentTerm}
             helperText={errors?.paymentTerm?.message}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="repayment"
             labelName={t("LoanMortgage.Page2.repayment")}
             defaultValue={appDataValid.repayment}
             placeholder="Yes / No"
-            optionArray={[
-              t("LoanMortgage.Page2.yes"),
-              t("LoanMortgage.Page2.no"),
-            ]}
+            optionArray={repaymentOptions}
             error={!!errors.repayment}
             helperText={errors?.repayment?.message}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="monthlyPayments"
             labelName={t("LoanMortgage.Page2.monthlyPayments")}
             defaultValue={appDataValid.monthlyPayments}
             placeholder="Equal / Decreasing"
-            optionArray={[
-              t("LoanMortgage.Page2.equal"),
-              t("LoanMortgage.Page2.decreasing"),
-            ]}
+            optionArray={monthlyPaymentsOptions}
             error={!!errors.monthlyPayments}
             helperText={errors?.monthlyPayments?.message}
           />
@@ -288,8 +278,8 @@ const Page2 = () => {
             helperText={errors?.town?.message}
             placeholder="Krakow"
           />
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             name="conditions"
             labelName={t("LoanMortgage.Page2.conditions")}
             helperText={errors?.conditions?.message}

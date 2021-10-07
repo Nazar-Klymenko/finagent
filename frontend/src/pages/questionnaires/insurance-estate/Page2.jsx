@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { Input, RadioGroup } from "@components/input";
+import { Input, MuiRadio } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -25,7 +25,7 @@ const Page2 = () => {
   const { appData, setValues, setAllowSummary } = useData();
   const appDataValid = validateAppData(appData, "PersonalData");
 
-  const { register, handleSubmit, errors, watch } = useForm({
+  const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "individual",
       name: appDataValid.name,
@@ -58,9 +58,9 @@ const Page2 = () => {
         <ProgressBar maxSteps={2} currentStep={2} label="Personal Info" />
         <Subtitle>{t("InsuranceEstate.Page2.title")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <RadioGroup
+          <MuiRadio
+            control={control}
             name="policyholderIs"
-            ref={register}
             legend={t("InsuranceEstate.Page2.policyholderIs")}
             options={[
               {
@@ -143,9 +143,10 @@ const Page2 = () => {
             error={!!errors.email}
             helperText={errors?.email?.message}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="peopleNumber"
-            ref={register}
             legend={t("InsuranceEstate.Page2.peopleNumber")}
             options={[
               {

@@ -28,6 +28,7 @@ const theme = {
   },
 
   input: {
+    hover: "#000000DE",
     border: "#cccccc",
     focused: "#1672ec",
   },

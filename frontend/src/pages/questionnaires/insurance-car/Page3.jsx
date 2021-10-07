@@ -16,10 +16,10 @@ import {
 } from "../LocalStyles";
 import {
   Input,
-  RadioGroup,
-  SelectInput,
+  MuiRadio,
+  MuiSelect,
   DateInput,
-  Checkbox,
+  MuiCheckbox,
 } from "@components/input";
 import { ContentWrap } from "@components/content";
 
@@ -67,7 +67,8 @@ const Page3 = () => {
 
         <Subtitle>{t("InsuranceTransport.Page3.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <SelectInput
+          <MuiSelect
+            control={control}
             ref={register}
             name="fuelType"
             labelName={t("InsuranceTransport.Page3.fuelType")}
@@ -135,9 +136,9 @@ const Page3 = () => {
           />
           <Legend>{t("InsuranceTransport.Page3.steeringWheel")}</Legend>
           <RadioWrap>
-            <RadioGroup
+            <MuiRadio
+              control={control}
               name="steeringWheel"
-              ref={register}
               options={[
                 {
                   label: t("InsuranceTransport.Page3.left"),
@@ -152,9 +153,9 @@ const Page3 = () => {
           </RadioWrap>
           <legend>{t("InsuranceTransport.Page3.transmissionType")}</legend>
           <RadioWrap>
-            <RadioGroup
+            <MuiRadio
+              control={control}
               name="transmissionType"
-              ref={register}
               options={[
                 {
                   label: t("InsuranceTransport.Page3.mechanical"),
@@ -167,16 +168,14 @@ const Page3 = () => {
               ]}
             />
           </RadioWrap>
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             labelName={t("InsuranceTransport.Page3.gasInstalation")}
-            value={true}
             name="gasInstalation"
           />
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             labelName={t("InsuranceTransport.Page3.abroadImport")}
-            value={true}
             name="abroadImport"
           />
           {abroadImport && (

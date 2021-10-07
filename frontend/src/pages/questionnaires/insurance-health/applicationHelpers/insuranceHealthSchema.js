@@ -4,6 +4,9 @@ export const pageOneSchema = () => {
   return yup.object().shape({
     insuranceStart: yup.date().nullable().required("Form.Error.missingDate"),
     insuranceEnd: yup.date().nullable().required("Form.Error.missingDate"),
+    clauseOne: yup.boolean(),
+    clauseTwo: yup.boolean(),
+    clauseThree: yup.boolean(),
     clauseOnePrice: yup.string().required("Form.Error.missingAmount"),
     clauseTwoPrice: yup.string().when("clauseTwo", {
       is: true,

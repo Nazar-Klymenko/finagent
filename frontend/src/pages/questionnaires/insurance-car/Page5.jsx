@@ -16,7 +16,7 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { pageFiveSchema } from "./applicationHelpers/validationSchema";
 import { pageFiveValues } from "./applicationHelpers/defaultValues";
-import { Checkbox, FileInput } from "@components/input";
+import { MuiCheckbox, FileInput } from "@components/input";
 import { Subheader } from "@components/typography";
 import { QuestState } from "@dev/QuestState";
 
@@ -92,10 +92,9 @@ const Page5 = () => {
             error={!!errors.filesInsurance}
             helperText={errors?.filesInsurance?.message}
           />
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             labelName="Транспортное средство уже зарегестрировано на меня / мою фирму"
-            value={true}
             name="isFirstOwner"
           />
           {!firstOwner && (

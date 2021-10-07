@@ -13,11 +13,11 @@ import {
 
 import {
   Input,
-  RadioGroup,
   PhoneInput,
   DateInput,
-  SelectInput,
-  Checkbox,
+  MuiSelect,
+  MuiRadio,
+  MuiCheckbox,
 } from "@components/input";
 
 import {
@@ -78,28 +78,24 @@ const Page1 = () => {
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <Legend>{t("InsuranceTransport.Page1.insuranceCoverage")}</Legend>
 
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             labelName={t("InsuranceTransport.Page1.oc")}
-            value={false}
             name="oc"
           />
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             labelName={t("InsuranceTransport.Page1.ac")}
-            value={false}
             name="ac"
           />
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             labelName={t("InsuranceTransport.Page1.greenCard")}
-            value={false}
             name="greenCard"
           />
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             labelName={t("InsuranceTransport.Page1.assistance")}
-            value={false}
             name="assistance"
           />
 
@@ -170,9 +166,10 @@ const Page1 = () => {
             error={!!errors.houseNumber}
             helperText={errors?.houseNumber?.message}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="documentAddedType"
-            ref={register}
             legend={t("InsuranceTransport.Page1.documentAddedType")}
             options={[
               {
@@ -196,27 +193,28 @@ const Page1 = () => {
             error={!!errors.documentAdded}
             helperText={errors?.documentAdded?.message}
           />
-          <SelectInput
-            ref={register}
+
+          <MuiSelect
+            control={control}
             name="profession"
             labelName={t("InsuranceTransport.Page1.profession")}
             optionArray={professionOptions}
             error={!!errors.profession}
             helperText={errors?.profession?.message}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="maritalStatus"
             labelName={t("InsuranceTransport.Page1.maritalStatus")}
             optionArray={maritalStatusOptions}
             error={!!errors.maritalStatus}
             helperText={errors?.maritalStatus?.message}
           />
-          <Checkbox
-            ref={register}
-            labelName={t("InsuranceTransport.Page1.isAppropLicence")}
-            value={false}
+
+          <MuiCheckbox
+            control={control}
             name="isAppropLicence"
+            labelName={t("InsuranceTransport.Page1.isAppropLicence")}
           />
 
           {isAppropLicence && (

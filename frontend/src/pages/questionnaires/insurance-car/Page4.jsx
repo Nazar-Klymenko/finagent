@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { SelectInput } from "@components/input";
+import { MuiSelect, SelectInput } from "@components/input";
 
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
@@ -21,6 +21,12 @@ import { pageFourSchema } from "./applicationHelpers/validationSchema";
 import { pageFourValues } from "./applicationHelpers/defaultValues";
 import { QuestState } from "@dev/QuestState";
 
+import { securityOptions } from "./applicationHelpers/insuranceCarOptions";
+import { parkingPlaceOptions } from "./applicationHelpers/insuranceCarOptions";
+import { usePurposeOptions } from "./applicationHelpers/insuranceCarOptions";
+import { useAbroadOptions } from "./applicationHelpers/insuranceCarOptions";
+import { predictMileageOptions } from "./applicationHelpers/insuranceCarOptions";
+
 const Page4 = () => {
   const { t } = useTranslation();
   const { appData, setValues, setCurrentPage } = useData();
@@ -31,7 +37,7 @@ const Page4 = () => {
 
   useTitle("Transport insurance | FinAgent");
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: pageFourValues(appDataValid),
     mode: "onBlur",
     reValidateMode: "onBlur",
@@ -56,94 +62,50 @@ const Page4 = () => {
 
         <Subtitle>{t("InsuranceTransport.Page4.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="predictMileage"
             labelName={t("InsuranceTransport.Page4.predictMileage")}
             defaultValue={appDataValid.predictMileage}
-            optionArray={[
-              "< 5 000",
-              "5 001 - 7 500",
-              "7 501 - 10 000",
-              "10 001 - 12 500",
-              "12 501 - 15 000",
-              "15 001 - 17 500",
-              "17 501 - 20 000",
-              "20 001 - 22 500",
-              "22 501 - 25 000",
-              "25 001 - 30 000",
-              "30 001 - 35 000",
-              "35 001 - 40 000",
-              "40 001 - 45 000",
-              "45 001 - 100 000",
-              "> 100 000",
-            ]}
+            optionArray={predictMileageOptions}
             error={!!errors.predictMileage}
             helperText={errors?.predictMileage?.message}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="useAbroad"
             labelName={t("InsuranceTransport.Page4.useAbroad")}
             defaultValue={appDataValid.useAbroad}
-            optionArray={[
-              "InsuranceTransport.SelectAbroad.noUse",
-              "InsuranceTransport.SelectAbroad.twoWeeks",
-              "InsuranceTransport.SelectAbroad.month",
-              "InsuranceTransport.SelectAbroad.month2",
-              "InsuranceTransport.SelectAbroad.month3",
-              "InsuranceTransport.SelectAbroad.month6",
-              "InsuranceTransport.SelectAbroad.year",
-            ]}
+            optionArray={useAbroadOptions}
             error={!!errors.useAbroad}
             helperText={errors?.useAbroad?.message}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="usePurpose"
             labelName={t("InsuranceTransport.Page4.usePurpose")}
             defaultValue={appDataValid.usePurpose}
-            optionArray={[
-              "InsuranceTransport.SelectPurpose.regular",
-              "InsuranceTransport.SelectPurpose.taxi",
-              "InsuranceTransport.SelectPurpose.rent",
-              "InsuranceTransport.SelectPurpose.lease",
-              "InsuranceTransport.SelectPurpose.bank",
-              "InsuranceTransport.SelectPurpose.course",
-            ]}
+            optionArray={usePurposeOptions}
             error={!!errors.usePurpose}
             helperText={errors?.usePurpose?.message}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="parkingPlace"
             labelName={t("InsuranceTransport.Page4.parkingPlace")}
             defaultValue={appDataValid.parkingPlace}
-            optionArray={[
-              "InsuranceTransport.SelectParking.individual",
-              "InsuranceTransport.SelectParking.shared",
-              "InsuranceTransport.SelectParking.guarded",
-              "InsuranceTransport.SelectParking.fenced",
-              "InsuranceTransport.SelectParking.unsecured",
-            ]}
+            optionArray={parkingPlaceOptions}
             error={!!errors.parkingPlace}
             helperText={errors?.parkingPlace?.message}
           />
-          <SelectInput
+          <MuiSelect
+            control={control}
             name="security"
             labelName={t("InsuranceTransport.Page4.security")}
             defaultValue={appDataValid.security}
-            optionArray={[
-              "InsuranceTransport.SelectSecurity.alarm",
-              "InsuranceTransport.SelectSecurity.immob",
-              "InsuranceTransport.SelectSecurity.alarmImmob",
-              "InsuranceTransport.SelectSecurity.alarmImmonOther",
-              "InsuranceTransport.SelectSecurity.other",
-              "InsuranceTransport.SelectSecurity.none",
-            ]}
+            optionArray={securityOptions}
             error={!!errors.security}
             helperText={errors?.security?.message}
-            ref={register}
           />
         </Form>
         <ButtonsWrap multiple>

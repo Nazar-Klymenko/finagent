@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { Input, Checkbox, DateInput, RadioGroup } from "@components/input";
+import { Input, MuiCheckbox, DateInput, MuiRadio } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -74,14 +74,15 @@ const Page1 = () => {
             defaultDate={appDataValid.insuranceEnd}
             disablePastDates
           />
-          <Checkbox
+          <MuiCheckbox
+            control={control}
             name="inPoland"
             labelName={t("InsuranceTravel.Page1.inPoland")}
-            ref={register}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="insuranceType"
-            ref={register}
             legend={t("InsuranceTravel.Page1.insuranceType")}
             options={[
               {

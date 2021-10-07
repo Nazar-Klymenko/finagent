@@ -787,8 +787,8 @@
       "other": "other"
     },
     "SelectMarital": {
-      "merried": "Married",
-      "mister": "Miss / Mrs",
+      "married": "Married",
+      "single": "Miss / Mrs",
       "divorced": "Divorced",
       "widow": "Widow / Widower",
       "separation": "In separation"

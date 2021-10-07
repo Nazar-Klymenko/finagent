@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { useForm } from "react-hook-form";
 
-import { RadioGroup } from "@components/input";
+import { MuiRadio } from "@components/input";
 
 import {
   Page,
@@ -59,7 +59,7 @@ const Page1 = () => {
 
   let [isEditing, setIsEditing] = useState(false);
 
-  const { register, handleSubmit, watch } = useForm({
+  const { register, handleSubmit, watch, control } = useForm({
     defaultValues: {},
     mode: "onBlur",
     reValidateMode: "onBlur",
@@ -112,9 +112,9 @@ const Page1 = () => {
         <ProgressBar maxSteps={2} currentStep={1} label="Applicants Info" />
         <Subtitle>{t("LoanMortgage.Page1.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <RadioGroup
+          <MuiRadio
+            control={control}
             name="maritalStatus"
-            ref={register}
             legend={t("LoanMortgage.Page1.maritalStatus")}
             options={[
               {
@@ -130,9 +130,9 @@ const Page1 = () => {
           />
           {maritalStatus === "married" && (
             <>
-              <RadioGroup
+              <MuiRadio
+                control={control}
                 name="propertySeparation"
-                ref={register}
                 legend={t("LoanMortgage.Page1.propertySeparation")}
                 options={[
                   {
@@ -146,9 +146,10 @@ const Page1 = () => {
                 ]}
                 defaultChecked={appDataValid.propertySeparation || "no"}
               />
-              <RadioGroup
+
+              <MuiRadio
+                control={control}
                 name="bothSpousesStart"
-                ref={register}
                 legend={t("LoanMortgage.Page1.bothSpousesStart")}
                 options={[
                   {

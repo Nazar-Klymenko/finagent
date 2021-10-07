@@ -9,7 +9,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { Input, DateInput, RadioGroup, SelectInput } from "@components/input";
+import {
+  Input,
+  DateInput,
+  MuiRadio,
+  SelectInput,
+  MuiSelect,
+} from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -18,6 +24,8 @@ import validateAppData from "@helpers/validateAppData";
 
 import { pageOneSchema } from "./applicationHelpers/insuranceEstateSchema";
 import { QuestState } from "@dev/QuestState";
+
+import { nameSecurityOptions } from "./applicationHelpers/insuranceEstateOptions";
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -112,9 +120,10 @@ const Page1 = () => {
             error={!!errors.houseNumber}
             helperText={errors?.houseNumber?.message}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="estateType"
-            ref={register}
             legend={t("InsuranceEstate.Page1.estateType")}
             options={[
               {
@@ -128,10 +137,10 @@ const Page1 = () => {
             ]}
           />
           {estateType === "apartment" && (
-            <RadioGroup
+            <MuiRadio
+              control={control}
               name="floor"
               legend={t("InsuranceEstate.Page1.floor")}
-              ref={register}
               options={[
                 {
                   label: t("InsuranceEstate.Page1.last"),
@@ -148,10 +157,11 @@ const Page1 = () => {
               ]}
             />
           )}
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="structure"
             legend={t("InsuranceEstate.Page1.structure")}
-            ref={register}
             options={[
               {
                 label: t("InsuranceEstate.Page1.brick"),
@@ -177,10 +187,11 @@ const Page1 = () => {
             error={!!errors.constructionYear}
             helperText={errors?.constructionYear?.message}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="underConstruction"
             legend={t("InsuranceEstate.Page1.underConstruction")}
-            ref={register}
             options={[
               {
                 label: t("InsuranceEstate.Page1.no"),
@@ -192,10 +203,11 @@ const Page1 = () => {
               },
             ]}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="ownershipForm"
             legend={t("InsuranceEstate.Page1.ownershipForm")}
-            ref={register}
             options={[
               {
                 label: t("InsuranceEstate.Page1.coOwnership"),
@@ -207,10 +219,11 @@ const Page1 = () => {
               },
             ]}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="creditOwnership"
             legend={t("InsuranceEstate.Page1.creditOwnership")}
-            ref={register}
             options={[
               {
                 label: t("InsuranceEstate.Page1.no"),
@@ -247,27 +260,20 @@ const Page1 = () => {
               />
             </>
           )}
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="security"
             labelName={t("InsuranceEstate.Page1.security")}
             defaultValue={appDataValid.security}
-            optionArray={[
-              "InsuranceEstate.SelectSecurity.supervision",
-              "InsuranceEstate.SelectSecurity.securityDoors",
-              "InsuranceEstate.SelectSecurity.intercom",
-              "InsuranceEstate.SelectSecurity.windowSecurity",
-              "InsuranceEstate.SelectSecurity.notificationAlarm",
-              "InsuranceEstate.SelectSecurity.localAlarm",
-              "InsuranceEstate.SelectSecurity.none",
-            ]}
+            optionArray={nameSecurityOptions}
             error={!!errors.security}
             helperText={errors?.security?.message}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="damagesNumber"
             legend={t("InsuranceEstate.Page1.damagesNumber")}
-            ref={register}
             options={[
               {
                 label: "0",
@@ -287,10 +293,11 @@ const Page1 = () => {
               },
             ]}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="insurancePeriod"
             legend={t("InsuranceEstate.Page1.insurancePeriod")}
-            ref={register}
             options={[
               {
                 label: t("InsuranceEstate.Page1.annual"),

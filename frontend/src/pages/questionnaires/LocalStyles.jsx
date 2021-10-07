@@ -4,9 +4,7 @@ export const Page = styled.div`
   min-width: 680px;
   display: flex;
   flex-direction: column;
-  legend {
-    font-size: 0.9rem;
-  }
+
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
     min-width: unset;
   }
@@ -30,7 +28,7 @@ export const ButtonsWrap = styled.div`
 `;
 
 export const Legend = styled.legend`
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
 `;
 
 export const RadioWrap = styled.div`

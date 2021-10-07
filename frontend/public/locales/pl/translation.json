@@ -808,8 +808,8 @@
       "other": "inny"
     },
     "SelectMarital": {
-      "merried": "Zamężna / Żonaty",
-      "mister": "Panna / Kawaler",
+      "married": "Zamężna / Żonaty",
+      "single": "Panna / Kawaler",
       "divorced": "Rozwiedziona / Rozwiedziony",
       "widow": "Wdowa / Wdowiec",
       "separation": "W separacji"

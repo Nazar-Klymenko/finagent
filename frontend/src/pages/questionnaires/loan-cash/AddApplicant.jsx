@@ -7,7 +7,7 @@ import { addApplicantSchema } from "./applicationHelpers/loanCashSchema";
 import { useTranslation } from "react-i18next";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { Input, RadioGroup, DateInput, PhoneInput } from "@components/input";
+import { Input, MuiRadio, DateInput, PhoneInput } from "@components/input";
 import Modal from "@components/modals/Modal";
 
 import { CTA } from "@components/buttons";
@@ -66,9 +66,9 @@ const AddApplicant = ({
         setOpenModal={setOpenModal}
       >
         <Form id="applicant-form" onSubmit={handleSubmit(addApplicantSubmit)}>
-          <RadioGroup
+          <MuiRadio
+            control={control}
             name="nationality"
-            ref={register}
             legend={t("LoanCash.ApplicantModal.citizenship")}
             options={[
               {
@@ -94,9 +94,10 @@ const AddApplicant = ({
                 placeholder="Nation"
                 defaultValue={appDataValid.otherNation}
               />
-              <RadioGroup
+
+              <MuiRadio
+                control={control}
                 name="residenceDocument"
-                ref={register}
                 legend={t("LoanCash.ApplicantModal.residenceDocument")}
                 options={[
                   {
@@ -197,9 +198,10 @@ const AddApplicant = ({
             placeholder="XX XXX XXX XXX"
             defaultValue={appDataValid.pesel}
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="basicIncome"
-            ref={register}
             legend={t("LoanCash.ApplicantModal.basicIncome")}
             options={[
               {
@@ -229,9 +231,9 @@ const AddApplicant = ({
             basicIncome === "mandate" ||
             basicIncome === "contract") && (
             <>
-              <RadioGroup
+              <MuiRadio
+                control={control}
                 name="firstContract"
-                ref={register}
                 legend={t("LoanCash.ApplicantModal.firstContract")}
                 options={[
                   {
@@ -247,9 +249,9 @@ const AddApplicant = ({
               />
               {firstContract === "no" && (
                 <>
-                  <RadioGroup
+                  <MuiRadio
+                    control={control}
                     name="sameEmployer"
-                    ref={register}
                     legend={t("LoanCash.ApplicantModal.sameEmployer")}
                     options={[
                       {
@@ -263,9 +265,10 @@ const AddApplicant = ({
                     ]}
                     defaultChecked={appDataValid.sameEmployer || "yes"}
                   />
-                  <RadioGroup
+
+                  <MuiRadio
+                    control={control}
                     name="withoutPause"
-                    ref={register}
                     legend={t("LoanCash.ApplicantModal.withoutPause")}
                     options={[
                       {
@@ -326,9 +329,9 @@ const AddApplicant = ({
           )}
           {basicIncome === "economicActivity" && (
             <>
-              <RadioGroup
+              <MuiRadio
+                control={control}
                 name="accountancy"
-                ref={register}
                 legend={t("LoanCash.ApplicantModal.accountancy")}
                 options={[
                   {

@@ -15,7 +15,7 @@ import {
   ButtonsWrap,
   InputErrorMessage,
 } from "../LocalStyles";
-import { Input, Checkbox, Textarea } from "@components/input";
+import { Input, MuiCheckbox, Textarea } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 
 import { CTA } from "@components/buttons";
@@ -36,7 +36,7 @@ const Page2 = () => {
 
   useTitle("Cash loan | FinAgent");
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: {
       remainingPayOff: appDataValid.remainingPayOff,
       lastApplications: appDataValid.lastApplications,
@@ -124,8 +124,8 @@ const Page2 = () => {
             helperText={errors?.paymentTerm?.message}
             placeholder="number"
           />
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             name="conditions"
             labelName={t("LoanCash.Page2.conditions")}
             helperText={errors?.conditions?.message}

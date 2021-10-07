@@ -11,7 +11,7 @@ import { pageOneSchema } from "./applicationHelpers/specialistAccessSchema";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { Input, RadioGroup, DateInput, PhoneInput } from "@components/input";
+import { Input, MuiRadio, DateInput, PhoneInput } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -69,9 +69,10 @@ const Page1 = () => {
             defaultDate={appDataValid.insuranceEnd}
             disablePastDates
           />
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="policyholderIs"
-            ref={register}
             legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
             options={[
               {

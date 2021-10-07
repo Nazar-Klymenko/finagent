@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { pageOneSchema } from "./applicationHelpers/insuranceBorderSchema";
 
-import { Input, RadioGroup, SelectInput } from "@components/input";
+import { Input, MuiSelect, MuiRadio } from "@components/input";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
@@ -20,6 +20,8 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { QuestState } from "@dev/QuestState";
 
+import { insurancePeriodOptions } from "./applicationHelpers/insuranceBorderOptions";
+
 const Page1 = () => {
   const { t } = useTranslation();
   useTitle("Transport insurance | FinAgent");
@@ -28,7 +30,7 @@ const Page1 = () => {
 
   const appDataValid = validateAppData(appData, "InsuranceData");
 
-  const { register, handleSubmit, errors, watch } = useForm({
+  const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: {
       pesel: appDataValid.pesel,
       passportNumber: appDataValid.passportNumber,
@@ -58,9 +60,9 @@ const Page1 = () => {
         <Subtitle>{t("InsuranceBorder.Page1.subtitle")}</Subtitle>
 
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <RadioGroup
+          <MuiRadio
             name="documentType"
-            ref={register}
+            control={control}
             legend={t("InsuranceBorder.Page1.documentType")}
             options={[
               {
@@ -93,8 +95,8 @@ const Page1 = () => {
             />
           )}
 
-          <RadioGroup
-            ref={register}
+          <MuiRadio
+            control={control}
             name="registeredNotInEU"
             legend={t("InsuranceBorder.Page1.registeredNotInEU")}
             options={[
@@ -109,25 +111,12 @@ const Page1 = () => {
             ]}
             defaultChecked={appDataValid.registeredNotInEU || "no"}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="insurancePeriod"
             labelName={t("InsuranceBorder.Page1.insurancePeriod")}
             defaultValue={appDataValid.insurancePeriod}
-            optionArray={[
-              "30",
-              "60",
-              "90",
-              "120",
-              "150",
-              "180",
-              "210",
-              "240",
-              "270",
-              "300",
-              "330",
-              "360",
-            ]}
+            optionArray={insurancePeriodOptions}
             error={!!errors.insurancePeriod}
             helperText={errors?.insurancePeriod?.message}
           />

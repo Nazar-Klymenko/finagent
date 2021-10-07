@@ -11,7 +11,7 @@ import { pageTwoSchema } from "./applicationHelpers/insuranceBorderSchema";
 import { vehicleTypeOptions } from "./applicationHelpers/insuranceBorderOptions";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { Input, SelectInput } from "@components/input";
+import { Input, MuiSelect, SelectInput } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -21,6 +21,8 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { QuestState } from "@dev/QuestState";
 
+import { seatNumberOptions } from "./applicationHelpers/insuranceBorderOptions";
+
 const Page2 = () => {
   const { t } = useTranslation();
   const { appData, setValues, setCurrentPage } = useData();
@@ -29,7 +31,7 @@ const Page2 = () => {
 
   const appDataValid = validateAppData(appData, "VehicleData");
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: {
       vehicleType: appDataValid.vehicleType,
       brand: appDataValid.brand,
@@ -61,8 +63,8 @@ const Page2 = () => {
         <ProgressBar maxSteps={3} currentStep={2} label="Vehicle Info" />
         <Subtitle>{t("InsuranceBorder.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="vehicleType"
             defaultValue={appDataValid.vehicleType}
             labelName={t("InsuranceBorder.Page2.vehicleType")}
@@ -112,12 +114,12 @@ const Page2 = () => {
             error={!!errors.engineVolume}
             helperText={errors?.engineVolume?.message}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="seatNumber"
             labelName={t("InsuranceBorder.Page2.seatNumber")}
             defaultValue={appDataValid.seatNumber}
-            optionArray={["2", "5", "6+"]}
+            optionArray={seatNumberOptions}
             error={!!errors.seatNumber}
             helperText={errors?.seatNumber?.message}
           />

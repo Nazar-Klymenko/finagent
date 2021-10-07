@@ -12,7 +12,7 @@ import { pageTwoSchema } from "./applicationHelpers/validationSchema";
 import { vehicleTypeOptions } from "./applicationHelpers/insuranceCarOptions";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { Input, Checkbox, SelectInput, DateInput } from "@components/input";
+import { Input, MuiCheckbox, DateInput, MuiSelect } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -55,8 +55,8 @@ const Page2 = () => {
 
         <Subtitle>{t("InsuranceTransport.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="vehicleType"
             defaultValue={appDataValid.vehicleType}
             labelName={t("InsuranceTransport.Page2.vehicleType")}
@@ -115,8 +115,8 @@ const Page2 = () => {
             format="yyyy"
           />
 
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             labelName={t("InsuranceTransport.Page2.registeredPoland")}
             name="registeredPoland"
           />

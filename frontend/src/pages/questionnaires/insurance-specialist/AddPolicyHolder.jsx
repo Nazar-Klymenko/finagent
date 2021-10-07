@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { policyholderSchema } from "./applicationHelpers/specialistAccessSchema";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { Input, RadioGroup, DateInput, PhoneInput } from "@components/input";
+import { Input, MuiRadio, DateInput, PhoneInput } from "@components/input";
 import { Modal } from "@components/modals";
 
 import { CTA } from "@components/buttons";
@@ -62,9 +62,9 @@ const AddPolicyHolder = ({
         setOpenModal={setOpenModal}
       >
         <Form id="modal-form" onSubmit={handleSubmit(addPolicyHolderSubmit)}>
-          <RadioGroup
+          <MuiRadio
+            control={control}
             name="policyholderIs"
-            ref={register}
             legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
             options={[
               {

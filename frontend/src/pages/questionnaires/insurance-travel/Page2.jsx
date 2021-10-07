@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { Input, RadioGroup, PhoneInput, DateInput } from "@components/input";
+import { Input, MuiRadio, PhoneInput, DateInput } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -63,9 +63,9 @@ const Page2 = () => {
         <ProgressBar maxSteps={2} currentStep={2} label="Personal Info" />
         <Subtitle>{t("InsuranceTravel.Page2.title")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <RadioGroup
+          <MuiRadio
+            control={control}
             name="policyholderIs"
-            ref={register}
             legend={t("InsuranceTravel.Page2.policyholderIs")}
             options={[
               {

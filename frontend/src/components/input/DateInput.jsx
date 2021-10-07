@@ -69,12 +69,14 @@ const DateInput = ({
               okLabel="OK"
               clearLabel="Clear"
               cancelLabel="Cancel"
-              size="small"
               error={!!error}
               inputVariant="outlined"
               format={format}
               placeholder={placeholder}
               helperText={null}
+              style={{
+                fontFamily: ["Poppins", "sans-serif"].join(","),
+              }}
               views={view}
               shouldDisableDate={(day) => {
                 if (disablePastDates) {
@@ -101,10 +103,11 @@ const DateInput = ({
 };
 
 const StyledInput = styled(KeyboardDatePicker)`
-  .MuiOutlinedInput-root {
+  /* .MuiOutlinedInput-root {
     &:hover fieldset {
       border-color: ${({ theme }) => theme.input.border};
     }
+
     &.Mui-focused fieldset {
       border-color: ${({ theme }) => theme.input.focused};
     }
@@ -116,7 +119,7 @@ const StyledInput = styled(KeyboardDatePicker)`
     &.Mui-focused fieldset {
       border-color: ${({ theme }) => theme.red} !important;
     }
-  }
+  } */
 `;
 
 export default DateInput;

@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { addAdditionalIncomeSchema } from "./applicationHelpers/loanCashSchema";
 import { useTranslation } from "react-i18next";
 import { ButtonsWrap } from "../LocalStyles";
-import { Input, RadioGroup, DateInput } from "@components/input";
+import { Input, MuiRadio, DateInput } from "@components/input";
 import { Modal } from "@components/modals";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -59,9 +59,9 @@ const AddAdditionalIncome = ({
         setOpenModal={setOpenIncomeModal}
       >
         <Form id="income-form" onSubmit={handleSubmit(AddIncomeSubmit)}>
-          <RadioGroup
+          <MuiRadio
+            control={control}
             name="truckDriver"
-            ref={register}
             legend={t("LoanCash.IncomeModal.truckDriver")}
             options={[
               {
@@ -87,9 +87,10 @@ const AddAdditionalIncome = ({
               defaultValue={appDataValid.industry}
             />
           )}
-          <RadioGroup
+
+          <MuiRadio
+            control={control}
             name="basicIncome"
-            ref={register}
             legend={t("LoanCash.IncomeModal.basicIncome")}
             options={[
               {
@@ -120,9 +121,9 @@ const AddAdditionalIncome = ({
             basicIncome === "mandate" ||
             basicIncome === "contract") && (
             <>
-              <RadioGroup
+              <MuiRadio
+                control={control}
                 name="firstContract"
-                ref={register}
                 legend={t("LoanCash.IncomeModal.firstContract")}
                 options={[
                   {
@@ -138,9 +139,9 @@ const AddAdditionalIncome = ({
               />
               {firstContract === "no" && (
                 <>
-                  <RadioGroup
+                  <MuiRadio
+                    control={control}
                     name="sameEmployer"
-                    ref={register}
                     legend={t("LoanCash.IncomeModal.sameEmployer")}
                     options={[
                       {
@@ -154,9 +155,10 @@ const AddAdditionalIncome = ({
                     ]}
                     defaultChecked={appDataValid.sameEmployer || "yes"}
                   />
-                  <RadioGroup
+
+                  <MuiRadio
+                    control={control}
                     name="withoutPause"
-                    ref={register}
                     legend={t("LoanCash.IncomeModal.withoutPause")}
                     options={[
                       {
@@ -217,9 +219,9 @@ const AddAdditionalIncome = ({
           )}
           {basicIncome === "economicActivity" && (
             <>
-              <RadioGroup
+              <MuiRadio
+                control={control}
                 name="accountancy"
-                ref={register}
                 legend={t("LoanCash.IncomeModal.accountancy")}
                 options={[
                   {

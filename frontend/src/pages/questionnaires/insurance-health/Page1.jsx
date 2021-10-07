@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { pageOneSchema } from "./applicationHelpers/insuranceHealthSchema";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { Checkbox, DateInput, SelectInput } from "@components/input";
+import { DateInput, MuiSelect, MuiCheckbox } from "@components/input";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
@@ -19,23 +19,21 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { QuestState } from "@dev/QuestState";
 
+import { clauseOnePriceOptions } from "./applicationHelpers/insuranceHealthOptions";
+import { clauseTwoPriceOptions } from "./applicationHelpers/insuranceHealthOptions";
+import { clauseThreePriceOptions } from "./applicationHelpers/insuranceHealthOptions";
+
 const Page1 = () => {
   const { t } = useTranslation();
   const { appData, setValues, setCurrentPage } = useData();
   const appDataValid = validateAppData(appData, "InsuranceData");
   const history = useHistory();
 
-  const [showTwoAmount, setShowTwoAmount] = useState(
-    appDataValid.clauseTwo || false
-  );
-  const [showThreeAmount, setShowThreeAmount] = useState(
-    appDataValid.clauseThree || false
-  );
-
   useTitle("Health insurance | FinAgent");
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { register, handleSubmit, errors, control, watch } = useForm({
     defaultValues: {
+      clauseOne: true,
       clauseTwo: appDataValid.clauseTwo,
       clauseThree: appDataValid.clauseThree,
     },
@@ -44,6 +42,9 @@ const Page1 = () => {
     shouldFocusError: false,
     resolver: yupResolver(pageOneSchema()),
   });
+
+  let showTwoAmount = watch("clauseTwo");
+  let showThreeAmount = watch("clauseThree");
 
   const formSubmit = (data) => {
     setValues(data, "InsuranceData");
@@ -80,58 +81,52 @@ const Page1 = () => {
             disablePastDates
           />
           <Subtitle>{t("InsuranceHealth.Page1.riskType")}</Subtitle>
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             name="clauseOne"
             readOnly={true}
             checked={true}
             labelName={t("InsuranceHealth.Page1.clauseOne")}
           />
-          <SelectInput
-            ref={register}
+          <MuiSelect
+            control={control}
             name="clauseOnePrice"
             defaultValue={appDataValid.clauseOnePrice}
             labelName={t("InsuranceHealth.Page1.chooseAmountEuro")}
-            optionArray={["10 000", "20 000", "30 000", "40 000"]}
+            optionArray={clauseOnePriceOptions}
             placeholder="Amount:"
             error={!!errors.clauseOnePrice}
             helperText={errors?.clauseOnePrice?.message}
           />
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             name="clauseTwo"
             labelName={t("InsuranceHealth.Page1.clauseTwo")}
-            onChange={() => {
-              setShowTwoAmount(!showTwoAmount);
-            }}
           />
           {showTwoAmount && (
-            <SelectInput
-              ref={register}
+            <MuiSelect
+              control={control}
               name="clauseTwoPrice"
               defaultValue={appDataValid.clauseTwoPrice}
               labelName={t("InsuranceHealth.Page1.chooseAmountZlote")}
-              optionArray={["5 000", "10 000", "15 000", "20 000"]}
+              optionArray={clauseTwoPriceOptions}
               placeholder="Amount:"
               error={!!errors.clauseTwoPrice}
               helperText={errors?.clauseTwoPrice?.message}
             />
           )}
-          <Checkbox
-            ref={register}
+          <MuiCheckbox
+            control={control}
             name="clauseThree"
             labelName={t("InsuranceHealth.Page1.clauseThree")}
-            onChange={() => {
-              setShowThreeAmount(!showThreeAmount);
-            }}
           />
           {showThreeAmount && (
-            <SelectInput
-              ref={register}
+            <MuiSelect
+              control={control}
               name="clauseThreePrice"
               defaultValue={appDataValid.clauseThreePrice}
               labelName={t("InsuranceHealth.Page1.chooseAmountZlote")}
-              optionArray={["50 000", "100 000"]}
+              optionArray={clauseThreePriceOptions}
               placeholder="Amount:"
               error={!!errors.clauseThreePrice}
               helperText={errors?.clauseThreePrice?.message}

@@ -14,7 +14,12 @@ interface Props {
   defaultValue: string;
   error: boolean;
   helperText: string;
-  optionArray: string[];
+  optionArray: [
+    {
+      value: string;
+      label: string;
+    }
+  ];
   placeholder: string;
   ref: React.Ref<HTMLInputElement>;
 }
@@ -38,6 +43,7 @@ const SelectInput: React.FC<Props> = forwardRef(
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [value, setValue] = useState(defaultValue);
+    const [placeholderOverride, setPlaceholderOverride] = useState("");
 
     useClickOutside(isOpen, setIsOpen, wrapperRef);
 
@@ -46,7 +52,8 @@ const SelectInput: React.FC<Props> = forwardRef(
     };
 
     const handleMouseDown = (e: any) => {
-      setValue(e.target.innerText);
+      // setValue(e.target.attr("data-value");
+      // setPlaceholderOverride(e.target.attr("data-label");
     };
 
     const handleMouseUp = () => {
@@ -55,14 +62,16 @@ const SelectInput: React.FC<Props> = forwardRef(
 
     const options = optionArray.map((option, idx) => (
       <li
-        key={idx}
+        key={option.value}
         onMouseDown={(e) => {
           handleMouseDown(e);
         }}
         onMouseUp={handleMouseUp}
         className="options__each"
+        data-value={option.value}
+        data-label={option.label}
       >
-        <span>{t(option)}</span>
+        <span>{t(option.label)}</span>
       </li>
     ));
 
@@ -81,6 +90,7 @@ const SelectInput: React.FC<Props> = forwardRef(
             value={value}
             name={name}
           />
+          <span className="override">{t(placeholderOverride)}</span>
           <ul className={`options ${isOpen ? "" : "options--hidden"}`}>
             {options}
           </ul>
@@ -112,7 +122,10 @@ const SelectInputContainer = styled(InputContainer)<Styled>`
   .wrap {
     position: relative;
   }
-
+  .override {
+    position: absolute;
+    left: 0;
+  }
   .options {
     cursor: pointer;
     position: absolute;

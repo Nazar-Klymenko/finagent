@@ -58,9 +58,10 @@ export const ApplicantBox = styled.div`
     justify-content: space-between;
     align-items: center;
     border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 37px -7px rgba(0, 0, 0, 0.15);
+    /* -webkit-box-shadow: 0px 0px 37px -7px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0px 0px 37px -7px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 0px 37px -7px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 37px -7px rgba(0, 0, 0, 0.15); */
+    border: 1px solid ${({ theme }) => theme.border};
     .minor-data-place {
       span {
         margin-left: 1rem;

@@ -63,7 +63,7 @@ const Page1 = () => {
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
             defaultDate={appDataValid.insuranceStart}
-            disablePastDates
+            disablePast
           />
           <DateInput
             control={control}
@@ -72,7 +72,7 @@ const Page1 = () => {
             error={!!errors.insuranceEnd}
             helperText={errors?.insuranceEnd?.message}
             defaultDate={appDataValid.insuranceEnd}
-            disablePastDates
+            disablePast
           />
           <MuiCheckbox
             control={control}

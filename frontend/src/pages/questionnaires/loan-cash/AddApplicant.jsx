@@ -133,7 +133,7 @@ const AddApplicant = ({
                   error={!!errors.validUntil}
                   helperText={errors?.validUntil?.message}
                   defaultDate={appDataValid.validUntil}
-                  disablePastDates
+                  disablePast
                 />
               )}
             </>
@@ -299,7 +299,7 @@ const AddApplicant = ({
                 error={!!errors.contractUntil}
                 helperText={errors?.contractUntil?.message}
                 defaultDate={appDataValid.contractUntil}
-                disablePastDates
+                disablePast
               />
             </>
           )}

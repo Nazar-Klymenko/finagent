@@ -189,7 +189,7 @@ const AddAdditionalIncome = ({
                 error={!!errors.contractUntil}
                 helperText={errors?.contractUntil?.message}
                 defaultDate={appDataValid.contractUntil}
-                disablePastDates
+                disablePast
               />
             </>
           )}

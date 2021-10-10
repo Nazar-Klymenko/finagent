@@ -58,7 +58,7 @@ const Summary = () => {
             form=""
             color="secondary"
             onClick={() => {
-              history.push("./3");
+              history.push("./2");
             }}
           />
           <CTA

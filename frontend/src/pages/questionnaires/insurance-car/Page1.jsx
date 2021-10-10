@@ -225,6 +225,9 @@ const Page1 = () => {
               error={!!errors.drivingLicenceDate}
               helperText={errors?.drivingLicenceDate?.message}
               placeholder={t("Form.Placeholder.dateFull")}
+              // view={["year, month, date"]}
+              // disablePastDates
+              // disablePast
             />
           )}
         </Form>

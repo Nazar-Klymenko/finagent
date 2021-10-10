@@ -35,6 +35,7 @@ const DateInput = ({
   placeholder,
   view = ["date"],
   format = "dd/MM/yyyy",
+  ...other
 }) => {
   const { i18n, t } = useTranslation();
 
@@ -78,15 +79,7 @@ const DateInput = ({
                 fontFamily: ["Poppins", "sans-serif"].join(","),
               }}
               views={view}
-              shouldDisableDate={(day) => {
-                if (disablePastDates) {
-                  let date = new Date();
-                  date.setDate(date.getDate() - 1);
-                  if (day < date) {
-                    return true;
-                  }
-                }
-              }}
+              {...other}
             />
           }
           control={control}

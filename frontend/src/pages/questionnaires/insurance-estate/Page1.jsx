@@ -316,7 +316,7 @@ const Page1 = () => {
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
             defaultDate={appDataValid.insuranceStartDate}
-            disablePastDates
+            disablePast
           />
           <Subtitle>{t("InsuranceEstate.Page1.subjectAndSum")}</Subtitle>
           <Input

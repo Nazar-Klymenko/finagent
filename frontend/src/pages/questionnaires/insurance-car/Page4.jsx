@@ -39,7 +39,7 @@ const Page4 = () => {
 
   const { register, handleSubmit, errors, control } = useForm({
     defaultValues: pageFourValues(appDataValid),
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(pageFourSchema),

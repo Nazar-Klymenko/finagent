@@ -35,7 +35,7 @@ const Page2 = () => {
       email: appDataValid.email,
       peopleNumber: appDataValid.peopleNumber || "0",
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema),

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import styled from "styled-components";
 
 import { Controller } from "react-hook-form";
@@ -24,20 +24,36 @@ const theme = createMuiTheme({
   },
 });
 
-const DateInput = ({
+interface Props {
+  control: any;
+  helperText: string;
+  error: boolean;
+  labelName: string;
+  name: string;
+  defaultDate: any;
+  placeholder: string;
+  view: ["date"] | ["year", "month", "date"] | ["year"];
+  format: "dd/MM/yyyy" | "yyyy";
+  disablePast: boolean;
+  disableFuture: boolean;
+  maxDate: Date;
+  minDate: Date;
+}
+
+const DateInput: FC<Props> = ({
   control,
   helperText,
   error,
   labelName,
   name,
   defaultDate,
-  disablePastDates,
   placeholder,
   view = ["date"],
   format = "dd/MM/yyyy",
   ...other
 }) => {
   const { i18n, t } = useTranslation();
+  const [value, setValue] = React.useState<Date | null>(null);
 
   const [language, setLanguage] = useState(pl);
 
@@ -66,7 +82,7 @@ const DateInput = ({
         <Label htmlFor={name}>{labelName}</Label>
         <Controller
           as={
-            <StyledInput
+            <KeyboardDatePicker
               okLabel="OK"
               clearLabel="Clear"
               cancelLabel="Cancel"
@@ -79,6 +95,10 @@ const DateInput = ({
                 fontFamily: ["Poppins", "sans-serif"].join(","),
               }}
               views={view}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              value={value}
               {...other}
             />
           }
@@ -94,25 +114,5 @@ const DateInput = ({
     </ThemeProvider>
   );
 };
-
-const StyledInput = styled(KeyboardDatePicker)`
-  /* .MuiOutlinedInput-root {
-    &:hover fieldset {
-      border-color: ${({ theme }) => theme.input.border};
-    }
-
-    &.Mui-focused fieldset {
-      border-color: ${({ theme }) => theme.input.focused};
-    }
-  }
-  .Mui-error {
-    &:hover fieldset {
-      border-color: ${({ theme }) => theme.red} !important;
-    }
-    &.Mui-focused fieldset {
-      border-color: ${({ theme }) => theme.red} !important;
-    }
-  } */
-`;
 
 export default DateInput;

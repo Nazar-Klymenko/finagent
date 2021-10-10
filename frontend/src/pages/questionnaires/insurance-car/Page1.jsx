@@ -51,7 +51,7 @@ const Page1 = () => {
 
   const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: pageOneValues(appDataValid),
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),
@@ -225,9 +225,8 @@ const Page1 = () => {
               error={!!errors.drivingLicenceDate}
               helperText={errors?.drivingLicenceDate?.message}
               placeholder={t("Form.Placeholder.dateFull")}
-              // view={["year, month, date"]}
-              // disablePastDates
-              // disablePast
+              disableFuture
+              view={["year", "month", "date"]}
             />
           )}
         </Form>

@@ -42,7 +42,7 @@ const Page2 = () => {
       engineVolume: appDataValid.engineVolume,
       seatNumber: appDataValid.seatNumber,
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema),

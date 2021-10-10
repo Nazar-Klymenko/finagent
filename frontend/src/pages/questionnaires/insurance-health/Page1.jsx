@@ -37,7 +37,7 @@ const Page1 = () => {
       clauseTwo: appDataValid.clauseTwo,
       clauseThree: appDataValid.clauseThree,
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,
     resolver: yupResolver(pageOneSchema()),

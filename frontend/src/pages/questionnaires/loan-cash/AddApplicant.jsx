@@ -30,7 +30,7 @@ const AddApplicant = ({
 
   const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: {},
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(addApplicantSchema()),

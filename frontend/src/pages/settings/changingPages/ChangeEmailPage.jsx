@@ -25,7 +25,7 @@ const ChangeEmailPage = () => {
 
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {},
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,
     resolver: yupResolver(changeEmailSchema()),

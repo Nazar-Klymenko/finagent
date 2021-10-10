@@ -60,7 +60,7 @@ const Page1 = () => {
       flatAndFixed: appDataValid.flatAndFixed,
       householdGoods: appDataValid.householdGoods,
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),

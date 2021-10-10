@@ -34,7 +34,7 @@ const Page2 = () => {
 
   const { register, handleSubmit, errors, control } = useForm({
     defaultValues: pageTwoValues(appDataValid),
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema),

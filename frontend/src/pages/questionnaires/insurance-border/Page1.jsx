@@ -36,7 +36,7 @@ const Page1 = () => {
       passportNumber: appDataValid.passportNumber,
       insurancePeriod: appDataValid.insurancePeriod,
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),

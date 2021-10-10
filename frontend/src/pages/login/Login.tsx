@@ -29,7 +29,7 @@ const Login: React.FC<Props> = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { register, handleSubmit, errors } = useForm({
-    mode: "onBlur",
+    mode: "onChange",
     resolver: yupResolver(loginSchema),
     shouldFocusError: true,
   });

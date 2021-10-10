@@ -23,7 +23,7 @@ const NewPassword = () => {
   const [isError, setIsError] = useState("");
 
   const { register, handleSubmit, errors } = useForm({
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(newPasswordSchema()),

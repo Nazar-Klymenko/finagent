@@ -33,7 +33,7 @@ const Page1 = () => {
       purpose: appDataValid.purpose,
       inPoland: appDataValid.inPoland,
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),

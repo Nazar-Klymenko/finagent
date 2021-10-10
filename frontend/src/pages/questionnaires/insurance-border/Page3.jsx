@@ -38,7 +38,7 @@ const Page3 = () => {
       street: appDataValid.street,
       houseNumber: appDataValid.houseNumber,
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(pageThreeSchema),

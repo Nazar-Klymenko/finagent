@@ -1,5 +1,6 @@
 import React from "react";
-import { MuiSelect } from "@components/input";
+import { MuiSelect, DateInput } from "@components/input";
+import { useTranslation } from "react-i18next";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -38,6 +39,8 @@ export const maritalStatusOptions = [
 ];
 
 const Empty = () => {
+  const { t } = useTranslation();
+
   const { handleSubmit, errors, control } = useForm({
     defaultValues: {},
     mode: "onChange",

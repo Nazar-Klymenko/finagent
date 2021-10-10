@@ -75,7 +75,7 @@ const Page2 = () => {
       town: appDataValid.town,
       conditions: appDataValid.conditions,
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema()),

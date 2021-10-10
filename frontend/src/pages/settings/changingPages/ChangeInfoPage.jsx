@@ -35,7 +35,7 @@ const ChangePasswordPage = () => {
       surname: defaultSettings?.surname,
       phone: defaultSettings?.phone,
     },
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,
     resolver: yupResolver(settingsSchema()),

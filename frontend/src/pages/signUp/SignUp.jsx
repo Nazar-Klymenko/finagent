@@ -30,7 +30,7 @@ const SignUp = () => {
 
   const { register, handleSubmit, errors } = useForm({
     defaultValues: { terms: false },
-    mode: "onBlur",
+    mode: "onChange",
     resolver: yupResolver(signUpSchema),
     shouldFocusError: true,
   });

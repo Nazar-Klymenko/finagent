@@ -52,7 +52,11 @@ const Page2 = () => {
 
       <Page>
         <Title>{t("InsuranceHealth.title")}</Title>
-        <ProgressBar maxSteps={2} currentStep={2} label="Insured Info" />
+        <ProgressBar
+          maxSteps={2}
+          currentStep={2}
+          label={t("InsuranceHealth.ApplicantBox.title")}
+        />
         <Subtitle>{t("InsuranceHealth.ApplicantBox.title")}</Subtitle>
         <p>{t("InsuranceHealth.ApplicantBox.maxPeople")}</p>
         <ApplicantBox>

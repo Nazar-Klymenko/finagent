@@ -109,7 +109,11 @@ const Page2 = () => {
       <QuestState data={appData} />
       <Page>
         <Title>{t("LoanMortgage.title")}</Title>
-        <ProgressBar maxSteps={2} currentStep={2} label="Loan Info" />
+        <ProgressBar
+          maxSteps={2}
+          currentStep={2}
+          label={t("LoanMortgage.Page2.subtitle")}
+        />
         <Subtitle>{t("LoanMortgage.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <Subtitle>{t("LoanMortgage.HouseholdBox.title")}</Subtitle>

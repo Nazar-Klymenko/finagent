@@ -64,7 +64,11 @@ const Page2 = () => {
 
       <Page>
         <Title>{t("LoanCash.title")}</Title>
-        <ProgressBar maxSteps={2} currentStep={2} label="Loan Info" />
+        <ProgressBar
+          maxSteps={2}
+          currentStep={2}
+          label={t("LoanCash.Page2.subtitle")}
+        />
         <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <Textarea

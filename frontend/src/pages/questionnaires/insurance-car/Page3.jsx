@@ -63,7 +63,11 @@ const Page3 = () => {
 
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
-        <ProgressBar maxSteps={5} currentStep={3} label="Vehicle Specifics" />
+        <ProgressBar
+          maxSteps={5}
+          currentStep={3}
+          label={t("InsuranceTransport.Page3.subtitle")}
+        />
 
         <Subtitle>{t("InsuranceTransport.Page3.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>

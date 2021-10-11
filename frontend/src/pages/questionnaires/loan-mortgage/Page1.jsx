@@ -109,7 +109,11 @@ const Page1 = () => {
 
       <Page>
         <Title>{t("LoanMortgage.title")}</Title>
-        <ProgressBar maxSteps={2} currentStep={1} label="Applicants Info" />
+        <ProgressBar
+          maxSteps={2}
+          currentStep={1}
+          label={t("LoanMortgage.Page1.subtitle")}
+        />
         <Subtitle>{t("LoanMortgage.Page1.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiRadio

@@ -60,7 +60,11 @@ const Page2 = () => {
       <QuestState data={appData} />
       <Page>
         <Title>{t("InsuranceTravel.title")}</Title>
-        <ProgressBar maxSteps={2} currentStep={2} label="Personal Info" />
+        <ProgressBar
+          maxSteps={2}
+          currentStep={2}
+          label={t("InsuranceTravel.Page2.title")}
+        />
         <Subtitle>{t("InsuranceTravel.Page2.title")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiRadio

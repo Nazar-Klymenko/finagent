@@ -60,7 +60,11 @@ const Page2 = () => {
 
       <Page>
         <Title>{t("InsuranceBorder.title")}</Title>
-        <ProgressBar maxSteps={3} currentStep={2} label="Vehicle Info" />
+        <ProgressBar
+          maxSteps={3}
+          currentStep={2}
+          label={t("InsuranceBorder.Page2.subtitle")}
+        />
         <Subtitle>{t("InsuranceBorder.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiSelect

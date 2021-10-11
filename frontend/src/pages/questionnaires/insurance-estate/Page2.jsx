@@ -55,7 +55,11 @@ const Page2 = () => {
 
       <Page>
         <Title>{t("InsuranceEstate.title")}</Title>
-        <ProgressBar maxSteps={2} currentStep={2} label="Personal Info" />
+        <ProgressBar
+          maxSteps={2}
+          currentStep={2}
+          label={t("InsuranceEstate.Page2.title")}
+        />
         <Subtitle>{t("InsuranceEstate.Page2.title")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiRadio

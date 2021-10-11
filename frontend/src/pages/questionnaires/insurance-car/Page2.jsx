@@ -51,7 +51,11 @@ const Page2 = () => {
       <QuestState data={appData} />
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
-        <ProgressBar maxSteps={5} currentStep={2} label="Vehicle Info" />
+        <ProgressBar
+          maxSteps={5}
+          currentStep={2}
+          label={t("InsuranceTransport.Page2.subtitle")}
+        />
 
         <Subtitle>{t("InsuranceTransport.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>

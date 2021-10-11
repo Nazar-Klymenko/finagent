@@ -42,7 +42,7 @@ const Summary = () => {
 
       <Page>
         <Title>{t("InsuranceBorder.title")}</Title>
-        <ProgressBar maxSteps={3} currentStep={3} label="Summary" />
+        <ProgressBar maxSteps={3} currentStep={3} label={t("Basic.summary")} />
         <SummaryList
           header={t("Basic.summary")}
           array={addDataLabeled}

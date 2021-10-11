@@ -37,7 +37,7 @@ const Summary = () => {
   };
 
   return (
-    <ContentWrap xl>
+    <ContentWrap fullWidth>
       <QuestState data={appData} />
 
       <Page>

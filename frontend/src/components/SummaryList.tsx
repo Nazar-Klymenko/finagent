@@ -44,7 +44,7 @@ const SummaryList: React.FC<Props> = ({
         {array &&
           array.map((item: any, idx) => (
             <Category key={idx}>
-              <span>{item[0]}</span>
+              <span>{t(item[0])}</span>
               {Object.entries(item[1]).map((item: any, idx) => (
                 <Item key={idx}>
                   <div className="value">{t(item[0])}</div>

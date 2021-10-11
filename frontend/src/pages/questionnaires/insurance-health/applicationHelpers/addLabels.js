@@ -1,6 +1,7 @@
 import changeDateValues from "@helpers/changeDateValues";
 import changeBooleanValues from "@helpers/changeBooleanValues";
 import changeRadioValues from "@helpers/changeRadioValues";
+import changeSelectValues from "@helpers/changeSelectValues";
 
 const matchObj = {
   insuranceStart: "InsuranceHealth.Page1.insuranceStart",
@@ -25,6 +26,11 @@ const matchObj = {
   houseNumber: "InsuranceHealth.ApplicantModal.houseNumber",
 };
 
+const matchHeaders = {
+  InsuranceData: "InsuranceHealth.Page1.subtitle",
+  InsuredData: "InsuranceHealth.Page2.subtitle",
+};
+
 const addLabelsMedical = (array) => {
   let finalArray = [];
   array.forEach((item) => {
@@ -38,9 +44,10 @@ const addLabelsMedical = (array) => {
         changeDateValues(obj);
         changeBooleanValues(obj);
         changeRadioValues(obj);
+        changeSelectValues(obj);
 
         let propObject = Object.fromEntries(obj);
-        let labeledArray = ["Applicant", propObject];
+        let labeledArray = ["InsuranceHealth.Page2.subtitle", propObject];
         finalArray.push(labeledArray);
       });
     }
@@ -52,10 +59,13 @@ const addLabelsMedical = (array) => {
     changeDateValues(obj);
     changeBooleanValues(obj);
     changeRadioValues(obj);
+    changeSelectValues(obj);
 
     let propObject = Object.fromEntries(obj);
 
-    let labeledArray = [item[0], propObject];
+    let header = item[0];
+    header = matchHeaders[header];
+    let labeledArray = [header, propObject];
     finalArray.push(labeledArray);
   });
   finalArray = finalArray.filter((element) => element[0] !== "InsuredData");

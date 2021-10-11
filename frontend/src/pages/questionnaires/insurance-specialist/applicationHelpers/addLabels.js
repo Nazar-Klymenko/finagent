@@ -23,6 +23,10 @@ const matchObj = {
   phoneNumber: "InsuranceDiagnostic.Page1.phoneNumber",
 };
 
+const matchHeaders = {
+  PersonalData: "InsuranceDiagnostic.Page1.subtitle",
+};
+
 const addLabelsSpecialist = (array) => {
   let finalArray = [];
   array.forEach((item) => {
@@ -37,7 +41,7 @@ const addLabelsSpecialist = (array) => {
         changeBooleanValues(obj);
         changeRadioValues(obj);
         let propObject = Object.fromEntries(obj);
-        let labeledArray = ["Applicant", propObject];
+        let labeledArray = ["InsuranceHealth.Page2.subtitle", propObject];
         finalArray.push(labeledArray);
       });
     }
@@ -52,7 +56,9 @@ const addLabelsSpecialist = (array) => {
 
     let propObject = Object.fromEntries(obj);
 
-    let labeledArray = [item[0], propObject];
+    let header = item[0];
+    header = matchHeaders[header];
+    let labeledArray = [header, propObject];
     finalArray.push(labeledArray);
   });
   finalArray = finalArray.filter((element) => element[0] !== "InsuredData");

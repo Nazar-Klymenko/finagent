@@ -1,6 +1,7 @@
 import changeDateValues from "@helpers/changeDateValues";
 import changeBooleanValues from "@helpers/changeBooleanValues";
 import changeRadioValues from "@helpers/changeRadioValues";
+import changeSelectValues from "@helpers/changeSelectValues";
 
 const matchObj = {
   nationality: "LoanMortgage.ApplicantModal.citizenship",
@@ -65,6 +66,7 @@ const addLabelsMortgage = (array) => {
         changeDateValues(obj);
         changeBooleanValues(obj);
         changeRadioValues(obj);
+        changeSelectValues(obj);
 
         let propObject = Object.fromEntries(obj);
         let labeledArray = [item[0], propObject];
@@ -81,6 +83,7 @@ const addLabelsMortgage = (array) => {
         changeDateValues(obj);
         changeBooleanValues(obj);
         changeRadioValues(obj);
+        changeSelectValues(obj);
 
         let propObject = Object.fromEntries(obj);
         let labeledArray = ["Household", propObject];
@@ -97,6 +100,7 @@ const addLabelsMortgage = (array) => {
         changeDateValues(obj);
         changeBooleanValues(obj);
         changeRadioValues(obj);
+        changeSelectValues(obj);
 
         let propObject = Object.fromEntries(obj);
         let labeledArray = ["Income", propObject];
@@ -111,6 +115,7 @@ const addLabelsMortgage = (array) => {
     changeDateValues(obj);
     changeBooleanValues(obj);
     changeRadioValues(obj);
+    changeSelectValues(obj);
 
     let propObject = Object.fromEntries(obj);
 

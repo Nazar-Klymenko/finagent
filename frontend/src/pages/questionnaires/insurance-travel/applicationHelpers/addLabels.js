@@ -26,6 +26,10 @@ const matchObj = {
   street: "InsuranceTravel.Page2.street",
   houseNumber: "InsuranceTravel.Page2.houseNumber",
 };
+const matchHeaders = {
+  InsuranceData: "InsuranceTravel.Page1.title",
+  PersonalData: "InsuranceTravel.Page2.title",
+};
 
 const addLabelsTravel = (array) => {
   let finalArray = [];
@@ -41,7 +45,9 @@ const addLabelsTravel = (array) => {
 
     let propObject = Object.fromEntries(obj);
 
-    let labeledArray = [item[0], propObject];
+    let header = item[0];
+    header = matchHeaders[header];
+    let labeledArray = [header, propObject];
     finalArray.push(labeledArray);
   });
   return finalArray;

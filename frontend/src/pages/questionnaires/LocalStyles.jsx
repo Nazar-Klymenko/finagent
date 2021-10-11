@@ -33,7 +33,6 @@ export const Legend = styled.legend`
 
 export const RadioWrap = styled.div`
   display: flex;
-  margin-left: -1rem;
 `;
 
 export const ErrorBottom = styled.p`

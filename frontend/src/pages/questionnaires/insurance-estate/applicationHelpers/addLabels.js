@@ -1,6 +1,7 @@
 import changeDateValues from "@helpers/changeDateValues";
 import changeBooleanValues from "@helpers/changeBooleanValues";
 import changeRadioValues from "@helpers/changeRadioValues";
+import changeSelectValues from "@helpers/changeSelectValues";
 
 const matchObj = {
   country: "InsuranceEstate.Page1.country",
@@ -36,6 +37,11 @@ const matchObj = {
   peopleNumber: "InsuranceEstate.Page2.peopleNumber",
 };
 
+const matchHeaders = {
+  InsuranceData: "InsuranceEstate.Page1.title",
+  PersonalData: "InsuranceEstate.Page2.title",
+};
+
 const addLabelsEstate = (array) => {
   let finalArray = [];
   array.forEach((item) => {
@@ -47,10 +53,13 @@ const addLabelsEstate = (array) => {
     changeDateValues(obj);
     changeBooleanValues(obj);
     changeRadioValues(obj);
+    changeSelectValues(obj);
 
     let propObject = Object.fromEntries(obj);
 
-    let labeledArray = [item[0], propObject];
+    let header = item[0];
+    header = matchHeaders[header];
+    let labeledArray = [header, propObject];
     finalArray.push(labeledArray);
   });
   return finalArray;

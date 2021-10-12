@@ -186,7 +186,7 @@ const Page2 = () => {
             placeholder="number"
           />
           <MuiSelect
-            ref={register}
+            control={control}
             name="loanPurpose"
             labelName={t("LoanMortgage.Page2.loanPurpose")}
             defaultValue={appDataValid.loanPurpose}

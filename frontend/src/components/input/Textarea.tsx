@@ -51,6 +51,7 @@ const TextareaStyled = styled(InputStyled)<Styled>`
   position: relative;
   width: 100%;
   resize: none;
+  height: unset;
   appearance: none;
 `;
 

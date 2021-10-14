@@ -8,6 +8,15 @@ import { Header } from "@components/typography";
 
 import ServiceCard from "./ServiceCard";
 
+import Border from "@assets/images/border.svg";
+import Estate from "@assets/images/estate.svg";
+import HealthInsurance from "@assets/images/health_insurance.svg";
+import Loan from "@assets/images/loan.svg";
+import Mortgage from "@assets/images/mortgage.svg";
+import SpecialistInsurance from "@assets/images/specialist.svg";
+import Transport from "@assets/images/transport.svg";
+import Travel from "@assets/images/travel_insurance.svg";
+
 const Services = () => {
   useTitle("Services | FinAgent");
   const { t } = useTranslation();
@@ -17,42 +26,42 @@ const Services = () => {
       <ServicesWrap>
         <ServiceCard
           to="quest/transport/1"
-          image={process.env.PUBLIC_URL + "/images/transport.svg"}
+          image={Transport}
           imageAlt=""
           header={t("Services.Transport.title")}
           description={t("Services.Transport.subtitle")}
         />
         <ServiceCard
           to="quest/transport-border/1"
-          image={process.env.PUBLIC_URL + "/images/border.svg"}
+          image={Border}
           imageAlt=""
           header={t("Services.Border.title")}
           description={t("Services.Border.subtitle")}
         />
         <ServiceCard
           to="quest/reimbursement/1"
-          image={process.env.PUBLIC_URL + "/images/health_insurance.svg"}
+          image={HealthInsurance}
           imageAlt=""
           header={t("Services.Health.title")}
           description={t("Services.Health.subtitle")}
         />
         <ServiceCard
           to="quest/diagnostic/1"
-          image={process.env.PUBLIC_URL + "/images/specialist.svg"}
+          image={SpecialistInsurance}
           imageAlt=""
           header={t("Services.Diagnostic.title")}
           description={t("Services.Diagnostic.subtitle")}
         />
         <ServiceCard
           to="quest/travel/1"
-          image={process.env.PUBLIC_URL + "/images/travel_insurance.svg"}
+          image={Travel}
           imageAlt=""
           header={t("Services.Travel.title")}
           description={t("Services.Travel.subtitle")}
         />
         <ServiceCard
           to="quest/estate/1"
-          image={process.env.PUBLIC_URL + "/images/estate.svg"}
+          image={Estate}
           imageAlt=""
           header={t("Services.Estate.title")}
           description={t("Services.Estate.subtitle")}
@@ -63,14 +72,14 @@ const Services = () => {
       <ServicesWrap>
         <ServiceCard
           to="quest/cashloan/1"
-          image={process.env.PUBLIC_URL + "/images/loan.svg"}
+          image={Loan}
           imageAlt=""
           header={t("Services.Cash.title")}
           description={t("Services.Cash.subtitle")}
         />
         <ServiceCard
           to="quest/mortgage/1"
-          image={process.env.PUBLIC_URL + "/images/mortgage.svg"}
+          image={Mortgage}
           imageAlt=""
           header={t("Services.Mortgage.title")}
           description={t("Services.Mortgage.subtitle")}

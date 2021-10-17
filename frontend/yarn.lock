@@ -3410,6 +3410,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/pdfjs-dist@npm:*":
+  version: 2.7.5
+  resolution: "@types/pdfjs-dist@npm:2.7.5"
+  checksum: c390bd894a7430f27069f6f28f311efa38f86cb65964375c64ecadde45a75543acdbfe0f7488804df1a2497d377030491c27107f5f25030c6a3a7c12131ac3ec
+  languageName: node
+  linkType: hard
+
 "@types/prettier@npm:^2.0.0":
   version: 2.2.3
   resolution: "@types/prettier@npm:2.2.3"
@@ -3471,6 +3478,16 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 0144ba967566b8ac2178ac4dea30b5d48f943d3b2cc5360e30822b6f6158522f332f19b584cc2352283668a2bd7441c55d7c666f180bea2af90ae2158380917c
+  languageName: node
+  linkType: hard
+
+"@types/react-pdf@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "@types/react-pdf@npm:5.0.7"
+  dependencies:
+    "@types/pdfjs-dist": "*"
+    "@types/react": "*"
+  checksum: 670426bc79622356cb32b3edae1230401d94cc222f7bc747ab5f2c416976c7dfd8654890fb68ffd83c25d77bfbe0186e995d213467152e18de70bb40e4e303e3
   languageName: node
   linkType: hard
 
@@ -8191,6 +8208,7 @@ __metadata:
     "@types/react-dom": ^17.0.5
     "@types/react-facebook-login": ^4.1.3
     "@types/react-helmet": ^6.1.1
+    "@types/react-pdf": ^5.0.7
     "@types/react-redux": ^7.1.16
     "@types/react-router-dom": ^5.1.7
     "@types/styled-components": ^5.1.9

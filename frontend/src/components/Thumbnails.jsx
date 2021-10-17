@@ -6,24 +6,13 @@ import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import { auth } from "@helpers/firebaseHelper";
 
 const Thumbnails = ({ files, id, type }) => {
-  const [token, setToken] = useState("");
-
-  const getToken = async () => {
-    const user = auth.currentUser;
-    setToken(user && (await user.getIdToken()));
-  };
-
-  useEffect(() => {
-    getToken();
-  }, []);
-
-  let url = `${process.env.REACT_APP_API_SERVER_URL}user/application/files/${token}/${id}/${type}`;
+  // let url = `${process.env.REACT_APP_API_SERVER_URL}user/application/files/${token}/${id}/${type}`;
   return (
     <ThumbContainer>
       {files.map((file, idx) => (
         <ThumbWrap>
           <Thumb key={file.filename}>
-            <ThumbInner
+            {/* <ThumbInner
               href={`${url}/${file.filename}`}
               rel="noopener noreferrer"
               target="_blank"
@@ -35,7 +24,7 @@ const Thumbnails = ({ files, id, type }) => {
               ) : (
                 <img src={`${url}/${file.filename}`} alt="" />
               )}
-            </ThumbInner>
+            </ThumbInner> */}
           </Thumb>
           <span className="name">{file.filename}</span>
         </ThumbWrap>

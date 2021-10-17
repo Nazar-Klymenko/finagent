@@ -22,7 +22,7 @@
 //   );
 //   auth = userInstance.auth();
 // } catch (error) {
-//   console.log(error);
+//
 // }
 
 // const adminConfig = {
@@ -48,7 +48,7 @@
 //   );
 //   adminAuth = adminInstance.auth();
 // } catch (error) {
-//   console.log(error);
+//
 // }
 
 // export { auth, adminAuth };

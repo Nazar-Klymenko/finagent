@@ -11,3 +11,13 @@ export const getApplicationsQuantityAPI = (category) => {
     method: "GET",
   });
 };
+
+export const getUserAttachmentsAPI = (id, type, filename) => {
+  return (
+    `user/application/files/${id}/${type}/${filename}`,
+    {
+      method: "GET",
+      responseType: "arraybuffer",
+    }
+  );
+};

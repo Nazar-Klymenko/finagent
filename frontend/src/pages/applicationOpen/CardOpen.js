@@ -125,11 +125,11 @@ const CardOpen = () => {
               description={t("ApplicationOpen.FinalDocument.subtitle")}
             />
 
-            <Attachments
+            {/* <Attachments
               attachments={[data?.attachments]}
               id={id}
               type="attachments"
-            />
+            /> */}
 
             {!data?.archived && <Archive id={id} />}
           </>

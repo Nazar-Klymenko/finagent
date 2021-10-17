@@ -1,4 +1,9 @@
 import Application from "models/application.js";
+import PDFDocument from "pdfkit";
+import fs from "fs";
+
+// Create a document
+const doc = new PDFDocument();
 
 import path from "path";
 const __dirname = path.resolve();

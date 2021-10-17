@@ -72,8 +72,8 @@ router
   .post(verifyAccessTokenFirebase, isEmailVerified, LoanMortgageSubmit);
 
 router
-  .route("/files/:idtoken/:id/:type/:filename")
-  .get(verifyAccessTokenFirebaseQuery, accessToImage, serveDocument);
+  .route("/files/:id/:type/:filename")
+  .get(verifyAccessTokenFirebase, accessToImage, serveDocument);
 
 export default router;
 

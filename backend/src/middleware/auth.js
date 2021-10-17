@@ -14,7 +14,7 @@ export const verifyAccessTokenFirebase = async (req, res, next) => {
     const idToken = req.headers.authorization.split("Bearer ")[1];
     try {
       const decodedToken = await auth.verifyIdToken(idToken);
-      // console.log(decodedToken);
+      //
       verifiedEmail = decodedToken.email_verified;
 
       if (decodedToken.firebase?.sign_in_provider === "facebook.com") {
@@ -33,7 +33,7 @@ export const verifyAccessTokenFirebaseQuery = async (req, res, next) => {
 
   try {
     const decodedToken = await auth.verifyIdToken(header);
-    // console.log(decodedToken);
+    //
     verifiedEmail = decodedToken.email_verified;
 
     if (decodedToken.firebase?.sign_in_provider === "facebook.com") {
@@ -51,7 +51,7 @@ export const verifyAccessTokenFirebaseQueryAdmin = async (req, res, next) => {
 
   try {
     const decodedToken = await adminAuth.verifyIdToken(header);
-    // console.log(decodedToken);
+    //
     verifiedEmail = decodedToken.email_verified;
 
     if (decodedToken.firebase?.sign_in_provider === "facebook.com") {

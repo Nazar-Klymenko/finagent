@@ -47,9 +47,7 @@ try {
     "auth"
   );
   auth = userInstance.auth();
-} catch (error) {
-  console.log(error);
-}
+} catch (error) {}
 
 const adminConfig = {
   type: process.env.FIREBASE_TYPE_ADMIN,
@@ -73,9 +71,7 @@ try {
     "admin"
   );
   adminAuth = adminInstance.auth();
-} catch (error) {
-  console.log(error);
-}
+} catch (error) {}
 
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins

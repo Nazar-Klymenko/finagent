@@ -10,8 +10,6 @@ export const accessToImage = async (req, res, next) => {
       .populate("employee", "-__v -password -isActive -createdAt -updatedAt");
     if (!app) throw createError.Forbidden();
 
-    console.log(app);
-
     if (app.user_id != userId) {
       if (app.employee_id._id != userId) {
         throw createError.Forbidden();
@@ -33,8 +31,6 @@ export const accessToImageAdmin = async (req, res, next) => {
       "-__v -password -isActive -createdAt -updatedAt"
     );
     if (!app) throw createError.Forbidden();
-
-    console.log(app);
 
     if (app.employee_id != userId) {
       throw createError.Forbidden();

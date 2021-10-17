@@ -41,7 +41,7 @@ const ApplicationsTab = () => {
   let { data, error, isFetching, refetch } = useQuery(
     [`applications${cat}${statusParam}`, currentPage],
     () => fetchApplications(currentPage, statusParam),
-    { keepPreviousData: true, staleTime: 5000 }
+    { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
   );
 
   useEffect(() => {

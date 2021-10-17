@@ -12,7 +12,6 @@ export const signUp = async (req, res, next) => {
     email = "-";
   }
 
-  console.log({ provider });
   try {
     // const user = await User.findOne({ email: email });
     // if (user) {
@@ -67,7 +66,6 @@ export const signUpFacebook = async (req, res, next) => {
   const { first_name, last_name, email } = req.body.additionalUserInfo.profile;
   let provider = req.body.additionalUserInfo.providerId;
   const { uid } = req.body.user;
-  console.log(req.body);
 
   try {
     // const user = await User.findOne({ email: email });

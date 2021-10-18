@@ -4,6 +4,7 @@ export const Page = styled.div`
   min-width: 680px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
     min-width: unset;

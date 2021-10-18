@@ -17,7 +17,6 @@ const Form: React.FC<Props> = ({ id, children, ...props }) => {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  flex: 1;
+  justify-content: flex-start;
 `;
 export default Form;

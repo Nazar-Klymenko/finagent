@@ -39,6 +39,7 @@ export const getPreviewApplications = asyncHandler(async (req, res) => {
     "_id user_id user status type category createdAt updatedAt"
   )
     .populate("user")
+    .sort({ createdAt: -1 })
     .limit(limit)
     .skip(skip);
 

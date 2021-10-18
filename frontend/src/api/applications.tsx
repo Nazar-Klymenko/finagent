@@ -23,7 +23,7 @@ export const getUserAttachmentsAPI = (id: string, type: string) => {
     url: `user/application/files/${id}/${type}`,
     options: {
       method: "GET",
-      responseType: "arraybuffer",
+      responseType: "blob",
     },
   };
 };

@@ -12,6 +12,7 @@
     "@material-ui/pickers": "^3.3.10",
     "@mui/material": "^5.0.2",
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+    "@react-pdf/renderer": "^1.6.17",
     "@reduxjs/toolkit": "^1.5.1",
     "axios": "^0.21.1",
     "date-fns": "^2.21.3",

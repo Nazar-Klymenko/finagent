@@ -58,7 +58,7 @@ function useFetchFiles(object, array) {
           }
           console.log({ response: response });
 
-          let imgBlob = new File([response.data], { type: "image/*" });
+          let imgBlob = new Blob([response.data]);
           data.push(URL.createObjectURL(imgBlob));
 
           cache.current[url] = data;

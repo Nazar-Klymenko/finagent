@@ -6,6 +6,7 @@ import useFetch from "@hooks/useFetch";
 import useFetchFiles from "@hooks/useFetchFiles";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import SaveAltRoundedIcon from "@material-ui/icons/SaveAltRounded";
 
 type Props = {
   attachments: any;
@@ -14,9 +15,6 @@ type Props = {
 };
 
 const Attachments: FC<Props> = ({ attachments, id, type }) => {
-  const [images, setImages] = useState<any>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const { data, error, loading } = useFetchFiles(
     getUserAttachmentsAPI(id, type),
     attachments[0]
@@ -24,22 +22,31 @@ const Attachments: FC<Props> = ({ attachments, id, type }) => {
 
   return (
     <>
-      {loading && <Skeleton animation="wave" height="144px" width="100%" />}
+      {loading && <Skeleton animation="wave" height={160} width="100%" />}
       {!loading && (
         <AttachmentsStyled>
           {error && <h1>Error</h1>}
 
           {data &&
             data.map((image: any, idx: any) => (
-              <a href={image} download={attachments[0][idx].filename}>
-                <Document file={image}>
-                  <Page height={100} pageNumber={1} />
-                </Document>
-                {/* <Thumbnail key={idx} src={image} alt="" /> */}
+              <a
+                key={attachments[0][idx].id}
+                href={image}
+                download={attachments[0][idx].filename}
+                target="_blank"
+                rel="noopener noreferrer"
+                type="application/octet-stream"
+              >
+                <Thumbnail file={image}>
+                  <Page width={160} pageNumber={1} />
+
+                  <ThumbBackground>
+                    <ThumbTitle> {attachments[0][idx].filename}</ThumbTitle>
+                    <Icon color="inherit" />
+                  </ThumbBackground>
+                </Thumbnail>
               </a>
             ))}
-
-          {/* <Thumbnails id={id} type={type} files={attachments[0]} /> */}
         </AttachmentsStyled>
       )}
     </>
@@ -56,19 +63,64 @@ const AttachmentsStyled = styled.div`
   padding: 5px 8px;
 `;
 
-const Thumbnail = styled.img`
+const Thumbnail = styled(Document)`
   display: inline-flex;
   object-fit: cover;
   border-radius: 2px;
   border: 1px solid #eaeaea;
-  background: white;
+  color: white;
   margin: 8px;
-  width: 120px;
-  height: 120px;
-  padding: 4px;
+  width: 160px;
+  height: 160px;
   transition: 0.1s ease-in-out;
+  position: relative;
+  overflow: hidden;
+`;
+const ThumbBackground = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  &::before {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: black;
+  }
   &:hover {
-    opacity: 0.85;
+    &::before {
+      opacity: 0.65;
+    }
+  }
+`;
+
+const ThumbTitle = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px 8px;
+  color: white;
+  font-size: 12px;
+  max-height: 58px;
+  opacity: 0;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+
+  ${Thumbnail}:hover & {
+    opacity: 1;
+  }
+`;
+
+const Icon = styled(SaveAltRoundedIcon)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  ${Thumbnail}:hover & {
+    opacity: 1;
   }
 `;
 

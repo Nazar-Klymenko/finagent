@@ -74,6 +74,7 @@ const ButtonStyled = styled.button<ButtonStyledTypes>`
   font-size: 0.875rem;
   letter-spacing: 0.02857em;
   text-transform: uppercase;
+  padding: 8px;
   ${({ isBlocked }) =>
     isBlocked &&
     css`

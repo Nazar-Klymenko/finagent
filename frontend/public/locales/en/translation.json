@@ -920,7 +920,13 @@
       "security": "Security"
     },
     "Page5": {
-      "subtitle": "Document pictures"
+      "subtitle": "Document pictures",
+      "twoSides": "Please add pictures of both sides",
+      "registration": "Photo of the technical passport",
+      "driversLicence": "Photo of the drivers licence",
+      "currentInsurance": "Photo of the current insurance",
+      "registeredOnMe": "The vehicle is already registered on me / my company",
+      "salesContract": "Photo of the sales contract"
     }
   },
   "InsuranceBorder": {

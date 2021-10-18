@@ -63,8 +63,8 @@ const Page5 = () => {
         <Subtitle>{t("InsuranceTransport.Page5.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <Subheader
-            subheader="Фото техпаспорта"
-            description="необходимо прикрепить полный разворот двух сторон"
+            subheader={t("InsuranceTransport.Page5.registration")}
+            description={t("InsuranceTransport.Page5.twoSides")}
           />
           <FileInput
             control={control}
@@ -75,8 +75,8 @@ const Page5 = () => {
             helperText={errors?.filesTechPassport?.message}
           />
           <Subheader
-            subheader="Фото водительских прав"
-            description="необходимо прикрепить полный разворот двух сторон"
+            subheader={t("InsuranceTransport.Page5.driversLicence")}
+            description={t("InsuranceTransport.Page5.twoSides")}
           />
           <FileInput
             control={control}
@@ -87,7 +87,10 @@ const Page5 = () => {
             helperText={errors?.filesPassport?.message}
           />
 
-          <Subheader subheader="Фото актуальной страховки" description="" />
+          <Subheader
+            subheader={t("InsuranceTransport.Page5.currentInsurance")}
+            description=""
+          />
           <FileInput
             control={control}
             name="filesInsurance"
@@ -98,14 +101,14 @@ const Page5 = () => {
           />
           <MuiCheckbox
             control={control}
-            labelName="Транспортное средство уже зарегестрировано на меня / мою фирму"
+            labelName={t("InsuranceTransport.Page5.registeredOnMe")}
             name="isFirstOwner"
           />
           {!firstOwner && (
             <>
               <Subheader
-                subheader="Фото договора купли продажи"
-                description="необходимо прикрепить полный разворот двух сторон"
+                subheader={t("InsuranceTransport.Page5.salesContract")}
+                description={t("InsuranceTransport.Page5.twoSides")}
               />
               <FileInput
                 control={control}

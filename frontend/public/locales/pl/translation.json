@@ -923,7 +923,13 @@
       "security": "Zabezpieczenie"
     },
     "Page5": {
-      "subtitle": "Zdjęcia dokumentów"
+      "subtitle": "Zdjęcia dokumentów",
+      "twoSides": "Prosimy dołączyć zdjęcia obu stron",
+      "registration": "Zdjęcie paszportu technicznego",
+      "driversLicence": "Zdjęcie prawa jazdy",
+      "currentInsurance": "Zdjęcie aktualnego ubiezpieczenia",
+      "registeredOnMe": "Pojazd jest już zarejestrowany na mnie / moją firmę",
+      "salesContract": "Zdjęcie umowy kupna-sprzedaży"
     }
   },
   "InsuranceBorder": {

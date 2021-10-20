@@ -24,6 +24,7 @@ import ApplicationStatusesPreview from "./localComponents/ApplicationStatusesPre
 import Feedback from "./localComponents/Feedback";
 import FeedbackPreview from "./localComponents/FeedbackPreview";
 import AttachDocuments from "./localComponents/AttachDocuments";
+import Attachments from "./localComponents/Attachments";
 import Thumbnails from "@components/Thumbnails";
 
 import { FullPage } from "@components/content";
@@ -166,16 +167,16 @@ const ApplicationOpen = ({ returnTo }) => {
               subheader={t("ApplicationOpen.AttachmentsUser.title")}
               description={t("ApplicationOpen.AttachmentsUser.subtitle")}
             />
-            <Thumbnails
+            <Attachments
+              attachments={[application?.documents]}
               id={id}
-              files={[application?.documents]}
               type="documents"
             />
             <Subheader
               subheader={t("ApplicationOpen.AttachmentsAdmin.title")}
               description={t("ApplicationOpen.AttachmentsAdmin.subtitle")}
             />
-            <Thumbnails
+            <Attachments
               id={id}
               files={[application?.attachments]}
               type="attachments"

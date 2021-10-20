@@ -3,7 +3,7 @@ import { setSnackbar } from "../alert/actions";
 
 import { auth } from "@helpers/firebaseHelper";
 
-import { fetchUserAPI, signUpAPI } from "@api/userAPI";
+import { fetchUserAPI, signUpAPI } from "@api/auth";
 
 export const signup = (data, callback) => async (dispatch) => {
   try {

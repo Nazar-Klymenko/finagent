@@ -24,18 +24,22 @@ const Card: React.FC<Props> = ({ appDataForUser }) => {
     <CardWrap>
       <CardStyled onClick={openCard}>
         <Title>
-          <h3>{appDataForUser.type}</h3>
+          <h3>{t("Basic.ApplicationType." + appDataForUser?.type)}</h3>
         </Title>
         <Info>
           <StatusColor />
           <Cell>
             <span className="key">{t("Dashboard.ApplicationCard.name")}</span>
-            <span className="value">{appDataForUser.user?.name}</span>
+            <span className="value">
+              {appDataForUser.user?.name} {appDataForUser.user?.surname}
+            </span>
           </Cell>
-          <Cell>
+          {/* <Cell>
             <span className="key">{t("Dashboard.ApplicationCard.type")}</span>
-            <span className="value">{appDataForUser?.type}</span>
-          </Cell>
+            <span className="value">
+              {t("Basic.ApplicationType." + appDataForUser?.type)}
+            </span>
+          </Cell> */}
           <Cell>
             <span className="key">
               {t("Dashboard.ApplicationCard.createdAt")}

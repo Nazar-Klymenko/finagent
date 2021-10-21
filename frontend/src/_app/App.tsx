@@ -29,6 +29,7 @@ import { fetchUser } from "@redux/auth/actions";
 import ScrollToTop from "@hooks/ScrollToTop";
 
 import { ProviderComposer, provider } from "@helpers/combineProviders";
+import { LocalizeMoment } from "@components/LocalizeMoment";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ const App = () => {
       <ReactQueryDevtools initialIsOpen={false} />
       <Suspense fallback={<Loader />}>
         <GlobalStyle />
+        <LocalizeMoment />
         <Router>
           <ScrollToTop />
           <Nav />

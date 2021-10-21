@@ -22,7 +22,17 @@
     "buttonConfirm": "Potwierdzić",
     "summary": "Podsumowanie",
     "no": "Nie",
-    "yes": "Tak"
+    "yes": "Tak",
+    "ApplicationType": {
+      "OC": "Ubezpieczenie transportu",
+      "Estate": "Ubezpieczenia nieruchomości",
+      "Travel": "Ubezpieczenie turystyczne",
+      "HealthSpecialist": "Dostęp do specjalistów",
+      "HealthMedical": "Ubezpieczenie zdrowotne",
+      "Border": "Ubezpieczenie graniczne",
+      "Mortgage": "Kredyt hipoteczny",
+      "Cash": "Kredyt gotówkowy"
+    }
   },
   "Summary": {
     "yes": "Tak",
@@ -100,7 +110,7 @@
     },
     "Border": {
       "title": "Ubezpieczenie graniczne",
-      "subtitle": "Ubezpieczenie, które należy wykupić, gdy auto nie ma Zielonej Karty a wyjeżdzasz poza granice kraju."
+      "subtitle": "Ubezpieczenie pojazdu zarejestrowanego w innym kraju i sprowadzonego do Polski bez ważnej Zielonej Karty."
     },
     "Health": {
       "title": "Ubezpieczenie kosztów leczenia cudzoziemców",
@@ -565,7 +575,7 @@
     }
   },
   "InsuranceTravel": {
-    "title": "Ubezpieczenie podróżne",
+    "title": "Ubezpieczenie turystyczne",
 
     "buttonBack": "Powrót",
     "Page1": {
@@ -603,7 +613,7 @@
     }
   },
   "InsuranceEstate": {
-    "title": "Ubezpieczenia nieruchomości",
+    "title": "Ubezpieczenie nieruchomości",
 
     "buttonBack": "Powrót",
     "Page1": {
@@ -776,7 +786,7 @@
     }
   },
   "InsuranceTransport": {
-    "title": "Ubezpieczenie transportu",
+    "title": "Ubezpieczenie pojazdu",
 
     "SelectProfession": {
       "unemployed": "Bezrobotny",

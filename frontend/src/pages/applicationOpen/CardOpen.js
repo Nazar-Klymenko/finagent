@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 import moment from "moment";
+
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -34,7 +35,7 @@ const CardOpen = () => {
   let { data, error, isFetching, refetch } = useQuery(
     [`cardOpen${id}`],
     () => fetchData(),
-    { keepPreviousData: true, staleTime: 5000 }
+    { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
   );
   let addDataLabeled;
   let createdAt = new Date(data?.createdAt).toLocaleDateString("pl");
@@ -55,8 +56,9 @@ const CardOpen = () => {
           >
             <ArrowDown fill="#1a1b1e" rotation={90} />
           </div>
-          <p>{data?.type}</p>
+          <p>{t("Basic.ApplicationType." + data?.type)}</p>
         </CardHeader>
+
         {!isFetching && error && (
           <ErrorRefetch text="Error fetching application" callback={refetch} />
         )}
@@ -70,10 +72,10 @@ const CardOpen = () => {
                   {data?.user?.name + " " + data?.user?.surname}
                 </span>
               </InfoWrap>
-              <InfoWrap>
+              {/* <InfoWrap>
                 <span className="name">{t("ApplicationOpen.type")}</span>
                 <span className="value">{data?.type}</span>
-              </InfoWrap>
+              </InfoWrap> */}
               <InfoWrap>
                 <span className="name">{t("ApplicationOpen.createdAt")}</span>
                 <span className="value">{createdAt}</span>
@@ -125,11 +127,11 @@ const CardOpen = () => {
               description={t("ApplicationOpen.FinalDocument.subtitle")}
             />
 
-            {/* <Attachments
+            <Attachments
               attachments={[data?.attachments]}
               id={id}
               type="attachments"
-            /> */}
+            />
 
             {!data?.archived && <Archive id={id} />}
           </>
@@ -192,10 +194,14 @@ const InfoWrap = styled.div`
   .name {
     color: ${({ theme }) => theme.gray};
   }
+
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
     flex-direction: row;
     .name {
-      min-width: 130px;
+      min-width: 180px;
+    }
+    .value {
+      margin-left: 24px;
     }
   }
 `;

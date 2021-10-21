@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { ContentWrap } from "@components/content";
 
 import { NavLink } from "react-router-dom";
 
-const Error404 = () => {
+const Error404: FC = () => {
   const { t } = useTranslation();
   return (
     <ContentWrap direction="column" fullWidth>

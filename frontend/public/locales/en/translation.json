@@ -22,7 +22,17 @@
     "buttonConfirm": "Confirm",
     "summary": "Summary",
     "no": "No",
-    "yes": "Yes"
+    "yes": "Yes",
+    "ApplicationType": {
+      "OC": "Transport insurance",
+      "Estate": "Real estate insurance",
+      "Travel": "Travel insurance",
+      "HealthSpecialist": "Specialists access",
+      "HealthMedical": "Health insurance",
+      "Border": "Border insurance",
+      "Mortgage": "Mortgage loan",
+      "Cash": "Cash loan"
+    }
   },
   "Summary": {
     "yes": "Yes",
@@ -100,7 +110,7 @@
     },
     "Border": {
       "title": "Transport border insurance",
-      "subtitle": "Border insurance"
+      "subtitle": "Insurance for a vehicle registered in another country and brought into Poland without a valid Green Card."
     },
     "Health": {
       "title": "Health insurance",

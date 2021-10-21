@@ -137,9 +137,10 @@ export const resendEmailAPI = () => {
 
 /////////////////// Settings API ////////////////////////
 export const getSettingsAPI = () => {
-  return axios(`/user/settings`, {
-    method: "GET",
-  });
+  return {
+    url: "/user/settings",
+    options: { method: "GET" },
+  };
 };
 
 export const updateSettingsAPI = (object) => {

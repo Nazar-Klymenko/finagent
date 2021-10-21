@@ -130,7 +130,8 @@ const Cell = styled.div`
   flex-direction: column;
   min-width: max-content;
   width: 9rem;
-  padding-right: 1.5rem;
+  padding-right: 32px;
+
   .key {
     color: ${({ theme }) => theme.gray};
     font-size: 0.9rem;
@@ -141,11 +142,11 @@ const Cell = styled.div`
     align-items: center;
     padding: 0.4rem;
     .key {
-      min-width: 8rem;
+      min-width: 180px;
     }
     .value {
-      min-width: 8rem;
-      padding-left: 0.4rem;
+      min-width: 180px;
+      margin-left: 24px;
     }
   }
 `;

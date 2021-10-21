@@ -18,22 +18,16 @@ import useFetch from "@hooks/useFetch";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
-  const { response, error, isLoading } = useFetch(getSettingsAPI);
+  const { data, error, loading } = useFetch(getSettingsAPI());
 
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [postError, setPostError] = useState("");
 
-  const [defaultSettings, setDefaultSettings] = useState({});
-
-  useEffect(() => {
-    setDefaultSettings(response.data);
-  }, [response]);
-
   const { register, handleSubmit, errors, reset, formState } = useForm({
     defaultValues: {
-      name: defaultSettings?.name,
-      surname: defaultSettings?.surname,
-      phone: defaultSettings?.phone,
+      name: data?.name,
+      surname: data?.surname,
+      phone: data?.phone,
     },
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -41,9 +35,10 @@ const ChangePasswordPage = () => {
     resolver: yupResolver(settingsSchema()),
   });
 
+  console.log({ data });
   useEffect(() => {
-    reset(defaultSettings);
-  }, [defaultSettings, reset]);
+    reset(data);
+  }, [data, reset]);
 
   const { isDirty } = formState;
 
@@ -63,7 +58,7 @@ const ChangePasswordPage = () => {
     <ChangingPage>
       <h3>{t("Settings.ChangeInfo.title")}</h3>
       <div className="form">
-        {isLoading && <Loader />}
+        {loading && <Loader />}
         <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
           <Input
             ref={register}

@@ -9,6 +9,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/pickers": "^3.3.10",
+    "@types/react-pdf": "^5.0.8",
     "axios": "^0.21.1",
     "date-fns": "^2.16.1",
     "firebase": "^8.6.1",

@@ -1,7 +1,6 @@
 import Admin from "models/admin.js";
 import createError from "http-errors";
 import asyncHandler from "helpers/asyncHandler.js";
-import { auth } from "app";
 
 export const allOperators = asyncHandler(async (req, res) => {
   const admin = await Admin.find({ isApproved: true, role: "admin" });

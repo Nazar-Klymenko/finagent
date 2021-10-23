@@ -1,6 +1,6 @@
 import CreateError from "http-errors";
 
-import { auth, adminAuth } from "app";
+import { auth, adminAuth } from "services/firebase";
 
 let verifiedEmail;
 

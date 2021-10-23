@@ -13,8 +13,8 @@ import loginSchema from "./login.schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { login, loginFacebook } from "@redux/auth/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 interface Props {
   location: any;
@@ -22,10 +22,10 @@ interface Props {
 
 const Login: React.FC<Props> = (props) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const history = useHistory();
+  const { login, loginFacebook, currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
 
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
   const [isLoading, setIsLoading] = useState(false);
 
   const { register, handleSubmit, errors } = useForm({
@@ -56,12 +56,12 @@ const Login: React.FC<Props> = (props) => {
 
   const formSubmit = async (data: { email: string; password: string }) => {
     setIsLoading(true);
-    dispatch(login(data.email, data.password, redirectCallback));
+    login(data.email, data.password, redirectCallback);
     setIsLoading(false);
   };
 
   const loginWithFacebook = () => {
-    dispatch(loginFacebook());
+    loginFacebook();
   };
 
   return (
@@ -165,8 +165,6 @@ const AlternativeLine = styled.div`
   margin-top: 0.5rem;
   text-align: center;
 `;
-
-// const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
 
 // useEffect(() => {
 //   if (isLoggedIn) history.push("/dashboard/insurances");

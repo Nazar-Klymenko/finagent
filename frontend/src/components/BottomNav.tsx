@@ -9,6 +9,7 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 
 import { useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
@@ -25,7 +26,8 @@ const useStyles = makeStyles({
 
 const BottomNav = () => {
   const { t } = useTranslation();
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
 
   const classes = useStyles();
 
@@ -44,44 +46,38 @@ const BottomNav = () => {
     setLabelSelected(location.pathname);
   }, [location]);
 
-  return (
-    isLoggedIn && (
-      <BottomNavStyled
-        className={classes.root}
-        value={labelSelected}
-        showLabels
-      >
-        <BottomNavigationAction
-          component={NavLink}
-          to="/dashboard/insurances"
-          label={t("NavbarBottom.dashboard")}
-          value={`/dashboard/${dashboardPath}/${dashboardTab}/${dashboardPageNum}`}
-          icon={<HomeRoundedIcon />}
-        />
-        <BottomNavigationAction
-          component={NavLink}
-          to="/services"
-          label={t("NavbarBottom.services")}
-          value="/services"
-          icon={<AssignmentRoundedIcon />}
-        />
-        <BottomNavigationAction
-          component={NavLink}
-          to="/help"
-          label={t("NavbarBottom.help")}
-          value="/help"
-          icon={<HelpRoundedIcon />}
-        />
-        <BottomNavigationAction
-          component={NavLink}
-          to="/settings"
-          label={t("NavbarBottom.settings")}
-          value={`/settings/${settingsPath}`}
-          icon={<SettingsRoundedIcon />}
-        />
-      </BottomNavStyled>
-    )
-  );
+  return isLoggedIn ? (
+    <BottomNavStyled className={classes.root} value={labelSelected} showLabels>
+      <BottomNavigationAction
+        component={NavLink}
+        to="/dashboard/insurances"
+        label={t("NavbarBottom.dashboard")}
+        value={`/dashboard/${dashboardPath}/${dashboardTab}/${dashboardPageNum}`}
+        icon={<HomeRoundedIcon />}
+      />
+      <BottomNavigationAction
+        component={NavLink}
+        to="/services"
+        label={t("NavbarBottom.services")}
+        value="/services"
+        icon={<AssignmentRoundedIcon />}
+      />
+      <BottomNavigationAction
+        component={NavLink}
+        to="/help"
+        label={t("NavbarBottom.help")}
+        value="/help"
+        icon={<HelpRoundedIcon />}
+      />
+      <BottomNavigationAction
+        component={NavLink}
+        to="/settings"
+        label={t("NavbarBottom.settings")}
+        value={`/settings/${settingsPath}`}
+        icon={<SettingsRoundedIcon />}
+      />
+    </BottomNavStyled>
+  ) : null;
 };
 
 const BottomNavStyled = styled(BottomNavigation)`

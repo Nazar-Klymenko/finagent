@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import LogoWrap from "@components/LogoWrap";
 import { Logo } from "@components/svgs";
 
-import { useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 interface Styled {
   isAuthenticated: boolean;
@@ -14,7 +14,8 @@ interface Styled {
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
 
   return (
     <FooterStyled isAuthenticated={isLoggedIn}>

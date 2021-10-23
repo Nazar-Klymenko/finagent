@@ -11,6 +11,7 @@ import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 
 import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
+import { useAuth } from "@context/authContext";
 
 interface Props {
   navOpen: boolean;
@@ -19,8 +20,8 @@ interface Props {
 
 const Links: React.FC<Props> = ({ navOpen, setNavOpen }) => {
   // const { t } = useTranslation();
-  // const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
-
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
   const hadleReguralClick = () => {
     setNavOpen(false);
   };

@@ -4,12 +4,11 @@ import { useData } from "@context/dataContext";
 import { useHistory } from "react-router-dom";
 
 import Loader from "@components/Loader";
-import { useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { isLoggedIn, isSendingRequest, isActive } = useSelector(
-    (state) => state.user
-  );
+  const { currentUser } = useAuth();
+  const { isLoggedIn, isSendingRequest, isActive } = currentUser;
 
   return (
     <Route
@@ -43,9 +42,8 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 export const QuestRoute = ({ component: Component, ...rest }) => {
-  const { isLoggedIn, isSendingRequest, isActive } = useSelector(
-    (state) => state.user
-  );
+  const { currentUser } = useAuth();
+  const { isLoggedIn, isSendingRequest, isActive } = currentUser;
 
   const { currentPage, allowSummary } = useData();
   const history = useHistory();

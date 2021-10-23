@@ -15,11 +15,13 @@ import { Header } from "@components/typography";
 
 import { signup, loginFacebook } from "@redux/auth/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 const SignUp = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
   const [isLoading, setIsLoading] = useState(false);
   let interfaceLanguage = document.cookie.replace(
     /(?:(?:^|.*;\s*)i18next\s*\=\s*([^;]*).*$)|^.*$/,

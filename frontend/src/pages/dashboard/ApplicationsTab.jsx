@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import PageToggle from "./PageToggle";
-import Card from "../../components/Card";
+import Card from "@components/Card";
 import Loader from "@components/Loader";
 
 import { getApplicationsAPI } from "@api/userAPI";

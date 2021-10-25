@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import styled from "styled-components/macro";
@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 
-import { useSelector } from "react-redux";
 import { useAuth } from "@context/authContext";
 
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
@@ -31,28 +30,19 @@ const BottomNav = () => {
 
   const classes = useStyles();
 
-  const [labelSelected, setLabelSelected] = useState("");
-  const [dashboardPath, setDashboardPath] = useState("");
-  const [dashboardTab, setDashboardTab] = useState("");
-  const [dashboardPageNum, setDashboardPageNum] = useState("");
-  const [settingsPath, setSettingsPath] = useState("");
   const location = useLocation();
 
-  useEffect(() => {
-    setDashboardPath(location.pathname.split("/")[2]);
-    setDashboardTab(location.pathname.split("/")[3]);
-    setDashboardPageNum(location.pathname.split("/")[4]);
-    setSettingsPath(location.pathname.split("/")[2]);
-    setLabelSelected(location.pathname);
-  }, [location]);
-
   return isLoggedIn ? (
-    <BottomNavStyled className={classes.root} value={labelSelected} showLabels>
+    <BottomNavStyled
+      className={classes.root}
+      value={location.pathname}
+      showLabels
+    >
       <BottomNavigationAction
         component={NavLink}
         to="/dashboard/insurances"
         label={t("NavbarBottom.dashboard")}
-        value={`/dashboard/${dashboardPath}/${dashboardTab}/${dashboardPageNum}`}
+        value={`/dashboard/`}
         icon={<HomeRoundedIcon />}
       />
       <BottomNavigationAction
@@ -73,7 +63,7 @@ const BottomNav = () => {
         component={NavLink}
         to="/settings"
         label={t("NavbarBottom.settings")}
-        value={`/settings/${settingsPath}`}
+        value={`/settings/`}
         icon={<SettingsRoundedIcon />}
       />
     </BottomNavStyled>

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
 import { NavLink } from "react-router-dom";
 
@@ -15,12 +16,13 @@ interface Props {
 
 const AuthLinks: FC<Props> = ({ navOpen, setNavOpen }) => {
   const { t } = useTranslation();
+  const history = useHistory();
 
   const { currentUser, logout } = useAuth();
   const { isLoggedIn } = currentUser;
 
-  const logOut = () => {
-    logout();
+  const logOutButton = () => {
+    logout(() => history.push("/"));
   };
   return (
     <AuthLinksWrap>
@@ -29,7 +31,7 @@ const AuthLinks: FC<Props> = ({ navOpen, setNavOpen }) => {
           to=""
           onClick={() => {
             setNavOpen(false);
-            logOut();
+            logOutButton();
           }}
         >
           <span>{t("UserDropdown.signOut")}</span>

@@ -24,8 +24,6 @@ import { ThemeProvider } from "styled-components";
 import theme from "@styles/theme";
 import GlobalStyle from "@styles/GlobalStyle";
 
-import { useDispatch } from "react-redux";
-
 import ScrollToTop from "@hooks/ScrollToTop";
 
 import { ProviderComposer, provider } from "@helpers/combineProviders";

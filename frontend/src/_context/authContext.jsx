@@ -1,18 +1,25 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { firebase, auth } from "@services/firebase";
+import { useHistory } from "react-router-dom";
+
+import { auth } from "@services/firebase";
 import { setSnackbar } from "@redux/alert/actions";
-import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
+import { useDispatch } from "react-redux";
 
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  getAdditionalUserInfo,
   onAuthStateChanged,
   signInWithPopup,
   FacebookAuthProvider,
   signOut,
   confirmPasswordReset,
+  sendEmailVerification,
+  deleteUser,
+  updateProfile,
 } from "firebase/auth";
+import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
 
 const AuthContext = createContext({
   currentUser: {
@@ -23,9 +30,9 @@ const AuthContext = createContext({
     photoURL: "",
   },
   signup: () => Promise,
-  login: (email, password, callback) => Promise,
+  login: (email, password) => Promise,
   loginFacebook: () => Promise,
-  logout: () => Promise,
+  logout: (redirectCallback) => Promise,
   forgotPassword: () => Promise,
   resetPassword: () => Promise,
 });
@@ -33,6 +40,9 @@ const AuthContext = createContext({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [currentUser, setCurrentUser] = useState({
     displayName: "",
     isLoggedIn: false,
@@ -66,33 +76,56 @@ export const AuthContextProvider = ({ children }) => {
               isSendingRequest: false,
               photoURL: photoURL,
             }
-          : null
+          : {
+              displayName: "",
+              isLoggedIn: false,
+              isActive: false,
+              isSendingRequest: false,
+              photoURL: "",
+            }
       );
     });
     return () => {
       unsubscribe();
     };
   }, []);
+
   useEffect(() => {
     console.log({ currentUser });
   }, [currentUser]);
 
-  const signup = (data, callback) => async (dispatch) => {
+  async function signup(data) {
+    let newData = data;
     try {
-      await auth
-        .createUserWithEmailAndPassword(data.email, data.password)
-        .then((userCredential) => {
-          userCredential.user.updateProfile({
-            displayName: `${data.name} ${data.surname}`,
-          });
-          userCredential.user.sendEmailVerification();
-          data.IdToken = userCredential.user.getIdToken();
-          data.provider = userCredential.additionalUserInfo.providerId;
-        });
-      const response = await signUpAPI(data);
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      const user = auth.currentUser;
+      let additionalInfo = await getAdditionalUserInfo(response);
+
+      await updateProfile(user, {
+        displayName: `${data.name} ${data.surname}`,
+      });
+
+      newData.IdToken = await user.getIdToken();
+      newData.provider = additionalInfo.providerId;
+
+      const backendResponse = await signUpAPI(newData).catch((error) => {
+        deleteUser(user);
+        throw new Error();
+      });
+      await sendEmailVerification(auth.currentUser);
 
       dispatch(setSnackbar("success", "SnackBar.confirmEmail"));
-      callback();
+
+      setCurrentUser((currentUser) => {
+        return {
+          ...currentUser,
+          displayName: `${data.name} ${data.surname}`,
+        };
+      });
     } catch (error) {
       switch (error.response?.status) {
         case 409: {
@@ -106,14 +139,13 @@ export const AuthContextProvider = ({ children }) => {
         }
       }
     }
-  };
+  }
 
-  const login = (email, password, callback) => async (dispatch) => {
+  async function login(email, password) {
     try {
-      const response = await auth.signInWithEmailAndPassword(email, password);
+      const response = await signInWithEmailAndPassword(auth, email, password);
 
       dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
-      callback();
     } catch (error) {
       switch (error.response?.status) {
         case 401: {
@@ -126,39 +158,51 @@ export const AuthContextProvider = ({ children }) => {
         }
       }
     }
-  };
+  }
 
-  const loginFacebook = () => async (dispatch) => {
+  async function loginFacebook() {
     const provider = new FacebookAuthProvider();
     try {
-      const response = await signInWithPopup(provider);
+      const response = await signInWithPopup(auth, provider);
+      const additionalInfo = await getAdditionalUserInfo(response);
 
-      if (response.additionalUserInfo.isNewUser) {
-        signUpFacebookAPI(response);
+      const user = auth.currentUser;
+
+      if (additionalInfo.isNewUser) {
+        await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
+          (error) => {
+            deleteUser(user);
+            throw new Error();
+          }
+        );
       }
 
       dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
     } catch (error) {
       dispatch(setSnackbar("error", "SnackBar.loginError"));
     }
-  };
+  }
 
-  const resendVerificationEmail = () => async (dispatch) => {
+  async function resendVerificationEmail() {
     try {
-      await auth.currentUser.sendEmailVerification();
+      await sendEmailVerification(auth.currentUser);
       dispatch(setSnackbar("success", "SnackBar.emailWasResent"));
     } catch (error) {
       dispatch(setSnackbar("error", "SnackBar.errorResendingEmail"));
     }
-  };
-
-  const resetPassword = async (email) => {
+  }
+  async function resetPassword(email) {
     await auth.sendPasswordResetEmail(email);
-  };
+  }
 
-  const updateEmail = async (email) => {
+  async function updateEmail(email) {
     await auth.currentUser?.updateEmail(email);
-  };
+  }
+
+  async function logout(redirectCallback) {
+    await signOut(auth);
+    redirectCallback();
+  }
 
   const value = {
     currentUser,
@@ -167,6 +211,7 @@ export const AuthContextProvider = ({ children }) => {
     updateEmail,
     login,
     loginFacebook,
+    logout,
     resendVerificationEmail,
   };
 

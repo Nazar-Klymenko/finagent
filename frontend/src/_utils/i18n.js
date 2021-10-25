@@ -11,7 +11,6 @@ i18n
     fallbackLng: "pl",
     supportedLngs: ["pl", "en", "ua", "ru"],
     nonExplicitSupportedLngs: true,
-    // debug: process.env.NODE_ENV === "development",
     detection: {
       order: ["cookie", "navigator"],
       cache: ["cookie"],

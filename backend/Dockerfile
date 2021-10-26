@@ -1,6 +1,6 @@
-FROM node:lts-buster-slim
+FROM node:alpine
 
-WORKDIR /backend
+WORKDIR /usr/src/app
 
 COPY package.json .
 COPY yarn.lock .

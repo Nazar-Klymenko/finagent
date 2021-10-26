@@ -7,7 +7,7 @@ import { Input, InputPassword } from "@components/input";
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
-import { Header } from "@components/typography";
+import { Text } from "@components/typography";
 
 import loginSchema from "./login.schema";
 import { useForm } from "react-hook-form";
@@ -64,9 +64,10 @@ const Login: React.FC<Props> = (props) => {
 
   return (
     <ContentWrap xl authForm direction="column">
-      <Header bottomGutter variant="h1" align="center">
+      <Text gutterBottom variant="h3" align="center">
         {t("LogIn.title")}
-      </Header>
+      </Text>
+
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
         <Input
           ref={register}
@@ -127,10 +128,10 @@ const AuthOptions = styled.div`
 const SignUpOption = styled.div`
   font-size: 0.8rem;
   .signup-link {
-    color: ${({ theme }) => theme.typography.blue};
+    color: ${({ theme }) => theme.blue};
     padding: 0.5rem;
     &:visited {
-      color: ${({ theme }) => theme.typography.blue};
+      color: ${({ theme }) => theme.blue};
     }
   }
 `;

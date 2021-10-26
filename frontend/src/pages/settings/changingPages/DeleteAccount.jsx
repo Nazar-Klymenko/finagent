@@ -17,7 +17,7 @@ import { InputPassword } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
-import { Header } from "@components/typography";
+import { Text } from "@components/typography";
 
 const DangerZonePage = () => {
   const { t } = useTranslation();
@@ -63,7 +63,7 @@ const DangerZonePage = () => {
   return (
     <ChangingPage>
       <DangerZoneStyled>
-        <Header variant="h3">{t("Settings.Disposal.title")}</Header>
+        <Text variant="h4">{t("Settings.Disposal.title")}</Text>
         {loading && <Loader />}
         <span
           className="danger-action"

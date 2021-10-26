@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { ContentWrap } from "@components/content";
-import { Header } from "@components/typography";
+import { Text } from "@components/typography";
 
 import ServiceCard from "./ServiceCard";
 
@@ -22,7 +22,9 @@ const Services = () => {
   const { t } = useTranslation();
   return (
     <ContentWrap fullWidth direction="column" blank>
-      <Header bottomGutter>{t("Services.Titles.insurances")}</Header>
+      <Text gutterBottom variant="h3">
+        {t("Services.Titles.insurances")}
+      </Text>
       <ServicesWrap>
         <ServiceCard
           to="quest/transport/1"
@@ -68,7 +70,7 @@ const Services = () => {
         />
       </ServicesWrap>
 
-      <Header bottomGutter>{t("Services.Titles.loans")}</Header>
+      <Text gutterBottom>{t("Services.Titles.loans")}</Text>
       <ServicesWrap>
         <ServiceCard
           to="quest/cashloan/1"

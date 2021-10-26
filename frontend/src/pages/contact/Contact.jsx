@@ -9,17 +9,21 @@ import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Mail, Point, Phone } from "@components/svgs";
 import { ContentWrap } from "@components/content";
-import { Header } from "@components/typography";
+import { Text } from "@components/typography";
 
 const Contact = () => {
   const { t } = useTranslation();
   useTitle("Contact | FinAgent");
   return (
     <ContentWrap fullWidth blank direction="column">
-      <Header bottomGutter>{t("Contact.title")}</Header>
+      <Text gutterBottom variant="h3" align="left">
+        {t("Contact.title")}
+      </Text>
       <MainContainer>
         <FormSide>
-          <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
+          <Text variant="h6" gutterBottom>
+            {t("Contact.subtitleForm")}
+          </Text>
           <Form id="form">
             <Input
               labelName={t("Contact.Form.fullName")}
@@ -44,7 +48,9 @@ const Contact = () => {
           </Form>
         </FormSide>
         <InfoSide>
-          <ContactSubtitle>{t("Contact.subtitleInfo")}</ContactSubtitle>
+          <Text variant="h6" gutterBottom>
+            {t("Contact.subtitleInfo")}
+          </Text>
           <InfoWrap>
             <ContactInfo>
               <InfoIcon>
@@ -80,10 +86,6 @@ const Contact = () => {
 };
 export default Contact;
 
-const ContactSubtitle = styled.h3`
-  text-align: left;
-  padding-bottom: 1.5rem;
-`;
 const MainContainer = styled.div`
   display: flex;
   @media all and (max-width: ${({ theme }) => theme.widthTablet}) {

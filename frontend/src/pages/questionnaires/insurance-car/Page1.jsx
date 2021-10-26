@@ -18,6 +18,7 @@ import {
   MuiSelect,
   MuiRadio,
   MuiCheckbox,
+  MuiInput,
 } from "@components/input";
 
 import {
@@ -109,8 +110,8 @@ const Page1 = () => {
               t(errors?.atleastOneCheckbox?.message)}
           </InputErrorMessage>
 
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="name"
             labelName={t("InsuranceTransport.Page1.name")}
             type="text"

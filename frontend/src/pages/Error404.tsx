@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
 import { ContentWrap } from "@components/content";
 
 import { NavLink } from "react-router-dom";

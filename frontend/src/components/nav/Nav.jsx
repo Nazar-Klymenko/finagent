@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components/macro";
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+/macro";
 
 import { UserAuth } from "@components/buttons";
 import LogoWrap from "@components/LogoWrap";

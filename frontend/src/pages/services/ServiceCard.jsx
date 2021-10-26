@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 function ServiceCard({ to, image, imageAlt, header, description }) {
   const history = useHistory();

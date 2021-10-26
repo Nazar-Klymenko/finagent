@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 

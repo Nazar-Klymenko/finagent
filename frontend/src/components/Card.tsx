@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
 import { useTranslation } from "react-i18next";
 
 interface Props {

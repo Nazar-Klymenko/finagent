@@ -20,7 +20,7 @@ import Footer from "@components/Footer";
 
 import Routes from "./routes";
 
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "@emotion/react";
 import theme from "@styles/theme";
 import GlobalStyle from "@styles/GlobalStyle";
 

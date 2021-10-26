@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components/macro";
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+/macro";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import { getApplicationsQuantityAPI } from "@api/applicationAPI";

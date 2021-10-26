@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

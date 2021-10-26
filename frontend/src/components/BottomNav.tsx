@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
 import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 

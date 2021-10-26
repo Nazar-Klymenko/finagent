@@ -1,5 +1,7 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
 import { CTA } from "@components/buttons";
 import { archiveApplicationAPI } from "@api/applicationAPI";
 import { useTranslation } from "react-i18next";

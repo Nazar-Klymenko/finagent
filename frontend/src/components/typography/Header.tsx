@@ -1,5 +1,7 @@
 import React, { FC } from "react";
-import styled, { css } from "styled-components/macro";
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+/macro";
 
 interface Props {
   variant: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

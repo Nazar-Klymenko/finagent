@@ -1,5 +1,7 @@
 import React from "react";
-import styled, { css } from "styled-components/macro";
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+/macro";
 
 interface Props {
   fullWidth?: boolean;

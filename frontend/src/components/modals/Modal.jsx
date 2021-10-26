@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 import { Cross } from "@components/svgs";
 

@@ -2,7 +2,8 @@ import React from "react";
 import useTitle from "@hooks/useTitle";
 import { NavLink, Redirect } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 import ChangeInfoPage from "./changingPages/ChangeInfoPage";
 import ChangeEmailPage from "./changingPages/ChangeEmailPage";

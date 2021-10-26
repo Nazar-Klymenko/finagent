@@ -1,4 +1,5 @@
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 export const Page = styled.div`
   min-width: 680px;

@@ -3,7 +3,8 @@ import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import { Link } from "react-router-dom";
 
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 interface Props {
   category: string;

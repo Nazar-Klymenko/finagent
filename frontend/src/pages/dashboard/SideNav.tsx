@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
 import { useTranslation } from "react-i18next";
 
 import { getApplicationsQuantityAPI } from "@api/applicationAPI";

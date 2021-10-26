@@ -1,6 +1,8 @@
 import React, { useState, useRef, useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
 import { useTranslation } from "react-i18next";
 
 import { Settings, SignOut } from "@components/svgs";

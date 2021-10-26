@@ -1,5 +1,6 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 const FullPage: React.FC = ({ children }) => {
   return <FullPageStyled>{children}</FullPageStyled>;

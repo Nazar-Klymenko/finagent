@@ -1,5 +1,7 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
 import { useHistory } from "react-router-dom";
 
 const LogoWrap: React.FC = ({ children }) => {

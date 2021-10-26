@@ -1,5 +1,7 @@
 import React from "react";
-import styled from "styled-components/macro";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
 import useTitle from "@hooks/useTitle";
 import { ContentWrap } from "@components/content";
 import { Header } from "@components/typography";

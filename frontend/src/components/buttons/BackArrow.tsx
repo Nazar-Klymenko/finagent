@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styled from "styled-components/macro";
 
 import { ArrowDown } from "@components/svgs";
 

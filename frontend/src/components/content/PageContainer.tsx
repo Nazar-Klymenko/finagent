@@ -1,6 +1,5 @@
 import { FC } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styled from "styled-components/macro";
 
 const PageContainer: FC = ({ children }) => {
   return <ContentMainStyled>{children}</ContentMainStyled>;

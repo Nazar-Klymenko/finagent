@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from "styled-components/macro";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

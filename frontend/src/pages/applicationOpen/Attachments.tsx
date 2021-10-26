@@ -1,7 +1,5 @@
 import React, { useEffect, useState, FC } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-
+import styled from "styled-components/macro";
 import Thumbnails from "@components/Thumbnails";
 import { getUserAttachmentsAPI } from "@api/applications";
 import useFetch from "@hooks/useFetch";

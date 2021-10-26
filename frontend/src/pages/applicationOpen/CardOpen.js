@@ -3,8 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 
 import { useTranslation } from "react-i18next";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styled from "styled-components";
 
 import { getSpecificApplication } from "@api/userAPI";
 

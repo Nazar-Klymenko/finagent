@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styled from "styled-components";
 
 import { ContentWrap } from "@components/content";
 import { useAuth } from "@context/authContext";

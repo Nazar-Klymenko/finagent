@@ -1,7 +1,5 @@
 import { useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-
+import styled from "styled-components/macro";
 import { Text, Header } from "@components/typography";
 
 const Accordion = ({ header, children }) => {

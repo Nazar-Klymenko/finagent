@@ -1,6 +1,7 @@
-import { Global, css } from "@emotion/react";
+import { createGlobalStyle } from "styled-components/macro";
 
-const globalStyle = css`
+const GlobalStyle = createGlobalStyle`
+
   *,
   *::before,
   *::after {
@@ -64,10 +65,7 @@ const globalStyle = css`
   .arrow-down-rotate {
     transition: transform 0.2s ease-in-out;
   }
-`;
 
-const GlobalStyle = () => {
-  return <Global styles={globalStyle} />;
-};
+`;
 
 export default GlobalStyle;

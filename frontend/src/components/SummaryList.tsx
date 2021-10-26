@@ -1,7 +1,5 @@
 import React, { useState, useCallback } from "react";
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-/macro";
+import styled, { css } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 import { ArrowDown } from "@components/svgs";
 

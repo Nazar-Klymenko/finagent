@@ -1,8 +1,7 @@
 import React from "react";
 import useTitle from "@hooks/useTitle";
 import { useTranslation } from "react-i18next";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styled from "styled-components";
 
 import { ContentWrap } from "@components/content";
 import { Header } from "@components/typography";

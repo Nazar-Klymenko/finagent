@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, useRouteMatch, Redirect } from "react-router-dom";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-
+import styled from "styled-components/macro";
 import useTitle from "@hooks/useTitle";
 import { useTranslation } from "react-i18next";
 import { ContentWrap } from "@components/content";

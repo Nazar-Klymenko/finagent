@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import styled from "styled-components/macro";
 
 export const ChangingPage = styled.div`
   max-width: 100%;

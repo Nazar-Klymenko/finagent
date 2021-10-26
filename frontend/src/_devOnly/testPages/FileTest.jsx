@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 

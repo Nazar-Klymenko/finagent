@@ -1,8 +1,6 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-/macro";
+import styled, { css } from "styled-components/macro";
 
 interface Props {
   large?: boolean;

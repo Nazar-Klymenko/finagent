@@ -1,8 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-/macro";
+import styled, { css } from "styled-components/macro";
 
 import { Checkmark } from "@components/svgs/Svgs";
 

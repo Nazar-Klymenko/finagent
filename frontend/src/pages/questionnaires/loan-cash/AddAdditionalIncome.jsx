@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { addAdditionalIncomeSchema } from "./applicationHelpers/loanCashSchema";
 import { useTranslation } from "react-i18next";
 import { ButtonsWrap } from "../LocalStyles";
-import { Input, MuiRadio, DateInput } from "@components/input";
+import { MuiInput, MuiRadio, DateInput } from "@components/input";
 import { Modal } from "@components/modals";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -27,7 +27,7 @@ const AddAdditionalIncome = ({
     defaultIncome
   );
 
-  const { register, handleSubmit, errors, watch, control } = useForm({
+  const { handleSubmit, errors, watch, control } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -76,8 +76,8 @@ const AddAdditionalIncome = ({
             defaultChecked={appDataValid.truckDriver || "yes"}
           />
           {truckDriver === "no" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="industry"
               labelName={t("LoanCash.IncomeModal.industry")}
               type="text"
@@ -194,8 +194,8 @@ const AddAdditionalIncome = ({
             </>
           )}
           {basicIncome === "mandate" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanCash.IncomeModal.averageIncome12")}
               type="text"
@@ -206,8 +206,8 @@ const AddAdditionalIncome = ({
             />
           )}
           {basicIncome === "specificTime" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanCash.IncomeModal.averageIncome6")}
               type="text"
@@ -243,8 +243,8 @@ const AddAdditionalIncome = ({
                 ]}
                 defaultChecked={appDataValid.accountancy || "generalRules"}
               />
-              <Input
-                ref={register}
+              <MuiInput
+                control={control}
                 name="averageIncome"
                 labelName={t("LoanCash.IncomeModal.averageIncome6")}
                 type="text"
@@ -260,8 +260,8 @@ const AddAdditionalIncome = ({
             basicIncome === "mandate" ||
             basicIncome === "specificTime"
           ) && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanCash.IncomeModal.averageIncome3")}
               type="text"
@@ -271,8 +271,8 @@ const AddAdditionalIncome = ({
               defaultValue={appDataValid.averageIncome}
             />
           )}
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="pit"
             labelName={t("LoanCash.IncomeModal.pit")}
             type="text"

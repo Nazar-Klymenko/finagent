@@ -6,7 +6,7 @@ import Links from "./Links";
 import Avatar from "./Avatar";
 import AuthLinks from "./AuthLinks";
 
-import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import useClickOutside from "@hooks/useClickOutside";
 import { useAuth } from "@context/authContext";
 

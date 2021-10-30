@@ -10,33 +10,11 @@ import { CTA } from "@components/buttons";
 
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
+import { OutlinedInput } from "@mui/material";
 
 const testSchema = yup.object().shape({
   testSelect: yup.string().required("Form.Error.blank"),
 });
-
-export const maritalStatusOptions = [
-  {
-    value: "married",
-    label: "InsuranceTransport.SelectMarital.married",
-  },
-  {
-    value: "single",
-    label: "InsuranceTransport.SelectMarital.single",
-  },
-  {
-    value: "divorced",
-    label: "InsuranceTransport.SelectMarital.divorced",
-  },
-  {
-    value: "widow",
-    label: "InsuranceTransport.SelectMarital.widow",
-  },
-  {
-    value: "separation",
-    label: "InsuranceTransport.SelectMarital.separation",
-  },
-];
 
 const Empty = () => {
   const { t } = useTranslation();
@@ -55,13 +33,7 @@ const Empty = () => {
   return (
     <ContentWrap fullWidth blank>
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-        <MuiSelect
-          control={control}
-          name="testSelect"
-          error={!!errors.testSelect}
-          helperText={errors?.testSelect?.message}
-          optionArray={maritalStatusOptions}
-        />
+        <OutlinedInput size="medium" />
       </Form>
       <CTA text="Next" form="form" color="primary" />
     </ContentWrap>

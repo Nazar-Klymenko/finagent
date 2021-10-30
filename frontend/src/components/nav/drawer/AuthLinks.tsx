@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { UserAuth } from "@components/buttons";
 import { useTranslation } from "react-i18next";
 
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useAuth } from "@context/authContext";
 
 interface Props {

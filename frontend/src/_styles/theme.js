@@ -1,11 +1,7 @@
-const theme = {
-  black: "#1a1b1e",
+import { createTheme } from "@mui/material/styles";
 
-  typography: {
-    black: "#262d3d",
-    blue: "#1672ec",
-    gray: "#7d7d7d",
-  },
+const theme = createTheme({
+  black: "#1a1b1e",
 
   gray: "#7d7d7d",
   lightGray: "#e9e9e9",
@@ -50,6 +46,6 @@ const theme = {
   widthPhone: "688px",
   widthTablet: "992px",
   widthDesktop: "1400px",
-};
+});
 
 export default theme;

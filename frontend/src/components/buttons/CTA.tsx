@@ -11,9 +11,9 @@ interface Props {
   color: "primary" | "secondary";
   text: string;
 }
-interface Styled {
+type Styled = {
   isLoading?: boolean;
-}
+};
 
 const CTA: React.FC<Props> = (props) => {
   return (
@@ -33,35 +33,35 @@ const CTAStyled = styled(MainButton)<Styled>`
       background-color: ${({ theme }) => theme.buttons.primaryBg};
       box-shadow: 0px 2px 12px 0px ${({ theme }) => theme.shadowBlue};
       color: white;
-      ${({ isLoading }) =>
-        isLoading &&
-        css`
-          pointer-events: none;
-          background-color: ${({ theme }) => theme.buttons.primaryBgLoading};
-        `}
+
       &:hover {
         background-color: ${({ theme }) => theme.buttons.primaryBgHover};
         box-shadow: 0px 3px 16px 0px ${({ theme }) => theme.shadowBlue};
       }
     `}
-
+  ${({ isLoading }) =>
+    isLoading &&
+    css`
+      pointer-events: none;
+      background-color: ${({ theme }) => theme.buttons.primaryBgLoading};
+    `}
   ${({ color }) =>
     color === "secondary" &&
     css`
       background-color: ${({ theme }) => theme.buttons.secondaryBg};
       box-shadow: 0px 1px 2px 0px ${({ theme }) => theme.gray};
       color: theme.buttons.secondaryColor;
-      ${({ isLoading }) =>
-        isLoading &&
-        css`
-          color: gray;
-          pointer-events: none;
-          background-color: ${({ theme }) => theme.buttons.secondaryBgLoading};
-        `}
-
       &:hover {
         background-color: ${({ theme }) => theme.buttons.secondaryBgHover};
       }
+    `}
+    
+    ${({ isLoading }) =>
+    isLoading &&
+    css`
+      color: gray;
+      pointer-events: none;
+      background-color: ${({ theme }) => theme.buttons.secondaryBgLoading};
     `}
 `;
 

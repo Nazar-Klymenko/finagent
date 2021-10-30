@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { policyholderSchema } from "./applicationHelpers/specialistAccessSchema";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiRadio, DateInput, PhoneInput } from "@components/input";
+import { Input, MuiRadio, DateInput, PhoneInput } from "@components/input";
 import { Modal } from "@components/modals";
 
 import { CTA } from "@components/buttons";
@@ -82,8 +82,8 @@ const AddPolicyHolder = ({
             ]}
             defaultChecked={appDataValid.policyholderIs || "firm"}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="name"
             labelName={t("InsuranceDiagnostic.Page1.name")}
             error={!!errors.name}
@@ -92,8 +92,8 @@ const AddPolicyHolder = ({
             defaultValue={appDataValid.name}
           />
           {policyholderIs === "individual" && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="surname"
               labelName={t("InsuranceDiagnostic.Page1.surname")}
               error={!!errors.surname}
@@ -103,8 +103,8 @@ const AddPolicyHolder = ({
             />
           )}
           {!(policyholderIs === "individual") && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="nip"
               labelName={t("InsuranceDiagnostic.Page1.nip")}
               error={!!errors.nip}
@@ -123,8 +123,8 @@ const AddPolicyHolder = ({
             />
           )}
           {policyholderIs === "individual" && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="pesel"
               labelName={t("InsuranceDiagnostic.Page1.pesel")}
               error={!!errors.pesel}
@@ -133,8 +133,8 @@ const AddPolicyHolder = ({
             />
           )}
           {!(policyholderIs === "individual") && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="regon"
               labelName={t("InsuranceDiagnostic.Page1.regon")}
               error={!!errors.regon}
@@ -150,48 +150,48 @@ const AddPolicyHolder = ({
             helperText={errors?.phoneNumber?.message}
             defaultValue={appDataValid.phoneNumber}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="email"
             labelName={t("InsuranceDiagnostic.Page1.email")}
             error={!!errors.email}
             helperText={errors?.email?.message}
             defaultValue={appDataValid.email}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="country"
             labelName={t("InsuranceDiagnostic.Page1.country")}
             error={!!errors.country}
             helperText={errors?.country?.message}
             defaultValue={appDataValid.country}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="city"
             labelName={t("InsuranceDiagnostic.Page1.city")}
             error={!!errors.city}
             helperText={errors?.city?.message}
             defaultValue={appDataValid.city}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="postIndex"
             labelName={t("InsuranceDiagnostic.Page1.postIndex")}
             error={!!errors.postIndex}
             helperText={errors?.postIndex?.message}
             defaultValue={appDataValid.postIndex}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="street"
             labelName={t("InsuranceDiagnostic.Page1.street")}
             error={!!errors.street}
             helperText={errors?.street?.message}
             defaultValue={appDataValid.street}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="houseNumber"
             labelName={t("InsuranceDiagnostic.Page1.houseNumber")}
             error={!!errors.houseNumber}

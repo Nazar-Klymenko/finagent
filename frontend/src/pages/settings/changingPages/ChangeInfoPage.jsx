@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
-import { MuiInput } from "@components/input";
+import { Input } from "@components/input";
 
 import { getSettingsAPI, updateSettingsAPI } from "@api/userAPI";
 import { ChangingPage, StatusError, ButtonPosition } from "./LocalStyles";
@@ -23,7 +23,7 @@ const ChangePasswordPage = () => {
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [postError, setPostError] = useState("");
 
-  const { handleSubmit, errors, reset, formState, control } = useForm({
+  const { register, handleSubmit, errors, reset, formState } = useForm({
     defaultValues: {
       name: data?.name,
       surname: data?.surname,
@@ -60,24 +60,24 @@ const ChangePasswordPage = () => {
       <div className="form">
         {loading && <Loader />}
         <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="name"
             labelName={t("Settings.ChangeInfo.name")}
             autoComplete="given-name"
             error={!!errors.name}
             helperText={errors?.name?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="surname"
             labelName={t("Settings.ChangeInfo.surname")}
             autoComplete="family-name"
             error={!!errors.surname}
             helperText={errors?.surname?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="phone"
             labelName={t("Settings.ChangeInfo.phone")}
             error={!!errors.phone}

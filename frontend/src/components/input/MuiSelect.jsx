@@ -2,24 +2,20 @@ import * as React from "react";
 import { Controller } from "react-hook-form";
 import styled from "styled-components";
 
-import { Select, adaptV4Theme } from "@mui/material/";
-import MenuItem from "@mui/material/MenuItem";
+import { Select } from "@material-ui/core/";
+import MenuItem from "@material-ui/core/MenuItem";
 import { InputStyled } from "./LocalStyles";
-import {
-  createTheme,
-  ThemeProvider,
-  StyledEngineProvider,
-} from "@mui/material";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { Label, InputErrorMessage } from "./LocalStyles";
 
-// const theme = createTheme(adaptV4Theme({
-//   palette: {
-//     primary: {
-//       main: "#1672ec",
-//     },
-//   },
-// }));
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#1672ec",
+    },
+  },
+});
 
 const MuiSelect = ({
   name,
@@ -45,8 +41,7 @@ const MuiSelect = ({
   ));
 
   return (
-    <>
-      {/* <ThemeProvider theme={theme}> */}
+    <ThemeProvider theme={theme}>
       <Label>{labelName}</Label>
 
       <Controller
@@ -85,8 +80,7 @@ const MuiSelect = ({
         <span className="invis-star">*</span>
         {t(helperText)}
       </InputErrorMessage>
-      {/* </ThemeProvider> */}
-    </>
+    </ThemeProvider>
   );
 };
 

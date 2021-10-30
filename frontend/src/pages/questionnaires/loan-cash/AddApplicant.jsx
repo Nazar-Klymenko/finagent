@@ -7,7 +7,7 @@ import { addApplicantSchema } from "./applicationHelpers/loanCashSchema";
 import { useTranslation } from "react-i18next";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiRadio, DateInput, PhoneInput } from "@components/input";
+import { Input, MuiRadio, DateInput, PhoneInput } from "@components/input";
 import Modal from "@components/modals/Modal";
 
 import { CTA } from "@components/buttons";
@@ -84,8 +84,8 @@ const AddApplicant = ({
           />
           {nationality === "other" && (
             <>
-              <MuiInput
-                control={control}
+              <Input
+                ref={register}
                 name="otherNation"
                 labelName={t("LoanCash.ApplicantModal.otherCitizenship")}
                 type="text"
@@ -138,8 +138,8 @@ const AddApplicant = ({
               )}
             </>
           )}
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="name"
             labelName={t("LoanCash.ApplicantModal.name")}
             type="text"
@@ -149,8 +149,8 @@ const AddApplicant = ({
             autoComplete="given-name"
             defaultValue={appDataValid.name}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="surname"
             labelName={t("LoanCash.ApplicantModal.surname")}
             type="text"
@@ -178,8 +178,8 @@ const AddApplicant = ({
             placeholder="+XX XXX XXX XXX"
             defaultValue={appDataValid.phoneNumber}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="email"
             labelName={t("LoanCash.ApplicantModal.email")}
             type="text"
@@ -188,8 +188,8 @@ const AddApplicant = ({
             placeholder="example@mail.com"
             defaultValue={appDataValid.email}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="pesel"
             labelName={t("LoanCash.ApplicantModal.pesel")}
             type="text"
@@ -304,8 +304,8 @@ const AddApplicant = ({
             </>
           )}
           {basicIncome === "mandate" && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="averageIncome"
               labelName={t("LoanCash.ApplicantModal.averageIncome12")}
               type="text"
@@ -316,8 +316,8 @@ const AddApplicant = ({
             />
           )}
           {basicIncome === "specificTime" && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="averageIncome"
               labelName={t("LoanCash.ApplicantModal.averageIncome6")}
               type="text"
@@ -353,8 +353,8 @@ const AddApplicant = ({
                 ]}
                 defaultChecked={appDataValid.accountancy || "generalRules"}
               />
-              <MuiInput
-                control={control}
+              <Input
+                ref={register}
                 name="averageIncome"
                 labelName={t("LoanCash.ApplicantModal.averageIncome6")}
                 type="text"
@@ -370,8 +370,8 @@ const AddApplicant = ({
             basicIncome === "mandate" ||
             basicIncome === "specificTime"
           ) && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="averageIncome"
               labelName={t("LoanCash.ApplicantModal.averageIncome3")}
               type="text"
@@ -381,8 +381,8 @@ const AddApplicant = ({
               defaultValue={appDataValid.averageIncome}
             />
           )}
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="currency"
             labelName={t("LoanCash.ApplicantModal.currency")}
             type="text"
@@ -391,8 +391,8 @@ const AddApplicant = ({
             placeholder="PLN"
             defaultValue={appDataValid.currency}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="pit"
             labelName={t("LoanCash.ApplicantModal.pit")}
             type="text"
@@ -401,8 +401,8 @@ const AddApplicant = ({
             placeholder="value"
             defaultValue={appDataValid.pit}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="bank"
             labelName={t("LoanCash.ApplicantModal.bank")}
             type="text"

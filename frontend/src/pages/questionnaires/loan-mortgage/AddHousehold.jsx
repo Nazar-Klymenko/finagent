@@ -8,7 +8,7 @@ import { addHouseholdSchema } from "./applicationHelpers/loanMortgageSchema";
 import { useTranslation } from "react-i18next";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput } from "@components/input";
+import { Input } from "@components/input";
 
 import Modal from "@components/modals/Modal";
 
@@ -35,7 +35,7 @@ const AddHousehold = ({
     defaultHousehold
   );
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { register, handleSubmit, errors } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -63,8 +63,8 @@ const AddHousehold = ({
         setOpenModal={setOpenModal}
       >
         <Form id="household-form" onSubmit={handleSubmit(AddHouseholdSubmit)}>
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="peopleInHousehold"
             labelName={t("LoanMortgage.HouseholdModal.peopleInHousehold")}
             type="text"
@@ -73,8 +73,8 @@ const AddHousehold = ({
             placeholder="number"
             defaultValue={appDataValid.peopleInHousehold}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="monthlyExpenses"
             labelName={t("LoanMortgage.HouseholdModal.monthlyExpenses")}
             type="text"

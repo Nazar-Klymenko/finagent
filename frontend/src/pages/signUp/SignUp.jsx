@@ -11,7 +11,7 @@ import { ContentWrap } from "@components/content";
 import { Input, PhoneInput, InputPassword } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
-import { Text } from "@components/typography";
+import { Header } from "@components/typography";
 
 import { useAuth } from "@context/authContext";
 
@@ -55,9 +55,9 @@ const SignUp = () => {
 
   return (
     <ContentWrap xl authForm direction="column">
-      <Text align="center" gutterBottom variant="h3">
+      <Header align="center" bottomGutter variant="h1">
         {t("SignUp.title")}
-      </Text>
+      </Header>
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
         <Input
           ref={register}

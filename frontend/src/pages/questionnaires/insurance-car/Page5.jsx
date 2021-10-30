@@ -28,7 +28,7 @@ const Page5 = () => {
 
   const appDataValid = validateAppData(appData, "AppendedImages");
 
-  const { handleSubmit, errors, control, watch } = useForm({
+  const { register, handleSubmit, errors, control, watch } = useForm({
     defaultValues: pageFiveValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",

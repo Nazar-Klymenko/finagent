@@ -15,7 +15,7 @@ import {
   ButtonsWrap,
   InputErrorMessage,
 } from "../LocalStyles";
-import { MuiInput, MuiCheckbox, Textarea } from "@components/input";
+import { Input, MuiCheckbox, Textarea } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 
 import { CTA } from "@components/buttons";
@@ -91,8 +91,8 @@ const Page2 = () => {
             helperText={errors?.lastApplications?.message}
             placeholder="Yes, open answer / No"
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="custody"
             labelName={t("LoanCash.Page2.custody")}
             type="text"
@@ -110,8 +110,8 @@ const Page2 = () => {
             helperText={errors?.loanPurpose?.message}
             placeholder="Purpose"
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="loanAmount"
             labelName={t("LoanCash.Page2.loanAmount")}
             type="text"
@@ -119,8 +119,8 @@ const Page2 = () => {
             helperText={errors?.loanAmount?.message}
             placeholder="number"
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="paymentTerm"
             labelName={t("LoanCash.Page2.paymentTerm")}
             type="text"

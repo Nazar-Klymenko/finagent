@@ -974,8 +974,6 @@
     }
   },
   "SnackBar": {
-    "success": "Success",
-    "error": "Error",
     "confirmEmail": "Please confirm email",
     "userExists": "This user already exists",
     "incorrectData": "You have entered incorrect data",

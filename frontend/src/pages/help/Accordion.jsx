@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components/macro";
-import { Text } from "@components/typography";
+import { Text, Header } from "@components/typography";
 
 const Accordion = ({ header, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,7 @@ const Accordion = ({ header, children }) => {
       }}
     >
       <AccordionInner>
-        <Text variant="h5">{header}</Text>
+        <Header variant="h3">{header}</Header>
         <Plus>{isOpen ? "-" : "+"}</Plus>
       </AccordionInner>
       <Desc isOpen={isOpen}>

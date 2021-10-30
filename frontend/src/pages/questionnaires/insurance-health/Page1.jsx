@@ -31,7 +31,7 @@ const Page1 = () => {
 
   useTitle("Health insurance | FinAgent");
 
-  const { handleSubmit, errors, control, watch } = useForm({
+  const { register, handleSubmit, errors, control, watch } = useForm({
     defaultValues: {
       clauseOne: true,
       clauseTwo: appDataValid.clauseTwo,

@@ -59,7 +59,7 @@ const Page1 = () => {
 
   let [isEditing, setIsEditing] = useState(false);
 
-  const { handleSubmit, watch, control } = useForm({
+  const { register, handleSubmit, watch, control } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",

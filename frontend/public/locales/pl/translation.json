@@ -978,14 +978,12 @@
     }
   },
   "SnackBar": {
-    "success": "Powodzenie",
-    "error": "Błąd",
     "confirmEmail": "Proszę potwierdzić e-mail",
     "userExists": "Ten użytkownik już istnieje",
     "incorrectData": "Wpisałeś nieprawidłowe dane",
     "signUpFail": "Nie udało się zarejestrować",
     "successfulLogginIn": "Zalogowano pomyślnie",
-    "incorrectEmailOrPassword": "Nieprawidłowy email lub hasło",
+    "incorrectEmailOrPassword": "nieprawidłowy email lub hasło",
     "loginError": "Błąd podczas logowania",
     "emailWasResent": "E-mail został wysłany ponownie",
     "errorResendingEmail": "Błąd ponownego wysyłania e-maila"

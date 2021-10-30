@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 
 // import { useSelector } from "react-redux";
 
-import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
-// import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
-import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
+import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
+// import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
+import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 
-import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
+import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
 import { useAuth } from "@context/authContext";
 
 interface Props {

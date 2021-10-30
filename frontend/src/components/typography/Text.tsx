@@ -1,8 +1,7 @@
-import React, { FC } from "react";
-import Typography, { TypographyProps } from "@mui/material/Typography";
+import React from "react";
 
-const Text: FC<TypographyProps> = ({ children, ...other }) => {
-  return <Typography {...other}>{children}</Typography>;
+const Text: React.FC = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 export default Text;

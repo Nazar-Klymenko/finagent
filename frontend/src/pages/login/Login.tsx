@@ -3,11 +3,11 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
-import { MuiInput, InputPassword } from "@components/input";
+import { Input, InputPassword } from "@components/input";
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
-import { Text } from "@components/typography";
+import { Header } from "@components/typography";
 
 import loginSchema from "./login.schema";
 import { useForm } from "react-hook-form";
@@ -25,7 +25,9 @@ const Login: React.FC<Props> = (props) => {
   const { login, loginFacebook, currentUser } = useAuth();
   const { isLoggedIn, isActive } = currentUser;
 
-  const { handleSubmit, errors, control } = useForm({
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
     resolver: yupResolver(loginSchema),
     shouldFocusError: true,
@@ -61,32 +63,36 @@ const Login: React.FC<Props> = (props) => {
   };
 
   return (
-    <ContentWrap authForm direction="column">
-      <Text gutterBottom variant="h3" align="center">
+    <ContentWrap xl authForm direction="column">
+      <Header bottomGutter variant="h1" align="center">
         {t("LogIn.title")}
-      </Text>
-
+      </Header>
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-        <MuiInput
-          control={control}
+        <Input
+          ref={register}
           name="email"
-          // placeholder="E-mail"
+          placeholder="E-mail"
           labelName={t("LogIn.Form.email")}
-          // type="email"
-          type="text"
+          type="email"
           error={!!errors.email}
           helperText={errors?.email?.message}
-          // autofocus={true}
+          autofocus={true}
         />
-        <MuiInput
-          control={control}
+        <InputPassword
+          ref={register}
           name="password"
           labelName={t("LogIn.Form.password")}
           error={!!errors.password}
           helperText={errors?.password?.message}
         />
       </Form>
-      <CTA text={t("LogIn.Form.button")} form="form" color="primary" large />
+      <CTA
+        isLoading={isLoading}
+        text={t("LogIn.Form.button")}
+        form="form"
+        color="primary"
+        large
+      />
       <AlternativeLine>Or log in using other methods</AlternativeLine>
       <FacebookButton onClick={loginWithFacebook}>Facebook</FacebookButton>
       <AuthOptions>
@@ -121,10 +127,10 @@ const AuthOptions = styled.div`
 const SignUpOption = styled.div`
   font-size: 0.8rem;
   .signup-link {
-    color: ${({ theme }) => theme.blue};
+    color: ${({ theme }) => theme.typography.blue};
     padding: 0.5rem;
     &:visited {
-      color: ${({ theme }) => theme.blue};
+      color: ${({ theme }) => theme.typography.blue};
     }
   }
 `;

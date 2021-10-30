@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { MuiInput, MuiRadio, PhoneInput, DateInput } from "@components/input";
+import { Input, MuiRadio, PhoneInput, DateInput } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -87,26 +87,26 @@ const Page2 = () => {
             ]}
             defaultChecked={appDataValid.policyholderIs || "natural"}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="name"
             labelName={t("InsuranceTravel.Page2.name")}
+            ref={register}
             error={!!errors.name}
             helperText={errors?.name?.message}
           />
           {policyholderIs !== "legal" && (
             <>
-              <MuiInput
-                control={control}
+              <Input
                 name="surname"
                 labelName={t("InsuranceTravel.Page2.surname")}
+                ref={register}
                 error={!!errors.surname}
                 helperText={errors?.surname?.message}
               />
-              <MuiInput
-                control={control}
+              <Input
                 name="pesel"
                 labelName={t("InsuranceTravel.Page2.pesel")}
+                ref={register}
                 error={!!errors.pesel}
                 helperText={errors?.pesel?.message}
               />
@@ -114,17 +114,17 @@ const Page2 = () => {
           )}
           {policyholderIs !== "natural" && (
             <>
-              <MuiInput
-                control={control}
+              <Input
                 name="nip"
                 labelName={t("InsuranceTravel.Page2.nip")}
+                ref={register}
                 error={!!errors.nip}
                 helperText={errors?.nip?.message}
               />
-              <MuiInput
-                control={control}
+              <Input
                 name="regon"
                 labelName={t("InsuranceTravel.Page2.regon")}
+                ref={register}
                 error={!!errors.regon}
                 helperText={errors?.regon?.message}
               />
@@ -147,45 +147,45 @@ const Page2 = () => {
             error={!!errors.phone}
             helperText={errors?.phone?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="email"
             labelName={t("InsuranceTravel.Page2.email")}
+            ref={register}
             error={!!errors.email}
             helperText={errors?.email?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="country"
             labelName={t("InsuranceTravel.Page2.country")}
+            ref={register}
             error={!!errors.country}
             helperText={errors?.country?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="city"
             labelName={t("InsuranceTravel.Page2.city")}
+            ref={register}
             error={!!errors.city}
             helperText={errors?.city?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="postIndex"
             labelName={t("InsuranceTravel.Page2.postIndex")}
+            ref={register}
             error={!!errors.postIndex}
             helperText={errors?.postIndex?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="street"
             labelName={t("InsuranceTravel.Page2.street")}
+            ref={register}
             error={!!errors.street}
             helperText={errors?.street?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="houseNumber"
             labelName={t("InsuranceTravel.Page2.houseNumber")}
+            ref={register}
             error={!!errors.houseNumber}
             helperText={errors?.houseNumber?.message}
           />

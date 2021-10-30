@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { MuiInput } from "@components/input";
+import { Input } from "@components/input";
 import { CTA } from "@components/buttons";
 
 import { requestChangePasswordAPI } from "@api/userAPI";
@@ -19,7 +19,7 @@ const ForgotPassword = () => {
   const { t } = useTranslation();
   const [isError, setIsError] = useState("");
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
@@ -47,8 +47,8 @@ const ForgotPassword = () => {
             className="input-wrap"
             onSubmit={handleSubmit(formSubmit)}
           >
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="email"
               labelName={t("RestorePassword.Form.email")}
               type="email"

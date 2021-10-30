@@ -1,40 +1,40 @@
 import React from "react";
-// import makeStyles from '@mui/styles/makeStyles';
+import { makeStyles } from "@material-ui/core/styles";
 
 import styled from "styled-components/macro";
 import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 
 import { useAuth } from "@context/authContext";
 
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
-import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
+import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
+import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 
-// const useStyles = makeStyles({
-//   root: {
-//     "& .Mui-selected": {
-//       color: "#1672ec",
-//     },
-//   },
-// });
+const useStyles = makeStyles({
+  root: {
+    "& .Mui-selected": {
+      color: "#1672ec",
+    },
+  },
+});
 
 const BottomNav = () => {
   const { t } = useTranslation();
   const { currentUser } = useAuth();
   const { isLoggedIn } = currentUser;
 
-  // const classes = useStyles();
+  const classes = useStyles();
 
   const location = useLocation();
 
   return isLoggedIn ? (
     <BottomNavStyled
-      // className={classes.root}
+      className={classes.root}
       value={location.pathname}
       showLabels
     >

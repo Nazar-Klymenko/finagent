@@ -1,10 +1,12 @@
 import React, { useEffect, useState, FC } from "react";
 import styled from "styled-components/macro";
+import Thumbnails from "@components/Thumbnails";
 import { getUserAttachmentsAPI } from "@api/applications";
+import useFetch from "@hooks/useFetch";
 import useFetchFiles from "@hooks/useFetchFiles";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-import SaveAltRoundedIcon from "@mui/icons-material/SaveAltRounded";
+import SaveAltRoundedIcon from "@material-ui/icons/SaveAltRounded";
 
 type Props = {
   attachments: any;

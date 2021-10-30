@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import RefreshIcon from "@mui/icons-material/Refresh";
+import RefreshIcon from "@material-ui/icons/Refresh";
 
 interface Props {
   callback?: () => void;

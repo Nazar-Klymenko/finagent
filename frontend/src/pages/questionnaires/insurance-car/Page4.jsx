@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { MuiSelect } from "@components/input";
+import { MuiSelect, SelectInput } from "@components/input";
 
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";

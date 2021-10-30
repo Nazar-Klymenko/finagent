@@ -4,54 +4,23 @@ import styled from "styled-components/macro";
 
 import useTitle from "@hooks/useTitle";
 
-import { MuiInput, Input, Textarea } from "@components/input";
+import { Input, Textarea } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Mail, Point, Phone } from "@components/svgs";
 import { ContentWrap } from "@components/content";
-import { Text } from "@components/typography";
-import { useForm } from "react-hook-form";
+import { Header } from "@components/typography";
 
 const Contact = () => {
   const { t } = useTranslation();
   useTitle("Contact | FinAgent");
-
-  const { handleSubmit, errors, control } = useForm({
-    mode: "onChange",
-    shouldFocusError: true,
-  });
-
   return (
     <ContentWrap fullWidth blank direction="column">
-      <Text gutterBottom variant="h3" align="left">
-        {t("Contact.title")}
-      </Text>
+      <Header bottomGutter>{t("Contact.title")}</Header>
       <MainContainer>
         <FormSide>
-          <Text variant="h6" gutterBottom>
-            {t("Contact.subtitleForm")}
-          </Text>
+          <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
           <Form id="form">
-            <MuiInput
-              control={control}
-              name="name"
-              labelName={t("InsuranceTransport.Page1.name")}
-              type="text"
-              error={!!errors.name}
-              helperText={errors?.name?.message}
-              autoComplete="given-name"
-            />
-            <MuiInput
-              control={control}
-              name="email"
-              // placeholder="E-mail"
-              labelName={t("LogIn.Form.email")}
-              // type="email"
-              type="text"
-              error={!!errors.email}
-              helperText={errors?.email?.message}
-              // autofocus={true}
-            />
             <Input
               labelName={t("Contact.Form.fullName")}
               // placeholder="Your full name"
@@ -75,9 +44,7 @@ const Contact = () => {
           </Form>
         </FormSide>
         <InfoSide>
-          <Text variant="h6" gutterBottom>
-            {t("Contact.subtitleInfo")}
-          </Text>
+          <ContactSubtitle>{t("Contact.subtitleInfo")}</ContactSubtitle>
           <InfoWrap>
             <ContactInfo>
               <InfoIcon>
@@ -113,6 +80,10 @@ const Contact = () => {
 };
 export default Contact;
 
+const ContactSubtitle = styled.h3`
+  text-align: left;
+  padding-bottom: 1.5rem;
+`;
 const MainContainer = styled.div`
   display: flex;
   @media all and (max-width: ${({ theme }) => theme.widthTablet}) {

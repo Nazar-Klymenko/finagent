@@ -2,7 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@mui/styled-engine": ["../node_modules/@mui/styled-engine-sc"],
       "@context/*": ["./src/_context/*"],
       "@helpers/*": ["./src/_helpers/*"],
       "@services/*": ["./src/_services/*"],

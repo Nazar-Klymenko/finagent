@@ -19,9 +19,8 @@ import BottomNav from "@components/BottomNav";
 import Footer from "@components/Footer";
 
 import Routes from "./routes";
-import { StyledEngineProvider } from "@mui/material";
-// import { ThemeProvider } from "styled-components";
-import { ThemeProvider } from "@mui/material/styles";
+
+import { ThemeProvider } from "styled-components";
 import theme from "@styles/theme";
 import GlobalStyle from "@styles/GlobalStyle";
 
@@ -34,44 +33,39 @@ const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <ProviderComposer
-          providers={[
-            provider(HelmetProvider),
-            provider(AuthContextProvider),
-            provider(DataProvider),
-            provider(NotificationProvider),
-            provider(BackDropProvider),
-            // provider(ThemeProvider, { theme: theme }),
-            provider(QueryClientProvider, { client: queryClient }),
-          ]}
-        >
-          <Helmet>
-            <link
-              href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
-              rel="stylesheet"
-            />
-          </Helmet>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <Suspense fallback={<Loader />}>
-            <GlobalStyle />
-
-            <LocalizeMoment />
-            <Router>
-              <ScrollToTop />
-              <Nav />
-              <ContentMain>
-                <MuiSnackbar />
-                <Routes />
-              </ContentMain>
-              <Footer />
-              <BottomNav />
-            </Router>
-          </Suspense>
-        </ProviderComposer>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <ProviderComposer
+      providers={[
+        provider(HelmetProvider),
+        provider(AuthContextProvider),
+        provider(DataProvider),
+        provider(NotificationProvider),
+        provider(BackDropProvider),
+        provider(ThemeProvider, { theme: theme }),
+        provider(QueryClientProvider, { client: queryClient }),
+      ]}
+    >
+      <Helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Suspense fallback={<Loader />}>
+        <GlobalStyle />
+        <LocalizeMoment />
+        <Router>
+          <ScrollToTop />
+          <Nav />
+          <ContentMain>
+            <MuiSnackbar />
+            <Routes />
+          </ContentMain>
+          <Footer />
+          <BottomNav />
+        </Router>
+      </Suspense>
+    </ProviderComposer>
   );
 };
 

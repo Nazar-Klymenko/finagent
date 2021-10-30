@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { MuiInput, MuiCheckbox, DateInput, MuiRadio } from "@components/input";
+import { Input, MuiCheckbox, DateInput, MuiRadio } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -25,7 +25,7 @@ const Page1 = () => {
   const appDataValid = validateAppData(appData, "InsuranceData");
   const history = useHistory();
 
-  const { handleSubmit, errors, control, watch } = useForm({
+  const { register, handleSubmit, errors, control, watch } = useForm({
     defaultValues: {
       insuranceType: appDataValid.insuranceType || "individual",
       peopleAmount: appDataValid.peopleAmount,
@@ -104,25 +104,25 @@ const Page1 = () => {
             ]}
           />
           {choosedType !== "individual" && (
-            <MuiInput
-              control={control}
+            <Input
               name="peopleAmount"
               labelName={t("InsuranceTravel.Page1.peopleAmount")}
+              ref={register}
               error={!!errors.peopleAmount}
               helperText={errors?.peopleAmount?.message}
             />
           )}
-          <MuiInput
-            control={control}
+          <Input
             name="destination"
             labelName={t("InsuranceTravel.Page1.destination")}
+            ref={register}
             error={!!errors.destination}
             helperText={errors?.destination?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="purpose"
             labelName={t("InsuranceTravel.Page1.purpose")}
+            ref={register}
             error={!!errors.purpose}
             helperText={errors?.purpose?.message}
           />

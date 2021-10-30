@@ -10,19 +10,19 @@ import { useTranslation } from "react-i18next";
 
 import { Label, InputErrorMessage } from "./LocalStyles";
 
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
-// const theme = createTheme(
-//   adaptV4Theme({
-//     palette: {
-//       primary: {
-//         main: "#1672ec",
-//       },
-//     },
-//   })
-// );
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#1672ec",
+    },
+  },
+});
 
 interface Props {
   control: any;
@@ -32,7 +32,7 @@ interface Props {
   name: string;
   defaultDate: any;
   placeholder: string;
-  view: ["year", "month", "day"] | ["year"];
+  view: ["date"] | ["year", "month", "date"] | ["year"];
   format: "dd/MM/yyyy" | "yyyy";
   disablePast: boolean;
   disableFuture: boolean;
@@ -48,12 +48,13 @@ const DateInput: FC<Props> = ({
   name,
   defaultDate,
   placeholder,
-  view = ["year,month,day"],
+  view = ["date"],
   format = "dd/MM/yyyy",
   ...other
 }) => {
   const { i18n, t } = useTranslation();
-  const [value, setValue] = useState<Date | null>(new Date());
+  const [value, setValue] = React.useState<Date | null>(null);
+
   const [language, setLanguage] = useState(pl);
 
   useEffect(() => {
@@ -76,13 +77,12 @@ const DateInput: FC<Props> = ({
   }, [i18n.language]);
 
   return (
-    <>
-      {/* <ThemeProvider theme={theme}> */}
-      <LocalizationProvider dateAdapter={AdapterDateFns} locale={language}>
+    <ThemeProvider theme={theme}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={language}>
         <Label htmlFor={name}>{labelName}</Label>
         <Controller
           as={
-            <DatePicker
+            <KeyboardDatePicker
               okLabel="OK"
               clearLabel="Clear"
               cancelLabel="Cancel"
@@ -94,10 +94,8 @@ const DateInput: FC<Props> = ({
               style={{
                 fontFamily: ["Poppins", "sans-serif"].join(","),
               }}
-              // @ts-ignore
               views={view}
-              // @ts-ignore
-              onChange={(newValue: Date) => {
+              onChange={(newValue) => {
                 setValue(newValue);
               }}
               value={value}
@@ -112,9 +110,8 @@ const DateInput: FC<Props> = ({
           <span className="invis-star">*</span>
           {t(helperText)}
         </InputErrorMessage>
-      </LocalizationProvider>
-      {/* </ThemeProvider> */}
-    </>
+      </MuiPickersUtilsProvider>
+    </ThemeProvider>
   );
 };
 

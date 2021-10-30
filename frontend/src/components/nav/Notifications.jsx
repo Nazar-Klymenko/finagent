@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { useNotifications } from "@context/notificationContext";
 
-import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
+import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
 
 const useStyles = makeStyles({
   root: {

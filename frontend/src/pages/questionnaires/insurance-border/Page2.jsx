@@ -11,7 +11,7 @@ import { pageTwoSchema } from "./applicationHelpers/insuranceBorderSchema";
 import { vehicleTypeOptions } from "./applicationHelpers/insuranceBorderOptions";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiSelect } from "@components/input";
+import { Input, MuiSelect, SelectInput } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -76,43 +76,43 @@ const Page2 = () => {
             error={!!errors.vehicleType}
             helperText={errors?.vehicleType?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="brand"
             labelName={t("InsuranceBorder.Page2.brand")}
             error={!!errors.brand}
             helperText={errors?.brand?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="model"
             labelName={t("InsuranceBorder.Page2.model")}
             error={!!errors.model}
             helperText={errors?.model?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="regNumber"
             labelName={t("InsuranceBorder.Page2.regNumber")}
             error={!!errors.regNumber}
             helperText={errors?.regNumber?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="vinNumber"
             labelName={t("InsuranceBorder.Page2.vinNumber")}
             error={!!errors.vinNumber}
             helperText={errors?.vinNumber?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="engineNumber"
             labelName={t("InsuranceBorder.Page2.engineNumber")}
             error={!!errors.engineNumber}
             helperText={errors?.engineNumber?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="engineVolume"
             labelName={t("InsuranceBorder.Page2.engineVolume")}
             error={!!errors.engineVolume}

@@ -28,7 +28,7 @@ const SubheaderStyled = styled.div`
   }
   .description {
     font-size: 0.9rem;
-    color: ${({ theme }) => theme.gray};
+    color: ${({ theme }) => theme.typography.gray};
   }
 `;
 

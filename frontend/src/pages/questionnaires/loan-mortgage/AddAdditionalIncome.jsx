@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { addAdditionalIncomeSchema } from "./applicationHelpers/loanMortgageSchema";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiRadio, DateInput } from "@components/input";
+import { Input, MuiRadio, DateInput } from "@components/input";
 import { Modal } from "@components/modals";
 
 import { CTA } from "@components/buttons";
@@ -32,7 +32,7 @@ const AddAdditionalIncome = ({
     defaultIncome
   );
 
-  const { handleSubmit, errors, watch, control } = useForm({
+  const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -81,8 +81,8 @@ const AddAdditionalIncome = ({
             defaultChecked={appDataValid.truckDriver || "yes"}
           />
           {truckDriver === "no" && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="industry"
               labelName={t("LoanMortgage.IncomeModal.industry")}
               type="text"
@@ -199,8 +199,8 @@ const AddAdditionalIncome = ({
             </>
           )}
           {basicIncome === "mandate" && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="averageIncome"
               labelName={t("LoanMortgage.IncomeModal.averageIncome12")}
               type="text"
@@ -211,8 +211,8 @@ const AddAdditionalIncome = ({
             />
           )}
           {basicIncome === "specificTime" && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="averageIncome"
               labelName={t("LoanMortgage.IncomeModal.averageIncome6")}
               type="text"
@@ -248,8 +248,8 @@ const AddAdditionalIncome = ({
                 ]}
                 defaultChecked={appDataValid.accountancy || "generalRules"}
               />
-              <MuiInput
-                control={control}
+              <Input
+                ref={register}
                 name="averageIncome"
                 labelName={t("LoanMortgage.IncomeModal.averageIncome6")}
                 type="text"
@@ -265,8 +265,8 @@ const AddAdditionalIncome = ({
             basicIncome === "mandate" ||
             basicIncome === "specificTime"
           ) && (
-            <MuiInput
-              control={control}
+            <Input
+              ref={register}
               name="averageIncome"
               labelName={t("LoanMortgage.IncomeModal.averageIncome3")}
               type="text"
@@ -276,8 +276,8 @@ const AddAdditionalIncome = ({
               defaultValue={appDataValid.averageIncome}
             />
           )}
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="pit"
             labelName={t("LoanMortgage.IncomeModal.pit")}
             type="text"

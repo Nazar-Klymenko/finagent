@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import useTitle from "@hooks/useTitle";
 import { ContentWrap } from "@components/content";
-import { Text } from "@components/typography";
+import { Header } from "@components/typography";
 import { Accordion } from "./Accordion";
 import { useTranslation } from "react-i18next";
 const Help = () => {
@@ -11,10 +11,7 @@ const Help = () => {
 
   return (
     <ContentWrap blank fullWidth fullHeight direction="column">
-      <Text gutterBottom variant="h3" align="left">
-        {t("Help.title")}
-      </Text>
-
+      <Header bottomGutter>{t("Help.title")}</Header>
       <AccordionContainer>
         <Accordion header="Example question">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum

@@ -9,7 +9,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { MuiInput, DateInput, MuiRadio, MuiSelect } from "@components/input";
+import {
+  Input,
+  DateInput,
+  MuiRadio,
+  SelectInput,
+  MuiSelect,
+} from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -28,7 +34,7 @@ const Page1 = () => {
   const appDataValid = validateAppData(appData, "InsuranceData");
   const history = useHistory();
 
-  const { handleSubmit, errors, control, watch } = useForm({
+  const { register, handleSubmit, errors, control, watch } = useForm({
     defaultValues: {
       country: appDataValid.country,
       city: appDataValid.city,
@@ -83,38 +89,38 @@ const Page1 = () => {
         />
         <Subtitle>{t("InsuranceEstate.Page1.title")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <MuiInput
-            control={control}
+          <Input
             name="country"
             labelName={t("InsuranceEstate.Page1.country")}
+            ref={register}
             error={!!errors.country}
             helperText={errors?.country?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="city"
             labelName={t("InsuranceEstate.Page1.city")}
+            ref={register}
             error={!!errors.city}
             helperText={errors?.city?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="postIndex"
             labelName={t("InsuranceEstate.Page1.postIndex")}
+            ref={register}
             error={!!errors.postIndex}
             helperText={errors?.postIndex?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="street"
             labelName={t("InsuranceEstate.Page1.street")}
+            ref={register}
             error={!!errors.street}
             helperText={errors?.street?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="houseNumber"
             labelName={t("InsuranceEstate.Page1.houseNumber")}
+            ref={register}
             error={!!errors.houseNumber}
             helperText={errors?.houseNumber?.message}
           />
@@ -171,17 +177,17 @@ const Page1 = () => {
               },
             ]}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="areaM2"
             labelName={t("InsuranceEstate.Page1.areaM2")}
+            ref={register}
             error={!!errors.areaM2}
             helperText={errors?.areaM2?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
             name="constructionYear"
             labelName={t("InsuranceEstate.Page1.constructionYear")}
+            ref={register}
             error={!!errors.constructionYear}
             helperText={errors?.constructionYear?.message}
           />
@@ -235,24 +241,24 @@ const Page1 = () => {
           />
           {assignedToBank === "yes" && (
             <>
-              <MuiInput
-                control={control}
+              <Input
                 name="bankName"
                 labelName={t("InsuranceEstate.Page1.bankName")}
+                ref={register}
                 error={!!errors.bankName}
                 helperText={errors?.bankName?.message}
               />
-              <MuiInput
-                control={control}
+              <Input
                 name="regon"
                 labelName={t("InsuranceEstate.Page1.regon")}
+                ref={register}
                 error={!!errors.regon}
                 helperText={errors?.regon?.message}
               />
-              <MuiInput
-                control={control}
+              <Input
                 name="nip"
                 labelName={t("InsuranceEstate.Page1.nip")}
+                ref={register}
                 error={!!errors.nip}
                 helperText={errors?.nip?.message}
               />
@@ -317,18 +323,18 @@ const Page1 = () => {
             disablePast
           />
           <Subtitle>{t("InsuranceEstate.Page1.subjectAndSum")}</Subtitle>
-          <MuiInput
-            control={control}
+          <Input
             name="flatAndFixed"
             labelName={t("InsuranceEstate.Page1.flatAndFixed")}
+            ref={register}
             error={!!errors.flatAndFixed}
             helperText={errors?.flatAndFixed?.message}
             placeholder="200 000 zl"
           />
-          <MuiInput
-            control={control}
+          <Input
             name="householdGoods"
             labelName={t("InsuranceEstate.Page1.householdGoods")}
+            ref={register}
             error={!!errors.householdGoods}
             helperText={errors?.householdGoods?.message}
             placeholder="100 000 zl"

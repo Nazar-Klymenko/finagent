@@ -12,11 +12,12 @@ import {
 } from "./applicationHelpers/insuranceCarOptions";
 
 import {
+  Input,
+  PhoneInput,
   DateInput,
   MuiSelect,
   MuiRadio,
   MuiCheckbox,
-  MuiInput,
 } from "@components/input";
 
 import {
@@ -48,7 +49,7 @@ const Page1 = () => {
 
   const appDataValid = validateAppData(appData, "PersonalData");
 
-  const { handleSubmit, errors, watch, control } = useForm({
+  const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: pageOneValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
@@ -108,8 +109,8 @@ const Page1 = () => {
               t(errors?.atleastOneCheckbox?.message)}
           </InputErrorMessage>
 
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="name"
             labelName={t("InsuranceTransport.Page1.name")}
             type="text"
@@ -117,8 +118,8 @@ const Page1 = () => {
             helperText={errors?.name?.message}
             autoComplete="given-name"
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="surname"
             labelName={t("InsuranceTransport.Page1.surname")}
             type="text"
@@ -126,44 +127,44 @@ const Page1 = () => {
             helperText={errors?.surname?.message}
             autoComplete="family-name"
           />
-          <MuiInput
-            control={control}
+          <PhoneInput
+            ref={register}
             name="phoneNumber"
             labelName={t("InsuranceTransport.Page1.phoneNumber")}
             error={!!errors.phoneNumber}
             helperText={errors?.phoneNumber?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="postIndex"
             labelName={t("InsuranceTransport.Page1.postIndex")}
             error={!!errors.postIndex}
             helperText={errors?.postIndex?.message}
             autoComplete="postal-code"
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="city"
             labelName={t("InsuranceTransport.Page1.city")}
             error={!!errors.city}
             helperText={errors?.city?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="voivodeship"
             labelName={t("InsuranceTransport.Page1.voivodeship")}
             error={!!errors.voivodeship}
             helperText={errors?.voivodeship?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="street"
             labelName={t("InsuranceTransport.Page1.street")}
             error={!!errors.street}
             helperText={errors?.street?.message}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="houseNumber"
             labelName={t("InsuranceTransport.Page1.houseNumber")}
             error={!!errors.houseNumber}
@@ -189,8 +190,8 @@ const Page1 = () => {
               },
             ]}
           />
-          <MuiInput
-            control={control}
+          <Input
+            ref={register}
             name="documentAdded"
             labelName={t(`InsuranceTransport.Page1.${documentTypeName}`)}
             error={!!errors.documentAdded}

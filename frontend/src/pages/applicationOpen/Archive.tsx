@@ -3,20 +3,24 @@ import styled from "styled-components/macro";
 import { CTA } from "@components/buttons";
 import { archiveApplicationAPI } from "@api/applicationAPI";
 import { useTranslation } from "react-i18next";
-
+import { setSnackbar } from "@redux/alert/actions";
+import { useDispatch } from "react-redux";
 type Props = {
   id: string;
+  callback: () => void;
 };
 
-const Archive: React.FC<Props> = ({ id }) => {
+const Archive: React.FC<Props> = ({ id, callback }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   async function archiveApplication() {
     try {
       await archiveApplicationAPI(id);
-      alert("the application has been archived");
+      dispatch(setSnackbar("success", "SnackBar.success"));
+      callback();
     } catch (error) {
-      alert("couldn't archive application");
+      dispatch(setSnackbar("success", "SnackBar.error"));
     }
   }
 

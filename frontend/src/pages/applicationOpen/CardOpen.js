@@ -133,7 +133,7 @@ const CardOpen = () => {
               type="attachments"
             />
 
-            {!data?.archived && <Archive id={id} />}
+            {!data?.archived && <Archive id={id} callback={refetch} />}
           </>
         )}
       </>

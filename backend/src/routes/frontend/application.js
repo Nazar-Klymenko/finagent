@@ -30,6 +30,9 @@ router
   .get(verifyAccessTokenFirebase, isEmailVerified, getPreviewApplications);
 
 router
+  .route("/count/all/quantity")
+  .get(verifyAccessTokenFirebase, isEmailVerified, getQuantityApplications);
+router
   .route("/count/:category/quantity")
   .get(verifyAccessTokenFirebase, isEmailVerified, getQuantityApplications);
 

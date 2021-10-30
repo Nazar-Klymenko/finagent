@@ -20,7 +20,6 @@ export const pageOneValues = (appDataValid) => ({
 });
 
 export const pageTwoValues = (appDataValid) => ({
-  vehicleType: appDataValid.vehicleType,
   registeredPoland: appDataValid.registeredPoland,
   brand: appDataValid.brand,
   model: appDataValid.model,
@@ -31,6 +30,7 @@ export const pageTwoValues = (appDataValid) => ({
 });
 
 export const pageThreeValues = (appDataValid) => ({
+  vehicleType: appDataValid.vehicleType,
   enginePower: appDataValid.enginePower,
   engineVolume: appDataValid.engineVolume,
   fuelType: appDataValid.fuelType,

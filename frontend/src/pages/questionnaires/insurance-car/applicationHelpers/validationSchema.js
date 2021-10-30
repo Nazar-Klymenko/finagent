@@ -38,7 +38,6 @@ export const pageOneSchema = yup
   .test("atleastOneCheckbox", "Form.Error.minimumOne", checkCheckboxes);
 
 export const pageTwoSchema = yup.object().shape({
-  vehicleType: yup.string().required("Form.Error.blank"),
   registeredPoland: yup.boolean(),
   brand: yup.string().required("Form.Error.blank"),
   model: yup.string().required("Form.Error.blank"),
@@ -53,6 +52,7 @@ export const pageTwoSchema = yup.object().shape({
 });
 
 export const pageThreeSchema = yup.object().shape({
+  vehicleType: yup.string().required("Form.Error.blank"),
   enginePower: yup.string().required("Form.Error.blank"),
   engineVolume: yup.string().required("Form.Error.blank"),
   fuelType: yup.string().required("Form.Error.blank").nullable(),

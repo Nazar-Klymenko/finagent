@@ -32,6 +32,8 @@ import validateAppData from "@helpers/validateAppData";
 import { fuelTypeOptions } from "./applicationHelpers/insuranceCarOptions";
 import { pageThreeSchema } from "./applicationHelpers/validationSchema";
 import { pageThreeValues } from "./applicationHelpers/defaultValues";
+import { vehicleTypeOptions } from "./applicationHelpers/insuranceCarOptions";
+
 import { QuestState } from "@dev/QuestState";
 
 const Page3 = () => {
@@ -57,6 +59,7 @@ const Page3 = () => {
   };
 
   const abroadImport = watch("abroadImport");
+  const vehicleType = watch("vehicleType");
   return (
     <ContentWrap fullWidth>
       <QuestState data={appData} />
@@ -71,6 +74,15 @@ const Page3 = () => {
 
         <Subtitle>{t("InsuranceTransport.Page3.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+          <MuiSelect
+            control={control}
+            name="vehicleType"
+            defaultValue={appDataValid.vehicleType}
+            labelName={t("InsuranceTransport.Page2.vehicleType")}
+            optionArray={vehicleTypeOptions}
+            error={!!errors.vehicleType}
+            helperText={errors?.vehicleType?.message}
+          />
           <MuiSelect
             control={control}
             ref={register}
@@ -138,24 +150,30 @@ const Page3 = () => {
             helperText={errors?.kilometrage?.message}
             placeholder="eg. 100000"
           />
-          <Legend>{t("InsuranceTransport.Page3.steeringWheel")}</Legend>
-          <RadioWrap>
-            <MuiRadio
-              control={control}
-              name="steeringWheel"
-              options={[
-                {
-                  label: t("InsuranceTransport.Page3.left"),
-                  value: "left",
-                },
-                {
-                  label: t("InsuranceTransport.Page3.right"),
-                  value: "right",
-                },
-              ]}
-            />
-          </RadioWrap>
-          <legend>{t("InsuranceTransport.Page3.transmissionType")}</legend>
+
+          {vehicleType !== "motorcycle" && (
+            <>
+              <Legend>{t("InsuranceTransport.Page3.steeringWheel")}</Legend>
+              <RadioWrap>
+                <MuiRadio
+                  control={control}
+                  name="steeringWheel"
+                  options={[
+                    {
+                      label: t("InsuranceTransport.Page3.left"),
+                      value: "left",
+                    },
+                    {
+                      label: t("InsuranceTransport.Page3.right"),
+                      value: "right",
+                    },
+                  ]}
+                />
+              </RadioWrap>
+            </>
+          )}
+
+          <Legend>{t("InsuranceTransport.Page3.transmissionType")}</Legend>
           <RadioWrap>
             <MuiRadio
               control={control}

@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { pageThreeSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { Input, PhoneInput } from "@components/input";
+import { MuiInput, PhoneInput } from "@components/input";
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -26,7 +26,7 @@ const Page3 = () => {
 
   useTitle("Border insurance | FinAgent");
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: {
       name: appDataValid.name,
       surname: appDataValid.surname,
@@ -63,16 +63,16 @@ const Page3 = () => {
         />
         <Subtitle>{t("InsuranceBorder.Page3.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="name"
             labelName={t("InsuranceBorder.Page3.name")}
             error={!!errors.name}
             helperText={errors?.name?.message}
             autoComplete="given-name"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="surname"
             labelName={t("InsuranceBorder.Page3.surname")}
             error={!!errors.surname}
@@ -86,16 +86,16 @@ const Page3 = () => {
             error={!!errors.phoneNumber}
             helperText={errors?.phoneNumber?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="email"
             labelName={t("InsuranceBorder.Page3.email")}
             error={!!errors.email}
             helperText={errors?.email?.message}
             placeholder="example@mail.com"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="country"
             labelName={t("InsuranceBorder.Page3.country")}
             type="text"
@@ -103,8 +103,8 @@ const Page3 = () => {
             helperText={errors?.country?.message}
             placeholder="Poland"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="city"
             labelName={t("InsuranceBorder.Page3.city")}
             type="text"
@@ -112,24 +112,24 @@ const Page3 = () => {
             helperText={errors?.city?.message}
             placeholder="Warsaw"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="postIndex"
             labelName={t("InsuranceBorder.Page3.postIndex")}
             error={!!errors.postIndex}
             helperText={errors?.postIndex?.message}
             placeholder="123-45"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="street"
             labelName={t("InsuranceBorder.Page3.street")}
             error={!!errors.street}
             helperText={errors?.street?.message}
             placeholder="Bialostocka"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="houseNumber"
             labelName={t("InsuranceBorder.Page3.houseNumber")}
             error={!!errors.houseNumber}

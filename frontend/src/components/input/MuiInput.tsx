@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
-import TextField from "@mui/material/TextField";
+import { TextField } from "@mui/material";
+// import { TextField } from "@material-ui/core";
 import { Controller } from "react-hook-form";
 import { Label, InputErrorMessage } from "./LocalStyles";
 import { useTranslation } from "react-i18next";
@@ -12,6 +13,9 @@ interface Props {
   name: string;
   autoFocus?: boolean;
   autoComplete?: string;
+  placeholder?: string;
+  type?: string;
+  autofocus?: boolean;
 }
 
 const MuiInput: FC<Props> = ({
@@ -33,15 +37,17 @@ const MuiInput: FC<Props> = ({
       <Controller
         as={
           <TextField
-            error={error}
-            autoComplete={autoComplete}
+            variant="outlined"
+            size="medium"
             onChange={(newValue) => {
               setValue(String(newValue));
             }}
             value={value}
             style={{
               fontFamily: ["Poppins", "sans-serif"].join(","),
+              height: "56px",
             }}
+            id={name}
             {...other}
           />
         }

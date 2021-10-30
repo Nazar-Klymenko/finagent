@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { pageOneSchema } from "./applicationHelpers/insuranceBorderSchema";
 
-import { Input, MuiSelect, MuiRadio } from "@components/input";
+import { MuiInput, MuiSelect, MuiRadio } from "@components/input";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
@@ -81,8 +81,8 @@ const Page1 = () => {
             defaultChecked={appDataValid.documentType || "pesel"}
           />
           {!(documentTypeName === "passportNumber") && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="pesel"
               labelName={t("InsuranceBorder.Page1.pesel")}
               error={!!errors.pesel}
@@ -90,8 +90,8 @@ const Page1 = () => {
             />
           )}
           {documentTypeName === "passportNumber" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="passportNumber"
               labelName={t("InsuranceBorder.Page1.passportNumber")}
               error={!!errors.passportNumber}

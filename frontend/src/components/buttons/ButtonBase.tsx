@@ -1,3 +1,4 @@
+import { Text } from "@components/typography";
 import React, { useState } from "react";
 import styled, { css } from "styled-components/macro";
 
@@ -51,7 +52,7 @@ export const MainButton: React.FC<ButtonProps> = ({
       color={color}
       className={className}
     >
-      {text}
+      <Text variant="body2">{text}</Text>
       {!noRipple && isRippling && (
         <Ripple x={coords.x} y={coords.y} color={color} large={large} />
       )}

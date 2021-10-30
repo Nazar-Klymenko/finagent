@@ -1,20 +1,25 @@
 import React from "react";
-import Radio from "@material-ui/core/Radio";
+import Radio from "@mui/material/Radio";
 import { Controller } from "react-hook-form";
 
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import {
+  createTheme,
+  ThemeProvider,
+  StyledEngineProvider,
+  adaptV4Theme,
+} from "@mui/material";
 import { Label, InputErrorMessage } from "./LocalStyles";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#0052cc",
-    },
-  },
-});
+// const theme = createTheme(adaptV4Theme({
+//   palette: {
+//     primary: {
+//       main: "#0052cc",
+//     },
+//   },
+// }));
 
 const MuiRadio = ({ name, defaultChecked, options, legend, control }) => {
   const [value, setValue] = React.useState(defaultChecked);
@@ -32,7 +37,8 @@ const MuiRadio = ({ name, defaultChecked, options, legend, control }) => {
   ));
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
+      {/* <ThemeProvider theme={theme}> */}
       <FormControl component="fieldset">
         <Label>{legend}</Label>
 
@@ -50,7 +56,8 @@ const MuiRadio = ({ name, defaultChecked, options, legend, control }) => {
           <span className="invis-star">*</span>
         </InputErrorMessage>
       </FormControl>
-    </ThemeProvider>
+      {/* </ThemeProvider> */}
+    </>
   );
 };
 

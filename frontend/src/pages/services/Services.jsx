@@ -70,7 +70,9 @@ const Services = () => {
         />
       </ServicesWrap>
 
-      <Text gutterBottom>{t("Services.Titles.loans")}</Text>
+      <Text gutterBottom variant="h3">
+        {t("Services.Titles.loans")}
+      </Text>
       <ServicesWrap>
         <ServiceCard
           to="quest/cashloan/1"

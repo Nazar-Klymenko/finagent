@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components/macro";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 
 import Links from "./Links";
 import Avatar from "./Avatar";

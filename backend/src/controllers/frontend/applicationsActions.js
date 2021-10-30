@@ -6,9 +6,7 @@ import createError from "http-errors";
 export const getPreviewApplications = asyncHandler(async (req, res) => {
   let { category, status } = req.params;
   let { page, size } = req.query;
-
-  if (category !== "archive") category = category.slice(0, -1);
-
+  category = category.slice(0, -1);
   let filters = {
     user_id: req.currentUser.uid,
     category: category,
@@ -82,7 +80,6 @@ export const getQuantityApplications = asyncHandler(async (req, res) => {
     user_id: req.currentUser.uid,
     archived: true,
   }).countDocuments();
-
   let quantityInsurances = await Application.find({
     user_id: req.currentUser.uid,
     category: "insurance",

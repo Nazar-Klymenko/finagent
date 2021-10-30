@@ -5,12 +5,12 @@ import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 const Links = ({ navOpen, setNavOpen }) => {
   const { t } = useTranslation();
-
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
 
   const closeNav = useCallback(() => {
     setNavOpen(false);

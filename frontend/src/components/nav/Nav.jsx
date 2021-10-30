@@ -13,14 +13,14 @@ import Drawer from "@components/nav/drawer/Drawer";
 import Backdrop from "@components/Backdrop";
 import { useBackdrop } from "@context/backdropContext";
 
-import { useSelector } from "react-redux";
-
 import { useMediaQuery } from "react-responsive";
+import { useAuth } from "@context/authContext";
 
 const Nav = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 992px)" });
 
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
   const [navOpen, setNavOpen] = useState(false);
   const { isBackdropOpen, setBackdropOpen } = useBackdrop();
 

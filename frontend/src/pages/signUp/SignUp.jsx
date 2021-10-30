@@ -13,20 +13,19 @@ import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Header } from "@components/typography";
 
-import { signup, loginFacebook } from "@redux/auth/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 const SignUp = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { currentUser, signup, loginFacebook } = useAuth();
+  const { isLoggedIn, isActive } = currentUser;
   const [isLoading, setIsLoading] = useState(false);
+
   let interfaceLanguage = document.cookie.replace(
     /(?:(?:^|.*;\s*)i18next\s*\=\s*([^;]*).*$)|^.*$/,
     "$1"
   );
-
-  const dispatch = useDispatch();
 
   const { register, handleSubmit, errors } = useForm({
     defaultValues: { terms: false },
@@ -35,104 +34,97 @@ const SignUp = () => {
     shouldFocusError: true,
   });
 
-  const redirectCallback = () => {
-    history.push("/verify-email");
-  };
-
   const formSubmit = async (data) => {
     data.language = interfaceLanguage;
     setIsLoading(true);
-    dispatch(signup(data, redirectCallback));
-    setIsLoading(false);
+    signup(data);
+    // setIsLoading(false);
   };
 
   useEffect(() => {
-    if (isLoggedIn) history.push("/dashboard/insurances/ready/1");
-  }, [isLoggedIn, history]);
+    if (isLoggedIn && isActive) {
+      history.push("/dashboard/insurances/ready/1");
+    } else if (isLoggedIn && !isActive) {
+      history.push("/verify-email");
+    }
+  }, [isLoggedIn, isActive, history]);
 
   const signupWithFacebook = () => {
-    dispatch(loginFacebook());
+    loginFacebook();
   };
 
   return (
     <ContentWrap xl authForm direction="column">
-      <SignUpWrapStyled>
-        <Header align="center" bottomGutter variant="h1">
-          {t("SignUp.title")}
-        </Header>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <Input
-            ref={register}
-            name="name"
-            labelName={t("SignUp.Individual.name")}
-            error={!!errors.name}
-            helperText={errors?.name?.message}
-            autofocus={true}
-            autoComplete="given-name"
-          />
-          <Input
-            ref={register}
-            name="surname"
-            labelName={t("SignUp.Individual.surname")}
-            error={!!errors.surname}
-            helperText={errors?.surname?.message}
-            autoComplete="family-name"
-          />
-          <Input
-            ref={register}
-            name="email"
-            labelName={t("SignUp.Individual.email")}
-            type="email"
-            error={!!errors.email}
-            helperText={errors?.email?.message}
-          />
-          <PhoneInput
-            ref={register}
-            name="phone"
-            labelName={t("SignUp.Individual.phone")}
-            type="tel"
-            error={!!errors.phone}
-            helperText={errors?.phone?.message}
-          />
-          <InputPassword
-            ref={register}
-            name="password"
-            labelName={t("SignUp.Individual.password")}
-            error={!!errors.password}
-            helperText={errors?.password?.message}
-          />
-        </Form>
-
-        <CTA
-          isLoading={isLoading}
-          text={t("SignUp.Form.button")}
-          form="form"
-          color="primary"
-          large
+      <Header align="center" bottomGutter variant="h1">
+        {t("SignUp.title")}
+      </Header>
+      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Input
+          ref={register}
+          name="name"
+          labelName={t("SignUp.Individual.name")}
+          error={!!errors.name}
+          helperText={errors?.name?.message}
+          autofocus={true}
+          autoComplete="given-name"
         />
+        <Input
+          ref={register}
+          name="surname"
+          labelName={t("SignUp.Individual.surname")}
+          error={!!errors.surname}
+          helperText={errors?.surname?.message}
+          autoComplete="family-name"
+        />
+        <Input
+          ref={register}
+          name="email"
+          labelName={t("SignUp.Individual.email")}
+          type="email"
+          error={!!errors.email}
+          helperText={errors?.email?.message}
+        />
+        <PhoneInput
+          ref={register}
+          name="phone"
+          labelName={t("SignUp.Individual.phone")}
+          type="tel"
+          error={!!errors.phone}
+          helperText={errors?.phone?.message}
+        />
+        <InputPassword
+          ref={register}
+          name="password"
+          labelName={t("SignUp.Individual.password")}
+          error={!!errors.password}
+          helperText={errors?.password?.message}
+        />
+      </Form>
 
-        <AlternativeLine>Or sign up using other methods</AlternativeLine>
-        <FacebookButton onClick={signupWithFacebook}>Facebook</FacebookButton>
+      <CTA
+        isLoading={isLoading}
+        text={t("SignUp.Form.button")}
+        form="form"
+        color="primary"
+        large
+      />
 
-        <AuthOptions>
-          <LoginOtion>
-            {t("SignUp.addActions.haveAccount")}
-            <NavLink className="login-link" to="/auth/login">
-              {t("SignUp.addActions.logIn")}
-            </NavLink>
-          </LoginOtion>
-        </AuthOptions>
-      </SignUpWrapStyled>
+      <AlternativeLine>Or sign up using other methods</AlternativeLine>
+      <FacebookButton onClick={signupWithFacebook}>Facebook</FacebookButton>
+
+      <AuthOptions>
+        <LoginOtion>
+          {t("SignUp.addActions.haveAccount")}
+          <NavLink className="login-link" to="/auth/login">
+            {t("SignUp.addActions.logIn")}
+          </NavLink>
+        </LoginOtion>
+      </AuthOptions>
     </ContentWrap>
   );
 };
 
 export default SignUp;
-
-const SignUpWrapStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const AuthOptions = styled.div`
   display: flex;

@@ -5,9 +5,8 @@ import { useTranslation } from "react-i18next";
 
 import { Settings, SignOut } from "@components/svgs";
 
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "@redux/auth/actions";
 import useClickOutside from "@hooks/useClickOutside";
+import { useAuth } from "@context/authContext";
 
 interface Props {
   navOpen: boolean;
@@ -25,11 +24,8 @@ interface AvatarStyled {
 
 const UserDropdown: React.FC<Props> = ({ navOpen, setNavOpen }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-
-  const { displayName, isSendingRequest, photoURL } = useSelector(
-    (state: any) => state.user
-  );
+  const { currentUser, logout } = useAuth();
+  const { displayName, isSendingRequest, photoURL } = currentUser;
 
   const history = useHistory();
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -37,8 +33,7 @@ const UserDropdown: React.FC<Props> = ({ navOpen, setNavOpen }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const logOutButton = () => {
-    dispatch(logout());
-    history.push("/");
+    logout(() => history.push("/"));
   };
 
   useClickOutside(isOpen, setIsOpen, wrapperRef);

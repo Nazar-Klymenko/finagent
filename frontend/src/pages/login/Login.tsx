@@ -13,8 +13,7 @@ import loginSchema from "./login.schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { login, loginFacebook } from "@redux/auth/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 interface Props {
   location: any;
@@ -22,10 +21,10 @@ interface Props {
 
 const Login: React.FC<Props> = (props) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const history = useHistory();
+  const { login, loginFacebook, currentUser } = useAuth();
+  const { isLoggedIn, isActive } = currentUser;
 
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
   const [isLoading, setIsLoading] = useState(false);
 
   const { register, handleSubmit, errors } = useForm({
@@ -46,80 +45,72 @@ const Login: React.FC<Props> = (props) => {
       setOriginalRoute("/dashboard/insurances/ready/1");
     };
   }, [props.location.state]);
-  useEffect(() => {
-    if (isLoggedIn) history.push(originalRoute);
-  }, [isLoggedIn, history, originalRoute]);
 
-  const redirectCallback = () => {
-    history.push("/dashboard/insurances/ready/1");
-  };
+  useEffect(() => {
+    if (isLoggedIn && isActive) {
+      history.push(originalRoute);
+    } else if (isLoggedIn && !isActive) {
+      history.push("/verify-email");
+    }
+  }, [isLoggedIn, isActive, history, originalRoute]);
 
   const formSubmit = async (data: { email: string; password: string }) => {
-    setIsLoading(true);
-    dispatch(login(data.email, data.password, redirectCallback));
-    setIsLoading(false);
+    login(data.email, data.password);
   };
 
   const loginWithFacebook = () => {
-    dispatch(loginFacebook());
+    loginFacebook();
   };
 
   return (
     <ContentWrap xl authForm direction="column">
-      <FormWrap>
-        <Header bottomGutter variant="h1" align="center">
-          {t("LogIn.title")}
-        </Header>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <Input
-            ref={register}
-            name="email"
-            placeholder="E-mail"
-            labelName={t("LogIn.Form.email")}
-            type="email"
-            error={!!errors.email}
-            helperText={errors?.email?.message}
-            autofocus={true}
-          />
-          <InputPassword
-            ref={register}
-            name="password"
-            labelName={t("LogIn.Form.password")}
-            error={!!errors.password}
-            helperText={errors?.password?.message}
-          />
-        </Form>
-        <CTA
-          isLoading={isLoading}
-          text={t("LogIn.Form.button")}
-          form="form"
-          color="primary"
-          large
+      <Header bottomGutter variant="h1" align="center">
+        {t("LogIn.title")}
+      </Header>
+      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Input
+          ref={register}
+          name="email"
+          placeholder="E-mail"
+          labelName={t("LogIn.Form.email")}
+          type="email"
+          error={!!errors.email}
+          helperText={errors?.email?.message}
+          autofocus={true}
         />
-        <AlternativeLine>Or log in using other methods</AlternativeLine>
-        <FacebookButton onClick={loginWithFacebook}>Facebook</FacebookButton>
-        <AuthOptions>
-          <NavLink className="forgot-link" to="/auth/forgot-password">
-            {t("LogIn.addActions.forgot")}
+        <InputPassword
+          ref={register}
+          name="password"
+          labelName={t("LogIn.Form.password")}
+          error={!!errors.password}
+          helperText={errors?.password?.message}
+        />
+      </Form>
+      <CTA
+        isLoading={isLoading}
+        text={t("LogIn.Form.button")}
+        form="form"
+        color="primary"
+        large
+      />
+      <AlternativeLine>Or log in using other methods</AlternativeLine>
+      <FacebookButton onClick={loginWithFacebook}>Facebook</FacebookButton>
+      <AuthOptions>
+        <NavLink className="forgot-link" to="/auth/forgot-password">
+          {t("LogIn.addActions.forgot")}
+        </NavLink>
+        <SignUpOption>
+          {t("LogIn.addActions.noAccount")}
+          <NavLink className="signup-link" to="/auth/signup">
+            {t("LogIn.addActions.signUp")}
           </NavLink>
-          <SignUpOption>
-            {t("LogIn.addActions.noAccount")}
-            <NavLink className="signup-link" to="/auth/signup">
-              {t("LogIn.addActions.signUp")}
-            </NavLink>
-          </SignUpOption>
-        </AuthOptions>
-      </FormWrap>
+        </SignUpOption>
+      </AuthOptions>
     </ContentWrap>
   );
 };
 
 export default Login;
-
-const FormWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const AuthOptions = styled.div`
   display: flex;
@@ -165,8 +156,6 @@ const AlternativeLine = styled.div`
   margin-top: 0.5rem;
   text-align: center;
 `;
-
-// const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
 
 // useEffect(() => {
 //   if (isLoggedIn) history.push("/dashboard/insurances");

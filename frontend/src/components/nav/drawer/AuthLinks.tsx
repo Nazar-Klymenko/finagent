@@ -1,14 +1,13 @@
 import React, { FC } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
 import { NavLink } from "react-router-dom";
 
 import { UserAuth } from "@components/buttons";
 import { useTranslation } from "react-i18next";
 
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "@redux/auth/actions";
-
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { useAuth } from "@context/authContext";
 
 interface Props {
   navOpen: boolean;
@@ -17,13 +16,14 @@ interface Props {
 
 const AuthLinks: FC<Props> = ({ navOpen, setNavOpen }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const logOut = () => {
-    dispatch(logout());
+  const history = useHistory();
+
+  const { currentUser, logout } = useAuth();
+  const { isLoggedIn } = currentUser;
+
+  const logOutButton = () => {
+    logout(() => history.push("/"));
   };
-
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
-
   return (
     <AuthLinksWrap>
       {isLoggedIn ? (
@@ -31,7 +31,7 @@ const AuthLinks: FC<Props> = ({ navOpen, setNavOpen }) => {
           to=""
           onClick={() => {
             setNavOpen(false);
-            logOut();
+            logOutButton();
           }}
         >
           <span>{t("UserDropdown.signOut")}</span>

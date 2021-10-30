@@ -6,10 +6,9 @@ import Links from "./Links";
 import Avatar from "./Avatar";
 import AuthLinks from "./AuthLinks";
 
-import { useSelector } from "react-redux";
-
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import useClickOutside from "@hooks/useClickOutside";
+import { useAuth } from "@context/authContext";
 
 interface Props {
   navOpen: boolean;
@@ -27,7 +26,8 @@ const useStyles = makeStyles({
 
 const Drawer: React.FC<Props> = ({ navOpen, setNavOpen }) => {
   const classes = useStyles();
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
   const wrapperRef = useRef<HTMLDivElement>(null);
   useClickOutside(navOpen, setNavOpen, wrapperRef);
 

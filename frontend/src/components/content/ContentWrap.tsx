@@ -72,9 +72,13 @@ const ContentWrapStyled = styled.div<Props>`
   ${({ authForm }) =>
     authForm &&
     css`
+      min-width: 500px !important;
       max-width: 500px !important;
       padding-left: 2rem !important;
       padding-right: 2rem !important;
+      @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
+        min-width: unset !important;
+      }
     `}
 
 

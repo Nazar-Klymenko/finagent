@@ -3,8 +3,6 @@ import styled from "styled-components/macro";
 
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 
-import { auth } from "@helpers/firebaseHelper";
-
 const Thumbnails = ({ files, id, type }) => {
   // let url = `${process.env.REACT_APP_API_SERVER_URL}user/application/files/${token}/${id}/${type}`;
   return (

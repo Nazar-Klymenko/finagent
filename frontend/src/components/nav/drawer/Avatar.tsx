@@ -1,10 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import styled from "styled-components/macro";
+import { useAuth } from "@context/authContext";
 
 const Avatar = () => {
-  const displayName = useSelector((state: any) => state.user.displayName);
+  const { currentUser } = useAuth();
+  const { displayName } = currentUser;
+
   return (
     <AvatarStyled>
       <AvatarCircle>{displayName?.[0]}</AvatarCircle>

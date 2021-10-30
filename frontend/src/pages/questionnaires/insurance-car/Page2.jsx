@@ -9,10 +9,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { pageTwoSchema } from "./applicationHelpers/validationSchema";
 
-import { vehicleTypeOptions } from "./applicationHelpers/insuranceCarOptions";
-
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { Input, MuiCheckbox, DateInput, MuiSelect } from "@components/input";
+import { Input, MuiCheckbox, DateInput } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -59,15 +57,6 @@ const Page2 = () => {
 
         <Subtitle>{t("InsuranceTransport.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <MuiSelect
-            control={control}
-            name="vehicleType"
-            defaultValue={appDataValid.vehicleType}
-            labelName={t("InsuranceTransport.Page2.vehicleType")}
-            optionArray={vehicleTypeOptions}
-            error={!!errors.vehicleType}
-            helperText={errors?.vehicleType?.message}
-          />
           <Input
             ref={register}
             name="brand"

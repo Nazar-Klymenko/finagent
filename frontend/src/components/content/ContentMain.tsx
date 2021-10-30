@@ -1,15 +1,15 @@
 import React from "react";
 import styled, { css } from "styled-components/macro";
 
-import { useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 interface Styled {
   isLoggedIn: boolean;
 }
 
 const ContentMain: React.FC = ({ children }) => {
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
-
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
   return (
     <ContentMainStyled isLoggedIn={isLoggedIn}>{children}</ContentMainStyled>
   );

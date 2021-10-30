@@ -1,23 +1,5 @@
 import { axios, noInterceptAxios } from "./axiosConfig";
 
-export const logInAPI = (object) => {
-  return noInterceptAxios(`/user/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    data: JSON.stringify(object),
-  });
-};
-export const logOutAPI = () => {
-  return noInterceptAxios(`/user/auth/logout`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-
 export const signUpAPI = (object) => {
   return noInterceptAxios(`/user/auth/signup`, {
     method: "POST",

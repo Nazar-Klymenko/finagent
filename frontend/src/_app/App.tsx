@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { DataProvider } from "@context/dataContext";
+import { AuthContextProvider } from "@context/authContext";
 
 import { NotificationProvider } from "@context/notificationContext";
 import { BackDropProvider } from "@context/backdropContext";
@@ -23,9 +24,6 @@ import { ThemeProvider } from "styled-components";
 import theme from "@styles/theme";
 import GlobalStyle from "@styles/GlobalStyle";
 
-import { useDispatch } from "react-redux";
-import { fetchUser } from "@redux/auth/actions";
-
 import ScrollToTop from "@hooks/ScrollToTop";
 
 import { ProviderComposer, provider } from "@helpers/combineProviders";
@@ -34,15 +32,11 @@ import { LocalizeMoment } from "@components/LocalizeMoment";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
-
   return (
     <ProviderComposer
       providers={[
         provider(HelmetProvider),
+        provider(AuthContextProvider),
         provider(DataProvider),
         provider(NotificationProvider),
         provider(BackDropProvider),

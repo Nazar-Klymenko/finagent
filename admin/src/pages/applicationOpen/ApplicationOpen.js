@@ -59,11 +59,11 @@ const ApplicationOpen = ({ returnTo }) => {
   );
 
   useEffect(() => {
-    setCreatedAt(new Date(data?.createdAt).toLocaleDateString("pl"));
-    setUpdatedAt(moment(data?.updatedAt).fromNow());
-    setFullName(data?.user?.name + " " + data?.user?.surname);
-    setIsTaken(!!data?.employee_id);
     if (data) {
+      setCreatedAt(new Date(data?.createdAt).toLocaleDateString("pl"));
+      setUpdatedAt(moment(data?.updatedAt).fromNow());
+      setFullName(data?.user?.name + " " + data?.user?.surname);
+      setIsTaken(!!data?.employee_id);
       SetAppDataLabeled(determineType(data?.type, data));
     }
   }, [data]);

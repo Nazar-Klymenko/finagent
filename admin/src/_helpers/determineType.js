@@ -42,7 +42,6 @@ export default function determineType(type, object) {
   delete appDataCopy.user;
 
   const appDataCopyArray = Object.entries(appDataCopy);
-
   const appDataCopyArrayFiltered = appDataCopyArray.filter((elem) => {
     return elem[1] != null || undefined;
   });

@@ -59,14 +59,14 @@ const ApplicationOpen = ({ returnTo }) => {
   );
 
   useEffect(() => {
-    if (data) {
-      setCreatedAt(new Date(data?.createdAt).toLocaleDateString("pl"));
-      setUpdatedAt(moment(data?.updatedAt).fromNow());
-      setFullName(data?.user?.name + " " + data?.user?.surname);
-      setIsTaken(!!data?.employee_id);
-      SetAppDataLabeled(determineType(data?.type, data));
-    }
+    setCreatedAt(new Date(data?.createdAt).toLocaleDateString("pl"));
+    setUpdatedAt(moment(data?.updatedAt).fromNow());
+    setFullName(data?.user?.name + " " + data?.user?.surname);
+    setIsTaken(!!data?.employee_id);
   }, [data]);
+  if (data) {
+    SetAppDataLabeled(determineType(data?.type, data));
+  }
 
   const assignApplication = async () => {
     try {

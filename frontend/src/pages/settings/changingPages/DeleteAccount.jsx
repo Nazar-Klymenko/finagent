@@ -18,11 +18,12 @@ import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
 import { Header } from "@components/typography";
+import { useDispatch } from "react-redux";
+import { setSnackbar } from "@redux/alert/actions";
 
 const DangerZonePage = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState();
   const [isReady, setIsReady] = useState(false);
 
   const { register, handleSubmit, errors } = useForm({
@@ -32,6 +33,7 @@ const DangerZonePage = () => {
     shouldFocusError: false,
     resolver: yupResolver(dangerZoneSchema()),
   });
+  const dispatch = useDispatch();
 
   const formSubmit = async (data) => {
     setLoading(true);
@@ -39,27 +41,31 @@ const DangerZonePage = () => {
     try {
       const response = await deleteUserAPI(data);
       if (response.status === 200) {
-        alert(t("Settings.Disposal.alertSuccess"));
+        dispatch(setSnackbar("success", "Settings.Disposal.alertSuccess"));
       }
       setLoading(false);
     } catch (error) {
       if (!error.response) {
-        setIsError(t("Settings.Disposal.errorResponse"));
+        dispatch(setSnackbar("error", "Settings.Disposal.errorResponse"));
+
         return;
       }
       switch (error.response.status) {
         case 409: {
-          setIsError(t("Settings.Disposal.errorInvalidPassword"));
+          dispatch(
+            setSnackbar("error", "Settings.Disposal.errorInvalidPassword")
+          );
           break;
         }
         default: {
-          setIsError(t("Settings.Disposal.errorResponse"));
+          dispatch(setSnackbar("error", "Settings.Disposal.errorResponse"));
           break;
         }
       }
       setLoading(false);
     }
   };
+
   return (
     <ChangingPage>
       <DangerZoneStyled>
@@ -73,6 +79,7 @@ const DangerZonePage = () => {
         >
           {t("Settings.Disposal.deleteAction")}
         </span>
+
         {isReady && (
           <div className="form">
             <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
@@ -92,12 +99,6 @@ const DangerZonePage = () => {
                 color="primary"
               />
             </ButtonPosition>
-
-            {isError && (
-              <StatusError>
-                <span>{isError}</span>
-              </StatusError>
-            )}
           </div>
         )}
       </DangerZoneStyled>

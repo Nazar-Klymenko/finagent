@@ -25,7 +25,6 @@ import Feedback from "./localComponents/Feedback";
 import FeedbackPreview from "./localComponents/FeedbackPreview";
 import AttachDocuments from "./localComponents/AttachDocuments";
 import Attachments from "./localComponents/Attachments";
-import Thumbnails from "@components/Thumbnails";
 
 import { FullPage } from "@components/content";
 

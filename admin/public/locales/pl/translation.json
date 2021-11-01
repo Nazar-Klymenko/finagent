@@ -185,7 +185,7 @@
       "errorResponse": "Błąd podczas zmiany adresu e-mail"
     },
     "ChangePassword": {
-      "title": "Change password",
+      "title": "Zmień hasło",
       "currentPassword": "Wprowadź swoje aktualne hasło",
       "newPassword": "Wprowadź swoje nowe hasło",
       "button": "Potwierdź",

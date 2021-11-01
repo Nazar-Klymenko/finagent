@@ -1,0 +1,12 @@
+{
+  "name": "finagent-monorepo",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "admin",
+      "backend",
+      "frontend",
+      "landing"
+    ]
+  }
+}

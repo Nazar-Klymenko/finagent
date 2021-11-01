@@ -15,7 +15,7 @@ type Props = {
 const Attachments: FC<Props> = ({ attachments, id, type }) => {
   const { data, error, loading } = useFetchFiles(
     getUserAttachmentsAPI(id, type),
-    attachments[0]
+    attachments
   );
 
   return (
@@ -28,9 +28,9 @@ const Attachments: FC<Props> = ({ attachments, id, type }) => {
           {data &&
             data.map((image: any, idx: any) => (
               <a
-                key={attachments[0][idx].id}
+                key={attachments[idx].id}
                 href={image}
-                download={attachments[0][idx].filename}
+                download={attachments[idx].filename}
                 target="_blank"
                 rel="noopener noreferrer"
                 type="application/octet-stream"
@@ -39,7 +39,7 @@ const Attachments: FC<Props> = ({ attachments, id, type }) => {
                   <Page width={160} pageNumber={1} />
 
                   <ThumbBackground>
-                    <ThumbTitle> {attachments[0][idx].filename}</ThumbTitle>
+                    <ThumbTitle> {attachments[idx].filename}</ThumbTitle>
                     <Icon color="inherit" />
                   </ThumbBackground>
                 </Thumbnail>

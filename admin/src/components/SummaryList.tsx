@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from "react";
 import styled, { css } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
-
 import { ArrowDown } from "@components/svgs";
 
 interface Props {
@@ -35,7 +34,7 @@ const SummaryList: React.FC<Props> = ({
         <ArrowWrap>
           <ArrowDown
             fill="#FFF"
-            rotation={isOpen ? 0 : 180}
+            rotation={isOpen ? 180 : 0}
             width="16"
             height="10"
           />
@@ -45,7 +44,7 @@ const SummaryList: React.FC<Props> = ({
         {array &&
           array.map((item: any, idx) => (
             <Category key={idx}>
-              <span>{item[0]}</span>
+              <span>{t(item[0])}</span>
               {Object.entries(item[1]).map((item: any, idx) => (
                 <Item key={idx}>
                   <div className="value">{t(item[0])}</div>

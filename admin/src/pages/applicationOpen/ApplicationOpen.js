@@ -165,7 +165,7 @@ const ApplicationOpen = ({ returnTo }) => {
                   description={t("ApplicationOpen.AttachmentsUser.subtitle")}
                 />
                 <Attachments
-                  attachments={[data?.documents]}
+                  attachments={[data?.documents?.[0]]}
                   id={id}
                   type="documents"
                 />
@@ -180,7 +180,7 @@ const ApplicationOpen = ({ returnTo }) => {
                 />
                 <Attachments
                   id={id}
-                  files={[data?.attachments]}
+                  files={[data?.attachments?.[0]]}
                   type="attachments"
                 />
               </>

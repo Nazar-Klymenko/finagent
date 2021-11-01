@@ -43,7 +43,6 @@ const ApplicationOpen = ({ returnTo }) => {
   const [updatedAt, setUpdatedAt] = useState(null);
   const [isAssingLoading, setIsAssignLoading] = useState(false);
   const [isReturnLoading, setIsReturnLoading] = useState(false);
-  const [appDataLabeled, SetAppDataLabeled] = useState([]);
 
   const [fullName, setFullName] = useState("");
 
@@ -64,8 +63,10 @@ const ApplicationOpen = ({ returnTo }) => {
     setFullName(data?.user?.name + " " + data?.user?.surname);
     setIsTaken(!!data?.employee_id);
   }, [data]);
+  let appDataLabeled;
+
   if (data) {
-    SetAppDataLabeled(determineType(data?.type, data));
+    appDataLabeled = determineType(data?.type, data);
   }
 
   const assignApplication = async () => {

@@ -61,9 +61,11 @@ const ApplicationOpen = ({ returnTo }) => {
   useEffect(() => {
     setCreatedAt(new Date(data?.createdAt).toLocaleDateString("pl"));
     setUpdatedAt(moment(data?.updatedAt).fromNow());
-    SetAppDataLabeled(determineType(data?.type, data));
     setFullName(data?.user?.name + " " + data?.user?.surname);
     setIsTaken(!!data?.employee_id);
+    if (data) {
+      SetAppDataLabeled(determineType(data?.type, data));
+    }
   }, [data]);
 
   const assignApplication = async () => {

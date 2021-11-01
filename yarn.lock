@@ -13482,7 +13482,7 @@ react-phone-input-2@^2.13.9:
     lodash.startswith "^4.2.1"
     prop-types "^15.7.2"
 
-react-query@^3.16.0, react-query@^3.5.5:
+react-query@^3.16.0:
   version "3.30.0"
   resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.30.0.tgz#054fc0642f806ba4e8280c5eccf0c907b12cfdbf"
   integrity sha512-u4Xcwb3mBecDWXPJk7eXGQ0JKxipZbkf69wS2B6tEjPFVT8q0rz1nQ3hWl2B/mUWkkY7WDwndeGJp3PhYgsbUA==

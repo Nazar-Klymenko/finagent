@@ -27,6 +27,31 @@ async function attachImagesUser(id, files, model) {
   return model;
 }
 
+async function attachImagesAdmin(id, files) {
+  const application = await Application.findById(id);
+
+  files.forEach(async (file) => {
+    let { newPath, newFileName } = createFilePathPdf(id, file, "attachments");
+    const doc = new PDFDocument();
+
+    console.log({ file });
+    doc.pipe(fs.createWriteStream(String(newPath)));
+    doc
+      .image(file.data, {
+        fit: [500, 400],
+        align: "center",
+        valign: "center",
+      })
+      .save();
+    doc.end();
+
+    application.attachments.push({
+      filename: newFileName + ".pdf",
+    });
+  });
+  application.save();
+}
+
 // function createFilePathPdf(id, file, type) {
 //   const imgPath = path.resolve(__dirname, "./src/files/");
 //   let fileName = file.name;
@@ -58,19 +83,6 @@ function createFilePath(id, file, type) {
   const imgPath = path.resolve(__dirname, "./src/files/");
   const newPath = `${imgPath}/${id}/${type}/${file.name}`;
   return newPath;
-}
-
-async function attachImagesAdmin(appId, files) {
-  const application = await Application.findById(appId);
-  files.forEach(async (file) => {
-    let newPath = createFilePath(appId, file, "attachments");
-
-    file.mv(newPath);
-    application.attachments.push({
-      filename: file.name,
-    });
-  });
-  application.save();
 }
 
 export { attachImagesUser, attachImagesAdmin };

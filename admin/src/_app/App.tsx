@@ -13,7 +13,9 @@ import Routes from "./routes";
 
 import { useDispatch } from "react-redux";
 import { fetchUser } from "@redux/auth/actions";
+import { QueryClient, QueryClientProvider } from "react-query";
 
+const queryClient = new QueryClient();
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,18 +23,20 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Suspense fallback={<Loader />}>
-        <GlobalStyle />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <Suspense fallback={<Loader />}>
+          <GlobalStyle />
 
-        <Router>
-          <Navbar />
-          <ContentMain>
-            <Routes></Routes>
-          </ContentMain>
-        </Router>
-      </Suspense>
-    </ThemeProvider>
+          <Router>
+            <Navbar />
+            <ContentMain>
+              <Routes></Routes>
+            </ContentMain>
+          </Router>
+        </Suspense>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 

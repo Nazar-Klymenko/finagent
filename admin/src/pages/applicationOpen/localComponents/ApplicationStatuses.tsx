@@ -98,4 +98,26 @@ const StatusBtnWrap = styled.div`
   padding: 12px 0px;
 `;
 
-export default ApplicationStatuses;
+interface SecondProps {
+  currentStatus: number;
+}
+
+const ApplicationStatusesPreview: React.FC<SecondProps> = ({
+  currentStatus,
+}) => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <Subheader
+        subheader={t("ApplicationOpen.Status.title")}
+        description={t("ApplicationOpen.Status.subtitle")}
+      />
+      <span>
+        {t("ApplicationOpen.Status.currentStatus")}
+        {currentStatus}
+      </span>
+    </>
+  );
+};
+
+export { ApplicationStatuses, ApplicationStatusesPreview };

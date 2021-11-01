@@ -68,19 +68,21 @@ export const getAllApplicationsForUser = asyncHandler(async (req, res) => {
 });
 
 export const getSpecificApplication = asyncHandler(async (req, res) => {
-  const SpecificApplication = await Application.find(
+  const SpecificApplication = await Application.findOne(
     {
       _id: req.params.id,
     },
     { _id: 0, __v: 0 }
   )
-    .populate("user", "-_id -__v -password -isActive -createdAt -updatedAt")
+    .populate("user")
     .populate(
       "employee",
       "-__v -password -isActive -createdAt -updatedAt -phone"
     );
 
-  if (SpecificApplication.length === 0) {
+  if (!SpecificApplication) {
+    throw createError.Forbidden();
+  } else if (SpecificApplication.length === 0) {
     throw createError.Forbidden();
   }
 
@@ -225,6 +227,7 @@ export const attachDocumentsAdmin = asyncHandler(async (req, res) => {
   } else {
     files = req.files.files;
   }
+
   await attachImagesAdmin(id, files);
 
   res.status(200).send({

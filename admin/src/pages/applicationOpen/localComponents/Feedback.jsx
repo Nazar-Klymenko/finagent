@@ -98,7 +98,7 @@ const MessageText = styled.div`
   padding-top: 4px;
 `;
 
-const Feedback = ({ setApplication, id, feedbackArray, defaultTime }) => {
+const Feedback = ({ id, feedbackArray, defaultTime }) => {
   const { reset, register, handleSubmit, formState } = useForm({
     defaultValues: {
       feedback: "",
@@ -113,7 +113,6 @@ const Feedback = ({ setApplication, id, feedbackArray, defaultTime }) => {
     try {
       const feedbackResponse = await sendFeedbackAPI(data, id);
       reset();
-      setApplication(feedbackResponse.data.application);
       alert("feedback sent successfully");
     } catch (error) {
       alert("couldn't send feedback");

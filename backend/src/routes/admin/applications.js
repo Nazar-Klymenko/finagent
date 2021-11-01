@@ -5,7 +5,7 @@ import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";
 import { verifyAdmin, verifySupervisor } from "middleware/admin";
 
 import { verifyAccessTokenFirebaseQueryAdmin } from "middleware/auth";
-import { accessToImageAdmin } from "middleware/imageAcess";
+import { accessToImage } from "middleware/imageAcess";
 import serveDocument from "controllers/serveDocument";
 
 import {
@@ -70,7 +70,7 @@ router
   .post(verifyAccessTokenFirebaseAdmin, verifyAdmin, putApplicationInArchive);
 
 router
-  .route("/files/:idtoken/:id/:type/:filename")
-  .get(verifyAccessTokenFirebaseQueryAdmin, accessToImageAdmin, serveDocument);
+  .route("/files/:id/:type/:filename")
+  .get(verifyAccessTokenFirebaseAdmin, accessToImage, serveDocument);
 
 export default router;

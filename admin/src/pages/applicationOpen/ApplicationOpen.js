@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useParams, useHistory } from "react-router-dom";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
@@ -18,8 +19,10 @@ import Subheader from "@components/Subheader";
 import SummaryList from "@components/SummaryList";
 import InfoCell from "@components/InfoCell";
 
-import ApplicationStatuses from "./localComponents/ApplicationStatuses";
-import ApplicationStatusesPreview from "./localComponents/ApplicationStatusesPreview";
+import {
+  ApplicationStatuses,
+  ApplicationStatusesPreview,
+} from "./localComponents/ApplicationStatuses";
 
 import Feedback from "./localComponents/Feedback";
 import FeedbackPreview from "./localComponents/FeedbackPreview";
@@ -28,50 +31,40 @@ import Attachments from "./localComponents/Attachments";
 
 import { FullPage } from "@components/content";
 
-import styled from "styled-components";
+import { useQuery } from "react-query";
 
 const ApplicationOpen = ({ returnTo }) => {
   const { t } = useTranslation();
-
   let { id } = useParams();
   let history = useHistory();
 
-  const [application, setApplication] = useState({});
-  const [appDataLabeled, setAppDataLabeled] = useState([]);
   const [isTaken, setIsTaken] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // const [isDeclineLoading, setIsDeclineLoading] = useState(false);
+  const [createdAt, setCreatedAt] = useState(null);
+  const [updatedAt, setUpdatedAt] = useState(null);
   const [isAssingLoading, setIsAssignLoading] = useState(false);
   const [isReturnLoading, setIsReturnLoading] = useState(false);
+  const [appDataLabeled, SetAppDataLabeled] = useState([]);
 
-  const [addedAt, setAddedAt] = useState("");
-  const [updatedAt, setUpdatedAt] = useState("");
   const [fullName, setFullName] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getSpecificApplicationAPI(id);
-        setApplication(response.data[0]);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [id]);
+  const fetchData = async () => {
+    const { data } = await getSpecificApplicationAPI(id);
+    return data;
+  };
+
+  let { data, error, isFetching, refetch } = useQuery(
+    [`cardOpen${id}`],
+    () => fetchData(),
+    { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
+  );
 
   useEffect(() => {
-    if (!isLoading) {
-      setAppDataLabeled(determineType(application.type, application));
-      setAddedAt(new Date(application.createdAt).toLocaleDateString("pl"));
-      setUpdatedAt(moment(application.updatedAt).fromNow());
-      setFullName(application.user?.name + " " + application.user?.surname);
-      setIsTaken(!!application.employee_id);
-    }
-  }, [application, isLoading]);
+    setCreatedAt(new Date(data?.createdAt).toLocaleDateString("pl"));
+    setUpdatedAt(moment(data?.updatedAt).fromNow());
+    SetAppDataLabeled(determineType(data?.type, data));
+    setFullName(data?.user?.name + " " + data?.user?.surname);
+    setIsTaken(!!data?.employee_id);
+  }, [data]);
 
   const assignApplication = async () => {
     try {
@@ -110,7 +103,7 @@ const ApplicationOpen = ({ returnTo }) => {
 
   return (
     <FullPage>
-      {!isLoading && (
+      {!isFetching && (
         <>
           <ApplicationHeader>
             <BackArrow returnTo={returnTo} />
@@ -121,11 +114,11 @@ const ApplicationOpen = ({ returnTo }) => {
               />
               <InfoCell
                 name={t("ApplicationOpen.AppInfo.type")}
-                value={application.type}
+                value={data.type}
               />
               <InfoCell
                 name={t("ApplicationOpen.AppInfo.addedAt")}
-                value={addedAt}
+                value={createdAt}
               />
               <InfoCell
                 name={t("ApplicationOpen.AppInfo.lastUpdate")}
@@ -145,41 +138,51 @@ const ApplicationOpen = ({ returnTo }) => {
               array={appDataLabeled}
             />
             {isTaken ? (
-              <ApplicationStatuses currentStatus={application.status} id={id} />
+              <ApplicationStatuses currentStatus={data.status} id={id} />
             ) : (
-              <ApplicationStatusesPreview currentStatus={application.status} />
+              <ApplicationStatusesPreview currentStatus={data.status} />
             )}
             {isTaken ? (
               <Feedback
-                setApplication={setApplication}
                 id={id}
-                feedbackArray={application.feedback}
-                defaultTime={application.createdAt}
+                feedbackArray={data.feedback}
+                defaultTime={data.createdAt}
               />
             ) : (
               <FeedbackPreview
-                feedbackArray={application.feedback}
-                defaultTime={application.createdAt}
+                feedbackArray={data.feedback}
+                defaultTime={data.createdAt}
               />
             )}
-            <Subheader
-              subheader={t("ApplicationOpen.AttachmentsUser.title")}
-              description={t("ApplicationOpen.AttachmentsUser.subtitle")}
-            />
-            <Attachments
-              attachments={[application?.documents]}
-              id={id}
-              type="documents"
-            />
-            <Subheader
-              subheader={t("ApplicationOpen.AttachmentsAdmin.title")}
-              description={t("ApplicationOpen.AttachmentsAdmin.subtitle")}
-            />
-            <Attachments
-              id={id}
-              files={[application?.attachments]}
-              type="attachments"
-            />
+
+            {data?.documents.length > 0 && (
+              <>
+                <Subheader
+                  subheader={t("ApplicationOpen.AttachmentsUser.title")}
+                  description={t("ApplicationOpen.AttachmentsUser.subtitle")}
+                />
+                <Attachments
+                  attachments={[data?.documents]}
+                  id={id}
+                  type="documents"
+                />
+              </>
+            )}
+
+            {data?.attachments.length > 0 && (
+              <>
+                <Subheader
+                  subheader={t("ApplicationOpen.AttachmentsAdmin.title")}
+                  description={t("ApplicationOpen.AttachmentsAdmin.subtitle")}
+                />
+                <Attachments
+                  id={id}
+                  files={[data?.attachments]}
+                  type="attachments"
+                />
+              </>
+            )}
+
             {isTaken && <AttachDocuments id={id} />}
             <ActionButtons>
               {!isTaken ? (

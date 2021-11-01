@@ -7,11 +7,11 @@ export const accessToImage = async (req, res, next) => {
 
     const app = await Application.findById(req.params.id)
       .populate("user")
-      .populate("employee", "-__v -password -isActive -createdAt -updatedAt");
+      .populate("employee");
     if (!app) throw createError.Forbidden();
 
     if (app.user_id != userId) {
-      if (app.employee_id._id != userId) {
+      if (app.employee_id != userId) {
         throw createError.Forbidden();
       }
     }

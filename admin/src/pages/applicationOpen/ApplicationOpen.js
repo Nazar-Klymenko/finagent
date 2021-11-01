@@ -157,7 +157,7 @@ const ApplicationOpen = ({ returnTo }) => {
               />
             )}
 
-            {data?.documents.length > 0 && (
+            {data?.documents?.length > 0 && (
               <>
                 <Subheader
                   subheader={t("ApplicationOpen.AttachmentsUser.title")}
@@ -171,7 +171,7 @@ const ApplicationOpen = ({ returnTo }) => {
               </>
             )}
 
-            {data?.attachments.length > 0 && (
+            {data?.attachments?.length > 0 && (
               <>
                 <Subheader
                   subheader={t("ApplicationOpen.AttachmentsAdmin.title")}

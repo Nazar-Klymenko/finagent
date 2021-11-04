@@ -235,29 +235,29 @@ const changeSelectValues = (obj) => {
         prop[1] = "LoanMortgage.Page2.apartPur";
         break;
       case "housePur":
-        prop[1] = "LoanCash.Page2.housePur";
+        prop[1] = "LoanMortgage.Page2.housePur";
         break;
       case "landPur":
-        prop[1] = "LoanCash.Page2.landPur";
+        prop[1] = "LoanMortgage.Page2.landPur";
         break;
       case "houseConst":
-        prop[1] = "LoanCash.Page2.houseConst";
+        prop[1] = "LoanMortgage.Page2.houseConst";
         break;
       case "apartPurRen":
-        prop[1] = "LoanCash.Page2.apartPurRen";
+        prop[1] = "LoanMortgage.Page2.apartPurRen";
         break;
       case "housePurRen":
-        prop[1] = "LoanCash.Page2.housePurRen";
+        prop[1] = "LoanMortgage.Page2.housePurRen";
         break;
       case "notMarried":
-        prop[1] = "LoanCash.Page2.notMarried";
+        prop[1] = "LoanMortgage.Page2.notMarried";
         break;
 
       case "primary":
-        prop[1] = "LoanCash.Page2.primary";
+        prop[1] = "LoanMortgage.Page2.primary";
         break;
       case "secondary":
-        prop[1] = "LoanCash.Page2.secondary";
+        prop[1] = "LoanMortgage.Page2.secondary";
         break;
       case "yes":
         prop[1] = "LoanMortgage.Page2.yes";

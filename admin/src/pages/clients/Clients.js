@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { allClientsAPI } from "@api/mainAPI";
+import { getClients } from "@api/mainAPI";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { FullPage } from "@components/content";
 
 import Table from "@components/Table";
-import Pagination from "@components/Pagination";
+import MuiPagination from "@components/MuiPagination";
 import Subheader from "@components/Subheader";
+import { useQuery } from "react-query";
 
 const Clients = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    allClientsAPI().then((response) => {
-      setUsers(response.data);
-      console.log(response.data);
-    });
-  }, []);
-
+  const [maximumPages, setMaximumPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 25;
+  const [size] = useState(25);
 
-  const indexOfLastCard = currentPage * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const maximumPages = users.length / cardsPerPage;
+  const fetchApplications = async (page = 0, size) => {
+    const { data } = await getClients(page, size);
+    setMaximumPages(data.maximumPages);
+    return data;
+  };
 
-  const usersShown = users.slice(indexOfFirstCard, indexOfLastCard);
+  let { data, error, isFetching, refetch } = useQuery(
+    [`clients`, currentPage],
+    () => fetchApplications(currentPage, size),
+    { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
+  );
 
   return (
     <FullPage>
@@ -49,8 +49,8 @@ const Clients = () => {
           </tr>
         </thead>
         <tbody>
-          {usersShown &&
-            usersShown.map((user) => (
+          {data?.users?.length > 0 &&
+            data.users.map((user) => (
               <tr
                 onClick={() => {
                   history.push(`/clients/${user._id}`);
@@ -67,10 +67,11 @@ const Clients = () => {
             ))}
         </tbody>
       </Table>
-      <Pagination
+      <MuiPagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         maximumPages={maximumPages}
+        category="clients"
       />
     </FullPage>
   );

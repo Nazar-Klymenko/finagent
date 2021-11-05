@@ -65,6 +65,7 @@ const ApplicationOpen = ({ returnTo }) => {
   }, [data]);
   let appDataLabeled;
 
+  console.log({ data });
   if (data) {
     appDataLabeled = determineType(data?.type, data);
   }

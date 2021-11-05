@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FC } from "react";
 import styled from "styled-components/macro";
-import { getUserAttachmentsAPI } from "@api/applications";
+import { getUserAttachmentsAPI } from "@api/mainAPI";
 import useFetchFiles from "@hooks/useFetchFiles";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";

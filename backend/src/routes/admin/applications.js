@@ -24,18 +24,18 @@ import {
 } from "controllers/admin/applicationActions.js";
 
 router
-  .route("/show/all")
+  .route("/show/:status")
   .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getAllApplications);
-router
-  .route("/show/archived")
-  .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getArchivedApplications);
-router
-  .route("/show/taken")
-  .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getTakenApplications);
+// router
+//   .route("/show/archived")
+//   .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getArchivedApplications);
+// router
+//   .route("/show/taken")
+//   .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getTakenApplications);
 
-router
-  .route("/show/my")
-  .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getMyApplications);
+// router
+//   .route("/show/my")
+//   .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getMyApplications);
 
 router
   .route("/:id")

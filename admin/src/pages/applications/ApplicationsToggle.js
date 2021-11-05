@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import PageToggle from "@components/PageToggle";
 import { useTranslation } from "react-i18next";
 
-// import { useAuth } from "@context/authContext";
-import { useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 const ApplicationsToggle = () => {
   const { t } = useTranslation();
-  const { isSendingRequest, role } = useSelector((state) => state.user);
+  const { currentUser } = useAuth();
+  const { isSendingRequest, role } = currentUser;
 
   return (
     <PageToggle>

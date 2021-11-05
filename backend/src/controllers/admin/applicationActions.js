@@ -5,48 +5,47 @@ import { attachImagesAdmin } from "helpers/attachDocument";
 
 import addHistoryRecord from "utils/history.js";
 import sendNotification from "utils/notification.js";
+import { PaginationHelper } from "helpers/paginationHelper";
 
 export const getAllApplications = asyncHandler(async (req, res) => {
-  const ApplicationList = await Application.find({
-    employee_id: { $eq: null },
-  })
-    .populate("user")
-    .populate("employee");
+  let { page, size } = req.query;
+  let { status } = req.params;
+  let query;
 
-  if (!ApplicationList) {
+  if (status === "all") {
+    query = {
+      employee_id: { $eq: null },
+    };
+  } else if (status === "taken") {
+    query = {
+      employee_id: { $ne: null },
+    };
+  } else if (status === "archived") {
+    query = {
+      archived: true,
+    };
+  } else if (status === "my-applications") {
+    query = {
+      archived: false,
+      employee_id: req.currentUser.uid,
+    };
+  }
+
+  const { skip, limit } = PaginationHelper(page, size);
+
+  const applications = await Application.find(query)
+    .populate("user")
+    .populate("employee")
+    .sort({ createdAt: -1 })
+    .limit(limit)
+    .skip(skip);
+
+  let maximumPages = await Application.find(query).countDocuments();
+
+  if (!applications) {
     res.send({ message: "You don't have any applications" });
   }
-  res.send({
-    ApplicationList,
-  });
-});
-
-export const getArchivedApplications = asyncHandler(async (req, res) => {
-  const ApplicationList = await Application.find({
-    archived: true,
-  })
-    .populate("user")
-    .populate("employee");
-
-  if (!ApplicationList) {
-    res.send({ message: "There are no archived applications" });
-  }
-  res.send({
-    ApplicationList,
-  });
-});
-
-export const getTakenApplications = asyncHandler(async (req, res) => {
-  const ApplicationList = await Application.find({
-    employee_id: { $ne: null },
-  })
-    .populate("user", "-_id -__v -password -isActive -createdAt -updatedAt")
-    .populate("employee", "-__v -password -isActive -createdAt -updatedAt");
-
-  if (!ApplicationList) {
-    res.send({ message: "You don't have any applications" });
-  }
-  res.send({ ApplicationList });
+  res.status(200).send({ applications, maximumPages });
 });
 
 export const getAllApplicationsForUser = asyncHandler(async (req, res) => {
@@ -87,19 +86,6 @@ export const getSpecificApplication = asyncHandler(async (req, res) => {
   }
 
   res.status(200).send(SpecificApplication);
-});
-
-export const getMyApplications = asyncHandler(async (req, res) => {
-  const ApplicationList = await Application.find({
-    employee_id: req.currentUser.uid,
-  }).populate("user", "-_id -__v -password -isActive -createdAt -updatedAt ");
-
-  if (!ApplicationList) {
-    res.send({ message: "You don't have any applications" });
-  }
-  res.send({
-    ApplicationList,
-  });
 });
 
 export const assignApplication = asyncHandler(async (req, res) => {

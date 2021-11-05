@@ -1,5 +1,4 @@
-import AllApplications from "./AllApplications";
-import TakenApplications from "./TakenApplications";
+import Applications from "./Applications";
 import ApplicationsToggle from "./ApplicationsToggle";
 
-export { AllApplications, TakenApplications, ApplicationsToggle };
+export { Applications, ApplicationsToggle };

@@ -2,10 +2,14 @@ import Application from "models/application.js";
 import User from "models/application.js";
 import asyncHandler from "helpers/asyncHandler.js";
 import createError from "http-errors";
+import { PaginationHelper } from "helpers/paginationHelper";
 
 export const getPreviewApplications = asyncHandler(async (req, res) => {
   let { category, status } = req.params;
   let { page, size } = req.query;
+
+  const { skip, limit } = PaginationHelper(page, size);
+
   category = category.slice(0, -1);
   let filters = {
     user_id: req.currentUser.uid,
@@ -13,15 +17,6 @@ export const getPreviewApplications = asyncHandler(async (req, res) => {
     archived: false,
     status: { $ne: 5 },
   };
-
-  if (!page || page == 0) {
-    page = 1;
-  }
-  if (!size) {
-    size = 4;
-  }
-  const skip = (page - 1) * size;
-  const limit = parseInt(size);
 
   if (status === "ready") {
     filters.status = "5";

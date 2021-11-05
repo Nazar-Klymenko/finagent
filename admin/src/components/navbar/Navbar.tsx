@@ -35,11 +35,10 @@ const Navbar: React.FC = () => {
         </LogoWrap>
 
         <NavLink
-          to="/applications/all"
+          to="/applications/all/1"
           isActive={() => {
-            let matches = ["/applications/all", "/applications/taken"].includes(
-              pathname
-            );
+            const regex = /applications\/(all|taken)\/\d+/gm;
+            const matches = regex.test(pathname);
             return matches;
           }}
           activeClassName="selected"
@@ -48,12 +47,26 @@ const Navbar: React.FC = () => {
           <SideApplications />
           <span>{t("Navbar.applications")}</span>
         </NavLink>
-        <NavLink to="/clients" activeClassName="selected" className="item">
+        <NavLink
+          isActive={() => {
+            const regex = /clients\/(all|taken)\/\d+/gm;
+            const matches = regex.test(pathname);
+            return matches;
+          }}
+          to="/clients/all/1"
+          activeClassName="selected"
+          className="item"
+        >
           <SideClients />
           <span>{t("Navbar.clients")}</span>
         </NavLink>
         <NavLink
-          to="/applications/my-applications"
+          to="/applications/my-applications/1"
+          isActive={() => {
+            const regex = /applications\/my-applications\/\d+/gm;
+            const matches = regex.test(pathname);
+            return matches;
+          }}
           activeClassName="selected"
           className="item"
         >
@@ -62,13 +75,11 @@ const Navbar: React.FC = () => {
         </NavLink>
         <NavLink
           isActive={() => {
-            let matches = [
-              "/history/operator-only/1",
-              "/history/supervisor-only/1",
-            ].includes(pathname);
+            const regex = /history\/(my-history|all)\/\d+/gm;
+            const matches = regex.test(pathname);
             return matches;
           }}
-          to="/history/operator-only/1"
+          to="/history/my-history/1"
           activeClassName="selected"
           className="item"
         >
@@ -76,7 +87,12 @@ const Navbar: React.FC = () => {
           <span>{t("Navbar.history")}</span>
         </NavLink>
         <NavLink
-          to="/applications/archived"
+          to="/applications/archived/1"
+          isActive={() => {
+            const regex = /applications\/archived\/\d+/gm;
+            const matches = regex.test(pathname);
+            return matches;
+          }}
           activeClassName="selected"
           className="item"
         >

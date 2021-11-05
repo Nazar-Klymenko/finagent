@@ -3,42 +3,42 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import Record from "./Record";
-import { getHistoryAPI } from "@api/mainAPI";
+import { getHistory } from "@api/mainAPI";
 import { FullPage } from "@components/content";
 import Table from "@components/Table";
-import Pagination from "@components/Pagination";
+import MuiPagination from "@components/MuiPagination";
 
 import HistoryToggle from "./HistoryToggle";
 import Subheader from "@components/Subheader";
+import { useQuery } from "react-query";
 
 const History = () => {
   const { t } = useTranslation();
-  const { page } = useParams();
-  const [history, setHistory] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { status, page } = useParams();
+
+  const [maximumPages, setMaximumPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 25;
+  const [size] = useState(25);
+
+  const fetchHistory = async (page = 0, status, size) => {
+    const { data } = await getHistory(status, page, size);
+    setMaximumPages(data.maximumPages);
+    return data;
+  };
+
+  let { data, error, isFetching, refetch } = useQuery(
+    [`history`, currentPage],
+    () => fetchHistory(currentPage, status, size),
+    { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
+  );
+  useEffect(() => {
+    refetch();
+    return refetch();
+  }, [status, refetch]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getHistoryAPI(page, cardsPerPage);
-        const historyReversed = await response.data.HistoryList.reverse();
-        setHistory(historyReversed);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
+    setCurrentPage(page);
   }, [page]);
-
-  const indexOfLastCard = currentPage * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const maximumPages = history.length / cardsPerPage;
-
-  const historyShown = history.slice(indexOfFirstCard, indexOfLastCard);
 
   return (
     <FullPage>
@@ -59,18 +59,17 @@ const History = () => {
             <th>{t("History.application")}</th>
           </tr>
         </thead>
-        {!isLoading && (
-          <tbody>
-            {historyShown &&
-              historyShown.map((record, idx) => (
-                <Record row={record} key={idx} />
-              ))}
-          </tbody>
-        )}
+        <tbody>
+          {data?.history?.length > 0 &&
+            data.history.map((record, idx) => (
+              <Record row={record} key={idx} />
+            ))}
+        </tbody>
       </Table>
-      <Pagination
+      <MuiPagination
+        category="history"
+        status={status}
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
         maximumPages={maximumPages}
       />
     </FullPage>

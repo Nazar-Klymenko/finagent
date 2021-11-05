@@ -1,35 +1,42 @@
 import asyncHandler from "helpers/asyncHandler.js";
-
 import History from "models/history.js";
+import { PaginationHelper } from "helpers/paginationHelper";
 
-export const getAllHistory = asyncHandler(async (req, res, next) => {
-  const HistoryList = await History.find()
-    .populate("employee", "-_id -__v -password -isActive -createdAt -updatedAt")
-    .populate("application", "_id");
+export const getHistory = asyncHandler(async (req, res) => {
+  let { page, size } = req.query;
+  let { limit, skip } = PaginationHelper(page, size);
+  let query = { employee_id: req.currentUser.uid };
+
+  const history = await History.find(query)
+    .limit(limit)
+    .skip(skip)
+    .sort({ createdAt: -1 })
+    .populate("employee", "name surname");
+
+  let maximumPages = await History.find(query).countDocuments();
+  maximumPages = Math.ceil(maximumPages / size);
   res.send({
-    HistoryList,
+    history,
+    maximumPages,
   });
 });
 
-export const getHistory = asyncHandler(async (req, res, next) => {
+export const getHistoryAll = asyncHandler(async (req, res) => {
   let { page, size } = req.query;
-  if (!page) {
-    page = 1;
-  }
-  if (!size) {
-    size = 20;
-  }
+  let { limit, skip } = PaginationHelper(page, size);
+  let query = {};
 
-  const skip = (page - 1) * size;
-  const limit = parseInt(size);
-
-  const HistoryList = await History.find({
-    employee_id: req.currentUser.uid,
-  })
+  const history = await History.find(query)
     .limit(limit)
     .skip(skip)
+    .sort({ createdAt: -1 })
     .populate("employee", "name surname");
+
+  let maximumPages = await History.find(query).countDocuments();
+  maximumPages = Math.ceil(maximumPages / size);
+
   res.send({
-    HistoryList,
+    history,
+    maximumPages,
   });
 });

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+
 import { getClients } from "@api/mainAPI";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { FullPage } from "@components/content";
@@ -13,12 +14,13 @@ import { useQuery } from "react-query";
 const Clients = () => {
   const { t } = useTranslation();
   const history = useHistory();
+  let { page } = useParams();
 
   const [maximumPages, setMaximumPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [size] = useState(25);
 
-  const fetchApplications = async (page = 0, size) => {
+  const fetchClients = async (page = 0, size) => {
     const { data } = await getClients(page, size);
     setMaximumPages(data.maximumPages);
     return data;
@@ -26,9 +28,12 @@ const Clients = () => {
 
   let { data, error, isFetching, refetch } = useQuery(
     [`clients`, currentPage],
-    () => fetchApplications(currentPage, size),
+    () => fetchClients(currentPage, size),
     { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
   );
+  useEffect(() => {
+    setCurrentPage(page);
+  }, [page]);
 
   return (
     <FullPage>
@@ -69,9 +74,9 @@ const Clients = () => {
       </Table>
       <MuiPagination
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
         maximumPages={maximumPages}
         category="clients"
+        status="all"
       />
     </FullPage>
   );

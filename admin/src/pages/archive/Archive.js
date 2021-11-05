@@ -56,36 +56,34 @@ const Archive = () => {
             <th>{t("Applications.lastUpdate")}</th>
           </tr>
         </thead>
-        {!isFetching && (
-          <tbody>
-            {data?.applications?.length > 0 &&
-              data.applications.map((app) => {
-                const createdAt = new Date(app.createdAt).toLocaleDateString(
-                  "pl"
-                );
-                const updatedAt = moment(app.updatedAt).fromNow();
+        <tbody>
+          {data?.applications?.length > 0 &&
+            data.applications.map((app) => {
+              const createdAt = new Date(app.createdAt).toLocaleDateString(
+                "pl"
+              );
+              const updatedAt = moment(app.updatedAt).fromNow();
 
-                return (
-                  <tr
-                    key={app._id}
-                    onClick={() => {
-                      history.push(`/applications/${app._id}`);
-                    }}
-                  >
-                    <td>{app.employee?.name}</td>
-                    <td>{app.user?.name}</td>
-                    <td>{app.user?.surname}</td>
-                    <td>{app.user?.email}</td>
-                    <td>{app.user?.phone}</td>
-                    <td>{app.category}</td>
-                    <td>{app.type}</td>
-                    <td>{createdAt}</td>
-                    <td>{updatedAt}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        )}
+              return (
+                <tr
+                  key={app._id}
+                  onClick={() => {
+                    history.push(`/applications/${app._id}`);
+                  }}
+                >
+                  <td>{app.employee?.name}</td>
+                  <td>{app.user?.name}</td>
+                  <td>{app.user?.surname}</td>
+                  <td>{app.user?.email}</td>
+                  <td>{app.user?.phone}</td>
+                  <td>{app.category}</td>
+                  <td>{app.type}</td>
+                  <td>{createdAt}</td>
+                  <td>{updatedAt}</td>
+                </tr>
+              );
+            })}
+        </tbody>
       </Table>
       <MuiPagination
         currentPage={currentPage}

@@ -69,16 +69,17 @@ export const sendStatusAPI = (data: any, id: string) => {
   });
 };
 
-export const getHistoryAPI = (currentPage: string, cardsPerPage: string) => {
-  return axios(`/admin/history?page=${currentPage}&size=${cardsPerPage}`, {
-    method: "GET",
-  });
-};
-
-export const getAllHistoryAPI = () => {
-  return axios(`/admin/all-history`, {
-    method: "GET",
-  });
+export const getHistory = (
+  status: "my-history" | "all",
+  currentPage: string,
+  cardsPerPage: string
+) => {
+  return axios(
+    `/admin/history/${status}?page=${currentPage}&size=${cardsPerPage}`,
+    {
+      method: "GET",
+    }
+  );
 };
 
 export const uploadDocumentsAPI = (object: any, id: string) => {

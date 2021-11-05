@@ -13,7 +13,7 @@ const ApplicationsToggle = () => {
   return (
     <PageToggle>
       <NavLink
-        to="/applications/all"
+        to="/applications/all/1"
         activeClassName="selected"
         className="page-toggle__link"
       >
@@ -21,7 +21,7 @@ const ApplicationsToggle = () => {
       </NavLink>
       {!isSendingRequest && role === "supervisor" && (
         <NavLink
-          to="/applications/taken"
+          to="/applications/taken/1"
           activeClassName="selected"
           className="page-toggle__link"
         >

@@ -1,31 +1,31 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// import { useAuth } from "@context/authContext";
+import { useAuth } from "@context/authContext";
 import { useTranslation } from "react-i18next";
 
 import PageToggle from "@components/PageToggle";
 
 const HistoryToggle = () => {
   const { t } = useTranslation();
-  // const { isSendingRequest, userData } = useAuth();
+  const { isSendingRequest, currentUser } = useAuth();
   return (
     <PageToggle>
       <NavLink
-        to="/history/operator-only"
+        to="/history/my-history/1"
         activeClassName="selected"
         className="page-toggle__link"
       >
         {t("History.myHistory")}
       </NavLink>
-      {/* {!isSendingRequest && userData.role === "supervisor" && (
+      {!isSendingRequest && currentUser.role === "supervisor" && (
         <NavLink
-          to="/history/supervisor-only"
+          to="/history/all/1"
           activeClassName="selected"
           className="page-toggle__link"
         >
           {t("History.allHistory")}
         </NavLink>
-      )} */}
+      )}
     </PageToggle>
   );
 };

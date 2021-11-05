@@ -8,13 +8,13 @@ import Section from "./Section";
 
 import { uploadDocumentsAPI } from "@api/mainAPI";
 import { FileInput } from "@components/input";
+import { useDispatch } from "react-redux";
+import { setSnackbar } from "@redux/alert/actions";
 
 const AttachDocuments = ({ id }) => {
   const { t } = useTranslation();
+  const { dispatch } = useDispatch();
   const { handleSubmit, errors, formState, control } = useForm({
-    defaultValues: {
-      adminDocuments: null,
-    },
     mode: "onBlur",
     reValidateMode: "onBlur",
     shouldFocusError: false,
@@ -32,10 +32,9 @@ const AttachDocuments = ({ id }) => {
 
       await uploadDocumentsAPI(formData, id);
 
-      alert("image added successfully");
+      dispatch(setSnackbar("success", "SnackBar.success"));
     } catch (error) {
-      console.log(error);
-      alert("couldn't add images");
+      dispatch(setSnackbar("error", "SnackBar.error"));
     }
   };
 

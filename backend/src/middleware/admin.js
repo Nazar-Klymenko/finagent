@@ -6,7 +6,7 @@ export const verifyAdmin = async (req, res, next) => {
     const admin = await Admin.findById(req.currentUser.uid);
 
     if (
-      admin.role === "admin" ||
+      (admin.role === "admin" && admin.isApproved) ||
       (admin.role === "supervisor" && admin.isApproved)
     ) {
       next();

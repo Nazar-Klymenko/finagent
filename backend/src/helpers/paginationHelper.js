@@ -1,4 +1,4 @@
-async function PaginationHelper(page, size) {
+function PaginationHelper(page, size) {
   if (!page || page == 0) {
     page = 1;
   }

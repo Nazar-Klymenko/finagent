@@ -13,11 +13,16 @@ import MuiPagination from "@components/MuiPagination";
 import ApplicationsToggle from "./ApplicationsToggle";
 import Subheader from "@components/Subheader";
 import { useQuery } from "react-query";
+import { useDispatch } from "react-redux";
+
+import { setSnackbar } from "@redux/alert/actions";
 
 const Applications = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const { status } = useParams();
+  const { page, status } = useParams();
+  const dispatch = useDispatch();
+
   const [maximumPages, setMaximumPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [size] = useState(25);
@@ -30,7 +35,7 @@ const Applications = () => {
 
   let { data, error, isFetching, refetch } = useQuery(
     [`applications-${status}`, currentPage, size],
-    () => fetchApplications(currentPage, status),
+    () => fetchApplications(currentPage, status, size),
     { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
   );
 
@@ -39,82 +44,91 @@ const Applications = () => {
     return refetch();
   }, [status, refetch]);
 
+  useEffect(() => {
+    setCurrentPage(page);
+  }, [page]);
+
   const assignApplication = async (id) => {
     try {
       await assignAppAPI(id);
       refetch();
     } catch (error) {
-      console.log(error);
+      dispatch(setSnackbar("error", "Couldn't assign application"));
     }
   };
 
   return (
     <FullPage>
-      <Subheader
-        compact
-        subheader={t("Applications.title")}
-        description={t("Applications.subtitle")}
-      />
+      {status === "all" ? (
+        <Subheader
+          compact
+          subheader={t("Applications.title")}
+          description={t("Applications.subtitle")}
+        />
+      ) : (
+        <Subheader
+          compact
+          subheader={t("Applications.takenTitle")}
+          description={t("Applications.takenSubtitle")}
+        />
+      )}
+
       <ApplicationsToggle />
 
-      <>
-        <Table>
-          <thead>
-            <tr>
-              <th>{t("Applications.admin")}</th>
-              <th>{t("Applications.name")}</th>
-              <th>{t("Applications.surname")}</th>
-              <th>{t("Applications.email")}</th>
-              <th>{t("Applications.phone")}</th>
-              <th>{t("Applications.service")}</th>
-              <th>{t("Applications.type")}</th>
-              <th>{t("Applications.createdAt")}</th>
-              <th>{t("Applications.lastUpdate")}</th>
-            </tr>
-          </thead>
-          {!isFetching && (
-            <tbody>
-              {data?.applications?.length > 0 &&
-                data.applications.map((app) => {
-                  const createdAt = new Date(app.createdAt).toLocaleDateString(
-                    "pl"
-                  );
-                  const updatedAt = moment(app.updatedAt).fromNow();
+      <Table>
+        <thead>
+          <tr>
+            <th>{t("Applications.admin")}</th>
+            <th>{t("Applications.name")}</th>
+            <th>{t("Applications.surname")}</th>
+            <th>{t("Applications.email")}</th>
+            <th>{t("Applications.phone")}</th>
+            <th>{t("Applications.service")}</th>
+            <th>{t("Applications.type")}</th>
+            <th>{t("Applications.createdAt")}</th>
+            <th>{t("Applications.lastUpdate")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.applications?.length > 0 &&
+            data.applications.map((app) => {
+              const createdAt = new Date(app.createdAt).toLocaleDateString(
+                "pl"
+              );
+              const updatedAt = moment(app.updatedAt).fromNow();
 
-                  return (
-                    <tr
-                      key={app._id}
-                      onClick={() => {
-                        history.push(`/applications/${app._id}`);
-                      }}
-                    >
-                      <AssignCell
-                        id={app._id}
-                        employee={app.employee_id}
-                        assignApplication={assignApplication}
-                      />
-                      <td>{app.user?.name}</td>
-                      <td>{app.user?.surname}</td>
-                      <td>{app.user?.email}</td>
-                      <td>{app.user?.phone}</td>
-                      <td>{app.category}</td>
-                      <td>{app.type}</td>
-                      <td>{createdAt}</td>
-                      <td>{updatedAt}</td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          )}
-        </Table>
-        <MuiPagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          maximumPages={maximumPages}
-          category="applications"
-          status={status}
-        />
-      </>
+              return (
+                <tr
+                  key={app._id}
+                  onClick={() => {
+                    history.push(`/applications/open/${app._id}`);
+                  }}
+                >
+                  <AssignCell
+                    id={app._id}
+                    employee={app.employee}
+                    assignApplication={assignApplication}
+                  />
+                  <td>{app.user?.name}</td>
+                  <td>{app.user?.surname}</td>
+                  <td>{app.user?.email}</td>
+                  <td>{app.user?.phone}</td>
+                  <td>{app.category}</td>
+                  <td>{app.type}</td>
+                  <td>{createdAt}</td>
+                  <td>{updatedAt}</td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </Table>
+      <MuiPagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        maximumPages={maximumPages}
+        category="applications"
+        status={status}
+      />
     </FullPage>
   );
 };

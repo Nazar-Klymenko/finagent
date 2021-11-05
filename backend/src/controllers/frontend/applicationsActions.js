@@ -39,10 +39,11 @@ export const getPreviewApplications = asyncHandler(async (req, res) => {
     .skip(skip);
 
   let maximumPages = await Application.find(query).countDocuments();
+  maximumPages = Math.ceil(maximumPages / size);
 
   res.status(200).send({
     ApplicationList,
-    maximumPages: Math.ceil(maximumPages / size),
+    maximumPages,
   });
 });
 

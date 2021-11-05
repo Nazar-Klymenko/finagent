@@ -52,18 +52,6 @@ async function attachImagesAdmin(id, files) {
   application.save();
 }
 
-// function createFilePathPdf(id, file, type) {
-//   const imgPath = path.resolve(__dirname, "./src/files/");
-//   let fileName = file.name;
-//   let fileNameStripped = fileName.split(".");
-//   fileNameStripped.pop();
-
-//   const newPath = `${imgPath}/${id}/${type}/`;
-//   if (!fs.existsSync(newPath)) {
-//     fs.mkdirSync(newPath, { recursive: true });
-//   }
-//   return newPath;
-// }
 function createFilePathPdf(id, file, type) {
   const imgPath = path.resolve(__dirname, "./src/files/");
   let fileName = file.name;

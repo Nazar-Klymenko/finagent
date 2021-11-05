@@ -56,6 +56,8 @@
   "Applications": {
     "title": "Wszystkie aplikacje",
     "subtitle": " Wszystkie aplikacje, informacje przesłane przez użytkownika",
+    "takenTitle": "Rozpatrzywane aplikacje",
+    "takenSubtitle": "Aplikacje, które są w tej chwili rozpatrzywane przez operatorów",
     "all": "Wszystko",
     "taken": "Zajęte",
     "admin": "Admin",

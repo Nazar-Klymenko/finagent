@@ -20,10 +20,10 @@ import {
   updateSettings,
 } from "controllers/admin/settings.js";
 
-import { getHistory, getAllHistory } from "controllers/admin/history.js";
+import { getHistory, getHistoryAll } from "controllers/admin/history.js";
 
 router
-  .route("/clients")
+  .route("/clients/show")
   .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, allUsers);
 router
   .route("/clients/:id")
@@ -63,10 +63,10 @@ router
   .put(verifyAccessTokenFirebaseAdmin, verifyAdmin, changePassword);
 
 router
-  .route("/history")
+  .route("/history/my-history")
   .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getHistory);
 router
   .route("/history/all")
-  .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getAllHistory);
+  .get(verifyAccessTokenFirebaseAdmin, verifySupervisor, getHistoryAll);
 
 export default router;

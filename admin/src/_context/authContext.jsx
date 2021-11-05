@@ -79,9 +79,6 @@ export const AuthContextProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-  useEffect(() => {
-    console.log({ currentUser });
-  }, [currentUser]);
 
   async function signup(data) {
     let newData = data;

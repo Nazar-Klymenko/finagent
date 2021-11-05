@@ -9,20 +9,7 @@ interface Props {
 }
 
 const AssignCell: React.FC<Props> = ({ id, employee, assignApplication }) => {
-  const [adminName, setAdminName] = useState("");
-  const [taken, setTaken] = useState(false);
-
-  useEffect(() => {
-    const checkIfTaken = () => {
-      if (employee === null || employee === undefined) {
-        return false;
-      } else {
-        setAdminName(employee.name);
-        return true;
-      }
-    };
-    setTaken(checkIfTaken());
-  }, [employee]);
+  const [taken] = useState(!!employee);
 
   return !taken ? (
     <td
@@ -36,7 +23,7 @@ const AssignCell: React.FC<Props> = ({ id, employee, assignApplication }) => {
       </PlusWrap>
     </td>
   ) : (
-    <td>{adminName}</td>
+    <td>{employee?.name}</td>
   );
 };
 

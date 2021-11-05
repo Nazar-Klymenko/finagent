@@ -44,8 +44,6 @@ const ApplicationOpen = ({ returnTo }) => {
   const [isAssingLoading, setIsAssignLoading] = useState(false);
   const [isReturnLoading, setIsReturnLoading] = useState(false);
 
-  const [fullName, setFullName] = useState("");
-
   const fetchData = async () => {
     const { data } = await getSpecificApplicationAPI(id);
     return data;
@@ -60,12 +58,10 @@ const ApplicationOpen = ({ returnTo }) => {
   useEffect(() => {
     setCreatedAt(new Date(data?.createdAt).toLocaleDateString("pl"));
     setUpdatedAt(moment(data?.updatedAt).fromNow());
-    setFullName(data?.user?.name + " " + data?.user?.surname);
     setIsTaken(!!data?.employee_id);
   }, [data]);
   let appDataLabeled;
 
-  console.log({ data });
   if (data) {
     appDataLabeled = determineType(data?.type, data);
   }
@@ -114,7 +110,7 @@ const ApplicationOpen = ({ returnTo }) => {
             <ApplicationInfo>
               <InfoCell
                 name={t("ApplicationOpen.AppInfo.name")}
-                value={fullName}
+                value={data?.user?.name + " " + data?.user?.surname}
               />
               <InfoCell
                 name={t("ApplicationOpen.AppInfo.type")}

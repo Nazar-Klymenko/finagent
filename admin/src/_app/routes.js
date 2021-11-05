@@ -9,7 +9,7 @@ import ApplicationOpen from "../pages/applicationOpen";
 import Clients from "../pages/clients";
 import ClientOpen from "../pages/clientOpen";
 import MyApplications from "../pages/myApplications";
-import { History, HistoryAll } from "../pages/history";
+import { History } from "../pages/history";
 import Archive from "../pages/archive";
 
 import { AllOperators, AcceptOperators } from "../pages/operators";
@@ -26,58 +26,26 @@ import Error404 from "../pages/error404";
 const Routes = () => (
   <Switch>
     <Route path="/" exact component={Welcome} />
-
-    <Route
-      path="/applications"
-      exact
-      render={(props) => <Redirect to="/applications/all" />}
-    />
-    <PrivateRoute
-      path="/applications/my-applications"
-      exact
-      component={Archive}
-    />
-    <PrivateRoute path="/applications/archived" exact component={Archive} />
-
-    <PrivateRoute path="/applications/:status" component={Applications} />
     <PrivateRoute
       path="/applications/open/:id"
       exact
       component={() => <ApplicationOpen returnTo="/applications/all" />}
     />
-
-    <PrivateRoute exact path="/clients" component={Clients} />
-    <PrivateRoute path="/clients/:id" component={ClientOpen} />
-    <PrivateRoute exact path="/my-applications" component={MyApplications} />
-    {/* <PrivateRoute
-      path="/my-applications/:id"
-      component={() => <ApplicationOpen returnTo="/my-applications/" />}
-    /> */}
-
-    <Route
-      path="/history"
+    <PrivateRoute
+      path="/applications/my-applications/:page"
       exact
-      render={(props) => <Redirect to="/history/operator-only/1" />}
-    />
-    <Route
-      path="/history/operator-only/"
-      exact
-      render={(props) => <Redirect to="/history/operator-only/1" />}
-    />
-    <PrivateRoute path="/history/operator-only/:page" component={History} />
-
-    <Route
-      path="/history/supervisor-only/"
-      exact
-      render={(props) => <Redirect to="/history/supervisor-only/1" />}
+      component={MyApplications}
     />
     <PrivateRoute
-      path="/history/supervisor-only/:page"
-      component={HistoryAll}
+      path="/applications/archived/:page"
+      exact
+      component={Archive}
     />
 
-    <PrivateRoute path="/archive" component={Archive} />
-
+    <PrivateRoute path="/applications/:status/:page" component={Applications} />
+    <PrivateRoute path="/clients/all/:page" component={Clients} />
+    <PrivateRoute path="/clients/open/:id" component={ClientOpen} />
+    <PrivateRoute path="/history/:status/:page" component={History} />
     <Route
       path="/operators"
       exact
@@ -90,11 +58,9 @@ const Routes = () => (
       component={AcceptOperators}
     />
     <PrivateRoute path="/settings" component={Settings} />
-
     <Route path="/auth/login" exact component={Login} />
     <Route path="/auth/signup" exact component={SignUp} />
     <Route path="/buffer" exact component={BufferPage} />
-
     {/* <Route path="*" component={Error404} /> */}
   </Switch>
 );

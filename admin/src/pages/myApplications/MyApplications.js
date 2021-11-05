@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 
@@ -14,8 +14,8 @@ import { useQuery } from "react-query";
 const MyApplications = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const { path } = useRouteMatch();
   const status = "my-applications";
+  const { page } = useParams();
 
   const [maximumPages, setMaximumPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,7 +32,9 @@ const MyApplications = () => {
     () => fetchApplications(currentPage, status),
     { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
   );
-
+  useEffect(() => {
+    setCurrentPage(page);
+  }, [page]);
   return (
     <FullPage>
       <Subheader
@@ -53,35 +55,33 @@ const MyApplications = () => {
             <th>{t("Applications.lastUpdate")}</th>
           </tr>
         </thead>
-        {!isFetching && (
-          <tbody>
-            {data?.applications?.length > 0 &&
-              data.applications.map((app) => {
-                const createdAt = new Date(app.createdAt).toLocaleDateString(
-                  "pl"
-                );
-                const updatedAt = moment(app.updatedAt).fromNow();
+        <tbody>
+          {data?.applications?.length > 0 &&
+            data.applications.map((app) => {
+              const createdAt = new Date(app.createdAt).toLocaleDateString(
+                "pl"
+              );
+              const updatedAt = moment(app.updatedAt).fromNow();
 
-                return (
-                  <tr
-                    key={app._id}
-                    onClick={() => {
-                      history.push(`${path}/${app._id}`);
-                    }}
-                  >
-                    <td>{app.user?.name}</td>
-                    <td>{app.user?.surname}</td>
-                    <td>{app.user?.email}</td>
-                    <td>{app.user?.phone}</td>
-                    <td>{app.category}</td>
-                    <td>{app.type}</td>
-                    <td>{createdAt}</td>
-                    <td>{updatedAt}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        )}
+              return (
+                <tr
+                  key={app._id}
+                  onClick={() => {
+                    history.push(`/applications/open/${app._id}`);
+                  }}
+                >
+                  <td>{app.user?.name}</td>
+                  <td>{app.user?.surname}</td>
+                  <td>{app.user?.email}</td>
+                  <td>{app.user?.phone}</td>
+                  <td>{app.category}</td>
+                  <td>{app.type}</td>
+                  <td>{createdAt}</td>
+                  <td>{updatedAt}</td>
+                </tr>
+              );
+            })}
+        </tbody>
       </Table>
       <MuiPagination
         currentPage={currentPage}

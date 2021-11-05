@@ -8,7 +8,7 @@ import styled from "styled-components/macro";
 interface Props {
   category: string;
   currentPage: number;
-  status: "ready" | "pending";
+  status: string;
   maximumPages: number;
 }
 
@@ -21,6 +21,7 @@ const MuiPagination: FC<Props> = ({
   if (maximumPages === 0) {
     maximumPages = 1;
   }
+
   return (
     <PaginationStyled>
       <Pagination

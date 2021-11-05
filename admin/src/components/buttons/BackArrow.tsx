@@ -9,12 +9,12 @@ interface Props {
   returnTo: string;
 }
 
-const BackArrow: React.FC<Props> = ({ returnTo }) => {
+const BackArrow: React.FC<Props> = () => {
   const history = useHistory();
 
   const returnFn = useCallback(() => {
-    history.push(returnTo);
-  }, [returnTo, history]);
+    history.goBack();
+  }, [history]);
 
   return (
     <BackArrowStyled onClick={returnFn}>

@@ -14,10 +14,12 @@ export const getAllApplications = asyncHandler(async (req, res) => {
 
   if (status === "all") {
     query = {
+      archived: false,
       employee_id: { $eq: null },
     };
   } else if (status === "taken") {
     query = {
+      archived: false,
       employee_id: { $ne: null },
     };
   } else if (status === "archived") {
@@ -41,10 +43,8 @@ export const getAllApplications = asyncHandler(async (req, res) => {
     .skip(skip);
 
   let maximumPages = await Application.find(query).countDocuments();
+  maximumPages = Math.ceil(maximumPages / size);
 
-  if (!applications) {
-    res.send({ message: "You don't have any applications" });
-  }
   res.status(200).send({ applications, maximumPages });
 });
 

@@ -1,11 +1,12 @@
 import createError from "http-errors";
 import Admin from "models/admin.js";
 
-import { adminAuth } from "app";
+import { adminAuth } from "services/firebase";
 
 export const signUp = async (req, res, next) => {
   const { name, surname, email, secret, IdToken } = req.body;
 
+  console.log(req.body);
   try {
     const admin = await Admin.findOne({ email: email });
     if (admin) {
@@ -21,16 +22,14 @@ export const signUp = async (req, res, next) => {
       secret: secret,
     });
 
-    const decodedToken = await adminAuth.verifyIdToken(IdToken.i);
+    const decodedToken = await adminAuth.verifyIdToken(IdToken);
 
     AdminObj._id = decodedToken.uid;
     await AdminObj.save();
 
     res.status(200).send({
-      message: "User signed up successfully, confirm email",
+      message: "User signed up successfully",
       displayName: `${name} ${surname}`,
-
-      isActive: true,
     });
   } catch (error) {
     if (error.name === "ValidationError") res.status(422);

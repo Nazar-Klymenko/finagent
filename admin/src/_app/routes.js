@@ -1,26 +1,18 @@
-import { AuthRoute, PrivateRoute } from "../components/CustomRoutes";
+import { PrivateRoute } from "../components/CustomRoutes";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import Welcome from "../pages/welcome";
 
-import {
-  ApplicationsToggle,
-  AllApplications,
-  TakenApplications,
-} from "../pages/applications";
+import { Applications } from "../pages/applications";
 
 import ApplicationOpen from "../pages/applicationOpen";
 import Clients from "../pages/clients";
 import ClientOpen from "../pages/clientOpen";
 import MyApplications from "../pages/myApplications";
-import { History, HistoryAll, HistoryToggle } from "../pages/history";
+import { History, HistoryAll } from "../pages/history";
 import Archive from "../pages/archive";
 
-import {
-  OperatorsToggle,
-  AllOperators,
-  AcceptOperators,
-} from "../pages/operators";
+import { AllOperators, AcceptOperators } from "../pages/operators";
 
 import Login from "../pages/login";
 import SignUp from "../pages/signUp";
@@ -40,10 +32,16 @@ const Routes = () => (
       exact
       render={(props) => <Redirect to="/applications/all" />}
     />
-    <PrivateRoute path="/applications/all" component={AllApplications} />
-    <PrivateRoute path="/applications/taken" component={TakenApplications} />
     <PrivateRoute
-      path="/applications/:id"
+      path="/applications/my-applications"
+      exact
+      component={Archive}
+    />
+    <PrivateRoute path="/applications/archived" exact component={Archive} />
+
+    <PrivateRoute path="/applications/:status" component={Applications} />
+    <PrivateRoute
+      path="/applications/open/:id"
       exact
       component={() => <ApplicationOpen returnTo="/applications/all" />}
     />
@@ -51,10 +49,10 @@ const Routes = () => (
     <PrivateRoute exact path="/clients" component={Clients} />
     <PrivateRoute path="/clients/:id" component={ClientOpen} />
     <PrivateRoute exact path="/my-applications" component={MyApplications} />
-    <PrivateRoute
+    {/* <PrivateRoute
       path="/my-applications/:id"
       component={() => <ApplicationOpen returnTo="/my-applications/" />}
-    />
+    /> */}
 
     <Route
       path="/history"

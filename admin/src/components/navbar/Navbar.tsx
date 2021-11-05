@@ -18,11 +18,13 @@ import {
   SideArchive,
 } from "@components/svgs";
 
-import { useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 const Navbar: React.FC = () => {
   const { t } = useTranslation();
-  const isLoggedIn = useSelector((state: any) => state.user.isLoggedIn);
+
+  const { currentUser } = useAuth();
+  const { isLoggedIn } = currentUser;
   const { pathname } = useLocation();
 
   return (
@@ -51,7 +53,7 @@ const Navbar: React.FC = () => {
           <span>{t("Navbar.clients")}</span>
         </NavLink>
         <NavLink
-          to="/my-applications"
+          to="/applications/my-applications"
           activeClassName="selected"
           className="item"
         >
@@ -73,7 +75,11 @@ const Navbar: React.FC = () => {
           <SideCalendar />
           <span>{t("Navbar.history")}</span>
         </NavLink>
-        <NavLink to="/archive" activeClassName="selected" className="item">
+        <NavLink
+          to="/applications/archived"
+          activeClassName="selected"
+          className="item"
+        >
           <SideArchive />
           <span>{t("Navbar.archive")}</span>
         </NavLink>

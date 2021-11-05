@@ -11,17 +11,16 @@ import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Header } from "@components/typography";
-import { login } from "@redux/auth/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 import styled from "styled-components";
 
 const Login = (props) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const history = useHistory();
 
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { currentUser, login } = useAuth();
+  const { isLoggedIn } = currentUser;
   const [isLoading, setIsLoading] = useState(false);
 
   const { register, handleSubmit, errors } = useForm({
@@ -36,7 +35,7 @@ const Login = (props) => {
 
   const formSubmit = async (data) => {
     setIsLoading(true);
-    dispatch(login(data.email, data.password, redirectCallback));
+    login(data.email, data.password, redirectCallback);
     setIsLoading(false);
   };
 

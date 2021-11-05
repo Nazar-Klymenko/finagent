@@ -2,7 +2,9 @@ import { axios } from "@api/axiosConfig";
 
 import { useEffect, useReducer, useRef } from "react";
 
-function useFetch(url, options) {
+function useFetch(object) {
+  const { url, options } = object;
+
   const cache = useRef({});
 
   // Used to prevent state update if the component is unmounted

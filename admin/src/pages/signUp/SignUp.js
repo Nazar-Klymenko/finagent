@@ -11,14 +11,14 @@ import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 
-import { signup } from "@redux/auth/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "@context/authContext";
 
 const SignUp = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  const { currentUser, signup } = useAuth();
+  const { isLoggedIn } = currentUser;
   const [isLoading, setIsLoading] = useState(false);
 
   const { register, handleSubmit, errors } = useForm({
@@ -28,18 +28,18 @@ const SignUp = () => {
     resolver: yupResolver(signUpSchema),
   });
 
-  const redirectCallback = () => {
-    history.push("/dashboard/insurances");
-  };
+  // const redirectCallback = () => {
+  //   history.push("/dashboard/insurances");
+  // };
 
   const formSubmit = async (data) => {
     setIsLoading(true);
-    dispatch(signup(data, redirectCallback));
+    signup(data);
     setIsLoading(false);
   };
 
   useEffect(() => {
-    if (isLoggedIn) history.push("/dashboard/insurances");
+    if (isLoggedIn) history.push("/buffer");
   }, [isLoggedIn, history]);
 
   return (

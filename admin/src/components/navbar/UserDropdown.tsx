@@ -6,8 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Profile, Settings, SignOut } from "@components/svgs";
 import useClickOutside from "@hooks/useClickOutside";
 
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "@redux/auth/actions";
+import { useAuth } from "@context/authContext";
 
 interface Styled {
   isOpen?: boolean;
@@ -15,12 +14,9 @@ interface Styled {
 
 const UserDropdown = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
 
-  const { displayName, isSendingRequest, role } = useSelector(
-    (state: any) => state.user
-  );
-
+  const { currentUser, logout } = useAuth();
+  const { role, isSendingRequest, displayName } = currentUser;
   const history = useHistory();
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -32,8 +28,12 @@ const UserDropdown = () => {
     setIsOpen(!isOpen);
   }, [setIsOpen, isOpen]);
 
+  const redirectCallback = () => {
+    history.push("/dashboard/insurances");
+  };
+
   const logOut = () => {
-    dispatch(logout());
+    logout();
   };
 
   return !isSendingRequest ? (

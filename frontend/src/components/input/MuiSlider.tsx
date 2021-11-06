@@ -48,18 +48,6 @@ const SliderStyled = withStyles({
     borderRadius: 4,
   },
 })(Slider);
-// const SliderStyled = withStyles({
-//   root: {
-//     width: 300,
-//     color: "#1672ec",
-//   },
-//   thumb: { backgroundColor: "#1672ec", height: 24, width: 24 },
-//   track: { backgroundColor: "#1672ec", height: 28, width: 28 },
-//   rail: {
-//     height: 8,
-//     borderRadius: 4,
-//   },
-// })(Slider);
 
 const marks = [
   {

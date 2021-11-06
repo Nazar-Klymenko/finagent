@@ -1,4 +1,15 @@
-const theme = {
+import { createTheme } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#3F8AE0",
+    },
+    secondary: {
+      main: "#326eb3",
+    },
+  },
+  //custom Theme
   black: "#1a1b1e",
 
   typography: {
@@ -48,6 +59,6 @@ const theme = {
   widthPhone: "688px",
   widthTablet: "992px",
   widthDesktop: "1400px",
-};
+});
 
 export default theme;

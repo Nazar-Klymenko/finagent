@@ -13,7 +13,6 @@ import Routes from "./routes";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthContextProvider } from "@context/authContext";
-
 const queryClient = new QueryClient();
 const App = () => {
   return (

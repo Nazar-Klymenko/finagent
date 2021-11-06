@@ -17,7 +17,7 @@ const BackButton: React.FC<Props> = ({ large, text, to }) => {
 
   const pushHistory = useCallback(() => {
     history.push(`./${to}`);
-  }, [to]);
+  }, [history, to]);
 
   return (
     <BackButtonStyled onClick={pushHistory} large={large}>

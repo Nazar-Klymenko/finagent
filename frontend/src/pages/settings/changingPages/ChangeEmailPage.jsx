@@ -16,7 +16,7 @@ import Form from "@components/Form";
 
 import Loader from "@components/Loader";
 import { Input, InputPassword } from "@components/input";
-import { ChangingPage, StatusError, ButtonPosition } from "./LocalStyles";
+import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
 
 const ChangeEmailPage = () => {
   const { t } = useTranslation();

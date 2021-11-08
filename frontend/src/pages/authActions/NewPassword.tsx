@@ -17,7 +17,7 @@ import { confirmChangePasswordAPI } from "@api/userAPI";
 const NewPassword = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  let { token } = useParams();
+  // let { token } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
@@ -29,10 +29,10 @@ const NewPassword = () => {
     resolver: yupResolver(newPasswordSchema()),
   });
 
-  const formSubmit = async (data) => {
+  const formSubmit = async (data: any) => {
     setIsLoading(true);
     try {
-      await confirmChangePasswordAPI(token, data);
+      // await confirmChangePasswordAPI(token, data);
       alert(t("NewPassword.confirm"));
       setIsLoading(false);
       history.push("/auth/login");
@@ -47,17 +47,12 @@ const NewPassword = () => {
       <div className="forgot-page">
         <h1 className="title">{t("NewPassword.title")}</h1>
         <div className="form-wrap">
-          <Form
-            id="form"
-            className="input-wrap"
-            onSubmit={handleSubmit(formSubmit)}
-          >
+          <Form id="form" onSubmit={handleSubmit(formSubmit)}>
             <InputPassword
               ref={register}
               name="password"
               labelName={t("NewPassword.Form.password")}
-              type="password"
-              autofocus={true}
+              // autofocus={true}
               error={!!errors.password}
               helperText={errors?.password?.message}
             />
@@ -66,8 +61,8 @@ const NewPassword = () => {
               ref={register}
               name="confirmPassword"
               labelName={t("NewPassword.Form.confirmPassword")}
-              type="password"
-              autofocus={true}
+              // type="password"
+              // autofocus={true}
               error={!!errors.confirmPassword}
               helperText={errors?.confirmPassword?.message}
             />
@@ -77,6 +72,7 @@ const NewPassword = () => {
               isLoading={isLoading}
               form="form"
               text={t("NewPassword.Form.button")}
+              color="primary"
             />
           </div>
         </div>

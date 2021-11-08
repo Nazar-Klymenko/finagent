@@ -9,7 +9,7 @@ export const settingsSchema = () => {
 
 export const changePasswordSchema = () => {
   return yup.object().shape({
-    oldPassword: yup
+    currentPassword: yup
       .string()
       .required("This field can't be blank")
       .min(8, "The password has to be at lest 8 symbols"),
@@ -35,9 +35,6 @@ export const changeEmailSchema = () => {
 
 export const dangerZoneSchema = () => {
   return yup.object().shape({
-    password: yup
-      .string()
-      .required("This field can't be blank")
-      .min(8, "The password has to be at lest 8 symbols"),
+    password: yup.string().min(8, "The password has to be at lest 8 symbols"),
   });
 };

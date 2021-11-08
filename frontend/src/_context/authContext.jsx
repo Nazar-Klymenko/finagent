@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import { auth } from "@services/firebase";
 import { setSnackbar } from "@redux/alert/actions";
 import { useDispatch } from "react-redux";
+import { deleteUserAPI } from "@api/userAPI";
 
 import {
   createUserWithEmailAndPassword,
@@ -14,9 +14,12 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   signOut,
-  confirmPasswordReset,
   sendEmailVerification,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+  reauthenticateWithRedirect,
   deleteUser,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
@@ -28,27 +31,31 @@ const AuthContext = createContext({
     isActive: false,
     isSendingRequest: true,
     photoURL: "",
+    provider: "",
   },
   signup: () => Promise,
   login: (email, password) => Promise,
   loginFacebook: () => Promise,
   logout: (redirectCallback) => Promise,
   forgotPassword: () => Promise,
-  resetPassword: () => Promise,
+  deleteAccount: () => Promise,
+  resetPassword: (email) => Promise,
+  setUpdatedPassword: (currentPassword, newPassword) => Promise,
 });
 
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
   const [currentUser, setCurrentUser] = useState({
     displayName: "",
     isLoggedIn: false,
     isActive: false,
-    isSendingRequest: false,
+    isSendingRequest: true,
     photoURL: "",
+    provider: "",
   });
 
   useEffect(() => {
@@ -75,6 +82,7 @@ export const AuthContextProvider = ({ children }) => {
               isActive: emailVerified,
               isSendingRequest: false,
               photoURL: photoURL,
+              provider: user.providerData[0]?.providerId,
             }
           : {
               displayName: "",
@@ -82,6 +90,7 @@ export const AuthContextProvider = ({ children }) => {
               isActive: false,
               isSendingRequest: false,
               photoURL: "",
+              provider: "",
             }
       );
     });
@@ -89,10 +98,6 @@ export const AuthContextProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-
-  useEffect(() => {
-    console.log({ currentUser });
-  }, [currentUser]);
 
   async function signup(data) {
     let newData = data;
@@ -103,7 +108,7 @@ export const AuthContextProvider = ({ children }) => {
         data.password
       );
       const user = auth.currentUser;
-      let additionalInfo = await getAdditionalUserInfo(response);
+      let additionalInfo = getAdditionalUserInfo(response);
 
       await updateProfile(user, {
         displayName: `${data.name} ${data.surname}`,
@@ -112,7 +117,7 @@ export const AuthContextProvider = ({ children }) => {
       newData.IdToken = await user.getIdToken();
       newData.provider = additionalInfo.providerId;
 
-      const backendResponse = await signUpAPI(newData).catch((error) => {
+      await signUpAPI(newData).catch((error) => {
         deleteUser(user);
         throw new Error();
       });
@@ -164,7 +169,7 @@ export const AuthContextProvider = ({ children }) => {
     const provider = new FacebookAuthProvider();
     try {
       const response = await signInWithPopup(auth, provider);
-      const additionalInfo = await getAdditionalUserInfo(response);
+      const additionalInfo = getAdditionalUserInfo(response);
 
       const user = auth.currentUser;
 
@@ -192,7 +197,14 @@ export const AuthContextProvider = ({ children }) => {
     }
   }
   async function resetPassword(email) {
-    await auth.sendPasswordResetEmail(email);
+    await sendPasswordResetEmail(auth, email);
+  }
+  async function setUpdatedPassword(currentPassword, newPassword) {
+    await reauthenticate(currentPassword).catch((error) => {
+      dispatch(setSnackbar("error", "Wrong password"));
+    });
+    await updatePassword(auth.currentUser, newPassword);
+    // await sendPasswordResetEmail(auth, email);
   }
 
   async function updateEmail(email) {
@@ -204,6 +216,33 @@ export const AuthContextProvider = ({ children }) => {
     redirectCallback();
   }
 
+  async function deleteAccount(currentPassword) {
+    await reauthenticate(currentPassword);
+    dispatch(setSnackbar("success", "TEST"));
+
+    // const response = await deleteUserAPI(data);
+  }
+  async function deleteAccountFacebook() {
+    if (auth.currentUser.providerData[0]?.providerId === "facebook.com") {
+      await reauthenticateFacebook();
+    }
+    dispatch(setSnackbar("success", "TEST"));
+
+    // const response = await deleteUserAPI(data);
+  }
+  async function reauthenticate(currentPassword) {
+    const user = auth.currentUser;
+    const provider = new EmailAuthProvider();
+    const cred = provider.credential(user.email, currentPassword);
+    return reauthenticateWithCredential(user, cred);
+  }
+  async function reauthenticateFacebook() {
+    const provider = new FacebookAuthProvider();
+    provider.setCustomParameters({ auth_type: "reauthenticate" });
+    const user = auth.currentUser;
+    return reauthenticateWithRedirect(user, provider);
+  }
+
   const value = {
     currentUser,
     signup,
@@ -213,6 +252,10 @@ export const AuthContextProvider = ({ children }) => {
     loginFacebook,
     logout,
     resendVerificationEmail,
+    deleteAccount,
+    deleteAccountFacebook,
+    updatePassword,
+    setUpdatedPassword,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

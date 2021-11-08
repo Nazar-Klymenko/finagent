@@ -20,17 +20,3 @@ export const ButtonPosition = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-
-export const DangerZoneStyled = styled.div`
-  border: 1px solid red;
-  padding: 0.5rem;
-  border-radius: 5px;
-  background-color: #ffcece;
-  .danger-title {
-    color: red;
-  }
-  .danger-action {
-    color: red;
-    cursor: pointer;
-  }
-`;

@@ -14,27 +14,33 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        if (isSendingRequest && isLoggedIn) {
+        if (isSendingRequest) {
           return <Loader />;
         }
-        if (isLoggedIn && !isActive) {
-          return (
-            <Redirect
-              to={{
-                pathname: "/verify-email",
-                state: { from: props.location },
-              }}
-            />
-          );
-        }
-        if (isLoggedIn) {
-          return <Component {...props} />;
-        } else {
-          return (
-            <Redirect
-              to={{ pathname: "/auth/login", state: { from: props.location } }}
-            />
-          );
+
+        if (!isSendingRequest) {
+          if (isLoggedIn && !isActive) {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/verify-email",
+                  state: { from: props.location },
+                }}
+              />
+            );
+          }
+          if (isLoggedIn) {
+            return <Component {...props} />;
+          } else {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/auth/login",
+                  state: { from: props.location },
+                }}
+              />
+            );
+          }
         }
       }}
     />
@@ -56,46 +62,49 @@ export const QuestRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        if (isSendingRequest && isLoggedIn) {
+        if (isSendingRequest) {
           return <Loader />;
         }
-        if (!isLoggedIn) {
-          return (
-            <Redirect
-              to={{
-                pathname: "/auth/login",
-                state: { from: props.location },
-              }}
-            />
-          );
-        }
 
-        if (isActive === false) {
-          return (
-            <Redirect
-              to={{
-                pathname: "/verify-email",
-                state: { from: props.location },
-              }}
-            />
-          );
-        }
+        if (!isSendingRequest) {
+          if (!isLoggedIn) {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/auth/login",
+                  state: { from: props.location },
+                }}
+              />
+            );
+          }
 
-        if (pageIndex < currentPage) {
-          return <Component {...props} />;
-        } else if (pageIndex === currentPage) {
-          return <Component {...props} />;
-        } else if (allowSummary) {
-          return <Component {...props} />;
-        } else {
-          return (
-            <Redirect
-              to={{
-                pathname: `./${currentPage}`,
-                state: { from: props.location },
-              }}
-            />
-          );
+          if (isActive === false) {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/verify-email",
+                  state: { from: props.location },
+                }}
+              />
+            );
+          }
+
+          if (pageIndex < currentPage) {
+            return <Component {...props} />;
+          } else if (pageIndex === currentPage) {
+            return <Component {...props} />;
+          } else if (allowSummary) {
+            return <Component {...props} />;
+          } else {
+            return (
+              <Redirect
+                to={{
+                  pathname: `./${currentPage}`,
+                  state: { from: props.location },
+                }}
+              />
+            );
+          }
         }
       }}
     />

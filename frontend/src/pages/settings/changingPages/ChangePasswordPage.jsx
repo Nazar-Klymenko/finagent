@@ -11,14 +11,14 @@ import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
 import { InputPassword } from "@components/input";
-import { ChangingPage, StatusError, ButtonPosition } from "./LocalStyles";
+import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
 import { changePasswordAPI } from "@api/userAPI";
+import { useAuth } from "@context/authContext";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState();
-
+  const { setUpdatedPassword } = useAuth();
   const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -28,29 +28,8 @@ const ChangePasswordPage = () => {
 
   const formSubmit = (data) => {
     setLoading(true);
-    changePasswordAPI(data)
-      .then(() => {
-        alert(t("Settings.ChangePassword.alertSuccess"));
-        setIsError(false);
-        setLoading(false);
-      })
-      .catch((error) => {
-        if (!error.response) {
-          setIsError(t("Settings.ChangePassword.errorResponse"));
-          return;
-        }
-        switch (error.response.status) {
-          case 409: {
-            setIsError(t("Settings.ChangePassword.errorInvalidPassword"));
-            break;
-          }
-          default: {
-            setIsError(t("Settings.ChangePassword.errorResponse"));
-            break;
-          }
-        }
-        setLoading(false);
-      });
+    setUpdatedPassword(data.currentPassword, data.newPassword);
+    setLoading(false);
   };
 
   return (
@@ -58,39 +37,54 @@ const ChangePasswordPage = () => {
       <h3>{t("Settings.ChangePassword.title")}</h3>
       <div className="form">
         {loading && <Loader />}
-        {!loading && (
-          <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
-            <InputPassword
-              ref={register}
-              name="oldPassword"
-              labelName={t("Settings.ChangePassword.currentPassword")}
-              error={!!errors.oldPassword}
-              helperText={errors?.oldPassword?.message}
+        <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
+          <InputPassword
+            ref={register}
+            name="currentPassword"
+            labelName={t("Settings.ChangePassword.currentPassword")}
+            error={!!errors.currentPassword}
+            helperText={errors?.currentPassword?.message}
+          />
+          <InputPassword
+            ref={register}
+            name="newPassword"
+            labelName={t("Settings.ChangePassword.newPassword")}
+            error={!!errors.newPassword}
+            helperText={errors?.newPassword?.message}
+          />
+          <ButtonPosition>
+            <CTA
+              text={t("Settings.ChangePassword.button")}
+              form="settings-form"
+              color="primary"
             />
-            <InputPassword
-              ref={register}
-              name="newPassword"
-              labelName={t("Settings.ChangePassword.newPassword")}
-              error={!!errors.newPassword}
-              helperText={errors?.newPassword?.message}
-            />
-            <ButtonPosition>
-              <CTA
-                text={t("Settings.ChangePassword.button")}
-                form="settings-form"
-                color="primary"
-              />
-            </ButtonPosition>
-          </Form>
-        )}
-        {isError && (
-          <StatusError>
-            <span>{isError}</span>
-          </StatusError>
-        )}
+          </ButtonPosition>
+        </Form>
       </div>
     </ChangingPage>
   );
 };
 
 export default ChangePasswordPage;
+// changePasswordAPI(data)
+//   .then(() => {
+//     alert(t("Settings.ChangePassword.alertSuccess"));
+//     setLoading(false);
+//   })
+//   .catch((error) => {
+//     if (!error.response) {
+//       setIsError(t("Settings.ChangePassword.errorResponse"));
+//       return;
+//     }
+//     switch (error.response.status) {
+//       case 409: {
+//         setIsError(t("Settings.ChangePassword.errorInvalidPassword"));
+//         break;
+//       }
+//       default: {
+//         setIsError(t("Settings.ChangePassword.errorResponse"));
+//         break;
+//       }
+//     }
+//     setLoading(false);
+//   });

@@ -11,11 +11,13 @@ import DangerZonePage from "./changingPages/DeleteAccount";
 
 import { PrivateRoute } from "@components/CustomRoutes/";
 import { ContentWrap } from "@components/content";
+import { useAuth } from "@context/authContext";
 
 const Settings = () => {
   const { t } = useTranslation();
   useTitle("Settings | FinAgent");
-
+  const { currentUser } = useAuth();
+  const { provider } = currentUser;
   return (
     <ContentWrap blank flipDirection fullWidth P0>
       <Menu>
@@ -27,22 +29,24 @@ const Settings = () => {
           {t("Settings.ChangeInfo.title")}
         </SettingsLink>
 
-        <SettingsLink
-          className="settings__menu__link"
-          activeClassName="selected"
-          to="/settings/change_email"
-        >
-          {t("Settings.ChangeEmail.title")}
-        </SettingsLink>
-
-        <SettingsLink
-          className="settings__menu__link"
-          activeClassName="selected"
-          to="/settings/change_password"
-        >
-          {t("Settings.ChangePassword.title")}
-        </SettingsLink>
-
+        {/* {provider !== "facebook.com" && (
+          <SettingsLink
+            className="settings__menu__link"
+            activeClassName="selected"
+            to="/settings/change_email"
+          >
+            {t("Settings.ChangeEmail.title")}
+          </SettingsLink>
+        )} */}
+        {provider !== "facebook.com" && (
+          <SettingsLink
+            className="settings__menu__link"
+            activeClassName="selected"
+            to="/settings/change_password"
+          >
+            {t("Settings.ChangePassword.title")}
+          </SettingsLink>
+        )}
         <SettingsLink
           className="settings__menu__link"
           activeClassName="selected"

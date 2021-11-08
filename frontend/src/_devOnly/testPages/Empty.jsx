@@ -1,6 +1,6 @@
 import React from "react";
-import { MuiSelect, DateInput } from "@components/input";
-import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+import { MuiPasswordInput } from "@components/input";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,60 +12,55 @@ import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
 
 const testSchema = yup.object().shape({
-  testSelect: yup.string().required("Form.Error.blank"),
+  password: yup
+    .string()
+    .test("minLength", "minimum 8 znaków", checkMinLength)
+    .test("minOneUppercase", "minimum 1 duża litera", checkUpperCase),
 });
 
-export const maritalStatusOptions = [
-  {
-    value: "married",
-    label: "InsuranceTransport.SelectMarital.married",
-  },
-  {
-    value: "single",
-    label: "InsuranceTransport.SelectMarital.single",
-  },
-  {
-    value: "divorced",
-    label: "InsuranceTransport.SelectMarital.divorced",
-  },
-  {
-    value: "widow",
-    label: "InsuranceTransport.SelectMarital.widow",
-  },
-  {
-    value: "separation",
-    label: "InsuranceTransport.SelectMarital.separation",
-  },
-];
+function checkUpperCase(password) {
+  let valid = true;
+  return valid;
+}
+function checkMinLength(password) {
+  let valid = false;
+  return valid;
+}
 
 const Empty = () => {
-  const { t } = useTranslation();
-
   const { handleSubmit, errors, control } = useForm({
-    defaultValues: {},
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+    criteriaMode: "all",
     resolver: yupResolver(testSchema),
   });
   const formSubmit = (data) => {
     console.log(data);
   };
+  console.log(errors);
 
   return (
-    <ContentWrap fullWidth blank>
+    <ContentWrap authForm blank direction="column">
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-        <MuiSelect
+        <MuiPasswordInput
           control={control}
-          name="testSelect"
-          error={!!errors.testSelect}
-          helperText={errors?.testSelect?.message}
-          optionArray={maritalStatusOptions}
+          name="password"
+          error={!!errors.password}
+          helperText={errors?.password?.message}
+          requirements={["min 8 characters long", "Uppercase letter"]}
         />
       </Form>
-      <CTA text="Next" form="form" color="primary" />
+      <ButtonsWrap>
+        <CTA text="Next" form="form" color="primary" />
+      </ButtonsWrap>
     </ContentWrap>
   );
 };
 
 export default Empty;
+const ButtonsWrap = styled.div`
+  padding: 16px 0px 16px;
+  display: flex;
+  justify-content: "flex-end";
+`;

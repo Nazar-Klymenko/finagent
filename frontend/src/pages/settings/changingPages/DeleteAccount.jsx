@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { deleteUserAPI } from "@api/userAPI";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { dangerZoneSchema } from "../settingsSchema";
 
 import { useTranslation } from "react-i18next";
-import {
-  ChangingPage,
-  StatusError,
-  ButtonPosition,
-  DangerZoneStyled,
-} from "./LocalStyles";
+import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
 import { InputPassword } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -21,88 +14,97 @@ import { Header } from "@components/typography";
 import { useDispatch } from "react-redux";
 import { setSnackbar } from "@redux/alert/actions";
 
+import { useAuth } from "@context/authContext";
+import MuiDialog from "@components/MuiDialog";
+import Button from "@material-ui/core/Button";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
+import DeletionDialog from "../DeletionDialog";
+
 const DangerZonePage = () => {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const classes = useStyles();
 
+  const [loading, setLoading] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const { currentUser, deleteAccount, deleteAccountFacebook } = useAuth();
+  const { provider } = currentUser;
   const { register, handleSubmit, errors } = useForm({
-    defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,
     resolver: yupResolver(dangerZoneSchema()),
   });
-  const dispatch = useDispatch();
 
   const formSubmit = async (data) => {
     setLoading(true);
-
-    try {
-      const response = await deleteUserAPI(data);
-      if (response.status === 200) {
-        dispatch(setSnackbar("success", "Settings.Disposal.alertSuccess"));
-      }
-      setLoading(false);
-    } catch (error) {
-      if (!error.response) {
-        dispatch(setSnackbar("error", "Settings.Disposal.errorResponse"));
-
-        return;
-      }
-      switch (error.response.status) {
-        case 409: {
-          dispatch(
-            setSnackbar("error", "Settings.Disposal.errorInvalidPassword")
-          );
-          break;
-        }
-        default: {
-          dispatch(setSnackbar("error", "Settings.Disposal.errorResponse"));
-          break;
-        }
-      }
-      setLoading(false);
+    if (provider === "facebook.com") {
+      await deleteAccountFacebook();
+      setOpenDialog(false);
+    } else {
+      await deleteAccount(data.password);
+      setOpenDialog(false);
     }
+  };
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleClose = () => {
+    setOpenDialog(false);
   };
 
   return (
     <ChangingPage>
-      <DangerZoneStyled>
-        <Header variant="h3">{t("Settings.Disposal.title")}</Header>
-        {loading && <Loader />}
-        <span
-          className="danger-action"
-          onClick={() => {
-            setIsReady(true);
-          }}
-        >
-          {t("Settings.Disposal.deleteAction")}
-        </span>
-
-        {isReady && (
-          <div className="form">
-            <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
-              <InputPassword
-                ref={register}
-                name="password"
-                labelName={t("Settings.Disposal.password")}
-                error={!!errors.password}
-                helperText={errors?.password?.message}
-              />
-            </Form>
-
-            <ButtonPosition>
-              <CTA
-                text={t("Settings.Disposal.button")}
-                form="settings-form"
-                color="primary"
-              />
-            </ButtonPosition>
-          </div>
+      <Header variant="h3">{t("Settings.Disposal.title")}</Header>
+      {loading && <Loader />}
+      <Button
+        onClick={handleClickOpen}
+        className={classes.dangerButton}
+        size="medium"
+      >
+        {t("Settings.Disposal.deleteAction")}
+      </Button>
+      <Form
+        id="settings-form-delete-account"
+        onSubmit={handleSubmit(formSubmit)}
+      >
+        {provider === "facebook.com" ? (
+          <DeletionDialog
+            handleClose={handleClose}
+            isOpen={openDialog}
+            formId="settings-form-delete-account"
+            title="Delete your account?"
+            description="You are about to delete your account. You will be asked to authenticate with your facebook account again to confirm the deletion"
+          />
+        ) : (
+          <DeletionDialog
+            handleClose={handleClose}
+            isOpen={openDialog}
+            formId="settings-form-delete-account"
+            title="Delete your account?"
+            description="You are about to delete your account. Please provide your password below to confirm the deletion"
+          >
+            <InputPassword
+              ref={register}
+              name="password"
+              labelName={t("Settings.Disposal.password")}
+              error={!!errors.password}
+              helperText={errors?.password?.message}
+            />
+          </DeletionDialog>
         )}
-      </DangerZoneStyled>
+      </Form>
     </ChangingPage>
   );
 };
 export default DangerZonePage;
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    dangerButton: {
+      maxWidth: "max-content",
+      background: "pink",
+      opacity: 0.85,
+    },
+  })
+);

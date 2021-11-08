@@ -13,7 +13,7 @@ import Loader from "@components/Loader";
 import { Input } from "@components/input";
 
 import { getSettingsAPI, updateSettingsAPI } from "@api/userAPI";
-import { ChangingPage, StatusError, ButtonPosition } from "./LocalStyles";
+import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
 import useFetch from "@hooks/useFetch";
 
 const ChangePasswordPage = () => {

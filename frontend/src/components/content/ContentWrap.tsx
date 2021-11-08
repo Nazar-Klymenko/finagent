@@ -28,6 +28,7 @@ const ContentWrap: React.FC<Props> = ({
   return (
     <ContentWrapStyled
       xl={xl}
+      xs={xs}
       fullWidth={fullWidth}
       fullHeight={fullHeight}
       authForm={authForm}
@@ -89,10 +90,14 @@ const ContentWrapStyled = styled.div<Props>`
     css`
       min-width: 680px;
       max-width: 680px;
+      border: none;
+      border-radius: 0px;
+      margin: 0;
       flex: 1;
       @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
         min-width: unset;
-        width: auto;
+        max-width: unset;
+        width: 100% !important;
       }
     `}
     ${({ fullWidth }) =>

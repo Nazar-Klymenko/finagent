@@ -61,9 +61,9 @@ const BottomNav = () => {
       />
       <BottomNavigationAction
         component={NavLink}
-        to="/settings"
+        to="/settings/change_info"
         label={t("NavbarBottom.settings")}
-        value={`/settings/`}
+        value={`/settings/change_info`}
         icon={<SettingsRoundedIcon />}
       />
     </BottomNavStyled>

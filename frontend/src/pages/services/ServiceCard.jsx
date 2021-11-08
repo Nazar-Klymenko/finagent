@@ -44,9 +44,13 @@ const CardStyled = styled.a`
     transform: translate(0, -2%);
   }
   @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
-    max-width: 250px;
     justify-self: center;
     margin-bottom: 1rem;
+  }
+  @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 

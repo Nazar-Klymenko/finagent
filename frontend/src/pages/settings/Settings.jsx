@@ -19,7 +19,7 @@ const Settings = () => {
   const { currentUser } = useAuth();
   const { provider } = currentUser;
   return (
-    <ContentWrap blank fullHeight flipDirection xs P0>
+    <ContentWrap flipDirection fullHeight xs blank P0>
       <Menu>
         <SettingsLink
           className="settings__menu__link"

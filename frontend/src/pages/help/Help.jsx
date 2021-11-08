@@ -10,7 +10,7 @@ const Help = () => {
   const { t } = useTranslation();
 
   return (
-    <ContentWrap blank fullWidth fullHeight direction="column">
+    <ContentWrap blank xs fullHeight direction="column">
       <Header bottomGutter>{t("Help.title")}</Header>
       <AccordionContainer>
         <Accordion header="Example question">

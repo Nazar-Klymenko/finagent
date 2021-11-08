@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/macro";
 
 interface Props {
   fullWidth?: boolean;
+  xs?: boolean;
   xl?: boolean;
   authForm?: boolean;
   fullHeight?: boolean;
@@ -14,6 +15,7 @@ interface Props {
 
 const ContentWrap: React.FC<Props> = ({
   fullWidth,
+  xs,
   xl,
   children,
   authForm,
@@ -82,6 +84,17 @@ const ContentWrapStyled = styled.div<Props>`
     `}
 
 
+    ${({ xs }) =>
+    xs &&
+    css`
+      min-width: 680px;
+      max-width: 680px;
+      flex: 1;
+      @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+        min-width: unset;
+        width: auto;
+      }
+    `}
     ${({ fullWidth }) =>
     fullWidth &&
     css`

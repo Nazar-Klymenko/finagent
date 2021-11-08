@@ -19,7 +19,7 @@ const Settings = () => {
   const { currentUser } = useAuth();
   const { provider } = currentUser;
   return (
-    <ContentWrap blank flipDirection fullWidth P0>
+    <ContentWrap blank fullHeight flipDirection xs P0>
       <Menu>
         <SettingsLink
           className="settings__menu__link"
@@ -29,15 +29,6 @@ const Settings = () => {
           {t("Settings.ChangeInfo.title")}
         </SettingsLink>
 
-        {/* {provider !== "facebook.com" && (
-          <SettingsLink
-            className="settings__menu__link"
-            activeClassName="selected"
-            to="/settings/change_email"
-          >
-            {t("Settings.ChangeEmail.title")}
-          </SettingsLink>
-        )} */}
         {provider !== "facebook.com" && (
           <SettingsLink
             className="settings__menu__link"
@@ -47,6 +38,7 @@ const Settings = () => {
             {t("Settings.ChangePassword.title")}
           </SettingsLink>
         )}
+
         <SettingsLink
           className="settings__menu__link"
           activeClassName="selected"
@@ -57,10 +49,6 @@ const Settings = () => {
       </Menu>
       <ActionZone>
         <Overlay>
-          <PrivateRoute path="/settings">
-            <Redirect to="/settings/change_info" />
-          </PrivateRoute>
-
           <PrivateRoute path="/settings/change_info">
             <ChangeInfoPage />
           </PrivateRoute>

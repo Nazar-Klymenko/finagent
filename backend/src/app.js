@@ -88,6 +88,7 @@ app.use("/api/v1/admin/auth/", adminAuthRoute);
 app.use("/api/v1/admin/application/", adminApplicationRoute);
 
 app.use((error, req, res, next) => {
+  console.log({ error });
   res.status(error.status || 500).send({
     status: error.status || 500,
     message: error.message,

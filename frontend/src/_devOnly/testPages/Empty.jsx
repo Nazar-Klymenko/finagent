@@ -14,16 +14,30 @@ import Form from "@components/Form";
 const testSchema = yup.object().shape({
   password: yup
     .string()
-    .test("minLength", "minimum 8 znaków", checkMinLength)
-    .test("minOneUppercase", "minimum 1 duża litera", checkUpperCase),
+    .min(8, "minimum 8 znaków")
+    .test("minOneUppercase", "minimum 1 duża litera", checkUpperCase)
+    .test("minOneSymbol", "minimum 1 symbol", checkSymbol)
+    .test("minOneNumber", "minimum 1 number", checkForNumber),
 });
 
-function checkUpperCase(password) {
+function checkForNumber(password) {
   let valid = true;
+  let format = /\d/;
+
+  if (!format.test(password)) valid = false;
   return valid;
 }
-function checkMinLength(password) {
-  let valid = false;
+function checkUpperCase(password) {
+  let valid = true;
+  let format = /r"(?=.*[A-Z])\w+"/;
+
+  if (!format.test(password)) valid = false;
+  return valid;
+}
+function checkSymbol(password) {
+  let valid = true;
+  let format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+  if (!format.test(password)) valid = false;
   return valid;
 }
 

@@ -175,13 +175,9 @@ export const confirmChangePasswordAPI = (token, object) => {
   });
 };
 
-export const deleteUserAPI = (object) => {
+export const deleteUserAPI = () => {
   return axios(`/user/settings/delete_user`, {
-    method: "POST",
-    data: JSON.stringify(object),
-    headers: {
-      "Content-type": "application/json",
-    },
+    method: "DELETE",
   });
 };
 

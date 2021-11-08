@@ -24,7 +24,6 @@ const DangerZonePage = () => {
   const { t } = useTranslation();
   const classes = useStyles();
 
-  const [loading, setLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
 
   const { currentUser, deleteAccount, deleteAccountFacebook } = useAuth();
@@ -37,9 +36,9 @@ const DangerZonePage = () => {
   });
 
   const formSubmit = async (data) => {
-    setLoading(true);
     if (provider === "facebook.com") {
       await deleteAccountFacebook();
+
       setOpenDialog(false);
     } else {
       await deleteAccount(data.password);
@@ -56,7 +55,6 @@ const DangerZonePage = () => {
   return (
     <ChangingPage>
       <Header variant="h3">{t("Settings.Disposal.title")}</Header>
-      {loading && <Loader />}
       <Button
         onClick={handleClickOpen}
         className={classes.dangerButton}

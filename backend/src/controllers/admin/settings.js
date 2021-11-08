@@ -23,22 +23,6 @@ export const changeEmail = asyncHandler(async (req, res) => {
   });
 });
 
-export const changePassword = asyncHandler(async (req, res) => {
-  const { oldPassword, newPassword } = req.body;
-  const admin = await Admin.findById(req.currentUser.uid);
-  if (!admin) throw createError.Unauthorized("Wrong admin");
-
-  const isMatch = await admin.isValidPassword(oldPassword);
-  if (!isMatch) throw createError.Conflict("Invalid old password");
-
-  admin.password = newPassword;
-  await admin.save();
-
-  res.status(200).send({
-    message: "Settings updated successfully",
-  });
-});
-
 export const deleteAdmin = asyncHandler(async (req, res, next) => {
   const { password } = req.body;
   try {

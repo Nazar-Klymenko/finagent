@@ -14,7 +14,6 @@ import {
 import { allUsers, SpecificUser } from "controllers/admin/client";
 
 import {
-  changePassword,
   deleteAdmin,
   getSettingsAdmin,
   updateSettings,
@@ -57,10 +56,6 @@ router
   )
   .put(verifyAccessTokenFirebaseAdmin, verifyAdmin, updateSettings)
   .delete(verifyAccessTokenFirebaseAdmin, verifyAdmin, deleteAdmin);
-
-router
-  .route("/settings/change_password")
-  .put(verifyAccessTokenFirebaseAdmin, verifyAdmin, changePassword);
 
 router
   .route("/history/my-history")

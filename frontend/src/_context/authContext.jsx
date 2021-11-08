@@ -17,10 +17,13 @@ import {
   sendEmailVerification,
   reauthenticateWithCredential,
   EmailAuthProvider,
+  reauthenticateWithPopup,
   reauthenticateWithRedirect,
+  signInWithRedirect,
   deleteUser,
   updatePassword,
   updateProfile,
+  getRedirectResult,
 } from "firebase/auth";
 import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
 
@@ -64,14 +67,10 @@ export const AuthContextProvider = ({ children }) => {
       let photoURL = "";
       if (user) {
         user.getIdToken(true);
-
         if (user.providerData[0]?.providerId === "facebook.com") {
           emailVerified = true;
-
           photoURL = user.photoURL;
-        } else {
-          emailVerified = user.emailVerified;
-        }
+        } else emailVerified = user.emailVerified;
       }
 
       setCurrentUser(
@@ -167,6 +166,7 @@ export const AuthContextProvider = ({ children }) => {
 
   async function loginFacebook() {
     const provider = new FacebookAuthProvider();
+    provider.setCustomParameters({ auth_type: "rerequest" });
     try {
       const response = await signInWithPopup(auth, provider);
       const additionalInfo = getAdditionalUserInfo(response);
@@ -217,30 +217,39 @@ export const AuthContextProvider = ({ children }) => {
   }
 
   async function deleteAccount(currentPassword) {
-    await reauthenticate(currentPassword);
-    dispatch(setSnackbar("success", "TEST"));
-
-    // const response = await deleteUserAPI(data);
+    try {
+      await reauthenticate(currentPassword);
+      const user = auth.currentUser;
+      await deleteUserAPI();
+      await deleteUser(user);
+      dispatch(setSnackbar("success", "Account deleted successfully"));
+    } catch (error) {
+      console.log({ error });
+      dispatch(setSnackbar("error", "Account couldnt be deleted"));
+    }
   }
   async function deleteAccountFacebook() {
-    if (auth.currentUser.providerData[0]?.providerId === "facebook.com") {
-      await reauthenticateFacebook();
+    try {
+      if (auth.currentUser.providerData[0]?.providerId === "facebook.com") {
+        const provider = new FacebookAuthProvider();
+        provider.setCustomParameters({ auth_type: "rerequest" });
+        const user = auth.currentUser;
+        const response = await reauthenticateWithPopup(user, provider);
+
+        await deleteUserAPI();
+        await deleteUser(user);
+      }
+      dispatch(setSnackbar("success", "Account deleted successfully"));
+    } catch (error) {
+      dispatch(setSnackbar("error", "ERROR"));
     }
-    dispatch(setSnackbar("success", "TEST"));
 
     // const response = await deleteUserAPI(data);
   }
   async function reauthenticate(currentPassword) {
     const user = auth.currentUser;
-    const provider = new EmailAuthProvider();
-    const cred = provider.credential(user.email, currentPassword);
+    const cred = EmailAuthProvider.credential(user.email, currentPassword);
     return reauthenticateWithCredential(user, cred);
-  }
-  async function reauthenticateFacebook() {
-    const provider = new FacebookAuthProvider();
-    provider.setCustomParameters({ auth_type: "reauthenticate" });
-    const user = auth.currentUser;
-    return reauthenticateWithRedirect(user, provider);
   }
 
   const value = {
@@ -260,3 +269,29 @@ export const AuthContextProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
+// useEffect(() => {
+//   auth
+//     .getRedirectResult()
+//     .then(function(result) {
+//       console.log(result);
+//       if (result.credential) {
+//         // This gives you a Google Access Token. You can use it to access the Google API.
+//         var token = result.credential.accessToken;
+//         setToken(token);
+//         // ...
+//       }
+//       // The signed-in user info.
+//       var user = result.user;
+//       console.log(user);
+//       setData(user);
+//     })
+//     .catch(function(error) {
+//       // Handle Errors here.
+//       var errorCode = error.code;
+//       var errorMessage = error.message;
+//       // The email of the user's account used.
+//       console.log(errorCode, errorMessage);
+//       // ...
+//     });
+// }, []);

@@ -4,8 +4,6 @@ const router = express.Router();
 import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth.js";
 
 import {
-  changeEmail,
-  changePassword,
   deleteUser,
   getSettings,
   updateSettings,
@@ -23,15 +21,10 @@ router
 router
   .route("/settings/update")
   .post(verifyAccessTokenFirebase, isEmailVerified, updateSettings);
-router
-  .route("/settings/change_email")
-  .post(verifyAccessTokenFirebase, isEmailVerified, changeEmail);
-router
-  .route("/settings/change_password")
-  .post(verifyAccessTokenFirebase, isEmailVerified, changePassword);
+
 router
   .route("/settings/delete_user")
-  .post(verifyAccessTokenFirebase, isEmailVerified, deleteUser);
+  .delete(verifyAccessTokenFirebase, isEmailVerified, deleteUser);
 
 router
   .route("/notifications/")

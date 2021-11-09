@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import moment from "moment";
 
@@ -13,8 +13,8 @@ import SummaryList from "@components/SummaryList";
 import ApplicationStatus from "./Status";
 import Feedback from "./Feedback";
 
-import { ArrowDown } from "@components/svgs";
 import Subheader from "@components/typography/Subheader";
+import { BackArrow } from "@components/buttons";
 
 import Attachments from "./Attachments";
 import Archive from "./Archive";
@@ -27,116 +27,102 @@ const CardOpen = () => {
   let { id } = useParams();
   let history = useHistory();
 
+  const [updatedAt, setUpdatedAt] = useState(null);
+  const [createdAt, setCreatedAt] = useState(null);
+  const [addDataLabeled, setAddDataLabeled] = useState(null);
+
   const fetchData = async () => {
     const { data } = await getSpecificApplication(id);
     return data;
   };
 
-  let { data, error, isFetching, refetch } = useQuery(
+  let { data, error, isLoading, refetch } = useQuery(
     [`cardOpen${id}`],
     () => fetchData(),
     { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
   );
-  let addDataLabeled;
-  let createdAt = new Date(data?.createdAt).toLocaleDateString("pl");
-  let updatedAt = moment(data?.updatedAt).fromNow();
-  if (data) {
-    addDataLabeled = determineType(data?.type, data);
+
+  useEffect(() => {
+    if (!isLoading && data) {
+      setUpdatedAt(moment(data?.updatedAt).fromNow());
+      setCreatedAt(new Date(data?.createdAt).toLocaleDateString("pl"));
+      setAddDataLabeled(determineType(data?.type, data));
+    }
+  }, [isLoading, data]);
+
+  if (isLoading) {
+    return (
+      <ErrorRefetch text="Error fetching application" callback={refetch} />
+    );
+  }
+  if (!isLoading && error) {
+    return (
+      <ErrorRefetch text="Error fetching application" callback={refetch} />
+    );
   }
 
   return (
     <CardStyled>
-      <>
-        <CardHeader>
-          <div
-            onClick={() => {
-              history.goBack();
-            }}
-            className="arrow-wrap"
-          >
-            <ArrowDown fill="#1a1b1e" rotation={90} />
-          </div>
-          <p>{t("Basic.ApplicationType." + data?.type)}</p>
-        </CardHeader>
+      <CardHeader>
+        <BackArrow />
+        <p>{t("Basic.ApplicationType." + data?.type)}</p>
+      </CardHeader>
 
-        {!isFetching && error && (
-          <ErrorRefetch text="Error fetching application" callback={refetch} />
-        )}
+      <Info>
+        <InfoWrap>
+          <InfoKey>{t("ApplicationOpen.name")}</InfoKey>
+          <InfoValue>{data?.user?.name + " " + data?.user?.surname}</InfoValue>
+        </InfoWrap>
+        <InfoWrap>
+          <InfoKey>{t("ApplicationOpen.createdAt")}</InfoKey>
+          <InfoValue>{createdAt}</InfoValue>
+        </InfoWrap>
+        <InfoWrap>
+          <InfoKey>{t("ApplicationOpen.updatedAt")}</InfoKey>
+          <InfoValue>{updatedAt}</InfoValue>
+        </InfoWrap>
+      </Info>
 
-        {!isFetching && !error && (
-          <>
-            <Info>
-              <InfoWrap>
-                <span className="name">{t("ApplicationOpen.name")}</span>
-                <span className="value">
-                  {data?.user?.name + " " + data?.user?.surname}
-                </span>
-              </InfoWrap>
-              {/* <InfoWrap>
-                <span className="name">{t("ApplicationOpen.type")}</span>
-                <span className="value">{data?.type}</span>
-              </InfoWrap> */}
-              <InfoWrap>
-                <span className="name">{t("ApplicationOpen.createdAt")}</span>
-                <span className="value">{createdAt}</span>
-              </InfoWrap>
-              <InfoWrap>
-                <span className="name">{t("ApplicationOpen.updatedAt")}</span>
-                <span className="value">{updatedAt}</span>
-              </InfoWrap>
-            </Info>
+      <Subheader
+        subheader={t("ApplicationOpen.Summary.title")}
+        description={t("ApplicationOpen.Summary.subtitle")}
+      />
+      <SummaryList
+        inDashboard
+        header={t("ApplicationOpen.Summary.summary")}
+        array={addDataLabeled}
+      />
 
-            <Subheader
-              subheader={t("ApplicationOpen.Summary.title")}
-              description={t("ApplicationOpen.Summary.subtitle")}
-            />
-            <SummaryList
-              inDashboard
-              header={t("ApplicationOpen.Summary.summary")}
-              array={addDataLabeled}
-            />
+      <Subheader
+        subheader={t("ApplicationOpen.Status.title")}
+        description={t("ApplicationOpen.Status.subtitle")}
+      />
+      <ApplicationStatus currentStep={data?.status} />
 
-            <Subheader
-              subheader={t("ApplicationOpen.Status.title")}
-              description={t("ApplicationOpen.Status.subtitle")}
-            />
-            <ApplicationStatus currentStep={data?.status} />
+      <Subheader
+        subheader={t("ApplicationOpen.Feedback.title")}
+        description={t("ApplicationOpen.Feedback.subtitle")}
+      />
+      <Feedback defaultTime={data?.createdAt} messageArray={data?.feedback} />
 
-            <Subheader
-              subheader={t("ApplicationOpen.Feedback.title")}
-              description={t("ApplicationOpen.Feedback.subtitle")}
-            />
+      <Subheader
+        subheader={t("ApplicationOpen.Attachments.title")}
+        description={t("ApplicationOpen.Attachments.subtitle")}
+      />
+      <Attachments attachments={[data?.documents]} id={id} type="documents" />
 
-            <Feedback
-              defaultTime={data?.createdAt}
-              messageArray={data?.feedback}
-            />
+      <Subheader
+        subheader={t("ApplicationOpen.FinalDocument.title")}
+        description={t("ApplicationOpen.FinalDocument.subtitle")}
+      />
 
-            <Subheader
-              subheader={t("ApplicationOpen.Attachments.title")}
-              description={t("ApplicationOpen.Attachments.subtitle")}
-            />
-            <Attachments
-              attachments={[data?.documents]}
-              id={id}
-              type="documents"
-            />
+      <Attachments
+        attachments={[data?.attachments]}
+        id={id}
+        type="attachments"
+      />
 
-            <Subheader
-              subheader={t("ApplicationOpen.FinalDocument.title")}
-              description={t("ApplicationOpen.FinalDocument.subtitle")}
-            />
-
-            <Attachments
-              attachments={[data?.attachments]}
-              id={id}
-              type="attachments"
-            />
-
-            {!data?.archived && <Archive id={id} callback={refetch} />}
-          </>
-        )}
-      </>
+      {!data?.archived && <Archive id={id} callback={refetch} />}
     </CardStyled>
   );
 };
@@ -191,17 +177,19 @@ const InfoWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem 3rem 1rem 0rem;
-  .name {
-    color: ${({ theme }) => theme.gray};
-  }
-
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
     flex-direction: row;
-    .name {
-      min-width: 180px;
-    }
-    .value {
-      margin-left: 24px;
-    }
+  }
+`;
+
+const InfoKey = styled.span`
+  color: ${({ theme }) => theme.gray};
+  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+    min-width: 180px;
+  }
+`;
+const InfoValue = styled.span`
+  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+    margin-left: 24px;
   }
 `;

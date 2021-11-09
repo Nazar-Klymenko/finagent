@@ -5,16 +5,12 @@ import styled from "styled-components/macro";
 
 import { ArrowDown } from "@components/svgs";
 
-interface Props {
-  returnTo: string;
-}
-
-const BackArrow: React.FC<Props> = ({ returnTo }) => {
+const BackArrow: React.FC = () => {
   const history = useHistory();
 
   const returnFn = useCallback(() => {
-    history.push(returnTo);
-  }, [returnTo, history]);
+    history.goBack();
+  }, [history]);
 
   return (
     <BackArrowStyled onClick={returnFn}>
@@ -28,10 +24,11 @@ const BackArrowStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 6px 8px 4px 6px;
   border-radius: 999px;
   height: 1.8rem;
   width: 1.8rem;
+  margin-left: 1rem;
   transition: 0.1s background-color ease-in-out;
   &:hover {
     background-color: ${({ theme }) => theme.lightGray};

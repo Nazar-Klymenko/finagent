@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 export const LocalizeMoment = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState("uk");
+  const [language, setLanguage] = useState("pl");
 
   useEffect(() => {
     switch (i18n.language) {

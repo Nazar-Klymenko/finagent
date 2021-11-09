@@ -258,9 +258,9 @@
       "status4": "Оформіть замовлення"
     },
     "Feedback": {
-      "title": "Feedback",
-      "subtitle": "Our remarks and feedback",
-      "noFeedback": "You don't have any feedback yet"
+      "title": "Зворотній зв'язок",
+      "subtitle": "Наші уваги та примічання",
+      "noFeedback": "У вас не мае уваг"
     },
     "Attachments": {
       "title": "Прикріплені документи",

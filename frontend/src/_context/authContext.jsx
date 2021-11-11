@@ -207,8 +207,6 @@ export const AuthContextProvider = ({ children }) => {
     });
     await updatePassword(auth.currentUser, newPassword);
     setSnackbar("success", "Settings.ChangePassword.alertSuccess");
-
-    // await sendPasswordResetEmail(auth, email);
   }
 
   async function updateEmail(email) {

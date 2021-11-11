@@ -54,6 +54,7 @@ const DrawerStyled = styled.div<Styled>`
   background: white;
   padding: 1rem;
   width: 70%;
+  padding-bottom: 6rem;
   position: absolute;
   right: 0px;
   top: 0px;

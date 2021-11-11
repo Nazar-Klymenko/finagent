@@ -76,7 +76,7 @@ const Login: React.FC<Props> = (props) => {
           type="email"
           error={!!errors.email}
           helperText={errors?.email?.message}
-          autofocus={true}
+          autofocus={false}
         />
         <InputPassword
           ref={register}

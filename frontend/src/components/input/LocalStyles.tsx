@@ -11,6 +11,8 @@ export const InputContainer = styled.div<Props>`
 
 export const Label = styled.label`
   /* font-size: 0.9rem; */
+  display: flex;
+  width: 100%;
 `;
 
 export const InputStyled = styled.input<Props>`
@@ -54,4 +56,13 @@ export const InputErrorMessage = styled.div`
     opacity: 0;
     pointer-events: none;
   }
+`;
+
+export const Optional = styled.div`
+  font-size: 0.9rem;
+  display: flex;
+  flex: 1;
+  color: ${({ theme }) => theme.gray};
+  justify-content: flex-end;
+  /* align-items: flex-end; */
 `;

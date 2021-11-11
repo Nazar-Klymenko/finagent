@@ -15,13 +15,18 @@ import { Input } from "@components/input";
 import { getSettingsAPI, updateSettingsAPI } from "@api/userAPI";
 import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
 import useFetch from "@hooks/useFetch";
+import { useDispatch } from "react-redux";
+import { setSnackbar } from "@redux/alert/actions";
+import { useAuth } from "@context/authContext";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
   const { data, error, loading } = useFetch(getSettingsAPI());
-
+  const dispatch = useDispatch();
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [postError, setPostError] = useState("");
+
+  const { updateDisplayName } = useAuth();
 
   const { register, handleSubmit, errors, reset, formState } = useForm({
     defaultValues: {
@@ -35,7 +40,6 @@ const ChangePasswordPage = () => {
     resolver: yupResolver(settingsSchema()),
   });
 
-  console.log({ data });
   useEffect(() => {
     reset(data);
   }, [data, reset]);
@@ -47,18 +51,21 @@ const ChangePasswordPage = () => {
     try {
       await updateSettingsAPI(data);
       reset(data);
-      alert(t("Settings.ChangeInfo.alertSuccess"));
+      await updateDisplayName(data.name, data.surname);
+      dispatch(setSnackbar("success", "Settings.ChangeInfo.alertSuccess"));
     } catch (error) {
       setPostError(t("Settings.ChangeInfo.errorResponse"));
     }
     setIsBtnLoading(false);
   };
 
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <ChangingPage>
       <h3>{t("Settings.ChangeInfo.title")}</h3>
       <div className="form">
-        {loading && <Loader />}
         <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
           <Input
             ref={register}
@@ -82,6 +89,7 @@ const ChangePasswordPage = () => {
             labelName={t("Settings.ChangeInfo.phone")}
             error={!!errors.phone}
             helperText={errors?.phone?.message}
+            optional
           />
         </Form>
 

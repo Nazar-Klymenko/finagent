@@ -52,13 +52,9 @@ const MuiDialog: FC<Props> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Disagree
+            {t("Basic.buttonBack")}
           </Button>
-          <CTA
-            text={t("Settings.Disposal.button")}
-            form={formId}
-            color="primary"
-          />
+          <CTA text={t("Basic.buttonConfirm")} form={formId} color="primary" />
         </DialogActions>
       </Dialog>
     </div>

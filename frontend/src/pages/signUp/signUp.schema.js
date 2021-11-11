@@ -8,7 +8,7 @@ const signUpSchema = yup.object().shape({
     .trim(),
   password: yup
     .string()
-    .required("Password can't be blank")
+    .required("Form.Error.blank")
     .min(8, "The password has to be at lest 8 symbols"),
   name: yup.string().required("Name can't be blank").trim(),
   surname: yup.string().required("Surname can't be blank").trim(),

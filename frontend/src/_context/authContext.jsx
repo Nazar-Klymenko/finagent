@@ -252,6 +252,20 @@ export const AuthContextProvider = ({ children }) => {
     return reauthenticateWithCredential(user, cred);
   }
 
+  async function updateDisplayName(name, surname) {
+    const user = auth.currentUser;
+
+    await updateProfile(user, {
+      displayName: `${name} ${surname}`,
+    });
+    setCurrentUser((currentUser) => {
+      return {
+        ...currentUser,
+        displayName: `${name} ${surname}`,
+      };
+    });
+  }
+
   const value = {
     currentUser,
     signup,
@@ -265,6 +279,7 @@ export const AuthContextProvider = ({ children }) => {
     deleteAccountFacebook,
     updatePassword,
     setUpdatedPassword,
+    updateDisplayName,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -1,5 +1,6 @@
 {
   "Form": {
+    "optional": "optional",
     "Error": {
       "blank": "This field can't be blank",
       "minimumOne": "Choose at least one option",

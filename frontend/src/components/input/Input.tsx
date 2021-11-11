@@ -4,6 +4,7 @@ import {
   Label,
   InputStyled,
   InputErrorMessage,
+  Optional,
 } from "./LocalStyles";
 import { useTranslation } from "react-i18next";
 
@@ -18,6 +19,7 @@ interface Props {
   autofocus?: boolean;
   autoComplete?: string;
   ref: React.Ref<HTMLInputElement>;
+  optional?: boolean;
 }
 
 const Input: React.FC<Props> = forwardRef(
@@ -32,6 +34,7 @@ const Input: React.FC<Props> = forwardRef(
       defaultValue,
       autofocus,
       autoComplete,
+      optional,
     },
     ref
   ) => {
@@ -39,7 +42,11 @@ const Input: React.FC<Props> = forwardRef(
 
     return (
       <InputContainer error={error}>
-        <Label htmlFor={name}>{labelName}</Label>
+        <Label htmlFor={name}>
+          {labelName}
+          {optional && <Optional>{t("Form.optional")}</Optional>}
+        </Label>
+
         <InputStyled
           ref={ref}
           name={name}

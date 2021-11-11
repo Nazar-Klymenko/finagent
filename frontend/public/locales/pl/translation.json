@@ -1,5 +1,6 @@
 {
   "Form": {
+    "optional": "opcjonalnie",
     "Error": {
       "blank": "To pole nie może być puste",
       "minimumOne": "Proszę wybrać przynajmniej jedną opcję",

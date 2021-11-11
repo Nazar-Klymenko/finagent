@@ -9,15 +9,24 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Backdrop from "@material-ui/core/Backdrop";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
+import { CTA } from "@components/buttons";
 
 interface Props {
   isOpen: boolean;
   handleClose: () => void;
   title: string;
   description: string;
+  formId: string;
 }
 
-const MuiDialog: FC<Props> = ({ isOpen, handleClose, title, description }) => {
+const MuiDialog: FC<Props> = ({
+  isOpen,
+  handleClose,
+  title,
+  description,
+  formId,
+  children,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -39,14 +48,17 @@ const MuiDialog: FC<Props> = ({ isOpen, handleClose, title, description }) => {
           <DialogContentText id="alert-dialog-description">
             {t(description)}
           </DialogContentText>
+          {children}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Disagree
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
-          </Button>
+          <CTA
+            text={t("Settings.Disposal.button")}
+            form={formId}
+            color="primary"
+          />
         </DialogActions>
       </Dialog>
     </div>

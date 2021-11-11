@@ -57,6 +57,7 @@ const Login: React.FC<Props> = (props) => {
   }, [props.location.state]);
 
   useEffect(() => {
+    localStorage.setItem("onSignIn", "false");
     if (isLoggedIn && isActive) {
       history.push(originalRoute);
     } else if (isLoggedIn && !isActive) {

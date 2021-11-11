@@ -168,7 +168,7 @@ export const AuthContextProvider = ({ children }) => {
     const provider = new FacebookAuthProvider();
     provider.setCustomParameters({ auth_type: "rerequest" });
     try {
-      const response = await signInWithPopup(auth, provider);
+      const response = await signInWithRedirect(auth, provider);
       const additionalInfo = getAdditionalUserInfo(response);
 
       const user = auth.currentUser;

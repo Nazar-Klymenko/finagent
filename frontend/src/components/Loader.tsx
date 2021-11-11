@@ -24,7 +24,7 @@ const LoaderStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999999;
+  z-index: 49;
 
   .loader {
     border: 8px solid ${({ theme }) => theme.lightBlue};

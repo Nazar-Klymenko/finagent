@@ -66,6 +66,8 @@ export const AuthContextProvider = ({ children }) => {
       let emailVerified;
       let photoURL = "";
       if (user) {
+        localStorage.setItem("onSignIn", "false");
+
         user.getIdToken(true);
         if (user.providerData[0]?.providerId === "facebook.com") {
           emailVerified = true;
@@ -165,6 +167,7 @@ export const AuthContextProvider = ({ children }) => {
   }
 
   async function loginFacebook() {
+    localStorage.setItem("onSignIn", "true");
     const provider = new FacebookAuthProvider();
     provider.setCustomParameters({ auth_type: "rerequest" });
     try {
@@ -185,6 +188,7 @@ export const AuthContextProvider = ({ children }) => {
       dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
     } catch (error) {
       dispatch(setSnackbar("error", "SnackBar.loginError"));
+      localStorage.setItem("onSignIn", "false");
     }
   }
 

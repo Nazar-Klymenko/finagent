@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useAuth } from "@context/authContext";
+import Loader from "@components/Loader";
 
 interface Props {
   location: any;
@@ -26,6 +27,15 @@ const Login: React.FC<Props> = (props) => {
   const { isLoggedIn, isActive } = currentUser;
 
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    let status = localStorage.getItem("onSignIn");
+    if (status === "true") {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
 
   const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
@@ -64,48 +74,53 @@ const Login: React.FC<Props> = (props) => {
 
   return (
     <ContentWrap xl authForm direction="column">
-      <Header bottomGutter variant="h1" align="center">
-        {t("LogIn.title")}
-      </Header>
-      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-        <Input
-          ref={register}
-          name="email"
-          placeholder="E-mail"
-          labelName={t("LogIn.Form.email")}
-          type="email"
-          error={!!errors.email}
-          helperText={errors?.email?.message}
-          autofocus={false}
-        />
-        <InputPassword
-          ref={register}
-          name="password"
-          labelName={t("LogIn.Form.password")}
-          error={!!errors.password}
-          helperText={errors?.password?.message}
-        />
-      </Form>
-      <CTA
-        isLoading={isLoading}
-        text={t("LogIn.Form.button")}
-        form="form"
-        color="primary"
-        large
-      />
-      <AlternativeLine>Or log in using other methods</AlternativeLine>
-      <FacebookButton onClick={loginWithFacebook}>Facebook</FacebookButton>
-      <AuthOptions>
-        <NavLink className="forgot-link" to="/auth/forgot-password">
-          {t("LogIn.addActions.forgot")}
-        </NavLink>
-        <SignUpOption>
-          {t("LogIn.addActions.noAccount")}
-          <NavLink className="signup-link" to="/auth/signup">
-            {t("LogIn.addActions.signUp")}
-          </NavLink>
-        </SignUpOption>
-      </AuthOptions>
+      {isLoading && <Loader />}
+      {!isLoading && (
+        <>
+          <Header bottomGutter variant="h1" align="center">
+            {t("LogIn.title")}
+          </Header>
+          <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+            <Input
+              ref={register}
+              name="email"
+              placeholder="E-mail"
+              labelName={t("LogIn.Form.email")}
+              type="email"
+              error={!!errors.email}
+              helperText={errors?.email?.message}
+              autofocus={false}
+            />
+            <InputPassword
+              ref={register}
+              name="password"
+              labelName={t("LogIn.Form.password")}
+              error={!!errors.password}
+              helperText={errors?.password?.message}
+            />
+          </Form>
+          <CTA
+            isLoading={isLoading}
+            text={t("LogIn.Form.button")}
+            form="form"
+            color="primary"
+            large
+          />
+          <AlternativeLine>Or log in using other methods</AlternativeLine>
+          <FacebookButton onClick={loginWithFacebook}>Facebook</FacebookButton>
+          <AuthOptions>
+            <NavLink className="forgot-link" to="/auth/forgot-password">
+              {t("LogIn.addActions.forgot")}
+            </NavLink>
+            <SignUpOption>
+              {t("LogIn.addActions.noAccount")}
+              <NavLink className="signup-link" to="/auth/signup">
+                {t("LogIn.addActions.signUp")}
+              </NavLink>
+            </SignUpOption>
+          </AuthOptions>
+        </>
+      )}
     </ContentWrap>
   );
 };
@@ -143,6 +158,7 @@ const FacebookButton = styled.button`
   border-radius: 3px;
   border: none;
   margin: 0.5rem 0;
+  font-size: 1rem;
   &:hover {
     opacity: 0.8;
   }

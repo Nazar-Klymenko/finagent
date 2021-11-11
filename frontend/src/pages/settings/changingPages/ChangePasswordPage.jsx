@@ -12,12 +12,10 @@ import Form from "@components/Form";
 import Loader from "@components/Loader";
 import { InputPassword } from "@components/input";
 import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
-import { changePasswordAPI } from "@api/userAPI";
 import { useAuth } from "@context/authContext";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
   const { setUpdatedPassword } = useAuth();
   const { register, handleSubmit, errors } = useForm({
     mode: "onChange",
@@ -27,16 +25,13 @@ const ChangePasswordPage = () => {
   });
 
   const formSubmit = (data) => {
-    setLoading(true);
     setUpdatedPassword(data.currentPassword, data.newPassword);
-    setLoading(false);
   };
 
   return (
     <ChangingPage>
       <h3>{t("Settings.ChangePassword.title")}</h3>
       <div className="form">
-        {loading && <Loader />}
         <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
           <InputPassword
             ref={register}

@@ -201,9 +201,13 @@ export const AuthContextProvider = ({ children }) => {
   }
   async function setUpdatedPassword(currentPassword, newPassword) {
     await reauthenticate(currentPassword).catch((error) => {
-      dispatch(setSnackbar("error", "Wrong password"));
+      dispatch(
+        setSnackbar("error", "Settings.ChangePassword.errorInvalidPassword")
+      );
     });
     await updatePassword(auth.currentUser, newPassword);
+    setSnackbar("success", "Settings.ChangePassword.alertSuccess");
+
     // await sendPasswordResetEmail(auth, email);
   }
 

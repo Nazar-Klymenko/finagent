@@ -9,7 +9,7 @@ import { useAuth } from "@context/authContext";
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const { currentUser } = useAuth();
   const { isLoggedIn, isSendingRequest, isActive } = currentUser;
-
+  localStorage.setItem("onSignIn", "false");
   return (
     <Route
       {...rest}
@@ -57,7 +57,7 @@ export const QuestRoute = ({ component: Component, ...rest }) => {
   let currentLocation = history.location.pathname;
   let urlParted = currentLocation.split("/");
   let pageIndex = parseInt(urlParted.pop() || urlParted.pop());
-
+  localStorage.setItem("onSignIn", "false");
   return (
     <Route
       {...rest}

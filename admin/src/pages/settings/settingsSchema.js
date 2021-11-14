@@ -3,13 +3,13 @@ export const settingsSchema = () => {
   return yup.object().shape({
     name: yup.string().required("This field can't be blank"),
     surname: yup.string().required("This field can't be blank"),
-    phone: yup.string().required("This field can't be blank"),
+    phone: yup.string(),
   });
 };
 
 export const changePasswordSchema = () => {
   return yup.object().shape({
-    oldPassword: yup
+    currentPassword: yup
       .string()
       .required("This field can't be blank")
       .min(8, "The password has to be at lest 8 symbols"),

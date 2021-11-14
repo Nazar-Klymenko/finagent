@@ -1,10 +1,9 @@
 import React from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import ChangeInfoPage from "./changingPages/ChangeInfoPage";
-import ChangeEmailPage from "./changingPages/ChangeEmailPage";
 import ChangePasswordPage from "./changingPages/ChangePasswordPage";
 
 import { PrivateRoute } from "@components/CustomRoutes";
@@ -37,26 +36,10 @@ const Settings = () => {
         >
           {t("Settings.ChangePassword.title")}
         </SettingsLink>
-
-        {/* <SettingsLink
-          className="settings__menu__link"
-          activeClassName="selected"
-          to="/settings/danger_zone"
-        >
-          {t("Settings.Disposal.title")}
-        </SettingsLink> */}
       </Menu>
       <Overlay>
-        <PrivateRoute path="/settings">
-          <Redirect to="/settings/change_info" />
-        </PrivateRoute>
-
         <PrivateRoute path="/settings/change_info">
           <ChangeInfoPage />
-        </PrivateRoute>
-
-        <PrivateRoute path="/settings/change_email">
-          <ChangeEmailPage />
         </PrivateRoute>
 
         <PrivateRoute path="/settings/change_password">

@@ -21,19 +21,6 @@ export const changePasswordSchema = () => {
   });
 };
 
-export const changeEmailSchema = () => {
-  return yup.object().shape({
-    currentPassword: yup
-      .string()
-      .required("This field can't be blank")
-      .min(8, "The password has to be at lest 8 symbols"),
-    email: yup
-      .string()
-      .email("Email should have correct format")
-      .required("This field can't be blank"),
-  });
-};
-
 export const dangerZoneSchema = () => {
   return yup.object().shape({
     password: yup.string().min(8, "The password has to be at lest 8 symbols"),

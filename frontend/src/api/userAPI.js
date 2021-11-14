@@ -135,16 +135,6 @@ export const updateSettingsAPI = (object) => {
   });
 };
 
-export const changeEmailAPI = (object) => {
-  return axios(`/user/settings/change_email`, {
-    method: "POST",
-    data: JSON.stringify(object),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-
 export const changePasswordAPI = (object) => {
   return axios(`/user/settings/change_password`, {
     method: "POST",

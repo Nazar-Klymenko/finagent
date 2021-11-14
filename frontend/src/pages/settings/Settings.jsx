@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
 import ChangeInfoPage from "./changingPages/ChangeInfoPage";
-import ChangeEmailPage from "./changingPages/ChangeEmailPage";
 import ChangePasswordPage from "./changingPages/ChangePasswordPage";
 import DangerZonePage from "./changingPages/DeleteAccount";
 
@@ -51,10 +50,6 @@ const Settings = () => {
         <Overlay>
           <PrivateRoute path="/settings/change_info">
             <ChangeInfoPage />
-          </PrivateRoute>
-
-          <PrivateRoute path="/settings/change_email">
-            <ChangeEmailPage />
           </PrivateRoute>
 
           <PrivateRoute path="/settings/change_password">

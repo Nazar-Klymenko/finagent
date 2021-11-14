@@ -10,9 +10,12 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   getAdditionalUserInfo,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
   onAuthStateChanged,
   signOut,
   confirmPasswordReset,
+  updatePassword,
   deleteUser,
   updateProfile,
 } from "firebase/auth";
@@ -147,20 +150,51 @@ export const AuthContextProvider = ({ children }) => {
     await auth.sendPasswordResetEmail(email);
   }
 
-  async function updateEmail(email) {
-    await auth.currentUser?.updateEmail(email);
+  async function setUpdatedPassword(currentPassword, newPassword) {
+    await reauthenticate(currentPassword).catch((error) => {
+      dispatch(
+        setSnackbar("error", "Settings.ChangePassword.errorInvalidPassword")
+      );
+    });
+    await updatePassword(auth.currentUser, newPassword);
+    setSnackbar("success", "Settings.ChangePassword.alertSuccess");
   }
 
   async function logout() {
     await signOut(auth);
   }
 
+  async function updateDisplayName(name, surname) {
+    const user = auth.currentUser;
+
+    await updateProfile(user, {
+      displayName: `${name} ${surname}`,
+    });
+    setCurrentUser((currentUser) => {
+      return {
+        ...currentUser,
+        displayName: `${name} ${surname}`,
+      };
+    });
+  }
+
+  async function resetPassword(email) {
+    await sendPasswordResetEmail(auth, email);
+  }
+
+  async function reauthenticate(currentPassword) {
+    const user = auth.currentUser;
+    const cred = EmailAuthProvider.credential(user.email, currentPassword);
+    return reauthenticateWithCredential(user, cred);
+  }
+
   const value = {
     currentUser,
     signup,
     resetPassword,
-    updateEmail,
     login,
+    setUpdatedPassword,
+    updateDisplayName,
     logout,
   };
 

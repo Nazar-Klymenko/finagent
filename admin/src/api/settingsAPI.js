@@ -18,32 +18,3 @@ export const updateSettingsAPI = (object) => {
     },
   });
 };
-
-export const changeEmailRequestAPI = () => {
-  return axios(`/admin/settings/change_email`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-
-export const changeEmailAPI = (token, object) => {
-  return axios(`/admin/settings/change_email/${token}`, {
-    method: "POST",
-    data: JSON.stringify(object),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-
-export const changePasswordAPI = (object) => {
-  return axios(`/admin/settings/change_password`, {
-    method: "POST",
-    data: JSON.stringify(object),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};

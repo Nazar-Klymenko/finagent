@@ -11,6 +11,7 @@ import Loader from "@components/Loader";
 
 import { getSettingsAPI, updateSettingsAPI } from "@api/settingsAPI";
 import { ChangingPage, StatusError, ButtonPosition } from "./LocalStyles";
+import { useAuth } from "@context/authContext";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
@@ -20,12 +21,15 @@ const ChangePasswordPage = () => {
 
   const [defaultSettings, setDefaultSettings] = useState({});
 
+  const { updateDisplayName } = useAuth();
+
   useEffect(() => {
     setIsLoading(true);
     async function fetchData() {
       try {
         const response = await getSettingsAPI();
         setDefaultSettings(response.data);
+
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -53,15 +57,13 @@ const ChangePasswordPage = () => {
   const { isDirty } = formState;
 
   const formSubmit = async (data) => {
-    setIsLoading(true);
     try {
       await updateSettingsAPI(data);
       reset(data);
       alert(t("Settings.ChangeInfo.alertSuccess"));
-      setIsLoading(false);
+      updateDisplayName(data.name, data.surname);
     } catch (error) {
       setPostError(t("Settings.ChangeInfo.errorResponse"));
-      setIsLoading(false);
     }
   };
 

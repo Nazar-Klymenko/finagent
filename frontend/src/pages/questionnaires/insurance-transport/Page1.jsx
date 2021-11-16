@@ -47,7 +47,11 @@ const Page1 = () => {
   const { appData, setValues, setCurrentPage } = useData();
   const history = useHistory();
 
-  const appDataValid = validateAppData(appData, "PersonalData");
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceTransport",
+    "personalData"
+  );
 
   const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: pageOneValues(appDataValid),
@@ -61,9 +65,8 @@ const Page1 = () => {
   const documentTypeName = watch("documentAddedType");
 
   const formSubmit = (data) => {
-    setValues(data, "PersonalData");
+    setValues(data, "insuranceTransport", "personalData");
     setCurrentPage(2);
-
     history.push("./2");
   };
 

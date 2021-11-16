@@ -24,17 +24,19 @@ const Summary = () => {
   const { appData } = useData();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("HealthMedical", appData);
+  const addDataLabeled = determineType(
+    "HealthMedical",
+    appData.insuranceHealth
+  );
 
   const confirmApplication = async () => {
-    delete appData.InsuranceData.clauseOne;
-    delete appData.InsuranceData.clauseTwo;
-    delete appData.InsuranceData.clauseThree;
+    delete appData.insuranceHealth.InsuranceData.clauseOne;
+    delete appData.insuranceHealth.InsuranceData.clauseTwo;
+    delete appData.insuranceHealth.InsuranceData.clauseThree;
     setIsLoading(true);
     try {
-      await postInsuranceMedicalAPI(appData);
+      await postInsuranceMedicalAPI(appData.insuranceHealth);
       history.push("/dashboard/insurances");
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
     }

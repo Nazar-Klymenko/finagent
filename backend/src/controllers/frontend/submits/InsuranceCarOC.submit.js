@@ -19,10 +19,10 @@ export default async function InsuranceCarOCSubmit(req, res, next) {
     }
 
     insuranceObj.markModified(
-      "PersonalData",
-      "TransportData",
-      "SpecificData",
-      "AdditionalData"
+      "personalData",
+      "transportData",
+      "specificData",
+      "additionalData"
     );
 
     const updatedModel = await attachImagesUser(

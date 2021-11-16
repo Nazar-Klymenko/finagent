@@ -26,9 +26,13 @@ const Page5 = () => {
   const history = useHistory();
   useTitle("Transport insurance | FinAgent");
 
-  const appDataValid = validateAppData(appData, "AppendedImages");
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceTransport",
+    "appendedImages"
+  );
 
-  const { register, handleSubmit, errors, control, watch } = useForm({
+  const { handleSubmit, errors, control, watch } = useForm({
     defaultValues: pageFiveValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
@@ -39,7 +43,7 @@ const Page5 = () => {
   const formSubmit = async (data) => {
     try {
       setAllowSummary(true);
-      setValues(data, "AppendedImages");
+      setValues(data, "insuranceTransport", "appendedImages");
       history.push("./summary");
     } catch (error) {
       alert("couldn't add images");

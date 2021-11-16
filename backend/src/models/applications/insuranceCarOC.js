@@ -5,7 +5,7 @@ import Application from "../application.js";
 
 const InsuranceCarOCSchema = new Schema(
   {
-    PersonalData: {
+    personalData: {
       oc: Boolean,
       ac: Boolean,
       greenCard: Boolean,
@@ -72,7 +72,7 @@ const InsuranceCarOCSchema = new Schema(
         maxlength: [30, "can't be longer than 30 characters"],
       },
     },
-    TransportData: {
+    transportData: {
       vehicleType: {
         type: String,
       },
@@ -98,7 +98,7 @@ const InsuranceCarOCSchema = new Schema(
         type: String,
       },
     },
-    SpecificData: {
+    specificData: {
       enginePower: {
         type: String,
       },
@@ -136,7 +136,7 @@ const InsuranceCarOCSchema = new Schema(
         type: String,
       },
     },
-    AdditionalData: {
+    additionalData: {
       predictMileage: {
         type: String,
       },

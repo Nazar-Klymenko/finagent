@@ -8,42 +8,42 @@ const LoanMortgageSubmit = async (req, res, next) => {
     insuranceObj.category = "loan";
     insuranceObj.type = "Mortgage";
 
-    const incomeArray = Object.keys(req.body.AdditionalIncome);
-    const householdArray = Object.keys(req.body.HouseholdData);
+    const incomeArray = Object.keys(req.body.additionalIncome);
+    const householdArray = Object.keys(req.body.householdData);
 
     for (let i = 0; i < incomeArray.length; i++) {
-      insuranceObj.AdditionalIncome.push({
-        truckDriver: req.body.AdditionalIncome[i].truckDriver,
-        industry: req.body.AdditionalIncome[i].industry,
-        averageIncome: req.body.AdditionalIncome[i].averageIncome,
-        bank: req.body.AdditionalIncome[i].bank,
-        basicIncome: req.body.AdditionalIncome[i].basicIncome,
-        contractUntil: req.body.AdditionalIncome[i].contractUntil,
-        contractFrom: req.body.AdditionalIncome[i].contractFrom,
-        currency: req.body.AdditionalIncome[i].currency,
-        pit: req.body.AdditionalIncome[i].pit,
-        accountancy: req.body.AdditionalIncome[i].accountancy,
-        firstContract: req.body.AdditionalIncome[i].firstContract,
-        sameEmployer: req.body.AdditionalIncome[i].sameEmployer,
-        withoutPause: req.body.AdditionalIncome[i].withoutPause,
+      insuranceObj.additionalIncome.push({
+        truckDriver: req.body.additionalIncome[i].truckDriver,
+        industry: req.body.additionalIncome[i].industry,
+        averageIncome: req.body.additionalIncome[i].averageIncome,
+        bank: req.body.additionalIncome[i].bank,
+        basicIncome: req.body.additionalIncome[i].basicIncome,
+        contractUntil: req.body.additionalIncome[i].contractUntil,
+        contractFrom: req.body.additionalIncome[i].contractFrom,
+        currency: req.body.additionalIncome[i].currency,
+        pit: req.body.additionalIncome[i].pit,
+        accountancy: req.body.additionalIncome[i].accountancy,
+        firstContract: req.body.additionalIncome[i].firstContract,
+        sameEmployer: req.body.additionalIncome[i].sameEmployer,
+        withoutPause: req.body.additionalIncome[i].withoutPause,
       });
     }
-    insuranceObj.AdditionalIncome.shift();
+    insuranceObj.additionalIncome.shift();
 
     for (let i = 0; i < householdArray.length; i++) {
-      insuranceObj.HouseholdData.push({
-        peopleInHousehold: req.body.HouseholdData[i].peopleInHousehold,
-        monthlyExpenses: req.body.HouseholdData[i].monthlyExpenses,
+      insuranceObj.householdData.push({
+        peopleInHousehold: req.body.householdData[i].peopleInHousehold,
+        monthlyExpenses: req.body.householdData[i].monthlyExpenses,
       });
     }
-    insuranceObj.HouseholdData.shift();
+    insuranceObj.householdData.shift();
 
     insuranceObj.markModified(
-      "Applicants",
-      "ApplicantsData",
-      "AdditionalIncome",
-      "HouseholdData",
-      "LoanData"
+      "applicants",
+      "applicantsData",
+      "additionalIncome",
+      "householdData",
+      "loanData"
     );
     await insuranceObj.save();
 

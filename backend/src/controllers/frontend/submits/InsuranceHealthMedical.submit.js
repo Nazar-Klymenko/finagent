@@ -8,27 +8,27 @@ const InsuranceHealthMedicalSubmit = async (req, res, next) => {
     insuranceObj.category = "insurance";
     insuranceObj.type = "HealthMedical";
 
-    const userArray = Object.keys(req.body.InsuredData);
+    const userArray = Object.keys(req.body.insuredData);
 
     for (let i = 0; i < userArray.length; i++) {
-      insuranceObj.InsuredData.push({
-        policyholderIs: req.body.InsuredData[i].policyholderIs,
-        citizenship: req.body.InsuredData[i].citizenship,
-        documentAdded: req.body.InsuredData[i].documentAdded,
-        documentType: req.body.InsuredData[i].documentType,
-        name: req.body.InsuredData[i].name,
-        surname: req.body.InsuredData[i].surname,
-        birthDate: req.body.InsuredData[i].birthDate,
-        country: req.body.InsuredData[i].country,
-        city: req.body.InsuredData[i].city,
-        postIndex: req.body.InsuredData[i].postIndex,
-        street: req.body.InsuredData[i].street,
-        houseNumber: req.body.InsuredData[i].houseNumber,
+      insuranceObj.insuredData.push({
+        policyholderIs: req.body.insuredData[i].policyholderIs,
+        citizenship: req.body.insuredData[i].citizenship,
+        documentAdded: req.body.insuredData[i].documentAdded,
+        documentType: req.body.insuredData[i].documentType,
+        name: req.body.insuredData[i].name,
+        surname: req.body.insuredData[i].surname,
+        birthDate: req.body.insuredData[i].birthDate,
+        country: req.body.insuredData[i].country,
+        city: req.body.insuredData[i].city,
+        postIndex: req.body.insuredData[i].postIndex,
+        street: req.body.insuredData[i].street,
+        houseNumber: req.body.insuredData[i].houseNumber,
       });
     }
-    insuranceObj.InsuredData.shift();
+    insuranceObj.insuredData.shift();
 
-    insuranceObj.markModified("InsuranceData", "InsuredData");
+    insuranceObj.markModified("insuranceData", "insuredData");
     await insuranceObj.save();
 
     res.status(200).send({

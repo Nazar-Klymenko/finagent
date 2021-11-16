@@ -22,34 +22,42 @@ import { QuestState } from "@dev/QuestState";
 const Summary = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const { appData } = useData();
+  const { appData, clearAppData } = useData();
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("OC", appData);
+  const addDataLabeled = determineType("OC", appData.insuranceTransport);
 
   const confirmApplication = async () => {
     setIsLoading(true);
     try {
       const formData = new FormData();
 
-      appData.AppendedImages.filesTechPassport.forEach((file) => {
-        formData.append("files", file, file.name);
-      });
-      appData.AppendedImages.filesPassport.forEach((file) => {
-        formData.append("files", file, file.name);
-      });
-      appData.AppendedImages.filesInsurance.forEach((file) => {
-        formData.append("files", file, file.name);
-      });
-      if (appData?.AppendedImages?.filesCarSale) {
-        appData.AppendedImages.filesCarSale.forEach((file) => {
+      appData.insuranceTransport.AppendedImages.filesTechPassport.forEach(
+        (file) => {
           formData.append("files", file, file.name);
-        });
+        }
+      );
+      appData.insuranceTransport.AppendedImages.filesPassport.forEach(
+        (file) => {
+          formData.append("files", file, file.name);
+        }
+      );
+      appData.insuranceTransport.AppendedImages.filesInsurance.forEach(
+        (file) => {
+          formData.append("files", file, file.name);
+        }
+      );
+      if (appData?.insuranceTransport.AppendedImages?.filesCarSale) {
+        appData.insuranceTransport.AppendedImages.filesCarSale.forEach(
+          (file) => {
+            formData.append("files", file, file.name);
+          }
+        );
       }
 
-      const entries = Object.entries(appData).filter(
+      const entries = Object.entries(appData.insuranceTransport).filter(
         (entry) => entry[0] !== "AppendedImages"
       );
 
@@ -59,9 +67,8 @@ const Summary = () => {
       );
 
       await postInsuranceOcAPI(formData);
-
+      clearAppData();
       history.push("/dashboard/insurances");
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       dispatch(setSnackbar("error", "could not send application"));

@@ -20,11 +20,10 @@ import { QuestState } from "@dev/QuestState";
 
 const Page2 = () => {
   const { t } = useTranslation();
+  useTitle("Health insurance | FinAgent");
+  const history = useHistory();
   const { appData, setValues, setAllowSummary, peopleData, setPeopleData } =
     useData();
-  const history = useHistory();
-
-  useTitle("Health insurance | FinAgent");
 
   const [openModal, setOpenModal] = useState(false);
   const [isError, setIsError] = useState("");
@@ -34,7 +33,7 @@ const Page2 = () => {
   let [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    setValues(insuredData, "InsuredData");
+    setValues(insuredData, "insuranceHealth", "InsuredData");
     setPeopleData(insuredData);
     setIsError("");
   }, [insuredData]);

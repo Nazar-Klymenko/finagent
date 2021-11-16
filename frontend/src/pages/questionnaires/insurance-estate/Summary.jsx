@@ -23,12 +23,12 @@ const Summary = () => {
   const { appData } = useData();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("Estate", appData);
+  const addDataLabeled = determineType("Estate", appData.insuranceEstate);
 
   const confirmApplication = async () => {
     setIsLoading(true);
     try {
-      await postInsuranceEstateAPI(appData);
+      await postInsuranceEstateAPI(appData.insuranceEstate);
       history.push("/dashboard/insurances");
       setIsLoading(false);
     } catch (error) {

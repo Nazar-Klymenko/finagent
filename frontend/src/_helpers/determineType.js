@@ -1,4 +1,4 @@
-import addLabelsOC from "@pages/questionnaires/insurance-car/applicationHelpers/addLabels";
+import addLabelsOC from "@pages/questionnaires/insurance-transport/applicationHelpers/addLabels";
 import addLabelsSpecialist from "@pages/questionnaires/insurance-specialist/applicationHelpers/addLabels";
 import addLabelsMedical from "@pages/questionnaires/insurance-health/applicationHelpers/addLabels";
 import addLabelsCash from "@pages/questionnaires/loan-cash/applicationHelpers/addLabels";

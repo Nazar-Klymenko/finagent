@@ -4,14 +4,14 @@ const Schema = mongoose.Schema;
 
 const HealthSchema = new Schema(
   {
-    InsuranceData: {
+    insuranceData: {
       clauseOnePrice: String,
       clauseTwoPrice: String,
       clauseThreePrice: String,
       insuranceEnd: String,
       insuranceStart: String,
     },
-    InsuredData: [
+    insuredData: [
       {
         policyholderIs: String,
         citizenship: String,

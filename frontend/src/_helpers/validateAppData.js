@@ -1,8 +1,8 @@
-const validateAppData = (object, key) => {
-  if (object[key]) {
-    return object[key];
+const validateAppData = (object, type, key) => {
+  if (object[type][key]) {
+    return object[type][key];
   } else {
-    return object;
+    return object[type];
   }
 };
 

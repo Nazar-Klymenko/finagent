@@ -29,7 +29,11 @@ const Page2 = () => {
   const history = useHistory();
   useTitle("Border insurance | FinAgent");
 
-  const appDataValid = validateAppData(appData, "VehicleData");
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceBorder",
+    "vehicleData"
+  );
 
   const { register, handleSubmit, errors, control } = useForm({
     defaultValues: {
@@ -49,7 +53,7 @@ const Page2 = () => {
   });
 
   const formSubmit = (data) => {
-    setValues(data, "VehicleData");
+    setValues(data, "insuranceBorder", "vehicleData");
     setCurrentPage(3);
     history.push("./3");
   };

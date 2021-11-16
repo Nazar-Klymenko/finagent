@@ -9,7 +9,7 @@ const InsuranceTravelSubmit = async (req, res, next) => {
     insuranceObj.category = "insurance";
     insuranceObj.type = "Travel";
 
-    insuranceObj.markModified("InsuranceData", "PersonalData");
+    insuranceObj.markModified("insuranceData", "personalData");
     await insuranceObj.save();
 
     res.status(200).send({

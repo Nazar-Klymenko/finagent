@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const HealthSchema = new Schema(
   {
-    PersonalData: {
+    personalData: {
       insuranceStart: String,
       insuranceEnd: String,
       name: String,
@@ -21,7 +21,7 @@ const HealthSchema = new Schema(
       street: String,
       houseNumber: String,
     },
-    InsuredData: [
+    insuredData: [
       {
         policyholderIs: String,
         name: String,

@@ -8,7 +8,7 @@ const InsuranceBorderSubmit = async (req, res, next) => {
     insuranceObj.category = "insurance";
     insuranceObj.type = "Border";
 
-    insuranceObj.markModified("InsuranceData", "VehicleData", "PersonalData");
+    insuranceObj.markModified("insuranceData", "vehicleData", "personalData");
     await insuranceObj.save();
 
     res.status(200).send({

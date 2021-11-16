@@ -29,15 +29,17 @@ import { predictMileageOptions } from "./applicationHelpers/insuranceCarOptions"
 
 const Page4 = () => {
   const { t } = useTranslation();
+  const history = useHistory();
+  useTitle("Transport insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = validateAppData(appData, "AdditionalData");
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceTransport",
+    "additionalData"
+  );
 
-  const history = useHistory();
-
-  useTitle("Transport insurance | FinAgent");
-
-  const { register, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     defaultValues: pageFourValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -46,7 +48,7 @@ const Page4 = () => {
   });
 
   const formSubmit = (data) => {
-    setValues(data, "AdditionalData");
+    setValues(data, "insuranceTransport", "additionalData");
     setCurrentPage(5);
     history.push("./5");
   };

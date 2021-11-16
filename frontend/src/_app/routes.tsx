@@ -21,7 +21,7 @@ import {
   Page4_Insurance_Car,
   Page5_Insurance_Car,
   Summary_Insurance_Car,
-} from "@pages/questionnaires/insurance-car";
+} from "@pages/questionnaires/insurance-transport";
 
 import {
   Page1_Insurance_Border,

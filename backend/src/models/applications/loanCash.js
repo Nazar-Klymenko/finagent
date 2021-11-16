@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const CashSchema = new Schema(
   {
-    Applicants: {
+    applicants: {
       Applicant1: {
         email: String,
         name: String,
@@ -54,12 +54,12 @@ const CashSchema = new Schema(
         withoutPause: String,
       },
     },
-    ApplicantsData: {
+    applicantsData: {
       bothSpousesStart: String,
       maritalStatus: String,
       propertySeparation: String,
     },
-    AdditionalIncome: [
+    additionalIncome: [
       {
         truckDriver: String,
         industry: String,
@@ -76,7 +76,7 @@ const CashSchema = new Schema(
         withoutPause: String,
       },
     ],
-    LoanData: {
+    loanData: {
       custody: String,
       lastApplications: String,
       loanAmount: String,

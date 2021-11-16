@@ -23,7 +23,12 @@ const Page2 = () => {
   const history = useHistory();
   useTitle("Real estate insurance | FinAgent");
   const { appData, setValues, setAllowSummary } = useData();
-  const appDataValid = validateAppData(appData, "PersonalData");
+
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceEstate",
+    "personalData"
+  );
 
   const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: {
@@ -44,7 +49,7 @@ const Page2 = () => {
   const policyholderIs = watch("policyholderIs") || "individual";
 
   const formSubmit = (data) => {
-    setValues(data, "PersonalData");
+    setValues(data, "insuranceEstate", "personalData");
     setAllowSummary(true);
     history.push("./summary");
   };

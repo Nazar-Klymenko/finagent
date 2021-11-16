@@ -38,11 +38,15 @@ import { QuestState } from "@dev/QuestState";
 
 const Page3 = () => {
   const { t } = useTranslation();
-  const { appData, setValues, setCurrentPage } = useData();
-  const history = useHistory();
   useTitle("Transport insurance | FinAgent");
+  const history = useHistory();
+  const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = validateAppData(appData, "SpecificData");
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceTransport",
+    "specificData"
+  );
 
   const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: pageThreeValues(appDataValid),
@@ -53,7 +57,7 @@ const Page3 = () => {
   });
 
   const formSubmit = (data) => {
-    setValues(data, "SpecificData");
+    setValues(data, "insuranceTransport", "specificData");
     setCurrentPage(4);
     history.push("./4");
   };

@@ -83,11 +83,11 @@ export const ApplicantBox = styled.div`
       }
     }
   }
-  .add {
-    color: ${({ theme }) => theme.blue};
-    cursor: pointer;
-    padding: 1rem 0;
-  }
+`;
+export const ApplicantAdd = styled.span`
+  color: ${({ theme }) => theme.blue};
+  cursor: pointer;
+  padding: 1rem 0;
 `;
 
 export const InputErrorMessage = styled.div`

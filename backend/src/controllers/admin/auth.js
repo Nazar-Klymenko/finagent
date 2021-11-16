@@ -6,7 +6,6 @@ import { adminAuth } from "services/firebase";
 export const signUp = async (req, res, next) => {
   const { name, surname, email, secret, IdToken } = req.body;
 
-  console.log(req.body);
   try {
     const admin = await Admin.findOne({ email: email });
     if (admin) {

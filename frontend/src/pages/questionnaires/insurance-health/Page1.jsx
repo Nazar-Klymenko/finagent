@@ -25,13 +25,18 @@ import { clauseThreePriceOptions } from "./applicationHelpers/insuranceHealthOpt
 
 const Page1 = () => {
   const { t } = useTranslation();
-  const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = validateAppData(appData, "InsuranceData");
+  useTitle("Health insurance | FinAgent");
   const history = useHistory();
 
-  useTitle("Health insurance | FinAgent");
+  const { appData, setValues, setCurrentPage } = useData();
 
-  const { register, handleSubmit, errors, control, watch } = useForm({
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceHealth",
+    "insuranceData"
+  );
+
+  const { handleSubmit, errors, control, watch } = useForm({
     defaultValues: {
       clauseOne: true,
       clauseTwo: appDataValid.clauseTwo,
@@ -47,7 +52,7 @@ const Page1 = () => {
   let showThreeAmount = watch("clauseThree");
 
   const formSubmit = (data) => {
-    setValues(data, "InsuranceData");
+    setValues(data, "insuranceHealth", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
   };

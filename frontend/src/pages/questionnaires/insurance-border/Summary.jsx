@@ -20,17 +20,18 @@ const Summary = () => {
   const { t } = useTranslation();
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
-  const { appData } = useData();
+  const { appData, clearAppData } = useData();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("Border", appData);
+  const addDataLabeled = determineType("Border", appData.insuranceBorder);
 
   const confirmApplication = async () => {
     setIsLoading(true);
     try {
-      await postInsuranceBorderAPI(appData);
+      console.log(appData.insuranceBorder);
+      await postInsuranceBorderAPI(appData.insuranceBorder);
+      clearAppData();
       history.push("/dashboard/insurances");
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
     }

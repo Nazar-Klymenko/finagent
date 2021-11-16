@@ -20,11 +20,16 @@ import { QuestState } from "@dev/QuestState";
 
 const Page3 = () => {
   const { t } = useTranslation();
-  const { appData, setValues, setAllowSummary } = useData();
-  const appDataValid = validateAppData(appData, "PersonalData");
+  useTitle("Border insurance | FinAgent");
   const history = useHistory();
 
-  useTitle("Border insurance | FinAgent");
+  const { appData, setValues, setAllowSummary } = useData();
+
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceBorder",
+    "personalData"
+  );
 
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
@@ -45,7 +50,7 @@ const Page3 = () => {
   });
 
   const formSubmit = (data) => {
-    setValues(data, "PersonalData");
+    setValues(data, "insuranceBorder", "personalData");
     setAllowSummary(true);
     history.push("./summary");
   };

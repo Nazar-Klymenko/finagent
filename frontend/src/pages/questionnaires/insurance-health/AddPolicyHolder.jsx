@@ -29,7 +29,7 @@ const AddPolicyHolder = ({
   const { appData } = useData();
 
   const appDataValid = validateAppData(
-    appData["InsuredData"] || appData,
+    appData.insuranceHealth["InsuredData"] || appData,
     defaultPerson
   );
 

@@ -21,10 +21,15 @@ import { QuestState } from "@dev/QuestState";
 
 const Page1 = () => {
   const { t } = useTranslation();
-  const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = validateAppData(appData, "PersonalData");
-  const history = useHistory();
   useTitle("Specialists access | FinAgent");
+  const history = useHistory();
+
+  const { appData, setValues, setCurrentPage } = useData();
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceSpecialist",
+    "personalData"
+  );
 
   const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: {},
@@ -37,7 +42,7 @@ const Page1 = () => {
   const policyholderIs = watch("policyholderIs") || appDataValid.policyholderIs;
 
   const formSubmit = (data) => {
-    setValues(data, "PersonalData");
+    setValues(data, "insuranceSpecialist", "personalData");
     setCurrentPage(2);
     history.push("./2");
   };
@@ -135,6 +140,7 @@ const Page1 = () => {
               error={!!errors.birthDate}
               helperText={errors?.birthDate?.message}
               defaultDate={appDataValid.birthDate}
+              disableFuture
             />
           )}
           {policyholderIs === "individual" && (

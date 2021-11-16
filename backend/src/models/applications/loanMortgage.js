@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const MortgageSchema = new Schema(
   {
-    Applicants: {
+    applicants: {
       Applicant1: {
         email: String,
         name: String,
@@ -54,12 +54,12 @@ const MortgageSchema = new Schema(
         withoutPause: String,
       },
     },
-    ApplicantsData: {
+    applicantsData: {
       bothSpousesStart: String,
       maritalStatus: String,
       propertySeparation: String,
     },
-    AdditionalIncome: [
+    additionalIncome: [
       {
         truckDriver: String,
         industry: String,
@@ -76,13 +76,13 @@ const MortgageSchema = new Schema(
         withoutPause: String,
       },
     ],
-    HouseholdData: [
+    householdData: [
       {
         peopleInHousehold: String,
         monthlyExpenses: String,
       },
     ],
-    LoanData: {
+    loanData: {
       peopleInHousehold: String,
       custody: String,
       monthlyExpenses: String,

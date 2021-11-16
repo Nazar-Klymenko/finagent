@@ -9,13 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import {
-  Input,
-  DateInput,
-  MuiRadio,
-  SelectInput,
-  MuiSelect,
-} from "@components/input";
+import { Input, DateInput, MuiRadio, MuiSelect } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -29,10 +23,15 @@ import { nameSecurityOptions } from "./applicationHelpers/insuranceEstateOptions
 
 const Page1 = () => {
   const { t } = useTranslation();
+  const history = useHistory();
   useTitle("Real estate insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = validateAppData(appData, "InsuranceData");
-  const history = useHistory();
+
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceEstate",
+    "insuranceData"
+  );
 
   const { register, handleSubmit, errors, control, watch } = useForm({
     defaultValues: {
@@ -71,7 +70,7 @@ const Page1 = () => {
     watch("creditOwnership") || appDataValid.creditOwnership;
 
   const formSubmit = (data) => {
-    setValues(data, "InsuranceData");
+    setValues(data, "insuranceEstate", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
   };

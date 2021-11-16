@@ -8,32 +8,32 @@ const LoanCashSubmit = async (req, res, next) => {
     insuranceObj.category = "loan";
     insuranceObj.type = "Cash";
 
-    const incomeArray = Object.keys(req.body.AdditionalIncome);
+    const incomeArray = Object.keys(req.body.additionalIncome);
 
     for (let i = 0; i < incomeArray.length; i++) {
-      insuranceObj.AdditionalIncome.push({
-        truckDriver: req.body.AdditionalIncome[i].truckDriver,
-        industry: req.body.AdditionalIncome[i].industry,
-        averageIncome: req.body.AdditionalIncome[i].averageIncome,
-        bank: req.body.AdditionalIncome[i].bank,
-        basicIncome: req.body.AdditionalIncome[i].basicIncome,
-        contractUntil: req.body.AdditionalIncome[i].contractUntil,
-        contractFrom: req.body.AdditionalIncome[i].contractFrom,
-        currency: req.body.AdditionalIncome[i].currency,
-        pit: req.body.AdditionalIncome[i].pit,
-        accountancy: req.body.AdditionalIncome[i].accountancy,
-        firstContract: req.body.AdditionalIncome[i].firstContract,
-        sameEmployer: req.body.AdditionalIncome[i].sameEmployer,
-        withoutPause: req.body.AdditionalIncome[i].withoutPause,
+      insuranceObj.additionalIncome.push({
+        truckDriver: req.body.additionalIncome[i].truckDriver,
+        industry: req.body.additionalIncome[i].industry,
+        averageIncome: req.body.additionalIncome[i].averageIncome,
+        bank: req.body.additionalIncome[i].bank,
+        basicIncome: req.body.additionalIncome[i].basicIncome,
+        contractUntil: req.body.additionalIncome[i].contractUntil,
+        contractFrom: req.body.additionalIncome[i].contractFrom,
+        currency: req.body.additionalIncome[i].currency,
+        pit: req.body.additionalIncome[i].pit,
+        accountancy: req.body.additionalIncome[i].accountancy,
+        firstContract: req.body.additionalIncome[i].firstContract,
+        sameEmployer: req.body.additionalIncome[i].sameEmployer,
+        withoutPause: req.body.additionalIncome[i].withoutPause,
       });
     }
-    insuranceObj.AdditionalIncome.shift();
+    insuranceObj.additionalIncome.shift();
 
     insuranceObj.markModified(
-      "Applicants",
-      "ApplicantsData",
-      "AdditionalIncome",
-      "LoanData"
+      "applicants",
+      "applicantsData",
+      "additionalIncome",
+      "loanData"
     );
     await insuranceObj.save();
 

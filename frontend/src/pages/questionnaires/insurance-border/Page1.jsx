@@ -24,11 +24,15 @@ import { insurancePeriodOptions } from "./applicationHelpers/insuranceBorderOpti
 
 const Page1 = () => {
   const { t } = useTranslation();
+  const history = useHistory();
   useTitle("Transport insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
-  const history = useHistory();
 
-  const appDataValid = validateAppData(appData, "InsuranceData");
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceBorder",
+    "insuranceData"
+  );
 
   const { register, handleSubmit, errors, watch, control } = useForm({
     defaultValues: {
@@ -45,7 +49,7 @@ const Page1 = () => {
   const documentTypeName = watch("documentType") || appDataValid.documentType;
 
   const formSubmit = (data) => {
-    setValues(data, "InsuranceData");
+    setValues(data, "insuranceBorder", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
   };

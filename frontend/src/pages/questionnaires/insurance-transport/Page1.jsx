@@ -12,12 +12,12 @@ import {
 } from "./applicationHelpers/insuranceCarOptions";
 
 import {
-  Input,
   PhoneInput,
   DateInput,
   MuiSelect,
   MuiRadio,
   MuiCheckbox,
+  MuiInput,
 } from "@components/input";
 
 import {
@@ -112,8 +112,8 @@ const Page1 = () => {
               t(errors?.atleastOneCheckbox?.message)}
           </InputErrorMessage>
 
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="name"
             labelName={t("InsuranceTransport.Page1.name")}
             type="text"
@@ -121,8 +121,8 @@ const Page1 = () => {
             helperText={errors?.name?.message}
             autoComplete="given-name"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="surname"
             labelName={t("InsuranceTransport.Page1.surname")}
             type="text"
@@ -137,37 +137,37 @@ const Page1 = () => {
             error={!!errors.phoneNumber}
             helperText={errors?.phoneNumber?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="postIndex"
             labelName={t("InsuranceTransport.Page1.postIndex")}
             error={!!errors.postIndex}
             helperText={errors?.postIndex?.message}
             autoComplete="postal-code"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="city"
             labelName={t("InsuranceTransport.Page1.city")}
             error={!!errors.city}
             helperText={errors?.city?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="voivodeship"
             labelName={t("InsuranceTransport.Page1.voivodeship")}
             error={!!errors.voivodeship}
             helperText={errors?.voivodeship?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="street"
             labelName={t("InsuranceTransport.Page1.street")}
             error={!!errors.street}
             helperText={errors?.street?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="houseNumber"
             labelName={t("InsuranceTransport.Page1.houseNumber")}
             error={!!errors.houseNumber}
@@ -193,8 +193,8 @@ const Page1 = () => {
               },
             ]}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="documentAdded"
             labelName={t(`InsuranceTransport.Page1.${documentTypeName}`)}
             error={!!errors.documentAdded}

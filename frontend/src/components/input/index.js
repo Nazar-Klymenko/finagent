@@ -8,6 +8,7 @@ import MuiSelect from "./MuiSelect";
 import MuiRadio from "./MuiRadio";
 import MuiCheckbox from "./MuiCheckbox";
 import MuiPasswordInput from "./MuiPasswordInput";
+import MuiInput from "./MuiInput";
 
 export {
   DateInput,
@@ -19,5 +20,6 @@ export {
   MuiSelect,
   MuiRadio,
   MuiCheckbox,
+  MuiInput,
   MuiPasswordInput,
 };

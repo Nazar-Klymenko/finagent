@@ -63,8 +63,8 @@ const AddHousehold = ({
         setOpenModal={setOpenModal}
       >
         <Form id="household-form" onSubmit={handleSubmit(AddHouseholdSubmit)}>
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="peopleInHousehold"
             labelName={t("LoanMortgage.HouseholdModal.peopleInHousehold")}
             type="text"
@@ -73,8 +73,8 @@ const AddHousehold = ({
             placeholder="number"
             defaultValue={appDataValid.peopleInHousehold}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="monthlyExpenses"
             labelName={t("LoanMortgage.HouseholdModal.monthlyExpenses")}
             type="text"

@@ -67,24 +67,24 @@ const ChangePasswordPage = () => {
       <h3>{t("Settings.ChangeInfo.title")}</h3>
       <div className="form">
         <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="name"
             labelName={t("Settings.ChangeInfo.name")}
             autoComplete="given-name"
             error={!!errors.name}
             helperText={errors?.name?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="surname"
             labelName={t("Settings.ChangeInfo.surname")}
             autoComplete="family-name"
             error={!!errors.surname}
             helperText={errors?.surname?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="phone"
             labelName={t("Settings.ChangeInfo.phone")}
             error={!!errors.phone}

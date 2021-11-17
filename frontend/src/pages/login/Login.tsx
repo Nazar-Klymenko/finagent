@@ -3,7 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
-import { Input, InputPassword } from "@components/input";
+import { MuiInput, InputPassword } from "@components/input";
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -37,7 +37,7 @@ const Login: React.FC<Props> = (props) => {
     }
   }, []);
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     mode: "onChange",
     resolver: yupResolver(loginSchema),
     shouldFocusError: true,
@@ -82,8 +82,8 @@ const Login: React.FC<Props> = (props) => {
             {t("LogIn.title")}
           </Header>
           <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="email"
               placeholder="E-mail"
               labelName={t("LogIn.Form.email")}

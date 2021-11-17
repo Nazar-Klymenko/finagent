@@ -1,5 +1,4 @@
 import DateInput from "./DateInput";
-import Input from "./Input";
 import InputPassword from "./InputPassword";
 import PhoneInput from "./PhoneInput";
 import Textarea from "./Textarea";
@@ -12,7 +11,6 @@ import MuiInput from "./MuiInput";
 
 export {
   DateInput,
-  Input,
   InputPassword,
   PhoneInput,
   Textarea,

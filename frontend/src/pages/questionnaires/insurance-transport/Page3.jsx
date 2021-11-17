@@ -15,7 +15,7 @@ import {
   RadioWrap,
 } from "../LocalStyles";
 import {
-  Input,
+  MuiInput,
   MuiRadio,
   MuiSelect,
   DateInput,
@@ -97,8 +97,8 @@ const Page3 = () => {
             error={!!errors.fuelType}
             helperText={errors?.fuelType?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="enginePower"
             labelName={t("InsuranceTransport.Page3.enginePower")}
             type="text"
@@ -106,8 +106,8 @@ const Page3 = () => {
             helperText={errors?.enginePower?.message}
             placeholder="150"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="engineVolume"
             labelName={t("InsuranceTransport.Page3.engineVolume")}
             type="text"
@@ -146,8 +146,8 @@ const Page3 = () => {
             format="yyyy"
           />
 
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="kilometrage"
             labelName={t("InsuranceTransport.Page3.kilometrage")}
             error={!!errors.kilometrage}

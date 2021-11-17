@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 
 import useTitle from "@hooks/useTitle";
 
-import { Input, Textarea } from "@components/input";
+import { MuiInput, Textarea } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Mail, Point, Phone } from "@components/svgs";
@@ -21,11 +21,13 @@ const Contact = () => {
         <FormSide>
           <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
           <Form id="form">
-            <Input
+            <MuiInput
+              // control={control}
               labelName={t("Contact.Form.fullName")}
               // placeholder="Your full name"
             />
-            <Input
+            <MuiInput
+              // control={control}
               labelName={t("Contact.Form.email")}
               // placeholder="Your email"
             />

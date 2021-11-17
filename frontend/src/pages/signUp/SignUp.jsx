@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import signUpSchema from "./signUp.schema";
 
 import { ContentWrap } from "@components/content";
-import { Input, PhoneInput, InputPassword } from "@components/input";
+import { MuiInput, PhoneInput, InputPassword } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Header } from "@components/typography";
@@ -27,7 +27,7 @@ const SignUp = () => {
     "$1"
   );
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: { terms: false },
     mode: "onChange",
     resolver: yupResolver(signUpSchema),
@@ -59,8 +59,8 @@ const SignUp = () => {
         {t("SignUp.title")}
       </Header>
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-        <Input
-          ref={register}
+        <MuiInput
+          control={control}
           name="name"
           labelName={t("SignUp.Individual.name")}
           error={!!errors.name}
@@ -68,16 +68,16 @@ const SignUp = () => {
           autofocus={true}
           autoComplete="given-name"
         />
-        <Input
-          ref={register}
+        <MuiInput
+          control={control}
           name="surname"
           labelName={t("SignUp.Individual.surname")}
           error={!!errors.surname}
           helperText={errors?.surname?.message}
           autoComplete="family-name"
         />
-        <Input
-          ref={register}
+        <MuiInput
+          control={control}
           name="email"
           labelName={t("SignUp.Individual.email")}
           type="email"

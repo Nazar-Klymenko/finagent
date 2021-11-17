@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { pageTwoSchema } from "./applicationHelpers/validationSchema";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { Input, MuiCheckbox, DateInput } from "@components/input";
+import { MuiInput, MuiCheckbox, DateInput } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -35,7 +35,7 @@ const Page2 = () => {
     "transportData"
   );
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     defaultValues: pageTwoValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -62,40 +62,40 @@ const Page2 = () => {
 
         <Subtitle>{t("InsuranceTransport.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="brand"
             labelName={t("InsuranceTransport.Page2.brand")}
             type="text"
             error={!!errors.brand}
             helperText={errors?.brand?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="model"
             labelName={t("InsuranceTransport.Page2.model")}
             type="text"
             error={!!errors.model}
             helperText={errors?.model?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="version"
             labelName={t("InsuranceTransport.Page2.version")}
             type="text"
             error={!!errors.version}
             helperText={errors?.version?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="regNumber"
             labelName={t("InsuranceTransport.Page2.regNumber")}
             type="text"
             error={!!errors.regNumber}
             helperText={errors?.regNumber?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="vinNumber"
             labelName={t("InsuranceTransport.Page2.vinNumber")}
             type="text"

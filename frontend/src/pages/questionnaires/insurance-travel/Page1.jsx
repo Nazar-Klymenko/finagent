@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { Input, MuiCheckbox, DateInput, MuiRadio } from "@components/input";
+import { MuiInput, MuiCheckbox, DateInput, MuiRadio } from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -104,25 +104,25 @@ const Page1 = () => {
             ]}
           />
           {choosedType !== "individual" && (
-            <Input
+            <MuiInput
+              control={control}
               name="peopleAmount"
               labelName={t("InsuranceTravel.Page1.peopleAmount")}
-              ref={register}
               error={!!errors.peopleAmount}
               helperText={errors?.peopleAmount?.message}
             />
           )}
-          <Input
+          <MuiInput
+            control={control}
             name="destination"
             labelName={t("InsuranceTravel.Page1.destination")}
-            ref={register}
             error={!!errors.destination}
             helperText={errors?.destination?.message}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="purpose"
             labelName={t("InsuranceTravel.Page1.purpose")}
-            ref={register}
             error={!!errors.purpose}
             helperText={errors?.purpose?.message}
           />

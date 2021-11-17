@@ -1,125 +1,117 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { useDropzone } from "react-dropzone";
-import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import React from "react";
+import { useForm, useFieldArray, Controller, useWatch } from "react-hook-form";
 
-const root = {
-  backgroundColor: "#eee",
-  textAlign: "center",
-  cursor: "pointer",
-  color: "#333",
-  padding: "10px",
-  marginTop: "20px",
-};
+let renderCount = 0;
 
-const FileTest = ({
-  control,
-  name,
-  labelName,
-  showFiles,
-  error,
-  helperText,
-}) => {
-  const [files, setFiles] = useState([]);
-
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/png,image/jpeg,application/pdf",
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
+function App() {
+  const { register, control, handleSubmit, reset, watch } = useForm({
+    defaultValues: {
+      test: [{ firstName: "Bill", lastName: "Luo" }],
     },
   });
-
-  function remove(fileIdx) {
-    const newFiles = [...files];
-    newFiles.splice(fileIdx, 1);
-    setFiles(newFiles);
-  }
-
-  const thumbs = files.map((file, idx) => (
-    <Thumb
-      onClick={() => {
-        remove(idx);
-      }}
-      key={file.name}
-    >
-      <ThumbInner>
-        {file.type === "application/pdf" ? (
-          <Document file={file}>
-            <Page height="100" pageNumber={1} />
-          </Document>
-        ) : (
-          <img src={file.preview} alt="" />
-        )}
-      </ThumbInner>
-    </Thumb>
-  ));
-
-  useEffect(
-    () => () => {
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files]
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+    {
+      control,
+      name: "test",
+    }
   );
+
+  const onSubmit = (data) => console.log("data", data);
+
+  // if you want to control your fields with watch
+  // const watchResult = watch("test");
+  // console.log(watchResult);
+
+  // The following is useWatch example
+  // console.log(useWatch({ name: "test", control }));
+
+  renderCount++;
 
   return (
-    <>
-      <div style={root} {...getRootProps({ className: "dropzone" })}>
-        <input name={name} {...getInputProps()} />
-        <p>Dodaj pliki tutaj</p>
-      </div>
-      <ThumbContainer>{thumbs}</ThumbContainer>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Field Array </h1>
+      <p>The following demo allow you to delete, append, prepend items</p>
+      <span className="counter">Render Count: {renderCount}</span>
+      <ul>
+        {fields.map((item, index) => {
+          return (
+            <li key={item.id}>
+              <input
+                name={`test[${index}].firstName`}
+                defaultValue={`${item.firstName}`} // make sure to set up defaultValue
+                ref={register()}
+              />
 
-      <InputErrorMessage>
-        <span className="invis-star">*</span>
-        {helperText}
-      </InputErrorMessage>
-    </>
+              <Controller
+                as={<input />}
+                name={`test[${index}].lastName`}
+                control={control}
+                defaultValue={item.lastName} // make sure to set up defaultValue
+              />
+              <button type="button" onClick={() => remove(index)}>
+                Delete
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <section>
+        <button
+          type="button"
+          onClick={() => {
+            append({ firstName: "appendBill", lastName: "appendLuo" });
+          }}
+        >
+          append
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            prepend({
+              firstName: "prependFirstName",
+              lastName: "prependLastName",
+            })
+          }
+        >
+          prepend
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            insert(parseInt(2, 10), {
+              firstName: "insertFirstName",
+              lastName: "insertLastName",
+            })
+          }
+        >
+          insert at
+        </button>
+
+        <button type="button" onClick={() => swap(1, 2)}>
+          swap
+        </button>
+
+        <button type="button" onClick={() => move(1, 2)}>
+          move
+        </button>
+
+        <button type="button" onClick={() => remove(1)}>
+          remove at
+        </button>
+
+        <button
+          type="button"
+          onClick={() =>
+            reset({
+              test: [{ firstName: "Bill", lastName: "Luo" }],
+            })
+          }
+        >
+          reset
+        </button>
+      </section>
+
+      <input type="submit" />
+    </form>
   );
-};
-
-export default FileTest;
-
-const ThumbContainer = styled.aside`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 16px;
-`;
-
-const Thumb = styled.div`
-  display: inline-flex;
-  border-radius: 2px;
-  border: 1px solid #eaeaea;
-  margin-bottom: 8px;
-  margin-right: 8px;
-  width: 100px;
-  height: 100px;
-  padding: 4px;
-`;
-const ThumbInner = styled.div`
-  display: flex;
-  min-width: 0px;
-  overflow: hidden;
-  img {
-    display: block;
-    width: auto;
-    height: 100%;
-  }
-`;
-
-const InputErrorMessage = styled.div`
-  color: ${({ theme }) => theme.red};
-  font-size: 0.75rem;
-  letter-spacing: 0.03333em;
-  margin: 6px 0px 0px;
-  .invis-star {
-    opacity: 0;
-    pointer-events: none;
-  }
-`;
+}

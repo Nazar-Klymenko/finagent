@@ -69,7 +69,6 @@ import {
 import VerifyEmailPage from "@pages/VerifyEmailPage";
 import Error404 from "@pages/Error404";
 
-import NewPassword from "@pages/authActions/NewPassword";
 import Empty from "src/_devOnly/testPages/Empty";
 import Staging from "src/_devOnly/testPages/Staging";
 import Services from "@pages/services/Services";
@@ -95,7 +94,6 @@ const Routes = () => (
     <Route path="/auth/login" exact component={Login} />
     <Route path="/auth/signup" exact component={SignUp} />
     <Route path="/auth/forgot-password" exact component={ForgotPassword} />
-    <Route path="/auth/restore/confirm/:token" exact component={NewPassword} />
     <Route path="/verify-email" exact component={VerifyEmailPage} />
 
     <QuestRoute

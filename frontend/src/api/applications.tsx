@@ -1,19 +1,15 @@
+import { axios } from "./axiosConfig";
+
 export const archiveApplicationAPI = (id: string) => {
-  return {
-    url: `/user/application/${id}`,
-    options: {
-      method: "PUT",
-    },
-  };
+  return axios(`/user/application/${id}`, {
+    method: "PUT",
+  });
 };
 
 export const getApplicationsQuantityAPI = (category: string) => {
-  return {
-    url: `/user/application/count/${category}/quantity`,
-    options: {
-      method: "GET",
-    },
-  };
+  return axios(`/user/application/count/${category}/quantity`, {
+    method: "GET",
+  });
 };
 
 //needs a filename specified at the end

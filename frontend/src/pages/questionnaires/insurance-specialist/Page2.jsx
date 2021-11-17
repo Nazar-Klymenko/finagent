@@ -90,18 +90,17 @@ const Page2 = () => {
     setPolicyHolders(newArr);
   };
 
-  let testpolicyholderIs = watch("policyholderIs");
-  const [policyholderIs, setPolicyholderIs] = useState(testpolicyholderIs);
+  const [policyholderIs, setPolicyholderIs] = useState("firm");
 
   useEffect(() => {
-    setPolicyholderIs(testpolicyholderIs);
-  }, [
-    policyHolders,
-    currentlySelected,
-    editingMode,
-    watch,
-    testpolicyholderIs,
-  ]);
+    let testpolicyholderIs = watch(`policyholderIs`);
+
+    if (editingMode) {
+      setPolicyholderIs(policyHolders[currentlySelected].policyholderIs);
+    } else {
+      setPolicyholderIs(testpolicyholderIs);
+    }
+  }, [policyHolders, currentlySelected, editingMode, watch]);
 
   return (
     <ContentWrap fullWidth>
@@ -123,12 +122,14 @@ const Page2 = () => {
           isOpen={openDialog}
           title="Add another applicant"
         >
-          {testpolicyholderIs + " :1"}
-          {policyholderIs + " :2"}
           <Form
             id="add-applicant"
             onSubmit={handleSubmit(addPolicyHolderSubmit)}
           >
+            <Title>{policyholderIs}</Title>
+            <Title>{editingMode + ""}</Title>
+            <Title>{currentlySelected + ""}</Title>
+
             <MuiRadio
               control={control}
               name="policyholderIs"

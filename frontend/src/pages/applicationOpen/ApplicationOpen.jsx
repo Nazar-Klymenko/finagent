@@ -21,6 +21,7 @@ import Archive from "./Archive";
 
 import { useQuery } from "react-query";
 import ErrorRefetch from "@components/ErrorRefetch";
+import Loader from "@components/Loader";
 
 const CardOpen = () => {
   const { t } = useTranslation();
@@ -51,9 +52,7 @@ const CardOpen = () => {
   }, [isLoading, data]);
 
   if (isLoading) {
-    return (
-      <ErrorRefetch text="Error fetching application" callback={refetch} />
-    );
+    return <Loader />;
   }
   if (!isLoading && error) {
     return (

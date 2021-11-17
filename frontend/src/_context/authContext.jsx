@@ -249,8 +249,6 @@ export const AuthContextProvider = ({ children }) => {
     } catch (error) {
       dispatch(setSnackbar("error", "ERROR"));
     }
-
-    // const response = await deleteUserAPI(data);
   }
   async function reauthenticate(currentPassword) {
     const user = auth.currentUser;

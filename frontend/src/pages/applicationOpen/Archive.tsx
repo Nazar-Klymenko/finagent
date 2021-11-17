@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { CTA } from "@components/buttons";
-import { archiveApplicationAPI } from "@api/applicationAPI";
+import { archiveApplicationAPI } from "@api/applications";
 import { useTranslation } from "react-i18next";
 import { setSnackbar } from "@redux/alert/actions";
 import { useDispatch } from "react-redux";

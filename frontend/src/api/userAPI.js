@@ -29,11 +29,6 @@ export const getApplicationsAPI = (page, cat, status, count) => {
     }
   );
 };
-export const getLoansAPI = () => {
-  return axios(`/user/application/show/Loan`, {
-    method: "GET",
-  });
-};
 
 export const getSpecificApplication = (id) => {
   return axios(`/user/application/${id}`, {
@@ -98,25 +93,6 @@ export const postLoanMortgageAPI = (object) => {
   });
 };
 
-/////////////// Email API ///////////////
-
-export const activateEmailAPI = (token) => {
-  return axios(`/user/auth/confirm/${token}`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-export const resendEmailAPI = () => {
-  return axios(`/user/auth/resend/`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-
 /////////////////// Settings API ////////////////////////
 export const getSettingsAPI = () => {
   return {
@@ -127,36 +103,6 @@ export const getSettingsAPI = () => {
 
 export const updateSettingsAPI = (object) => {
   return axios(`/user/settings/update`, {
-    method: "POST",
-    data: JSON.stringify(object),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-
-export const changePasswordAPI = (object) => {
-  return axios(`/user/settings/change_password`, {
-    method: "POST",
-    data: JSON.stringify(object),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-
-export const requestChangePasswordAPI = (object) => {
-  return axios(`/user/auth/restore/request`, {
-    method: "POST",
-    data: JSON.stringify(object),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-};
-
-export const confirmChangePasswordAPI = (token, object) => {
-  return axios(`/user/auth/restore/confirm/${token}`, {
     method: "POST",
     data: JSON.stringify(object),
     headers: {

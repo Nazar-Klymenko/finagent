@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-import { getApplicationsQuantityAPI } from "@api/applicationAPI";
+import { getApplicationsQuantityAPI } from "@api/applications";
 
 import { useQuery } from "react-query";
 

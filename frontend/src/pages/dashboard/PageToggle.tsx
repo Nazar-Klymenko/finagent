@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import { getApplicationsQuantityAPI } from "@api/applicationAPI";
+import { getApplicationsQuantityAPI } from "@api/applications";
 import { useQuery } from "react-query";
 
 interface Props {

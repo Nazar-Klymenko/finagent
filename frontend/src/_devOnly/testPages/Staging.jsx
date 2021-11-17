@@ -1,8 +1,9 @@
-import styled from "styled-components/macro";
-
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
+import { Input, MuiRadio, DateInput, PhoneInput } from "@components/input";
+import { Controller } from "react-hook-form";
 
 import { CTA } from "@components/buttons";
 
@@ -11,80 +12,74 @@ import Form from "@components/Form";
 import FileTest from "./FileTest";
 
 const Staging = () => {
-  const { handleSubmit, errors, control } = useForm({
-    defaultValues: {},
+  const { t } = useTranslation();
+
+  const { handleSubmit, errors, control, register } = useForm({
+    defaultValues: { policyholder: [{ name: "", surname: "" }] },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
-    resolver: yupResolver(testSchema),
+    // resolver: yupResolver(policyholderSchema),
   });
 
-  const formSubmit = (data) => {};
-
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+    {
+      control, // control props comes from useForm (optional: if you are using FormContext)
+      name: "policyholder", // unique name for your Field Array
+      // keyName: "id", default to "id", you can change the key name
+    }
+  );
+  const formSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <ContentWrap fullHeight xl>
-      <CustomWrap>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <FileTest
-            control={control}
-            name="files"
-            showFiles
-            error={!!errors.files}
-            helperText={errors?.files?.message}
-          />
-        </Form>
-        <CTA text="Next" form="form" color="primary" />
-      </CustomWrap>
+      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <ul>
+          {fields.map((item, index) => {
+            return (
+              <li key={item.id}>
+                <input
+                  name={`policyholder[${index}].name`}
+                  defaultValue={`${item.name}`} // make sure to set up defaultValue
+                  ref={register()}
+                />
+
+                <Controller
+                  as={<input />}
+                  name={`policyholder[${index}].surname`}
+                  control={control}
+                  defaultValue={item.surname} // make sure to set up defaultValue
+                />
+                <button type="button" onClick={() => remove(index)}>
+                  Delete
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </Form>
+      <CTA text="Next" form="form" color="primary" />
     </ContentWrap>
   );
 };
 
 export default Staging;
 
-const CustomWrap = styled.div`
-  height: 100%;
-  width: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
+const policyholderSchema = () => {
+  return yup.object().shape({
+    name: yup
+      .string()
+      .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
+      .required("Form.Error.blank"),
+    surname: yup.string().matches(/^([^0-9]*)$/, "Form.Error.noNumber"),
+  });
+};
 
-const testSchema = yup.object().shape({
-  files: yup
-    .array()
-    .nullable()
-    .required("Form.Error.blank")
-    .min(1)
-    .max(5)
-    .test("is-big-file", "zdjęcie jest zbyt duże", checkIfFilesAreTooBig)
-    .test(
-      "is-correct-file",
-      "nieodpowiedni typ zdjęcia",
-      checkIfFilesAreCorrectType
-    ),
-});
-
-export function checkIfFilesAreTooBig(files) {
-  let valid = true;
-  if (files) {
-    files.forEach((file) => {
-      const size = file.size / 1024 / 1024;
-      if (size > 5) {
-        valid = false;
-      }
-    });
-  }
-  return valid;
-}
-
-export function checkIfFilesAreCorrectType(files) {
-  let valid = true;
-  if (files) {
-    files.forEach((file) => {
-      if (!["application/pdf", "image/jpeg", "image/png"].includes(file.type)) {
-        valid = false;
-      }
-    });
-  }
-  return valid;
-}
+//  {/* <FileTest
+//           control={control}
+//           name="files"
+//           showFiles
+//           error={!!errors.files}
+//           helperText={errors?.files?.message}
+//         /> */}

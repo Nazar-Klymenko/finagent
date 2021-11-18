@@ -10,14 +10,14 @@ import { CTA } from "@components/buttons";
 
 import Form from "@components/Form";
 import Loader from "@components/Loader";
-import { InputPassword } from "@components/input";
+import { MuiPasswordInput } from "@components/input";
 import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
 import { useAuth } from "@context/authContext";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
   const { setUpdatedPassword } = useAuth();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,
@@ -33,15 +33,15 @@ const ChangePasswordPage = () => {
       <h3>{t("Settings.ChangePassword.title")}</h3>
       <div className="form">
         <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
-          <InputPassword
-            ref={register}
+          <MuiPasswordInput
+            control={control}
             name="currentPassword"
             labelName={t("Settings.ChangePassword.currentPassword")}
             error={!!errors.currentPassword}
             helperText={errors?.currentPassword?.message}
           />
-          <InputPassword
-            ref={register}
+          <MuiPasswordInput
+            control={control}
             name="newPassword"
             labelName={t("Settings.ChangePassword.newPassword")}
             error={!!errors.newPassword}

@@ -15,8 +15,6 @@ const testSchema = yup.object().shape({
   password: yup
     .string()
     .min(8, "minimum 8 znaków")
-    .test("minOneUppercase", "minimum 1 duża litera", checkUpperCase)
-    .test("minOneSymbol", "minimum 1 symbol", checkSymbol)
     .test("minOneNumber", "minimum 1 number", checkForNumber),
 });
 
@@ -24,19 +22,6 @@ function checkForNumber(password) {
   let valid = true;
   let format = /\d/;
 
-  if (!format.test(password)) valid = false;
-  return valid;
-}
-function checkUpperCase(password) {
-  let valid = true;
-  let format = /r"(?=.*[A-Z])\w+"/;
-
-  if (!format.test(password)) valid = false;
-  return valid;
-}
-function checkSymbol(password) {
-  let valid = true;
-  let format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
   if (!format.test(password)) valid = false;
   return valid;
 }
@@ -52,7 +37,6 @@ const Empty = () => {
   const formSubmit = (data) => {
     console.log(data);
   };
-  console.log(errors);
 
   return (
     <ContentWrap authForm blank direction="column">
@@ -62,7 +46,7 @@ const Empty = () => {
           name="password"
           error={!!errors.password}
           helperText={errors?.password?.message}
-          requirements={["min 8 characters long", "Uppercase letter"]}
+          errorList={errors?.password?.types}
         />
       </Form>
       <ButtonsWrap>

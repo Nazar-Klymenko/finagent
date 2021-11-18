@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import signUpSchema from "./signUp.schema";
 
 import { ContentWrap } from "@components/content";
-import { MuiInput, PhoneInput, InputPassword } from "@components/input";
+import { MuiInput, PhoneInput, MuiPasswordInput } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Header } from "@components/typography";
@@ -92,8 +92,8 @@ const SignUp = () => {
           error={!!errors.phone}
           helperText={errors?.phone?.message}
         />
-        <InputPassword
-          ref={register}
+        <MuiPasswordInput
+          control={control}
           name="password"
           labelName={t("SignUp.Individual.password")}
           error={!!errors.password}

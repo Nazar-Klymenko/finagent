@@ -6,7 +6,7 @@ import { dangerZoneSchema } from "../settingsSchema";
 
 import { useTranslation } from "react-i18next";
 import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
-import { InputPassword } from "@components/input";
+import { MuiPasswordInput } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
@@ -28,7 +28,7 @@ const DangerZonePage = () => {
 
   const { currentUser, deleteAccount, deleteAccountFacebook } = useAuth();
   const { provider } = currentUser;
-  const { register, handleSubmit, errors } = useForm({
+  const { control, handleSubmit, errors } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,
@@ -82,8 +82,8 @@ const DangerZonePage = () => {
             title="Delete your account?"
             description="You are about to delete your account. Please provide your password below to confirm the deletion"
           >
-            <InputPassword
-              ref={register}
+            <MuiPasswordInput
+              control={control}
               name="password"
               labelName={t("Settings.Disposal.password")}
               error={!!errors.password}

@@ -3,7 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
-import { MuiInput, InputPassword } from "@components/input";
+import { MuiInput, MuiPasswordInput } from "@components/input";
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -92,8 +92,8 @@ const Login: React.FC<Props> = (props) => {
               helperText={errors?.email?.message}
               autofocus={false}
             />
-            <InputPassword
-              ref={register}
+            <MuiPasswordInput
+              control={control}
               name="password"
               labelName={t("LogIn.Form.password")}
               error={!!errors.password}

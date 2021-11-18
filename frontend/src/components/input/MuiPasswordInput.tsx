@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import styled from "styled-components";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,13 +7,16 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { Controller } from "react-hook-form";
+import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
+import { Label, InputErrorMessage } from "./LocalStyles";
 
 interface Props {
   control: any;
   name: string;
   error: boolean;
   helperText: string;
-  requirements: [string];
+  errorList?: {};
+  labelName: string;
 }
 
 const MuiPasswordInput: FC<Props> = ({
@@ -20,7 +24,8 @@ const MuiPasswordInput: FC<Props> = ({
   name,
   error,
   helperText,
-  requirements,
+  errorList,
+  labelName,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [value, setValue] = useState("");
@@ -39,6 +44,7 @@ const MuiPasswordInput: FC<Props> = ({
 
   return (
     <ThemeProvider theme={theme}>
+      <Label>{labelName}</Label>
       <Controller
         as={
           <OutlinedInput
@@ -66,9 +72,19 @@ const MuiPasswordInput: FC<Props> = ({
         control={control}
         defaultValue={value}
       />
-
-      {requirements.length > 0 &&
-        requirements.map((req) => <span key={req}>{req}</span>)}
+      <InputErrorMessage>
+        <span className="invis-star">*</span>
+        {helperText}
+      </InputErrorMessage>
+      {/* <Requirements>
+        {errorList &&
+          Object.entries(errorList).map((error: any) => (
+            <RequirementsRow>
+              <CheckRoundedIcon />
+              <span key={error[0]}>{error[1]}</span>
+            </RequirementsRow>
+          ))}
+      </Requirements> */}
     </ThemeProvider>
   );
 };
@@ -82,3 +98,12 @@ const theme = createMuiTheme({
     },
   },
 });
+const Requirements = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) => theme.typography.gray};
+  display: flex;
+  flex-direction: column;
+`;
+const RequirementsRow = styled.div`
+  display: flex;
+`;

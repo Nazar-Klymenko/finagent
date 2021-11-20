@@ -20,19 +20,7 @@ const Links = ({ navOpen, setNavOpen }) => {
       <Ul>
         {isLoggedIn && (
           <li onClick={closeNav}>
-            <NavLink
-              to="/dashboard/"
-              activeClassName="selected"
-              strict
-              // isActive={() => {
-              //   let matches = [
-              //     "/dashboard/insurances",
-              //     "/dashboard/loans",
-              //     "/dashboard/history",
-              //   ].includes(pathname);
-              //   return matches;
-              // }}
-            >
+            <NavLink to="/dashboard/" activeClassName="selected" strict>
               {t("Navbar.dashboard")}
             </NavLink>
           </li>

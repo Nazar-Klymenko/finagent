@@ -63,7 +63,7 @@ const DrawerStyled = styled.div<Styled>`
     navOpen ? "translateX(0%)" : "translateX(100%)"};
   z-index: 150;
   transition: transform 0.25s ease-in-out;
-
+  z-index: 99999;
   @media screen and (min-width: ${({ theme }) => theme.widthPhone}) {
     width: 40%;
   } ;

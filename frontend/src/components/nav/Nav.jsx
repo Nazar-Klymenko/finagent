@@ -10,36 +10,45 @@ import Notifications from "./Notifications";
 import LanguageMenu from "./LanguageMenu";
 import Links from "./Links";
 import Drawer from "@components/nav/drawer/Drawer";
-import Backdrop from "@components/Backdrop";
-import { useBackdrop } from "@context/backdropContext";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
+import Backdrop from "@material-ui/core/Backdrop";
 
 import { useMediaQuery } from "react-responsive";
 import { useAuth } from "@context/authContext";
 
 const Nav = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 992px)" });
+  const classes = useStyles();
 
   const { currentUser } = useAuth();
   const { isLoggedIn } = currentUser;
   const [navOpen, setNavOpen] = useState(false);
-  const { isBackdropOpen, setBackdropOpen } = useBackdrop();
+
+  const [openBackdrop, setOpenBackdrop] = useState(false);
+
+  const handleClose = () => {
+    setOpenBackdrop(false);
+  };
 
   useEffect(() => {
-    setBackdropOpen(navOpen);
-  }, [setBackdropOpen, navOpen]);
+    setOpenBackdrop(navOpen);
+  }, [setOpenBackdrop, navOpen]);
 
   useEffect(() => {
     if (!isTabletOrMobile) {
-      setBackdropOpen(false);
+      setOpenBackdrop(false);
       setNavOpen(false);
     }
-  }, [isTabletOrMobile, setBackdropOpen]);
+  }, [isTabletOrMobile, setOpenBackdrop]);
 
   return (
     <NavStyled>
       <NavInnerWrap>
-        {isBackdropOpen && <Backdrop />}
-
+        <Backdrop
+          className={classes.backdrop}
+          open={openBackdrop}
+          onClick={handleClose}
+        />
         <FlexWrap f1 flexStart>
           <LogoWrap>
             <Logo fillColor="#1A1B1E" />
@@ -151,3 +160,11 @@ const FlexWrap = styled.div`
       flex: 2;
     `}
 `;
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: "#fff",
+    },
+  })
+);

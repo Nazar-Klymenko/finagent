@@ -29,7 +29,7 @@ const Page2 = () => {
   const { appData, setValues, setAllowSummary } = useData();
   const appDataValid = validateAppData(appData, "PersonalData");
 
-  const { register, handleSubmit, errors, control, watch } = useForm({
+  const { handleSubmit, errors, control, watch } = useForm({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "natural",
       name: appDataValid.name,

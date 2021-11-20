@@ -48,7 +48,7 @@ const Page3 = () => {
     "specificData"
   );
 
-  const { register, handleSubmit, errors, watch, control } = useForm({
+  const { handleSubmit, errors, watch, control } = useForm({
     defaultValues: pageThreeValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -89,7 +89,6 @@ const Page3 = () => {
           />
           <MuiSelect
             control={control}
-            ref={register}
             name="fuelType"
             labelName={t("InsuranceTransport.Page3.fuelType")}
             defaultValue={appDataValid.fuelType}

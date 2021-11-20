@@ -35,7 +35,7 @@ const AddApplicant = ({
     defaultPerson
   );
 
-  const { register, handleSubmit, errors, watch, control } = useForm({
+  const { handleSubmit, errors, watch, control } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",

@@ -35,7 +35,7 @@ const Page2 = () => {
     "vehicleData"
   );
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     defaultValues: {
       vehicleType: appDataValid.vehicleType,
       brand: appDataValid.brand,

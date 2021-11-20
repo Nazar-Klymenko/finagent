@@ -31,7 +31,7 @@ const Page3 = () => {
     "personalData"
   );
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     defaultValues: {
       name: appDataValid.name,
       surname: appDataValid.surname,

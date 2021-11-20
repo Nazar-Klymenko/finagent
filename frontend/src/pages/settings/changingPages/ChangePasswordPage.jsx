@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,15 +9,14 @@ import { useTranslation } from "react-i18next";
 import { CTA } from "@components/buttons";
 
 import Form from "@components/Form";
-import Loader from "@components/Loader";
 import { MuiPasswordInput } from "@components/input";
-import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
+import { ChangingPage, ButtonPosition } from "../LocalStyles";
 import { useAuth } from "@context/authContext";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
   const { setUpdatedPassword } = useAuth();
-  const { register, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,

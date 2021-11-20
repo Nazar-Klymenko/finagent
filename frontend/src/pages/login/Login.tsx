@@ -37,10 +37,10 @@ const Login: React.FC<Props> = (props) => {
     }
   }, []);
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     mode: "onChange",
-    resolver: yupResolver(loginSchema),
     shouldFocusError: true,
+    resolver: yupResolver(loginSchema),
   });
 
   const [originalRoute, setOriginalRoute] = useState(

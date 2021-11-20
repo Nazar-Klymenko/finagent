@@ -36,7 +36,7 @@ const Page2 = () => {
 
   useTitle("Cash loan | FinAgent");
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     defaultValues: {
       remainingPayOff: appDataValid.remainingPayOff,
       lastApplications: appDataValid.lastApplications,
@@ -72,7 +72,7 @@ const Page2 = () => {
         <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <Textarea
-            ref={register}
+            control={control}
             name="remainingPayOff"
             labelName={t("LoanCash.Page2.remainingPayOff")}
             rows={4}
@@ -82,7 +82,7 @@ const Page2 = () => {
             placeholder="number"
           />
           <Textarea
-            ref={register}
+            control={control}
             name="lastApplications"
             labelName={t("LoanCash.Page2.lastApplications")}
             rows={4}
@@ -101,7 +101,7 @@ const Page2 = () => {
             placeholder="number"
           />
           <Textarea
-            ref={register}
+            control={control}
             name="loanPurpose"
             labelName={t("LoanCash.Page2.loanPurpose")}
             rows={4}

@@ -52,7 +52,7 @@ const Page2 = () => {
   const [currentlySelected, setCurretlySelected] = useState(null);
   const [editingMode, setEditingMode] = useState(false);
 
-  const { register, handleSubmit, errors, control, watch } = useForm({
+  const { handleSubmit, errors, control, watch } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,

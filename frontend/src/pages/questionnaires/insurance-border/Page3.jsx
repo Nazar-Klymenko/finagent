@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { pageThreeSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { PhoneInput } from "@components/input";
+import { MuiInput, PhoneInput } from "@components/input";
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -31,7 +31,7 @@ const Page3 = () => {
     "personalData"
   );
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, control } = useForm({
     defaultValues: {
       name: appDataValid.name,
       surname: appDataValid.surname,

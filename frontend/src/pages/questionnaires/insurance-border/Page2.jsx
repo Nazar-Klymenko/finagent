@@ -11,7 +11,7 @@ import { pageTwoSchema } from "./applicationHelpers/insuranceBorderSchema";
 import { vehicleTypeOptions } from "./applicationHelpers/insuranceBorderOptions";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { MuiSelect, SelectInput } from "@components/input";
+import { MuiSelect, MuiInput } from "@components/input";
 import ContentWrap from "@components/content/ContentWrap";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";

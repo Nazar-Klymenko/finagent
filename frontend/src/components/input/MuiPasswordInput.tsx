@@ -7,7 +7,6 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { Controller } from "react-hook-form";
-import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import { Label, InputErrorMessage } from "./LocalStyles";
 
 interface Props {

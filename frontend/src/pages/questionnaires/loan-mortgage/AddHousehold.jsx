@@ -8,7 +8,7 @@ import { addHouseholdSchema } from "./applicationHelpers/loanMortgageSchema";
 import { useTranslation } from "react-i18next";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { Input } from "@components/input";
+import { MuiInput } from "@components/input";
 
 import Modal from "@components/modals/Modal";
 
@@ -35,7 +35,7 @@ const AddHousehold = ({
     defaultHousehold
   );
 
-  const { register, handleSubmit, errors } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",

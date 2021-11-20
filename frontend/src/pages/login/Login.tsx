@@ -90,7 +90,7 @@ const Login: React.FC<Props> = (props) => {
               type="email"
               error={!!errors.email}
               helperText={errors?.email?.message}
-              autofocus={false}
+              autoFocus={false}
             />
             <MuiPasswordInput
               control={control}

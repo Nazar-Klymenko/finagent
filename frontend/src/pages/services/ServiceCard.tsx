@@ -2,10 +2,18 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-function ServiceCard({ to, image, imageAlt, header, description }) {
+interface Props {
+  to: string;
+  image: any;
+  imageAlt: string;
+  header: string;
+  description: string;
+}
+
+function ServiceCard({ to, image, imageAlt, header, description }: Props) {
   const history = useHistory();
 
-  function openService(e) {
+  function openService(e: React.MouseEvent<HTMLElement>) {
     e.preventDefault();
     history.push(to);
   }

@@ -22,7 +22,9 @@ const Services = () => {
   const { t } = useTranslation();
   return (
     <ContentWrap fullWidth direction="column" blank>
-      <Header bottomGutter>{t("Services.Titles.insurances")}</Header>
+      <Header variant="h1" bottomGutter>
+        {t("Services.Titles.insurances")}
+      </Header>
       <ServicesWrap>
         <ServiceCard
           to="quest/transport/1"
@@ -68,7 +70,9 @@ const Services = () => {
         />
       </ServicesWrap>
 
-      <Header bottomGutter>{t("Services.Titles.loans")}</Header>
+      <Header variant="h1" bottomGutter>
+        {t("Services.Titles.loans")}
+      </Header>
       <ServicesWrap>
         <ServiceCard
           to="quest/cashloan/1"

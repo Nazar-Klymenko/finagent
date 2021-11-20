@@ -12,7 +12,7 @@ import Settings from "@pages/settings/Settings";
 import ForgotPassword from "@pages/authActions/ForgotPassword";
 
 import Login from "@pages/login/Login";
-import { SignUp } from "@pages/signUp";
+import SignUp from "@pages/signUp/SignUp";
 
 import {
   Page1_Insurance_Car,

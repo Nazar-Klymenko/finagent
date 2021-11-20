@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
-import { Input } from "@components/input";
+import { MuiInput, MuiPhoneInput } from "@components/input";
 
 import { getSettingsAPI, updateSettingsAPI } from "@api/userAPI";
 import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
@@ -28,7 +28,7 @@ const ChangePasswordPage = () => {
 
   const { updateDisplayName } = useAuth();
 
-  const { register, handleSubmit, errors, reset, formState } = useForm({
+  const { handleSubmit, errors, reset, formState, control } = useForm({
     defaultValues: {
       name: data?.name,
       surname: data?.surname,
@@ -83,7 +83,7 @@ const ChangePasswordPage = () => {
             error={!!errors.surname}
             helperText={errors?.surname?.message}
           />
-          <MuiInput
+          <MuiPhoneInput
             control={control}
             name="phone"
             labelName={t("Settings.ChangeInfo.phone")}

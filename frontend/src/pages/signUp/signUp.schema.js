@@ -10,9 +10,9 @@ const signUpSchema = yup.object().shape({
     .string()
     .required("Form.Error.blank")
     .min(8, "The password has to be at lest 8 symbols"),
-  name: yup.string().required("Name can't be blank").trim(),
-  surname: yup.string().required("Surname can't be blank").trim(),
-  phone: yup.string().required("Phone can't be blank").trim(),
+  name: yup.string().required("Form.Error.blank").trim(),
+  surname: yup.string().required("Form.Error.blank").trim(),
+  phone: yup.string().trim(),
   terms: yup
     .boolean()
     .oneOf([true], "Please read and accept the Terms and Conditions"),

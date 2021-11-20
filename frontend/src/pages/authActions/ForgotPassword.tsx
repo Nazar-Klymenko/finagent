@@ -49,7 +49,7 @@ const ForgotPassword = () => {
           name="email"
           labelName={t("RestorePassword.Form.email")}
           type="email"
-          autofocus={true}
+          autoFocus={true}
           error={!!errors.email}
           helperText={errors?.email?.message}
           placeholder=""

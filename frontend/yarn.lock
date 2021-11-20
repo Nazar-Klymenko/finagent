@@ -5904,6 +5904,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.2.6":
+  version: 2.3.1
+  resolution: "classnames@npm:2.3.1"
+  checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
+  languageName: node
+  linkType: hard
+
 "clean-css@npm:^4.2.3":
   version: 4.2.4
   resolution: "clean-css@npm:4.2.4"
@@ -8604,6 +8611,7 @@ __metadata:
     react-hook-form: ^6.15.7
     react-i18next: ^11.8.15
     react-pdf: ^5.3.2
+    react-phone-input-2: ^2.14.0
     react-query: ^3.16.0
     react-redux: ^7.2.4
     react-responsive: ^8.2.0
@@ -11383,6 +11391,20 @@ fsevents@^1.2.7:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
+  languageName: node
+  linkType: hard
+
+"lodash.reduce@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "lodash.reduce@npm:4.6.0"
+  checksum: 81f2a1045440554f8427f895ef479f1de5c141edd7852dde85a894879312801efae0295116e5cf830c531c1a51cdab8f3628c3ad39fa21a9874bb9158d9ea075
+  languageName: node
+  linkType: hard
+
+"lodash.startswith@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "lodash.startswith@npm:4.2.1"
+  checksum: 1847371cbf6f32c4125a555847aff8a1ff1a977f40882b0ad4e2656a32e364793cfa7602915c9165cc0bba61fbd802e561888126d242faadcf3fc77215bab19b
   languageName: node
   linkType: hard
 
@@ -14481,6 +14503,23 @@ fsevents@^1.2.7:
     react: ^16.3.0 || ^17.0.0-0
     react-dom: ^16.3.0 || ^17.0.0-0
   checksum: bd3f85b74c34270e8ac392c2a9c3810b2d0b74a215c6a13003dbf2fd47168d7e2f4912b35b3d67ce255161ed40062f354d8a786f1100f0ae857de1144e8f2c9d
+  languageName: node
+  linkType: hard
+
+"react-phone-input-2@npm:^2.14.0":
+  version: 2.14.0
+  resolution: "react-phone-input-2@npm:2.14.0"
+  dependencies:
+    classnames: ^2.2.6
+    lodash.debounce: ^4.0.8
+    lodash.memoize: ^4.1.2
+    lodash.reduce: ^4.6.0
+    lodash.startswith: ^4.2.1
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.12.0 || ^17.0.0
+    react-dom: ^16.12.0 || ^17.0.0
+  checksum: ae574a5ea380a734e2e1e3dc58dcf84a6cc6b43eb936c00802c96e79829c6c6ffac59076d622c76d08165d544c7227db66b77e6a1ac6f7b653fb3d1b522a8c74
   languageName: node
   linkType: hard
 

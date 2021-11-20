@@ -1,5 +1,4 @@
 import DateInput from "./DateInput";
-import InputPassword from "./InputPassword";
 import PhoneInput from "./PhoneInput";
 import Textarea from "./Textarea";
 import FileInput from "./FileInput";
@@ -8,10 +7,10 @@ import MuiRadio from "./MuiRadio";
 import MuiCheckbox from "./MuiCheckbox";
 import MuiPasswordInput from "./MuiPasswordInput";
 import MuiInput from "./MuiInput";
+import MuiPhoneInput from "./MuiPhoneInput";
 
 export {
   DateInput,
-  InputPassword,
   PhoneInput,
   Textarea,
   FileInput,
@@ -20,4 +19,5 @@ export {
   MuiCheckbox,
   MuiInput,
   MuiPasswordInput,
+  MuiPhoneInput,
 };

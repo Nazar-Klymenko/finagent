@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import signUpSchema from "./signUp.schema";
 
 import { ContentWrap } from "@components/content";
-import { MuiInput, PhoneInput, MuiPasswordInput } from "@components/input";
+import { MuiInput, MuiPhoneInput, MuiPasswordInput } from "@components/input";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Header } from "@components/typography";
@@ -27,7 +27,7 @@ const SignUp = () => {
     "$1"
   );
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     defaultValues: { terms: false },
     mode: "onChange",
     resolver: yupResolver(signUpSchema),
@@ -65,7 +65,7 @@ const SignUp = () => {
           labelName={t("SignUp.Individual.name")}
           error={!!errors.name}
           helperText={errors?.name?.message}
-          autofocus={true}
+          autoFocus={true}
           autoComplete="given-name"
         />
         <MuiInput
@@ -84,13 +84,13 @@ const SignUp = () => {
           error={!!errors.email}
           helperText={errors?.email?.message}
         />
-        <PhoneInput
-          ref={register}
+        <MuiPhoneInput
+          control={control}
           name="phone"
           labelName={t("SignUp.Individual.phone")}
-          type="tel"
           error={!!errors.phone}
           helperText={errors?.phone?.message}
+          optional
         />
         <MuiPasswordInput
           control={control}

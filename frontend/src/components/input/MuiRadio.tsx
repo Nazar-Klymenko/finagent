@@ -30,8 +30,8 @@ const MuiRadio: FC<Props> = ({
         control={control}
         name={name}
         defaultValue={defaultChecked}
-        render={({ onChange, value }) => (
-          <RadioGroup name={name} value={value} onChange={onChange} id={name}>
+        render={({ ...field }) => (
+          <RadioGroup name={name} {...field} id={name}>
             {options.length > 0 &&
               options.map((option) => (
                 <FormControlLabel

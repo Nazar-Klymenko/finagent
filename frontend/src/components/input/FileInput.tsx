@@ -38,10 +38,10 @@ const FileInput: FC<Props> = ({
       control={control}
       name={name}
       defaultValue={[]}
-      render={({ onChange, onBlur, value }) => (
+      render={({ field }) => (
         <>
           <Label>{labelName}</Label>
-          <Dropzone onDrop={onChange}>
+          <Dropzone onDrop={field.onChange}>
             {({ getRootProps, getInputProps }) => (
               <Paper
                 variant="outlined"
@@ -52,7 +52,7 @@ const FileInput: FC<Props> = ({
                   {...getInputProps()}
                   accept=".png,.jpg,.pdf"
                   name={name}
-                  onBlur={onBlur}
+                  onBlur={field.onBlur}
                 />
                 <p>Dodaj zdjęcia dokumentów tutaj</p>
               </Paper>
@@ -60,17 +60,19 @@ const FileInput: FC<Props> = ({
           </Dropzone>
           {showFiles && (
             <List>
-              {value.map((f: { name: string; size: string }, idx: number) => (
-                <ListItem key={idx}>
-                  <ListItemIcon>
-                    <InsertDriveFile />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={f.name}
-                    secondary={formatBytes(f.size)}
-                  />
-                </ListItem>
-              ))}
+              {field.value.map(
+                (f: { name: string; size: string }, idx: number) => (
+                  <ListItem key={idx}>
+                    <ListItemIcon>
+                      <InsertDriveFile />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={f.name}
+                      secondary={formatBytes(f.size)}
+                    />
+                  </ListItem>
+                )
+              )}
             </List>
           )}
           <InputErrorMessage>

@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { policyholderSchema } from "./applicationHelpers/specialistAccessSchema";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { MuiRadio, DateInput, PhoneInput } from "@components/input";
+import { MuiRadio, DateInput } from "@components/input";
 import { Modal } from "@components/modals";
 
 import { CTA } from "@components/buttons";

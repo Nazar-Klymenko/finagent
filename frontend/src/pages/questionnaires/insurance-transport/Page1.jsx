@@ -12,7 +12,7 @@ import {
 } from "./applicationHelpers/insuranceCarOptions";
 
 import {
-  PhoneInput,
+  MuiPhoneInput,
   DateInput,
   MuiSelect,
   MuiRadio,
@@ -130,8 +130,8 @@ const Page1 = () => {
             helperText={errors?.surname?.message}
             autoComplete="family-name"
           />
-          <PhoneInput
-            ref={register}
+          <MuiPhoneInput
+            control={control}
             name="phoneNumber"
             labelName={t("InsuranceTransport.Page1.phoneNumber")}
             error={!!errors.phoneNumber}

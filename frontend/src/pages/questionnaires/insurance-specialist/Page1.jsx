@@ -11,7 +11,12 @@ import { pageOneSchema } from "./applicationHelpers/specialistAccessSchema";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { MuiInput, MuiRadio, DateInput, PhoneInput } from "@components/input";
+import {
+  MuiInput,
+  MuiRadio,
+  DateInput,
+  MuiPhoneInput,
+} from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -31,7 +36,7 @@ const Page1 = () => {
     "personalData"
   );
 
-  const { register, handleSubmit, errors, watch, control } = useForm({
+  const { handleSubmit, errors, watch, control } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -165,8 +170,8 @@ const Page1 = () => {
               defaultValue={appDataValid.regon}
             />
           )}
-          <PhoneInput
-            ref={register}
+          <MuiPhoneInput
+            control={control}
             name="phoneNumber"
             labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
             error={!!errors.phoneNumber}

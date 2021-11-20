@@ -12,7 +12,12 @@ import {
   ApplicantBox,
   ApplicantAdd,
 } from "../LocalStyles";
-import { MuiInput, MuiRadio, DateInput, PhoneInput } from "@components/input";
+import {
+  MuiInput,
+  MuiRadio,
+  DateInput,
+  MuiPhoneInput,
+} from "@components/input";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { ContentWrap } from "@components/content";
@@ -211,8 +216,8 @@ const Page2 = () => {
                 defaultValue={policyHolders[currentlySelected]?.regon}
               />
             )}
-            <PhoneInput
-              ref={register}
+            <MuiPhoneInput
+              control={control}
               name="phoneNumber"
               labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
               error={!!errors.phoneNumber}

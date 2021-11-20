@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { pageThreeSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { MuiInput, PhoneInput } from "@components/input";
+import { MuiInput, MuiPhoneInput } from "@components/input";
 import { ContentWrap } from "@components/content";
 import { CTA } from "@components/buttons";
 import Form from "@components/Form";
@@ -84,8 +84,8 @@ const Page3 = () => {
             helperText={errors?.surname?.message}
             autoComplete="family-name"
           />
-          <PhoneInput
-            ref={register}
+          <MuiPhoneInput
+            control={control}
             name="phoneNumber"
             labelName={t("InsuranceBorder.Page3.phoneNumber")}
             error={!!errors.phoneNumber}

@@ -8,7 +8,12 @@ import { useTranslation } from "react-i18next";
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { MuiInput, MuiRadio, PhoneInput, DateInput } from "@components/input";
+import {
+  MuiInput,
+  MuiRadio,
+  MuiPhoneInput,
+  DateInput,
+} from "@components/input";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 
@@ -139,8 +144,8 @@ const Page2 = () => {
               helperText={errors?.birthDate?.message}
             />
           )}
-          <PhoneInput
-            ref={register}
+          <MuiPhoneInput
+            control={control}
             name="phone"
             labelName={t("InsuranceTravel.Page2.phone")}
             type="tel"

@@ -7,7 +7,12 @@ import { addApplicantSchema } from "./applicationHelpers/loanCashSchema";
 import { useTranslation } from "react-i18next";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiRadio, DateInput, PhoneInput } from "@components/input";
+import {
+  MuiInput,
+  MuiRadio,
+  DateInput,
+  MuiPhoneInput,
+} from "@components/input";
 import Modal from "@components/modals/Modal";
 
 import { CTA } from "@components/buttons";
@@ -168,8 +173,8 @@ const AddApplicant = ({
             helperText={errors?.birthDate?.message}
             defaultDate={appDataValid.birthDate}
           />
-          <PhoneInput
-            ref={register}
+          <MuiPhoneInput
+            control={control}
             name="phoneNumber"
             labelName={t("LoanCash.ApplicantModal.phoneNumber")}
             type="tel"

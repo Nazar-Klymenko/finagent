@@ -7,7 +7,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { addApplicantSchema } from "./applicationHelpers/loanMortgageSchema";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiRadio, DateInput, PhoneInput } from "@components/input";
+import {
+  MuiInput,
+  MuiRadio,
+  DateInput,
+  MuiPhoneInput,
+} from "@components/input";
 import { Modal } from "@components/modals";
 
 import { CTA } from "@components/buttons";
@@ -170,8 +175,8 @@ const AddApplicant = ({
             helperText={errors?.birthDate?.message}
             defaultDate={appDataValid.birthDate}
           />
-          <PhoneInput
-            ref={register}
+          <MuiPhoneInput
+            control={control}
             name="phoneNumber"
             labelName={t("LoanMortgage.ApplicantModal.phoneNumber")}
             type="tel"

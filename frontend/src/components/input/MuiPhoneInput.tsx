@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
 import { Controller } from "react-hook-form";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 
 import { Label, InputErrorMessage, Optional } from "./LocalStyles";
@@ -29,12 +28,11 @@ const MuiPhoneInput: FC<Props> = ({
   const { t } = useTranslation();
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
       </Label>
-
       <Controller
         name={name}
         control={control}
@@ -53,27 +51,12 @@ const MuiPhoneInput: FC<Props> = ({
           />
         )}
       />
-
       <InputErrorMessage>
         <span className="invis-star">*</span>
         {helperText}
       </InputErrorMessage>
-    </ThemeProvider>
+    </>
   );
 };
 
 export default MuiPhoneInput;
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#1672ec",
-    },
-  },
-  transitions: {
-    easing: {
-      easeOut: "cubic-bezier(0, 1.5, .8, 1)",
-      sharp: "linear",
-    },
-  },
-});

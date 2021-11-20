@@ -21,7 +21,9 @@ import Footer from "@components/Footer";
 import Routes from "./routes";
 
 import { ThemeProvider } from "styled-components";
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core";
 import theme from "@styles/theme";
+import muiTheme from "@styles/muiTheme";
 import GlobalStyle from "@styles/GlobalStyle";
 
 import ScrollToTop from "@hooks/ScrollToTop";
@@ -41,6 +43,7 @@ const App = () => {
         provider(NotificationProvider),
         provider(BackDropProvider),
         provider(ThemeProvider, { theme: theme }),
+        provider(MuiThemeProvider, { theme: muiTheme }),
         provider(QueryClientProvider, { client: queryClient }),
       ]}
     >

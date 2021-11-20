@@ -4,37 +4,61 @@ import styled from "styled-components/macro";
 
 import useTitle from "@hooks/useTitle";
 
+import { useForm } from "react-hook-form";
+import Form from "@components/Form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
 import { MuiInput, Textarea } from "@components/input";
 import { CTA } from "@components/buttons";
-import Form from "@components/Form";
 import { Mail, Point, Phone } from "@components/svgs";
 import { ContentWrap } from "@components/content";
 import { Header } from "@components/typography";
 
+const schema = yup.object().shape({
+  oc: yup.boolean(),
+});
 const Contact = () => {
   const { t } = useTranslation();
   useTitle("Contact | FinAgent");
+
+  const { handleSubmit, errors, control } = useForm({
+    mode: "onChange",
+    reValidateMode: "onBlur",
+    shouldFocusError: true,
+    resolver: yupResolver(schema),
+  });
+  const formSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <ContentWrap fullWidth blank direction="column">
       <Header bottomGutter>{t("Contact.title")}</Header>
       <MainContainer>
         <FormSide>
           <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
-          <Form id="form">
+          <Form id="form" onSubmit={handleSubmit(formSubmit)}>
             <MuiInput
-              // control={control}
+              control={control}
               labelName={t("Contact.Form.fullName")}
-              // placeholder="Your full name"
+              name="fullName"
+              error={!!errors.brand}
+              helperText={errors?.brand?.message}
             />
             <MuiInput
-              // control={control}
+              control={control}
               labelName={t("Contact.Form.email")}
-              // placeholder="Your email"
+              name="email"
+              error={!!errors.brand}
+              helperText={errors?.brand?.message}
             />
             <Textarea
+              control={control}
               labelName={t("Contact.Form.message")}
               rows="8"
-              // placeholder="Enter your message..."
+              name="message"
+              error={!!errors.brand}
+              helperText={errors?.brand?.message}
             />
             <ButtonPlace>
               <CTA

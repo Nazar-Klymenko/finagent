@@ -1,5 +1,4 @@
 import DateInput from "./DateInput";
-import PhoneInput from "./PhoneInput";
 import Textarea from "./Textarea";
 import FileInput from "./FileInput";
 import MuiSelect from "./MuiSelect";
@@ -11,7 +10,6 @@ import MuiPhoneInput from "./MuiPhoneInput";
 
 export {
   DateInput,
-  PhoneInput,
   Textarea,
   FileInput,
   MuiSelect,

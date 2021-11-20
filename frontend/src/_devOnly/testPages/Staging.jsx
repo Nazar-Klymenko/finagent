@@ -2,7 +2,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
-import { MuiRadio, DateInput, PhoneInput } from "@components/input";
+import { MuiRadio, DateInput } from "@components/input";
 import { Controller } from "react-hook-form";
 
 import { CTA } from "@components/buttons";

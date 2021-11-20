@@ -1,51 +1,48 @@
-import * as React from "react";
-import { Controller } from "react-hook-form";
+import React, { FC } from "react";
+import { Controller, Control } from "react-hook-form";
 
 import { Select } from "@material-ui/core/";
 import MenuItem from "@material-ui/core/MenuItem";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { Label, InputErrorMessage } from "./LocalStyles";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#1672ec",
-    },
-  },
-});
+interface Props {
+  control: Control;
+  name: string;
+  labelName: string;
+  error: boolean;
+  optionArray: [{ label: string; value: string }];
+  helperText: string;
+  placeholder?: string;
+}
 
-const MuiSelect = ({
+const MuiSelect: FC<Props> = ({
+  control,
   name,
   labelName,
-  defaultValue = "",
   error,
   helperText,
   optionArray,
   placeholder,
-  control,
 }) => {
-  const [age, setAge] = React.useState("");
   const { t } = useTranslation();
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
   return (
-    <ThemeProvider theme={theme}>
-      <Label>{labelName}</Label>
+    <>
+      <Label htmlFor={name}>{labelName}</Label>
 
       <Controller
-        as={
+        control={control}
+        name={name}
+        render={({ onChange, value }) => (
           <Select
+            placeholder={placeholder}
             error={!!error}
             labelId="demo-customized-select-label"
-            id="demo-customized-select"
+            id={name}
             style={{
               fontFamily: ["Poppins", "sans-serif"].join(","),
             }}
-            value={age}
+            value={value}
             variant="outlined"
             MenuProps={{
               disableScrollLock: true,
@@ -59,7 +56,7 @@ const MuiSelect = ({
               },
               getContentAnchorEl: null,
             }}
-            onChange={handleChange}
+            onChange={onChange}
           >
             {optionArray.length > 0 &&
               optionArray.map((option) => (
@@ -68,16 +65,13 @@ const MuiSelect = ({
                 </MenuItem>
               ))}
           </Select>
-        }
-        control={control}
-        name={name}
-        defaultValue={defaultValue}
+        )}
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
         {t(helperText)}
       </InputErrorMessage>
-    </ThemeProvider>
+    </>
   );
 };
 

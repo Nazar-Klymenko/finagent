@@ -1,22 +1,21 @@
-import React from "react";
+import React, { FC } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
-import { Controller } from "react-hook-form";
+import { Controller, Control } from "react-hook-form";
 import { Label, InputErrorMessage } from "./LocalStyles";
-import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { FormGroup } from "@material-ui/core";
 
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+interface Props {
+  control: Control;
+  name: string;
+  labelName: string;
+  defaultChecked: boolean;
+  error: boolean;
+  spacer?: boolean;
+  readOnly: boolean;
+  helperText: string;
+}
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#0052cc",
-    },
-  },
-});
-
-const MuiCheckbox = ({
+const MuiCheckbox: FC<Props> = ({
   name,
   labelName,
   defaultChecked,
@@ -25,19 +24,19 @@ const MuiCheckbox = ({
   control,
 }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <FormControlLabel
         control={
           <Controller
             name={name}
             control={control}
-            render={(props) => (
+            render={({ value, onChange, ...other }) => (
               <Checkbox
-                {...props}
+                {...other}
                 color="primary"
-                checked={props.value}
+                checked={value}
                 disabled={readOnly}
-                onChange={(e) => props.onChange(e.target.checked)}
+                onChange={(e) => onChange(e.target.checked)}
               />
             )}
           />
@@ -50,9 +49,8 @@ const MuiCheckbox = ({
           <span className="invis-star">*</span>
         </InputErrorMessage>
       )}
-    </ThemeProvider>
+    </>
   );
 };
 
 export default MuiCheckbox;
-<FormControlLabel control={<Checkbox defaultChecked />} label="Label" />;

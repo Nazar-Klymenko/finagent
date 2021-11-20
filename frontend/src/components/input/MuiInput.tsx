@@ -1,12 +1,11 @@
-import React, { FC, useState } from "react";
-// import { TextField } from "@material-ui/core";
-import { Controller } from "react-hook-form";
+import React, { FC } from "react";
+import { Controller, Control } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Label, InputErrorMessage, Optional } from "./LocalStyles";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 
 interface Props {
-  control: any;
+  control: Control;
   helperText: string;
   error: boolean;
   labelName: string;
@@ -30,20 +29,19 @@ const MuiInput: FC<Props> = ({
 }) => {
   const { t } = useTranslation();
 
-  const [value, setValue] = useState<string>("");
-
   return (
     <>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
       </Label>
+
       <Controller
-        as={
+        name={name}
+        control={control}
+        render={({ onChange, value }) => (
           <OutlinedInput
-            onChange={(newValue) => {
-              setValue(String(newValue));
-            }}
+            onChange={onChange}
             value={value}
             style={{
               fontFamily: ["Poppins", "sans-serif"].join(","),
@@ -51,10 +49,9 @@ const MuiInput: FC<Props> = ({
             id={name}
             {...other}
           />
-        }
-        control={control}
-        name={name}
+        )}
       />
+
       <InputErrorMessage>
         <span className="invis-star">*</span>
         {t(helperText)}

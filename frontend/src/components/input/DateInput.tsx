@@ -1,5 +1,4 @@
 import React, { useState, useEffect, FC } from "react";
-import styled from "styled-components";
 
 import { Controller } from "react-hook-form";
 
@@ -14,15 +13,6 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#1672ec",
-    },
-  },
-});
 
 interface Props {
   control: any;
@@ -53,7 +43,6 @@ const DateInput: FC<Props> = ({
   ...other
 }) => {
   const { i18n, t } = useTranslation();
-  const [value, setValue] = React.useState<Date | null>(null);
 
   const [language, setLanguage] = useState(pl);
 
@@ -77,41 +66,38 @@ const DateInput: FC<Props> = ({
   }, [i18n.language]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={language}>
-        <Label htmlFor={name}>{labelName}</Label>
-        <Controller
-          as={
-            <KeyboardDatePicker
-              okLabel="OK"
-              clearLabel="Clear"
-              cancelLabel="Cancel"
-              error={!!error}
-              inputVariant="outlined"
-              format={format}
-              placeholder={placeholder}
-              helperText={null}
-              style={{
-                fontFamily: ["Poppins", "sans-serif"].join(","),
-              }}
-              views={view}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              value={value}
-              {...other}
-            />
-          }
-          control={control}
-          name={name}
-          defaultValue={defaultDate || null}
-        />
-        <InputErrorMessage>
-          <span className="invis-star">*</span>
-          {t(helperText)}
-        </InputErrorMessage>
-      </MuiPickersUtilsProvider>
-    </ThemeProvider>
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={language}>
+      <Label htmlFor={name}>{labelName}</Label>
+
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={defaultDate || null}
+        render={({ value, onChange }) => (
+          <KeyboardDatePicker
+            okLabel="OK"
+            clearLabel="Clear"
+            cancelLabel="Cancel"
+            error={!!error}
+            inputVariant="outlined"
+            format={format}
+            placeholder={placeholder}
+            helperText={null}
+            style={{
+              fontFamily: ["Poppins", "sans-serif"].join(","),
+            }}
+            views={view}
+            onChange={onChange}
+            value={value}
+            {...other}
+          />
+        )}
+      />
+      <InputErrorMessage>
+        <span className="invis-star">*</span>
+        {t(helperText)}
+      </InputErrorMessage>
+    </MuiPickersUtilsProvider>
   );
 };
 

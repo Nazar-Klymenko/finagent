@@ -36,10 +36,9 @@ const MuiPhoneInput: FC<Props> = ({
       <Controller
         name={name}
         control={control}
-        render={({ onChange, value }) => (
+        render={({ field }) => (
           <PhoneInput
-            value={value}
-            onChange={onChange}
+            {...field}
             country="pl"
             onlyCountries={["pl", "ua", "by", "ru"]}
             specialLabel=""

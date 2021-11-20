@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from "react";
 
-import { Controller } from "react-hook-form";
+import { Controller, Control } from "react-hook-form";
 
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
@@ -15,7 +15,7 @@ import {
 } from "@material-ui/pickers";
 
 interface Props {
-  control: any;
+  control: Control;
   helperText: string;
   error: boolean;
   labelName: string;
@@ -73,22 +73,19 @@ const DateInput: FC<Props> = ({
         name={name}
         control={control}
         defaultValue={defaultDate || null}
-        render={({ value, onChange }) => (
+        render={({ field }) => (
           <KeyboardDatePicker
             okLabel="OK"
             clearLabel="Clear"
             cancelLabel="Cancel"
             error={!!error}
             inputVariant="outlined"
-            format={format}
-            placeholder={placeholder}
             helperText={null}
             style={{
               fontFamily: ["Poppins", "sans-serif"].join(","),
             }}
             views={view}
-            onChange={onChange}
-            value={value}
+            {...field}
             {...other}
           />
         )}

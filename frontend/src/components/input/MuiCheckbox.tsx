@@ -30,13 +30,13 @@ const MuiCheckbox: FC<Props> = ({
           <Controller
             name={name}
             control={control}
-            render={({ value, onChange, ...other }) => (
+            render={({ field }) => (
               <Checkbox
-                {...other}
+                {...field}
                 color="primary"
-                checked={value}
+                checked={field.value}
                 disabled={readOnly}
-                onChange={(e) => onChange(e.target.checked)}
+                onChange={(e) => field.onChange(e.target.checked)}
               />
             )}
           />

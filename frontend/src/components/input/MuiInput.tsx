@@ -39,10 +39,9 @@ const MuiInput: FC<Props> = ({
       <Controller
         name={name}
         control={control}
-        render={({ onChange, value }) => (
+        render={({ field }) => (
           <OutlinedInput
-            onChange={onChange}
-            value={value}
+            {...field}
             style={{
               fontFamily: ["Poppins", "sans-serif"].join(","),
             }}

@@ -33,8 +33,9 @@ const MuiSelect: FC<Props> = ({
       <Controller
         control={control}
         name={name}
-        render={({ onChange, value }) => (
+        render={({ field }) => (
           <Select
+            {...field}
             placeholder={placeholder}
             error={!!error}
             labelId="demo-customized-select-label"
@@ -42,7 +43,6 @@ const MuiSelect: FC<Props> = ({
             style={{
               fontFamily: ["Poppins", "sans-serif"].join(","),
             }}
-            value={value}
             variant="outlined"
             MenuProps={{
               disableScrollLock: true,
@@ -56,7 +56,6 @@ const MuiSelect: FC<Props> = ({
               },
               getContentAnchorEl: null,
             }}
-            onChange={onChange}
           >
             {optionArray.length > 0 &&
               optionArray.map((option) => (

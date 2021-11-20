@@ -42,13 +42,12 @@ const MuiPasswordInput: FC<Props> = ({
       <Controller
         name={name}
         control={control}
-        render={({ onChange, value }) => (
+        render={({ field }) => (
           <OutlinedInput
             id={name}
             type={showPassword ? "text" : "password"}
-            value={value}
             error={error}
-            onChange={onChange}
+            {...field}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

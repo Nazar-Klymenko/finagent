@@ -3,7 +3,7 @@ import { PrivateRoute, QuestRoute } from "@components/CustomRoutes";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import Dashboard from "@pages/dashboard/Dashboard";
-import Contact from "@pages/contact/Contact";
+import Contact from "@pages/Contact";
 import Help from "@pages/help/Help";
 import Notifications from "@pages/notifications/Notifications";
 import NotificationsOpen from "@pages/notifications/NotificationsOpen";

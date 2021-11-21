@@ -15,6 +15,7 @@ interface Props {
   helperText: string | undefined;
   errorList?: {};
   labelName: string;
+  autoComplete?: string;
 }
 
 const MuiPasswordInput: FC<Props> = ({
@@ -24,6 +25,7 @@ const MuiPasswordInput: FC<Props> = ({
   helperText = "",
   errorList,
   labelName,
+  autoComplete,
   ...other
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,6 +49,7 @@ const MuiPasswordInput: FC<Props> = ({
             id={name}
             type={showPassword ? "text" : "password"}
             error={error}
+            autoComplete={autoComplete}
             {...field}
             {...other}
             endAdornment={

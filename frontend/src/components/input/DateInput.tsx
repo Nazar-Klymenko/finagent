@@ -84,6 +84,7 @@ const DateInput: FC<Props> = ({
             style={{
               fontFamily: ["Poppins", "sans-serif"].join(","),
             }}
+            format={format}
             views={view}
             {...field}
             {...other}

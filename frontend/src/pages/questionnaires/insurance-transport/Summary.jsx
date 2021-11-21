@@ -67,7 +67,7 @@ const Summary = () => {
       );
 
       await postInsuranceOcAPI(formData);
-      clearAppData();
+      // clearAppData();
       history.push("/dashboard/insurances");
     } catch (error) {
       setIsLoading(false);

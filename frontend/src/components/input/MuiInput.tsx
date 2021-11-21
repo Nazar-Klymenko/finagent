@@ -46,6 +46,7 @@ const MuiInput: FC<Props> = ({
               fontFamily: ["Poppins", "sans-serif"].join(","),
             }}
             id={name}
+            autoComplete={autoComplete}
             {...other}
           />
         )}

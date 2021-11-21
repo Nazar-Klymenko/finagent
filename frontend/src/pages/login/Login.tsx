@@ -93,6 +93,7 @@ const Login: React.FC<Props> = (props) => {
           error={!!errors.email}
           helperText={t(errors?.email?.message)}
           autoFocus={false}
+          autoComplete="email"
         />
         <MuiPasswordInput
           control={control}
@@ -100,6 +101,7 @@ const Login: React.FC<Props> = (props) => {
           labelName={t("LogIn.Form.password")}
           error={!!errors.password}
           helperText={errors?.password?.message}
+          autoComplete="current-password"
         />
       </Form>
       <CTA

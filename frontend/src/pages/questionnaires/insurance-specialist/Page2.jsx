@@ -56,10 +56,7 @@ const Page2 = () => {
     handleSubmit,
     control,
     watch,
-
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",

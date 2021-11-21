@@ -78,56 +78,53 @@ const Login: React.FC<Props> = (props) => {
     loginFacebook();
   };
 
-  return (
+  return !isLoading ? (
     <ContentWrap xl authForm direction="column">
-      {isLoading && <Loader />}
-      {!isLoading && (
-        <>
-          <Header bottomGutter variant="h1" align="center">
-            {t("LogIn.title")}
-          </Header>
-          <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-            <MuiInput
-              control={control}
-              name="email"
-              // placeholder="E-mail"
-              labelName={t("LogIn.Form.email")}
-              type="email"
-              error={!!errors.email}
-              helperText={t(errors?.email?.message)}
-              autoFocus={false}
-            />
-            <MuiPasswordInput
-              control={control}
-              name="password"
-              labelName={t("LogIn.Form.password")}
-              error={!!errors.password}
-              helperText={errors?.password?.message}
-            />
-          </Form>
-          <CTA
-            isLoading={isLoading}
-            text={t("LogIn.Form.button")}
-            form="form"
-            color="primary"
-            large
-          />
-          <AlternativeLine>Or log in using other methods</AlternativeLine>
-          <FacebookButton onClick={loginWithFacebook}>Facebook</FacebookButton>
-          <AuthOptions>
-            <NavLink className="forgot-link" to="/auth/forgot-password">
-              {t("LogIn.addActions.forgot")}
-            </NavLink>
-            <SignUpOption>
-              {t("LogIn.addActions.noAccount")}
-              <NavLink className="signup-link" to="/auth/signup">
-                {t("LogIn.addActions.signUp")}
-              </NavLink>
-            </SignUpOption>
-          </AuthOptions>
-        </>
-      )}
+      <Header bottomGutter variant="h1" align="center">
+        {t("LogIn.title")}
+      </Header>
+      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <MuiInput
+          control={control}
+          name="email"
+          // placeholder="E-mail"
+          labelName={t("LogIn.Form.email")}
+          type="email"
+          error={!!errors.email}
+          helperText={t(errors?.email?.message)}
+          autoFocus={false}
+        />
+        <MuiPasswordInput
+          control={control}
+          name="password"
+          labelName={t("LogIn.Form.password")}
+          error={!!errors.password}
+          helperText={errors?.password?.message}
+        />
+      </Form>
+      <CTA
+        isLoading={isLoading}
+        text={t("LogIn.Form.button")}
+        form="form"
+        color="primary"
+        large
+      />
+      <AlternativeLine>Or log in using other methods</AlternativeLine>
+      <FacebookButton onClick={loginWithFacebook}>Facebook</FacebookButton>
+      <AuthOptions>
+        <NavLink className="forgot-link" to="/auth/forgot-password">
+          {t("LogIn.addActions.forgot")}
+        </NavLink>
+        <SignUpOption>
+          {t("LogIn.addActions.noAccount")}
+          <NavLink className="signup-link" to="/auth/signup">
+            {t("LogIn.addActions.signUp")}
+          </NavLink>
+        </SignUpOption>
+      </AuthOptions>
     </ContentWrap>
+  ) : (
+    <Loader />
   );
 };
 

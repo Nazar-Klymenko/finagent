@@ -5,8 +5,8 @@ import { Label, InputErrorMessage, Optional } from "./LocalStyles";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 
 interface Props {
-  control: Control;
-  helperText: string;
+  control: Control<any>;
+  helperText: string | undefined;
   error: boolean;
   labelName: string;
   name: string;

@@ -7,12 +7,12 @@ import { useTranslation } from "react-i18next";
 import { Label, InputErrorMessage } from "./LocalStyles";
 
 interface Props {
-  control: Control;
+  control: Control<any>;
   name: string;
   labelName: string;
   error: boolean;
   optionArray: [{ label: string; value: string }];
-  helperText: string;
+  helperText: string | undefined;
   placeholder?: string;
 }
 
@@ -21,7 +21,7 @@ const MuiSelect: FC<Props> = ({
   name,
   labelName,
   error,
-  helperText,
+  helperText = "",
   optionArray,
   placeholder,
 }) => {

@@ -15,12 +15,12 @@ import formatBytes from "@helpers/formatBytes";
 import { Label, InputErrorMessage } from "./LocalStyles";
 
 interface Props {
-  control: Control;
+  control: Control<any>;
   name: string;
   labelName: string;
   error: boolean;
   showFiles?: boolean;
-  helperText: string;
+  helperText: string | undefined;
 }
 
 const FileInput: FC<Props> = ({
@@ -29,7 +29,7 @@ const FileInput: FC<Props> = ({
   labelName,
   showFiles,
   error,
-  helperText,
+  helperText = "",
 }) => {
   const styles = useStyles();
 

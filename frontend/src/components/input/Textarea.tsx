@@ -10,20 +10,21 @@ import {
 } from "./LocalStyles";
 
 interface Props {
+  control: Control<any>;
   name: string;
   labelName: string;
   error: boolean;
-  helperText: string;
+  helperText: string | undefined;
   placeholder?: string;
   optional?: boolean;
-  control: Control;
+  rows: string;
 }
 
 const Textarea: React.FC<Props> = ({
   name,
   labelName,
   error,
-  helperText,
+  helperText = "",
   control,
   placeholder,
   optional,

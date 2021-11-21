@@ -15,8 +15,8 @@ import {
 } from "@material-ui/pickers";
 
 interface Props {
-  control: Control;
-  helperText: string;
+  control: Control<any>;
+  helperText: string | undefined;
   error: boolean;
   labelName: string;
   name: string;
@@ -32,7 +32,7 @@ interface Props {
 
 const DateInput: FC<Props> = ({
   control,
-  helperText,
+  helperText = "",
   error,
   labelName,
   name,

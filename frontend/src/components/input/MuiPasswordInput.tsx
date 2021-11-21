@@ -9,10 +9,10 @@ import { Controller, Control } from "react-hook-form";
 import { Label, InputErrorMessage } from "./LocalStyles";
 
 interface Props {
-  control: Control;
+  control: Control<any>;
   name: string;
   error: boolean;
-  helperText: string;
+  helperText: string | undefined;
   errorList?: {};
   labelName: string;
 }
@@ -21,7 +21,7 @@ const MuiPasswordInput: FC<Props> = ({
   control,
   name,
   error,
-  helperText,
+  helperText = "",
   errorList,
   labelName,
 }) => {

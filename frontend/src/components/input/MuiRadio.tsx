@@ -8,7 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import { Label, InputErrorMessage } from "./LocalStyles";
 
 interface Props {
-  control: Control;
+  control: Control<any>;
   name: string;
   defaultChecked: boolean;
   legend: string;

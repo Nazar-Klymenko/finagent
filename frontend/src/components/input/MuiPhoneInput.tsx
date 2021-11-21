@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Controller } from "react-hook-form";
+import { Controller, Control } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { Label, InputErrorMessage, Optional } from "./LocalStyles";
@@ -9,10 +9,10 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 
 interface Props {
-  control: any;
+  control: Control<any>;
   name: string;
   error: boolean;
-  helperText: string;
+  helperText: string | undefined;
   labelName: string;
   optional?: boolean;
 }
@@ -21,7 +21,7 @@ const MuiPhoneInput: FC<Props> = ({
   control,
   name,
   error,
-  helperText,
+  helperText = "",
   labelName,
   optional,
 }) => {

@@ -5,14 +5,14 @@ import { Label, InputErrorMessage } from "./LocalStyles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 interface Props {
-  control: Control;
+  control: Control<any>;
   name: string;
   labelName: string;
   defaultChecked: boolean;
   error: boolean;
   spacer?: boolean;
   readOnly: boolean;
-  helperText: string;
+  helperText: string | undefined;
 }
 
 const MuiCheckbox: FC<Props> = ({

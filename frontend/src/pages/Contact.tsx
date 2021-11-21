@@ -18,47 +18,61 @@ import { Header } from "@components/typography";
 const schema = yup.object().shape({
   oc: yup.boolean(),
 });
+
+type FormData = {
+  fullName: string;
+  email: string;
+  message: string;
+};
+
 const Contact = () => {
   const { t } = useTranslation();
   useTitle("Contact | FinAgent");
 
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormData>({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
     resolver: yupResolver(schema),
   });
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     console.log(data);
-  };
+  });
+
   return (
     <ContentWrap fullWidth blank direction="column">
-      <Header bottomGutter>{t("Contact.title")}</Header>
+      <Header variant="h1" bottomGutter>
+        {t("Contact.title")}
+      </Header>
       <MainContainer>
         <FormSide>
           <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
-          <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+          <Form id="form" onSubmit={formSubmit}>
             <MuiInput
               control={control}
               labelName={t("Contact.Form.fullName")}
               name="fullName"
-              error={!!errors.brand}
-              helperText={errors?.brand?.message}
+              error={!!errors.fullName}
+              helperText={errors?.fullName?.message}
             />
             <MuiInput
               control={control}
               labelName={t("Contact.Form.email")}
               name="email"
-              error={!!errors.brand}
-              helperText={errors?.brand?.message}
+              error={!!errors.email}
+              helperText={errors?.email?.message}
             />
             <Textarea
               control={control}
               labelName={t("Contact.Form.message")}
               rows="8"
               name="message"
-              error={!!errors.brand}
-              helperText={errors?.brand?.message}
+              error={!!errors.message}
+              helperText={errors?.message?.message}
             />
             <ButtonPlace>
               <CTA

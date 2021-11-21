@@ -32,7 +32,15 @@ const Page5 = () => {
     "appendedImages"
   );
 
-  const { handleSubmit, errors, control, watch } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: pageFiveValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",

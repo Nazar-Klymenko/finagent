@@ -48,7 +48,15 @@ const Page3 = () => {
     "specificData"
   );
 
-  const { handleSubmit, errors, watch, control } = useForm({
+  const {
+    handleSubmit,
+    watch,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: pageThreeValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",

@@ -25,7 +25,15 @@ const Page1 = () => {
   const appDataValid = validateAppData(appData, "InsuranceData");
   const history = useHistory();
 
-  const { handleSubmit, errors, control, watch } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: {
       insuranceType: appDataValid.insuranceType || "individual",
       peopleAmount: appDataValid.peopleAmount,

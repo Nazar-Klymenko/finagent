@@ -33,7 +33,15 @@ const Page1 = () => {
     "insuranceData"
   );
 
-  const { handleSubmit, errors, control, watch } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: {
       country: appDataValid.country,
       city: appDataValid.city,

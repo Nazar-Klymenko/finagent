@@ -16,7 +16,14 @@ import { useAuth } from "@context/authContext";
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
   const { setUpdatedPassword } = useAuth();
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,

@@ -39,7 +39,14 @@ const Page4 = () => {
     "additionalData"
   );
 
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: pageFourValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",

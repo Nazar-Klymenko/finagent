@@ -33,7 +33,15 @@ const AddPolicyHolder = ({
     defaultPerson
   );
 
-  const { handleSubmit, errors, control, watch } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",

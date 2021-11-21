@@ -37,7 +37,12 @@ const Login: React.FC<Props> = (props) => {
     }
   }, []);
 
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: { errors },
+  } = useForm({
     mode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(loginSchema),
@@ -85,11 +90,11 @@ const Login: React.FC<Props> = (props) => {
             <MuiInput
               control={control}
               name="email"
-              placeholder="E-mail"
+              // placeholder="E-mail"
               labelName={t("LogIn.Form.email")}
               type="email"
               error={!!errors.email}
-              helperText={errors?.email?.message}
+              helperText={t(errors?.email?.message)}
               autoFocus={false}
             />
             <MuiPasswordInput

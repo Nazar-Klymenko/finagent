@@ -36,7 +36,14 @@ const Page2 = () => {
 
   useTitle("Cash loan | FinAgent");
 
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: {
       remainingPayOff: appDataValid.remainingPayOff,
       lastApplications: appDataValid.lastApplications,

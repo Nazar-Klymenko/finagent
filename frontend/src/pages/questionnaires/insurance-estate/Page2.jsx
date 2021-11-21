@@ -30,7 +30,15 @@ const Page2 = () => {
     "personalData"
   );
 
-  const { handleSubmit, errors, watch, control } = useForm({
+  const {
+    handleSubmit,
+    watch,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "individual",
       name: appDataValid.name,

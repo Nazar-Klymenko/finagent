@@ -27,7 +27,14 @@ function checkForNumber(password) {
 }
 
 const Empty = () => {
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,

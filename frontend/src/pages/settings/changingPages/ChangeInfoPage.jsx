@@ -28,7 +28,12 @@ const ChangePasswordPage = () => {
 
   const { updateDisplayName } = useAuth();
 
-  const { handleSubmit, errors, reset, formState, control } = useForm({
+  const {
+    handleSubmit,
+    reset,
+    formState,
+    control,
+  } = useForm({
     defaultValues: {
       name: data?.name,
       surname: data?.surname,
@@ -39,6 +44,10 @@ const ChangePasswordPage = () => {
     shouldFocusError: false,
     resolver: yupResolver(settingsSchema()),
   });
+
+  const {
+    errors,
+  } = formState;
 
   useEffect(() => {
     reset(data);

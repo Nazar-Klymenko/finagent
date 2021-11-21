@@ -35,7 +35,14 @@ const Page2 = () => {
     "transportData"
   );
 
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: pageTwoValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",

@@ -14,7 +14,15 @@ import FileTest from "./FileTest";
 const Staging = () => {
   const { t } = useTranslation();
 
-  const { handleSubmit, errors, control, register } = useForm({
+  const {
+    handleSubmit,
+    control,
+    register,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: { policyholder: [{ name: "", surname: "" }] },
     mode: "onChange",
     reValidateMode: "onChange",

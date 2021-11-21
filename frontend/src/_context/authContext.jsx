@@ -11,7 +11,6 @@ import {
   sendPasswordResetEmail,
   getAdditionalUserInfo,
   onAuthStateChanged,
-  signInWithPopup,
   FacebookAuthProvider,
   signOut,
   sendEmailVerification,
@@ -23,7 +22,6 @@ import {
   deleteUser,
   updatePassword,
   updateProfile,
-  getRedirectResult,
 } from "firebase/auth";
 import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
 
@@ -42,8 +40,13 @@ const AuthContext = createContext({
   logout: (redirectCallback) => Promise,
   forgotPassword: () => Promise,
   deleteAccount: () => Promise,
+  deleteAccountFacebook: () => Promise,
   resetPassword: (email) => Promise,
   setUpdatedPassword: (currentPassword, newPassword) => Promise,
+  updateEmail: () => Promise,
+  updateDisplayName: () => Promise,
+  updatePassword: () => Promise,
+  resendVerificationEmail: () => Promise,
 });
 
 export const useAuth = () => useContext(AuthContext);

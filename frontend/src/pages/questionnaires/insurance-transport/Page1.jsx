@@ -53,7 +53,12 @@ const Page1 = () => {
     "personalData"
   );
 
-  const { handleSubmit, errors, watch, control } = useForm({
+  const {
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm({
     defaultValues: pageOneValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",

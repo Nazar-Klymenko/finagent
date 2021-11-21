@@ -34,7 +34,15 @@ const Page1 = () => {
     "insuranceData"
   );
 
-  const { handleSubmit, errors, watch, control } = useForm({
+  const {
+    handleSubmit,
+    watch,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: {
       pesel: appDataValid.pesel,
       passportNumber: appDataValid.passportNumber,

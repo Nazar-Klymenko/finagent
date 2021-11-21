@@ -28,7 +28,14 @@ const DangerZonePage = () => {
 
   const { currentUser, deleteAccount, deleteAccountFacebook } = useAuth();
   const { provider } = currentUser;
-  const { control, handleSubmit, errors } = useForm({
+  const {
+    control,
+    handleSubmit,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,

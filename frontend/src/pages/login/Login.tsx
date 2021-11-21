@@ -165,7 +165,6 @@ const FacebookButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
-  /* min-height */
 `;
 
 const AlternativeLine = styled.div`

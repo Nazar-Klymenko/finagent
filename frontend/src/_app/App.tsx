@@ -8,7 +8,6 @@ import { DataProvider } from "@context/dataContext";
 import { AuthContextProvider } from "@context/authContext";
 
 import { NotificationProvider } from "@context/notificationContext";
-import { BackDropProvider } from "@context/backdropContext";
 
 import MuiSnackbar from "@components/MuiSnackbar";
 
@@ -41,7 +40,6 @@ const App = () => {
         provider(AuthContextProvider),
         provider(DataProvider),
         provider(NotificationProvider),
-        provider(BackDropProvider),
         provider(ThemeProvider, { theme: theme }),
         provider(MuiThemeProvider, { theme: muiTheme }),
         provider(QueryClientProvider, { client: queryClient }),

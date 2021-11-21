@@ -33,14 +33,13 @@ export const signUp = async (req, res, next) => {
 
 export const signUpFacebook = async (req, res, next) => {
   const language = "pl";
-  console.log(req.body);
-  const { display_name, email } = req.body.additionalInfo.profile;
+  const { name, email } = req.body.additionalInfo.profile;
   const { providerId } = req.body.additionalInfo;
   const uid = req.body.uid;
   try {
     const userObj = await new User({
       _id: uid,
-      fullName: display_name,
+      fullName: name,
       email: email,
       provider: providerId,
       language: language,
@@ -50,7 +49,7 @@ export const signUpFacebook = async (req, res, next) => {
 
     res.status(200).send({
       message: "User signed up successfully, confirm email",
-      displayName: display_name,
+      displayName: name,
       isActive: false,
     });
   } catch (error) {

@@ -12,11 +12,11 @@ import {
   getAdditionalUserInfo,
   onAuthStateChanged,
   FacebookAuthProvider,
+  getRedirectResult,
   signOut,
   sendEmailVerification,
   reauthenticateWithCredential,
   EmailAuthProvider,
-  reauthenticateWithPopup,
   reauthenticateWithRedirect,
   signInWithRedirect,
   deleteUser,
@@ -65,7 +65,7 @@ export const AuthContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       let emailVerified;
       let photoURL = "";
       if (user) {
@@ -77,8 +77,11 @@ export const AuthContextProvider = ({ children }) => {
           photoURL = user.photoURL;
         } else emailVerified = user.emailVerified;
       }
-      alert(user.displayName);
-      console.log(user);
+      const redirectResult = await getRedirectResult(auth);
+      if (redirectResult) {
+        const additionalInfo = getAdditionalUserInfo(redirectResult);
+        if (additionalInfo.isNewUser) signupFacebook(additionalInfo, user);
+      }
 
       setCurrentUser(
         user
@@ -176,24 +179,26 @@ export const AuthContextProvider = ({ children }) => {
     const provider = new FacebookAuthProvider();
     provider.setCustomParameters({ auth_type: "rerequest" });
     try {
-      const response = await signInWithRedirect(auth, provider);
-      const additionalInfo = getAdditionalUserInfo(response);
-
-      const user = auth.currentUser;
-
-      if (additionalInfo.isNewUser) {
-        await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
-          (error) => {
-            deleteUser(user);
-            throw new Error();
-          }
-        );
-      }
-
+      await signInWithRedirect(auth, provider);
       dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
     } catch (error) {
       dispatch(setSnackbar("error", "SnackBar.loginError"));
       localStorage.setItem("onSignIn", "false");
+    }
+  }
+
+  async function signupFacebook(additionalInfo, user) {
+    try {
+      await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
+        (error) => {
+          deleteUser(user);
+          localStorage.setItem("onSignIn", "false");
+          throw new Error();
+        }
+      );
+      dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
+    } catch (error) {
+      dispatch(setSnackbar("error", "SnackBar.loginError"));
     }
   }
 
@@ -216,10 +221,6 @@ export const AuthContextProvider = ({ children }) => {
     });
     await updatePassword(auth.currentUser, newPassword);
     setSnackbar("success", "Settings.ChangePassword.alertSuccess");
-  }
-
-  async function updateEmail(email) {
-    await auth.currentUser?.updateEmail(email);
   }
 
   async function logout(redirectCallback) {
@@ -245,7 +246,7 @@ export const AuthContextProvider = ({ children }) => {
         const provider = new FacebookAuthProvider();
         provider.setCustomParameters({ auth_type: "rerequest" });
         const user = auth.currentUser;
-        const response = await reauthenticateWithPopup(user, provider);
+        const response = await reauthenticateWithRedirect(user, provider);
 
         await deleteUserAPI();
         await deleteUser(user);
@@ -279,7 +280,6 @@ export const AuthContextProvider = ({ children }) => {
     currentUser,
     signup,
     resetPassword,
-    updateEmail,
     login,
     loginFacebook,
     logout,

@@ -70,7 +70,7 @@ const CardOpen = () => {
       <Info>
         <InfoWrap>
           <InfoKey>{t("ApplicationOpen.name")}</InfoKey>
-          <InfoValue>{data?.user?.name + " " + data?.user?.surname}</InfoValue>
+          <InfoValue>{data?.user?.fullName}</InfoValue>
         </InfoWrap>
         <InfoWrap>
           <InfoKey>{t("ApplicationOpen.createdAt")}</InfoKey>

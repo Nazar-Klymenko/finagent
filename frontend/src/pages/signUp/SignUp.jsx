@@ -13,6 +13,7 @@ import { CTA } from "@components/buttons";
 import Form from "@components/Form";
 import { Header } from "@components/typography";
 
+import Loader from "@components/Loader";
 import { useAuth } from "@context/authContext";
 
 const SignUp = () => {
@@ -20,12 +21,22 @@ const SignUp = () => {
   const history = useHistory();
   const { currentUser, signup, loginFacebook } = useAuth();
   const { isLoggedIn, isActive } = currentUser;
-  const [isLoading, setIsLoading] = useState(false);
 
   let interfaceLanguage = document.cookie.replace(
     /(?:(?:^|.*;\s*)i18next\s*\=\s*([^;]*).*$)|^.*$/,
     "$1"
   );
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    let status = localStorage.getItem("onSignIn");
+    if (status === "true") {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
 
   const {
     handleSubmit,
@@ -40,7 +51,6 @@ const SignUp = () => {
 
   const formSubmit = async (data) => {
     data.language = interfaceLanguage;
-    setIsLoading(true);
     signup(data);
   };
 
@@ -56,7 +66,7 @@ const SignUp = () => {
     loginFacebook();
   };
 
-  return (
+  return !isLoading ? (
     <ContentWrap xl authForm direction="column">
       <Header align="center" bottomGutter variant="h1">
         {t("SignUp.title")}
@@ -100,13 +110,7 @@ const SignUp = () => {
         />
       </Form>
 
-      <CTA
-        isLoading={isLoading}
-        text={t("SignUp.Form.button")}
-        form="form"
-        color="primary"
-        large
-      />
+      <CTA text={t("SignUp.Form.button")} form="form" color="primary" large />
 
       <AlternativeLine>Or sign up using other methods</AlternativeLine>
       <FacebookButton onClick={signupWithFacebook}>Facebook</FacebookButton>
@@ -120,6 +124,8 @@ const SignUp = () => {
         </LoginOtion>
       </AuthOptions>
     </ContentWrap>
+  ) : (
+    <Loader />
   );
 };
 
@@ -151,10 +157,10 @@ const FacebookButton = styled.button`
   border-radius: 3px;
   border: none;
   margin: 0.5rem 0;
+  font-size: 1rem;
   &:hover {
     opacity: 0.8;
   }
-  /* min-height */
 `;
 
 const AlternativeLine = styled.div`

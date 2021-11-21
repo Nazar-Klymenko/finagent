@@ -58,7 +58,14 @@ const Page2 = () => {
   let [householdData, setHouseholdData] = useState(addHouseholdData || []);
   let [defaultHousehold, setDefaultHousehold] = useState(null);
 
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: {
+      errors,
+    },
+  } = useForm({
     defaultValues: {
       custody: appDataValid.custody,
       monthlyLoanPayments: appDataValid.monthlyLoanPayments,

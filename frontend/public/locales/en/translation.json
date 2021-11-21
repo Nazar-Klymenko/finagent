@@ -161,7 +161,7 @@
   "SignUp": {
     "title": "Create a new account",
     "Individual": {
-      "name": "Name",
+      "fullName": "Full name",
       "surname": "Surname",
       "email": "Email",
       "phone": "Phone",
@@ -281,8 +281,7 @@
   "Settings": {
     "ChangeInfo": {
       "title": "Personal info",
-      "name": "Name",
-      "surname": "Surname",
+      "fullName": "Full name",
       "phone": "Phone",
       "button": "Submit",
       "alertSuccess": "Settings changed successfully",

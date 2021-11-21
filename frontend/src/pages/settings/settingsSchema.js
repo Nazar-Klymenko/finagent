@@ -2,8 +2,7 @@ import * as yup from "yup";
 
 export const settingsSchema = () => {
   return yup.object().shape({
-    name: yup.string().required("Form.Error.blank"),
-    surname: yup.string().required("Form.Error.blank"),
+    fullName: yup.string().required("Form.Error.blank"),
     phone: yup.string(),
   });
 };

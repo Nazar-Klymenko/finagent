@@ -27,7 +27,11 @@ const SignUp = () => {
     "$1"
   );
 
-  const { handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
     defaultValues: { terms: false },
     mode: "onChange",
     resolver: yupResolver(signUpSchema),
@@ -38,7 +42,6 @@ const SignUp = () => {
     data.language = interfaceLanguage;
     setIsLoading(true);
     signup(data);
-    // setIsLoading(false);
   };
 
   useEffect(() => {
@@ -61,21 +64,14 @@ const SignUp = () => {
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
         <MuiInput
           control={control}
-          name="name"
-          labelName={t("SignUp.Individual.name")}
-          error={!!errors.name}
-          helperText={errors?.name?.message}
+          name="fullName"
+          labelName={t("SignUp.Individual.fullName")}
+          error={!!errors.fullName}
+          helperText={errors?.fullName?.message}
           autoFocus={true}
-          autoComplete="given-name"
+          autoComplete="name"
         />
-        <MuiInput
-          control={control}
-          name="surname"
-          labelName={t("SignUp.Individual.surname")}
-          error={!!errors.surname}
-          helperText={errors?.surname?.message}
-          autoComplete="family-name"
-        />
+
         <MuiInput
           control={control}
           name="email"
@@ -83,6 +79,7 @@ const SignUp = () => {
           type="email"
           error={!!errors.email}
           helperText={errors?.email?.message}
+          autoComplete="email"
         />
         <MuiPhoneInput
           control={control}
@@ -91,13 +88,15 @@ const SignUp = () => {
           error={!!errors.phone}
           helperText={errors?.phone?.message}
           optional
+          autoComplete="tel"
         />
         <MuiPasswordInput
           control={control}
           name="password"
           labelName={t("SignUp.Individual.password")}
           error={!!errors.password}
-          helperText={errors?.password?.message}
+          helperText={t(errors?.password?.message)}
+          autoComplete="new-password"
         />
       </Form>
 

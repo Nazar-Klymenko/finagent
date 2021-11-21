@@ -10,11 +10,11 @@ interface Props {
   error: boolean;
   labelName: string;
   name: string;
-  autoComplete?: string;
   placeholder?: string;
   type?: string;
   optional?: boolean;
   autoFocus?: boolean;
+  autoComplete?: string;
 }
 
 const MuiInput: FC<Props> = ({

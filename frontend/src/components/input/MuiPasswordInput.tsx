@@ -24,6 +24,7 @@ const MuiPasswordInput: FC<Props> = ({
   helperText = "",
   errorList,
   labelName,
+  ...other
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -38,7 +39,6 @@ const MuiPasswordInput: FC<Props> = ({
   return (
     <>
       <Label htmlFor={name}>{labelName}</Label>
-
       <Controller
         name={name}
         control={control}
@@ -48,6 +48,7 @@ const MuiPasswordInput: FC<Props> = ({
             type={showPassword ? "text" : "password"}
             error={error}
             {...field}
+            {...other}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

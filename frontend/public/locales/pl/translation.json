@@ -88,7 +88,7 @@
     "question": "Czy masz jeszcze jakieś pytania?",
     "phone": "Telefon",
     "email": "Email",
-    "fullName": "Imię Nazwisko",
+    "fullName": "Imię i Nazwisko",
     "message": "Wiadomość",
     "submit": "Wysłać"
   },
@@ -161,8 +161,7 @@
   "SignUp": {
     "title": "Utwórz nowe konto",
     "Individual": {
-      "name": "Imię",
-      "surname": "Nazwisko",
+      "fullName": "Imię i Nazwisko",
       "email": "Email",
       "phone": "Telefon",
       "password": "Hasło"
@@ -282,8 +281,7 @@
   "Settings": {
     "ChangeInfo": {
       "title": "Osobista informacja",
-      "name": "Imię",
-      "surname": "Nazwisko",
+      "fullName": "Imię i Nazwisko",
       "phone": "Telefon",
       "button": "Potwierdź",
       "alertSuccess": "Osobista informacja została zmieniona",

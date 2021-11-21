@@ -28,15 +28,9 @@ const ChangePasswordPage = () => {
 
   const { updateDisplayName } = useAuth();
 
-  const {
-    handleSubmit,
-    reset,
-    formState,
-    control,
-  } = useForm({
+  const { handleSubmit, reset, formState, control } = useForm({
     defaultValues: {
-      name: data?.name,
-      surname: data?.surname,
+      fullName: data?.displayName,
       phone: data?.phone,
     },
     mode: "onChange",
@@ -45,9 +39,7 @@ const ChangePasswordPage = () => {
     resolver: yupResolver(settingsSchema()),
   });
 
-  const {
-    errors,
-  } = formState;
+  const { errors } = formState;
 
   useEffect(() => {
     reset(data);
@@ -60,7 +52,7 @@ const ChangePasswordPage = () => {
     try {
       await updateSettingsAPI(data);
       reset(data);
-      await updateDisplayName(data.name, data.surname);
+      await updateDisplayName(data.fullName);
       dispatch(setSnackbar("success", "Settings.ChangeInfo.alertSuccess"));
     } catch (error) {
       setPostError(t("Settings.ChangeInfo.errorResponse"));
@@ -78,20 +70,13 @@ const ChangePasswordPage = () => {
         <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
           <MuiInput
             control={control}
-            name="name"
-            labelName={t("Settings.ChangeInfo.name")}
-            autoComplete="given-name"
-            error={!!errors.name}
-            helperText={errors?.name?.message}
+            name="fullName"
+            labelName={t("Settings.ChangeInfo.fullName")}
+            autoComplete="name"
+            error={!!errors.fullName}
+            helperText={errors?.fullName?.message}
           />
-          <MuiInput
-            control={control}
-            name="surname"
-            labelName={t("Settings.ChangeInfo.surname")}
-            autoComplete="family-name"
-            error={!!errors.surname}
-            helperText={errors?.surname?.message}
-          />
+
           <MuiPhoneInput
             control={control}
             name="phone"

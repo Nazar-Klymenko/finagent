@@ -44,7 +44,7 @@ const AuthContext = createContext({
   resetPassword: (email) => Promise,
   setUpdatedPassword: (currentPassword, newPassword) => Promise,
   updateEmail: () => Promise,
-  updateDisplayName: () => Promise,
+  updateDisplayName: (displayName) => Promise,
   updatePassword: () => Promise,
   resendVerificationEmail: () => Promise,
 });
@@ -77,6 +77,8 @@ export const AuthContextProvider = ({ children }) => {
           photoURL = user.photoURL;
         } else emailVerified = user.emailVerified;
       }
+      alert(user.displayName);
+      console.log(user);
 
       setCurrentUser(
         user
@@ -115,7 +117,7 @@ export const AuthContextProvider = ({ children }) => {
       let additionalInfo = getAdditionalUserInfo(response);
 
       await updateProfile(user, {
-        displayName: `${data.name} ${data.surname}`,
+        displayName: data.fullName,
       });
 
       newData.IdToken = await user.getIdToken();
@@ -132,7 +134,7 @@ export const AuthContextProvider = ({ children }) => {
       setCurrentUser((currentUser) => {
         return {
           ...currentUser,
-          displayName: `${data.name} ${data.surname}`,
+          displayName: data.fullName,
         };
       });
     } catch (error) {
@@ -259,16 +261,16 @@ export const AuthContextProvider = ({ children }) => {
     return reauthenticateWithCredential(user, cred);
   }
 
-  async function updateDisplayName(name, surname) {
+  async function updateDisplayName(displayName) {
     const user = auth.currentUser;
 
     await updateProfile(user, {
-      displayName: `${name} ${surname}`,
+      displayName: displayName,
     });
     setCurrentUser((currentUser) => {
       return {
         ...currentUser,
-        displayName: `${name} ${surname}`,
+        displayName: displayName,
       };
     });
   }

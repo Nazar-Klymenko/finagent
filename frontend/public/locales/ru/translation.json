@@ -161,8 +161,7 @@
   "SignUp": {
     "title": "Создайте новый аккаунт",
     "Individual": {
-      "name": "Имя",
-      "surname": "Фамилия",
+      "fullName": "Имя и Фамилия",
       "email": "Email",
       "phone": "Телефон",
       "password": "Пароль"
@@ -282,8 +281,7 @@
   "Settings": {
     "ChangeInfo": {
       "title": "Личная информация",
-      "name": "Имя",
-      "surname": "Фамилия",
+      "fullName": "Имя и Фамилия",
       "phone": "Телефон",
       "button": "Подтвердить",
       "alertSuccess": "Личная информация обновлена успешно",

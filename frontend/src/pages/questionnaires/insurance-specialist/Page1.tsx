@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageOneSchema } from "./applicationHelpers/specialistAccessSchema";
+import { pageOneSchema } from "./applicationHelpers/insurance-specialist.schema";
 
 import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
 import { ContentWrap } from "@components/content";
@@ -24,6 +24,25 @@ import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { QuestState } from "@dev/QuestState";
 
+type FormTypes = {
+  insuranceStart: Date;
+  insuranceEnd: Date;
+  policyholderIs: string;
+  name: string;
+  surname: string;
+  birthDate: Date;
+  nip: string;
+  pesel: string;
+  regon: string;
+  phoneNumber: string;
+  email: string;
+  country: string;
+  city: string;
+  postIndex: string;
+  street: string;
+  houseNumber: string;
+};
+
 const Page1 = () => {
   const { t } = useTranslation();
   useTitle("Specialists access | FinAgent");
@@ -40,12 +59,26 @@ const Page1 = () => {
     handleSubmit,
     watch,
     control,
-
-    formState: {
-      errors,
+    formState: { errors },
+  } = useForm<FormTypes>({
+    defaultValues: {
+      insuranceStart: appDataValid.insuranceStart,
+      insuranceEnd: appDataValid.insuranceEnd,
+      policyholderIs: appDataValid.policyholderIs || "individual",
+      name: appDataValid.name,
+      surname: appDataValid.surname,
+      nip: appDataValid.nip,
+      birthDate: appDataValid.birthDate,
+      pesel: appDataValid.pesel,
+      regon: appDataValid.regon,
+      phoneNumber: appDataValid.phoneNumber,
+      email: appDataValid.email,
+      country: appDataValid.country,
+      city: appDataValid.city,
+      postIndex: appDataValid.postIndex,
+      street: appDataValid.street,
+      houseNumber: appDataValid.houseNumber,
     },
-  } = useForm({
-    defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: false,
@@ -54,11 +87,11 @@ const Page1 = () => {
 
   const policyholderIs = watch("policyholderIs") || appDataValid.policyholderIs;
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceSpecialist", "personalData");
     setCurrentPage(2);
     history.push("./2");
-  };
+  });
 
   return (
     <ContentWrap fullWidth>
@@ -72,15 +105,15 @@ const Page1 = () => {
           label={t("InsuranceDiagnostic.Page1.subtitle")}
         />
         <Subtitle>{t("InsuranceDiagnostic.Page1.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <DateInput
             control={control}
             name="insuranceStart"
             labelName={t("InsuranceDiagnostic.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultDate={appDataValid.insuranceStart}
             disablePast
+            placeholder=""
           />
           <DateInput
             control={control}
@@ -88,8 +121,10 @@ const Page1 = () => {
             labelName={t("InsuranceDiagnostic.Page1.insuranceEnd")}
             error={!!errors.insuranceEnd}
             helperText={errors?.insuranceEnd?.message}
-            defaultDate={appDataValid.insuranceEnd}
             disablePast
+            view={["year", "month", "date"]}
+            placeholder=""
+            openTo="year"
           />
 
           <MuiRadio
@@ -110,7 +145,6 @@ const Page1 = () => {
                 value: "legal",
               },
             ]}
-            defaultChecked={appDataValid.policyholderIs || "individual"}
           />
           <MuiInput
             control={control}
@@ -120,7 +154,6 @@ const Page1 = () => {
             error={!!errors.name}
             helperText={errors?.name?.message}
             autoComplete="given-name"
-            defaultValue={appDataValid.name}
           />
           {policyholderIs === "individual" && (
             <MuiInput
@@ -131,7 +164,6 @@ const Page1 = () => {
               error={!!errors.surname}
               helperText={errors?.surname?.message}
               autoComplete="family-name"
-              defaultValue={appDataValid.surname}
             />
           )}
           {!(policyholderIs === "individual") && (
@@ -142,7 +174,6 @@ const Page1 = () => {
               type="text"
               error={!!errors.nip}
               helperText={errors?.nip?.message}
-              defaultValue={appDataValid.nip}
             />
           )}
           {policyholderIs === "individual" && (
@@ -152,8 +183,10 @@ const Page1 = () => {
               labelName={t("InsuranceDiagnostic.Page1.birthDate")}
               error={!!errors.birthDate}
               helperText={errors?.birthDate?.message}
-              defaultDate={appDataValid.birthDate}
               disableFuture
+              placeholder=""
+              view={["year", "month", "date"]}
+              openTo="year"
             />
           )}
           {policyholderIs === "individual" && (
@@ -164,7 +197,6 @@ const Page1 = () => {
               type="text"
               error={!!errors.pesel}
               helperText={errors?.pesel?.message}
-              defaultValue={appDataValid.pesel}
             />
           )}
           {!(policyholderIs === "individual") && (
@@ -175,7 +207,6 @@ const Page1 = () => {
               type="text"
               error={!!errors.regon}
               helperText={errors?.regon?.message}
-              defaultValue={appDataValid.regon}
             />
           )}
           <MuiPhoneInput
@@ -184,7 +215,6 @@ const Page1 = () => {
             labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
             error={!!errors.phoneNumber}
             helperText={errors?.phoneNumber?.message}
-            defaultValue={appDataValid.phoneNumber}
           />
           <MuiInput
             control={control}
@@ -192,7 +222,6 @@ const Page1 = () => {
             labelName={t("InsuranceDiagnostic.Page1.email")}
             error={!!errors.email}
             helperText={errors?.email?.message}
-            defaultValue={appDataValid.email}
           />
           <MuiInput
             control={control}
@@ -201,7 +230,6 @@ const Page1 = () => {
             type="text"
             error={!!errors.country}
             helperText={errors?.country?.message}
-            defaultValue={appDataValid.country}
           />
           <MuiInput
             control={control}
@@ -210,7 +238,6 @@ const Page1 = () => {
             type="text"
             error={!!errors.city}
             helperText={errors?.city?.message}
-            defaultValue={appDataValid.city}
           />
           <MuiInput
             control={control}
@@ -218,7 +245,6 @@ const Page1 = () => {
             labelName={t("InsuranceDiagnostic.Page1.postIndex")}
             error={!!errors.postIndex}
             helperText={errors?.postIndex?.message}
-            defaultValue={appDataValid.postIndex}
           />
           <MuiInput
             control={control}
@@ -226,7 +252,6 @@ const Page1 = () => {
             labelName={t("InsuranceDiagnostic.Page1.street")}
             error={!!errors.street}
             helperText={errors?.street?.message}
-            defaultValue={appDataValid.street}
           />
           <MuiInput
             control={control}
@@ -234,7 +259,6 @@ const Page1 = () => {
             labelName={t("InsuranceDiagnostic.Page1.houseNumber")}
             error={!!errors.houseNumber}
             helperText={errors?.houseNumber?.message}
-            defaultValue={appDataValid.houseNumber}
           />
         </Form>
         <ButtonsWrap>

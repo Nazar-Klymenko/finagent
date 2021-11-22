@@ -20,14 +20,15 @@ interface Props {
   error: boolean;
   labelName: string;
   name: string;
-  defaultDate: any;
+  defaultDate?: any;
   placeholder: string;
-  view: ["date"] | ["year", "month", "date"] | ["year"];
-  format: "dd/MM/yyyy" | "yyyy";
-  disablePast: boolean;
-  disableFuture: boolean;
-  maxDate: Date;
-  minDate: Date;
+  view?: ["date"] | ["year", "month"] | ["year", "month", "date"] | ["year"];
+  format?: "dd/MM/yyyy" | "yyyy";
+  disablePast?: boolean;
+  disableFuture?: boolean;
+  maxDate?: Date;
+  minDate?: Date;
+  openTo?: "year";
 }
 
 const DateInput: FC<Props> = ({
@@ -86,7 +87,8 @@ const DateInput: FC<Props> = ({
             }}
             format={format}
             views={view}
-            {...field}
+            onChange={field.onChange}
+            value={field.value}
             {...other}
           />
         )}

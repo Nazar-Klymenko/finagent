@@ -35,7 +35,8 @@ const MuiSelect: FC<Props> = ({
         name={name}
         render={({ field }) => (
           <Select
-            {...field}
+            onChange={field.onChange}
+            value={field.value}
             placeholder={placeholder}
             error={!!error}
             labelId="demo-customized-select-label"

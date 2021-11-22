@@ -30,7 +30,7 @@ import MuiDialog from "@components/MuiDialog";
 import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { policyholderSchema } from "./applicationHelpers/specialistAccessSchema";
+import { policyholderSchema } from "./applicationHelpers/insurance-specialist.schema";
 import Form from "@components/Form";
 
 const Page2 = () => {
@@ -101,16 +101,6 @@ const Page2 = () => {
 
   const [policyholderIs, setPolicyholderIs] = useState("firm");
 
-  useEffect(() => {
-    let testpolicyholderIs = watch(`policyholderIs`);
-
-    if (editingMode) {
-      setPolicyholderIs(policyHolders[currentlySelected].policyholderIs);
-    } else {
-      setPolicyholderIs(testpolicyholderIs);
-    }
-  }, [policyHolders, currentlySelected, editingMode, watch]);
-
   return (
     <ContentWrap fullWidth>
       <QuestState data={appData} />
@@ -135,10 +125,6 @@ const Page2 = () => {
             id="add-applicant"
             onSubmit={handleSubmit(addPolicyHolderSubmit)}
           >
-            <Title>{policyholderIs}</Title>
-            <Title>{editingMode + ""}</Title>
-            <Title>{currentlySelected + ""}</Title>
-
             <MuiRadio
               control={control}
               name="policyholderIs"
@@ -327,6 +313,16 @@ const Page2 = () => {
 
 export default Page2;
 
+// useEffect(() => {
+//   let testpolicyholderIs = watch(`policyholderIs`);
+
+//   if (editingMode) {
+//     setPolicyholderIs(policyHolders[currentlySelected].policyholderIs);
+//   } else {
+//     setPolicyholderIs(testpolicyholderIs);
+//   }
+// }, [policyHolders, currentlySelected, editingMode, watch]);
+
 // {isError && <ErrorBottom>{isError}</ErrorBottom>}
 
 // {
@@ -360,6 +356,19 @@ export default Page2;
 //   "insuranceSpecialist",
 //   "insuredData"
 // );
+
+// const addPolicyHolderSubmit = (data) => {
+//   if (editingMode) {
+//     let newArr = [...policyHolders];
+//     newArr[currentlySelected] = data;
+//     setPolicyHolders(newArr);
+//     setEditingMode(false);
+//     setCurretlySelected(null);
+//   } else {
+//     setPolicyHolders((previousValue) => [...previousValue, data]);
+//   }
+//   handleClose();
+// };
 
 const Applicant = styled.div`
   display: flex;

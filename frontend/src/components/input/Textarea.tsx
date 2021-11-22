@@ -42,6 +42,8 @@ const Textarea: React.FC<Props> = ({
         control={control}
         render={({ field }) => (
           <OutlinedInput
+            onChange={field.onChange}
+            value={field.value}
             multiline
             rows={4}
             rowsMax={8}
@@ -49,7 +51,6 @@ const Textarea: React.FC<Props> = ({
             placeholder={placeholder}
             error={error}
             id={name}
-            {...field}
           />
         )}
       />

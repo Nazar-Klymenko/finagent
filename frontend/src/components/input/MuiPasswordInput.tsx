@@ -50,7 +50,8 @@ const MuiPasswordInput: FC<Props> = ({
             type={showPassword ? "text" : "password"}
             error={error}
             autoComplete={autoComplete}
-            {...field}
+            onChange={field.onChange}
+            value={field.value}
             {...other}
             endAdornment={
               <InputAdornment position="end">

@@ -1,10 +1,15 @@
 import React from "react";
+
+import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
+
 import useTitle from "@hooks/useTitle";
+
 import { ContentWrap } from "@components/content";
 import { Header } from "@components/typography";
+
 import { Accordion } from "./Accordion";
-import { useTranslation } from "react-i18next";
+
 const Help = () => {
   useTitle("Help | FinAgent");
   const { t } = useTranslation();

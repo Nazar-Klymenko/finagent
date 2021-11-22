@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import signUpSchema from "./signUp.schema";
+import { useAuth } from "@context/authContext";
 
-import { ContentWrap } from "@components/content";
-import { MuiInput, MuiPhoneInput, MuiPasswordInput } from "@components/input";
-import { CTA } from "@components/buttons";
 import Form from "@components/Form";
+import Loader from "@components/Loader";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiInput, MuiPasswordInput, MuiPhoneInput } from "@components/input";
 import { Header } from "@components/typography";
 
-import Loader from "@components/Loader";
-import { useAuth } from "@context/authContext";
+import signUpSchema from "./signUp.schema";
 
 const SignUp = () => {
   const { t } = useTranslation();

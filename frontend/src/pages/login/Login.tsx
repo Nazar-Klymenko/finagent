@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
 
-import { MuiInput, MuiPasswordInput } from "@components/input";
-import { ContentWrap } from "@components/content";
-import { CTA } from "@components/buttons";
+import { useAuth } from "@context/authContext";
+
 import Form from "@components/Form";
+import Loader from "@components/Loader";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiInput, MuiPasswordInput } from "@components/input";
 import { Header } from "@components/typography";
 
 import loginSchema from "./login.schema";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import { useAuth } from "@context/authContext";
-import Loader from "@components/Loader";
 
 interface Props {
   location: any;

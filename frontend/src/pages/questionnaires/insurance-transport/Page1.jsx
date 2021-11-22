@@ -1,45 +1,44 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
 
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import {
-  professionOptions,
-  maritalStatusOptions,
-} from "./applicationHelpers/insuranceCarOptions";
+import validateAppData from "@helpers/validateAppData";
 
-import {
-  MuiPhoneInput,
-  DateInput,
-  MuiSelect,
-  MuiRadio,
-  MuiCheckbox,
-  MuiInput,
-} from "@components/input";
+import useTitle from "@hooks/useTitle";
 
-import {
-  Page,
-  Title,
-  Subtitle,
-  ButtonsWrap,
-  InputErrorMessage,
-  Legend,
-} from "../LocalStyles";
+import { useData } from "@context/dataContext";
 
-import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import {
+  DateInput,
+  MuiCheckbox,
+  MuiInput,
+  MuiPhoneInput,
+  MuiRadio,
+  MuiSelect,
+} from "@components/input";
 
-import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
+import {
+  ButtonsWrap,
+  InputErrorMessage,
+  Legend,
+  Page,
+  Subtitle,
+  Title,
+} from "../LocalStyles";
 import { pageOneValues } from "./applicationHelpers/defaultValues";
+import {
+  maritalStatusOptions,
+  professionOptions,
+} from "./applicationHelpers/insuranceCarOptions";
 import { pageOneSchema } from "./applicationHelpers/validationSchema";
-
-import { QuestState } from "@dev/QuestState";
 
 const Page1 = () => {
   const { t } = useTranslation();

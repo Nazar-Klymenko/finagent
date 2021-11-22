@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
 
+import { QuestState } from "@dev/QuestState";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
+import validateAppData from "@helpers/validateAppData";
+
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import FormError from "@components/FormError";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
 import { MuiRadio } from "@components/input";
 
 import {
-  Page,
-  Title,
-  Subtitle,
-  ButtonsWrap,
   ApplicantBox,
+  ButtonsWrap,
+  Page,
+  Subtitle,
+  Title,
 } from "../LocalStyles";
-import FormError from "@components/FormError";
-import { ContentWrap } from "@components/content";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
-
-import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-
-import AddApplicant from "./AddApplicant";
 import AddAdditionalIncome from "./AddAdditionalIncome";
-import { QuestState } from "@dev/QuestState";
+import AddApplicant from "./AddApplicant";
 
 const Page1 = () => {
   const { t } = useTranslation();

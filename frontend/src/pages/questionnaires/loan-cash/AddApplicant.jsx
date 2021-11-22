@@ -1,23 +1,25 @@
 import React from "react";
-import { useData } from "@context/dataContext";
-import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { addApplicantSchema } from "./applicationHelpers/loanCashSchema";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { ButtonsWrap } from "../LocalStyles";
+import validateAppData from "@helpers/validateAppData";
+
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
 import {
-  MuiInput,
-  MuiRadio,
   DateInput,
+  MuiInput,
   MuiPhoneInput,
+  MuiRadio,
 } from "@components/input";
 import Modal from "@components/modals/Modal";
 
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import validateAppData from "@helpers/validateAppData";
+import { ButtonsWrap } from "../LocalStyles";
+import { addApplicantSchema } from "./applicationHelpers/loanCashSchema";
 
 const AddApplicant = ({
   openModal,

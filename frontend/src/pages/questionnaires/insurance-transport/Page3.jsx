@@ -1,40 +1,41 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
+
+import { QuestState } from "@dev/QuestState";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { yupResolver } from "@hookform/resolvers/yup";
+import validateAppData from "@helpers/validateAppData";
 
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
 import {
-  Page,
-  Title,
-  Subtitle,
-  ButtonsWrap,
-  Legend,
-  RadioWrap,
-} from "../LocalStyles";
-import {
+  DateInput,
+  MuiCheckbox,
   MuiInput,
   MuiRadio,
   MuiSelect,
-  DateInput,
-  MuiCheckbox,
 } from "@components/input";
-import { ContentWrap } from "@components/content";
 
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
-
-import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { fuelTypeOptions } from "./applicationHelpers/insuranceCarOptions";
-import { pageThreeSchema } from "./applicationHelpers/validationSchema";
+import {
+  ButtonsWrap,
+  Legend,
+  Page,
+  RadioWrap,
+  Subtitle,
+  Title,
+} from "../LocalStyles";
 import { pageThreeValues } from "./applicationHelpers/defaultValues";
+import { fuelTypeOptions } from "./applicationHelpers/insuranceCarOptions";
 import { vehicleTypeOptions } from "./applicationHelpers/insuranceCarOptions";
-
-import { QuestState } from "@dev/QuestState";
+import { pageThreeSchema } from "./applicationHelpers/validationSchema";
 
 const Page3 = () => {
   const { t } = useTranslation();

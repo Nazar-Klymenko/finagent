@@ -1,5 +1,7 @@
 import React from "react";
+
 import styled, { css } from "styled-components/macro";
+
 import { MainButton } from "./ButtonBase";
 
 interface Props {

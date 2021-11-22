@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components/macro";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components/macro";
 
 const LanguageMenu: React.FC = () => {
   const { i18n } = useTranslation();

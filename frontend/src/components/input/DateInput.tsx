@@ -1,18 +1,16 @@
-import React, { useState, useEffect, FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 
-import { Controller, Control } from "react-hook-form";
-
-import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
-import { uk, ru, pl, enGB } from "date-fns/esm/locale";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+import "date-fns";
+import { enGB, pl, ru, uk } from "date-fns/esm/locale";
+import { Control, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { Label, InputErrorMessage } from "./LocalStyles";
-
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   control: Control<any>;

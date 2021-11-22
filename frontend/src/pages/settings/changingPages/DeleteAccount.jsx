@@ -1,24 +1,26 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { dangerZoneSchema } from "../settingsSchema";
-
+import Button from "@material-ui/core/Button";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
-import { MuiPasswordInput } from "@components/input";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import Loader from "@components/Loader";
-import { Header } from "@components/typography";
 import { useDispatch } from "react-redux";
-import { setSnackbar } from "@redux/alert/actions";
 
 import { useAuth } from "@context/authContext";
+
+import { setSnackbar } from "@redux/alert/actions";
+
+import Form from "@components/Form";
+import Loader from "@components/Loader";
 import MuiDialog from "@components/MuiDialog";
-import Button from "@material-ui/core/Button";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { CTA } from "@components/buttons";
+import { MuiPasswordInput } from "@components/input";
+import { Header } from "@components/typography";
+
 import DeletionDialog from "../DeletionDialog";
+import { ButtonPosition, ChangingPage, StatusError } from "../LocalStyles";
+import { dangerZoneSchema } from "../settingsSchema";
 
 const DangerZonePage = () => {
   const { t } = useTranslation();
@@ -32,9 +34,7 @@ const DangerZonePage = () => {
     control,
     handleSubmit,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",

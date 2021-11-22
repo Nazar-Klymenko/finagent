@@ -10832,6 +10832,7 @@ __metadata:
     i18next-http-backend: ^1.2.4
     libphonenumber-js: ^1.9.17
     moment: ^2.29.1
+    prettier: ^2.4.1
     react: ^17.0.2
     react-dom: ^17.0.2
     react-dropzone: ^11.3.2
@@ -17573,6 +17574,15 @@ fsevents@^1.2.7:
   version: 2.0.0
   resolution: "prepend-http@npm:2.0.0"
   checksum: 7694a9525405447662c1ffd352fcb41b6410c705b739b6f4e3a3e21cf5fdede8377890088e8934436b8b17ba55365a615f153960f30877bf0d0392f9e93503ea
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "prettier@npm:2.4.1"
+  bin:
+    prettier: bin-prettier.js
+  checksum: cc6830588b401b0d742862fe9c46bc9118204fb307c3abe0e49e95b35ed23629573807ffdf9cdd65289c252a0bb51fc0171437f6626ee36378dea80f0ee80b91
   languageName: node
   linkType: hard
 

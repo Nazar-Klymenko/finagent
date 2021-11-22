@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
+
+import { QuestState } from "@dev/QuestState";
 import { useTranslation } from "react-i18next";
-
-import { Page, Title, ButtonsWrap } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
-import ProgressBar from "@components/ProgressBar";
-
-import SummaryList from "@components/SummaryList";
-import { CTA } from "@components/buttons";
-
-import { useData } from "@context/dataContext";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import determineType from "@helpers/determineType";
 
 import { postInsuranceOcAPI } from "@api/userAPI";
-import { useDispatch } from "react-redux";
+
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
 import { setSnackbar } from "@redux/alert/actions";
-import { QuestState } from "@dev/QuestState";
+
+import ProgressBar from "@components/ProgressBar";
+import SummaryList from "@components/SummaryList";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+
+import { ButtonsWrap, Page, Title } from "../LocalStyles";
 
 const Summary = () => {
   const { t } = useTranslation();

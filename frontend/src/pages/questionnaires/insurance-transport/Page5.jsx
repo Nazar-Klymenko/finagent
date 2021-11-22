@@ -1,24 +1,27 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-import { useForm } from "react-hook-form";
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
+import validateAppData from "@helpers/validateAppData";
+
+import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { pageFiveSchema } from "./applicationHelpers/validationSchema";
-import { pageFiveValues } from "./applicationHelpers/defaultValues";
-import { MuiCheckbox, FileInput } from "@components/input";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { FileInput, MuiCheckbox } from "@components/input";
 import { Subheader } from "@components/typography";
-import { QuestState } from "@dev/QuestState";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
+import { pageFiveValues } from "./applicationHelpers/defaultValues";
+import { pageFiveSchema } from "./applicationHelpers/validationSchema";
 
 const Page5 = () => {
   const { t } = useTranslation();

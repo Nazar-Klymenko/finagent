@@ -1,11 +1,11 @@
 import { useEffect } from "react";
+
+import { makeStyles } from "@material-ui/core/styles";
+import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
-import { makeStyles } from "@material-ui/core/styles";
 
 import { useNotifications } from "@context/notificationContext";
-
-import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
 
 const useStyles = makeStyles({
   root: {

@@ -1,18 +1,18 @@
 import React from "react";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
+import * as yup from "yup";
 
 import useTitle from "@hooks/useTitle";
 
-import { useForm } from "react-hook-form";
 import Form from "@components/Form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-
-import { MuiInput, Textarea } from "@components/input";
 import { CTA } from "@components/buttons";
-import { Mail, Point, Phone } from "@components/svgs";
 import { ContentWrap } from "@components/content";
+import { MuiInput, Textarea } from "@components/input";
+import { Mail, Phone, Point } from "@components/svgs";
 import { Header } from "@components/typography";
 
 const schema = yup.object().shape({

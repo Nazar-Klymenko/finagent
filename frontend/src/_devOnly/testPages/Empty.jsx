@@ -1,15 +1,14 @@
 import React from "react";
-import styled from "styled-components";
-import { MuiPasswordInput } from "@components/input";
 
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
 import * as yup from "yup";
 
-import { CTA } from "@components/buttons";
-
-import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiPasswordInput } from "@components/input";
 
 const testSchema = yup.object().shape({
   password: yup
@@ -31,9 +30,7 @@ const Empty = () => {
     handleSubmit,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     mode: "onChange",
     reValidateMode: "onChange",

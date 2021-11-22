@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components/macro";
+import React, { useEffect, useState } from "react";
 
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import styled from "styled-components/macro";
 
 const Thumbnails = ({ files, id, type }) => {
   // let url = `${process.env.REACT_APP_API_SERVER_URL}user/application/files/${token}/${id}/${type}`;

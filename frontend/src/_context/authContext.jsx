@@ -1,29 +1,31 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { auth } from "@services/firebase";
-import { setSnackbar } from "@redux/alert/actions";
-import { useDispatch } from "react-redux";
-import { deleteUserAPI } from "@api/userAPI";
-
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  getAdditionalUserInfo,
-  onAuthStateChanged,
-  FacebookAuthProvider,
-  getRedirectResult,
-  signOut,
-  sendEmailVerification,
-  reauthenticateWithCredential,
   EmailAuthProvider,
-  reauthenticateWithRedirect,
-  signInWithRedirect,
+  FacebookAuthProvider,
+  createUserWithEmailAndPassword,
   deleteUser,
+  getAdditionalUserInfo,
+  getRedirectResult,
+  onAuthStateChanged,
+  reauthenticateWithCredential,
+  reauthenticateWithRedirect,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithRedirect,
+  signOut,
   updatePassword,
   updateProfile,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+
+import { auth } from "@services/firebase";
+
+import { deleteUserAPI } from "@api/userAPI";
 import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
+
+import { setSnackbar } from "@redux/alert/actions";
 
 const AuthContext = createContext({
   currentUser: {

@@ -1,11 +1,11 @@
 import React from "react";
+
+import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { useTranslation } from "react-i18next";
 
 import { getApplicationsQuantityAPI } from "@api/applications";
-
-import { useQuery } from "react-query";
 
 const SideNav: React.FC = () => {
   const { t } = useTranslation();

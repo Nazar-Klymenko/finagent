@@ -1,25 +1,25 @@
 import React from "react";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { addApplicantSchema } from "./applicationHelpers/loanMortgageSchema";
-
-import { ButtonsWrap } from "../LocalStyles";
-import {
-  MuiInput,
-  MuiRadio,
-  DateInput,
-  MuiPhoneInput,
-} from "@components/input";
-import { Modal } from "@components/modals";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
 import validateAppData from "@helpers/validateAppData";
 
 import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import {
+  DateInput,
+  MuiInput,
+  MuiPhoneInput,
+  MuiRadio,
+} from "@components/input";
+import { Modal } from "@components/modals";
+
+import { ButtonsWrap } from "../LocalStyles";
+import { addApplicantSchema } from "./applicationHelpers/loanMortgageSchema";
 
 const AddApplicant = ({
   openModal,

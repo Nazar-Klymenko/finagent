@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components/macro";
+import React, { useEffect, useState } from "react";
+
 import { useTranslation } from "react-i18next";
-import { useHistory } from "react-router-dom";
-import { getApplicationsQuantityAPI } from "@api/applications";
 import { useQuery } from "react-query";
+import { useHistory } from "react-router-dom";
+import styled, { css } from "styled-components/macro";
+
+import { getApplicationsQuantityAPI } from "@api/applications";
 
 interface Props {
   category: string;

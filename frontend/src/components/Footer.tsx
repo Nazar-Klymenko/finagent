@@ -1,12 +1,13 @@
 import React from "react";
+
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
-import { useTranslation } from "react-i18next";
+
+import { useAuth } from "@context/authContext";
 
 import LogoWrap from "@components/LogoWrap";
 import { Logo } from "@components/svgs";
-
-import { useAuth } from "@context/authContext";
 
 interface Styled {
   isAuthenticated: boolean;

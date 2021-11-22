@@ -1,10 +1,12 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { useData } from "@context/dataContext";
+
+import { Redirect, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-import Loader from "@components/Loader";
 import { useAuth } from "@context/authContext";
+import { useData } from "@context/dataContext";
+
+import Loader from "@components/Loader";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const { currentUser } = useAuth();

@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from "react";
-
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { settingsSchema } from "../settingsSchema";
-
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import Loader from "@components/Loader";
-import { MuiInput, MuiPhoneInput } from "@components/input";
+import { useDispatch } from "react-redux";
 
 import { getSettingsAPI, updateSettingsAPI } from "@api/userAPI";
-import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
+
 import useFetch from "@hooks/useFetch";
-import { useDispatch } from "react-redux";
-import { setSnackbar } from "@redux/alert/actions";
+
 import { useAuth } from "@context/authContext";
+
+import { setSnackbar } from "@redux/alert/actions";
+
+import Form from "@components/Form";
+import Loader from "@components/Loader";
+import { CTA } from "@components/buttons";
+import { MuiInput, MuiPhoneInput } from "@components/input";
+
+import { ButtonPosition, ChangingPage, StatusError } from "../LocalStyles";
+import { settingsSchema } from "../settingsSchema";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();

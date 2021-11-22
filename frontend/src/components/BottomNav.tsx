@@ -1,19 +1,17 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-
-import styled from "styled-components/macro";
-import { NavLink, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-
-import { useAuth } from "@context/authContext";
-
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import { makeStyles } from "@material-ui/core/styles";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
+import { useTranslation } from "react-i18next";
+import { NavLink, useLocation } from "react-router-dom";
+import styled from "styled-components/macro";
+
+import { useAuth } from "@context/authContext";
 
 const useStyles = makeStyles({
   root: {

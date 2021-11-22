@@ -1,8 +1,10 @@
 import React, { FC } from "react";
+
 import Checkbox from "@material-ui/core/Checkbox";
-import { Controller, Control } from "react-hook-form";
-import { Label, InputErrorMessage } from "./LocalStyles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Control, Controller } from "react-hook-form";
+
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   control: Control<any>;

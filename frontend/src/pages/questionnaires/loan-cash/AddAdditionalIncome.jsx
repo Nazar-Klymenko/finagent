@@ -1,15 +1,20 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+
 import { yupResolver } from "@hookform/resolvers/yup";
-import { addAdditionalIncomeSchema } from "./applicationHelpers/loanCashSchema";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiRadio, DateInput } from "@components/input";
-import { Modal } from "@components/modals";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
+
 import validateAppData from "@helpers/validateAppData";
+
 import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import { DateInput, MuiInput, MuiRadio } from "@components/input";
+import { Modal } from "@components/modals";
+
+import { ButtonsWrap } from "../LocalStyles";
+import { addAdditionalIncomeSchema } from "./applicationHelpers/loanCashSchema";
 
 const AddAdditionalIncome = ({
   openIncomeModal,

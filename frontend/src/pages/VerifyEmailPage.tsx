@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { ContentWrap } from "@components/content";
 import { useAuth } from "@context/authContext";
+
+import { ContentWrap } from "@components/content";
 
 const VerifyEmailPage = () => {
   const { t } = useTranslation();

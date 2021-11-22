@@ -1,39 +1,42 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
 
-import { DevTool } from "@hookform/devtools";
-
-import {
-  Page,
-  Title,
-  Subtitle,
-  ButtonsWrap,
-  ApplicantBox,
-  ApplicantAdd,
-} from "../LocalStyles";
-import {
-  MuiInput,
-  MuiRadio,
-  DateInput,
-  MuiPhoneInput,
-} from "@components/input";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { ContentWrap } from "@components/content";
-import { CTA } from "@components/buttons";
-import ProgressBar from "@components/ProgressBar";
-import { useData } from "@context/dataContext";
 import { QuestState } from "@dev/QuestState";
-import validateAppData from "@helpers/validateAppData";
-import MuiDialog from "@components/MuiDialog";
-import { useForm, useFieldArray } from "react-hook-form";
-
+import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { policyholderSchema } from "./applicationHelpers/insurance-specialist.schema";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import { useFieldArray, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+
+import validateAppData from "@helpers/validateAppData";
+
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
 import Form from "@components/Form";
+import MuiDialog from "@components/MuiDialog";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import {
+  DateInput,
+  MuiInput,
+  MuiPhoneInput,
+  MuiRadio,
+} from "@components/input";
+
+import {
+  ApplicantAdd,
+  ApplicantBox,
+  ButtonsWrap,
+  Page,
+  Subtitle,
+  Title,
+} from "../LocalStyles";
+import { policyholderSchema } from "./applicationHelpers/insurance-specialist.schema";
 
 const Page2 = () => {
   const { t } = useTranslation();

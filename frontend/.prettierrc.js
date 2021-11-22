@@ -1,6 +1,7 @@
 module.exports = {
   importOrder: [
     "^react$",
+    "^styled$",
     "^@utils/(.*)$",
     "<THIRD_PARTY_MODULES>",
     "^@styles/(.*)$",

@@ -1,22 +1,20 @@
 import React from "react";
 
-import { useForm } from "react-hook-form";
-
 import { yupResolver } from "@hookform/resolvers/yup";
-import { addHouseholdSchema } from "./applicationHelpers/loanMortgageSchema";
-
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput } from "@components/input";
-
-import Modal from "@components/modals/Modal";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
 import validateAppData from "@helpers/validateAppData";
 
 import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import { MuiInput } from "@components/input";
+import Modal from "@components/modals/Modal";
+
+import { ButtonsWrap } from "../LocalStyles";
+import { addHouseholdSchema } from "./applicationHelpers/loanMortgageSchema";
 
 const AddHousehold = ({
   openModal,
@@ -39,9 +37,7 @@ const AddHousehold = ({
     handleSubmit,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {},
     mode: "onChange",

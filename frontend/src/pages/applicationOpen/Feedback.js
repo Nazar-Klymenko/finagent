@@ -1,9 +1,10 @@
 import React from "react";
 
-import { Message } from "@components/svgs/Svgs";
-import { useTranslation } from "react-i18next";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
+
+import { Message } from "@components/svgs/Svgs";
 
 const Feedback = ({ defaultTime, messageArray }) => {
   let messagesLength = messageArray.length || 0;

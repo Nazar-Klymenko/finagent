@@ -1,26 +1,26 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-
-import { useForm } from "react-hook-form";
-
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import { pageTwoSchema } from "./applicationHelpers/validationSchema";
-
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiCheckbox, DateInput } from "@components/input";
-import ContentWrap from "@components/content/ContentWrap";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
-
-import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { pageTwoValues } from "./applicationHelpers/defaultValues";
 
 import { QuestState } from "@dev/QuestState";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+
+import validateAppData from "@helpers/validateAppData";
+
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import ContentWrap from "@components/content/ContentWrap";
+import { DateInput, MuiCheckbox, MuiInput } from "@components/input";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
+import { pageTwoValues } from "./applicationHelpers/defaultValues";
+import { pageTwoSchema } from "./applicationHelpers/validationSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -39,9 +39,7 @@ const Page2 = () => {
     handleSubmit,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: pageTwoValues(appDataValid),
     mode: "onChange",

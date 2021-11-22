@@ -1,22 +1,23 @@
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-
-import { useForm } from "react-hook-form";
-
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageThreeSchema } from "./applicationHelpers/insuranceBorderSchema";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiPhoneInput } from "@components/input";
-import { ContentWrap } from "@components/content";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
+import validateAppData from "@helpers/validateAppData";
+
+import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { QuestState } from "@dev/QuestState";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiInput, MuiPhoneInput } from "@components/input";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
+import { pageThreeSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 const Page3 = () => {
   const { t } = useTranslation();
@@ -35,9 +36,7 @@ const Page3 = () => {
     handleSubmit,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       name: appDataValid.name,

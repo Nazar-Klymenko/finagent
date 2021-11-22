@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+import Backdrop from "@material-ui/core/Backdrop";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery } from "react-responsive";
 import styled, { css } from "styled-components/macro";
 
-import { UserAuth } from "@components/buttons";
+import { useAuth } from "@context/authContext";
+
 import LogoWrap from "@components/LogoWrap";
+import { UserAuth } from "@components/buttons";
+import Drawer from "@components/nav/drawer/Drawer";
 import { Logo } from "@components/svgs";
+
 import Hamburger from "./Hamburger";
-import UserDropdown from "./UserDropdown";
-import Notifications from "./Notifications";
 import LanguageMenu from "./LanguageMenu";
 import Links from "./Links";
-import Drawer from "@components/nav/drawer/Drawer";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
-import Backdrop from "@material-ui/core/Backdrop";
-
-import { useMediaQuery } from "react-responsive";
-import { useAuth } from "@context/authContext";
+import Notifications from "./Notifications";
+import UserDropdown from "./UserDropdown";
 
 const Nav = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 992px)" });

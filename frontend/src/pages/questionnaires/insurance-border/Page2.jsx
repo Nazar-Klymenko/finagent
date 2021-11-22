@@ -1,27 +1,27 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-import { useForm } from "react-hook-form";
-
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageTwoSchema } from "./applicationHelpers/insuranceBorderSchema";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { vehicleTypeOptions } from "./applicationHelpers/insuranceBorderOptions";
+import validateAppData from "@helpers/validateAppData";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { MuiSelect, MuiInput } from "@components/input";
-import ContentWrap from "@components/content/ContentWrap";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
+import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { QuestState } from "@dev/QuestState";
 
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import ContentWrap from "@components/content/ContentWrap";
+import { MuiInput, MuiSelect } from "@components/input";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
+import { vehicleTypeOptions } from "./applicationHelpers/insuranceBorderOptions";
 import { seatNumberOptions } from "./applicationHelpers/insuranceBorderOptions";
+import { pageTwoSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -39,9 +39,7 @@ const Page2 = () => {
     handleSubmit,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       vehicleType: appDataValid.vehicleType,

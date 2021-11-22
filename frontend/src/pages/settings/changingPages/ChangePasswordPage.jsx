@@ -1,17 +1,17 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { changePasswordSchema } from "../settingsSchema";
-
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { CTA } from "@components/buttons";
+import { useAuth } from "@context/authContext";
 
 import Form from "@components/Form";
+import { CTA } from "@components/buttons";
 import { MuiPasswordInput } from "@components/input";
-import { ChangingPage, ButtonPosition } from "../LocalStyles";
-import { useAuth } from "@context/authContext";
+
+import { ButtonPosition, ChangingPage } from "../LocalStyles";
+import { changePasswordSchema } from "../settingsSchema";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
@@ -20,9 +20,7 @@ const ChangePasswordPage = () => {
     handleSubmit,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",

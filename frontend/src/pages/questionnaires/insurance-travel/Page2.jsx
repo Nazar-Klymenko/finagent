@@ -1,26 +1,30 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useTranslation } from "react-i18next";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
-import Form from "@components/Form";
-import {
-  MuiInput,
-  MuiRadio,
-  MuiPhoneInput,
-  DateInput,
-} from "@components/input";
-import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { QuestState } from "@dev/QuestState";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+
+import validateAppData from "@helpers/validateAppData";
+
+import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import {
+  DateInput,
+  MuiInput,
+  MuiPhoneInput,
+  MuiRadio,
+} from "@components/input";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageTwoSchema } from "./applicationHelpers/insuranceTravelSchema";
-import { QuestState } from "@dev/QuestState";
 
 const Page2 = () => {
   const { t } = useTranslation();

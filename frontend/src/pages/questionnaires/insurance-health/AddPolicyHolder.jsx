@@ -1,20 +1,20 @@
 import React from "react";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { policyholderSchema } from "./applicationHelpers/insuranceHealthSchema";
-
-import { ButtonsWrap } from "../LocalStyles";
-import { MuiInput, MuiRadio, DateInput } from "@components/input";
-import { Modal } from "@components/modals";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
 import validateAppData from "@helpers/validateAppData";
 
 import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import { DateInput, MuiInput, MuiRadio } from "@components/input";
+import { Modal } from "@components/modals";
+
+import { ButtonsWrap } from "../LocalStyles";
+import { policyholderSchema } from "./applicationHelpers/insuranceHealthSchema";
 
 const AddPolicyHolder = ({
   openModal,

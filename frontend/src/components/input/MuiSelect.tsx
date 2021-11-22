@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import { Controller, Control } from "react-hook-form";
 
 import { Select } from "@material-ui/core/";
 import MenuItem from "@material-ui/core/MenuItem";
+import { Control, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Label, InputErrorMessage } from "./LocalStyles";
+
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   control: Control<any>;

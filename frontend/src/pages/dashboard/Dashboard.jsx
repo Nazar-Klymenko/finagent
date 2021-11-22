@@ -1,14 +1,17 @@
 import React from "react";
-import { Route, useRouteMatch, Redirect } from "react-router-dom";
-import styled from "styled-components/macro";
-import useTitle from "@hooks/useTitle";
+
 import { useTranslation } from "react-i18next";
+import { Redirect, Route, useRouteMatch } from "react-router-dom";
+import styled from "styled-components/macro";
+
+import useTitle from "@hooks/useTitle";
+
 import { ContentWrap } from "@components/content";
 
-import CardOpen from "@pages/applicationOpen";
-
-import SideNav from "./SideNav";
 import ApplicationsTab from "./ApplicationsTab";
+import SideNav from "./SideNav";
+
+import CardOpen from "@pages/applicationOpen";
 
 const Dashboard = () => {
   const { t } = useTranslation();

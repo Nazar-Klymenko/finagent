@@ -1,34 +1,33 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import { DataProvider } from "@context/dataContext";
-import { AuthContextProvider } from "@context/authContext";
-
-import { NotificationProvider } from "@context/notificationContext";
-
-import MuiSnackbar from "@components/MuiSnackbar";
-
-import Loader from "@components/Loader";
-import Nav from "@components/nav";
-import { ContentMain } from "@components/content";
-import BottomNav from "@components/BottomNav";
-import Footer from "@components/Footer";
-
-import Routes from "./routes";
-
+import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core";
-import theme from "@styles/theme";
-import muiTheme from "@styles/muiTheme";
+
 import GlobalStyle from "@styles/GlobalStyle";
+import muiTheme from "@styles/muiTheme";
+import theme from "@styles/theme";
+
+import { ProviderComposer, provider } from "@helpers/combineProviders";
 
 import ScrollToTop from "@hooks/ScrollToTop";
 
-import { ProviderComposer, provider } from "@helpers/combineProviders";
+import { AuthContextProvider } from "@context/authContext";
+import { DataProvider } from "@context/dataContext";
+import { NotificationProvider } from "@context/notificationContext";
+
+import BottomNav from "@components/BottomNav";
+import Footer from "@components/Footer";
+import Loader from "@components/Loader";
 import { LocalizeMoment } from "@components/LocalizeMoment";
+import MuiSnackbar from "@components/MuiSnackbar";
+import { ContentMain } from "@components/content";
+import Nav from "@components/nav";
+
+import Routes from "./routes";
 
 const queryClient = new QueryClient();
 

@@ -1,12 +1,14 @@
 import { FC, useState } from "react";
-import styled from "styled-components";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputAdornment from "@material-ui/core/InputAdornment";
+
 import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { Controller, Control } from "react-hook-form";
-import { Label, InputErrorMessage } from "./LocalStyles";
+import { Control, Controller } from "react-hook-form";
+import styled from "styled-components";
+
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   control: Control<any>;

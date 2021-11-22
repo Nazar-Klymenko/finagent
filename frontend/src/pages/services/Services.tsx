@@ -1,12 +1,4 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
-
-import { ContentWrap } from "@components/content";
-import { Header } from "@components/typography";
-
-import ServiceCard from "./ServiceCard";
 
 import Border from "@assets/images/border.svg";
 import Estate from "@assets/images/estate.svg";
@@ -16,6 +8,15 @@ import Mortgage from "@assets/images/mortgage.svg";
 import SpecialistInsurance from "@assets/images/specialist.svg";
 import Transport from "@assets/images/transport.svg";
 import Travel from "@assets/images/travel_insurance.svg";
+import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+
+import useTitle from "@hooks/useTitle";
+
+import { ContentWrap } from "@components/content";
+import { Header } from "@components/typography";
+
+import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   useTitle("Services | FinAgent");

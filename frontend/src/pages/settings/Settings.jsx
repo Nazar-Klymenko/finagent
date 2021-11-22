@@ -1,16 +1,19 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { NavLink, Redirect } from "react-router-dom";
+
 import { useTranslation } from "react-i18next";
+import { NavLink, Redirect } from "react-router-dom";
 import styled from "styled-components/macro";
+
+import useTitle from "@hooks/useTitle";
+
+import { useAuth } from "@context/authContext";
+
+import { PrivateRoute } from "@components/CustomRoutes/";
+import { ContentWrap } from "@components/content";
 
 import ChangeInfoPage from "./changingPages/ChangeInfoPage";
 import ChangePasswordPage from "./changingPages/ChangePasswordPage";
 import DangerZonePage from "./changingPages/DeleteAccount";
-
-import { PrivateRoute } from "@components/CustomRoutes/";
-import { ContentWrap } from "@components/content";
-import { useAuth } from "@context/authContext";
 
 const Settings = () => {
   const { t } = useTranslation();

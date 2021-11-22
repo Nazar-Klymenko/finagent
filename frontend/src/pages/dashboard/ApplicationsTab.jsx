@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
 
-import PageToggle from "./PageToggle";
-import Card from "@components/Card";
-import Loader from "@components/Loader";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 import { getApplicationsAPI } from "@api/userAPI";
-import MuiPagination from "@components/MuiPagination";
-import { useQuery } from "react-query";
+
+import Card from "@components/Card";
 import ErrorRefetch from "@components/ErrorRefetch";
+import Loader from "@components/Loader";
+import MuiPagination from "@components/MuiPagination";
+
+import PageToggle from "./PageToggle";
 
 const ApplicationsTab = () => {
   const { t } = useTranslation();

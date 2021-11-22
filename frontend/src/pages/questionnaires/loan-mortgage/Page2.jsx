@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
 
-import { useForm } from "react-hook-form";
-
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageTwoSchema } from "./applicationHelpers/loanMortgageSchema";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import {
-  Page,
-  Title,
-  Subtitle,
-  ButtonsWrap,
-  ApplicantBox,
-  ErrorBottom,
-} from "../LocalStyles";
-import { MuiCheckbox, MuiInput, MuiSelect } from "@components/input";
-import { ContentWrap } from "@components/content";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
-
-import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 
-import AddHousehold from "./AddHousehold";
-import { QuestState } from "@dev/QuestState";
+import useTitle from "@hooks/useTitle";
 
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiCheckbox, MuiInput, MuiSelect } from "@components/input";
+
+import {
+  ApplicantBox,
+  ButtonsWrap,
+  ErrorBottom,
+  Page,
+  Subtitle,
+  Title,
+} from "../LocalStyles";
+import AddHousehold from "./AddHousehold";
 import { loanPurposeOptions } from "./applicationHelpers/loanMortgageOptions";
 import { rialtoOptions } from "./applicationHelpers/loanMortgageOptions";
 import { paymentTermOptions } from "./applicationHelpers/loanMortgageOptions";
 import { repaymentOptions } from "./applicationHelpers/loanMortgageOptions";
 import { monthlyPaymentsOptions } from "./applicationHelpers/loanMortgageOptions";
+import { pageTwoSchema } from "./applicationHelpers/loanMortgageSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -62,9 +61,7 @@ const Page2 = () => {
     handleSubmit,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       custody: appDataValid.custody,

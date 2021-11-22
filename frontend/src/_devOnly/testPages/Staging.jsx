@@ -1,11 +1,11 @@
-import { useForm, useFieldArray } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { MuiRadio, DateInput, MuiInput } from "@components/input";
+import { useFieldArray, useForm } from "react-hook-form";
 import { Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
+import Form from "@components/Form";
 import { CTA } from "@components/buttons";
 import { ContentWrap } from "@components/content";
-import Form from "@components/Form";
+import { DateInput, MuiInput, MuiRadio } from "@components/input";
 
 const Staging = () => {
   const { t } = useTranslation();

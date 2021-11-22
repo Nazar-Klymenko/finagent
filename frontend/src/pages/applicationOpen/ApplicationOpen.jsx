@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
 import moment from "moment";
-
 import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-
-import { getSpecificApplication } from "@api/userAPI";
 
 import determineType from "@helpers/determineType";
 
-import SummaryList from "@components/SummaryList";
-import ApplicationStatus from "./Status";
-import Feedback from "./Feedback";
+import { getSpecificApplication } from "@api/userAPI";
 
-import Subheader from "@components/typography/Subheader";
-import { BackArrow } from "@components/buttons";
-
-import Attachments from "./Attachments";
-import Archive from "./Archive";
-
-import { useQuery } from "react-query";
 import ErrorRefetch from "@components/ErrorRefetch";
 import Loader from "@components/Loader";
+import SummaryList from "@components/SummaryList";
+import { BackArrow } from "@components/buttons";
+import Subheader from "@components/typography/Subheader";
+
+import Archive from "./Archive";
+import Attachments from "./Attachments";
+import Feedback from "./Feedback";
+import ApplicationStatus from "./Status";
 
 const CardOpen = () => {
   const { t } = useTranslation();

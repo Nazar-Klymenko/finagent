@@ -1,10 +1,12 @@
 import React from "react";
+
+import Slide, { SlideProps } from "@material-ui/core/Slide";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
-import Slide, { SlideProps } from "@material-ui/core/Slide";
-import { useDispatch, useSelector } from "react-redux";
-import { closeSnackbar } from "@redux/alert/actions";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+
+import { closeSnackbar } from "@redux/alert/actions";
 
 type TransitionProps = Omit<SlideProps, "direction">;
 

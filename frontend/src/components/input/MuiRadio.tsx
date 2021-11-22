@@ -1,11 +1,12 @@
 import React, { FC } from "react";
-import Radio from "@material-ui/core/Radio";
-import { Controller, Control } from "react-hook-form";
 
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import { Label, InputErrorMessage } from "./LocalStyles";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import { Control, Controller } from "react-hook-form";
+
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   control: Control<any>;

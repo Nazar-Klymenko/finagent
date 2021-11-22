@@ -1,26 +1,26 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-import { useForm } from "react-hook-form";
-
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageOneSchema } from "./applicationHelpers/insuranceBorderSchema";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { MuiInput, MuiSelect, MuiRadio } from "@components/input";
+import validateAppData from "@helpers/validateAppData";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiInput, MuiRadio, MuiSelect } from "@components/input";
 
-import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { QuestState } from "@dev/QuestState";
-
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { insurancePeriodOptions } from "./applicationHelpers/insuranceBorderOptions";
+import { pageOneSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 const Page1 = () => {
   const { t } = useTranslation();

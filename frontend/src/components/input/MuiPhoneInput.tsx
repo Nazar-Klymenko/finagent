@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 
-import { Controller, Control } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-
-import { Label, InputErrorMessage, Optional } from "./LocalStyles";
 import PhoneInput from "react-phone-input-2";
-
 import "react-phone-input-2/lib/material.css";
+
+import { InputErrorMessage, Label, Optional } from "./LocalStyles";
 
 interface Props {
   control: Control<any>;

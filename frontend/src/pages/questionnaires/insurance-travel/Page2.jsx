@@ -34,9 +34,7 @@ const Page2 = () => {
     control,
     watch,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "natural",
@@ -98,7 +96,7 @@ const Page2 = () => {
                 value: "entrepreneurial",
               },
             ]}
-            defaultChecked={appDataValid.policyholderIs || "natural"}
+            defaultValue={appDataValid.policyholderIs || "natural"}
           />
           <MuiInput
             control={control}

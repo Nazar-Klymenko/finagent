@@ -130,7 +130,7 @@ const Page1 = () => {
                 value: "married",
               },
             ]}
-            defaultChecked={appDataValid.maritalStatus || "notMarried"}
+            defaultValue={appDataValid.maritalStatus || "notMarried"}
           />
           {maritalStatus === "married" && (
             <>
@@ -148,7 +148,7 @@ const Page1 = () => {
                     value: "yes",
                   },
                 ]}
-                defaultChecked={appDataValid.propertySeparation || "no"}
+                defaultValue={appDataValid.propertySeparation || "no"}
               />
 
               <MuiRadio
@@ -165,7 +165,7 @@ const Page1 = () => {
                     value: "yes",
                   },
                 ]}
-                defaultChecked={appDataValid.bothSpousesStart || "no"}
+                defaultValue={appDataValid.bothSpousesStart || "no"}
               />
             </>
           )}

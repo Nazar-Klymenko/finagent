@@ -39,9 +39,7 @@ const Page1 = () => {
     watch,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       pesel: appDataValid.pesel,
@@ -90,7 +88,7 @@ const Page1 = () => {
                 value: "passportNumber",
               },
             ]}
-            defaultChecked={appDataValid.documentType || "pesel"}
+            defaultValue={appDataValid.documentType || "pesel"}
           />
           {!(documentTypeName === "passportNumber") && (
             <MuiInput
@@ -125,7 +123,7 @@ const Page1 = () => {
                 value: "yes",
               },
             ]}
-            defaultChecked={appDataValid.registeredNotInEU || "no"}
+            defaultValue={appDataValid.registeredNotInEU || "no"}
           />
           <MuiSelect
             control={control}

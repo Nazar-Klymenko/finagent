@@ -30,9 +30,7 @@ const Page1 = () => {
     control,
     watch,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       insuranceType: appDataValid.insuranceType || "individual",
@@ -74,7 +72,7 @@ const Page1 = () => {
             labelName={t("InsuranceTravel.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultDate={appDataValid.insuranceStart}
+            defaultValue={appDataValid.insuranceStart}
             disablePast
           />
           <DateInput
@@ -83,7 +81,7 @@ const Page1 = () => {
             labelName={t("InsuranceTravel.Page1.insuranceEnd")}
             error={!!errors.insuranceEnd}
             helperText={errors?.insuranceEnd?.message}
-            defaultDate={appDataValid.insuranceEnd}
+            defaultValue={appDataValid.insuranceEnd}
             disablePast
           />
           <MuiCheckbox

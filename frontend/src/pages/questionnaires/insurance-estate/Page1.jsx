@@ -38,9 +38,7 @@ const Page1 = () => {
     control,
     watch,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       country: appDataValid.country,
@@ -326,7 +324,7 @@ const Page1 = () => {
             labelName={t("InsuranceEstate.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultDate={appDataValid.insuranceStartDate}
+            defaultValue={appDataValid.insuranceStartDate}
             disablePast
           />
           <Subtitle>{t("InsuranceEstate.Page1.subjectAndSum")}</Subtitle>

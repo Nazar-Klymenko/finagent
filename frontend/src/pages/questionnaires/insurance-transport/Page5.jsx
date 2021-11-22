@@ -37,9 +37,7 @@ const Page5 = () => {
     control,
     watch,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: pageFiveValues(appDataValid),
     mode: "onChange",
@@ -209,7 +207,7 @@ export default Page5;
 // <legend>Are you the first owner?</legend>
 // {/* {idTypes.map((idTypeEach, idx) => (
 //   <Radio
-//     defaultChecked={idx === 0 ? true : false}
+//     defaultValue={idx === 0 ? true : false}
 //     key={idx}
 //     id={idTypeEach}
 //     ref={register}

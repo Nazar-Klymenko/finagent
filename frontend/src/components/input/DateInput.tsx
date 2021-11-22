@@ -20,7 +20,7 @@ interface Props {
   error: boolean;
   labelName: string;
   name: string;
-  defaultDate?: any;
+  defaultValue?: any;
   placeholder: string;
   view?: ["date"] | ["year", "month"] | ["year", "month", "date"] | ["year"];
   format?: "dd/MM/yyyy" | "yyyy";
@@ -37,7 +37,7 @@ const DateInput: FC<Props> = ({
   error,
   labelName,
   name,
-  defaultDate,
+  defaultValue,
   placeholder,
   view = ["date"],
   format = "dd/MM/yyyy",
@@ -73,7 +73,7 @@ const DateInput: FC<Props> = ({
       <Controller
         name={name}
         control={control}
-        defaultValue={defaultDate || null}
+        defaultValue={defaultValue || null}
         render={({ field }) => (
           <KeyboardDatePicker
             okLabel="OK"

@@ -14,6 +14,7 @@ interface Props {
   optionArray: [{ label: string; value: string }];
   helperText: string | undefined;
   placeholder?: string;
+  defaultValue?: string | undefined;
 }
 
 const MuiSelect: FC<Props> = ({
@@ -24,6 +25,7 @@ const MuiSelect: FC<Props> = ({
   helperText = "",
   optionArray,
   placeholder,
+  defaultValue,
 }) => {
   const { t } = useTranslation();
   return (
@@ -33,6 +35,7 @@ const MuiSelect: FC<Props> = ({
       <Controller
         control={control}
         name={name}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <Select
             onChange={field.onChange}

@@ -15,12 +15,14 @@ interface Props {
   helperText: string | undefined;
   labelName: string;
   optional?: boolean;
+  defaultValue?: string | undefined;
 }
 
 const MuiPhoneInput: FC<Props> = ({
   control,
   name,
   error,
+  defaultValue,
   helperText = "",
   labelName,
   optional,
@@ -36,11 +38,13 @@ const MuiPhoneInput: FC<Props> = ({
       <Controller
         name={name}
         control={control}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <PhoneInput
             onChange={field.onChange}
             value={field.value}
             country="pl"
+            // error={error}
             onlyCountries={["pl", "ua", "by", "ru"]}
             specialLabel=""
             priority={{ pl: 0 }}

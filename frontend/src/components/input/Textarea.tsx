@@ -18,6 +18,7 @@ interface Props {
   placeholder?: string;
   optional?: boolean;
   rows: string;
+  defaultValue?: string | undefined;
 }
 
 const Textarea: React.FC<Props> = ({
@@ -28,6 +29,7 @@ const Textarea: React.FC<Props> = ({
   control,
   placeholder,
   optional,
+  defaultValue,
 }) => {
   const { t } = useTranslation();
   return (
@@ -40,6 +42,7 @@ const Textarea: React.FC<Props> = ({
       <Controller
         name={name}
         control={control}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <OutlinedInput
             onChange={field.onChange}

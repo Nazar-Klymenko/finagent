@@ -16,6 +16,7 @@ interface Props {
   errorList?: {};
   labelName: string;
   autoComplete?: string;
+  defaultValue?: string | undefined;
 }
 
 const MuiPasswordInput: FC<Props> = ({
@@ -24,6 +25,7 @@ const MuiPasswordInput: FC<Props> = ({
   error,
   helperText = "",
   errorList,
+  defaultValue,
   labelName,
   autoComplete,
   ...other
@@ -44,6 +46,7 @@ const MuiPasswordInput: FC<Props> = ({
       <Controller
         name={name}
         control={control}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <OutlinedInput
             id={name}

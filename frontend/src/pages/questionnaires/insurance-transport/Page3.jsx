@@ -53,9 +53,7 @@ const Page3 = () => {
     watch,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: pageThreeValues(appDataValid),
     mode: "onChange",
@@ -129,7 +127,7 @@ const Page3 = () => {
             labelName={t("InsuranceTransport.Page3.vehicleRegDate")}
             error={!!errors.vehicleRegDate}
             helperText={errors?.vehicleRegDate?.message}
-            defaultDate={appDataValid.vehicleRegDate}
+            defaultValue={appDataValid.vehicleRegDate}
             placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
@@ -138,7 +136,7 @@ const Page3 = () => {
             labelName={t("InsuranceTransport.Page3.techExamDate")}
             error={!!errors.techExamDate}
             helperText={errors?.techExamDate?.message}
-            defaultDate={appDataValid.techExamDate}
+            defaultValue={appDataValid.techExamDate}
             placeholder={t("Form.Placeholder.dateFull")}
           />
 
@@ -218,7 +216,7 @@ const Page3 = () => {
               labelName={t("InsuranceTransport.Page3.polandRegDate")}
               error={!!errors.polandRegDate}
               helperText={errors?.polandRegDate?.message}
-              defaultDate={appDataValid.polandRegDate}
+              defaultValue={appDataValid.polandRegDate}
               placeholder={t("Form.Placeholder.dateFull")}
             />
           )}

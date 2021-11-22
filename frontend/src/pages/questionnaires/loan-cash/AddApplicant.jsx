@@ -38,9 +38,7 @@ const AddApplicant = ({
     watch,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {},
     mode: "onChange",
@@ -93,7 +91,7 @@ const AddApplicant = ({
                 value: "other",
               },
             ]}
-            defaultChecked={appDataValid.nationality || "polish"}
+            defaultValue={appDataValid.nationality || "polish"}
           />
           {nationality === "other" && (
             <>
@@ -126,9 +124,7 @@ const AddApplicant = ({
                     value: "blueCard",
                   },
                 ]}
-                defaultChecked={
-                  appDataValid.residenceDocument || "temporaryCard"
-                }
+                defaultValue={appDataValid.residenceDocument || "temporaryCard"}
               />
               <DateInput
                 control={control}
@@ -136,7 +132,7 @@ const AddApplicant = ({
                 labelName={t("LoanCash.ApplicantModal.validFrom")}
                 error={!!errors.validFrom}
                 helperText={errors?.validFrom?.message}
-                defaultDate={appDataValid.validFrom}
+                defaultValue={appDataValid.validFrom}
               />
               {!(residenceDocument === "permanentCard") && (
                 <DateInput
@@ -145,7 +141,7 @@ const AddApplicant = ({
                   labelName={t("LoanCash.ApplicantModal.validUntil")}
                   error={!!errors.validUntil}
                   helperText={errors?.validUntil?.message}
-                  defaultDate={appDataValid.validUntil}
+                  defaultValue={appDataValid.validUntil}
                   disablePast
                 />
               )}
@@ -179,7 +175,7 @@ const AddApplicant = ({
             labelName={t("LoanCash.ApplicantModal.birthDate")}
             error={!!errors.birthDate}
             helperText={errors?.birthDate?.message}
-            defaultDate={appDataValid.birthDate}
+            defaultValue={appDataValid.birthDate}
           />
           <MuiPhoneInput
             control={control}
@@ -238,7 +234,7 @@ const AddApplicant = ({
                 value: "economicActivity",
               },
             ]}
-            defaultChecked={appDataValid.basicIncome || "indefinitePeriod"}
+            defaultValue={appDataValid.basicIncome || "indefinitePeriod"}
           />
           {(basicIncome === "specificTime" ||
             basicIncome === "mandate" ||
@@ -258,7 +254,7 @@ const AddApplicant = ({
                     value: "no",
                   },
                 ]}
-                defaultChecked={appDataValid.firstContract || "yes"}
+                defaultValue={appDataValid.firstContract || "yes"}
               />
               {firstContract === "no" && (
                 <>
@@ -276,7 +272,7 @@ const AddApplicant = ({
                         value: "no",
                       },
                     ]}
-                    defaultChecked={appDataValid.sameEmployer || "yes"}
+                    defaultValue={appDataValid.sameEmployer || "yes"}
                   />
 
                   <MuiRadio
@@ -293,7 +289,7 @@ const AddApplicant = ({
                         value: "no",
                       },
                     ]}
-                    defaultChecked={appDataValid.withoutPause || "yes"}
+                    defaultValue={appDataValid.withoutPause || "yes"}
                   />
                 </>
               )}
@@ -303,7 +299,7 @@ const AddApplicant = ({
                 labelName={t("LoanCash.ApplicantModal.contractFrom")}
                 error={!!errors.contractFrom}
                 helperText={errors?.contractFrom?.message}
-                defaultDate={appDataValid.contractFrom}
+                defaultValue={appDataValid.contractFrom}
               />
               <DateInput
                 control={control}
@@ -311,7 +307,7 @@ const AddApplicant = ({
                 labelName={t("LoanCash.ApplicantModal.contractUntil")}
                 error={!!errors.contractUntil}
                 helperText={errors?.contractUntil?.message}
-                defaultDate={appDataValid.contractUntil}
+                defaultValue={appDataValid.contractUntil}
                 disablePast
               />
             </>
@@ -364,7 +360,7 @@ const AddApplicant = ({
                     value: "fullAccounting",
                   },
                 ]}
-                defaultChecked={appDataValid.accountancy || "generalRules"}
+                defaultValue={appDataValid.accountancy || "generalRules"}
               />
               <MuiInput
                 control={control}

@@ -8,7 +8,7 @@ interface Props {
   control: Control<any>;
   name: string;
   labelName: string;
-  defaultChecked: boolean;
+  defaultValue: boolean | undefined;
   error: boolean;
   spacer?: boolean;
   readOnly: boolean;
@@ -18,7 +18,7 @@ interface Props {
 const MuiCheckbox: FC<Props> = ({
   name,
   labelName,
-  defaultChecked,
+  defaultValue,
   readOnly,
   spacer,
   control,
@@ -30,6 +30,7 @@ const MuiCheckbox: FC<Props> = ({
           <Controller
             name={name}
             control={control}
+            defaultValue={defaultValue}
             render={({ field }) => (
               <Checkbox
                 {...field}

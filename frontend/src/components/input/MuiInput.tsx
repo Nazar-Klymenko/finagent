@@ -15,6 +15,7 @@ interface Props {
   optional?: boolean;
   autoFocus?: boolean;
   autoComplete?: string;
+  defaultValue?: string | undefined;
 }
 
 const MuiInput: FC<Props> = ({
@@ -25,6 +26,7 @@ const MuiInput: FC<Props> = ({
   autoComplete,
   control,
   optional,
+  defaultValue,
   ...other
 }) => {
   const { t } = useTranslation();
@@ -39,6 +41,7 @@ const MuiInput: FC<Props> = ({
       <Controller
         name={name}
         control={control}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <OutlinedInput
             onChange={field.onChange}

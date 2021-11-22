@@ -10,14 +10,14 @@ import { Label, InputErrorMessage } from "./LocalStyles";
 interface Props {
   control: Control<any>;
   name: string;
-  defaultChecked?: boolean;
+  defaultValue?: boolean | undefined;
   legend: string;
   options: { label: string; value: string }[];
 }
 
 const MuiRadio: FC<Props> = ({
   name,
-  defaultChecked,
+  defaultValue,
   options,
   legend,
   control,
@@ -29,7 +29,7 @@ const MuiRadio: FC<Props> = ({
       <Controller
         control={control}
         name={name}
-        defaultValue={defaultChecked}
+        defaultValue={defaultValue}
         render={({ field }) => (
           <RadioGroup
             name={name}

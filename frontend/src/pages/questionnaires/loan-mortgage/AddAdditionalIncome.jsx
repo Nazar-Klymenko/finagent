@@ -37,9 +37,7 @@ const AddAdditionalIncome = ({
     watch,
     control,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {},
     mode: "onChange",
@@ -86,7 +84,7 @@ const AddAdditionalIncome = ({
                 value: "no",
               },
             ]}
-            defaultChecked={appDataValid.truckDriver || "yes"}
+            defaultValue={appDataValid.truckDriver || "yes"}
           />
           {truckDriver === "no" && (
             <MuiInput
@@ -127,7 +125,7 @@ const AddAdditionalIncome = ({
                 value: "economicActivity",
               },
             ]}
-            defaultChecked={appDataValid.basicIncome || "indefinitePeriod"}
+            defaultValue={appDataValid.basicIncome || "indefinitePeriod"}
           />
 
           {(basicIncome === "specificTime" ||
@@ -148,7 +146,7 @@ const AddAdditionalIncome = ({
                     value: "no",
                   },
                 ]}
-                defaultChecked={appDataValid.firstContract || "yes"}
+                defaultValue={appDataValid.firstContract || "yes"}
               />
               {firstContract === "no" && (
                 <>
@@ -166,7 +164,7 @@ const AddAdditionalIncome = ({
                         value: "no",
                       },
                     ]}
-                    defaultChecked={appDataValid.sameEmployer || "yes"}
+                    defaultValue={appDataValid.sameEmployer || "yes"}
                   />
 
                   <MuiRadio
@@ -183,7 +181,7 @@ const AddAdditionalIncome = ({
                         value: "no",
                       },
                     ]}
-                    defaultChecked={appDataValid.withoutPause || "yes"}
+                    defaultValue={appDataValid.withoutPause || "yes"}
                   />
                 </>
               )}
@@ -193,7 +191,7 @@ const AddAdditionalIncome = ({
                 labelName={t("LoanMortgage.IncomeModal.contractFrom")}
                 error={!!errors.contractFrom}
                 helperText={errors?.contractFrom?.message}
-                defaultDate={appDataValid.contractFrom}
+                defaultValue={appDataValid.contractFrom}
               />
               <DateInput
                 control={control}
@@ -201,7 +199,7 @@ const AddAdditionalIncome = ({
                 labelName={t("LoanMortgage.IncomeModal.contractUntil")}
                 error={!!errors.contractUntil}
                 helperText={errors?.contractUntil?.message}
-                defaultDate={appDataValid.contractUntil}
+                defaultValue={appDataValid.contractUntil}
                 disablePast
               />
             </>
@@ -254,7 +252,7 @@ const AddAdditionalIncome = ({
                     value: "fullAccounting",
                   },
                 ]}
-                defaultChecked={appDataValid.accountancy || "generalRules"}
+                defaultValue={appDataValid.accountancy || "generalRules"}
               />
               <MuiInput
                 control={control}

@@ -23,6 +23,7 @@ import { CTA } from "@components/buttons";
 import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 import { QuestState } from "@dev/QuestState";
+import { DevTool } from "@hookform/devtools";
 
 type FormTypes = {
   insuranceStart: Date;
@@ -264,6 +265,7 @@ const Page1 = () => {
         <ButtonsWrap>
           <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
+        <DevTool control={control} placement="bottom-right" />
       </Page>
     </ContentWrap>
   );

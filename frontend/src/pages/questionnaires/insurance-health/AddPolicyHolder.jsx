@@ -38,9 +38,7 @@ const AddPolicyHolder = ({
     control,
     watch,
 
-    formState: {
-      errors,
-    },
+    formState: { errors },
   } = useForm({
     defaultValues: {},
     mode: "onChange",
@@ -93,7 +91,7 @@ const AddPolicyHolder = ({
                 value: "foreigner",
               },
             ]}
-            defaultChecked={appDataValid.policyholderIs || "polish"}
+            defaultValue={appDataValid.policyholderIs || "polish"}
           />
           {documentType === "foreigner" && (
             <MuiInput
@@ -149,7 +147,7 @@ const AddPolicyHolder = ({
             labelName={t("InsuranceHealth.Page2.birthDate")}
             error={!!errors.birthDate}
             helperText={errors?.birthDate?.message}
-            defaultDate={appDataValid.birthDate}
+            defaultValue={appDataValid.birthDate}
           />
           <MuiInput
             control={control}

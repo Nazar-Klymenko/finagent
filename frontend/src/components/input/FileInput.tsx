@@ -21,6 +21,7 @@ interface Props {
   error: boolean;
   showFiles?: boolean;
   helperText: string | undefined;
+  defaultValue: any;
 }
 
 const FileInput: FC<Props> = ({
@@ -29,6 +30,7 @@ const FileInput: FC<Props> = ({
   labelName,
   showFiles,
   error,
+  defaultValue,
   helperText = "",
 }) => {
   const styles = useStyles();
@@ -37,7 +39,7 @@ const FileInput: FC<Props> = ({
     <Controller
       control={control}
       name={name}
-      defaultValue={[]}
+      defaultValue={defaultValue}
       render={({ field }) => (
         <>
           <Label>{labelName}</Label>

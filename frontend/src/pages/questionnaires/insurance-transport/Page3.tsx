@@ -162,11 +162,9 @@ const Page3 = () => {
           />
 
           {vehicleType !== "motorcycle" && (
-            <>
-              <Legend>{t("InsuranceTransport.Page3.steeringWheel")}</Legend>
-              <RadioWrap>
                 <MuiRadio
                   control={control}
+                  legend={t("InsuranceTransport.Page3.steeringWheel")}
                   name="steeringWheel"
                   options={[
                     {
@@ -179,15 +177,16 @@ const Page3 = () => {
                     },
                   ]}
                 />
-              </RadioWrap>
-            </>
           )}
 
-          <Legend>{t("InsuranceTransport.Page3.transmissionType")}</Legend>
-          <RadioWrap>
+
+
+
+
             <MuiRadio
               control={control}
               name="transmissionType"
+              legend={t("InsuranceTransport.Page3.transmissionType")}
               options={[
                 {
                   label: t("InsuranceTransport.Page3.mechanical"),
@@ -199,7 +198,6 @@ const Page3 = () => {
                 },
               ]}
             />
-          </RadioWrap>
           <MuiCheckbox
             control={control}
             labelName={t("InsuranceTransport.Page3.gasInstalation")}

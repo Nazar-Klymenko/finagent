@@ -10,11 +10,9 @@ interface Props {
   control: Control<any>;
   name: string;
   labelName: string;
-  defaultValue: boolean | undefined;
-  error: boolean;
+  defaultValue?: boolean | undefined;
   spacer?: boolean;
-  readOnly: boolean;
-  helperText: string | undefined;
+  readOnly?: boolean;
 }
 
 const MuiCheckbox: FC<Props> = ({

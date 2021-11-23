@@ -118,7 +118,7 @@ const Page2 = () => {
             format="yyyy"
           />
 
-          <MuiCheckbox
+          <MuiCheckbox 
             control={control}
             labelName={t("InsuranceTransport.Page2.registeredPoland")}
             name="registeredPoland"

@@ -21,7 +21,7 @@ interface Props {
   error: boolean;
   showFiles?: boolean;
   helperText: string | undefined;
-  defaultValue: any;
+  defaultValue?: any;
 }
 
 const FileInput: FC<Props> = ({

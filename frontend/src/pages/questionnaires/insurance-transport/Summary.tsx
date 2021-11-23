@@ -38,23 +38,23 @@ const Summary = () => {
       const formData = new FormData();
 
       appData.insuranceTransport.AppendedImages.filesTechPassport.forEach(
-        (file) => {
+        (file: File) => {
           formData.append("files", file, file.name);
         }
       );
       appData.insuranceTransport.AppendedImages.filesPassport.forEach(
-        (file) => {
+        (file: File) => {
           formData.append("files", file, file.name);
         }
       );
       appData.insuranceTransport.AppendedImages.filesInsurance.forEach(
-        (file) => {
+        (file: File) => {
           formData.append("files", file, file.name);
         }
       );
       if (appData?.insuranceTransport.AppendedImages?.filesCarSale) {
         appData.insuranceTransport.AppendedImages.filesCarSale.forEach(
-          (file) => {
+          (file: File) => {
             formData.append("files", file, file.name);
           }
         );

@@ -48,7 +48,6 @@ const Page2 = () => {
   const {
     handleSubmit,
     control,
-
     formState: { errors },
   } = useForm<FormTypes>({
     defaultValues: pageTwoValues(appDataValid),

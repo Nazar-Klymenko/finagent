@@ -7,7 +7,7 @@ import { ArrowDown } from "@components/svgs";
 
 interface Props {
   header: string;
-  array: [];
+  array: any[] | undefined;
   inDashboard?: boolean;
   defaultOpen?: boolean;
 }

@@ -20,8 +20,8 @@ import { FileInput, MuiCheckbox } from "@components/input";
 import { Subheader } from "@components/typography";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageFiveValues } from "./applicationHelpers/defaultValues";
-import { pageFiveSchema } from "./applicationHelpers/validationSchema";
+import { pageFiveValues } from "./applicationHelpers/default-values";
+import { pageFiveSchema } from "./applicationHelpers/validation.schema";
 
 const Page5 = () => {
   const { t } = useTranslation();

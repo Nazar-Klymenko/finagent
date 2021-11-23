@@ -19,8 +19,8 @@ import ContentWrap from "@components/content/ContentWrap";
 import { DateInput, MuiCheckbox, MuiInput } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageTwoValues } from "./applicationHelpers/defaultValues";
-import { pageTwoSchema } from "./applicationHelpers/validationSchema";
+import { pageTwoValues } from "./applicationHelpers/default-values";
+import { pageTwoSchema } from "./applicationHelpers/validation.schema";
 
 const Page2 = () => {
   const { t } = useTranslation();

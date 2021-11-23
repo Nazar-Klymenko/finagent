@@ -19,13 +19,13 @@ import { ContentWrap } from "@components/content";
 import { MuiSelect, SelectInput } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageFourValues } from "./applicationHelpers/defaultValues";
-import { securityOptions } from "./applicationHelpers/insuranceCarOptions";
-import { parkingPlaceOptions } from "./applicationHelpers/insuranceCarOptions";
-import { usePurposeOptions } from "./applicationHelpers/insuranceCarOptions";
-import { useAbroadOptions } from "./applicationHelpers/insuranceCarOptions";
-import { predictMileageOptions } from "./applicationHelpers/insuranceCarOptions";
-import { pageFourSchema } from "./applicationHelpers/validationSchema";
+import { pageFourValues } from "./applicationHelpers/default-values";
+import { securityOptions } from "./applicationHelpers/options";
+import { parkingPlaceOptions } from "./applicationHelpers/options";
+import { usePurposeOptions } from "./applicationHelpers/options";
+import { useAbroadOptions } from "./applicationHelpers/options";
+import { predictMileageOptions } from "./applicationHelpers/options";
+import { pageFourSchema } from "./applicationHelpers/validation.schema";
 
 const Page4 = () => {
   const { t } = useTranslation();

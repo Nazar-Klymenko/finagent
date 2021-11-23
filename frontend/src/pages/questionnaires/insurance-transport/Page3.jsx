@@ -32,10 +32,10 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
-import { pageThreeValues } from "./applicationHelpers/defaultValues";
-import { fuelTypeOptions } from "./applicationHelpers/insuranceCarOptions";
-import { vehicleTypeOptions } from "./applicationHelpers/insuranceCarOptions";
-import { pageThreeSchema } from "./applicationHelpers/validationSchema";
+import { pageThreeValues } from "./applicationHelpers/default-values";
+import { fuelTypeOptions } from "./applicationHelpers/options";
+import { vehicleTypeOptions } from "./applicationHelpers/options";
+import { pageThreeSchema } from "./applicationHelpers/validation.schema";
 
 const Page3 = () => {
   const { t } = useTranslation();

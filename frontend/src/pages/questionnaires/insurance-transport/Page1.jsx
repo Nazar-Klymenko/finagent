@@ -33,12 +33,12 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
-import { pageOneValues } from "./applicationHelpers/defaultValues";
+import { pageOneValues } from "./applicationHelpers/default-values";
 import {
   maritalStatusOptions,
   professionOptions,
-} from "./applicationHelpers/insuranceCarOptions";
-import { pageOneSchema } from "./applicationHelpers/validationSchema";
+} from "./applicationHelpers/options";
+import { pageOneSchema } from "./applicationHelpers/validation.schema";
 
 const Page1 = () => {
   const { t } = useTranslation();

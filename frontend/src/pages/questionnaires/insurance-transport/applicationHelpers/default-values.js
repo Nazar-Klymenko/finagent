@@ -44,18 +44,13 @@ export const pageThreeValues = (appDataValid) => ({
   polandRegDate: appDataValid.polandRegDate,
 });
 export const pageFourValues = (appDataValid) => ({
-  enginePower: appDataValid.enginePower,
-  engineVolume: appDataValid.engineVolume,
-  fuelType: appDataValid.fuelType,
-  originCountry: appDataValid.originCountry,
-  purchaseYear: appDataValid.purchaseYear,
-  kilometrage: appDataValid.kilometrage,
-  steeringWheel: appDataValid.steeringWheel,
-  gas: appDataValid.gas,
-  transmissionType: appDataValid.transmissionType,
-  abroadImport: appDataValid.abroadImport,
-  polandRegDate: appDataValid.polandRegDate,
+  predictMileage: appDataValid.enginePower,
+  useAbroad: appDataValid.engineVolume,
+  usePurpose: appDataValid.fuelType,
+  parkingPlace: appDataValid.originCountry,
+  security: appDataValid.purchaseYear,
 });
+
 export const pageFiveValues = (appDataValid) => ({
   filesTechPassport: appDataValid.filesTechPassport,
   filesPassport: appDataValid.filesPassport,

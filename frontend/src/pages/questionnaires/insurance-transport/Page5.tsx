@@ -23,6 +23,13 @@ import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageFiveValues } from "./applicationHelpers/default-values";
 import { pageFiveSchema } from "./applicationHelpers/validation.schema";
 
+type FormTypes = {
+  filesTechPassport: [];
+  filesPassport: [];
+  filesCarSale: [];
+  filesInsurance: [];
+};
+
 const Page5 = () => {
   const { t } = useTranslation();
   const { appData, setValues, setAllowSummary } = useData();
@@ -39,7 +46,6 @@ const Page5 = () => {
     handleSubmit,
     control,
     watch,
-
     formState: { errors },
   } = useForm({
     defaultValues: pageFiveValues(appDataValid),
@@ -49,7 +55,7 @@ const Page5 = () => {
     resolver: yupResolver(pageFiveSchema),
   });
 
-  const formSubmit = async (data) => {
+  const formSubmit = handleSubmit((data) => {
     try {
       setAllowSummary(true);
       setValues(data, "insuranceTransport", "appendedImages");
@@ -57,7 +63,7 @@ const Page5 = () => {
     } catch (error) {
       alert("couldn't add images");
     }
-  };
+  });
 
   const firstOwner = watch("isFirstOwner");
 
@@ -74,7 +80,7 @@ const Page5 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page5.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <Subheader
             subheader={t("InsuranceTransport.Page5.registration")}
             description={t("InsuranceTransport.Page5.twoSides")}

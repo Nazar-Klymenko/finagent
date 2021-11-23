@@ -21,7 +21,7 @@ export const Subtitle = styled.div`
   margin: 1rem 0;
 `;
 
-export const ButtonsWrap = styled.div`
+export const ButtonsWrap = styled.div<{ multiple?: boolean }>`
   padding: 16px 0px;
   display: flex;
   justify-content: ${({ multiple }) =>

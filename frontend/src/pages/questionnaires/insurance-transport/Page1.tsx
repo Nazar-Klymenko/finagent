@@ -40,6 +40,28 @@ import {
 } from "./applicationHelpers/options";
 import { pageOneSchema } from "./applicationHelpers/validation.schema";
 
+type FormTypes = {
+  oc: boolean;
+  ac: boolean;
+  greenCard: boolean;
+  assistance: boolean;
+  name: string;
+  surname: string;
+  phoneNumber: string;
+  postIndex: string;
+  city: string;
+  voivodeship: string;
+  street: string;
+  houseNumber: string;
+  documentAddedType: string;
+  documentAdded: string;
+  isAppropLicence: boolean;
+  drivingLicenceDate: Date;
+  profession: string;
+  maritalStatus: string;
+  atleastOneCheckbox: any;
+};
+
 const Page1 = () => {
   const { t } = useTranslation();
   useTitle("Transport insurance | FinAgent");
@@ -57,7 +79,7 @@ const Page1 = () => {
     watch,
     control,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormTypes>({
     defaultValues: pageOneValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
@@ -68,12 +90,11 @@ const Page1 = () => {
   const isAppropLicence = watch("isAppropLicence");
   const documentTypeName = watch("documentAddedType");
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceTransport", "personalData");
     setCurrentPage(2);
     history.push("./2");
-  };
-
+  });
   return (
     <ContentWrap fullWidth>
       <QuestState data={appData} />
@@ -86,7 +107,7 @@ const Page1 = () => {
         />
         <Subtitle>{t("InsuranceTransport.Page1.subtitle")}</Subtitle>
 
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <Legend>{t("InsuranceTransport.Page1.insuranceCoverage")}</Legend>
 
           <MuiCheckbox

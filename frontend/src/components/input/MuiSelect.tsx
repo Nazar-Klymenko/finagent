@@ -12,7 +12,7 @@ interface Props {
   name: string;
   labelName: string;
   error: boolean;
-  optionArray: [{ label: string; value: string }];
+  optionArray: { label: string; value: string }[];
   helperText: string | undefined;
   placeholder?: string;
   defaultValue?: string | undefined;

@@ -22,6 +22,16 @@ import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageTwoValues } from "./applicationHelpers/default-values";
 import { pageTwoSchema } from "./applicationHelpers/validation.schema";
 
+type FormTypes = {
+  registeredPoland: boolean;
+  brand: string;
+  model: string;
+  version: string;
+  regNumber: string;
+  vinNumber: string;
+  yearManufacture: Date;
+};
+
 const Page2 = () => {
   const { t } = useTranslation();
   const history = useHistory();
@@ -40,7 +50,7 @@ const Page2 = () => {
     control,
 
     formState: { errors },
-  } = useForm({
+  } = useForm<FormTypes>({
     defaultValues: pageTwoValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -48,11 +58,11 @@ const Page2 = () => {
     resolver: yupResolver(pageTwoSchema),
   });
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "transportData");
     setCurrentPage(3);
     history.push("./3");
-  };
+  });
 
   return (
     <ContentWrap fullWidth>
@@ -66,7 +76,7 @@ const Page2 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page2.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <MuiInput
             control={control}
             name="brand"
@@ -118,7 +128,7 @@ const Page2 = () => {
             format="yyyy"
           />
 
-          <MuiCheckbox 
+          <MuiCheckbox
             control={control}
             labelName={t("InsuranceTransport.Page2.registeredPoland")}
             name="registeredPoland"

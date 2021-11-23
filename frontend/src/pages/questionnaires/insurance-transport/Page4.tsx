@@ -16,7 +16,7 @@ import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 import { ContentWrap } from "@components/content";
-import { MuiSelect, SelectInput } from "@components/input";
+import { MuiSelect } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageFourValues } from "./applicationHelpers/default-values";
@@ -26,6 +26,14 @@ import { usePurposeOptions } from "./applicationHelpers/options";
 import { useAbroadOptions } from "./applicationHelpers/options";
 import { predictMileageOptions } from "./applicationHelpers/options";
 import { pageFourSchema } from "./applicationHelpers/validation.schema";
+
+type FormTypes = {
+  predictMileage: string;
+  useAbroad: string;
+  usePurpose: string;
+  parkingPlace: string;
+  security: string;
+};
 
 const Page4 = () => {
   const { t } = useTranslation();
@@ -42,9 +50,8 @@ const Page4 = () => {
   const {
     handleSubmit,
     control,
-
     formState: { errors },
-  } = useForm({
+  } = useForm<FormTypes>({
     defaultValues: pageFourValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -52,11 +59,11 @@ const Page4 = () => {
     resolver: yupResolver(pageFourSchema),
   });
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceTransport", "additionalData");
     setCurrentPage(5);
     history.push("./5");
-  };
+  });
 
   return (
     <ContentWrap fullWidth>
@@ -72,7 +79,7 @@ const Page4 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page4.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <MuiSelect
             control={control}
             name="predictMileage"

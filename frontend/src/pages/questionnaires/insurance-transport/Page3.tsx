@@ -37,6 +37,19 @@ import { fuelTypeOptions } from "./applicationHelpers/options";
 import { vehicleTypeOptions } from "./applicationHelpers/options";
 import { pageThreeSchema } from "./applicationHelpers/validation.schema";
 
+type FormTypes = {
+  vehicleType: string;
+  enginePower: string;
+  engineVolume: string;
+  fuelType: string;
+  abroadImport: boolean;
+  purchaseYear: Date;
+  kilometrage: string;
+  techExamDate: Date;
+  vehicleRegDate: Date;
+  polandRegDate: Date;
+};
+
 const Page3 = () => {
   const { t } = useTranslation();
   useTitle("Transport insurance | FinAgent");
@@ -55,7 +68,7 @@ const Page3 = () => {
     control,
 
     formState: { errors },
-  } = useForm({
+  } = useForm<FormTypes>({
     defaultValues: pageThreeValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -63,11 +76,11 @@ const Page3 = () => {
     resolver: yupResolver(pageThreeSchema),
   });
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceTransport", "specificData");
     setCurrentPage(4);
     history.push("./4");
-  };
+  });
 
   const abroadImport = watch("abroadImport");
   const vehicleType = watch("vehicleType");
@@ -84,7 +97,7 @@ const Page3 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page3.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <MuiSelect
             control={control}
             name="vehicleType"
@@ -162,42 +175,38 @@ const Page3 = () => {
           />
 
           {vehicleType !== "motorcycle" && (
-                <MuiRadio
-                  control={control}
-                  legend={t("InsuranceTransport.Page3.steeringWheel")}
-                  name="steeringWheel"
-                  options={[
-                    {
-                      label: t("InsuranceTransport.Page3.left"),
-                      value: "left",
-                    },
-                    {
-                      label: t("InsuranceTransport.Page3.right"),
-                      value: "right",
-                    },
-                  ]}
-                />
-          )}
-
-
-
-
-
             <MuiRadio
               control={control}
-              name="transmissionType"
-              legend={t("InsuranceTransport.Page3.transmissionType")}
+              legend={t("InsuranceTransport.Page3.steeringWheel")}
+              name="steeringWheel"
               options={[
                 {
-                  label: t("InsuranceTransport.Page3.mechanical"),
-                  value: "mechanical",
+                  label: t("InsuranceTransport.Page3.left"),
+                  value: "left",
                 },
                 {
-                  label: t("InsuranceTransport.Page3.automatic"),
-                  value: "automatic",
+                  label: t("InsuranceTransport.Page3.right"),
+                  value: "right",
                 },
               ]}
             />
+          )}
+
+          <MuiRadio
+            control={control}
+            name="transmissionType"
+            legend={t("InsuranceTransport.Page3.transmissionType")}
+            options={[
+              {
+                label: t("InsuranceTransport.Page3.mechanical"),
+                value: "mechanical",
+              },
+              {
+                label: t("InsuranceTransport.Page3.automatic"),
+                value: "automatic",
+              },
+            ]}
+          />
           <MuiCheckbox
             control={control}
             labelName={t("InsuranceTransport.Page3.gasInstalation")}

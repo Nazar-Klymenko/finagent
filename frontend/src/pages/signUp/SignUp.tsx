@@ -17,6 +17,15 @@ import { Header } from "@components/typography";
 
 import signUpSchema from "./signUp.schema";
 
+type FormTypes = {
+  fullName: string;
+  email: string;
+  phone: string;
+  password: string;
+  language: string;
+  terms: boolean;
+};
+
 const SignUp = () => {
   const { t } = useTranslation();
   const history = useHistory();
@@ -43,17 +52,17 @@ const SignUp = () => {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormTypes>({
     defaultValues: { terms: false },
     mode: "onChange",
     resolver: yupResolver(signUpSchema),
     shouldFocusError: true,
   });
 
-  const formSubmit = async (data) => {
+  const formSubmit = handleSubmit((data) => {
     data.language = interfaceLanguage;
     signup(data);
-  };
+  });
 
   useEffect(() => {
     if (isLoggedIn && isActive) {
@@ -72,7 +81,7 @@ const SignUp = () => {
       <Header align="center" bottomGutter variant="h1">
         {t("SignUp.title")}
       </Header>
-      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+      <Form id="form" onSubmit={formSubmit}>
         <MuiInput
           control={control}
           name="fullName"
@@ -99,14 +108,13 @@ const SignUp = () => {
           error={!!errors.phone}
           helperText={errors?.phone?.message}
           optional
-          autoComplete="tel"
         />
         <MuiPasswordInput
           control={control}
           name="password"
           labelName={t("SignUp.Individual.password")}
           error={!!errors.password}
-          helperText={t(errors?.password?.message)}
+          helperText={errors?.password?.message}
           autoComplete="new-password"
         />
       </Form>

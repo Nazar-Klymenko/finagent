@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
 
+import { useTranslation } from "react-i18next";
+
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -22,6 +24,7 @@ interface Props {
 }
 
 const MuiPasswordInput: FC<Props> = ({
+  
   control,
   name,
   error,
@@ -32,6 +35,8 @@ const MuiPasswordInput: FC<Props> = ({
   autoComplete,
   ...other
 }) => {
+  const { t } = useTranslation();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -75,7 +80,7 @@ const MuiPasswordInput: FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {helperText}
+        {t(helperText)}
       </InputErrorMessage>
       {/* <Requirements>
         {errorList &&
@@ -92,12 +97,12 @@ const MuiPasswordInput: FC<Props> = ({
 
 export default MuiPasswordInput;
 
-const Requirements = styled.div`
-  font-size: 14px;
-  color: ${({ theme }) => theme.typography.gray};
-  display: flex;
-  flex-direction: column;
-`;
-const RequirementsRow = styled.div`
-  display: flex;
-`;
+// const Requirements = styled.div`
+//   font-size: 14px;
+//   color: ${({ theme }) => theme.typography.gray};
+//   display: flex;
+//   flex-direction: column;
+// `;
+// const RequirementsRow = styled.div`
+//   display: flex;
+// `;

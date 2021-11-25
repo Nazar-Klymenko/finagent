@@ -36,7 +36,7 @@ const AuthContext = createContext({
     photoURL: "",
     provider: "",
   },
-  signup: () => Promise,
+  signup: (data) => Promise,
   login: (email, password) => Promise,
   loginFacebook: () => Promise,
   logout: (redirectCallback) => Promise,

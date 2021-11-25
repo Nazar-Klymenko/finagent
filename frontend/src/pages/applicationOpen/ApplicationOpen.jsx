@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import determineType from "@helpers/determineType";
@@ -24,7 +24,7 @@ import ApplicationStatus from "./Status";
 const CardOpen = () => {
   const { t } = useTranslation();
   let { id } = useParams();
-  let history = useHistory();
+  // let history = useHistory();
 
   const [updatedAt, setUpdatedAt] = useState(null);
   const [createdAt, setCreatedAt] = useState(null);

@@ -22,6 +22,14 @@ import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { insurancePeriodOptions } from "./applicationHelpers/insuranceBorderOptions";
 import { pageOneSchema } from "./applicationHelpers/insuranceBorderSchema";
 
+type FormTypes={
+  documentType:string;
+  pesel:string;
+  passportNumber:string;
+  registeredNotInEU:boolean;
+  insurancePeriod:Date;
+}
+
 const Page1 = () => {
   const { t } = useTranslation();
   const history = useHistory();
@@ -38,9 +46,8 @@ const Page1 = () => {
     handleSubmit,
     watch,
     control,
-
     formState: { errors },
-  } = useForm({
+  } = useForm<FormTypes>({
     defaultValues: {
       pesel: appDataValid.pesel,
       passportNumber: appDataValid.passportNumber,
@@ -54,11 +61,11 @@ const Page1 = () => {
 
   const documentTypeName = watch("documentType") || appDataValid.documentType;
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceBorder", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
-  };
+  })
 
   return (
     <ContentWrap fullWidth>
@@ -73,7 +80,7 @@ const Page1 = () => {
         />
         <Subtitle>{t("InsuranceBorder.Page1.subtitle")}</Subtitle>
 
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <MuiRadio
             name="documentType"
             control={control}

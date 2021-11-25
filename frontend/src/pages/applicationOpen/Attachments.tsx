@@ -7,10 +7,7 @@ import styled from "styled-components/macro";
 
 import { getUserAttachmentsAPI } from "@api/applications";
 
-import useFetch from "@hooks/useFetch";
 import useFetchFiles from "@hooks/useFetchFiles";
-
-import Thumbnails from "@components/Thumbnails";
 
 type Props = {
   attachments: any;

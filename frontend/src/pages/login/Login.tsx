@@ -71,7 +71,7 @@ const Login: React.FC<Props> = (props) => {
     }
   }, [isLoggedIn, isActive, history, originalRoute]);
 
-  const formSubmit = async (data: { email: string; password: string }) => {
+  const formSubmit = (data: { email: string; password: string }) => {
     login(data.email, data.password);
   };
 

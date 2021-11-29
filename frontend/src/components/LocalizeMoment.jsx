@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+
 import moment from "moment";
-import "moment/locale/uk";
-import "moment/locale/ru";
-import "moment/locale/pl";
 import "moment/locale/en-gb";
+import "moment/locale/pl";
+import "moment/locale/ru";
+import "moment/locale/uk";
 import { useTranslation } from "react-i18next";
 
 export const LocalizeMoment = () => {

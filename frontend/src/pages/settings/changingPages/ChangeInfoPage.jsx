@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from "react";
-
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { settingsSchema } from "../settingsSchema";
-
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import Loader from "@components/Loader";
-import { Input } from "@components/input";
+import { useDispatch } from "react-redux";
 
 import { getSettingsAPI, updateSettingsAPI } from "@api/userAPI";
-import { ChangingPage, StatusError, ButtonPosition } from "../LocalStyles";
+
 import useFetch from "@hooks/useFetch";
-import { useDispatch } from "react-redux";
-import { setSnackbar } from "@redux/alert/actions";
+
 import { useAuth } from "@context/authContext";
+
+import { setSnackbar } from "@redux/alert/actions";
+
+import Form from "@components/Form";
+import Loader from "@components/Loader";
+import { CTA } from "@components/buttons";
+import { MuiInput, MuiPhoneInput } from "@components/input";
+
+import { ButtonPosition, ChangingPage, StatusError } from "../LocalStyles";
+import { settingsSchema } from "../settingsSchema";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
@@ -28,10 +30,9 @@ const ChangePasswordPage = () => {
 
   const { updateDisplayName } = useAuth();
 
-  const { register, handleSubmit, errors, reset, formState } = useForm({
+  const { handleSubmit, reset, formState, control } = useForm({
     defaultValues: {
-      name: data?.name,
-      surname: data?.surname,
+      fullName: data?.displayName,
       phone: data?.phone,
     },
     mode: "onChange",
@@ -39,6 +40,8 @@ const ChangePasswordPage = () => {
     shouldFocusError: false,
     resolver: yupResolver(settingsSchema()),
   });
+
+  const { errors } = formState;
 
   useEffect(() => {
     reset(data);
@@ -51,7 +54,7 @@ const ChangePasswordPage = () => {
     try {
       await updateSettingsAPI(data);
       reset(data);
-      await updateDisplayName(data.name, data.surname);
+      await updateDisplayName(data.fullName);
       dispatch(setSnackbar("success", "Settings.ChangeInfo.alertSuccess"));
     } catch (error) {
       setPostError(t("Settings.ChangeInfo.errorResponse"));
@@ -67,24 +70,17 @@ const ChangePasswordPage = () => {
       <h3>{t("Settings.ChangeInfo.title")}</h3>
       <div className="form">
         <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
-          <Input
-            ref={register}
-            name="name"
-            labelName={t("Settings.ChangeInfo.name")}
-            autoComplete="given-name"
-            error={!!errors.name}
-            helperText={errors?.name?.message}
+          <MuiInput
+            control={control}
+            name="fullName"
+            labelName={t("Settings.ChangeInfo.fullName")}
+            autoComplete="name"
+            error={!!errors.fullName}
+            helperText={errors?.fullName?.message}
           />
-          <Input
-            ref={register}
-            name="surname"
-            labelName={t("Settings.ChangeInfo.surname")}
-            autoComplete="family-name"
-            error={!!errors.surname}
-            helperText={errors?.surname?.message}
-          />
-          <Input
-            ref={register}
+
+          <MuiPhoneInput
+            control={control}
             name="phone"
             labelName={t("Settings.ChangeInfo.phone")}
             error={!!errors.phone}

@@ -1,19 +1,41 @@
 import React from "react";
-import { PrivateRoute, QuestRoute } from "@components/CustomRoutes";
-import { Route, Switch, Redirect } from "react-router-dom";
 
+import { Redirect, Route, Switch } from "react-router-dom";
+import Empty from "src/_devOnly/testPages/Empty";
+import Staging from "src/_devOnly/testPages/Staging";
+
+import { PrivateRoute, QuestRoute } from "@components/CustomRoutes";
+
+import Contact from "@pages/Contact";
+import Error404 from "@pages/Error404";
+import VerifyEmailPage from "@pages/VerifyEmailPage";
+import ForgotPassword from "@pages/authActions/ForgotPassword";
 import Dashboard from "@pages/dashboard/Dashboard";
-import Contact from "@pages/contact/Contact";
 import Help from "@pages/help/Help";
+import Login from "@pages/login/Login";
 import Notifications from "@pages/notifications/Notifications";
 import NotificationsOpen from "@pages/notifications/NotificationsOpen";
-
-import Settings from "@pages/settings/Settings";
-import ForgotPassword from "@pages/authActions/ForgotPassword";
-
-import Login from "@pages/login/Login";
-import { SignUp } from "@pages/signUp";
-
+import {
+  Page1_Insurance_Border,
+  Page2_Insurance_Border,
+  Page3_Insurance_Border,
+  Summary_Insurance_Border,
+} from "@pages/questionnaires/insurance-border";
+import {
+  Page1_Insurance_Estate,
+  Page2_Insurance_Estate,
+  Summary_Insurance_Estate,
+} from "@pages/questionnaires/insurance-estate";
+import {
+  Page1_Insurance_Health,
+  Page2_Insurance_Health,
+  Summary_Insurance_Health,
+} from "@pages/questionnaires/insurance-health";
+import {
+  Page1_Insurance_Specialist,
+  Page2_Insurance_Specialist,
+  Summary_Insurance_Specialist,
+} from "@pages/questionnaires/insurance-specialist";
 import {
   Page1_Insurance_Car,
   Page2_Insurance_Car,
@@ -21,58 +43,25 @@ import {
   Page4_Insurance_Car,
   Page5_Insurance_Car,
   Summary_Insurance_Car,
-} from "@pages/questionnaires/insurance-car";
-
-import {
-  Page1_Insurance_Border,
-  Page2_Insurance_Border,
-  Page3_Insurance_Border,
-  Summary_Insurance_Border,
-} from "@pages/questionnaires/insurance-border";
-
-import {
-  Page1_Insurance_Health,
-  Page2_Insurance_Health,
-  Summary_Insurance_Health,
-} from "@pages/questionnaires/insurance-health";
-
-import {
-  Page1_Insurance_Specialist,
-  Page2_Insurance_Specialist,
-  Summary_Insurance_Specialist,
-} from "@pages/questionnaires/insurance-specialist";
-
+} from "@pages/questionnaires/insurance-transport";
 import {
   Page1_Insurance_Travel,
   Page2_Insurance_Travel,
   Summary_Insurance_Travel,
 } from "@pages/questionnaires/insurance-travel";
-
-import {
-  Page1_Insurance_Estate,
-  Page2_Insurance_Estate,
-  Summary_Insurance_Estate,
-} from "@pages/questionnaires/insurance-estate";
-
 import {
   Page1_Cash,
   Page2_Cash,
   Summary_Cash,
 } from "@pages/questionnaires/loan-cash";
-
 import {
   Page1_Mortgage,
   Page2_Mortgage,
   Summary_Mortgage,
 } from "@pages/questionnaires/loan-mortgage";
-
-import VerifyEmailPage from "@pages/VerifyEmailPage";
-import Error404 from "@pages/Error404";
-
-import NewPassword from "@pages/authActions/NewPassword";
-import Empty from "src/_devOnly/testPages/Empty";
-import Staging from "src/_devOnly/testPages/Staging";
 import Services from "@pages/services/Services";
+import Settings from "@pages/settings/Settings";
+import SignUp from "@pages/signUp/SignUp";
 
 const Routes = () => (
   <Switch>
@@ -95,7 +84,6 @@ const Routes = () => (
     <Route path="/auth/login" exact component={Login} />
     <Route path="/auth/signup" exact component={SignUp} />
     <Route path="/auth/forgot-password" exact component={ForgotPassword} />
-    <Route path="/auth/restore/confirm/:token" exact component={NewPassword} />
     <Route path="/verify-email" exact component={VerifyEmailPage} />
 
     <QuestRoute

@@ -1,10 +1,15 @@
 import React from "react";
-import styled from "styled-components/macro";
-import { CTA } from "@components/buttons";
-import { archiveApplicationAPI } from "@api/applicationAPI";
+
 import { useTranslation } from "react-i18next";
-import { setSnackbar } from "@redux/alert/actions";
 import { useDispatch } from "react-redux";
+import styled from "styled-components/macro";
+
+import { archiveApplicationAPI } from "@api/applications";
+
+import { setSnackbar } from "@redux/alert/actions";
+
+import { CTA } from "@components/buttons";
+
 type Props = {
   id: string;
   callback: () => void;

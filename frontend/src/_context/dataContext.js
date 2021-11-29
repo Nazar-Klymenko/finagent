@@ -1,10 +1,18 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-  const [appData, setAppData] = useState({});
-  const [files, setFiles] = useState();
+  const [appData, setAppData] = useState({
+    insuranceBorder: {},
+    insuranceTransport: {},
+    insuranceEstate: {},
+    insuranceHealth: {},
+    insuranceSpecialist: {},
+    insuranceTravel: {},
+    loanCash: {},
+    loanMortgage: {},
+  });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [allowSummary, setAllowSummary] = useState(false);
@@ -13,14 +21,23 @@ export const DataProvider = ({ children }) => {
   const [additionalData, setAdditionalData] = useState(null);
   const [addHouseholdData, setAddHouseholdData] = useState(null);
 
-  const setValues = (values, wrapper) => {
+  const setValues = (values, type, category) => {
     setAppData((prevData) => ({
       ...prevData,
-      [wrapper]: { ...values },
+      [type]: { ...prevData[type], [category]: values },
     }));
   };
-  const appendFiles = (files) => {
-    setFiles(files);
+  const clearAppData = () => {
+    setAppData({
+      insuranceBorder: {},
+      insuranceTransport: {},
+      insuranceEstate: {},
+      insuranceHealth: {},
+      insuranceSpecialist: {},
+      insuranceTravel: {},
+      loanCash: {},
+      loanMortgage: {},
+    });
   };
 
   return (
@@ -28,8 +45,7 @@ export const DataProvider = ({ children }) => {
       value={{
         appData,
         setValues,
-        files,
-        appendFiles,
+        clearAppData,
         currentPage,
         setCurrentPage,
         allowSummary,

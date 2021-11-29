@@ -1,16 +1,13 @@
 import React from "react";
-import styled from "styled-components/macro";
 
-import { NavLink } from "react-router-dom";
-// import { useTranslation } from "react-i18next";
-
-// import { useSelector } from "react-redux";
-
-import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
 // import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-
 import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
+import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
+import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components/macro";
+
 import { useAuth } from "@context/authContext";
 
 interface Props {
@@ -19,7 +16,7 @@ interface Props {
 }
 
 const Links: React.FC<Props> = ({ navOpen, setNavOpen }) => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const { currentUser } = useAuth();
   const { isLoggedIn } = currentUser;
   const hadleReguralClick = () => {
@@ -28,26 +25,23 @@ const Links: React.FC<Props> = ({ navOpen, setNavOpen }) => {
 
   return (
     <LinksStyled>
-      {/* {isLoggedIn && (
-        <Link to="/help">
-          <GroupRoundedIcon />
-          <span>Change Account</span>
-        </Link>
-      )} */}
+      {!isLoggedIn && (
+        <>
+          <Link onClick={hadleReguralClick} to="/services">
+            <AssignmentRoundedIcon />
+            <span> {t("Navbar.services")}</span>
+          </Link>
 
-      <Link onClick={hadleReguralClick} to="/services">
-        <AssignmentRoundedIcon />
-        <span>Services</span>
-      </Link>
-
-      <Link onClick={hadleReguralClick} to="/help">
-        <HelpRoundedIcon />
-        <span>Help</span>
-      </Link>
-      <Link onClick={hadleReguralClick} to="/contact">
-        <PhoneRoundedIcon />
-        <span>Contact</span>
-      </Link>
+          <Link onClick={hadleReguralClick} to="/help">
+            <HelpRoundedIcon />
+            <span> {t("Navbar.help")}</span>
+          </Link>
+          <Link onClick={hadleReguralClick} to="/contact">
+            <PhoneRoundedIcon />
+            <span>{t("Navbar.contact")}</span>
+          </Link>
+        </>
+      )}
     </LinksStyled>
   );
 };

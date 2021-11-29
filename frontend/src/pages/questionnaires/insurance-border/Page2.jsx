@@ -1,27 +1,27 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-import { useForm } from "react-hook-form";
-
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageTwoSchema } from "./applicationHelpers/insuranceBorderSchema";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { vehicleTypeOptions } from "./applicationHelpers/insuranceBorderOptions";
+import validateAppData from "@helpers/validateAppData";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { Input, MuiSelect, SelectInput } from "@components/input";
-import ContentWrap from "@components/content/ContentWrap";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
+import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { QuestState } from "@dev/QuestState";
 
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import ContentWrap from "@components/content/ContentWrap";
+import { MuiInput, MuiSelect } from "@components/input";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
+import { vehicleTypeOptions } from "./applicationHelpers/insuranceBorderOptions";
 import { seatNumberOptions } from "./applicationHelpers/insuranceBorderOptions";
+import { pageTwoSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -29,9 +29,18 @@ const Page2 = () => {
   const history = useHistory();
   useTitle("Border insurance | FinAgent");
 
-  const appDataValid = validateAppData(appData, "VehicleData");
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceBorder",
+    "vehicleData"
+  );
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       vehicleType: appDataValid.vehicleType,
       brand: appDataValid.brand,
@@ -49,7 +58,7 @@ const Page2 = () => {
   });
 
   const formSubmit = (data) => {
-    setValues(data, "VehicleData");
+    setValues(data, "insuranceBorder", "vehicleData");
     setCurrentPage(3);
     history.push("./3");
   };
@@ -76,43 +85,43 @@ const Page2 = () => {
             error={!!errors.vehicleType}
             helperText={errors?.vehicleType?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="brand"
             labelName={t("InsuranceBorder.Page2.brand")}
             error={!!errors.brand}
             helperText={errors?.brand?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="model"
             labelName={t("InsuranceBorder.Page2.model")}
             error={!!errors.model}
             helperText={errors?.model?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="regNumber"
             labelName={t("InsuranceBorder.Page2.regNumber")}
             error={!!errors.regNumber}
             helperText={errors?.regNumber?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="vinNumber"
             labelName={t("InsuranceBorder.Page2.vinNumber")}
             error={!!errors.vinNumber}
             helperText={errors?.vinNumber?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="engineNumber"
             labelName={t("InsuranceBorder.Page2.engineNumber")}
             error={!!errors.engineNumber}
             helperText={errors?.engineNumber?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="engineVolume"
             labelName={t("InsuranceBorder.Page2.engineVolume")}
             error={!!errors.engineVolume}

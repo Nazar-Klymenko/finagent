@@ -1,59 +1,47 @@
-import React, { useState, useEffect, FC } from "react";
-import styled from "styled-components";
+import React, { FC, useEffect, useState } from "react";
 
-import { Controller } from "react-hook-form";
-
-import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
-import { uk, ru, pl, enGB } from "date-fns/esm/locale";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+import "date-fns";
+import { enGB, pl, ru, uk } from "date-fns/esm/locale";
+import { Control, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { Label, InputErrorMessage } from "./LocalStyles";
-
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#1672ec",
-    },
-  },
-});
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
-  control: any;
-  helperText: string;
+  control: Control<any>;
+  helperText: string | undefined;
   error: boolean;
   labelName: string;
   name: string;
-  defaultDate: any;
+  defaultValue?: any;
   placeholder: string;
-  view: ["date"] | ["year", "month", "date"] | ["year"];
-  format: "dd/MM/yyyy" | "yyyy";
-  disablePast: boolean;
-  disableFuture: boolean;
-  maxDate: Date;
-  minDate: Date;
+  view?: ["date"] | ["year", "month"] | ["year", "month", "date"] | ["year"];
+  format?: "dd/MM/yyyy" | "yyyy";
+  disablePast?: boolean;
+  disableFuture?: boolean;
+  maxDate?: Date;
+  minDate?: Date;
+  openTo?: "year";
 }
 
 const DateInput: FC<Props> = ({
   control,
-  helperText,
+  helperText = "",
   error,
   labelName,
   name,
-  defaultDate,
+  defaultValue,
   placeholder,
   view = ["date"],
   format = "dd/MM/yyyy",
   ...other
 }) => {
   const { i18n, t } = useTranslation();
-  const [value, setValue] = React.useState<Date | null>(null);
 
   const [language, setLanguage] = useState(pl);
 
@@ -77,41 +65,37 @@ const DateInput: FC<Props> = ({
   }, [i18n.language]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={language}>
-        <Label htmlFor={name}>{labelName}</Label>
-        <Controller
-          as={
-            <KeyboardDatePicker
-              okLabel="OK"
-              clearLabel="Clear"
-              cancelLabel="Cancel"
-              error={!!error}
-              inputVariant="outlined"
-              format={format}
-              placeholder={placeholder}
-              helperText={null}
-              style={{
-                fontFamily: ["Poppins", "sans-serif"].join(","),
-              }}
-              views={view}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              value={value}
-              {...other}
-            />
-          }
-          control={control}
-          name={name}
-          defaultValue={defaultDate || null}
-        />
-        <InputErrorMessage>
-          <span className="invis-star">*</span>
-          {t(helperText)}
-        </InputErrorMessage>
-      </MuiPickersUtilsProvider>
-    </ThemeProvider>
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={language}>
+      <Label htmlFor={name}>{labelName}</Label>
+
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={defaultValue || null}
+        render={({ field }) => (
+          <KeyboardDatePicker
+            okLabel="OK"
+            clearLabel="Clear"
+            cancelLabel="Cancel"
+            error={!!error}
+            inputVariant="outlined"
+            helperText={null}
+            style={{
+              fontFamily: ["Poppins", "sans-serif"].join(","),
+            }}
+            format={format}
+            views={view}
+            onChange={field.onChange}
+            value={field.value}
+            {...other}
+          />
+        )}
+      />
+      <InputErrorMessage>
+        <span className="invis-star">*</span>
+        {t(helperText)}
+      </InputErrorMessage>
+    </MuiPickersUtilsProvider>
   );
 };
 

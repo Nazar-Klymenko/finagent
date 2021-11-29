@@ -1,40 +1,46 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
 
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router";
-import { useTranslation } from "react-i18next";
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
-import Form from "@components/Form";
-import {
-  Input,
-  DateInput,
-  MuiRadio,
-  SelectInput,
-  MuiSelect,
-} from "@components/input";
-import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
-
-import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 
-import { pageOneSchema } from "./applicationHelpers/insuranceEstateSchema";
-import { QuestState } from "@dev/QuestState";
+import useTitle from "@hooks/useTitle";
 
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { DateInput, MuiInput, MuiRadio, MuiSelect } from "@components/input";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { nameSecurityOptions } from "./applicationHelpers/insuranceEstateOptions";
+import { pageOneSchema } from "./applicationHelpers/insuranceEstateSchema";
 
 const Page1 = () => {
   const { t } = useTranslation();
+  const history = useHistory();
   useTitle("Real estate insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = validateAppData(appData, "InsuranceData");
-  const history = useHistory();
 
-  const { register, handleSubmit, errors, control, watch } = useForm({
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceEstate",
+    "insuranceData"
+  );
+
+  const {
+    handleSubmit,
+    control,
+    watch,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       country: appDataValid.country,
       city: appDataValid.city,
@@ -71,7 +77,7 @@ const Page1 = () => {
     watch("creditOwnership") || appDataValid.creditOwnership;
 
   const formSubmit = (data) => {
-    setValues(data, "InsuranceData");
+    setValues(data, "insuranceEstate", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
   };
@@ -89,38 +95,38 @@ const Page1 = () => {
         />
         <Subtitle>{t("InsuranceEstate.Page1.title")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <Input
+          <MuiInput
+            control={control}
             name="country"
             labelName={t("InsuranceEstate.Page1.country")}
-            ref={register}
             error={!!errors.country}
             helperText={errors?.country?.message}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="city"
             labelName={t("InsuranceEstate.Page1.city")}
-            ref={register}
             error={!!errors.city}
             helperText={errors?.city?.message}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="postIndex"
             labelName={t("InsuranceEstate.Page1.postIndex")}
-            ref={register}
             error={!!errors.postIndex}
             helperText={errors?.postIndex?.message}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="street"
             labelName={t("InsuranceEstate.Page1.street")}
-            ref={register}
             error={!!errors.street}
             helperText={errors?.street?.message}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="houseNumber"
             labelName={t("InsuranceEstate.Page1.houseNumber")}
-            ref={register}
             error={!!errors.houseNumber}
             helperText={errors?.houseNumber?.message}
           />
@@ -177,17 +183,17 @@ const Page1 = () => {
               },
             ]}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="areaM2"
             labelName={t("InsuranceEstate.Page1.areaM2")}
-            ref={register}
             error={!!errors.areaM2}
             helperText={errors?.areaM2?.message}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="constructionYear"
             labelName={t("InsuranceEstate.Page1.constructionYear")}
-            ref={register}
             error={!!errors.constructionYear}
             helperText={errors?.constructionYear?.message}
           />
@@ -241,24 +247,24 @@ const Page1 = () => {
           />
           {assignedToBank === "yes" && (
             <>
-              <Input
+              <MuiInput
+                control={control}
                 name="bankName"
                 labelName={t("InsuranceEstate.Page1.bankName")}
-                ref={register}
                 error={!!errors.bankName}
                 helperText={errors?.bankName?.message}
               />
-              <Input
+              <MuiInput
+                control={control}
                 name="regon"
                 labelName={t("InsuranceEstate.Page1.regon")}
-                ref={register}
                 error={!!errors.regon}
                 helperText={errors?.regon?.message}
               />
-              <Input
+              <MuiInput
+                control={control}
                 name="nip"
                 labelName={t("InsuranceEstate.Page1.nip")}
-                ref={register}
                 error={!!errors.nip}
                 helperText={errors?.nip?.message}
               />
@@ -319,22 +325,22 @@ const Page1 = () => {
             labelName={t("InsuranceEstate.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultDate={appDataValid.insuranceStartDate}
+            defaultValue={appDataValid.insuranceStartDate}
             disablePast
           />
           <Subtitle>{t("InsuranceEstate.Page1.subjectAndSum")}</Subtitle>
-          <Input
+          <MuiInput
+            control={control}
             name="flatAndFixed"
             labelName={t("InsuranceEstate.Page1.flatAndFixed")}
-            ref={register}
             error={!!errors.flatAndFixed}
             helperText={errors?.flatAndFixed?.message}
             placeholder="200 000 zl"
           />
-          <Input
+          <MuiInput
+            control={control}
             name="householdGoods"
             labelName={t("InsuranceEstate.Page1.householdGoods")}
-            ref={register}
             error={!!errors.householdGoods}
             helperText={errors?.householdGoods?.message}
             placeholder="100 000 zl"

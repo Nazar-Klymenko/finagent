@@ -5,7 +5,7 @@ import Application from "../application.js";
 
 const InsuranceTravelSchema = new Schema(
   {
-    InsuranceData: {
+    insuranceData: {
       insuranceStart: String,
       insuranceEnd: String,
       insuranceType: String,
@@ -14,7 +14,7 @@ const InsuranceTravelSchema = new Schema(
       purpose: String,
       inPoland: Boolean,
     },
-    PersonalData: {
+    personalData: {
       policyholedIs: String,
       name: String,
       surname: String,

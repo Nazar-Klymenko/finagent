@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import styled from "styled-components/macro";
-import { Text, Header } from "@components/typography";
+
+import { Header, Text } from "@components/typography";
 
 const Accordion = ({ header, children }) => {
   const [isOpen, setIsOpen] = useState(false);

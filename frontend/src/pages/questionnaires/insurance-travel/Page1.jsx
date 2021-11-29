@@ -1,22 +1,25 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
 
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router";
-import { useTranslation } from "react-i18next";
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
-import Form from "@components/Form";
-import { Input, MuiCheckbox, DateInput, MuiRadio } from "@components/input";
-import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router";
 
-import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { DateInput, MuiCheckbox, MuiInput, MuiRadio } from "@components/input";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageOneSchema } from "./applicationHelpers/insuranceTravelSchema";
-import { QuestState } from "@dev/QuestState";
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -25,7 +28,13 @@ const Page1 = () => {
   const appDataValid = validateAppData(appData, "InsuranceData");
   const history = useHistory();
 
-  const { register, handleSubmit, errors, control, watch } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       insuranceType: appDataValid.insuranceType || "individual",
       peopleAmount: appDataValid.peopleAmount,
@@ -66,7 +75,7 @@ const Page1 = () => {
             labelName={t("InsuranceTravel.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultDate={appDataValid.insuranceStart}
+            defaultValue={appDataValid.insuranceStart}
             disablePast
           />
           <DateInput
@@ -75,7 +84,7 @@ const Page1 = () => {
             labelName={t("InsuranceTravel.Page1.insuranceEnd")}
             error={!!errors.insuranceEnd}
             helperText={errors?.insuranceEnd?.message}
-            defaultDate={appDataValid.insuranceEnd}
+            defaultValue={appDataValid.insuranceEnd}
             disablePast
           />
           <MuiCheckbox
@@ -104,25 +113,25 @@ const Page1 = () => {
             ]}
           />
           {choosedType !== "individual" && (
-            <Input
+            <MuiInput
+              control={control}
               name="peopleAmount"
               labelName={t("InsuranceTravel.Page1.peopleAmount")}
-              ref={register}
               error={!!errors.peopleAmount}
               helperText={errors?.peopleAmount?.message}
             />
           )}
-          <Input
+          <MuiInput
+            control={control}
             name="destination"
             labelName={t("InsuranceTravel.Page1.destination")}
-            ref={register}
             error={!!errors.destination}
             helperText={errors?.destination?.message}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="purpose"
             labelName={t("InsuranceTravel.Page1.purpose")}
-            ref={register}
             error={!!errors.purpose}
             helperText={errors?.purpose?.message}
           />

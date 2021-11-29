@@ -1,30 +1,31 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-import { useForm } from "react-hook-form";
-
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageTwoSchema } from "./applicationHelpers/loanCashSchema";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import {
-  Page,
-  Title,
-  Subtitle,
-  ButtonsWrap,
-  InputErrorMessage,
-} from "../LocalStyles";
-import { Input, MuiCheckbox, Textarea } from "@components/input";
-import ContentWrap from "@components/content/ContentWrap";
+import validateAppData from "@helpers/validateAppData";
 
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
+import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { QuestState } from "@dev/QuestState";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import ContentWrap from "@components/content/ContentWrap";
+import { MuiCheckbox, MuiInput, Textarea } from "@components/input";
+
+import {
+  ButtonsWrap,
+  InputErrorMessage,
+  Page,
+  Subtitle,
+  Title,
+} from "../LocalStyles";
+import { pageTwoSchema } from "./applicationHelpers/loanCashSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -36,7 +37,12 @@ const Page2 = () => {
 
   useTitle("Cash loan | FinAgent");
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       remainingPayOff: appDataValid.remainingPayOff,
       lastApplications: appDataValid.lastApplications,
@@ -72,7 +78,7 @@ const Page2 = () => {
         <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
         <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <Textarea
-            ref={register}
+            control={control}
             name="remainingPayOff"
             labelName={t("LoanCash.Page2.remainingPayOff")}
             rows={4}
@@ -82,7 +88,7 @@ const Page2 = () => {
             placeholder="number"
           />
           <Textarea
-            ref={register}
+            control={control}
             name="lastApplications"
             labelName={t("LoanCash.Page2.lastApplications")}
             rows={4}
@@ -91,8 +97,8 @@ const Page2 = () => {
             helperText={errors?.lastApplications?.message}
             placeholder="Yes, open answer / No"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="custody"
             labelName={t("LoanCash.Page2.custody")}
             type="text"
@@ -101,7 +107,7 @@ const Page2 = () => {
             placeholder="number"
           />
           <Textarea
-            ref={register}
+            control={control}
             name="loanPurpose"
             labelName={t("LoanCash.Page2.loanPurpose")}
             rows={4}
@@ -110,8 +116,8 @@ const Page2 = () => {
             helperText={errors?.loanPurpose?.message}
             placeholder="Purpose"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="loanAmount"
             labelName={t("LoanCash.Page2.loanAmount")}
             type="text"
@@ -119,8 +125,8 @@ const Page2 = () => {
             helperText={errors?.loanAmount?.message}
             placeholder="number"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="paymentTerm"
             labelName={t("LoanCash.Page2.paymentTerm")}
             type="text"

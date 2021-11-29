@@ -1,31 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
 import moment from "moment";
-
 import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-
-import { getSpecificApplication } from "@api/userAPI";
 
 import determineType from "@helpers/determineType";
 
-import SummaryList from "@components/SummaryList";
-import ApplicationStatus from "./Status";
-import Feedback from "./Feedback";
+import { getSpecificApplication } from "@api/userAPI";
 
-import Subheader from "@components/typography/Subheader";
-import { BackArrow } from "@components/buttons";
-
-import Attachments from "./Attachments";
-import Archive from "./Archive";
-
-import { useQuery } from "react-query";
 import ErrorRefetch from "@components/ErrorRefetch";
+import Loader from "@components/Loader";
+import SummaryList from "@components/SummaryList";
+import { BackArrow } from "@components/buttons";
+import Subheader from "@components/typography/Subheader";
+
+import Archive from "./Archive";
+import Attachments from "./Attachments";
+import Feedback from "./Feedback";
+import ApplicationStatus from "./Status";
 
 const CardOpen = () => {
   const { t } = useTranslation();
   let { id } = useParams();
-  let history = useHistory();
+  // let history = useHistory();
 
   const [updatedAt, setUpdatedAt] = useState(null);
   const [createdAt, setCreatedAt] = useState(null);
@@ -51,9 +50,7 @@ const CardOpen = () => {
   }, [isLoading, data]);
 
   if (isLoading) {
-    return (
-      <ErrorRefetch text="Error fetching application" callback={refetch} />
-    );
+    return <Loader />;
   }
   if (!isLoading && error) {
     return (
@@ -71,7 +68,7 @@ const CardOpen = () => {
       <Info>
         <InfoWrap>
           <InfoKey>{t("ApplicationOpen.name")}</InfoKey>
-          <InfoValue>{data?.user?.name + " " + data?.user?.surname}</InfoValue>
+          <InfoValue>{data?.user?.fullName}</InfoValue>
         </InfoWrap>
         <InfoWrap>
           <InfoKey>{t("ApplicationOpen.createdAt")}</InfoKey>

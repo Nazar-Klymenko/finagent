@@ -5,14 +5,14 @@ import Application from "../application.js";
 
 const InsuranceBorderSchema = new Schema(
   {
-    InsuranceData: {
+    insuranceData: {
       documentAddedType: String,
       pesel: String,
       passportNumber: String,
       registeredNotInEU: String,
       insurancePeriod: String,
     },
-    VehicleData: {
+    vehicleData: {
       vehicleType: String,
       brand: String,
       model: String,
@@ -22,7 +22,7 @@ const InsuranceBorderSchema = new Schema(
       engineVolume: String,
       seatNumber: String,
     },
-    PersonalData: {
+    personalData: {
       name: String,
       surname: String,
       phoneNumber: String,

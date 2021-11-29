@@ -1,20 +1,20 @@
 import React from "react";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { policyholderSchema } from "./applicationHelpers/insuranceHealthSchema";
-
-import { ButtonsWrap } from "../LocalStyles";
-import { Input, MuiRadio, DateInput } from "@components/input";
-import { Modal } from "@components/modals";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
 import validateAppData from "@helpers/validateAppData";
 
 import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import { DateInput, MuiInput, MuiRadio } from "@components/input";
+import { Modal } from "@components/modals";
+
+import { ButtonsWrap } from "../LocalStyles";
+import { policyholderSchema } from "./applicationHelpers/insuranceHealthSchema";
 
 const AddPolicyHolder = ({
   openModal,
@@ -29,11 +29,17 @@ const AddPolicyHolder = ({
   const { appData } = useData();
 
   const appDataValid = validateAppData(
-    appData["InsuredData"] || appData,
+    appData.insuranceHealth["InsuredData"] || appData,
     defaultPerson
   );
 
-  const { register, handleSubmit, errors, control, watch } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -85,11 +91,11 @@ const AddPolicyHolder = ({
                 value: "foreigner",
               },
             ]}
-            defaultChecked={appDataValid.policyholderIs || "polish"}
+            defaultValue={appDataValid.policyholderIs || "polish"}
           />
           {documentType === "foreigner" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="citizenship"
               labelName={t("InsuranceHealth.ApplicantModal.citizenship")}
               type="text"
@@ -99,8 +105,8 @@ const AddPolicyHolder = ({
               defaultValue={appDataValid.citizenship}
             />
           )}
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="documentAdded"
             labelName={`${
               documentType === "polish"
@@ -113,8 +119,8 @@ const AddPolicyHolder = ({
             placeholder="XXXXXXXXXXX"
             defaultValue={appDataValid.documentAdded}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="name"
             labelName={t("InsuranceHealth.ApplicantModal.name")}
             type="text"
@@ -124,8 +130,8 @@ const AddPolicyHolder = ({
             autoComplete="given-name"
             defaultValue={appDataValid.name}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="surname"
             labelName={t("InsuranceHealth.ApplicantModal.surname")}
             type="text"
@@ -141,10 +147,10 @@ const AddPolicyHolder = ({
             labelName={t("InsuranceHealth.Page2.birthDate")}
             error={!!errors.birthDate}
             helperText={errors?.birthDate?.message}
-            defaultDate={appDataValid.birthDate}
+            defaultValue={appDataValid.birthDate}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="country"
             labelName={t("InsuranceHealth.ApplicantModal.country")}
             type="text"
@@ -153,8 +159,8 @@ const AddPolicyHolder = ({
             placeholder="Poland"
             defaultValue={appDataValid.country}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="city"
             labelName={t("InsuranceHealth.ApplicantModal.city")}
             type="text"
@@ -163,8 +169,8 @@ const AddPolicyHolder = ({
             placeholder="Warsaw"
             defaultValue={appDataValid.city}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="postIndex"
             labelName={t("InsuranceHealth.ApplicantModal.postIndex")}
             error={!!errors.postIndex}
@@ -172,8 +178,8 @@ const AddPolicyHolder = ({
             placeholder="123-45"
             defaultValue={appDataValid.postIndex}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="street"
             labelName={t("InsuranceHealth.ApplicantModal.street")}
             error={!!errors.street}
@@ -181,8 +187,8 @@ const AddPolicyHolder = ({
             placeholder="Bialostocka"
             defaultValue={appDataValid.street}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="houseNumber"
             labelName={t("InsuranceHealth.ApplicantModal.houseNumber")}
             error={!!errors.houseNumber}

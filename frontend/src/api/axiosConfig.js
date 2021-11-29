@@ -1,5 +1,7 @@
 import axios from "axios";
+
 import { auth } from "@services/firebase";
+
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_API_SERVER_URL;
 axios.defaults.timeout = 8000;

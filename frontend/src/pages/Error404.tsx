@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
-import { ContentWrap } from "@components/content";
 
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
+import { ContentWrap } from "@components/content";
 
 const Error404: FC = () => {
   const { t } = useTranslation();

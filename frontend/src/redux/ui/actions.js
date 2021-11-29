@@ -1,8 +1,8 @@
 import {
-  START_ACTION,
-  STOP_ACTION,
   REFRESH_ACTION_START,
   REFRESH_ACTION_STOP,
+  START_ACTION,
+  STOP_ACTION,
 } from "./actionTypes";
 
 export const startAction = (name, params) => ({

@@ -1,27 +1,32 @@
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import { useForm } from "react-hook-form";
-
 import { yupResolver } from "@hookform/resolvers/yup";
-import { forgotPasswordSchema } from "./passwordSchema";
-
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-
-import { ContentWrap } from "@components/content";
-import Form from "@components/Form";
-import { Input } from "@components/input";
-import { CTA } from "@components/buttons";
-
-import { Subheader } from "@components/typography";
 import { useDispatch } from "react-redux";
-import { setSnackbar } from "@redux/alert/actions";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
 import { useAuth } from "@context/authContext";
+
+import { setSnackbar } from "@redux/alert/actions";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiInput } from "@components/input";
+import { Subheader } from "@components/typography";
+
+import { forgotPasswordSchema } from "./passwordSchema";
 
 const ForgotPassword = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { resetPassword } = useAuth();
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: { errors },
+  } = useForm({
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
@@ -44,12 +49,12 @@ const ForgotPassword = () => {
         description={t("RestorePassword.Form.explain")}
       />
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-        <Input
-          ref={register}
+        <MuiInput
+          control={control}
           name="email"
           labelName={t("RestorePassword.Form.email")}
           type="email"
-          autofocus={true}
+          autoFocus={true}
           error={!!errors.email}
           helperText={errors?.email?.message}
           placeholder=""

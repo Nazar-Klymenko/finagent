@@ -5,7 +5,7 @@ import Application from "../application.js";
 
 const InsuranceEstateSchema = new Schema(
   {
-    InsuranceData: {
+    insuranceData: {
       country: String,
       city: String,
       postIndex: String,
@@ -30,7 +30,7 @@ const InsuranceEstateSchema = new Schema(
       flatAndFixed: String,
       householdGoods: String,
     },
-    PersonalData: {
+    personalData: {
       policyholderIs: String,
       name: String,
       surname: String,

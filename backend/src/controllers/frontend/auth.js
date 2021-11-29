@@ -5,12 +5,11 @@ import User from "models/user.js";
 import { auth } from "services/firebase";
 
 export const signUp = async (req, res, next) => {
-  const { name, surname, phone, language, IdToken, provider } = req.body;
+  const { fullName, phone, language, IdToken, provider } = req.body;
   let { email } = req.body;
   try {
     const userObj = await new User({
-      name: name,
-      surname: surname,
+      fullName: fullName,
       email: email,
       phone: phone,
       provider: provider,
@@ -24,7 +23,7 @@ export const signUp = async (req, res, next) => {
 
     res.status(200).send({
       message: "User signed up successfully, confirm email",
-      displayName: `${name} ${surname}`,
+      displayName: fullName,
     });
   } catch (error) {
     if (error.name === "ValidationError") res.status(422);
@@ -34,14 +33,13 @@ export const signUp = async (req, res, next) => {
 
 export const signUpFacebook = async (req, res, next) => {
   const language = "pl";
-  const { first_name, last_name, email } = req.body.additionalInfo.profile;
+  const { name, email } = req.body.additionalInfo.profile;
   const { providerId } = req.body.additionalInfo;
   const uid = req.body.uid;
   try {
     const userObj = await new User({
       _id: uid,
-      name: first_name,
-      surname: last_name,
+      fullName: name,
       email: email,
       provider: providerId,
       language: language,
@@ -51,7 +49,7 @@ export const signUpFacebook = async (req, res, next) => {
 
     res.status(200).send({
       message: "User signed up successfully, confirm email",
-      displayName: `${first_name} ${last_name}`,
+      displayName: name,
       isActive: false,
     });
   } catch (error) {

@@ -1,6 +1,6 @@
-import { axios } from "@api/axiosConfig";
-
 import { useEffect, useReducer, useRef } from "react";
+
+import { axios } from "@api/axiosConfig";
 
 function useFetch(object) {
   const { url, options } = object;

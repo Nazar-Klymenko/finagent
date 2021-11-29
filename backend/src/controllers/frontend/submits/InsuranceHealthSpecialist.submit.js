@@ -8,29 +8,29 @@ const InsuranceHealthSpecialistSubmit = async (req, res, next) => {
     insuranceObj.category = "insurance";
     insuranceObj.type = "HealthSpecialist";
 
-    const userArray = Object.keys(req.body.InsuredData);
+    const userArray = Object.keys(req.body.insuredData);
 
     for (let i = 0; i < userArray.length; i++) {
-      insuranceObj.InsuredData.push({
-        policyholderIs: req.body.InsuredData[i].policyholderIs,
-        name: req.body.InsuredData[i].name,
-        surname: req.body.InsuredData[i].surname,
-        nip: req.body.InsuredData[i].nip,
-        birthDate: req.body.InsuredData[i].birthDate,
-        pesel: req.body.InsuredData[i].pesel,
-        regon: req.body.InsuredData[i].regon,
-        phoneNumber: req.body.InsuredData[i].phoneNumber,
-        email: req.body.InsuredData[i].email,
-        country: req.body.InsuredData[i].country,
-        city: req.body.InsuredData[i].city,
-        postIndex: req.body.InsuredData[i].postIndex,
-        street: req.body.InsuredData[i].street,
-        houseNumber: req.body.InsuredData[i].houseNumber,
+      insuranceObj.insuredData.push({
+        policyholderIs: req.body.insuredData[i].policyholderIs,
+        name: req.body.insuredData[i].name,
+        surname: req.body.insuredData[i].surname,
+        nip: req.body.insuredData[i].nip,
+        birthDate: req.body.insuredData[i].birthDate,
+        pesel: req.body.insuredData[i].pesel,
+        regon: req.body.insuredData[i].regon,
+        phoneNumber: req.body.insuredData[i].phoneNumber,
+        email: req.body.insuredData[i].email,
+        country: req.body.insuredData[i].country,
+        city: req.body.insuredData[i].city,
+        postIndex: req.body.insuredData[i].postIndex,
+        street: req.body.insuredData[i].street,
+        houseNumber: req.body.insuredData[i].houseNumber,
       });
     }
-    insuranceObj.InsuredData.shift();
+    insuranceObj.insuredData.shift();
 
-    insuranceObj.markModified("PersonalData", "InsuredData");
+    insuranceObj.markModified("personalData", "insuredData");
     await insuranceObj.save();
 
     res.status(200).send({

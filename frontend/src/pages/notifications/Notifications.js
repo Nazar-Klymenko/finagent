@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import useTitle from "@hooks/useTitle";
-import styled from "styled-components/macro";
-import { ContentWrap } from "@components/content";
-import { useTranslation } from "react-i18next";
 
-import MessageCard from "./MessageCard";
+import { useTranslation } from "react-i18next";
+import styled from "styled-components/macro";
 
 import { getNotificationsAPI } from "@api/userAPI";
+
+import useTitle from "@hooks/useTitle";
+
+import { ContentWrap } from "@components/content";
+
+import MessageCard from "./MessageCard";
 
 // import socket from "utils/ws";
 

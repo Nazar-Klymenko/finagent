@@ -1,11 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import {
-  verifyAccessTokenFirebase,
-  isEmailVerified,
-  verifyAccessTokenFirebaseQuery,
-} from "middleware/auth.js";
+import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth.js";
 import { accessToImage } from "middleware/imageAcess";
 
 import {
@@ -76,12 +72,3 @@ router
   .get(verifyAccessTokenFirebase, accessToImage, serveDocument);
 
 export default router;
-
-/*
-
-/
-/:id
-/insurance_car_oc/submit
-/insurance_health/submit
-
-*/

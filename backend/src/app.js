@@ -53,7 +53,6 @@ app.use(
       "https://localhost:5000",
       "http://localhost:3000",
       "http://localhost:3001",
-      "http://192.168.1.3:3000",
       "https://app.finagent.eu",
       "https://v1.app.finagent.eu",
       "https://admin.finagent.eu",

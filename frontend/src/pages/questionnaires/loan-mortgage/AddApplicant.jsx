@@ -1,20 +1,25 @@
 import React from "react";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { addApplicantSchema } from "./applicationHelpers/loanMortgageSchema";
-
-import { ButtonsWrap } from "../LocalStyles";
-import { Input, MuiRadio, DateInput, PhoneInput } from "@components/input";
-import { Modal } from "@components/modals";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
 import validateAppData from "@helpers/validateAppData";
 
 import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import {
+  DateInput,
+  MuiInput,
+  MuiPhoneInput,
+  MuiRadio,
+} from "@components/input";
+import { Modal } from "@components/modals";
+
+import { ButtonsWrap } from "../LocalStyles";
+import { addApplicantSchema } from "./applicationHelpers/loanMortgageSchema";
 
 const AddApplicant = ({
   openModal,
@@ -30,7 +35,13 @@ const AddApplicant = ({
     defaultPerson
   );
 
-  const { register, handleSubmit, errors, watch, control } = useForm({
+  const {
+    handleSubmit,
+    watch,
+    control,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -82,12 +93,12 @@ const AddApplicant = ({
                 value: "other",
               },
             ]}
-            defaultChecked={appDataValid.nationality || "polish"}
+            defaultValue={appDataValid.nationality || "polish"}
           />
           {nationality === "other" && (
             <>
-              <Input
-                ref={register}
+              <MuiInput
+                control={control}
                 name="otherNation"
                 labelName={t("LoanMortgage.ApplicantModal.otherCitizenship")}
                 type="text"
@@ -115,9 +126,7 @@ const AddApplicant = ({
                     value: "blueCard",
                   },
                 ]}
-                defaultChecked={
-                  appDataValid.residenceDocument || "temporaryCard"
-                }
+                defaultValue={appDataValid.residenceDocument || "temporaryCard"}
               />
               <DateInput
                 control={control}
@@ -125,7 +134,7 @@ const AddApplicant = ({
                 labelName={t("LoanMortgage.ApplicantModal.validFrom")}
                 error={!!errors.validFrom}
                 helperText={errors?.validFrom?.message}
-                defaultDate={appDataValid.validFrom}
+                defaultValue={appDataValid.validFrom}
               />
               {!(residenceDocument === "permanentCard") && (
                 <DateInput
@@ -134,14 +143,14 @@ const AddApplicant = ({
                   labelName={t("LoanMortgage.ApplicantModal.validUntil")}
                   error={!!errors.validUntil}
                   helperText={errors?.validUntil?.message}
-                  defaultDate={appDataValid.validUntil}
+                  defaultValue={appDataValid.validUntil}
                   disablePast
                 />
               )}
             </>
           )}
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="name"
             labelName={t("LoanMortgage.ApplicantModal.name")}
             type="text"
@@ -151,8 +160,8 @@ const AddApplicant = ({
             autoComplete="given-name"
             defaultValue={appDataValid.name}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="surname"
             labelName={t("LoanMortgage.ApplicantModal.surname")}
             type="text"
@@ -168,10 +177,10 @@ const AddApplicant = ({
             labelName={t("LoanMortgage.ApplicantModal.birthDate")}
             error={!!errors.birthDate}
             helperText={errors?.birthDate?.message}
-            defaultDate={appDataValid.birthDate}
+            defaultValue={appDataValid.birthDate}
           />
-          <PhoneInput
-            ref={register}
+          <MuiPhoneInput
+            control={control}
             name="phoneNumber"
             labelName={t("LoanMortgage.ApplicantModal.phoneNumber")}
             type="tel"
@@ -180,8 +189,8 @@ const AddApplicant = ({
             placeholder="+XX XXX XXX XXX"
             defaultValue={appDataValid.phoneNumber}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="email"
             labelName={t("LoanMortgage.ApplicantModal.email")}
             type="text"
@@ -190,8 +199,8 @@ const AddApplicant = ({
             placeholder="example@mail.com"
             defaultValue={appDataValid.email}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="pesel"
             labelName={t("LoanMortgage.ApplicantModal.pesel")}
             type="text"
@@ -227,7 +236,7 @@ const AddApplicant = ({
                 value: "economicActivity",
               },
             ]}
-            defaultChecked={appDataValid.basicIncome || "indefinitePeriod"}
+            defaultValue={appDataValid.basicIncome || "indefinitePeriod"}
           />
           {(basicIncome === "specificTime" ||
             basicIncome === "mandate" ||
@@ -247,7 +256,7 @@ const AddApplicant = ({
                     value: "no",
                   },
                 ]}
-                defaultChecked={appDataValid.firstContract || "yes"}
+                defaultValue={appDataValid.firstContract || "yes"}
               />
               {firstContract === "no" && (
                 <>
@@ -265,7 +274,7 @@ const AddApplicant = ({
                         value: "no",
                       },
                     ]}
-                    defaultChecked={appDataValid.sameEmployer || "yes"}
+                    defaultValue={appDataValid.sameEmployer || "yes"}
                   />
 
                   <MuiRadio
@@ -282,7 +291,7 @@ const AddApplicant = ({
                         value: "no",
                       },
                     ]}
-                    defaultChecked={appDataValid.withoutPause || "yes"}
+                    defaultValue={appDataValid.withoutPause || "yes"}
                   />
                 </>
               )}
@@ -292,7 +301,7 @@ const AddApplicant = ({
                 labelName={t("LoanMortgage.ApplicantModal.contractFrom")}
                 error={!!errors.contractFrom}
                 helperText={errors?.contractFrom?.message}
-                defaultDate={appDataValid.contractFrom}
+                defaultValue={appDataValid.contractFrom}
               />
               <DateInput
                 control={control}
@@ -300,14 +309,14 @@ const AddApplicant = ({
                 labelName={t("LoanMortgage.ApplicantModal.contractUntil")}
                 error={!!errors.contractUntil}
                 helperText={errors?.contractUntil?.message}
-                defaultDate={appDataValid.contractUntil}
+                defaultValue={appDataValid.contractUntil}
                 disablePast
               />
             </>
           )}
           {basicIncome === "mandate" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanMortgage.ApplicantModal.averageIncome12")}
               type="text"
@@ -318,8 +327,8 @@ const AddApplicant = ({
             />
           )}
           {basicIncome === "specificTime" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanMortgage.ApplicantModal.averageIncome6")}
               type="text"
@@ -353,10 +362,10 @@ const AddApplicant = ({
                     value: "fullAccounting",
                   },
                 ]}
-                defaultChecked={appDataValid.accountancy || "generalRules"}
+                defaultValue={appDataValid.accountancy || "generalRules"}
               />
-              <Input
-                ref={register}
+              <MuiInput
+                control={control}
                 name="averageIncome"
                 labelName={t("LoanMortgage.ApplicantModal.averageIncome6")}
                 type="text"
@@ -372,8 +381,8 @@ const AddApplicant = ({
             basicIncome === "mandate" ||
             basicIncome === "specificTime"
           ) && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanMortgage.ApplicantModal.averageIncome3")}
               type="text"
@@ -383,8 +392,8 @@ const AddApplicant = ({
               defaultValue={appDataValid.averageIncome}
             />
           )}
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="currency"
             labelName={t("LoanMortgage.ApplicantModal.currency")}
             type="text"
@@ -393,8 +402,8 @@ const AddApplicant = ({
             placeholder="PLN"
             defaultValue={appDataValid.currency}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="pit"
             labelName={t("LoanMortgage.ApplicantModal.pit")}
             type="text"
@@ -403,8 +412,8 @@ const AddApplicant = ({
             placeholder="value"
             defaultValue={appDataValid.pit}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="bank"
             labelName={t("LoanMortgage.ApplicantModal.bank")}
             type="text"

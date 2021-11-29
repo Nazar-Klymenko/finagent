@@ -1,13 +1,14 @@
 import React, { FC } from "react";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
-import { NavLink } from "react-router-dom";
-
-import { UserAuth } from "@components/buttons";
-import { useTranslation } from "react-i18next";
 
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components/macro";
+
 import { useAuth } from "@context/authContext";
+
+import { UserAuth } from "@components/buttons";
 
 interface Props {
   navOpen: boolean;

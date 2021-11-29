@@ -1,90 +1,188 @@
-import styled from "styled-components/macro";
+import { useFieldArray, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-
-import { CTA } from "@components/buttons";
-
-import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import FileTest from "./FileTest";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { DateInput, MuiInput, MuiRadio } from "@components/input";
 
 const Staging = () => {
-  const { handleSubmit, errors, control } = useForm({
-    defaultValues: {},
+  const { t } = useTranslation();
+
+  const {
+    handleSubmit,
+    control,
+
+    formState: { errors },
+  } = useForm({
+    defaultValues: { policyholder: [{ name: "", surname: "" }] },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
-    resolver: yupResolver(testSchema),
   });
 
-  const formSubmit = (data) => {};
-
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+    {
+      control,
+      name: "policyholder", // unique name for your Field Array
+    }
+  );
+  const formSubmit = (data) => {
+    console.log(data);
+  };
   return (
-    <ContentWrap fullHeight xl>
-      <CustomWrap>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
-          <FileTest
-            control={control}
-            name="files"
-            showFiles
-            error={!!errors.files}
-            helperText={errors?.files?.message}
-          />
-        </Form>
-        <CTA text="Next" form="form" color="primary" />
-      </CustomWrap>
+    <ContentWrap fullHeight xl direction="column">
+      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <ul>
+          {fields.map((item, index) => {
+            return (
+              <li key={item.id}>
+                <MuiInput
+                  control={control}
+                  name={`policyholder[${index}].name`}
+                  labelName="name"
+                  error={false}
+                  helperText=""
+                  autoComplete="given-name"
+                  // defaultValue={policyHolders[currentlySelected]?.name}
+                />
+                <MuiInput
+                  control={control}
+                  name={`policyholder[${index}].surname`}
+                  labelName="surname"
+                  error={false}
+                  helperText=""
+                  autoComplete="given-name"
+                  // defaultValue={policyHolders[currentlySelected]?.name}
+                />
+
+                <button type="button" onClick={() => remove(index)}>
+                  Delete
+                </button>
+                <button type="button" onClick={() => append(index)}>
+                  Append
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </Form>
+      {/* <div>
+        {policyholder.map((person) => (
+          <span>{person.name}</span>
+        ))}
+      </div> */}
+
+      <CTA text="Next" form="form" color="primary" />
     </ContentWrap>
   );
 };
 
 export default Staging;
 
-const CustomWrap = styled.div`
-  height: 100%;
-  width: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
+// // //  {/* <FileTest
+// // //           control={control}
+// // //           name="files"
+// // //           showFiles
+// // //           error={!!errors.files}
+// // //           helperText={errors?.files?.message}
+// // //         /> */}
 
-const testSchema = yup.object().shape({
-  files: yup
-    .array()
-    .nullable()
-    .required("Form.Error.blank")
-    .min(1)
-    .max(5)
-    .test("is-big-file", "zdjęcie jest zbyt duże", checkIfFilesAreTooBig)
-    .test(
-      "is-correct-file",
-      "nieodpowiedni typ zdjęcia",
-      checkIfFilesAreCorrectType
-    ),
-});
+// const TaskList: React.FC<any> = ({ onComplete }) => {
+//   const { control, register, handleSubmit, getValues } = useForm();
+//   const { fields, append, remove } = useFieldArray({
+//     control, // control props comes from useForm (optional: if you are using FormContext)
+//     name: "tasks", // unique name for your Field Array
+//     // keyName: "id", default to "id", you can change the key name
+//   });
 
-export function checkIfFilesAreTooBig(files) {
-  let valid = true;
-  if (files) {
-    files.forEach((file) => {
-      const size = file.size / 1024 / 1024;
-      if (size > 5) {
-        valid = false;
-      }
-    });
-  }
-  return valid;
-}
+//   console.log(getValues());
 
-export function checkIfFilesAreCorrectType(files) {
-  let valid = true;
-  if (files) {
-    files.forEach((file) => {
-      if (!["application/pdf", "image/jpeg", "image/png"].includes(file.type)) {
-        valid = false;
-      }
-    });
-  }
-  return valid;
-}
+//   const doSubmit = (data: any) => {
+//     let returnData = data;
+//     delete returnData["task-input"];
+//     console.log("TASK DATA", returnData);
+//     onComplete(returnData, false);
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit(doSubmit)}>
+//       <IonItem style={{ "--padding-start": 0 }}>
+//         <IonLabel>OBJECTIVE NAME</IonLabel>
+//         <Controller
+//           render={({ onChange }) => (
+//             <IonInput type="text" onIonChange={onChange} />
+//           )}
+//           control={control}
+//           defaultValue=""
+//           name="task-title"
+//         />
+//       </IonItem>
+
+//       <IonCard>
+//         <IonCardHeader>
+//           <h4>ADD TASKS</h4>
+//         </IonCardHeader>
+//         <IonCardContent>
+//           <IonItem style={{ "--padding-start": 0 }}>
+//             <IonLabel>Sub Task</IonLabel>
+//             <Controller
+//               render={({ onChange }) => (
+//                 <IonInput type="text" onIonChange={onChange} />
+//               )}
+//               control={control}
+//               defaultValue=""
+//               name="task-input"
+//             />
+//           </IonItem>
+//           <IonItem lines="none" style={{ "--padding-start": 0 }}>
+//             <IonButton
+//               onClick={() =>
+//                 append({ id: Date.now(), subTask: getValues("task-input") })
+//               }
+//             >
+//               Add Task To Objective
+//             </IonButton>
+//           </IonItem>
+//         </IonCardContent>
+//       </IonCard>
+//       <p>SUB TASKS</p>
+//       {fields.map((task: any, index: number) => {
+//         return (
+//           <IonItem key={task.id} style={{ "--padding-start": 0 }}>
+//             <IonIcon
+//               icon={trashOutline}
+//               onClick={() => remove(index)}
+//               slot="end"
+//             />
+//             <input
+//               type="hidden"
+//               name={`tasks[${index}].id`}
+//               ref={register()}
+//               defaultValue={task.id}
+//             />
+//             <Controller
+//               render={({ value, onChange }) => (
+//                 <IonInput
+//                   type="text"
+//                   onIonChange={onChange}
+//                   name={`tasks[${index}].subTask`}
+//                   ref={register}
+//                   value={value}
+//                 />
+//               )}
+//               control={control}
+//               defaultValue={task.subTask} // make sure to set up defaultValue
+//               name={`tasks[${index}].subTask`}
+//             />
+//           </IonItem>
+//         );
+//       })}
+//       <IonButton type="submit">SAVE IT ALL</IonButton>
+//       <IonButton onClick={() => onComplete(null, true)} color="danger">
+//         CANCEL
+//       </IonButton>
+//     </form>
+//   );
+// };

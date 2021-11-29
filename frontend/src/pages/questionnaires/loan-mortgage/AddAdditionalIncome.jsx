@@ -1,20 +1,20 @@
 import React from "react";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { addAdditionalIncomeSchema } from "./applicationHelpers/loanMortgageSchema";
-
-import { ButtonsWrap } from "../LocalStyles";
-import { Input, MuiRadio, DateInput } from "@components/input";
-import { Modal } from "@components/modals";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
 import validateAppData from "@helpers/validateAppData";
 
 import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import { DateInput, MuiInput, MuiRadio } from "@components/input";
+import { Modal } from "@components/modals";
+
+import { ButtonsWrap } from "../LocalStyles";
+import { addAdditionalIncomeSchema } from "./applicationHelpers/loanMortgageSchema";
 
 const AddAdditionalIncome = ({
   openIncomeModal,
@@ -32,7 +32,13 @@ const AddAdditionalIncome = ({
     defaultIncome
   );
 
-  const { register, handleSubmit, errors, watch, control } = useForm({
+  const {
+    handleSubmit,
+    watch,
+    control,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onBlur",
@@ -78,11 +84,11 @@ const AddAdditionalIncome = ({
                 value: "no",
               },
             ]}
-            defaultChecked={appDataValid.truckDriver || "yes"}
+            defaultValue={appDataValid.truckDriver || "yes"}
           />
           {truckDriver === "no" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="industry"
               labelName={t("LoanMortgage.IncomeModal.industry")}
               type="text"
@@ -119,7 +125,7 @@ const AddAdditionalIncome = ({
                 value: "economicActivity",
               },
             ]}
-            defaultChecked={appDataValid.basicIncome || "indefinitePeriod"}
+            defaultValue={appDataValid.basicIncome || "indefinitePeriod"}
           />
 
           {(basicIncome === "specificTime" ||
@@ -140,7 +146,7 @@ const AddAdditionalIncome = ({
                     value: "no",
                   },
                 ]}
-                defaultChecked={appDataValid.firstContract || "yes"}
+                defaultValue={appDataValid.firstContract || "yes"}
               />
               {firstContract === "no" && (
                 <>
@@ -158,7 +164,7 @@ const AddAdditionalIncome = ({
                         value: "no",
                       },
                     ]}
-                    defaultChecked={appDataValid.sameEmployer || "yes"}
+                    defaultValue={appDataValid.sameEmployer || "yes"}
                   />
 
                   <MuiRadio
@@ -175,7 +181,7 @@ const AddAdditionalIncome = ({
                         value: "no",
                       },
                     ]}
-                    defaultChecked={appDataValid.withoutPause || "yes"}
+                    defaultValue={appDataValid.withoutPause || "yes"}
                   />
                 </>
               )}
@@ -185,7 +191,7 @@ const AddAdditionalIncome = ({
                 labelName={t("LoanMortgage.IncomeModal.contractFrom")}
                 error={!!errors.contractFrom}
                 helperText={errors?.contractFrom?.message}
-                defaultDate={appDataValid.contractFrom}
+                defaultValue={appDataValid.contractFrom}
               />
               <DateInput
                 control={control}
@@ -193,14 +199,14 @@ const AddAdditionalIncome = ({
                 labelName={t("LoanMortgage.IncomeModal.contractUntil")}
                 error={!!errors.contractUntil}
                 helperText={errors?.contractUntil?.message}
-                defaultDate={appDataValid.contractUntil}
+                defaultValue={appDataValid.contractUntil}
                 disablePast
               />
             </>
           )}
           {basicIncome === "mandate" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanMortgage.IncomeModal.averageIncome12")}
               type="text"
@@ -211,8 +217,8 @@ const AddAdditionalIncome = ({
             />
           )}
           {basicIncome === "specificTime" && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanMortgage.IncomeModal.averageIncome6")}
               type="text"
@@ -246,10 +252,10 @@ const AddAdditionalIncome = ({
                     value: "fullAccounting",
                   },
                 ]}
-                defaultChecked={appDataValid.accountancy || "generalRules"}
+                defaultValue={appDataValid.accountancy || "generalRules"}
               />
-              <Input
-                ref={register}
+              <MuiInput
+                control={control}
                 name="averageIncome"
                 labelName={t("LoanMortgage.IncomeModal.averageIncome6")}
                 type="text"
@@ -265,8 +271,8 @@ const AddAdditionalIncome = ({
             basicIncome === "mandate" ||
             basicIncome === "specificTime"
           ) && (
-            <Input
-              ref={register}
+            <MuiInput
+              control={control}
               name="averageIncome"
               labelName={t("LoanMortgage.IncomeModal.averageIncome3")}
               type="text"
@@ -276,8 +282,8 @@ const AddAdditionalIncome = ({
               defaultValue={appDataValid.averageIncome}
             />
           )}
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="pit"
             labelName={t("LoanMortgage.IncomeModal.pit")}
             type="text"

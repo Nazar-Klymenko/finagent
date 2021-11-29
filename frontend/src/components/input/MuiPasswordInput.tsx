@@ -1,29 +1,43 @@
 import { FC, useState } from "react";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputAdornment from "@material-ui/core/InputAdornment";
+
+import { useTranslation } from "react-i18next";
+
 import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-import { Controller } from "react-hook-form";
+import { Control, Controller } from "react-hook-form";
+import styled from "styled-components";
+
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
-  control: any;
+  control: Control<any>;
   name: string;
   error: boolean;
-  helperText: string;
-  requirements: [string];
+  helperText: string | undefined;
+  errorList?: {};
+  labelName: string;
+  autoComplete?: string;
+  defaultValue?: string | undefined;
 }
 
 const MuiPasswordInput: FC<Props> = ({
+  
   control,
   name,
   error,
-  helperText,
-  requirements,
+  helperText = "",
+  errorList,
+  defaultValue,
+  labelName,
+  autoComplete,
+  ...other
 }) => {
+  const { t } = useTranslation();
+
   const [showPassword, setShowPassword] = useState(false);
-  const [value, setValue] = useState("");
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -33,22 +47,22 @@ const MuiPasswordInput: FC<Props> = ({
     e.preventDefault();
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
   return (
-    <ThemeProvider theme={theme}>
+    <>
+      <Label htmlFor={name}>{labelName}</Label>
       <Controller
-        as={
+        name={name}
+        control={control}
+        defaultValue={defaultValue}
+        render={({ field }) => (
           <OutlinedInput
-            id="outlined-basic"
+            id={name}
             type={showPassword ? "text" : "password"}
-            value={value}
             error={error}
-            onChange={(e: any) => {
-              handleChange(e);
-            }}
+            autoComplete={autoComplete}
+            onChange={field.onChange}
+            value={field.value}
+            {...other}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -61,24 +75,34 @@ const MuiPasswordInput: FC<Props> = ({
               </InputAdornment>
             }
           />
-        }
-        name={name}
-        control={control}
-        defaultValue={value}
+        )}
       />
 
-      {requirements.length > 0 &&
-        requirements.map((req) => <span key={req}>{req}</span>)}
-    </ThemeProvider>
+      <InputErrorMessage>
+        <span className="invis-star">*</span>
+        {t(helperText)}
+      </InputErrorMessage>
+      {/* <Requirements>
+        {errorList &&
+          Object.entries(errorList).map((error: any) => (
+            <RequirementsRow>
+              <CheckRoundedIcon />
+              <span key={error[0]}>{error[1]}</span>
+            </RequirementsRow>
+          ))}
+      </Requirements> */}
+    </>
   );
 };
 
 export default MuiPasswordInput;
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#1672ec",
-    },
-  },
-});
+// const Requirements = styled.div`
+//   font-size: 14px;
+//   color: ${({ theme }) => theme.typography.gray};
+//   display: flex;
+//   flex-direction: column;
+// `;
+// const RequirementsRow = styled.div`
+//   display: flex;
+// `;

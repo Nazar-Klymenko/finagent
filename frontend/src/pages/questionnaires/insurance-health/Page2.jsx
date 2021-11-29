@@ -1,30 +1,33 @@
-import React, { useState, useEffect } from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+import { QuestState } from "@dev/QuestState";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
 
 import {
-  Page,
-  Title,
-  Subtitle,
-  ButtonsWrap,
   ApplicantBox,
+  ButtonsWrap,
   ErrorBottom,
+  Page,
+  Subtitle,
+  Title,
 } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
-import { CTA } from "@components/buttons";
-import ProgressBar from "@components/ProgressBar";
-import { useData } from "@context/dataContext";
 import AddPolicyHolder from "./AddPolicyHolder";
-import { QuestState } from "@dev/QuestState";
 
 const Page2 = () => {
   const { t } = useTranslation();
+  useTitle("Health insurance | FinAgent");
+  const history = useHistory();
   const { appData, setValues, setAllowSummary, peopleData, setPeopleData } =
     useData();
-  const history = useHistory();
-
-  useTitle("Health insurance | FinAgent");
 
   const [openModal, setOpenModal] = useState(false);
   const [isError, setIsError] = useState("");
@@ -34,7 +37,7 @@ const Page2 = () => {
   let [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    setValues(insuredData, "InsuredData");
+    setValues(insuredData, "insuranceHealth", "InsuredData");
     setPeopleData(insuredData);
     setIsError("");
   }, [insuredData]);

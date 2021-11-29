@@ -88,7 +88,7 @@
     "question": "Маєте ще питання?",
     "phone": "Телефон",
     "email": "Email",
-    "fullName": "Ім'я Прізвище",
+    "fullName": "Ім'я і Прізвище",
     "message": "Повідомлення",
     "submit": "Відправити"
   },
@@ -161,8 +161,7 @@
   "SignUp": {
     "title": "Створити новий аккаунт",
     "Individual": {
-      "name": "Ім'я",
-      "surname": "Прізвище",
+      "fullName": "Ім'я і Прізвище",
       "email": "Email",
       "phone": "Телефон",
       "password": "Пароль"
@@ -282,8 +281,7 @@
   "Settings": {
     "ChangeInfo": {
       "title": "Особиста інформація",
-      "name": "Ім'я",
-      "surname": "Прізвище",
+      "fullName": "Ім'я і Прізвище",
       "phone": "Телефон",
       "button": "Підтвердити",
       "alertSuccess": "Особиста інформація оновлена",

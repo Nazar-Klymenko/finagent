@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { getSpecificNotificationAPI } from "@api/userAPI";
+
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components/macro";
 
-import { useParams, useHistory } from "react-router-dom";
+import { getSpecificNotificationAPI } from "@api/userAPI";
 
 import { useNotifications } from "@context/notificationContext";
 

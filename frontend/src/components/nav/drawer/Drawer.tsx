@@ -1,14 +1,16 @@
 import React, { useRef } from "react";
-import styled from "styled-components/macro";
+
 import { makeStyles } from "@material-ui/core/styles";
-
-import Links from "./Links";
-import Avatar from "./Avatar";
-import AuthLinks from "./AuthLinks";
-
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import styled from "styled-components/macro";
+
 import useClickOutside from "@hooks/useClickOutside";
+
 import { useAuth } from "@context/authContext";
+
+import AuthLinks from "./AuthLinks";
+import Avatar from "./Avatar";
+import Links from "./Links";
 
 interface Props {
   navOpen: boolean;
@@ -63,7 +65,7 @@ const DrawerStyled = styled.div<Styled>`
     navOpen ? "translateX(0%)" : "translateX(100%)"};
   z-index: 150;
   transition: transform 0.25s ease-in-out;
-
+  z-index: 99999;
   @media screen and (min-width: ${({ theme }) => theme.widthPhone}) {
     width: 40%;
   } ;

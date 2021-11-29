@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
-import { useHistory } from "react-router-dom";
-import moment from "moment";
 
-import styled from "styled-components/macro";
+import moment from "moment";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components/macro";
 
 interface Props {
   appDataForUser: any;
@@ -30,9 +30,7 @@ const Card: React.FC<Props> = ({ appDataForUser }) => {
           <StatusColor />
           <Cell>
             <span className="key">{t("Dashboard.ApplicationCard.name")}</span>
-            <span className="value">
-              {appDataForUser.user?.name} {appDataForUser.user?.surname}
-            </span>
+            <span className="value">{appDataForUser.user?.fullName}</span>
           </Cell>
           {/* <Cell>
             <span className="key">{t("Dashboard.ApplicationCard.type")}</span>

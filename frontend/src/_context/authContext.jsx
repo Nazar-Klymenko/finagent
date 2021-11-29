@@ -1,31 +1,31 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { auth } from "@services/firebase";
-import { setSnackbar } from "@redux/alert/actions";
-import { useDispatch } from "react-redux";
-import { deleteUserAPI } from "@api/userAPI";
-
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  getAdditionalUserInfo,
-  onAuthStateChanged,
-  signInWithPopup,
-  FacebookAuthProvider,
-  signOut,
-  sendEmailVerification,
-  reauthenticateWithCredential,
   EmailAuthProvider,
-  reauthenticateWithPopup,
-  reauthenticateWithRedirect,
-  signInWithRedirect,
+  FacebookAuthProvider,
+  createUserWithEmailAndPassword,
   deleteUser,
+  getAdditionalUserInfo,
+  getRedirectResult,
+  onAuthStateChanged,
+  reauthenticateWithCredential,
+  reauthenticateWithRedirect,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithRedirect,
+  signOut,
   updatePassword,
   updateProfile,
-  getRedirectResult,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+
+import { auth } from "@services/firebase";
+
+import { deleteUserAPI } from "@api/userAPI";
 import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
+
+import { setSnackbar } from "@redux/alert/actions";
 
 const AuthContext = createContext({
   currentUser: {
@@ -36,14 +36,19 @@ const AuthContext = createContext({
     photoURL: "",
     provider: "",
   },
-  signup: () => Promise,
+  signup: (data) => Promise,
   login: (email, password) => Promise,
   loginFacebook: () => Promise,
   logout: (redirectCallback) => Promise,
   forgotPassword: () => Promise,
   deleteAccount: () => Promise,
+  deleteAccountFacebook: () => Promise,
   resetPassword: (email) => Promise,
   setUpdatedPassword: (currentPassword, newPassword) => Promise,
+  updateEmail: () => Promise,
+  updateDisplayName: (displayName) => Promise,
+  updatePassword: () => Promise,
+  resendVerificationEmail: () => Promise,
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -62,7 +67,7 @@ export const AuthContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       let emailVerified;
       let photoURL = "";
       if (user) {
@@ -73,6 +78,11 @@ export const AuthContextProvider = ({ children }) => {
           emailVerified = true;
           photoURL = user.photoURL;
         } else emailVerified = user.emailVerified;
+      }
+      const redirectResult = await getRedirectResult(auth);
+      if (redirectResult) {
+        const additionalInfo = getAdditionalUserInfo(redirectResult);
+        if (additionalInfo.isNewUser) signupFacebook(additionalInfo, user);
       }
 
       setCurrentUser(
@@ -112,7 +122,7 @@ export const AuthContextProvider = ({ children }) => {
       let additionalInfo = getAdditionalUserInfo(response);
 
       await updateProfile(user, {
-        displayName: `${data.name} ${data.surname}`,
+        displayName: data.fullName,
       });
 
       newData.IdToken = await user.getIdToken();
@@ -129,7 +139,7 @@ export const AuthContextProvider = ({ children }) => {
       setCurrentUser((currentUser) => {
         return {
           ...currentUser,
-          displayName: `${data.name} ${data.surname}`,
+          displayName: data.fullName,
         };
       });
     } catch (error) {
@@ -171,24 +181,26 @@ export const AuthContextProvider = ({ children }) => {
     const provider = new FacebookAuthProvider();
     provider.setCustomParameters({ auth_type: "rerequest" });
     try {
-      const response = await signInWithRedirect(auth, provider);
-      const additionalInfo = getAdditionalUserInfo(response);
-
-      const user = auth.currentUser;
-
-      if (additionalInfo.isNewUser) {
-        await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
-          (error) => {
-            deleteUser(user);
-            throw new Error();
-          }
-        );
-      }
-
+      await signInWithRedirect(auth, provider);
       dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
     } catch (error) {
       dispatch(setSnackbar("error", "SnackBar.loginError"));
       localStorage.setItem("onSignIn", "false");
+    }
+  }
+
+  async function signupFacebook(additionalInfo, user) {
+    try {
+      await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
+        (error) => {
+          deleteUser(user);
+          localStorage.setItem("onSignIn", "false");
+          throw new Error();
+        }
+      );
+      dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
+    } catch (error) {
+      dispatch(setSnackbar("error", "SnackBar.loginError"));
     }
   }
 
@@ -211,10 +223,6 @@ export const AuthContextProvider = ({ children }) => {
     });
     await updatePassword(auth.currentUser, newPassword);
     setSnackbar("success", "Settings.ChangePassword.alertSuccess");
-  }
-
-  async function updateEmail(email) {
-    await auth.currentUser?.updateEmail(email);
   }
 
   async function logout(redirectCallback) {
@@ -240,7 +248,7 @@ export const AuthContextProvider = ({ children }) => {
         const provider = new FacebookAuthProvider();
         provider.setCustomParameters({ auth_type: "rerequest" });
         const user = auth.currentUser;
-        const response = await reauthenticateWithPopup(user, provider);
+        const response = await reauthenticateWithRedirect(user, provider);
 
         await deleteUserAPI();
         await deleteUser(user);
@@ -249,8 +257,6 @@ export const AuthContextProvider = ({ children }) => {
     } catch (error) {
       dispatch(setSnackbar("error", "ERROR"));
     }
-
-    // const response = await deleteUserAPI(data);
   }
   async function reauthenticate(currentPassword) {
     const user = auth.currentUser;
@@ -258,16 +264,16 @@ export const AuthContextProvider = ({ children }) => {
     return reauthenticateWithCredential(user, cred);
   }
 
-  async function updateDisplayName(name, surname) {
+  async function updateDisplayName(displayName) {
     const user = auth.currentUser;
 
     await updateProfile(user, {
-      displayName: `${name} ${surname}`,
+      displayName: displayName,
     });
     setCurrentUser((currentUser) => {
       return {
         ...currentUser,
-        displayName: `${name} ${surname}`,
+        displayName: displayName,
       };
     });
   }
@@ -276,7 +282,6 @@ export const AuthContextProvider = ({ children }) => {
     currentUser,
     signup,
     resetPassword,
-    updateEmail,
     login,
     loginFacebook,
     logout,

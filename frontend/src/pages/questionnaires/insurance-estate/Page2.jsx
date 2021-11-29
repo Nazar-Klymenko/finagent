@@ -1,31 +1,45 @@
 import React from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
-import Form from "@components/Form";
-import { Input, MuiRadio } from "@components/input";
-import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
-
-import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiInput, MuiRadio } from "@components/input";
+
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageTwoSchema } from "./applicationHelpers/insuranceEstateSchema";
-import { QuestState } from "@dev/QuestState";
 
 const Page2 = () => {
   const { t } = useTranslation();
   const history = useHistory();
   useTitle("Real estate insurance | FinAgent");
   const { appData, setValues, setAllowSummary } = useData();
-  const appDataValid = validateAppData(appData, "PersonalData");
 
-  const { register, handleSubmit, errors, watch, control } = useForm({
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceEstate",
+    "personalData"
+  );
+
+  const {
+    handleSubmit,
+    watch,
+    control,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "individual",
       name: appDataValid.name,
@@ -44,7 +58,7 @@ const Page2 = () => {
   const policyholderIs = watch("policyholderIs") || "individual";
 
   const formSubmit = (data) => {
-    setValues(data, "PersonalData");
+    setValues(data, "insuranceEstate", "personalData");
     setAllowSummary(true);
     history.push("./summary");
   };
@@ -83,24 +97,24 @@ const Page2 = () => {
           />
           {policyholderIs !== "legal" && (
             <>
-              <Input
+              <MuiInput
+                control={control}
                 name="name"
                 labelName={t("InsuranceEstate.Page2.name")}
-                ref={register}
                 error={!!errors.name}
                 helperText={errors?.name?.message}
               />
-              <Input
+              <MuiInput
+                control={control}
                 name="surname"
                 labelName={t("InsuranceEstate.Page2.surname")}
-                ref={register}
                 error={!!errors.surname}
                 helperText={errors?.surname?.message}
               />
-              <Input
+              <MuiInput
+                control={control}
                 name="pesel"
                 labelName={t("InsuranceEstate.Page2.pesel")}
-                ref={register}
                 error={!!errors.pesel}
                 helperText={errors?.pesel?.message}
               />
@@ -109,41 +123,41 @@ const Page2 = () => {
 
           {policyholderIs !== "individual" && (
             <>
-              <Input
+              <MuiInput
+                control={control}
                 name="firmName"
                 labelName={t("InsuranceEstate.Page2.firmName")}
-                ref={register}
                 error={!!errors.firmName}
                 helperText={errors?.firmName?.message}
               />
-              <Input
+              <MuiInput
+                control={control}
                 name="nip"
                 labelName={t("InsuranceEstate.Page2.nip")}
-                ref={register}
                 error={!!errors.nip}
                 helperText={errors?.nip?.message}
               />
-              <Input
+              <MuiInput
+                control={control}
                 name="regon"
                 labelName={t("InsuranceEstate.Page2.regon")}
-                ref={register}
                 error={!!errors.regon}
                 helperText={errors?.regon?.message}
               />
             </>
           )}
 
-          <Input
+          <MuiInput
+            control={control}
             name="phone"
             labelName={t("InsuranceEstate.Page2.phone")}
-            ref={register}
             error={!!errors.phone}
             helperText={errors?.phone?.message}
           />
-          <Input
+          <MuiInput
+            control={control}
             name="email"
             labelName={t("InsuranceEstate.Page2.email")}
-            ref={register}
             error={!!errors.email}
             helperText={errors?.email?.message}
           />

@@ -1,5 +1,4 @@
-// import WebSocket from "ws";
-import dbCreateConnection from "./utils/db.js";
+import dbCreateConnection from "./services/db.js";
 
 import http from "http";
 import { app } from "app";
@@ -11,7 +10,5 @@ const server = http.createServer(app).listen(port, () => {
   console.log(`🚢 Port: ${port}`);
   console.log("==================================");
 });
-
-// const wss = new WebSocket.Server({ server: server });
 
 dbCreateConnection();

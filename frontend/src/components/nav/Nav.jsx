@@ -1,45 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+import Backdrop from "@material-ui/core/Backdrop";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery } from "react-responsive";
 import styled, { css } from "styled-components/macro";
 
-import { UserAuth } from "@components/buttons";
+import { useAuth } from "@context/authContext";
+
 import LogoWrap from "@components/LogoWrap";
+import { UserAuth } from "@components/buttons";
+import Drawer from "@components/nav/drawer/Drawer";
 import { Logo } from "@components/svgs";
+
 import Hamburger from "./Hamburger";
-import UserDropdown from "./UserDropdown";
-import Notifications from "./Notifications";
 import LanguageMenu from "./LanguageMenu";
 import Links from "./Links";
-import Drawer from "@components/nav/drawer/Drawer";
-import Backdrop from "@components/Backdrop";
-import { useBackdrop } from "@context/backdropContext";
-
-import { useMediaQuery } from "react-responsive";
-import { useAuth } from "@context/authContext";
+import Notifications from "./Notifications";
+import UserDropdown from "./UserDropdown";
 
 const Nav = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 992px)" });
+  const classes = useStyles();
 
   const { currentUser } = useAuth();
   const { isLoggedIn } = currentUser;
   const [navOpen, setNavOpen] = useState(false);
-  const { isBackdropOpen, setBackdropOpen } = useBackdrop();
+
+  const [openBackdrop, setOpenBackdrop] = useState(false);
+
+  const handleClose = () => {
+    setOpenBackdrop(false);
+  };
 
   useEffect(() => {
-    setBackdropOpen(navOpen);
-  }, [setBackdropOpen, navOpen]);
+    setOpenBackdrop(navOpen);
+  }, [setOpenBackdrop, navOpen]);
 
   useEffect(() => {
     if (!isTabletOrMobile) {
-      setBackdropOpen(false);
+      setOpenBackdrop(false);
       setNavOpen(false);
     }
-  }, [isTabletOrMobile, setBackdropOpen]);
+  }, [isTabletOrMobile, setOpenBackdrop]);
 
   return (
     <NavStyled>
       <NavInnerWrap>
-        {isBackdropOpen && <Backdrop />}
-
+        <Backdrop
+          className={classes.backdrop}
+          open={openBackdrop}
+          onClick={handleClose}
+        />
         <FlexWrap f1 flexStart>
           <LogoWrap>
             <Logo fillColor="#1A1B1E" />
@@ -151,3 +162,11 @@ const FlexWrap = styled.div`
       flex: 2;
     `}
 `;
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: "#fff",
+    },
+  })
+);

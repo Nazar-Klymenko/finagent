@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
+
+import { QuestState } from "@dev/QuestState";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { Page, Title, ButtonsWrap } from "../LocalStyles";
-import { ContentWrap } from "@components/content";
-import ProgressBar from "@components/ProgressBar";
+import determineType from "@helpers/determineType";
 
-import SummaryList from "@components/SummaryList";
-import { CTA } from "@components/buttons";
+import { postInsuranceEstateAPI } from "@api/userAPI";
+
+import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
 
-import determineType from "@helpers/determineType";
-import { postInsuranceEstateAPI } from "@api/userAPI";
-import { QuestState } from "@dev/QuestState";
+import ProgressBar from "@components/ProgressBar";
+import SummaryList from "@components/SummaryList";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+
+import { ButtonsWrap, Page, Title } from "../LocalStyles";
 
 const Summary = () => {
   const { t } = useTranslation();
@@ -23,12 +26,12 @@ const Summary = () => {
   const { appData } = useData();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("Estate", appData);
+  const addDataLabeled = determineType("Estate", appData.insuranceEstate);
 
   const confirmApplication = async () => {
     setIsLoading(true);
     try {
-      await postInsuranceEstateAPI(appData);
+      await postInsuranceEstateAPI(appData.insuranceEstate);
       history.push("/dashboard/insurances");
       setIsLoading(false);
     } catch (error) {

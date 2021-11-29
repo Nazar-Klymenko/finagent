@@ -1,11 +1,13 @@
-import React, { useState, useCallback } from "react";
-import styled, { css } from "styled-components/macro";
+import React, { useCallback, useState } from "react";
+
 import { useTranslation } from "react-i18next";
+import styled, { css } from "styled-components/macro";
+
 import { ArrowDown } from "@components/svgs";
 
 interface Props {
   header: string;
-  array: [];
+  array: any[] | undefined;
   inDashboard?: boolean;
   defaultOpen?: boolean;
 }

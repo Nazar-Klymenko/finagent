@@ -1,14 +1,16 @@
 import { FC } from "react";
 import React from "react";
+
+import Backdrop from "@material-ui/core/Backdrop";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Backdrop from "@material-ui/core/Backdrop";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
+
 import { CTA } from "@components/buttons";
 
 interface Props {

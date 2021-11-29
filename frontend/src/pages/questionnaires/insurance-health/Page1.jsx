@@ -1,37 +1,49 @@
 import React, { useState } from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-import { useForm } from "react-hook-form";
-
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageOneSchema } from "./applicationHelpers/insuranceHealthSchema";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import { Page, Title, Subtitle, ButtonsWrap } from "../LocalStyles";
-import { DateInput, MuiSelect, MuiCheckbox } from "@components/input";
-import { ContentWrap } from "@components/content";
+import validateAppData from "@helpers/validateAppData";
+
+import useTitle from "@hooks/useTitle";
+
+import { useData } from "@context/dataContext";
+
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { DateInput, MuiCheckbox, MuiSelect } from "@components/input";
 
-import { useData } from "@context/dataContext";
-import validateAppData from "@helpers/validateAppData";
-import { QuestState } from "@dev/QuestState";
-
+import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { clauseOnePriceOptions } from "./applicationHelpers/insuranceHealthOptions";
 import { clauseTwoPriceOptions } from "./applicationHelpers/insuranceHealthOptions";
 import { clauseThreePriceOptions } from "./applicationHelpers/insuranceHealthOptions";
+import { pageOneSchema } from "./applicationHelpers/insuranceHealthSchema";
 
 const Page1 = () => {
   const { t } = useTranslation();
-  const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = validateAppData(appData, "InsuranceData");
+  useTitle("Health insurance | FinAgent");
   const history = useHistory();
 
-  useTitle("Health insurance | FinAgent");
+  const { appData, setValues, setCurrentPage } = useData();
 
-  const { register, handleSubmit, errors, control, watch } = useForm({
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceHealth",
+    "insuranceData"
+  );
+
+  const {
+    handleSubmit,
+    control,
+    watch,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       clauseOne: true,
       clauseTwo: appDataValid.clauseTwo,
@@ -47,7 +59,7 @@ const Page1 = () => {
   let showThreeAmount = watch("clauseThree");
 
   const formSubmit = (data) => {
-    setValues(data, "InsuranceData");
+    setValues(data, "insuranceHealth", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
   };
@@ -72,7 +84,7 @@ const Page1 = () => {
             labelName={t("InsuranceHealth.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultDate={appDataValid.insuranceStart}
+            defaultValue={appDataValid.insuranceStart}
             disablePast
           />
           <DateInput
@@ -81,7 +93,7 @@ const Page1 = () => {
             labelName={t("InsuranceHealth.Page1.insuranceEnd")}
             error={!!errors.insuranceEnd}
             helperText={errors?.insuranceEnd?.message}
-            defaultDate={appDataValid.insuranceEnd}
+            defaultValue={appDataValid.insuranceEnd}
             disablePast
           />
           <Subtitle>{t("InsuranceHealth.Page1.riskType")}</Subtitle>

@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from "react";
-import useTitle from "@hooks/useTitle";
-import { useHistory } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
 
-import { useForm } from "react-hook-form";
-
+import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { pageTwoSchema } from "./applicationHelpers/loanMortgageSchema";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 
-import {
-  Page,
-  Title,
-  Subtitle,
-  ButtonsWrap,
-  ApplicantBox,
-  ErrorBottom,
-} from "../LocalStyles";
-import { Input, MuiCheckbox, SelectInput, MuiSelect } from "@components/input";
-import { ContentWrap } from "@components/content";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import ProgressBar from "@components/ProgressBar";
-
-import { useData } from "@context/dataContext";
 import validateAppData from "@helpers/validateAppData";
 
-import AddHousehold from "./AddHousehold";
-import { QuestState } from "@dev/QuestState";
+import useTitle from "@hooks/useTitle";
 
+import { useData } from "@context/dataContext";
+
+import Form from "@components/Form";
+import ProgressBar from "@components/ProgressBar";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { MuiCheckbox, MuiInput, MuiSelect } from "@components/input";
+
+import {
+  ApplicantBox,
+  ButtonsWrap,
+  ErrorBottom,
+  Page,
+  Subtitle,
+  Title,
+} from "../LocalStyles";
+import AddHousehold from "./AddHousehold";
 import { loanPurposeOptions } from "./applicationHelpers/loanMortgageOptions";
 import { rialtoOptions } from "./applicationHelpers/loanMortgageOptions";
 import { paymentTermOptions } from "./applicationHelpers/loanMortgageOptions";
 import { repaymentOptions } from "./applicationHelpers/loanMortgageOptions";
 import { monthlyPaymentsOptions } from "./applicationHelpers/loanMortgageOptions";
+import { pageTwoSchema } from "./applicationHelpers/loanMortgageSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -58,7 +57,12 @@ const Page2 = () => {
   let [householdData, setHouseholdData] = useState(addHouseholdData || []);
   let [defaultHousehold, setDefaultHousehold] = useState(null);
 
-  const { register, handleSubmit, errors, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       custody: appDataValid.custody,
       monthlyLoanPayments: appDataValid.monthlyLoanPayments,
@@ -158,8 +162,8 @@ const Page2 = () => {
             </span>
           </ApplicantBox>
 
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="custody"
             labelName={t("LoanMortgage.Page2.custody")}
             type="text"
@@ -167,8 +171,8 @@ const Page2 = () => {
             helperText={errors?.custody?.message}
             placeholder="number"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="monthlyLoanPayments"
             labelName={t("LoanMortgage.Page2.monthlyLoanPayments")}
             type="text"
@@ -176,8 +180,8 @@ const Page2 = () => {
             helperText={errors?.monthlyLoanPayments?.message}
             placeholder="number"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="cardLimits"
             labelName={t("LoanMortgage.Page2.cardLimits")}
             type="text"
@@ -206,8 +210,8 @@ const Page2 = () => {
             error={!!errors.rialto}
             helperText={errors?.rialto?.message}
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="propertyValue"
             labelName={t("LoanMortgage.Page2.propertyValue")}
             type="text"
@@ -215,8 +219,8 @@ const Page2 = () => {
             helperText={errors?.propertyValue?.message}
             placeholder="number"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="renovationValue"
             labelName={t("LoanMortgage.Page2.renovationValue")}
             type="text"
@@ -224,8 +228,8 @@ const Page2 = () => {
             helperText={errors?.renovationValue?.message}
             placeholder="number"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="contributionAmount"
             labelName={t("LoanMortgage.Page2.contributionAmount")}
             type="text"
@@ -264,8 +268,8 @@ const Page2 = () => {
             helperText={errors?.monthlyPayments?.message}
           />
           <Subtitle>{t("LoanMortgage.Page2.propertyLocation")}</Subtitle>
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="voivodeship"
             labelName={t("LoanMortgage.Page2.voivodeship")}
             type="text"
@@ -273,8 +277,8 @@ const Page2 = () => {
             helperText={errors?.voivodeship?.message}
             placeholder="Malopolskie"
           />
-          <Input
-            ref={register}
+          <MuiInput
+            control={control}
             name="town"
             labelName={t("LoanMortgage.Page2.town")}
             type="text"

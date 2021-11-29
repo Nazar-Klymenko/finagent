@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import styled from "styled-components";
 
 export const QuestState = ({ data }) => {
@@ -38,6 +39,7 @@ const OpenBtn = styled.div`
   bottom: 10px;
   left: 64px;
   border-radius: 999px;
+  z-index: 99999999;
 `;
 
 const Wrap = styled.div`

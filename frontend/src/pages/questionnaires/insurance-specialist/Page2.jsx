@@ -43,7 +43,7 @@ const Page2 = () => {
   const history = useHistory();
   useTitle("Specialists access | FinAgent");
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const [openDialog, setOpenDialog] = useState(true);
   const handleClickOpen = () => {
     setOpenDialog(true);
   };
@@ -59,6 +59,9 @@ const Page2 = () => {
     watch,
     formState: { errors },
   } = useForm({
+    defaultValues: {
+      policyholder: [{ policyholderIs: "firm", name: "", surname: "" }],
+    },
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
@@ -75,8 +78,8 @@ const Page2 = () => {
 
   const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
     {
-      control, // control props comes from useForm (optional: if you are using FormContext)
-      name: "test", // unique name for your Field Array
+      control,
+      name: "policyholder",
       // keyName: "id", default to "id", you can change the key name
     }
   );
@@ -95,16 +98,18 @@ const Page2 = () => {
         <Subtitle>{t("InsuranceDiagnostic.ApplicantBox.title")}</Subtitle>
 
         <Form id="insured-data-form" onSubmit={handleSubmit(formSubmit)} />
-        <MuiDialog
+        {/* <MuiDialog
           formId="add-applicant"
           handleClose={handleClose}
           isOpen={openDialog}
           title="Add another applicant"
-        >
-          <Form id="add-applicant">
+        > */}
+        {fields.map((field, index) => (
+          <>
             <MuiRadio
               control={control}
-              name="policyholderIs"
+              key={field.id}
+              name={`policyholder.${index}.policyholderIs`}
               legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
               options={[
                 {
@@ -120,13 +125,11 @@ const Page2 = () => {
                   value: "legal",
                 },
               ]}
-              // defaultValue={
-              //   policyHolders[currentlySelected]?.policyholderIs || "firm"
-              // }
             />
             <MuiInput
               control={control}
-              name="name"
+              key={field.id}
+              name={`policyholder.${index}.name`}
               labelName={t("InsuranceDiagnostic.Page1.name")}
               error={!!errors.name}
               helperText={errors?.name?.message}
@@ -136,7 +139,8 @@ const Page2 = () => {
             {policyholderIs === "individual" && (
               <MuiInput
                 control={control}
-                name="surname"
+                key={field.id}
+                name={`policyholder.${index}.surname`}
                 labelName={t("InsuranceDiagnostic.Page1.surname")}
                 error={!!errors.surname}
                 helperText={errors?.surname?.message}
@@ -144,104 +148,16 @@ const Page2 = () => {
                 // defaultValue={policyHolders[currentlySelected]?.surname}
               />
             )}
-            {!(policyholderIs === "individual") && (
-              <MuiInput
-                control={control}
-                name="nip"
-                labelName={t("InsuranceDiagnostic.Page1.nip")}
-                error={!!errors.nip}
-                helperText={errors?.nip?.message}
-                // defaultValue={policyHolders[currentlySelected]?.nip}
-              />
-            )}
-            {policyholderIs === "individual" && (
-              <DateInput
-                control={control}
-                name="birthDate"
-                labelName={t("InsuranceDiagnostic.Page1.birthDate")}
-                error={!!errors.birthDate}
-                helperText={errors?.birthDate?.message}
-                // defaultValue={policyHolders[currentlySelected]?.birthDate}
-              />
-            )}
-            {policyholderIs === "individual" && (
-              <MuiInput
-                control={control}
-                name="pesel"
-                labelName={t("InsuranceDiagnostic.Page1.pesel")}
-                error={!!errors.pesel}
-                helperText={errors?.pesel?.message}
-                // defaultValue={policyHolders[currentlySelected]?.pesel}
-              />
-            )}
-            {!(policyholderIs === "individual") && (
-              <MuiInput
-                control={control}
-                name="regon"
-                labelName={t("InsuranceDiagnostic.Page1.regon")}
-                error={!!errors.regon}
-                helperText={errors?.regon?.message}
-                // defaultValue={policyHolders[currentlySelected]?.regon}
-              />
-            )}
-            <MuiPhoneInput
-              control={control}
-              name="phoneNumber"
-              labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
-              error={!!errors.phoneNumber}
-              helperText={errors?.phoneNumber?.message}
-              // defaultValue={policyHolders[currentlySelected]?.phoneNumber}
+            <CTA
+              text={t("Basic.buttonBack")}
+              color="secondary"
+              onClick={() => {
+                append({});
+              }}
             />
-            <MuiInput
-              control={control}
-              name="email"
-              labelName={t("InsuranceDiagnostic.Page1.email")}
-              error={!!errors.email}
-              helperText={errors?.email?.message}
-              // defaultValue={policyHolders[currentlySelected]?.email}
-            />
-            <MuiInput
-              control={control}
-              name="country"
-              labelName={t("InsuranceDiagnostic.Page1.country")}
-              error={!!errors.country}
-              helperText={errors?.country?.message}
-              // defaultValue={policyHolders[currentlySelected]?.country}
-            />
-            <MuiInput
-              control={control}
-              name="city"
-              labelName={t("InsuranceDiagnostic.Page1.city")}
-              error={!!errors.city}
-              helperText={errors?.city?.message}
-              // defaultValue={policyHolders[currentlySelected]?.city}
-            />
-            <MuiInput
-              control={control}
-              name="postIndex"
-              labelName={t("InsuranceDiagnostic.Page1.postIndex")}
-              error={!!errors.postIndex}
-              helperText={errors?.postIndex?.message}
-              // defaultValue={policyHolders[currentlySelected]?.postIndex}
-            />
-            <MuiInput
-              control={control}
-              name="street"
-              labelName={t("InsuranceDiagnostic.Page1.street")}
-              error={!!errors.street}
-              helperText={errors?.street?.message}
-              // defaultValue={policyHolders[currentlySelected]?.street}
-            />
-            <MuiInput
-              control={control}
-              name="houseNumber"
-              labelName={t("InsuranceDiagnostic.Page1.houseNumber")}
-              error={!!errors.houseNumber}
-              helperText={errors?.houseNumber?.message}
-              // defaultValue={policyHolders[currentlySelected]?.houseNumber}
-            />
-          </Form>
-        </MuiDialog>
+          </>
+        ))}
+        {/* </MuiDialog> */}
 
         <ButtonsWrap multiple>
           <CTA
@@ -264,6 +180,119 @@ const Page2 = () => {
 };
 
 export default Page2;
+
+/* // defaultValue={
+                //   policyHolders[currentlySelected]?.policyholderIs || "firm"
+                // } */
+
+/* 
+{!(policyholderIs === "individual") && (
+                <MuiInput
+                  control={control}
+                  key={field.id}
+                  name={`policyholder.${index}.nip`}
+                  labelName={t("InsuranceDiagnostic.Page1.nip")}
+                  error={!!errors.nip}
+                  helperText={errors?.nip?.message}
+                  // defaultValue={policyHolders[currentlySelected]?.nip}
+                />
+              )}
+              {policyholderIs === "individual" && (
+                <DateInput
+                  control={control}
+                  key={field.id}
+                  name={`policyholder.${index}.birthDate`}
+                  labelName={t("InsuranceDiagnostic.Page1.birthDate")}
+                  error={!!errors.birthDate}
+                  helperText={errors?.birthDate?.message}
+                  // defaultValue={policyHolders[currentlySelected]?.birthDate}
+                />
+              )}
+              {policyholderIs === "individual" && (
+                <MuiInput
+                  control={control}
+                  key={field.id}
+                  name={`policyholder.${index}.pesel`}
+                  labelName={t("InsuranceDiagnostic.Page1.pesel")}
+                  error={!!errors.pesel}
+                  helperText={errors?.pesel?.message}
+                  // defaultValue={policyHolders[currentlySelected]?.pesel}
+                />
+              )}
+              {!(policyholderIs === "individual") && (
+                <MuiInput
+                  control={control}
+                  key={field.id}
+                  name={`policyholder.${index}.regon`}
+                  labelName={t("InsuranceDiagnostic.Page1.regon")}
+                  error={!!errors.regon}
+                  helperText={errors?.regon?.message}
+                  // defaultValue={policyHolders[currentlySelected]?.regon}
+                />
+              )}
+              <MuiPhoneInput
+                control={control}
+                key={field.id}
+                name={`policyholder.${index}.phoneNumber`}
+                labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
+                error={!!errors.phoneNumber}
+                helperText={errors?.phoneNumber?.message}
+                // defaultValue={policyHolders[currentlySelected]?.phoneNumber}
+              />
+              <MuiInput
+                control={control}
+                key={field.id}
+                name={`policyholder.${index}.email`}
+                labelName={t("InsuranceDiagnostic.Page1.email")}
+                error={!!errors.email}
+                helperText={errors?.email?.message}
+                // defaultValue={policyHolders[currentlySelected]?.email}
+              />
+              <MuiInput
+                control={control}
+                key={field.id}
+                name={`policyholder.${index}.country`}
+                labelName={t("InsuranceDiagnostic.Page1.country")}
+                error={!!errors.country}
+                helperText={errors?.country?.message}
+                // defaultValue={policyHolders[currentlySelected]?.country}
+              />
+              <MuiInput
+                control={control}
+                key={field.id}
+                name={`policyholder.${index}.city`}
+                labelName={t("InsuranceDiagnostic.Page1.city")}
+                error={!!errors.city}
+                helperText={errors?.city?.message}
+                // defaultValue={policyHolders[currentlySelected]?.city}
+              />
+              <MuiInput
+                control={control}
+                key={field.id}
+                name={`policyholder.${index}.postIndex`}
+                labelName={t("InsuranceDiagnostic.Page1.postIndex")}
+                error={!!errors.postIndex}
+                helperText={errors?.postIndex?.message}
+                // defaultValue={policyHolders[currentlySelected]?.postIndex}
+              />
+              <MuiInput
+                control={control}
+                key={field.id}
+                name={`policyholder.${index}.street`}
+                labelName={t("InsuranceDiagnostic.Page1.street")}
+                error={!!errors.street}
+                helperText={errors?.street?.message}
+                // defaultValue={policyHolders[currentlySelected]?.street}
+              />
+              <MuiInput
+                control={control}
+                key={field.id}
+                name={`policyholder.${index}.houseNumber`}
+                labelName={t("InsuranceDiagnostic.Page1.houseNumber")}
+                error={!!errors.houseNumber}
+                helperText={errors?.houseNumber?.message}
+                // defaultValue={policyHolders[currentlySelected]?.houseNumber}
+              /> */
 
 // const [policyHolders, setPolicyHolders] = useState([]);
 // const [currentlySelected, setCurretlySelected] = useState(null);

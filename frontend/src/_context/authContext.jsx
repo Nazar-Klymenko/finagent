@@ -68,6 +68,21 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      async function signupFacebook(additionalInfo, user) {
+        try {
+          await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
+            (error) => {
+              deleteUser(user);
+              localStorage.setItem("onSignIn", "false");
+              throw new Error();
+            }
+          );
+          dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
+        } catch (error) {
+          dispatch(setSnackbar("error", "SnackBar.loginError"));
+        }
+      }
+
       let emailVerified;
       let photoURL = "";
       if (user) {
@@ -186,21 +201,6 @@ export const AuthContextProvider = ({ children }) => {
     } catch (error) {
       dispatch(setSnackbar("error", "SnackBar.loginError"));
       localStorage.setItem("onSignIn", "false");
-    }
-  }
-
-  async function signupFacebook(additionalInfo, user) {
-    try {
-      await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
-        (error) => {
-          deleteUser(user);
-          localStorage.setItem("onSignIn", "false");
-          throw new Error();
-        }
-      );
-      dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
-    } catch (error) {
-      dispatch(setSnackbar("error", "SnackBar.loginError"));
     }
   }
 

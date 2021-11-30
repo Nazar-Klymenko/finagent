@@ -148,13 +148,13 @@ const Page2 = () => {
                 // defaultValue={policyHolders[currentlySelected]?.surname}
               />
             )}
-            <CTA
-              text={t("Basic.buttonBack")}
-              color="secondary"
-              onClick={() => {
-                append({});
-              }}
-            />
+            <ApplicantBox>
+              {/* {policyHolders.length < 14 && ( */}
+              <ApplicantAdd onClick={append({})}>
+                {t("InsuranceDiagnostic.ApplicantBox.addApplicant")}
+              </ApplicantAdd>
+              {/* )} */}
+            </ApplicantBox>
           </>
         ))}
         {/* </MuiDialog> */}

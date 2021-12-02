@@ -14,8 +14,8 @@ export const signUp = async (req, res, next) => {
       provider: provider,
       language: language,
     });
-
-    const decodedToken = await auth.verifyIdToken(String(IdToken));
+    console.log(IdToken);
+    const decodedToken = await auth.verifyIdToken(IdToken);
 
     userObj._id = decodedToken.uid;
     await userObj.save();

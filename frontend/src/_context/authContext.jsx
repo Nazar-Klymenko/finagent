@@ -68,6 +68,7 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      // facebook sign up on the backend
       async function signupFacebook(additionalInfo, user) {
         try {
           await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
@@ -97,7 +98,10 @@ export const AuthContextProvider = ({ children }) => {
       const redirectResult = await getRedirectResult(auth);
       if (redirectResult) {
         const additionalInfo = getAdditionalUserInfo(redirectResult);
-        if (additionalInfo.isNewUser) signupFacebook(additionalInfo, user);
+        if (additionalInfo.isNewUser) {
+          const _user = auth.currentUser;
+          signupFacebook(additionalInfo, _user);
+        }
       }
 
       setCurrentUser(
@@ -123,7 +127,7 @@ export const AuthContextProvider = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 
   async function signup(data) {
     let newData = data;

@@ -1,7 +1,6 @@
 import createError from "http-errors";
 import User from "models/user.js";
 // import asyncHandler from "helpers/asyncHandler.js";
-
 import { auth } from "services/firebase";
 
 export const signUp = async (req, res, next) => {
@@ -16,7 +15,7 @@ export const signUp = async (req, res, next) => {
       language: language,
     });
 
-    const decodedToken = await auth.verifyIdToken(IdToken);
+    const decodedToken = await auth.verifyIdToken(String(IdToken));
 
     userObj._id = decodedToken.uid;
     await userObj.save();

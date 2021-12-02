@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "backend",
-      cwd: "backend-finagent/",
+      cwd: "backend/",
       script: "dist/index.js",
       exec_mode: "fork_mode",
       watch: true,

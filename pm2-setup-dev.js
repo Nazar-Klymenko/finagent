@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "application",
-      cwd: "application-finagent/",
+      cwd: "frontend/",
       script: "serve",
       watch: true,
       env: {
@@ -14,7 +14,7 @@ module.exports = {
     },
     {
       name: "admin",
-      cwd: "admin-finagent/",
+      cwd: "admin/",
       script: "serve",
       watch: true,
       env: {
@@ -26,7 +26,7 @@ module.exports = {
     },
     {
       name: "backend",
-      cwd: "backend-finagent/",
+      cwd: "backend/",
       script: "dist/index.js",
       exec_mode: "fork_mode",
       watch: true,

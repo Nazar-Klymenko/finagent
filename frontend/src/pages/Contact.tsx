@@ -91,7 +91,7 @@ const Contact = () => {
                 <Mail />
               </InfoIcon>
               <Info>
-                <span>finagent@gmail.com</span>
+                <span>contact@finagent.eu</span>
               </Info>
             </ContactInfo>
             <ContactInfo>

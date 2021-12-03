@@ -18,5 +18,13 @@ const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-width: 540px;
+
+  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+    min-width: 540px;
+  }
+  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+    min-width: 280px;
+  }
 `;
 export default Form;

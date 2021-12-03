@@ -15,8 +15,8 @@ export const pageOneValues = (appDataValid) => ({
   documentAdded: appDataValid.documentAdded,
   isAppropLicence: appDataValid.isAppropLicence || true,
   drivingLicenceDate: appDataValid.drivingLicenceDate,
-  profession: appDataValid.profession,
-  maritalStatus: appDataValid.maritalStatus,
+  profession: appDataValid.profession || "",
+  maritalStatus: appDataValid.maritalStatus || "",
 });
 
 export const pageTwoValues = (appDataValid) => ({

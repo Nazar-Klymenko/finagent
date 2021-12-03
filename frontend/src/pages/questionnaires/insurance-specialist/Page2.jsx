@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { QuestState } from "@dev/QuestState";
 import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -50,6 +52,9 @@ const Page2 = () => {
   const handleClose = () => {
     setOpenDialog(false);
   };
+  const [formInitiated, setFormInitiated] = useState(false);
+  const [editingMode, setEditingMode] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(0);
 
   const { appData, setValues, setAllowSummary } = useData();
 
@@ -65,24 +70,24 @@ const Page2 = () => {
     mode: "onChange",
     reValidateMode: "onBlur",
     shouldFocusError: true,
-    resolver: yupResolver(policyholderSchema()),
+    // resolver: yupResolver(policyholderSchema()),
   });
 
   const formSubmit = (data) => {
-    setValues(data, "insuranceSpecialist", "insuredData");
-    setAllowSummary(true);
-    history.push("./summary");
+    setFormInitiated(true);
+    setEditingMode(false);
+    // setValues(data, "insuranceSpecialist", "insuredData");
+    // setAllowSummary(true);
+    // history.push("./summary");
   };
 
-  const [policyholderIs, setPolicyholderIs] = useState("firm");
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "policyholder",
+  });
 
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-    {
-      control,
-      name: "policyholder",
-      // keyName: "id", default to "id", you can change the key name
-    }
-  );
+  const policyholderIs = watch(`policyholder[${editingIndex}].policyholderIs`);
+  const policyholders = useWatch({ control, name: "policyholder" });
 
   return (
     <ContentWrap fullWidth>
@@ -97,68 +102,120 @@ const Page2 = () => {
         />
         <Subtitle>{t("InsuranceDiagnostic.ApplicantBox.title")}</Subtitle>
 
-        <Form id="insured-data-form" onSubmit={handleSubmit(formSubmit)} />
-        {/* <MuiDialog
-          formId="add-applicant"
-          handleClose={handleClose}
-          isOpen={openDialog}
-          title="Add another applicant"
-        > */}
-        {fields.map((field, index) => (
-          <>
-            <MuiRadio
-              control={control}
+        {editingMode &&
+          fields.map((field, index) => (
+            <MuiDialog
               key={field.id}
-              name={`policyholder.${index}.policyholderIs`}
-              legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
-              options={[
-                {
-                  label: t("InsuranceDiagnostic.Page1.firm"),
-                  value: "firm",
-                },
-                {
-                  label: t("InsuranceDiagnostic.Page1.individual"),
-                  value: "individual",
-                },
-                {
-                  label: t("InsuranceDiagnostic.Page1.legal"),
-                  value: "legal",
-                },
-              ]}
-            />
-            <MuiInput
-              control={control}
-              key={field.id}
-              name={`policyholder.${index}.name`}
-              labelName={t("InsuranceDiagnostic.Page1.name")}
-              error={!!errors.name}
-              helperText={errors?.name?.message}
-              autoComplete="given-name"
-              // defaultValue={policyHolders[currentlySelected]?.name}
-            />
-            {policyholderIs === "individual" && (
-              <MuiInput
-                control={control}
+              isOpen={openDialog}
+              handleClose={handleClose}
+              formId="insured-data-form"
+              title="test"
+              description="test"
+            >
+              <Form
                 key={field.id}
-                name={`policyholder.${index}.surname`}
-                labelName={t("InsuranceDiagnostic.Page1.surname")}
-                error={!!errors.surname}
-                helperText={errors?.surname?.message}
-                autoComplete="family-name"
-                // defaultValue={policyHolders[currentlySelected]?.surname}
-              />
-            )}
-            <ApplicantBox>
-              {/* {policyHolders.length < 14 && ( */}
-              <ApplicantAdd onClick={append({})}>
-                {t("InsuranceDiagnostic.ApplicantBox.addApplicant")}
-              </ApplicantAdd>
-              {/* )} */}
-            </ApplicantBox>
-          </>
-        ))}
-        {/* </MuiDialog> */}
+                id="insured-data-form"
+                onSubmit={handleSubmit(formSubmit)}
+              >
+                <MuiRadio
+                  control={control}
+                  name={`policyholder[${index}].policyholderIs`}
+                  legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
+                  options={[
+                    {
+                      label: t("InsuranceDiagnostic.Page1.firm"),
+                      value: "firm",
+                    },
+                    {
+                      label: t("InsuranceDiagnostic.Page1.individual"),
+                      value: "individual",
+                    },
+                    {
+                      label: t("InsuranceDiagnostic.Page1.legal"),
+                      value: "legal",
+                    },
+                  ]}
+                  defaultValue={
+                    policyholders[editingIndex]?.policyholderIs || ""
+                  }
+                />
+                <MuiInput
+                  control={control}
+                  name={`policyholder[${index}].name`}
+                  labelName={t("InsuranceDiagnostic.Page1.name")}
+                  error={!!errors.name}
+                  helperText={errors?.name?.message}
+                  autoComplete="given-name"
+                  defaultValue={policyholders[editingIndex]?.name || ""}
+                />
+                {policyholderIs === "individual" && (
+                  <MuiInput
+                    control={control}
+                    name={`policyholder[${index}].surname`}
+                    labelName={t("InsuranceDiagnostic.Page1.surname")}
+                    error={!!errors.surname}
+                    helperText={errors?.surname?.message}
+                    autoComplete="family-name"
+                    defaultValue={policyholders[editingIndex]?.surname || ""}
+                  />
+                )}
+              </Form>
+            </MuiDialog>
+          ))}
 
+        {formInitiated &&
+          policyholders.map((field, index) => (
+            <Applicant>
+              <AvatarStyled>{field.name[0] || ""}</AvatarStyled>
+              <ApplicantName>{field.name}</ApplicantName>
+
+              <IconButton>
+                <EditIcon
+                  onClick={() => {
+                    setEditingMode(true);
+                    setEditingIndex(index);
+                    setOpenDialog(true);
+                  }}
+                />
+              </IconButton>
+
+              <IconButton>
+                <DeleteIcon
+                  onClick={() => {
+                    remove(index);
+                  }}
+                />
+              </IconButton>
+            </Applicant>
+          ))}
+
+        {!formInitiated && (
+          <ApplicantBox>
+            <ApplicantAdd
+              onClick={() => {
+                setEditingMode(true);
+                setOpenDialog(true);
+              }}
+            >
+              {t("InsuranceDiagnostic.ApplicantBox.addApplicant")}
+            </ApplicantAdd>
+          </ApplicantBox>
+        )}
+
+        {formInitiated && fields.length < 2 && (
+          <ApplicantBox>
+            <ApplicantAdd
+              onClick={() => {
+                append({ policyholderIs: "firm", name: "", surname: "" });
+                setEditingMode(true);
+                setOpenDialog(true);
+                setEditingIndex(fields.length);
+              }}
+            >
+              {t("InsuranceDiagnostic.ApplicantBox.addApplicant")}
+            </ApplicantAdd>
+          </ApplicantBox>
+        )}
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}
@@ -174,6 +231,7 @@ const Page2 = () => {
             color="primary"
           />
         </ButtonsWrap>
+        <DevTool control={control} placement="bottom-right" />
       </Page>
     </ContentWrap>
   );
@@ -181,6 +239,25 @@ const Page2 = () => {
 
 export default Page2;
 
+const AvatarStyled = styled(Avatar)`
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: ${({ theme }) => theme.blue};
+`;
+
+const Applicant = styled.div`
+  display: flex;
+  border: 1px solid ${({ theme }) => theme.gray};
+  padding: 8px 14px;
+  border-radius: 4px;
+  margin: 6px 0px;
+  align-items: center;
+`;
+
+const ApplicantName = styled.span`
+  flex: 1;
+  margin-left: 8px;
+`;
 /* // defaultValue={
                 //   policyHolders[currentlySelected]?.policyholderIs || "firm"
                 // } */
@@ -379,14 +456,6 @@ export default Page2;
 //   handleClose();
 // };
 
-const Applicant = styled.div`
-  display: flex;
-`;
-
-const ApplicantName = styled.span`
-  flex: 1;
-`;
-
 // {
 //   /* {policyHolders.length > 0 &&
 //           policyHolders.map((policyHolder, idx) => (
@@ -415,3 +484,76 @@ const ApplicantName = styled.span`
 //           )}
 //         </ApplicantBox> */
 // }
+
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import { useForm } from "react-hook-form";
+
+// import "./styles.css";
+
+// function App() {
+//   const [indexes, setIndexes] = React.useState([]);
+//   const [counter, setCounter] = React.useState(0);
+//   const { register, handleSubmit } = useForm();
+
+//   const onSubmit = data => {
+//     console.log(data);
+//   };
+
+//   const addFriend = () => {
+//     setIndexes(prevIndexes => [...prevIndexes, counter]);
+//     setCounter(prevCounter => prevCounter + 1);
+//   };
+
+//   const removeFriend = index => () => {
+//     setIndexes(prevIndexes => [...prevIndexes.filter(item => item !== index)]);
+//     setCounter(prevCounter => prevCounter - 1);
+//   };
+
+//   const clearFriends = () => {
+//     setIndexes([]);
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit(onSubmit)}>
+//       {indexes.map(index => {
+//         const fieldName = `friends[${index}]`;
+//         return (
+//           <fieldset name={fieldName} key={fieldName}>
+//             <label>
+//               First Name {index}:
+//               <input
+//                 type="text"
+//                 name={`${fieldName}.firstName`}
+//                 ref={register}
+//               />
+//             </label>
+
+//             <label>
+//               Last Name {index}:
+//               <input
+//                 type="text"
+//                 name={`${fieldName}.lastName`}
+//                 ref={register}
+//               />
+//             </label>
+//             <button type="button" onClick={removeFriend(index)}>
+//               Remove
+//             </button>
+//           </fieldset>
+//         );
+//       })}
+
+//       <button type="button" onClick={addFriend}>
+//         Add Friend
+//       </button>
+//       <button type="button" onClick={clearFriends}>
+//         Clear Friends
+//       </button>
+//       <input type="submit" />
+//     </form>
+//   );
+// }
+
+// const rootElement = document.getElementById("root");
+// ReactDOM.render(<App />, rootElement);

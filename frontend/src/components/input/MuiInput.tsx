@@ -9,7 +9,7 @@ import { InputErrorMessage, Label, Optional } from "./LocalStyles";
 interface Props {
   control: Control<any>;
   helperText: string | undefined;
-  error: boolean;
+  error: boolean | undefined;
   labelName: string;
   name: string;
   placeholder?: string;

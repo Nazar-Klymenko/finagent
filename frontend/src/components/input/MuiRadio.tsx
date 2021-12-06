@@ -11,7 +11,7 @@ import { InputErrorMessage, Label } from "./LocalStyles";
 interface Props {
   control: Control<any>;
   name: string;
-  defaultValue?: boolean | undefined;
+  defaultValue?: string | undefined;
   legend: string;
   options: { label: string; value: string }[];
 }

@@ -99,8 +99,8 @@ const Contact = () => {
                 <Point />
               </InfoIcon>
               <Info>
-                <span>Ul. Kazimierza W. 8/1</span>
-                <span>31-139 Krakow, Poland</span>
+                <span>Kochanowskiego 19/4</span>
+                <span>31-127 Kraków</span>
               </Info>
             </ContactInfo>
             <ContactInfo>
@@ -108,8 +108,8 @@ const Contact = () => {
                 <Phone />
               </InfoIcon>
               <Info>
-                <a href="tel:+48 678 907 654">+48 678 907 654</a>
-                <a href="tel:+48 678 907 654">+48 678 907 654</a>
+                <a href="tel:+48531937973">+48 531 937 973</a>
+                <a href="tel:+48574233922">+48 574 233 922</a>
               </Info>
             </ContactInfo>
           </InfoWrap>

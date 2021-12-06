@@ -30,11 +30,11 @@ const Footer: React.FC = () => {
         <div className="block-container">
           <div className="block">
             <span className="header">{t("Footer.contact")}</span>
-            <a className="content" href="tel:+48 222 021 432">
-              +48 222 021 432
+            <a className="content" href="tel:+48531937973">
+              +48 531 937 973
             </a>
-            <a className="content" href="tel:+48 222 021 432">
-              +48 222 021 432
+            <a className="content" href="tel:+48574233922">
+              +48 574 233 922
             </a>
             <a className="content" href="mailto:contact@finagent.eu">
               contact@finagent.eu

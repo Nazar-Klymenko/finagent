@@ -68,11 +68,7 @@ const Page1 = () => {
   const { appData, setValues, setCurrentPage } = useData();
   const history = useHistory();
 
-  const appDataValid = validateAppData(
-    appData,
-    "insuranceTransport",
-    "personalData"
-  );
+  const appDataValid = appData?.insuranceTransport?.personalData;
 
   const {
     handleSubmit,

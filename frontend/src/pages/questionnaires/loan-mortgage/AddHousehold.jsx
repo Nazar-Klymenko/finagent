@@ -41,7 +41,7 @@ const AddHousehold = ({
   } = useForm({
     defaultValues: {},
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(addHouseholdSchema()),
   });

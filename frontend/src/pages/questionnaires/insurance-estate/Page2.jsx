@@ -50,7 +50,7 @@ const Page2 = () => {
       peopleNumber: appDataValid.peopleNumber || "0",
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema),
   });

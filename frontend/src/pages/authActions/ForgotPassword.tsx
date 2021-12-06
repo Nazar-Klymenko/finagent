@@ -28,7 +28,7 @@ const ForgotPassword = () => {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(forgotPasswordSchema()),
   });

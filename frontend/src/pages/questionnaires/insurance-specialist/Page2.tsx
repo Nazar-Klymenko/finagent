@@ -100,7 +100,7 @@ const Page2 = () => {
       ],
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(policyholderSchema()),
   });

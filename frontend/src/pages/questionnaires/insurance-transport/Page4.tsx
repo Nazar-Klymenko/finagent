@@ -48,7 +48,7 @@ const Page4 = () => {
   } = useForm<FormTypes>({
     defaultValues: pageFourValues(appDataValid),
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageFourSchema),
   });

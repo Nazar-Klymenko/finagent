@@ -43,7 +43,7 @@ const Page1 = () => {
       inPoland: appDataValid.inPoland,
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),
   });

@@ -50,7 +50,7 @@ const Page1 = () => {
       clauseThree: appDataValid.clauseThree,
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: false,
     resolver: yupResolver(pageOneSchema()),
   });

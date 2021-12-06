@@ -67,7 +67,7 @@ const Page3 = () => {
   } = useForm<FormTypes>({
     defaultValues: pageThreeValues(appDataValid),
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageThreeSchema),
   });

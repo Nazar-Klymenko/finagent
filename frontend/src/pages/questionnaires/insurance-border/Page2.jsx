@@ -52,7 +52,7 @@ const Page2 = () => {
       seatNumber: appDataValid.seatNumber,
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema),
   });

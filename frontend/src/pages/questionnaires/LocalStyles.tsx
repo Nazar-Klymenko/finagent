@@ -7,7 +7,10 @@ export const Page = styled.div`
   justify-content: flex-start;
 
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
-    min-width: unset;
+    min-width: 540px;
+  }
+  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+    min-width: 280px;
   }
 `;
 

@@ -109,7 +109,7 @@ const Page1 = () => {
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
             disablePast
-            placeholder=""
+            placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
             control={control}
@@ -119,7 +119,7 @@ const Page1 = () => {
             helperText={errors?.insuranceEnd?.message}
             disablePast
             view={["year", "month", "date"]}
-            placeholder=""
+            placeholder={t("Form.Placeholder.dateFull")}
             openTo="year"
           />
 
@@ -180,7 +180,7 @@ const Page1 = () => {
               error={!!errors.birthDate}
               helperText={errors?.birthDate?.message}
               disableFuture
-              placeholder=""
+              placeholder={t("Form.Placeholder.dateFull")}
               view={["year", "month", "date"]}
               openTo="year"
             />

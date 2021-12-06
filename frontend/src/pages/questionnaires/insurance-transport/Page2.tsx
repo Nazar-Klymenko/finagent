@@ -39,11 +39,7 @@ const Page2 = () => {
 
   const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = validateAppData(
-    appData,
-    "insuranceTransport",
-    "transportData"
-  );
+  const appDataValid = appData?.insuranceTransport?.transportData;
 
   const {
     handleSubmit,
@@ -125,6 +121,7 @@ const Page2 = () => {
             placeholder={t("Form.Placeholder.dateYear")}
             view={["year"]}
             format="yyyy"
+            disableFuture
           />
 
           <MuiCheckbox

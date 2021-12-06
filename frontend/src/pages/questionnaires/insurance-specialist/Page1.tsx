@@ -1,13 +1,10 @@
 import React from "react";
 
 import { QuestState } from "@dev/QuestState";
-import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-
-import validateAppData from "@helpers/validateAppData";
 
 import useTitle from "@hooks/useTitle";
 
@@ -52,11 +49,7 @@ const Page1 = () => {
   const history = useHistory();
 
   const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = validateAppData(
-    appData,
-    "insuranceSpecialist",
-    "personalData"
-  );
+  const appDataValid = appData?.insuranceSpecialist?.personalData;
 
   const {
     handleSubmit,
@@ -65,26 +58,26 @@ const Page1 = () => {
     formState: { errors },
   } = useForm<FormTypes>({
     defaultValues: {
-      insuranceStart: appDataValid.insuranceStart,
-      insuranceEnd: appDataValid.insuranceEnd,
-      policyholderIs: appDataValid.policyholderIs || "individual",
-      name: appDataValid.name,
-      surname: appDataValid.surname,
-      nip: appDataValid.nip,
-      birthDate: appDataValid.birthDate,
-      pesel: appDataValid.pesel,
-      regon: appDataValid.regon,
-      phoneNumber: appDataValid.phoneNumber,
-      email: appDataValid.email,
-      country: appDataValid.country,
-      city: appDataValid.city,
-      postIndex: appDataValid.postIndex,
-      street: appDataValid.street,
-      houseNumber: appDataValid.houseNumber,
+      insuranceStart: appDataValid?.insuranceStart || undefined,
+      insuranceEnd: appDataValid?.insuranceEnd || undefined,
+      policyholderIs: appDataValid?.policyholderIs || "individual",
+      name: appDataValid?.name || "",
+      surname: appDataValid?.surname || "",
+      nip: appDataValid?.nip || "",
+      birthDate: appDataValid?.birthDate || undefined,
+      pesel: appDataValid?.pesel || "",
+      regon: appDataValid?.regon || "",
+      phoneNumber: appDataValid?.phoneNumber || "",
+      email: appDataValid?.email || "",
+      country: appDataValid?.country || "",
+      city: appDataValid?.city || "",
+      postIndex: appDataValid?.postIndex || "",
+      street: appDataValid?.street || "",
+      houseNumber: appDataValid?.houseNumber || "",
     },
     mode: "onChange",
     reValidateMode: "onBlur",
-    shouldFocusError: false,
+    shouldFocusError: true,
     resolver: yupResolver(pageOneSchema()),
   });
 
@@ -116,7 +109,7 @@ const Page1 = () => {
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
             disablePast
-            placeholder=""
+            placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
             control={control}
@@ -126,7 +119,7 @@ const Page1 = () => {
             helperText={errors?.insuranceEnd?.message}
             disablePast
             view={["year", "month", "date"]}
-            placeholder=""
+            placeholder={t("Form.Placeholder.dateFull")}
             openTo="year"
           />
 
@@ -187,7 +180,7 @@ const Page1 = () => {
               error={!!errors.birthDate}
               helperText={errors?.birthDate?.message}
               disableFuture
-              placeholder=""
+              placeholder={t("Form.Placeholder.dateFull")}
               view={["year", "month", "date"]}
               openTo="year"
             />
@@ -267,7 +260,6 @@ const Page1 = () => {
         <ButtonsWrap>
           <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
-        <DevTool control={control} placement="bottom-right" />
       </Page>
     </ContentWrap>
   );

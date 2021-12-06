@@ -6,8 +6,6 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import validateAppData from "@helpers/validateAppData";
-
 import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
@@ -41,11 +39,7 @@ const Page4 = () => {
   useTitle("Transport insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = validateAppData(
-    appData,
-    "insuranceTransport",
-    "additionalData"
-  );
+  const appDataValid = appData?.insuranceTransport?.additionalData;
 
   const {
     handleSubmit,

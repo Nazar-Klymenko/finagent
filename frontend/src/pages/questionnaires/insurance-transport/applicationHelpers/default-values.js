@@ -45,17 +45,17 @@ export const pageThreeValues = (appDataValid) => ({
   techExamDate: appDataValid?.techExamDate || undefined,
 });
 export const pageFourValues = (appDataValid) => ({
-  predictMileage: appDataValid.enginePower,
-  useAbroad: appDataValid.engineVolume,
-  usePurpose: appDataValid.fuelType,
-  parkingPlace: appDataValid.originCountry,
-  security: appDataValid.purchaseYear,
+  predictMileage: appDataValid?.enginePower || "",
+  useAbroad: appDataValid?.engineVolume || "",
+  usePurpose: appDataValid?.fuelType || "",
+  parkingPlace: appDataValid?.originCountry || "",
+  security: appDataValid?.purchaseYear || "",
 });
 
 export const pageFiveValues = (appDataValid) => ({
-  filesTechPassport: appDataValid.filesTechPassport,
-  filesPassport: appDataValid.filesPassport,
-  isFirstOwner: appDataValid.isFirstOwner || true,
-  filesCarSale: appDataValid.filesCarSale,
-  filesInsurance: appDataValid.filesInsurance,
+  filesTechPassport: appDataValid?.filesTechPassport || undefined,
+  filesPassport: appDataValid?.filesPassport || undefined,
+  isFirstOwner: appDataValid?.isFirstOwner || true,
+  filesCarSale: appDataValid?.filesCarSale || undefined,
+  filesInsurance: appDataValid?.filesInsurance || undefined,
 });

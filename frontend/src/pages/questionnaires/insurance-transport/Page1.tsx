@@ -80,6 +80,7 @@ const Page1 = () => {
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+
     resolver: yupResolver(pageOneSchema),
   });
 

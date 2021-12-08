@@ -46,6 +46,7 @@ export const ErrorBottom = styled.p`
 
 export const ApplicantBox = styled.div`
   min-height: 60px;
+  cursor: pointer;
   background-color: ${({ theme }) => theme.lightestGray};
   display: flex;
   flex-direction: column;
@@ -53,44 +54,17 @@ export const ApplicantBox = styled.div`
   align-items: center;
   padding: 1rem;
   border-radius: 5px;
-  .person {
-    width: 100%;
-    background-color: white;
-    min-height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5px;
-    /* -webkit-box-shadow: 0px 0px 37px -7px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0px 0px 37px -7px rgba(0, 0, 0, 0.15);
-    box-shadow: 0px 0px 37px -7px rgba(0, 0, 0, 0.15); */
-    border: 1px solid ${({ theme }) => theme.border};
-    .minor-data-place {
-      span {
-        margin-left: 1rem;
-        font-weight: 600;
-        opacity: 0.8;
-      }
-    }
-    .action-place {
-      span {
-        margin-right: 1rem;
-      }
-      .edit {
-        color: ${({ theme }) => theme.blue};
-        cursor: pointer;
-      }
-      .delete {
-        color: ${({ theme }) => theme.red};
-        cursor: pointer;
-      }
-    }
-  }
 `;
 export const ApplicantAdd = styled.span`
-  color: ${({ theme }) => theme.blue};
   cursor: pointer;
+  color: ${({ theme }) => theme.blue};
   padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    padding-left: 8px;
+  }
 `;
 
 export const InputErrorMessage = styled.div`

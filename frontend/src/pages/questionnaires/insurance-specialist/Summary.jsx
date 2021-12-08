@@ -26,14 +26,15 @@ const Summary = () => {
   const { appData } = useData();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("HealthSpecialist", appData);
+  const appDataLabeled = determineType("HealthSpecialist", appData);
+
+  console.log(appDataLabeled);
 
   const confirmApplication = async () => {
     setIsLoading(true);
     try {
       await postInsuranceSpecialistAPI(appData);
       history.push("/dashboard/insurances");
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
     }
@@ -46,11 +47,13 @@ const Summary = () => {
       <Page>
         <Title>{t("InsuranceDiagnostic.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
-        <SummaryList
+        {/* <SummaryList
           header={t("Basic.summary")}
-          array={addDataLabeled}
+          array={appDataLabeled}
           defaultOpen
-        />
+
+        /> */}
+
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}

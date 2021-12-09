@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
-import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -77,6 +77,7 @@ const Page2 = () => {
   const {
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm<FormTypes>({
     defaultValues: {
@@ -115,11 +116,6 @@ const Page2 = () => {
     appDataValid.splice(index, 1);
   }
 
-  const policyholders = useWatch({
-    control,
-    name: "policyholder",
-  });
-
   const formSubmit = handleSubmit((data) => {
     setFormInitiated(true);
     setEditingMode(false);
@@ -149,11 +145,7 @@ const Page2 = () => {
   }, [appDataValid, append, formInitiated]);
 
   const finalizeForm = () => {
-    if (
-      formInitiated &&
-      policyholders.length > 0 &&
-      !!errors.policyholder === false
-    ) {
+    if (formInitiated && fields.length > 0 && !!errors.policyholder === false) {
       setAllowSummary(true);
       history.push("./summary");
     } else {
@@ -161,6 +153,7 @@ const Page2 = () => {
     }
   };
 
+  console.log("rerender");
   return (
     <ContentWrap fullWidth>
       <QuestState data={appData} />
@@ -175,6 +168,8 @@ const Page2 = () => {
         <Subtitle>{t("InsuranceDiagnostic.ApplicantBox.title")}</Subtitle>
         {editingMode &&
           fields.map((field: any, index: number) => {
+            //@ts-ignore
+            let policyholderIs = watch(`policyholder.${index}.policyholderIs`);
             return (
               editingIndex === index && (
                 <MuiDialog
@@ -184,13 +179,13 @@ const Page2 = () => {
                     handleClose(index);
                   }}
                   formId="insured-data-form"
-                  title="test"
-                  description="test"
+                  title={t("InsuranceDiagnostic.ApplicantBox.title")}
+                  description=""
                 >
                   <Form id="insured-data-form" onSubmit={formSubmit}>
                     <MuiRadio
                       control={control}
-                      name={`policyholder[${index}].policyholderIs`}
+                      name={`policyholder.${index}.policyholderIs`}
                       legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
                       options={[
                         {
@@ -210,18 +205,17 @@ const Page2 = () => {
                     />
                     <MuiInput
                       control={control}
-                      name={`policyholder[${index}].name`}
+                      name={`policyholder.${index}.name`}
                       labelName={t("InsuranceDiagnostic.Page1.name")}
                       error={!!errors.policyholder?.[index].name}
                       helperText={errors?.policyholder?.[index].name?.message}
                       autoComplete="given-name"
                       defaultValue={field.name || ""}
                     />
-                    {policyholders[editingIndex]?.policyholderIs ===
-                      "individual" && (
+                    {policyholderIs === "individual" && (
                       <MuiInput
                         control={control}
-                        name={`policyholder[${index}].surname`}
+                        name={`policyholder.${index}.surname`}
                         labelName={t("InsuranceDiagnostic.Page1.surname")}
                         error={!!errors.policyholder?.[index].surname}
                         helperText={
@@ -231,8 +225,8 @@ const Page2 = () => {
                         defaultValue={field.surname || ""}
                       />
                     )}
-                    {policyholders[editingIndex]?.policyholderIs !==
-                      "individual" && (
+
+                    {policyholderIs !== "individual" && (
                       <MuiInput
                         control={control}
                         name={`policyholder[${index}].nip`}
@@ -242,8 +236,7 @@ const Page2 = () => {
                         defaultValue={field.nip || ""}
                       />
                     )}
-                    {policyholders[editingIndex]?.policyholderIs ===
-                      "individual" && (
+                    {policyholderIs === "individual" && (
                       <DateInput
                         control={control}
                         name={`policyholder[${index}].birthDate`}
@@ -256,8 +249,7 @@ const Page2 = () => {
                         placeholder={t("Form.Placeholder.dateFull")}
                       />
                     )}
-                    {policyholders[editingIndex]?.policyholderIs ===
-                      "individual" && (
+                    {policyholderIs === "individual" && (
                       <MuiInput
                         control={control}
                         name={`policyholder[${index}].pesel`}
@@ -269,8 +261,7 @@ const Page2 = () => {
                         defaultValue={field.pesel || ""}
                       />
                     )}
-                    {policyholders[editingIndex]?.policyholderIs !==
-                      "individual" && (
+                    {policyholderIs !== "individual" && (
                       <MuiInput
                         control={control}
                         name={`policyholder[${index}].regon`}
@@ -352,30 +343,32 @@ const Page2 = () => {
             );
           })}
         {formInitiated &&
-          policyholders.map((field: any, index: number) => (
-            <Applicant key={field.id} error={!!errors.policyholder?.[index]}>
-              <AvatarStyled>{field.name?.[0] || ""}</AvatarStyled>
-              <ApplicantName>{field.name}</ApplicantName>
-
-              <IconButton
-                onClick={() => {
-                  setEditingMode(true);
-                  setEditingIndex(index);
-                  setOpenDialog(true);
-                }}
-              >
-                <EditIcon />
-              </IconButton>
-
-              <IconButton
-                onClick={() => {
-                  removeData(index);
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Applicant>
-          ))}
+          fields.map((field: any, index: number) => {
+            //@ts-ignore
+            let policyholder = watch(`policyholder.${index}.name`);
+            return (
+              <Applicant key={field.id} error={!!errors.policyholder?.[index]}>
+                <AvatarStyled>{policyholder?.[0] || ""}</AvatarStyled>
+                <ApplicantName>{policyholder}</ApplicantName>
+                <IconButton
+                  onClick={() => {
+                    setEditingMode(true);
+                    setEditingIndex(index);
+                    setOpenDialog(true);
+                  }}
+                >
+                  <EditIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => {
+                    removeData(index);
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Applicant>
+            );
+          })}
         {!formInitiated && (
           <ApplicantBox
             onClick={() => {

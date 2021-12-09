@@ -45,14 +45,13 @@ export const ErrorBottom = styled.p`
 `;
 
 export const ApplicantBox = styled.div`
-  min-height: 60px;
+  min-height: 32px;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.lightestGray};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 5px;
 `;
 export const ApplicantAdd = styled.span`

@@ -36,7 +36,7 @@ const ChangePasswordPage = () => {
       phone: data?.phone,
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: false,
     resolver: yupResolver(settingsSchema()),
   });

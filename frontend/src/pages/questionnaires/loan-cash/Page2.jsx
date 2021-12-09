@@ -53,7 +53,7 @@ const Page2 = () => {
       conditions: appDataValid.conditions,
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema()),
   });

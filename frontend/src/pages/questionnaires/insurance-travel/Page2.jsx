@@ -57,7 +57,7 @@ const Page2 = () => {
       houseNumber: appDataValid.houseNumber,
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema),
   });

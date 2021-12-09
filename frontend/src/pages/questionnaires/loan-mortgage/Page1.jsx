@@ -63,7 +63,7 @@ const Page1 = () => {
   const { handleSubmit, watch, control } = useForm({
     defaultValues: {},
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
   });
 

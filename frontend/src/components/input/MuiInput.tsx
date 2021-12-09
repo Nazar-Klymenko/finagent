@@ -53,6 +53,7 @@ const MuiInput: FC<Props> = ({
             }}
             id={name}
             autoComplete={autoComplete}
+            error={error}
             {...other}
           />
         )}

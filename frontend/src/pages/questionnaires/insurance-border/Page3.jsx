@@ -50,7 +50,7 @@ const Page3 = () => {
       houseNumber: appDataValid.houseNumber,
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageThreeSchema),
   });

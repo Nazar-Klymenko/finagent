@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { QuestState } from "@dev/QuestState";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 import determineType from "@helpers/determineType";
 
@@ -14,6 +15,7 @@ import { useData } from "@context/dataContext";
 
 import ProgressBar from "@components/ProgressBar";
 import SummaryList from "@components/SummaryList";
+import Table from "@components/Table";
 import { CTA } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 
@@ -26,14 +28,15 @@ const Summary = () => {
   const { appData } = useData();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("HealthSpecialist", appData);
+  const appDataLabeled = determineType("HealthSpecialist", appData);
+
+  console.log(appDataLabeled);
 
   const confirmApplication = async () => {
     setIsLoading(true);
     try {
       await postInsuranceSpecialistAPI(appData);
       history.push("/dashboard/insurances");
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
     }
@@ -46,11 +49,34 @@ const Summary = () => {
       <Page>
         <Title>{t("InsuranceDiagnostic.title")}</Title>
         <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
-        <SummaryList
+
+        <Spacer />
+        <Table
           header={t("Basic.summary")}
-          array={addDataLabeled}
-          defaultOpen
+          applicationType="InsuranceDiagnostic.Page1"
+          object={Object.entries(appData.insuranceSpecialist?.personalData)}
         />
+
+        {/* <SummaryList
+          header={t("Basic.summary")}
+          array={appDataLabeled}
+          defaultOpen
+
+        /> */}
+
+        {/* {Object.entries(appData.insuranceSpecialist?.personalData).map(
+          (row, idx) => (
+            <>
+              <span key={idx}>{t(`InsuranceDiagnostic.Page1.${row[0]}`)}</span>
+              <span key={idx}>{t(`InsuranceDiagnostic.Page1.${row[1]}`)}</span>
+            </>
+          )
+        )}
+
+        <pre>
+          {JSON.stringify(appData.insuranceSpecialist.personalData, null, 2)}
+        </pre> */}
+
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}
@@ -74,3 +100,8 @@ const Summary = () => {
 };
 
 export default Summary;
+
+const Spacer = styled.div`
+  width: 100%;
+  height: 32px;
+`;

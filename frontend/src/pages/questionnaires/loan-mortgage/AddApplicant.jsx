@@ -44,7 +44,7 @@ const AddApplicant = ({
   } = useForm({
     defaultValues: {},
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(addApplicantSchema()),
   });

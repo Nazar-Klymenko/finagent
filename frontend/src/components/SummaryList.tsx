@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 
 import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components/macro";
@@ -16,7 +16,7 @@ interface Styled {
   inDashboard?: boolean;
 }
 
-const SummaryList: React.FC<Props> = ({
+const SummaryList: FC<Props> = ({
   header,
   array,
   inDashboard,

@@ -36,11 +36,7 @@ const Page5 = () => {
   const history = useHistory();
   useTitle("Transport insurance | FinAgent");
 
-  const appDataValid = validateAppData(
-    appData,
-    "insuranceTransport",
-    "appendedImages"
-  );
+  const appDataValid = appData?.insuranceTransport?.appendedImages;
 
   const {
     handleSubmit,

@@ -56,7 +56,7 @@ const MuiPhoneInput: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {helperText}
+        {t(helperText)}
       </InputErrorMessage>
     </>
   );

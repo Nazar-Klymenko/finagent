@@ -30,7 +30,7 @@ const Summary = () => {
   const dispatch = useDispatch();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("OC", appData.insuranceTransport);
+  const appDataLabeled = determineType("OC", appData.insuranceTransport);
 
   const confirmApplication = async () => {
     setIsLoading(true);
@@ -87,7 +87,8 @@ const Summary = () => {
         <ProgressBar maxSteps={5} currentStep={5} label={t("Basic.summary")} />
         <SummaryList
           header={t("Basic.summary")}
-          array={addDataLabeled}
+          //@ts-ignore
+          array={appDataLabeled}
           defaultOpen
         />
         <ButtonsWrap multiple>

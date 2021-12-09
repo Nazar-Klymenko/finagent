@@ -23,7 +23,7 @@ const ChangePasswordPage = () => {
     formState: { errors },
   } = useForm({
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: false,
     resolver: yupResolver(changePasswordSchema()),
   });

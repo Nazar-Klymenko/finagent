@@ -6,8 +6,6 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-import validateAppData from "@helpers/validateAppData";
-
 import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
@@ -41,11 +39,7 @@ const Page4 = () => {
   useTitle("Transport insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = validateAppData(
-    appData,
-    "insuranceTransport",
-    "additionalData"
-  );
+  const appDataValid = appData?.insuranceTransport?.additionalData;
 
   const {
     handleSubmit,
@@ -54,7 +48,7 @@ const Page4 = () => {
   } = useForm<FormTypes>({
     defaultValues: pageFourValues(appDataValid),
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageFourSchema),
   });
@@ -84,7 +78,7 @@ const Page4 = () => {
             control={control}
             name="predictMileage"
             labelName={t("InsuranceTransport.Page4.predictMileage")}
-            defaultValue={appDataValid.predictMileage}
+            // defaultValue={appDataValid.predictMileage}
             optionArray={predictMileageOptions}
             error={!!errors.predictMileage}
             helperText={errors?.predictMileage?.message}
@@ -93,7 +87,7 @@ const Page4 = () => {
             control={control}
             name="useAbroad"
             labelName={t("InsuranceTransport.Page4.useAbroad")}
-            defaultValue={appDataValid.useAbroad}
+            // defaultValue={appDataValid.useAbroad}
             optionArray={useAbroadOptions}
             error={!!errors.useAbroad}
             helperText={errors?.useAbroad?.message}
@@ -102,7 +96,7 @@ const Page4 = () => {
             control={control}
             name="usePurpose"
             labelName={t("InsuranceTransport.Page4.usePurpose")}
-            defaultValue={appDataValid.usePurpose}
+            // defaultValue={appDataValid.usePurpose}
             optionArray={usePurposeOptions}
             error={!!errors.usePurpose}
             helperText={errors?.usePurpose?.message}
@@ -111,7 +105,7 @@ const Page4 = () => {
             control={control}
             name="parkingPlace"
             labelName={t("InsuranceTransport.Page4.parkingPlace")}
-            defaultValue={appDataValid.parkingPlace}
+            // defaultValue={appDataValid.parkingPlace}
             optionArray={parkingPlaceOptions}
             error={!!errors.parkingPlace}
             helperText={errors?.parkingPlace?.message}
@@ -120,7 +114,7 @@ const Page4 = () => {
             control={control}
             name="security"
             labelName={t("InsuranceTransport.Page4.security")}
-            defaultValue={appDataValid.security}
+            // defaultValue={appDataValid.security}
             optionArray={securityOptions}
             error={!!errors.security}
             helperText={errors?.security?.message}

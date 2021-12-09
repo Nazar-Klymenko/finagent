@@ -67,7 +67,7 @@ const Page1 = () => {
       householdGoods: appDataValid.householdGoods,
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),
   });

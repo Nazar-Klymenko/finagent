@@ -2,8 +2,16 @@ import * as yup from "yup";
 
 export const pageOneSchema = () => {
   return yup.object().shape({
-    insuranceStart: yup.date().nullable().required("Form.Error.missingDate"),
-    insuranceEnd: yup.date().nullable().required("Form.Error.missingDate"),
+    insuranceStart: yup
+      .date()
+      .typeError("Form.Error.invalidDate")
+      .nullable()
+      .required("Form.Error.missingDate"),
+    insuranceEnd: yup
+      .date()
+      .typeError("Form.Error.invalidDate")
+      .nullable()
+      .required("Form.Error.missingDate"),
 
     name: yup
       .string()
@@ -20,10 +28,17 @@ export const pageOneSchema = () => {
       is: (value) => value !== "individual",
       then: yup.string().required("Form.Error.blank"),
     }),
-    birthDate: yup.date().when("policyholderIs", {
-      is: "individual",
-      then: yup.date().nullable().required("Form.Error.missingDate"),
-    }),
+    birthDate: yup
+      .date()
+      .typeError("Form.Error.invalidDate")
+      .when("policyholderIs", {
+        is: "individual",
+        then: yup
+          .date()
+          .required("Form.Error.missingDate")
+          .nullable()
+          .typeError("Form.Error.invalidDate"),
+      }),
     pesel: yup.string().when("policyholderIs", {
       is: "individual",
       then: yup.string().required("Form.Error.blank"),
@@ -63,10 +78,18 @@ export const policyholderSchema = () => {
           is: (value) => value !== "individual",
           then: yup.string().required("Form.Error.blank"),
         }),
-        birthDate: yup.date().when("policyholderIs", {
-          is: (value) => value === "individual",
-          then: yup.date().nullable().required("Form.Error.missingDate"),
-        }),
+        birthDate: yup
+          .date()
+          .typeError("Form.Error.invalidDate")
+          .nullable()
+          .when("policyholderIs", {
+            is: "individual",
+            then: yup
+              .date()
+              .required("Form.Error.missingDate")
+              .nullable()
+              .typeError("Form.Error.invalidDate"),
+          }),
         pesel: yup.string().when("policyholderIs", {
           is: "individual",
           then: yup.string().required("Form.Error.blank"),

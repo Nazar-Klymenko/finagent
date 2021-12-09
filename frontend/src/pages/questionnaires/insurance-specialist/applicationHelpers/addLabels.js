@@ -29,40 +29,60 @@ const matchHeaders = {
 
 const addLabelsSpecialist = (array) => {
   let finalArray = [];
-  array.forEach((item) => {
-    if (item[0] === "InsuredData") {
-      let peopleArr = Object.entries(item[1]);
-      peopleArr.forEach((item) => {
-        let obj = Object.entries(item[1]);
-        obj.forEach((prop) => {
-          prop[0] = matchObj[prop[0]];
-        });
-        changeDateValues(obj);
-        changeBooleanValues(obj);
-        changeRadioValues(obj);
-        let propObject = Object.fromEntries(obj);
-        let labeledArray = ["InsuranceHealth.Page2.subtitle", propObject];
-        finalArray.push(labeledArray);
-      });
-    }
-    let obj = Object.entries(item[1]);
-
-    obj.forEach((prop) => {
-      prop[0] = matchObj[prop[0]];
-    });
-    changeDateValues(obj);
-    changeBooleanValues(obj);
-    changeRadioValues(obj);
-
-    let propObject = Object.fromEntries(obj);
-
-    let header = item[0];
-    header = matchHeaders[header];
-    let labeledArray = [header, propObject];
-    finalArray.push(labeledArray);
-  });
-  finalArray = finalArray.filter((element) => element[0] !== "InsuredData");
-  return finalArray;
+  array.forEach((item) => {});
 };
+
+// const test = appData?.insuranceSpecialist.forEach((object) => {
+//   object.forEach((nest) => {
+//     if (nest.isArray()) {
+//       nest.forEach((nestArr) => {
+//         Object.entries(
+//           nestArr
+//         )[0] = `InsuranceDiagnostic.Page1.${nestArr[0]}`;
+//       });
+//     } else {
+//       nest[0] = `InsuranceDiagnostic.Page1.${nest[0]}`;
+//     }
+//   });
+// });
+// console.log(test);
+
+// const addLabelsSpecialist = (array) => {
+//   let finalArray = [];
+//   array.forEach((item) => {
+//     if (item[0] === "InsuredData") {
+//       let peopleArr = Object.entries(item[1]);
+//       peopleArr.forEach((item) => {
+//         let obj = Object.entries(item[1]);
+//         obj.forEach((prop) => {
+//           prop[0] = matchObj[prop[0]];
+//         });
+//         changeDateValues(obj);
+//         changeBooleanValues(obj);
+//         changeRadioValues(obj);
+//         let propObject = Object.fromEntries(obj);
+//         let labeledArray = ["InsuranceHealth.Page2.subtitle", propObject];
+//         finalArray.push(labeledArray);
+//       });
+//     }
+//     let obj = Object.entries(item[1]);
+
+//     obj.forEach((prop) => {
+//       prop[0] = matchObj[prop[0]];
+//     });
+//     changeDateValues(obj);
+//     changeBooleanValues(obj);
+//     changeRadioValues(obj);
+
+//     let propObject = Object.fromEntries(obj);
+
+//     let header = item[0];
+//     header = matchHeaders[header];
+//     let labeledArray = [header, propObject];
+//     finalArray.push(labeledArray);
+//   });
+//   finalArray = finalArray.filter((element) => element[0] !== "InsuredData");
+//   return finalArray;
+// };
 
 export default addLabelsSpecialist;

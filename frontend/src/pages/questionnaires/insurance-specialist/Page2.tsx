@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,7 +6,8 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -43,7 +44,7 @@ type FormTypes = {
       policyholderIs: string;
       name: string;
       surname: string;
-      birthDate: Date;
+      birthDate: any;
       nip: string;
       pesel: string;
       regon: string;
@@ -65,52 +66,44 @@ const Page2 = () => {
 
   const [openDialog, setOpenDialog] = useState(true);
 
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
   const [formInitiated, setFormInitiated] = useState(false);
   const [editingMode, setEditingMode] = useState(false);
+  const [addingMode, setAddingMode] = useState(false);
   const [editingIndex, setEditingIndex] = useState(0);
 
   const { appData, setValues, setAllowSummary } = useData();
+  const appDataValid = appData?.insuranceSpecialist?.insuredData?.policyholder;
 
   const {
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm<FormTypes>({
     defaultValues: {
       policyholder: [
         {
-          policyholderIs: "firm",
-          name: "",
-          surname: "",
-          nip: "",
-          birthDate: undefined,
-          pesel: "",
-          regon: "",
-          phoneNumber: "",
-          email: "",
-          country: "",
-          city: "",
-          postIndex: "",
-          street: "",
-          houseNumber: "",
+          policyholderIs: appDataValid?.[0]?.policyholderIs || "firm",
+          name: appDataValid?.[0]?.name || "",
+          surname: appDataValid?.[0]?.surname || "",
+          nip: appDataValid?.[0]?.nip || "",
+          birthDate: appDataValid?.[0]?.birthDate || null,
+          pesel: appDataValid?.[0]?.pesel || "",
+          regon: appDataValid?.[0]?.regon || "",
+          phoneNumber: appDataValid?.[0]?.phoneNumber || "",
+          email: appDataValid?.[0]?.email || "",
+          country: appDataValid?.[0]?.country || "",
+          city: appDataValid?.[0]?.city || "",
+          postIndex: appDataValid?.[0]?.postIndex || "",
+          street: appDataValid?.[0]?.street || "",
+          houseNumber: appDataValid?.[0]?.houseNumber || "",
         },
       ],
     },
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(policyholderSchema()),
-  });
-
-  const formSubmit = handleSubmit((data) => {
-    setFormInitiated(true);
-    setEditingMode(false);
-    setValues(data, "insuranceSpecialist", "insuredData");
-    // setAllowSummary(true);
-    // history.push("./summary");
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -118,7 +111,47 @@ const Page2 = () => {
     name: "policyholder",
   });
 
-  const policyholders = useWatch({ control, name: "policyholder" });
+  function removeData(index: number) {
+    remove(index);
+    appDataValid.splice(index, 1);
+  }
+
+  const formSubmit = handleSubmit((data) => {
+    setFormInitiated(true);
+    setEditingMode(false);
+    setAddingMode(false);
+    setValues(data, "insuranceSpecialist", "insuredData");
+  });
+
+  const handleClose = (index: number) => {
+    if (addingMode) {
+      removeData(index);
+      setAddingMode(false);
+    } else {
+      setOpenDialog(false);
+    }
+  };
+
+  useEffect(() => {
+    if (appDataValid && !formInitiated) {
+      setFormInitiated(true);
+      setAddingMode(false);
+
+      for (let i = 1; i < appDataValid.length; i++) {
+        //@ts-ignore
+        append(appDataValid[i]);
+      }
+    }
+  }, [appDataValid, append, formInitiated]);
+
+  const finalizeForm = () => {
+    if (formInitiated && fields.length > 0 && !!errors.policyholder === false) {
+      setAllowSummary(true);
+      history.push("./summary");
+    } else {
+      alert("ERROR");
+    }
+  };
 
   return (
     <ContentWrap fullWidth>
@@ -134,20 +167,24 @@ const Page2 = () => {
         <Subtitle>{t("InsuranceDiagnostic.ApplicantBox.title")}</Subtitle>
         {editingMode &&
           fields.map((field: any, index: number) => {
+            //@ts-ignore
+            let policyholderIs = watch(`policyholder.${index}.policyholderIs`);
             return (
               editingIndex === index && (
                 <MuiDialog
                   key={field.id}
                   isOpen={openDialog}
-                  handleClose={handleClose}
+                  handleClose={() => {
+                    handleClose(index);
+                  }}
                   formId="insured-data-form"
-                  title="test"
-                  description="test"
+                  title={t("InsuranceDiagnostic.ApplicantBox.title")}
+                  description=""
                 >
                   <Form id="insured-data-form" onSubmit={formSubmit}>
                     <MuiRadio
                       control={control}
-                      name={`policyholder[${index}].policyholderIs`}
+                      name={`policyholder.${index}.policyholderIs`}
                       legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
                       options={[
                         {
@@ -163,44 +200,42 @@ const Page2 = () => {
                           value: "legal",
                         },
                       ]}
-                      defaultValue={field.value || ""}
+                      defaultValue={field.policyholderIs || ""}
                     />
                     <MuiInput
                       control={control}
-                      name={`policyholder[${index}].name`}
+                      name={`policyholder.${index}.name`}
                       labelName={t("InsuranceDiagnostic.Page1.name")}
                       error={!!errors.policyholder?.[index].name}
                       helperText={errors?.policyholder?.[index].name?.message}
                       autoComplete="given-name"
-                      defaultValue={field.value || ""}
+                      defaultValue={field.name || ""}
                     />
-                    {policyholders[editingIndex]?.policyholderIs ===
-                      "individual" && (
+                    {policyholderIs === "individual" && (
                       <MuiInput
                         control={control}
-                        name={`policyholder[${index}].surname`}
+                        name={`policyholder.${index}.surname`}
                         labelName={t("InsuranceDiagnostic.Page1.surname")}
                         error={!!errors.policyholder?.[index].surname}
                         helperText={
                           errors?.policyholder?.[index]?.surname?.message
                         }
                         autoComplete="family-name"
-                        defaultValue={field.value || ""}
+                        defaultValue={field.surname || ""}
                       />
                     )}
-                    {policyholders[editingIndex]?.policyholderIs !==
-                      "individual" && (
+
+                    {policyholderIs !== "individual" && (
                       <MuiInput
                         control={control}
                         name={`policyholder[${index}].nip`}
                         labelName={t("InsuranceDiagnostic.Page1.nip")}
                         error={!!errors.policyholder?.[index].nip}
                         helperText={errors?.policyholder?.[index].nip?.message}
-                        defaultValue={field.value || ""}
+                        defaultValue={field.nip || ""}
                       />
                     )}
-                    {policyholders[editingIndex]?.policyholderIs ===
-                      "individual" && (
+                    {policyholderIs === "individual" && (
                       <DateInput
                         control={control}
                         name={`policyholder[${index}].birthDate`}
@@ -209,12 +244,11 @@ const Page2 = () => {
                         helperText={
                           errors?.policyholder?.[index].birthDate?.message
                         }
-                        defaultValue={field.value || ""}
+                        defaultValue={field.birthDate}
                         placeholder={t("Form.Placeholder.dateFull")}
                       />
                     )}
-                    {policyholders[editingIndex]?.policyholderIs ===
-                      "individual" && (
+                    {policyholderIs === "individual" && (
                       <MuiInput
                         control={control}
                         name={`policyholder[${index}].pesel`}
@@ -223,11 +257,10 @@ const Page2 = () => {
                         helperText={
                           errors?.policyholder?.[index].pesel?.message
                         }
-                        defaultValue={field.value || ""}
+                        defaultValue={field.pesel || ""}
                       />
                     )}
-                    {policyholders[editingIndex]?.policyholderIs !==
-                      "individual" && (
+                    {policyholderIs !== "individual" && (
                       <MuiInput
                         control={control}
                         name={`policyholder[${index}].regon`}
@@ -236,7 +269,7 @@ const Page2 = () => {
                         helperText={
                           errors?.policyholder?.[index].regon?.message
                         }
-                        defaultValue={field.value || ""}
+                        defaultValue={field.regon || ""}
                       />
                     )}
                     <MuiPhoneInput
@@ -247,7 +280,7 @@ const Page2 = () => {
                       helperText={
                         errors?.policyholder?.[index].phoneNumber?.message
                       }
-                      defaultValue={field.value || ""}
+                      defaultValue={field.phoneNumber || ""}
                     />
                     <MuiInput
                       control={control}
@@ -255,7 +288,7 @@ const Page2 = () => {
                       labelName={t("InsuranceDiagnostic.Page1.email")}
                       error={!!errors.policyholder?.[index].email}
                       helperText={errors?.policyholder?.[index].email?.message}
-                      defaultValue={field.value || ""}
+                      defaultValue={field.email || ""}
                     />
                     <MuiInput
                       control={control}
@@ -265,7 +298,7 @@ const Page2 = () => {
                       helperText={
                         errors?.policyholder?.[index].country?.message
                       }
-                      defaultValue={field.value || ""}
+                      defaultValue={field.country || ""}
                     />
                     <MuiInput
                       control={control}
@@ -273,7 +306,7 @@ const Page2 = () => {
                       labelName={t("InsuranceDiagnostic.Page1.city")}
                       error={!!errors.policyholder?.[index].city}
                       helperText={errors?.policyholder?.[index].city?.message}
-                      defaultValue={field.value || ""}
+                      defaultValue={field.city || ""}
                     />
                     <MuiInput
                       control={control}
@@ -283,7 +316,7 @@ const Page2 = () => {
                       helperText={
                         errors?.policyholder?.[index].postIndex?.message
                       }
-                      defaultValue={field.value || ""}
+                      defaultValue={field.postIndex || ""}
                     />
                     <MuiInput
                       control={control}
@@ -291,7 +324,7 @@ const Page2 = () => {
                       labelName={t("InsuranceDiagnostic.Page1.street")}
                       error={!!errors.policyholder?.[index].street}
                       helperText={errors?.policyholder?.[index].street?.message}
-                      defaultValue={field.value || ""}
+                      defaultValue={field.street || ""}
                     />
                     <MuiInput
                       control={control}
@@ -301,7 +334,7 @@ const Page2 = () => {
                       helperText={
                         errors?.policyholder?.[index].houseNumber?.message
                       }
-                      defaultValue={field.value || ""}
+                      defaultValue={field.houseNumber || ""}
                     />
                   </Form>
                 </MuiDialog>
@@ -309,53 +342,58 @@ const Page2 = () => {
             );
           })}
         {formInitiated &&
-          policyholders.map((field: any, index: number) => (
-            <Applicant key={field.id}>
-              <AvatarStyled>{field.name[0] || ""}</AvatarStyled>
-              <ApplicantName>{field.name}</ApplicantName>
-
-              <IconButton
-                onClick={() => {
-                  setEditingMode(true);
-                  setEditingIndex(index);
-                  setOpenDialog(true);
-                }}
-              >
-                <EditIcon />
-              </IconButton>
-
-              <IconButton
-                onClick={() => {
-                  remove(index);
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Applicant>
-          ))}
+          fields.map((field: any, index: number) => {
+            //@ts-ignore
+            let policyholder = watch(`policyholder.${index}.name`);
+            return (
+              <Applicant key={field.id} error={!!errors.policyholder?.[index]}>
+                <AvatarStyled>{policyholder?.[0] || ""}</AvatarStyled>
+                <ApplicantName>{policyholder}</ApplicantName>
+                <IconButton
+                  onClick={() => {
+                    setEditingMode(true);
+                    setEditingIndex(index);
+                    setOpenDialog(true);
+                  }}
+                >
+                  <EditIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => {
+                    removeData(index);
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Applicant>
+            );
+          })}
         {!formInitiated && (
-          <ApplicantBox>
-            <ApplicantAdd
-              onClick={() => {
-                setEditingMode(true);
-                setOpenDialog(true);
-              }}
-            >
-              {t("InsuranceDiagnostic.ApplicantBox.addApplicant")}
+          <ApplicantBox
+            onClick={() => {
+              setEditingMode(true);
+              setOpenDialog(true);
+            }}
+          >
+            <ApplicantAdd>
+              <PersonAddIcon />
+              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
             </ApplicantAdd>
           </ApplicantBox>
         )}
         {formInitiated && fields.length < 14 && (
-          <ApplicantBox>
-            <ApplicantAdd
-              onClick={() => {
-                append({ policyholderIs: "firm", name: "", surname: "" });
-                setEditingMode(true);
-                setOpenDialog(true);
-                setEditingIndex(fields.length);
-              }}
-            >
-              {t("InsuranceDiagnostic.ApplicantBox.addApplicant")}
+          <ApplicantBox
+            onClick={() => {
+              append({ policyholderIs: "firm", name: "", surname: "" });
+              setAddingMode(true);
+              setEditingMode(true);
+              setOpenDialog(true);
+              setEditingIndex(fields.length);
+            }}
+          >
+            <ApplicantAdd>
+              <PersonAddIcon />
+              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
             </ApplicantAdd>
           </ApplicantBox>
         )}
@@ -373,6 +411,7 @@ const Page2 = () => {
             text={t("Basic.buttonNext")}
             form="insured-data-form"
             color="primary"
+            onClick={finalizeForm}
           />
         </ButtonsWrap>
       </Page>
@@ -388,9 +427,9 @@ const AvatarStyled = styled(Avatar)`
   background-color: ${({ theme }) => theme.blue};
 `;
 
-const Applicant = styled.div`
+const Applicant = styled.div<{ error: boolean }>`
   display: flex;
-  border: 1px solid ${({ theme }) => theme.gray};
+  border: 1px solid ${({ theme, error }) => (error ? theme.red : theme.gray)};
   padding: 8px 14px;
   border-radius: 4px;
   margin: 6px 0px;

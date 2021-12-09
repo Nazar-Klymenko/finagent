@@ -147,6 +147,7 @@ ${({ flipDirection }) =>
     max-width: 100%;
     border-radius: unset;
     margin: 0;
+    padding: 8px !important;
   }
   @media all and (max-width: ${({ theme }) => theme.widthSmallPhone}) {
     flex: 1 1;

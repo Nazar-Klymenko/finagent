@@ -35,7 +35,7 @@ const Contact = () => {
     formState: { errors },
   } = useForm<FormData>({
     mode: "onChange",
-    reValidateMode: "onBlur",
+    reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(schema),
   });

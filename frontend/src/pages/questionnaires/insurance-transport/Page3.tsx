@@ -97,7 +97,7 @@ const Page3 = () => {
           <MuiSelect
             control={control}
             name="vehicleType"
-            defaultValue={appDataValid.vehicleType}
+            // defaultValue={appDataValid.vehicleType}
             labelName={t("InsuranceTransport.Page2.vehicleType")}
             optionArray={vehicleTypeOptions}
             error={!!errors.vehicleType}
@@ -107,7 +107,7 @@ const Page3 = () => {
             control={control}
             name="fuelType"
             labelName={t("InsuranceTransport.Page3.fuelType")}
-            defaultValue={appDataValid.fuelType}
+            // defaultValue={appDataValid.fuelType}
             optionArray={fuelTypeOptions}
             error={!!errors.fuelType}
             helperText={errors?.fuelType?.message}
@@ -137,7 +137,7 @@ const Page3 = () => {
             labelName={t("InsuranceTransport.Page3.vehicleRegDate")}
             error={!!errors.vehicleRegDate}
             helperText={errors?.vehicleRegDate?.message}
-            defaultValue={appDataValid.vehicleRegDate}
+            // defaultValue={appDataValid.vehicleRegDate}
             placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
@@ -146,7 +146,7 @@ const Page3 = () => {
             labelName={t("InsuranceTransport.Page3.techExamDate")}
             error={!!errors.techExamDate}
             helperText={errors?.techExamDate?.message}
-            defaultValue={appDataValid.techExamDate}
+            // defaultValue={appDataValid.techExamDate}
             placeholder={t("Form.Placeholder.dateFull")}
           />
 
@@ -220,7 +220,7 @@ const Page3 = () => {
               labelName={t("InsuranceTransport.Page3.polandRegDate")}
               error={!!errors.polandRegDate}
               helperText={errors?.polandRegDate?.message}
-              defaultValue={appDataValid.polandRegDate}
+              // defaultValue={appDataValid.polandRegDate}
               placeholder={t("Form.Placeholder.dateFull")}
             />
           )}

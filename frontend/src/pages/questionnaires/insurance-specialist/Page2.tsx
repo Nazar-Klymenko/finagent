@@ -153,7 +153,6 @@ const Page2 = () => {
     }
   };
 
-  console.log("rerender");
   return (
     <ContentWrap fullWidth>
       <QuestState data={appData} />

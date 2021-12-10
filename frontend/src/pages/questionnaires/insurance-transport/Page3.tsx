@@ -33,9 +33,9 @@ import {
   Title,
 } from "../LocalStyles";
 import { pageThreeValues } from "./applicationHelpers/default-values";
+import { pageThreeSchema } from "./applicationHelpers/insurance-transport.schema";
 import { fuelTypeOptions } from "./applicationHelpers/options";
 import { vehicleTypeOptions } from "./applicationHelpers/options";
-import { pageThreeSchema } from "./applicationHelpers/validation.schema";
 
 type FormTypes = {
   vehicleType: string;

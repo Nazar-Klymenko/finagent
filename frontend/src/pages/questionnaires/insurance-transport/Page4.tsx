@@ -18,12 +18,12 @@ import { MuiSelect } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageFourValues } from "./applicationHelpers/default-values";
+import { pageFourSchema } from "./applicationHelpers/insurance-transport.schema";
 import { securityOptions } from "./applicationHelpers/options";
 import { parkingPlaceOptions } from "./applicationHelpers/options";
 import { usePurposeOptions } from "./applicationHelpers/options";
 import { useAbroadOptions } from "./applicationHelpers/options";
 import { predictMileageOptions } from "./applicationHelpers/options";
-import { pageFourSchema } from "./applicationHelpers/validation.schema";
 
 type FormTypes = {
   predictMileage: string;

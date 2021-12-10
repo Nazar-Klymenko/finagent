@@ -14,7 +14,7 @@ import { DateInput, MuiInput, MuiRadio } from "@components/input";
 import { Modal } from "@components/modals";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { addAdditionalIncomeSchema } from "./applicationHelpers/loanCashSchema";
+import { addAdditionalIncomeSchema } from "./applicationHelpers/loan-cash.schema";
 
 const AddAdditionalIncome = ({
   openIncomeModal,

@@ -20,9 +20,9 @@ import { DateInput, MuiCheckbox, MuiSelect } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageOneSchema } from "./applicationHelpers/insurance-health.schema";
-import { clauseOnePriceOptions } from "./applicationHelpers/insuranceHealthOptions";
-import { clauseTwoPriceOptions } from "./applicationHelpers/insuranceHealthOptions";
-import { clauseThreePriceOptions } from "./applicationHelpers/insuranceHealthOptions";
+import { clauseOnePriceOptions } from "./applicationHelpers/options";
+import { clauseTwoPriceOptions } from "./applicationHelpers/options";
+import { clauseThreePriceOptions } from "./applicationHelpers/options";
 
 type FormTypes = {
   insuranceStart: Date;

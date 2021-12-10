@@ -25,7 +25,7 @@ const Page1 = () => {
   const { t } = useTranslation();
   useTitle("Travel insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = validateAppData(appData, "InsuranceData");
+  const appDataValid = appData?.InsuranceData?.InsuraceTravel;
   const history = useHistory();
 
   const {
@@ -36,11 +36,13 @@ const Page1 = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      insuranceType: appDataValid.insuranceType || "individual",
-      peopleAmount: appDataValid.peopleAmount,
-      destination: appDataValid.destination,
-      purpose: appDataValid.purpose,
-      inPoland: appDataValid.inPoland,
+      insuranceType: appDataValid?.insuranceType || "individual",
+      insuranceStart: appDataValid?.insuranceStart,
+      insuranceEnd: appDataValid?.insuranceEnd,
+      peopleAmount: appDataValid?.peopleAmount,
+      destination: appDataValid?.destination,
+      purpose: appDataValid?.purpose,
+      inPoland: appDataValid?.inPoland,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -75,7 +77,6 @@ const Page1 = () => {
             labelName={t("InsuranceTravel.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultValue={appDataValid.insuranceStart}
             disablePast
           />
           <DateInput
@@ -84,7 +85,6 @@ const Page1 = () => {
             labelName={t("InsuranceTravel.Page1.insuranceEnd")}
             error={!!errors.insuranceEnd}
             helperText={errors?.insuranceEnd?.message}
-            defaultValue={appDataValid.insuranceEnd}
             disablePast
           />
           <MuiCheckbox

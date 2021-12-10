@@ -19,10 +19,21 @@ import { ContentWrap } from "@components/content";
 import { DateInput, MuiCheckbox, MuiSelect } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
+import { pageOneSchema } from "./applicationHelpers/insurance-health.schema";
 import { clauseOnePriceOptions } from "./applicationHelpers/insuranceHealthOptions";
 import { clauseTwoPriceOptions } from "./applicationHelpers/insuranceHealthOptions";
 import { clauseThreePriceOptions } from "./applicationHelpers/insuranceHealthOptions";
-import { pageOneSchema } from "./applicationHelpers/insuranceHealthSchema";
+
+type FormTypes = {
+  insuranceStart: Date;
+  insuranceEnd: Date;
+  clauseOne: boolean;
+  clauseTwo: boolean;
+  clauseThree: boolean;
+  clauseOnePrice: string;
+  clauseTwoPrice: string;
+  clauseThreePrice: string;
+};
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -31,11 +42,7 @@ const Page1 = () => {
 
   const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = validateAppData(
-    appData,
-    "insuranceHealth",
-    "insuranceData"
-  );
+  const appDataValid = appData.insuranceHealth?.insuranceData;
 
   const {
     handleSubmit,
@@ -43,11 +50,11 @@ const Page1 = () => {
     watch,
 
     formState: { errors },
-  } = useForm({
+  } = useForm<FormTypes>({
     defaultValues: {
       clauseOne: true,
-      clauseTwo: appDataValid.clauseTwo,
-      clauseThree: appDataValid.clauseThree,
+      clauseTwo: appDataValid?.clauseTwo,
+      clauseThree: appDataValid?.clauseThree,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -58,11 +65,11 @@ const Page1 = () => {
   let showTwoAmount = watch("clauseTwo");
   let showThreeAmount = watch("clauseThree");
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceHealth", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
-  };
+  });
 
   return (
     <ContentWrap fullWidth>
@@ -77,15 +84,15 @@ const Page1 = () => {
         />
         <Subtitle>{t("InsuranceHealth.Page1.subtitle")}</Subtitle>
 
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <DateInput
             control={control}
             name="insuranceStart"
             labelName={t("InsuranceHealth.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultValue={appDataValid.insuranceStart}
             disablePast
+            placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
             control={control}
@@ -93,7 +100,7 @@ const Page1 = () => {
             labelName={t("InsuranceHealth.Page1.insuranceEnd")}
             error={!!errors.insuranceEnd}
             helperText={errors?.insuranceEnd?.message}
-            defaultValue={appDataValid.insuranceEnd}
+            placeholder={t("Form.Placeholder.dateFull")}
             disablePast
           />
           <Subtitle>{t("InsuranceHealth.Page1.riskType")}</Subtitle>
@@ -101,13 +108,12 @@ const Page1 = () => {
             control={control}
             name="clauseOne"
             readOnly={true}
-            checked={true}
+            defaultChecked={true}
             labelName={t("InsuranceHealth.Page1.clauseOne")}
           />
           <MuiSelect
             control={control}
             name="clauseOnePrice"
-            defaultValue={appDataValid.clauseOnePrice}
             labelName={t("InsuranceHealth.Page1.chooseAmountEuro")}
             optionArray={clauseOnePriceOptions}
             placeholder="Amount:"
@@ -123,7 +129,6 @@ const Page1 = () => {
             <MuiSelect
               control={control}
               name="clauseTwoPrice"
-              defaultValue={appDataValid.clauseTwoPrice}
               labelName={t("InsuranceHealth.Page1.chooseAmountZlote")}
               optionArray={clauseTwoPriceOptions}
               placeholder="Amount:"
@@ -140,7 +145,6 @@ const Page1 = () => {
             <MuiSelect
               control={control}
               name="clauseThreePrice"
-              defaultValue={appDataValid.clauseThreePrice}
               labelName={t("InsuranceHealth.Page1.chooseAmountZlote")}
               optionArray={clauseThreePriceOptions}
               placeholder="Amount:"

@@ -54,7 +54,7 @@ const MuiRadio: FC<Props> = ({ name, defaultValue, options, legend }) => {
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.name?.message)}
+        {t(errors?.[name]?.message)}
       </InputErrorMessage>
     </FormControl>
   );

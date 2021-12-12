@@ -39,7 +39,7 @@ const MuiSelect: FC<Props> = ({
             onChange={field.onChange}
             value={field.value}
             placeholder={placeholder}
-            error={!!errors.name}
+            error={!!errors[name]}
             labelId="demo-customized-select-label"
             id={name}
             style={{
@@ -70,7 +70,7 @@ const MuiSelect: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.name?.message)}
+        {t(errors?.[name]?.message)}
       </InputErrorMessage>
     </>
   );

@@ -40,7 +40,7 @@ const MuiPhoneInput: FC<Props> = ({
             onChange={field.onChange}
             value={field.value}
             country="pl"
-            isValid={!!errors.name}
+            isValid={!errors[name]}
             defaultErrorMessage="testtttt "
             onlyCountries={["pl", "ua", "by", "ru"]}
             specialLabel=""
@@ -54,7 +54,7 @@ const MuiPhoneInput: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.name?.message)}
+        {t(errors?.[name]?.message)}
       </InputErrorMessage>
     </>
   );

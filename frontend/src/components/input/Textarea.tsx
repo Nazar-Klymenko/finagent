@@ -48,7 +48,7 @@ const Textarea: React.FC<Props> = ({
             rowsMax={8}
             fullWidth
             placeholder={placeholder}
-            error={!!errors.name}
+            error={!!errors[name]}
             id={name}
           />
         )}
@@ -56,7 +56,7 @@ const Textarea: React.FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.name?.message)}
+        {t(errors?.[name]?.message)}
       </InputErrorMessage>
     </>
   );

@@ -53,7 +53,7 @@ const MuiPasswordInput: FC<Props> = ({
           <OutlinedInput
             id={name}
             type={showPassword ? "text" : "password"}
-            error={!!errors.name}
+            error={!!errors[name]}
             autoComplete={autoComplete}
             onChange={field.onChange}
             value={field.value}
@@ -75,7 +75,7 @@ const MuiPasswordInput: FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.name?.message)}
+        {t(errors?.[name]?.message)}
       </InputErrorMessage>
       {/* <Requirements>
         {errorList &&

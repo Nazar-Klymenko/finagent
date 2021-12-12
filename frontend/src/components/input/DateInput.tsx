@@ -75,7 +75,7 @@ const DateInput: FC<Props> = ({
             okLabel="OK"
             clearLabel="Clear"
             cancelLabel="Cancel"
-            error={!!errors.name}
+            error={!!errors[name]}
             inputVariant="outlined"
             helperText={null}
             style={{
@@ -91,7 +91,7 @@ const DateInput: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.name?.message)}
+        {t(errors?.[name]?.message)}
       </InputErrorMessage>
     </MuiPickersUtilsProvider>
   );

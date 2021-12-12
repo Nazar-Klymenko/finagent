@@ -55,7 +55,7 @@ const MuiCheckbox: FC<Props> = ({
       {spacer && (
         <InputErrorMessage>
           <span className="invis-star">*</span>
-          {t(errors?.name?.message)}
+          {t(errors?.[name]?.message)}
         </InputErrorMessage>
       )}
     </>

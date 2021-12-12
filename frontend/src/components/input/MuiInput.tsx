@@ -31,6 +31,10 @@ const MuiInput: FC<Props> = ({
     control,
     formState: { errors },
   } = useFormContext();
+
+  // console.log(errors);
+  // console.log(errors?.name?.message);
+  // console.log(control);
   return (
     <>
       <Label htmlFor={name}>
@@ -39,11 +43,13 @@ const MuiInput: FC<Props> = ({
       </Label>
 
       <Controller
+        key={name}
         name={name}
         control={control}
         defaultValue={defaultValue}
         render={({ field }) => (
           <OutlinedInput
+            key={name}
             onChange={field.onChange}
             value={field.value}
             style={{
@@ -51,7 +57,7 @@ const MuiInput: FC<Props> = ({
             }}
             id={name}
             autoComplete={autoComplete}
-            error={!!errors.name}
+            error={!!errors[name]}
             {...other}
           />
         )}
@@ -59,7 +65,7 @@ const MuiInput: FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.name?.message)}
+        {t(errors?.[name]?.message)}
       </InputErrorMessage>
     </>
   );

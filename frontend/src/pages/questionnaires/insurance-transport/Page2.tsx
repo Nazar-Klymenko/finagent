@@ -2,11 +2,9 @@ import React from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-
-import validateAppData from "@helpers/validateAppData";
 
 import useTitle from "@hooks/useTitle";
 
@@ -41,17 +39,14 @@ const Page2 = () => {
 
   const appDataValid = appData?.insuranceTransport?.transportData;
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: pageTwoValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema),
   });
+  const { handleSubmit } = methods;
 
   const formSubmit = handleSubmit((data) => {
     setValues(data, "transportData");
@@ -71,65 +66,49 @@ const Page2 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page2.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
-          <MuiInput
-            control={control}
-            name="brand"
-            labelName={t("InsuranceTransport.Page2.brand")}
-            type="text"
-            error={!!errors.brand}
-            helperText={errors?.brand?.message}
-          />
-          <MuiInput
-            control={control}
-            name="model"
-            labelName={t("InsuranceTransport.Page2.model")}
-            type="text"
-            error={!!errors.model}
-            helperText={errors?.model?.message}
-          />
-          <MuiInput
-            control={control}
-            name="version"
-            labelName={t("InsuranceTransport.Page2.version")}
-            type="text"
-            error={!!errors.version}
-            helperText={errors?.version?.message}
-          />
-          <MuiInput
-            control={control}
-            name="regNumber"
-            labelName={t("InsuranceTransport.Page2.regNumber")}
-            type="text"
-            error={!!errors.regNumber}
-            helperText={errors?.regNumber?.message}
-          />
-          <MuiInput
-            control={control}
-            name="vinNumber"
-            labelName={t("InsuranceTransport.Page2.vinNumber")}
-            type="text"
-            error={!!errors.vinNumber}
-            helperText={errors?.vinNumber?.message}
-          />
-          <DateInput
-            control={control}
-            name="yearManufacture"
-            labelName={t("InsuranceTransport.Page2.yearManufacture")}
-            error={!!errors.yearManufacture}
-            helperText={errors?.yearManufacture?.message}
-            placeholder={t("Form.Placeholder.dateYear")}
-            view={["year"]}
-            format="yyyy"
-            disableFuture
-          />
+        <FormProvider {...methods}>
+          <Form id="form" onSubmit={formSubmit}>
+            <MuiInput
+              name="brand"
+              labelName={t("InsuranceTransport.Page2.brand")}
+              type="text"
+            />
+            <MuiInput
+              name="model"
+              labelName={t("InsuranceTransport.Page2.model")}
+              type="text"
+            />
+            <MuiInput
+              name="version"
+              labelName={t("InsuranceTransport.Page2.version")}
+              type="text"
+            />
+            <MuiInput
+              name="regNumber"
+              labelName={t("InsuranceTransport.Page2.regNumber")}
+              type="text"
+            />
+            <MuiInput
+              name="vinNumber"
+              labelName={t("InsuranceTransport.Page2.vinNumber")}
+              type="text"
+            />
+            <DateInput
+              name="yearManufacture"
+              labelName={t("InsuranceTransport.Page2.yearManufacture")}
+              placeholder={t("Form.Placeholder.dateYear")}
+              view={["year"]}
+              format="yyyy"
+              disableFuture
+            />
 
-          <MuiCheckbox
-            control={control}
-            labelName={t("InsuranceTransport.Page2.registeredPoland")}
-            name="registeredPoland"
-          />
-        </Form>
+            <MuiCheckbox
+              labelName={t("InsuranceTransport.Page2.registeredPoland")}
+              name="registeredPoland"
+            />
+          </Form>
+        </FormProvider>
+
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}

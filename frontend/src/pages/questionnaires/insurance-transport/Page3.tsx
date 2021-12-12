@@ -2,7 +2,7 @@ import React from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
@@ -58,19 +58,14 @@ const Page3 = () => {
 
   const appDataValid = appData?.insuranceTransport?.specificData;
 
-  const {
-    handleSubmit,
-    watch,
-    control,
-
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: pageThreeValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageThreeSchema),
   });
+  const { handleSubmit, watch } = methods;
 
   const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceTransport", "specificData");
@@ -93,133 +88,106 @@ const Page3 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page3.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
-          <MuiSelect
-            control={control}
-            name="vehicleType"
-            labelName={t("InsuranceTransport.Page2.vehicleType")}
-            optionArray={vehicleTypeOptions}
-            error={!!errors.vehicleType}
-            helperText={errors?.vehicleType?.message}
-          />
-          <MuiSelect
-            control={control}
-            name="fuelType"
-            labelName={t("InsuranceTransport.Page3.fuelType")}
-            optionArray={fuelTypeOptions}
-            error={!!errors.fuelType}
-            helperText={errors?.fuelType?.message}
-          />
-          <MuiInput
-            control={control}
-            name="enginePower"
-            labelName={t("InsuranceTransport.Page3.enginePower")}
-            type="text"
-            error={!!errors.enginePower}
-            helperText={errors?.enginePower?.message}
-            placeholder="150"
-          />
-          <MuiInput
-            control={control}
-            name="engineVolume"
-            labelName={t("InsuranceTransport.Page3.engineVolume")}
-            type="text"
-            error={!!errors.engineVolume}
-            helperText={errors?.engineVolume?.message}
-            placeholder="1500"
-          />
 
-          <DateInput
-            control={control}
-            name="vehicleRegDate"
-            labelName={t("InsuranceTransport.Page3.vehicleRegDate")}
-            error={!!errors.vehicleRegDate}
-            helperText={errors?.vehicleRegDate?.message}
-            placeholder={t("Form.Placeholder.dateFull")}
-          />
-          <DateInput
-            control={control}
-            name="techExamDate"
-            labelName={t("InsuranceTransport.Page3.techExamDate")}
-            error={!!errors.techExamDate}
-            helperText={errors?.techExamDate?.message}
-            placeholder={t("Form.Placeholder.dateFull")}
-          />
+        <FormProvider {...methods}>
+          <Form id="form" onSubmit={formSubmit}>
+            <MuiSelect
+              name="vehicleType"
+              labelName={t("InsuranceTransport.Page2.vehicleType")}
+              optionArray={vehicleTypeOptions}
+            />
+            <MuiSelect
+              name="fuelType"
+              labelName={t("InsuranceTransport.Page3.fuelType")}
+              optionArray={fuelTypeOptions}
+            />
+            <MuiInput
+              name="enginePower"
+              labelName={t("InsuranceTransport.Page3.enginePower")}
+              type="text"
+              placeholder="150"
+            />
+            <MuiInput
+              name="engineVolume"
+              labelName={t("InsuranceTransport.Page3.engineVolume")}
+              type="text"
+              placeholder="1500"
+            />
 
-          <DateInput
-            control={control}
-            name="purchaseYear"
-            labelName={t("InsuranceTransport.Page3.purchaseYear")}
-            error={!!errors.purchaseYear}
-            helperText={errors?.purchaseYear?.message}
-            placeholder={t("Form.Placeholder.dateYear")}
-            view={["year"]}
-            format="yyyy"
-          />
+            <DateInput
+              name="vehicleRegDate"
+              labelName={t("InsuranceTransport.Page3.vehicleRegDate")}
+              placeholder={t("Form.Placeholder.dateFull")}
+            />
+            <DateInput
+              name="techExamDate"
+              labelName={t("InsuranceTransport.Page3.techExamDate")}
+              placeholder={t("Form.Placeholder.dateFull")}
+            />
 
-          <MuiInput
-            control={control}
-            name="kilometrage"
-            labelName={t("InsuranceTransport.Page3.kilometrage")}
-            error={!!errors.kilometrage}
-            helperText={errors?.kilometrage?.message}
-            placeholder="eg. 100000"
-          />
+            <DateInput
+              name="purchaseYear"
+              labelName={t("InsuranceTransport.Page3.purchaseYear")}
+              placeholder={t("Form.Placeholder.dateYear")}
+              view={["year"]}
+              format="yyyy"
+            />
 
-          {vehicleType !== "motorcycle" && (
+            <MuiInput
+              name="kilometrage"
+              labelName={t("InsuranceTransport.Page3.kilometrage")}
+              placeholder="eg. 100000"
+            />
+
+            {vehicleType !== "motorcycle" && (
+              <MuiRadio
+                legend={t("InsuranceTransport.Page3.steeringWheel")}
+                name="steeringWheel"
+                options={[
+                  {
+                    label: t("InsuranceTransport.Page3.left"),
+                    value: "left",
+                  },
+                  {
+                    label: t("InsuranceTransport.Page3.right"),
+                    value: "right",
+                  },
+                ]}
+              />
+            )}
+
             <MuiRadio
-              control={control}
-              legend={t("InsuranceTransport.Page3.steeringWheel")}
-              name="steeringWheel"
+              name="transmissionType"
+              legend={t("InsuranceTransport.Page3.transmissionType")}
               options={[
                 {
-                  label: t("InsuranceTransport.Page3.left"),
-                  value: "left",
+                  label: t("InsuranceTransport.Page3.mechanical"),
+                  value: "mechanical",
                 },
                 {
-                  label: t("InsuranceTransport.Page3.right"),
-                  value: "right",
+                  label: t("InsuranceTransport.Page3.automatic"),
+                  value: "automatic",
                 },
               ]}
             />
-          )}
-
-          <MuiRadio
-            control={control}
-            name="transmissionType"
-            legend={t("InsuranceTransport.Page3.transmissionType")}
-            options={[
-              {
-                label: t("InsuranceTransport.Page3.mechanical"),
-                value: "mechanical",
-              },
-              {
-                label: t("InsuranceTransport.Page3.automatic"),
-                value: "automatic",
-              },
-            ]}
-          />
-          <MuiCheckbox
-            control={control}
-            labelName={t("InsuranceTransport.Page3.gasInstalation")}
-            name="gasInstalation"
-          />
-          <MuiCheckbox
-            control={control}
-            labelName={t("InsuranceTransport.Page3.abroadImport")}
-            name="abroadImport"
-          />
-          {abroadImport && (
-            <DateInput
-              control={control}
-              name="polandRegDate"
-              labelName={t("InsuranceTransport.Page3.polandRegDate")}
-              error={!!errors.polandRegDate}
-              helperText={errors?.polandRegDate?.message}
-              placeholder={t("Form.Placeholder.dateFull")}
+            <MuiCheckbox
+              labelName={t("InsuranceTransport.Page3.gasInstalation")}
+              name="gasInstalation"
             />
-          )}
-        </Form>
+            <MuiCheckbox
+              labelName={t("InsuranceTransport.Page3.abroadImport")}
+              name="abroadImport"
+            />
+            {abroadImport && (
+              <DateInput
+                name="polandRegDate"
+                labelName={t("InsuranceTransport.Page3.polandRegDate")}
+                placeholder={t("Form.Placeholder.dateFull")}
+              />
+            )}
+          </Form>
+        </FormProvider>
+
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}

@@ -2,7 +2,7 @@ import React from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
@@ -38,19 +38,14 @@ const Page5 = () => {
 
   const appDataValid = appData?.insuranceTransport?.appendedImages;
 
-  const {
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm({
+  const methods = useForm({
     defaultValues: pageFiveValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageFiveSchema),
   });
-
+  const { handleSubmit, watch } = methods;
   const formSubmit = handleSubmit((data) => {
     try {
       setAllowSummary(true);
@@ -76,66 +71,40 @@ const Page5 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page5.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
-          <Subheader
-            subheader={t("InsuranceTransport.Page5.registration")}
-            description={t("InsuranceTransport.Page5.twoSides")}
-          />
-          <FileInput
-            control={control}
-            name="filesTechPassport"
-            labelName=""
-            showFiles
-            error={!!errors.filesTechPassport}
-            helperText={errors?.filesTechPassport?.message}
-          />
-          <Subheader
-            subheader={t("InsuranceTransport.Page5.driversLicence")}
-            description={t("InsuranceTransport.Page5.twoSides")}
-          />
-          <FileInput
-            control={control}
-            name="filesPassport"
-            labelName=""
-            showFiles
-            error={!!errors.filesPassport}
-            helperText={errors?.filesPassport?.message}
-          />
 
-          <Subheader
-            subheader={t("InsuranceTransport.Page5.currentInsurance")}
-            description=""
-          />
-          <FileInput
-            control={control}
-            name="filesInsurance"
-            labelName=""
-            showFiles
-            error={!!errors.filesInsurance}
-            helperText={errors?.filesInsurance?.message}
-          />
-          <MuiCheckbox
-            control={control}
-            labelName={t("InsuranceTransport.Page5.registeredOnMe")}
-            name="isFirstOwner"
-          />
-          {!firstOwner && (
-            <>
-              <Subheader
-                subheader={t("InsuranceTransport.Page5.salesContract")}
-                description={t("InsuranceTransport.Page5.twoSides")}
-              />
-              <FileInput
-                control={control}
-                name="filesCarSale"
-                labelName=""
-                showFiles
-                error={!!errors.filesCarSale}
-                helperText={errors?.filesCarSale?.message}
-              />
-            </>
-          )}
-        </Form>
+        <FormProvider {...methods}>
+          <Form id="form" onSubmit={formSubmit}>
+            <Subheader
+              subheader={t("InsuranceTransport.Page5.registration")}
+              description={t("InsuranceTransport.Page5.twoSides")}
+            />
+            <FileInput name="filesTechPassport" labelName="" showFiles />
+            <Subheader
+              subheader={t("InsuranceTransport.Page5.driversLicence")}
+              description={t("InsuranceTransport.Page5.twoSides")}
+            />
+            <FileInput name="filesPassport" labelName="" showFiles />
+
+            <Subheader
+              subheader={t("InsuranceTransport.Page5.currentInsurance")}
+              description=""
+            />
+            <FileInput name="filesInsurance" labelName="" showFiles />
+            <MuiCheckbox
+              labelName={t("InsuranceTransport.Page5.registeredOnMe")}
+              name="isFirstOwner"
+            />
+            {!firstOwner && (
+              <>
+                <Subheader
+                  subheader={t("InsuranceTransport.Page5.salesContract")}
+                  description={t("InsuranceTransport.Page5.twoSides")}
+                />
+                <FileInput name="filesCarSale" labelName="" showFiles />
+              </>
+            )}
+          </Form>
+        </FormProvider>
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}

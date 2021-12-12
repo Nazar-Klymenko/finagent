@@ -69,7 +69,7 @@ const Contact = () => {
             <Textarea
               control={control}
               labelName={t("Contact.Form.message")}
-              rows="8"
+              rows={8}
               name="message"
               error={!!errors.message}
               helperText={errors?.message?.message}

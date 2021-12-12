@@ -19,7 +19,7 @@ interface Props {
   helperText: string | undefined;
   placeholder?: string;
   optional?: boolean;
-  rows: string;
+  rows?: number;
   defaultValue?: string | undefined;
 }
 
@@ -29,6 +29,7 @@ const Textarea: React.FC<Props> = ({
   error,
   helperText = "",
   control,
+  rows,
   placeholder,
   optional,
   defaultValue,
@@ -50,7 +51,7 @@ const Textarea: React.FC<Props> = ({
             onChange={field.onChange}
             value={field.value}
             multiline
-            rows={4}
+            rows={rows}
             rowsMax={8}
             fullWidth
             placeholder={placeholder}

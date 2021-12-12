@@ -37,20 +37,17 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
-import { policyholderSchema } from "./applicationHelpers/insurance-specialist.schema";
+import { policyholderSchema } from "./applicationHelpers/insurance-health.schema";
 
 type FormTypes = {
   policyholder: [
     {
       policyholderIs: string;
+      citizenship: string;
       name: string;
       surname: string;
-      birthDate: any;
-      nip: string;
-      pesel: string;
-      regon: string;
-      phoneNumber: string;
-      email: string;
+      documentAdded: string;
+      birthDate: Date;
       country: string;
       city: string;
       postIndex: string;
@@ -62,8 +59,9 @@ type FormTypes = {
 
 const Page2 = () => {
   const { t } = useTranslation();
+  useTitle("Health insurance | FinAgent");
   const history = useHistory();
-  useTitle("Specialists access | FinAgent");
+  const { appData, setValues, setAllowSummary } = useData();
 
   const [openDialog, setOpenDialog] = useState(true);
   const [formInitiated, setFormInitiated] = useState(false);
@@ -71,8 +69,7 @@ const Page2 = () => {
   const [addingMode, setAddingMode] = useState(false);
   const [editingIndex, setEditingIndex] = useState(0);
 
-  const { appData, setValues, setAllowSummary } = useData();
-  const appDataValid = appData?.insuranceSpecialist?.insuredData?.policyholder;
+  const appDataValid = appData?.insuranceHealth?.insuredData?.policyholder;
 
   const {
     handleSubmit,
@@ -83,15 +80,12 @@ const Page2 = () => {
     defaultValues: {
       policyholder: [
         {
-          policyholderIs: appDataValid?.[0]?.policyholderIs || "firm",
+          policyholderIs: appDataValid?.[0]?.policyholderIs || "polish",
+          citizenship: appDataValid?.[0]?.citizenship || "",
           name: appDataValid?.[0]?.name || "",
           surname: appDataValid?.[0]?.surname || "",
-          nip: appDataValid?.[0]?.nip || "",
           birthDate: appDataValid?.[0]?.birthDate || null,
-          pesel: appDataValid?.[0]?.pesel || "",
-          regon: appDataValid?.[0]?.regon || "",
-          phoneNumber: appDataValid?.[0]?.phoneNumber || "",
-          email: appDataValid?.[0]?.email || "",
+          documentAdded: appDataValid?.[0]?.documentAdded || null,
           country: appDataValid?.[0]?.country || "",
           city: appDataValid?.[0]?.city || "",
           postIndex: appDataValid?.[0]?.postIndex || "",
@@ -163,13 +157,15 @@ const Page2 = () => {
       <QuestState data={appData} />
 
       <Page>
-        <Title>{t("InsuranceDiagnostic.title")}</Title>
+        <Title>{t("InsuranceHealth.title")}</Title>
         <ProgressBar
           maxSteps={2}
           currentStep={2}
-          label={t("InsuranceDiagnostic.ApplicantBox.title")}
+          label={t("InsuranceHealth.ApplicantBox.title")}
         />
-        <Subtitle>{t("InsuranceDiagnostic.ApplicantBox.title")}</Subtitle>
+        <Subtitle>{t("InsuranceHealth.ApplicantBox.title")}</Subtitle>
+        <p>{t("InsuranceHealth.ApplicantBox.maxPeople")}</p>
+
         {editingMode &&
           fields.map((field: any, index: number) => {
             //@ts-ignore
@@ -190,168 +186,153 @@ const Page2 = () => {
                     <MuiRadio
                       control={control}
                       name={`policyholder.${index}.policyholderIs`}
-                      legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
+                      legend={t("InsuranceHealth.Page2.policyholderIs")}
                       options={[
                         {
-                          label: t("InsuranceDiagnostic.Page1.firm"),
-                          value: "firm",
+                          label: t("InsuranceHealth.Page2.polish"),
+                          value: "polish",
                         },
                         {
-                          label: t("InsuranceDiagnostic.Page1.individual"),
-                          value: "individual",
-                        },
-                        {
-                          label: t("InsuranceDiagnostic.Page1.legal"),
-                          value: "legal",
+                          label: t("InsuranceHealth.Page2.foreigner"),
+                          value: "foreigner",
                         },
                       ]}
-                      defaultValue={field.policyholderIs || ""}
+                      defaultValue={field.policyholderIs || "polish"}
+                    />
+                    {policyholderIs === "foreigner" && (
+                      <MuiInput
+                        control={control}
+                        name={`policyholder.${index}.citizenship`}
+                        labelName={t(
+                          "InsuranceHealth.ApplicantModal.citizenship"
+                        )}
+                        type="text"
+                        error={!!errors.policyholder?.[index].citizenship}
+                        helperText={
+                          errors?.policyholder?.[index].citizenship?.message
+                        }
+                        placeholder="Type here"
+                        defaultValue={field.citizenship}
+                      />
+                    )}
+                    <MuiInput
+                      control={control}
+                      name={`policyholder.${index}.documentAdded`}
+                      labelName={`${
+                        policyholderIs === "polish"
+                          ? t("InsuranceHealth.ApplicantModal.pesel")
+                          : t("InsuranceHealth.ApplicantModal.passport")
+                      }`}
+                      type="text"
+                      error={!!errors.policyholder?.[index].documentAdded}
+                      helperText={
+                        errors?.policyholder?.[index].documentAdded?.message
+                      }
+                      placeholder="XXXXXXXXXXX"
+                      defaultValue={field.documentAdded}
                     />
                     <MuiInput
                       control={control}
                       name={`policyholder.${index}.name`}
-                      labelName={t("InsuranceDiagnostic.Page1.name")}
+                      labelName={t("InsuranceHealth.ApplicantModal.name")}
+                      type="text"
                       error={!!errors.policyholder?.[index].name}
                       helperText={errors?.policyholder?.[index].name?.message}
+                      placeholder="John"
                       autoComplete="given-name"
-                      defaultValue={field.name || ""}
+                      defaultValue={field.name}
                     />
-                    {policyholderIs === "individual" && (
-                      <MuiInput
-                        control={control}
-                        name={`policyholder.${index}.surname`}
-                        labelName={t("InsuranceDiagnostic.Page1.surname")}
-                        error={!!errors.policyholder?.[index].surname}
-                        helperText={
-                          errors?.policyholder?.[index]?.surname?.message
-                        }
-                        autoComplete="family-name"
-                        defaultValue={field.surname || ""}
-                      />
-                    )}
-
-                    {policyholderIs !== "individual" && (
-                      <MuiInput
-                        control={control}
-                        name={`policyholder[${index}].nip`}
-                        labelName={t("InsuranceDiagnostic.Page1.nip")}
-                        error={!!errors.policyholder?.[index].nip}
-                        helperText={errors?.policyholder?.[index].nip?.message}
-                        defaultValue={field.nip || ""}
-                      />
-                    )}
-                    {policyholderIs === "individual" && (
-                      <DateInput
-                        control={control}
-                        name={`policyholder[${index}].birthDate`}
-                        labelName={t("InsuranceDiagnostic.Page1.birthDate")}
-                        error={!!errors.policyholder?.[index].birthDate}
-                        helperText={
-                          errors?.policyholder?.[index].birthDate?.message
-                        }
-                        defaultValue={field.birthDate}
-                        placeholder={t("Form.Placeholder.dateFull")}
-                      />
-                    )}
-                    {policyholderIs === "individual" && (
-                      <MuiInput
-                        control={control}
-                        name={`policyholder[${index}].pesel`}
-                        labelName={t("InsuranceDiagnostic.Page1.pesel")}
-                        error={!!errors.policyholder?.[index].pesel}
-                        helperText={
-                          errors?.policyholder?.[index].pesel?.message
-                        }
-                        defaultValue={field.pesel || ""}
-                      />
-                    )}
-                    {policyholderIs !== "individual" && (
-                      <MuiInput
-                        control={control}
-                        name={`policyholder[${index}].regon`}
-                        labelName={t("InsuranceDiagnostic.Page1.regon")}
-                        error={!!errors.policyholder?.[index].regon}
-                        helperText={
-                          errors?.policyholder?.[index].regon?.message
-                        }
-                        defaultValue={field.regon || ""}
-                      />
-                    )}
-                    <MuiPhoneInput
+                    <MuiInput
                       control={control}
-                      name={`policyholder[${index}].phoneNumber`}
-                      labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
-                      error={!!errors.policyholder?.[index].phoneNumber}
+                      name={`policyholder.${index}.surname`}
+                      labelName={t("InsuranceHealth.ApplicantModal.surname")}
+                      type="text"
+                      error={!!errors.policyholder?.[index].surname}
                       helperText={
-                        errors?.policyholder?.[index].phoneNumber?.message
+                        errors?.policyholder?.[index].surname?.message
                       }
-                      defaultValue={field.phoneNumber || ""}
+                      placeholder="Doe"
+                      autoComplete="family-name"
+                      defaultValue={field.surname}
+                    />
+                    <DateInput
+                      control={control}
+                      name={`policyholder.${index}.birthDate`}
+                      labelName={t("InsuranceHealth.Page2.birthDate")}
+                      error={!!errors.policyholder?.[index].birthDate}
+                      helperText={
+                        errors?.policyholder?.[index].birthDate?.message
+                      }
+                      defaultValue={field.birthDate}
+                      placeholder={t("Form.Placeholder.dateFull")}
                     />
                     <MuiInput
                       control={control}
-                      name={`policyholder[${index}].email`}
-                      labelName={t("InsuranceDiagnostic.Page1.email")}
-                      error={!!errors.policyholder?.[index].email}
-                      helperText={errors?.policyholder?.[index].email?.message}
-                      defaultValue={field.email || ""}
-                    />
-                    <MuiInput
-                      control={control}
-                      name={`policyholder[${index}].country`}
-                      labelName={t("InsuranceDiagnostic.Page1.country")}
+                      name={`policyholder.${index}.country`}
+                      labelName={t("InsuranceHealth.ApplicantModal.country")}
+                      type="text"
                       error={!!errors.policyholder?.[index].country}
                       helperText={
                         errors?.policyholder?.[index].country?.message
                       }
-                      defaultValue={field.country || ""}
+                      placeholder="Poland"
+                      defaultValue={field.country}
                     />
                     <MuiInput
                       control={control}
-                      name={`policyholder[${index}].city`}
-                      labelName={t("InsuranceDiagnostic.Page1.city")}
+                      name={`policyholder.${index}.city`}
+                      labelName={t("InsuranceHealth.ApplicantModal.city")}
+                      type="text"
                       error={!!errors.policyholder?.[index].city}
                       helperText={errors?.policyholder?.[index].city?.message}
-                      defaultValue={field.city || ""}
+                      placeholder="Warsaw"
+                      defaultValue={field.city}
                     />
                     <MuiInput
                       control={control}
-                      name={`policyholder[${index}].postIndex`}
-                      labelName={t("InsuranceDiagnostic.Page1.postIndex")}
+                      name={`policyholder.${index}.postIndex`}
+                      labelName={t("InsuranceHealth.ApplicantModal.postIndex")}
                       error={!!errors.policyholder?.[index].postIndex}
                       helperText={
                         errors?.policyholder?.[index].postIndex?.message
                       }
-                      defaultValue={field.postIndex || ""}
+                      placeholder="123-45"
+                      defaultValue={field.postIndex}
                     />
                     <MuiInput
                       control={control}
-                      name={`policyholder[${index}].street`}
-                      labelName={t("InsuranceDiagnostic.Page1.street")}
+                      name={`policyholder.${index}.street`}
+                      labelName={t("InsuranceHealth.ApplicantModal.street")}
                       error={!!errors.policyholder?.[index].street}
                       helperText={errors?.policyholder?.[index].street?.message}
-                      defaultValue={field.street || ""}
+                      placeholder="Bialostocka"
+                      defaultValue={field.street}
                     />
                     <MuiInput
                       control={control}
-                      name={`policyholder[${index}].houseNumber`}
-                      labelName={t("InsuranceDiagnostic.Page1.houseNumber")}
+                      name={`policyholder.${index}.houseNumber`}
+                      labelName={t(
+                        "InsuranceHealth.ApplicantModal.houseNumber"
+                      )}
                       error={!!errors.policyholder?.[index].houseNumber}
                       helperText={
                         errors?.policyholder?.[index].houseNumber?.message
                       }
-                      defaultValue={field.houseNumber || ""}
+                      defaultValue={field.houseNumber}
                     />
                   </Form>
                 </MuiDialog>
               )
             );
           })}
+
         {formInitiated &&
           fields.map((field: any, index: number) => {
             //@ts-ignore
             let policyholder = watch(`policyholder.${index}.name`);
             return (
               <Applicant key={field.id} error={!!errors.policyholder?.[index]}>
+                {/* @ts-ignore */}
                 <AvatarStyled>{policyholder?.[0] || ""}</AvatarStyled>
                 <ApplicantName>{policyholder}</ApplicantName>
                 <IconButton
@@ -387,7 +368,7 @@ const Page2 = () => {
           fields.length < 14 && (
             <ApplicantBox
               onClick={() => {
-                append({ policyholderIs: "firm", name: "", surname: "" });
+                append({ policyholderIs: "polish", name: "", surname: "" });
                 setAddingMode(true);
                 setEditingMode(true);
                 setOpenDialog(true);
@@ -406,9 +387,9 @@ const Page2 = () => {
 
         <ButtonsWrap multiple>
           <CTA
-            form=""
             text={t("Basic.buttonBack")}
             color="secondary"
+            form=""
             onClick={() => {
               history.push("./1");
             }}
@@ -416,8 +397,8 @@ const Page2 = () => {
           <CTA
             large={true}
             text={t("Basic.buttonNext")}
-            form="insured-data-form"
             color="primary"
+            form=""
             onClick={finalizeForm}
           />
         </ButtonsWrap>
@@ -427,3 +408,5 @@ const Page2 = () => {
 };
 
 export default Page2;
+
+//

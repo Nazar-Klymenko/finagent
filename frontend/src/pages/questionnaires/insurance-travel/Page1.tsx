@@ -6,8 +6,6 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 
-import validateAppData from "@helpers/validateAppData";
-
 import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
@@ -19,28 +17,39 @@ import { ContentWrap } from "@components/content";
 import { DateInput, MuiCheckbox, MuiInput, MuiRadio } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageOneSchema } from "./applicationHelpers/insuranceTravelSchema";
+import { pageOneSchema } from "./applicationHelpers/insurance-travel.schema";
+
+type FormTypes = {
+  insuranceType: string;
+  insuranceStart: Date;
+  insuranceEnd: Date;
+  peopleAmount: string;
+  destination: string;
+  purpose: string;
+  inPoland: boolean;
+};
 
 const Page1 = () => {
   const { t } = useTranslation();
   useTitle("Travel insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = validateAppData(appData, "InsuranceData");
+  const appDataValid = appData?.InsuranceData?.InsuraceTravel;
   const history = useHistory();
 
   const {
     handleSubmit,
     control,
     watch,
-
     formState: { errors },
-  } = useForm({
+  } = useForm<FormTypes>({
     defaultValues: {
-      insuranceType: appDataValid.insuranceType || "individual",
-      peopleAmount: appDataValid.peopleAmount,
-      destination: appDataValid.destination,
-      purpose: appDataValid.purpose,
-      inPoland: appDataValid.inPoland,
+      insuranceType: appDataValid?.insuranceType || "individual",
+      insuranceStart: appDataValid?.insuranceStart,
+      insuranceEnd: appDataValid?.insuranceEnd,
+      peopleAmount: appDataValid?.peopleAmount,
+      destination: appDataValid?.destination,
+      purpose: appDataValid?.purpose,
+      inPoland: appDataValid?.inPoland,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -50,11 +59,11 @@ const Page1 = () => {
 
   const choosedType = watch("insuranceType") || appDataValid.insuranceType;
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "InsuranceData");
     setCurrentPage(2);
     history.push("./2");
-  };
+  });
 
   return (
     <ContentWrap fullWidth>
@@ -68,15 +77,15 @@ const Page1 = () => {
           label={t("InsuranceTravel.Page1.title")}
         />
         <Subtitle>{t("InsuranceTravel.Page1.title")}</Subtitle>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <DateInput
             control={control}
             name="insuranceStart"
             labelName={t("InsuranceTravel.Page1.insuranceStart")}
             error={!!errors.insuranceStart}
             helperText={errors?.insuranceStart?.message}
-            defaultValue={appDataValid.insuranceStart}
             disablePast
+            placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
             control={control}
@@ -84,8 +93,8 @@ const Page1 = () => {
             labelName={t("InsuranceTravel.Page1.insuranceEnd")}
             error={!!errors.insuranceEnd}
             helperText={errors?.insuranceEnd?.message}
-            defaultValue={appDataValid.insuranceEnd}
             disablePast
+            placeholder={t("Form.Placeholder.dateFull")}
           />
           <MuiCheckbox
             control={control}

@@ -25,7 +25,7 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
-import { pageTwoSchema } from "./applicationHelpers/loanCashSchema";
+import { pageTwoSchema } from "./applicationHelpers/loan-cash.schema";
 
 const Page2 = () => {
   const { t } = useTranslation();

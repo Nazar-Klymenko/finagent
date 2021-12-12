@@ -34,17 +34,18 @@ import {
   Title,
 } from "../LocalStyles";
 import { pageOneValues } from "./applicationHelpers/default-values";
+import { pageOneSchema } from "./applicationHelpers/insurance-transport.schema";
 import {
   maritalStatusOptions,
   professionOptions,
 } from "./applicationHelpers/options";
-import { pageOneSchema } from "./applicationHelpers/validation.schema";
 
 type FormTypes = {
   oc: boolean;
   ac: boolean;
   greenCard: boolean;
   assistance: boolean;
+  coverage: any;
   name: string;
   surname: string;
   phoneNumber: string;
@@ -92,6 +93,8 @@ const Page1 = () => {
     setCurrentPage(2);
     history.push("./2");
   });
+
+  console.log(errors);
   return (
     <ContentWrap fullWidth>
       <QuestState data={appData} />
@@ -130,8 +133,7 @@ const Page1 = () => {
 
           <InputErrorMessage>
             <span className="invis-star">*</span>
-            {errors?.atleastOneCheckbox &&
-              t(errors?.atleastOneCheckbox?.message)}
+            {errors?.coverage && <span>{t(errors?.coverage?.message)}</span>}
           </InputErrorMessage>
 
           <MuiInput

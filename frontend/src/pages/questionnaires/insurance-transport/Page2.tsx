@@ -20,7 +20,7 @@ import { DateInput, MuiCheckbox, MuiInput } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageTwoValues } from "./applicationHelpers/default-values";
-import { pageTwoSchema } from "./applicationHelpers/validation.schema";
+import { pageTwoSchema } from "./applicationHelpers/insurance-transport.schema";
 
 type FormTypes = {
   registeredPoland: boolean;

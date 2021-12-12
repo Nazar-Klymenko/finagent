@@ -14,7 +14,7 @@ import { MuiInput } from "@components/input";
 import Modal from "@components/modals/Modal";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { addHouseholdSchema } from "./applicationHelpers/loanMortgageSchema";
+import { addHouseholdSchema } from "./applicationHelpers/loan-mortgage.schema";
 
 const AddHousehold = ({
   openModal,

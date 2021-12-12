@@ -62,7 +62,7 @@ const FileInput: FC<Props> = ({
           </Dropzone>
           {showFiles && (
             <List>
-              {field.value.map(
+              {field!.value!.map(
                 (f: { name: string; size: string }, idx: number) => (
                   <ListItem key={idx}>
                     <ListItemIcon>

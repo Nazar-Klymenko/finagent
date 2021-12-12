@@ -48,7 +48,6 @@ const Summary = () => {
         <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
         <SummaryList
           header={t("Basic.summary")}
-          // @ts-ignore
           array={addDataLabeled}
           defaultOpen
         />

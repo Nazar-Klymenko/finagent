@@ -1,6 +1,6 @@
 {
-  "name": "@finagent/backend",
-  "version": "0.0.0",
+  "name": "backend",
+  "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {

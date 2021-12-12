@@ -27,12 +27,12 @@ import {
   Title,
 } from "../LocalStyles";
 import AddHousehold from "./AddHousehold";
-import { pageTwoSchema } from "./applicationHelpers/loan-mortgage.schema";
-import { loanPurposeOptions } from "./applicationHelpers/options";
-import { rialtoOptions } from "./applicationHelpers/options";
-import { paymentTermOptions } from "./applicationHelpers/options";
-import { repaymentOptions } from "./applicationHelpers/options";
-import { monthlyPaymentsOptions } from "./applicationHelpers/options";
+import { loanPurposeOptions } from "./applicationHelpers/loanMortgageOptions";
+import { rialtoOptions } from "./applicationHelpers/loanMortgageOptions";
+import { paymentTermOptions } from "./applicationHelpers/loanMortgageOptions";
+import { repaymentOptions } from "./applicationHelpers/loanMortgageOptions";
+import { monthlyPaymentsOptions } from "./applicationHelpers/loanMortgageOptions";
+import { pageTwoSchema } from "./applicationHelpers/loanMortgageSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();

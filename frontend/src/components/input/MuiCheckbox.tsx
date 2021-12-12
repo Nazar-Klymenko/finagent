@@ -13,7 +13,6 @@ interface Props {
   defaultValue?: boolean | undefined;
   spacer?: boolean;
   readOnly?: boolean;
-  defaultChecked?: boolean;
 }
 
 const MuiCheckbox: FC<Props> = ({
@@ -23,7 +22,6 @@ const MuiCheckbox: FC<Props> = ({
   readOnly,
   spacer,
   control,
-  ...other
 }) => {
   return (
     <>

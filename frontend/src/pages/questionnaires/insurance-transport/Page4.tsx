@@ -18,12 +18,12 @@ import { MuiSelect } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageFourValues } from "./applicationHelpers/default-values";
-import { pageFourSchema } from "./applicationHelpers/insurance-transport.schema";
 import { securityOptions } from "./applicationHelpers/options";
 import { parkingPlaceOptions } from "./applicationHelpers/options";
 import { usePurposeOptions } from "./applicationHelpers/options";
 import { useAbroadOptions } from "./applicationHelpers/options";
 import { predictMileageOptions } from "./applicationHelpers/options";
+import { pageFourSchema } from "./applicationHelpers/validation.schema";
 
 type FormTypes = {
   predictMileage: string;
@@ -78,6 +78,7 @@ const Page4 = () => {
             control={control}
             name="predictMileage"
             labelName={t("InsuranceTransport.Page4.predictMileage")}
+            // defaultValue={appDataValid.predictMileage}
             optionArray={predictMileageOptions}
             error={!!errors.predictMileage}
             helperText={errors?.predictMileage?.message}
@@ -86,6 +87,7 @@ const Page4 = () => {
             control={control}
             name="useAbroad"
             labelName={t("InsuranceTransport.Page4.useAbroad")}
+            // defaultValue={appDataValid.useAbroad}
             optionArray={useAbroadOptions}
             error={!!errors.useAbroad}
             helperText={errors?.useAbroad?.message}
@@ -94,6 +96,7 @@ const Page4 = () => {
             control={control}
             name="usePurpose"
             labelName={t("InsuranceTransport.Page4.usePurpose")}
+            // defaultValue={appDataValid.usePurpose}
             optionArray={usePurposeOptions}
             error={!!errors.usePurpose}
             helperText={errors?.usePurpose?.message}
@@ -102,6 +105,7 @@ const Page4 = () => {
             control={control}
             name="parkingPlace"
             labelName={t("InsuranceTransport.Page4.parkingPlace")}
+            // defaultValue={appDataValid.parkingPlace}
             optionArray={parkingPlaceOptions}
             error={!!errors.parkingPlace}
             helperText={errors?.parkingPlace?.message}
@@ -110,6 +114,7 @@ const Page4 = () => {
             control={control}
             name="security"
             labelName={t("InsuranceTransport.Page4.security")}
+            // defaultValue={appDataValid.security}
             optionArray={securityOptions}
             error={!!errors.security}
             helperText={errors?.security?.message}

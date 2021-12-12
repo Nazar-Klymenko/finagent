@@ -19,34 +19,8 @@ import { ContentWrap } from "@components/content";
 import { DateInput, MuiInput, MuiRadio, MuiSelect } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageOneSchema } from "./applicationHelpers/insurance-estate.schema";
-import { nameSecurityOptions } from "./applicationHelpers/options";
-
-type FormTypes = {
-  country: string;
-  city: string;
-  postIndex: string;
-  street: string;
-  houseNumber: string;
-  estateType: string;
-  floor: string;
-  structure: string;
-  areaM2: string;
-  constructionYear: string;
-  underConstruction: boolean;
-  ownershipForm: string;
-  creditOwnership: string;
-  bankName: string;
-  regon: string;
-  nip: string;
-  security: string;
-  damagesNumber: string;
-  insurancePeriod: string;
-  insuranceStart: Date;
-  subjectAndSum: string;
-  flatAndFixed: string;
-  householdGoods: string;
-};
+import { nameSecurityOptions } from "./applicationHelpers/insuranceEstateOptions";
+import { pageOneSchema } from "./applicationHelpers/insuranceEstateSchema";
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -54,38 +28,43 @@ const Page1 = () => {
   useTitle("Real estate insurance | FinAgent");
   const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = appData.insuranceEstate?.insuranceData;
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceEstate",
+    "insuranceData"
+  );
 
   const {
     handleSubmit,
     control,
     watch,
+
     formState: { errors },
-  } = useForm<FormTypes>({
+  } = useForm({
     defaultValues: {
-      country: appDataValid?.country,
-      city: appDataValid?.city,
-      postIndex: appDataValid?.postIndex,
-      street: appDataValid?.street,
-      houseNumber: appDataValid?.houseNumber,
-      estateType: appDataValid?.estateType || "house",
-      floor: appDataValid?.floor || "last",
-      structure: appDataValid?.structure || "brick",
-      areaM2: appDataValid?.areaM2,
-      constructionYear: appDataValid?.constructionYear,
-      underConstruction: appDataValid?.underConstruction || "no",
-      ownershipForm: appDataValid?.ownershipForm || "coOwnership",
-      creditOwnership: appDataValid?.creditOwnership || "no",
-      bankName: appDataValid?.bankName,
-      regon: appDataValid?.regon,
-      nip: appDataValid?.nip,
-      security: appDataValid?.security,
-      damagesNumber: appDataValid?.damagesNumber || "0",
-      insurancePeriod: appDataValid?.insurancePeriod || "annual",
-      insuranceStart: appDataValid?.insuranceStart,
-      subjectAndSum: appDataValid?.subjectAndSum,
-      flatAndFixed: appDataValid?.flatAndFixed,
-      householdGoods: appDataValid?.householdGoods,
+      country: appDataValid.country,
+      city: appDataValid.city,
+      postIndex: appDataValid.postIndex,
+      street: appDataValid.street,
+      houseNumber: appDataValid.houseNumber,
+      estateType: appDataValid.estateType || "house",
+      floor: appDataValid.floor || "last",
+      structure: appDataValid.structure || "brick",
+      areaM2: appDataValid.areaM2,
+      constructionYear: appDataValid.constructionYear,
+      underConstruction: appDataValid.underConstruction || "no",
+      ownershipForm: appDataValid.ownershipForm || "coOwnership",
+      creditOwnership: appDataValid.creditOwnership || "no",
+      bankName: appDataValid.bankName,
+      regon: appDataValid.regon,
+      nip: appDataValid.nip,
+      security: appDataValid.security,
+      damagesNumber: appDataValid.damagesNumber || "0",
+      insurancePeriod: appDataValid.insurancePeriod || "annual",
+      insuranceStart: appDataValid.insuranceStart,
+      subjectAndSum: appDataValid.subjectAndSum,
+      flatAndFixed: appDataValid.flatAndFixed,
+      householdGoods: appDataValid.householdGoods,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -93,17 +72,15 @@ const Page1 = () => {
     resolver: yupResolver(pageOneSchema),
   });
 
-  const estateType = watch("estateType", appDataValid?.estateType);
-  const assignedToBank = watch(
-    "creditOwnership",
-    appDataValid?.creditOwnership
-  );
+  const estateType = watch("estateType") || appDataValid.estateType;
+  const assignedToBank =
+    watch("creditOwnership") || appDataValid.creditOwnership;
 
-  const formSubmit = handleSubmit((data) => {
+  const formSubmit = (data) => {
     setValues(data, "insuranceEstate", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
-  });
+  };
 
   return (
     <ContentWrap fullWidth>
@@ -117,7 +94,7 @@ const Page1 = () => {
           label={t("InsuranceEstate.Page1.title")}
         />
         <Subtitle>{t("InsuranceEstate.Page1.title")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiInput
             control={control}
             name="country"
@@ -350,7 +327,6 @@ const Page1 = () => {
             helperText={errors?.insuranceStart?.message}
             defaultValue={appDataValid.insuranceStartDate}
             disablePast
-            placeholder={t("Form.Placeholder.dateFull")}
           />
           <Subtitle>{t("InsuranceEstate.Page1.subjectAndSum")}</Subtitle>
           <MuiInput

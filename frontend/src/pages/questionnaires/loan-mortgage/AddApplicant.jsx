@@ -19,7 +19,7 @@ import {
 import { Modal } from "@components/modals";
 
 import { ButtonsWrap } from "../LocalStyles";
-import { addApplicantSchema } from "./applicationHelpers/loan-mortgage.schema";
+import { addApplicantSchema } from "./applicationHelpers/loanMortgageSchema";
 
 const AddApplicant = ({
   openModal,

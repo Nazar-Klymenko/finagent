@@ -19,20 +19,9 @@ import ContentWrap from "@components/content/ContentWrap";
 import { MuiInput, MuiSelect } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageTwoSchema } from "./applicationHelpers/insurance-border.schema";
-import { vehicleTypeOptions } from "./applicationHelpers/options";
-import { seatNumberOptions } from "./applicationHelpers/options";
-
-type FormTypes = {
-  vehicleType: string;
-  brand: string;
-  model: string;
-  regNumber: string;
-  vinNumber: string;
-  engineNumber: string;
-  engineVolume: string;
-  seatNumber: string;
-};
+import { vehicleTypeOptions } from "./applicationHelpers/insuranceBorderOptions";
+import { seatNumberOptions } from "./applicationHelpers/insuranceBorderOptions";
+import { pageTwoSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -40,22 +29,27 @@ const Page2 = () => {
   const history = useHistory();
   useTitle("Border insurance | FinAgent");
 
-  const appDataValid = appData.insuranceBorder?.vehicleData;
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceBorder",
+    "vehicleData"
+  );
 
   const {
     handleSubmit,
     control,
+
     formState: { errors },
-  } = useForm<FormTypes>({
+  } = useForm({
     defaultValues: {
-      vehicleType: appDataValid?.vehicleType,
-      brand: appDataValid?.brand,
-      model: appDataValid?.model,
-      regNumber: appDataValid?.regNumber,
-      vinNumber: appDataValid?.vinNumber,
-      engineNumber: appDataValid?.engineNumber,
-      engineVolume: appDataValid?.engineVolume,
-      seatNumber: appDataValid?.seatNumber,
+      vehicleType: appDataValid.vehicleType,
+      brand: appDataValid.brand,
+      model: appDataValid.model,
+      regNumber: appDataValid.regNumber,
+      vinNumber: appDataValid.vinNumber,
+      engineNumber: appDataValid.engineNumber,
+      engineVolume: appDataValid.engineVolume,
+      seatNumber: appDataValid.seatNumber,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -63,11 +57,11 @@ const Page2 = () => {
     resolver: yupResolver(pageTwoSchema),
   });
 
-  const formSubmit = handleSubmit((data) => {
+  const formSubmit = (data) => {
     setValues(data, "insuranceBorder", "vehicleData");
     setCurrentPage(3);
     history.push("./3");
-  });
+  };
 
   return (
     <ContentWrap fullWidth>
@@ -81,10 +75,11 @@ const Page2 = () => {
           label={t("InsuranceBorder.Page2.subtitle")}
         />
         <Subtitle>{t("InsuranceBorder.Page2.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiSelect
             control={control}
             name="vehicleType"
+            defaultValue={appDataValid.vehicleType}
             labelName={t("InsuranceBorder.Page2.vehicleType")}
             optionArray={vehicleTypeOptions}
             error={!!errors.vehicleType}
@@ -136,6 +131,7 @@ const Page2 = () => {
             control={control}
             name="seatNumber"
             labelName={t("InsuranceBorder.Page2.seatNumber")}
+            defaultValue={appDataValid.seatNumber}
             optionArray={seatNumberOptions}
             error={!!errors.seatNumber}
             helperText={errors?.seatNumber?.message}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -9,6 +10,7 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 import useTitle from "@hooks/useTitle";
 
@@ -27,11 +29,8 @@ import {
 } from "@components/input";
 
 import {
-  Applicant,
   ApplicantAdd,
   ApplicantBox,
-  ApplicantName,
-  AvatarStyled,
   ButtonsWrap,
   Page,
   Subtitle,
@@ -66,6 +65,7 @@ const Page2 = () => {
   useTitle("Specialists access | FinAgent");
 
   const [openDialog, setOpenDialog] = useState(true);
+
   const [formInitiated, setFormInitiated] = useState(false);
   const [editingMode, setEditingMode] = useState(false);
   const [addingMode, setAddingMode] = useState(false);
@@ -115,11 +115,6 @@ const Page2 = () => {
     remove(index);
     appDataValid.splice(index, 1);
   }
-  function editData(index: number) {
-    setEditingMode(true);
-    setEditingIndex(index);
-    setOpenDialog(true);
-  }
 
   const formSubmit = handleSubmit((data) => {
     setFormInitiated(true);
@@ -154,7 +149,7 @@ const Page2 = () => {
       setAllowSummary(true);
       history.push("./summary");
     } else {
-      alert(t("InsuranceHealth.Error.noApplicant"));
+      alert("ERROR");
     }
   };
 
@@ -356,7 +351,9 @@ const Page2 = () => {
                 <ApplicantName>{policyholder}</ApplicantName>
                 <IconButton
                   onClick={() => {
-                    editData(index);
+                    setEditingMode(true);
+                    setEditingIndex(index);
+                    setOpenDialog(true);
                   }}
                 >
                   <EditIcon />
@@ -371,7 +368,7 @@ const Page2 = () => {
               </Applicant>
             );
           })}
-        {!formInitiated ? (
+        {!formInitiated && (
           <ApplicantBox
             onClick={() => {
               setEditingMode(true);
@@ -383,27 +380,23 @@ const Page2 = () => {
               <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
             </ApplicantAdd>
           </ApplicantBox>
-        ) : (
-          fields.length < 14 && (
-            <ApplicantBox
-              onClick={() => {
-                append({ policyholderIs: "firm", name: "", surname: "" });
-                setAddingMode(true);
-                setEditingMode(true);
-                setOpenDialog(true);
-                setEditingIndex(fields.length);
-              }}
-            >
-              <ApplicantAdd>
-                <PersonAddIcon />
-                <span>
-                  {t("InsuranceDiagnostic.ApplicantBox.addApplicant")}
-                </span>
-              </ApplicantAdd>
-            </ApplicantBox>
-          )
         )}
-
+        {formInitiated && fields.length < 14 && (
+          <ApplicantBox
+            onClick={() => {
+              append({ policyholderIs: "firm", name: "", surname: "" });
+              setAddingMode(true);
+              setEditingMode(true);
+              setOpenDialog(true);
+              setEditingIndex(fields.length);
+            }}
+          >
+            <ApplicantAdd>
+              <PersonAddIcon />
+              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
+            </ApplicantAdd>
+          </ApplicantBox>
+        )}
         <ButtonsWrap multiple>
           <CTA
             form=""
@@ -427,3 +420,23 @@ const Page2 = () => {
 };
 
 export default Page2;
+
+const AvatarStyled = styled(Avatar)`
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: ${({ theme }) => theme.blue};
+`;
+
+const Applicant = styled.div<{ error: boolean }>`
+  display: flex;
+  border: 1px solid ${({ theme, error }) => (error ? theme.red : theme.gray)};
+  padding: 8px 14px;
+  border-radius: 4px;
+  margin: 6px 0px;
+  align-items: center;
+`;
+
+const ApplicantName = styled.span`
+  flex: 1;
+  margin-left: 8px;
+`;

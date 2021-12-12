@@ -1,4 +1,3 @@
-import Avatar from "@material-ui/core/Avatar";
 import styled from "styled-components/macro";
 
 export const Page = styled.div`
@@ -76,24 +75,4 @@ export const InputErrorMessage = styled.div`
     opacity: 0;
     pointer-events: none;
   }
-`;
-
-export const AvatarStyled = styled(Avatar)`
-  height: 2.5rem;
-  width: 2.5rem;
-  background-color: ${({ theme }) => theme.blue};
-`;
-
-export const Applicant = styled.div<{ error: boolean }>`
-  display: flex;
-  border: 1px solid ${({ theme, error }) => (error ? theme.red : theme.gray)};
-  padding: 8px 14px;
-  border-radius: 4px;
-  margin: 6px 0px;
-  align-items: center;
-`;
-
-export const ApplicantName = styled.span`
-  flex: 1;
-  margin-left: 8px;
 `;

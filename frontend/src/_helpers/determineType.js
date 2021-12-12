@@ -1,11 +1,11 @@
-import addLabelsBorder from "@pages/questionnaires/insurance-border/applicationHelpers/labels";
-import addLabelsEstate from "@pages/questionnaires/insurance-estate/applicationHelpers/labels";
-import addLabelsMedical from "@pages/questionnaires/insurance-health/applicationHelpers/labels";
-import addLabelsSpecialist from "@pages/questionnaires/insurance-specialist/applicationHelpers/labels";
-import addLabelsOC from "@pages/questionnaires/insurance-transport/applicationHelpers/labels";
-import addLabelsTravel from "@pages/questionnaires/insurance-travel/applicationHelpers/labels";
-import addLabelsCash from "@pages/questionnaires/loan-cash/applicationHelpers/labels";
-import addLabelsMortgage from "@pages/questionnaires/loan-mortgage/applicationHelpers/labels";
+import addLabelsBorder from "@pages/questionnaires/insurance-border/applicationHelpers/addLabels";
+import addLabelsEstate from "@pages/questionnaires/insurance-estate/applicationHelpers/addLabels";
+import addLabelsMedical from "@pages/questionnaires/insurance-health/applicationHelpers/addLabels";
+import addLabelsSpecialist from "@pages/questionnaires/insurance-specialist/applicationHelpers/addLabels";
+import addLabelsOC from "@pages/questionnaires/insurance-transport/applicationHelpers/addLabels";
+import addLabelsTravel from "@pages/questionnaires/insurance-travel/applicationHelpers/addLabels";
+import addLabelsCash from "@pages/questionnaires/loan-cash/applicationHelpers/addLabels";
+import addLabelsMortgage from "@pages/questionnaires/loan-mortgage/applicationHelpers/addLabels";
 
 export default function determineType(type, object) {
   let appDataCopy = JSON.parse(JSON.stringify(object));

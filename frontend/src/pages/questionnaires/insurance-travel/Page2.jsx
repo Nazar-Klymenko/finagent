@@ -24,24 +24,7 @@ import {
 } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageTwoSchema } from "./applicationHelpers/insurance-travel.schema";
-
-type FormTypes = {
-  policyholderIs: string;
-  name: string;
-  surname: string;
-  birthDate: string;
-  pesel: string;
-  nip: string;
-  regon: string;
-  phone: string;
-  email: string;
-  country: string;
-  city: string;
-  postIndex: string;
-  street: string;
-  houseNumber: string;
-};
+import { pageTwoSchema } from "./applicationHelpers/insuranceTravelSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -54,8 +37,9 @@ const Page2 = () => {
     handleSubmit,
     control,
     watch,
+
     formState: { errors },
-  } = useForm<FormTypes>({
+  } = useForm({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "natural",
       name: appDataValid.name,
@@ -80,11 +64,11 @@ const Page2 = () => {
 
   const policyholderIs = watch("policyholderIs") || appDataValid.policyholderIs;
 
-  const formSubmit = handleSubmit((data) => {
+  const formSubmit = (data) => {
     setValues(data, "PersonalData");
     setAllowSummary(true);
     history.push("./summary");
-  });
+  };
 
   return (
     <ContentWrap fullWidth>
@@ -97,7 +81,7 @@ const Page2 = () => {
           label={t("InsuranceTravel.Page2.title")}
         />
         <Subtitle>{t("InsuranceTravel.Page2.title")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiRadio
             control={control}
             name="policyholderIs"
@@ -168,13 +152,13 @@ const Page2 = () => {
               labelName={t("InsuranceTravel.Page2.birthDate")}
               error={!!errors.birthDate}
               helperText={errors?.birthDate?.message}
-              placeholder={t("Form.Placeholder.dateFull")}
             />
           )}
           <MuiPhoneInput
             control={control}
             name="phone"
             labelName={t("InsuranceTravel.Page2.phone")}
+            type="tel"
             error={!!errors.phone}
             helperText={errors?.phone?.message}
           />

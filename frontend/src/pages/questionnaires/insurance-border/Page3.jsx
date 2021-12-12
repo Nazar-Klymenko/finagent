@@ -17,19 +17,7 @@ import { ContentWrap } from "@components/content";
 import { MuiInput, MuiPhoneInput } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageThreeSchema } from "./applicationHelpers/insurance-border.schema";
-
-type FormTypes = {
-  name: string;
-  surname: string;
-  phoneNumber: string;
-  email: string;
-  country: string;
-  city: string;
-  postIndex: string;
-  street: string;
-  houseNumber: string;
-};
+import { pageThreeSchema } from "./applicationHelpers/insuranceBorderSchema";
 
 const Page3 = () => {
   const { t } = useTranslation();
@@ -38,23 +26,28 @@ const Page3 = () => {
 
   const { appData, setValues, setAllowSummary } = useData();
 
-  const appDataValid = appData.insuranceBorder?.personalData;
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceBorder",
+    "personalData"
+  );
 
   const {
     handleSubmit,
     control,
+
     formState: { errors },
-  } = useForm<FormTypes>({
+  } = useForm({
     defaultValues: {
-      name: appDataValid?.name,
-      surname: appDataValid?.surname,
-      phoneNumber: appDataValid?.phoneNumber,
-      email: appDataValid?.email,
-      country: appDataValid?.country,
-      city: appDataValid?.city,
-      postIndex: appDataValid?.postIndex,
-      street: appDataValid?.street,
-      houseNumber: appDataValid?.houseNumber,
+      name: appDataValid.name,
+      surname: appDataValid.surname,
+      phoneNumber: appDataValid.phoneNumber,
+      email: appDataValid.email,
+      country: appDataValid.country,
+      city: appDataValid.city,
+      postIndex: appDataValid.postIndex,
+      street: appDataValid.street,
+      houseNumber: appDataValid.houseNumber,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -62,11 +55,11 @@ const Page3 = () => {
     resolver: yupResolver(pageThreeSchema),
   });
 
-  const formSubmit = handleSubmit((data) => {
+  const formSubmit = (data) => {
     setValues(data, "insuranceBorder", "personalData");
     setAllowSummary(true);
     history.push("./summary");
-  });
+  };
 
   return (
     <ContentWrap fullWidth>
@@ -80,7 +73,7 @@ const Page3 = () => {
           label={t("InsuranceBorder.Page3.subtitle")}
         />
         <Subtitle>{t("InsuranceBorder.Page3.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiInput
             control={control}
             name="name"

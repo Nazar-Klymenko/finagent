@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
+import validateAppData from "@helpers/validateAppData";
+
 import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
@@ -17,20 +19,7 @@ import { ContentWrap } from "@components/content";
 import { MuiInput, MuiRadio } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageTwoSchema } from "./applicationHelpers/insurance-estate.schema";
-
-type FormTypes = {
-  policyholderIs: string;
-  name: string;
-  surname: string;
-  pesel: string;
-  firmName: string;
-  nip: string;
-  regon: string;
-  phone: string;
-  email: string;
-  peopleNumber: string;
-};
+import { pageTwoSchema } from "./applicationHelpers/insuranceEstateSchema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -38,14 +27,19 @@ const Page2 = () => {
   useTitle("Real estate insurance | FinAgent");
   const { appData, setValues, setAllowSummary } = useData();
 
-  const appDataValid = appData.insuranceEstate?.personalData;
+  const appDataValid = validateAppData(
+    appData,
+    "insuranceEstate",
+    "personalData"
+  );
 
   const {
     handleSubmit,
     watch,
     control,
+
     formState: { errors },
-  } = useForm<FormTypes>({
+  } = useForm({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "individual",
       name: appDataValid.name,
@@ -61,13 +55,13 @@ const Page2 = () => {
     resolver: yupResolver(pageTwoSchema),
   });
 
-  const policyholderIs = watch("policyholderIs", "individual");
+  const policyholderIs = watch("policyholderIs") || "individual";
 
-  const formSubmit = handleSubmit((data) => {
+  const formSubmit = (data) => {
     setValues(data, "insuranceEstate", "personalData");
     setAllowSummary(true);
     history.push("./summary");
-  });
+  };
 
   return (
     <ContentWrap fullWidth>
@@ -81,7 +75,7 @@ const Page2 = () => {
           label={t("InsuranceEstate.Page2.title")}
         />
         <Subtitle>{t("InsuranceEstate.Page2.title")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiRadio
             control={control}
             name="policyholderIs"

@@ -35,7 +35,7 @@ export const pageOneSchema = yup
     profession: yup.string().required("Form.Error.blank"),
     maritalStatus: yup.string().required("Form.Error.blank"),
   })
-  .test("atleastOneCheckbox", null, checkCheckboxes);
+  .test("atleastOneCheckbox", "Form.Error.minimumOne", checkCheckboxes);
 
 export const pageTwoSchema = yup.object().shape({
   registeredPoland: yup.boolean(),
@@ -165,7 +165,7 @@ function checkCheckboxes(obj) {
     return true;
   }
 
-  return new yup.ValidationError("Form.Error.minimumOne", null, "coverage");
+  return false;
 }
 
 function checkIfFilesAreTooBig(files) {

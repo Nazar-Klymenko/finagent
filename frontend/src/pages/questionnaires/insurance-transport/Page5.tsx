@@ -21,7 +21,7 @@ import { Subheader } from "@components/typography";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageFiveValues } from "./applicationHelpers/default-values";
-import { pageFiveSchema } from "./applicationHelpers/insurance-transport.schema";
+import { pageFiveSchema } from "./applicationHelpers/validation.schema";
 
 type FormTypes = {
   filesTechPassport: [];
@@ -173,7 +173,7 @@ export default Page5;
 //     .mixed()
 //     .nullable()
 //     .required("please add images")
-//     is-big-file", "VALIDATION_FIELD_FILE_BIG", checkIfFilesAreTooBig)
+//     .test("is-big-file", "VALIDATION_FIELD_FILE_BIG", checkIfFilesAreTooBig)
 //     .test(
 //       "is-correct-file",
 //       "VALIDATION_FIELD_FILE_WRONG_TYPE",

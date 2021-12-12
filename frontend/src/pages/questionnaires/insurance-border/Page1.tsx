@@ -19,16 +19,16 @@ import { ContentWrap } from "@components/content";
 import { MuiInput, MuiRadio, MuiSelect } from "@components/input";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
-import { pageOneSchema } from "./applicationHelpers/insurance-border.schema";
-import { insurancePeriodOptions } from "./applicationHelpers/options";
+import { insurancePeriodOptions } from "./applicationHelpers/insuranceBorderOptions";
+import { pageOneSchema } from "./applicationHelpers/insuranceBorderSchema";
 
-type FormTypes = {
-  documentType: string;
-  pesel: string;
-  passportNumber: string;
-  registeredNotInEU: boolean;
-  insurancePeriod: Date;
-};
+type FormTypes={
+  documentType:string;
+  pesel:string;
+  passportNumber:string;
+  registeredNotInEU:boolean;
+  insurancePeriod:Date;
+}
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -65,7 +65,7 @@ const Page1 = () => {
     setValues(data, "insuranceBorder", "insuranceData");
     setCurrentPage(2);
     history.push("./2");
-  });
+  })
 
   return (
     <ContentWrap fullWidth>

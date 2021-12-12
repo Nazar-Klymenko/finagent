@@ -7,15 +7,12 @@ import {
 } from "@material-ui/pickers";
 import "date-fns";
 import { enGB, pl, ru, uk } from "date-fns/esm/locale";
-import { Control, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
-  control: Control<any>;
-  helperText: string | undefined;
-  error: boolean;
   labelName: string;
   name: string;
   defaultValue?: any;
@@ -30,9 +27,6 @@ interface Props {
 }
 
 const DateInput: FC<Props> = ({
-  control,
-  helperText = "",
-  error,
   labelName,
   name,
   defaultValue,
@@ -42,6 +36,10 @@ const DateInput: FC<Props> = ({
   ...other
 }) => {
   const { i18n, t } = useTranslation();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   const [language, setLanguage] = useState(pl);
 
@@ -77,7 +75,7 @@ const DateInput: FC<Props> = ({
             okLabel="OK"
             clearLabel="Clear"
             cancelLabel="Cancel"
-            error={error}
+            error={!!errors.name}
             inputVariant="outlined"
             helperText={null}
             style={{
@@ -93,7 +91,7 @@ const DateInput: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(helperText)}
+        {t(errors?.name?.message)}
       </InputErrorMessage>
     </MuiPickersUtilsProvider>
   );

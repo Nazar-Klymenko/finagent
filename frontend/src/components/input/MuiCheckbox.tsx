@@ -2,20 +2,18 @@ import React, { FC } from "react";
 
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { Control, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
-  control: Control<any>;
   name: string;
   labelName: string;
   defaultValue?: boolean | undefined;
   spacer?: boolean;
   readOnly?: boolean;
   defaultChecked?: boolean;
-  helperText?: string | undefined;
 }
 
 const MuiCheckbox: FC<Props> = ({
@@ -24,11 +22,13 @@ const MuiCheckbox: FC<Props> = ({
   defaultValue,
   readOnly,
   spacer,
-  control,
-  helperText = "",
   ...other
 }) => {
   const { t } = useTranslation();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <>
@@ -55,7 +55,7 @@ const MuiCheckbox: FC<Props> = ({
       {spacer && (
         <InputErrorMessage>
           <span className="invis-star">*</span>
-          {t(helperText)}
+          {t(errors?.name?.message)}
         </InputErrorMessage>
       )}
     </>

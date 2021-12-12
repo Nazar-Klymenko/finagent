@@ -1,15 +1,12 @@
 import React, { FC } from "react";
 
 import OutlinedInput from "@material-ui/core/OutlinedInput";
-import { Control, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { InputErrorMessage, Label, Optional } from "./LocalStyles";
 
 interface Props {
-  control: Control<any>;
-  helperText: string | undefined;
-  error: boolean | undefined;
   labelName: string;
   name: string;
   placeholder?: string;
@@ -23,16 +20,17 @@ interface Props {
 const MuiInput: FC<Props> = ({
   name,
   labelName,
-  error,
-  helperText = "",
   autoComplete,
-  control,
   optional,
   defaultValue,
   ...other
 }) => {
   const { t } = useTranslation();
 
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
   return (
     <>
       <Label htmlFor={name}>
@@ -53,7 +51,7 @@ const MuiInput: FC<Props> = ({
             }}
             id={name}
             autoComplete={autoComplete}
-            error={error}
+            error={!!errors.name}
             {...other}
           />
         )}
@@ -61,7 +59,7 @@ const MuiInput: FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(helperText)}
+        {t(errors?.name?.message)}
       </InputErrorMessage>
     </>
   );

@@ -1,22 +1,14 @@
 import React from "react";
 
 import { OutlinedInput } from "@material-ui/core";
-import { Control, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import {
-  InputContainer,
-  InputErrorMessage,
-  Label,
-  Optional,
-} from "./LocalStyles";
+import { InputErrorMessage, Label, Optional } from "./LocalStyles";
 
 interface Props {
-  control: Control<any>;
   name: string;
   labelName: string;
-  error: boolean;
-  helperText: string | undefined;
   placeholder?: string;
   optional?: boolean;
   rows?: number;
@@ -26,17 +18,18 @@ interface Props {
 const Textarea: React.FC<Props> = ({
   name,
   labelName,
-  error,
-  helperText = "",
-  control,
   rows,
   placeholder,
   optional,
   defaultValue,
 }) => {
   const { t } = useTranslation();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
   return (
-    <InputContainer error={error}>
+    <>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
@@ -55,7 +48,7 @@ const Textarea: React.FC<Props> = ({
             rowsMax={8}
             fullWidth
             placeholder={placeholder}
-            error={error}
+            error={!!errors.name}
             id={name}
           />
         )}
@@ -63,9 +56,9 @@ const Textarea: React.FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(helperText)}
+        {t(errors?.name?.message)}
       </InputErrorMessage>
-    </InputContainer>
+    </>
   );
 };
 

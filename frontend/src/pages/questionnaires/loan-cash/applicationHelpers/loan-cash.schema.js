@@ -46,7 +46,7 @@ export const addApplicantSchema = () => {
   });
 };
 
-export const addAdditionalIncomeSchema = () => {
+export const AdditionalIncomeSchema = () => {
   return yup.object().shape({
     industry: yup.string().when("truckDriver", {
       is: "no",
@@ -62,13 +62,12 @@ export const addAdditionalIncomeSchema = () => {
         value === "specificTime" || value === "mandate" || value === "contract",
       then: yup.date().nullable().required("Form.Error.missingDate"),
     }),
-
     averageIncome: yup.string().required("Form.Error.blank"),
     pit: yup.string().required("Form.Error.blank"),
   });
 };
 
-export const pageTwoSchema = () => {
+export const pageThreeSchema = () => {
   return yup.object().shape({
     remainingPayOff: yup.string().required("Form.Error.blank"),
     lastApplications: yup.string().required("Form.Error.blank"),

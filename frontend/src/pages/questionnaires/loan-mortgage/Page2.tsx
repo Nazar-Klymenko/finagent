@@ -85,7 +85,7 @@ const Page2 = () => {
     resolver: yupResolver(pageTwoSchema()),
   });
 
-  const formSubmit = (data) => {
+  const formSubmit = (data: any) => {
     setValues(data, "LoanData");
     if (householdData.length === 0) {
       setIsError(t("LoanMortgage.Error.noHousehold"));
@@ -100,13 +100,6 @@ const Page2 = () => {
     setAddHouseholdData(householdData);
     setIsError("");
   }, [householdData]);
-
-  const removeHousehold = (e) => {
-    let newHousehold = [...householdData];
-    const idx = e.target.getAttribute("value");
-    newHousehold.splice(idx, 1);
-    setHouseholdData(newHousehold);
-  };
 
   return (
     <ContentWrap fullWidth>
@@ -123,7 +116,7 @@ const Page2 = () => {
           <Subtitle>{t("LoanMortgage.HouseholdBox.title")}</Subtitle>
 
           <ApplicantBox>
-            {householdData &&
+            {/* {householdData &&
               householdData.map((household, idx) => (
                 <div key={idx} className="person">
                   <div className="minor-data-place">
@@ -149,7 +142,7 @@ const Page2 = () => {
                     </span>
                   </div>
                 </div>
-              ))}
+              ))} */}
 
             <span
               className="add"

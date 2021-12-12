@@ -25,7 +25,7 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
-import { pageTwoSchema } from "./applicationHelpers/loan-cash.schema";
+import { pageThreeSchema } from "./applicationHelpers/loan-cash.schema";
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -55,14 +55,14 @@ const Page2 = () => {
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
-    resolver: yupResolver(pageTwoSchema()),
+    resolver: yupResolver(pageThreeSchema()),
   });
 
-  const formSubmit = (data) => {
+  const formSubmit = handleSubmit((data) => {
     setValues(data, "LoanData");
     setAllowSummary(true);
     history.push("./summary");
-  };
+  });
 
   return (
     <ContentWrap fullWidth>
@@ -76,13 +76,11 @@ const Page2 = () => {
           label={t("LoanCash.Page2.subtitle")}
         />
         <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Form id="form" onSubmit={formSubmit}>
           <Textarea
             control={control}
             name="remainingPayOff"
             labelName={t("LoanCash.Page2.remainingPayOff")}
-            rows={4}
-            type="text"
             error={!!errors.remainingPayOff}
             helperText={errors?.remainingPayOff?.message}
             placeholder="number"
@@ -91,8 +89,6 @@ const Page2 = () => {
             control={control}
             name="lastApplications"
             labelName={t("LoanCash.Page2.lastApplications")}
-            rows={4}
-            type="text"
             error={!!errors.lastApplications}
             helperText={errors?.lastApplications?.message}
             placeholder="Yes, open answer / No"
@@ -110,8 +106,6 @@ const Page2 = () => {
             control={control}
             name="loanPurpose"
             labelName={t("LoanCash.Page2.loanPurpose")}
-            rows={4}
-            type="text"
             error={!!errors.loanPurpose}
             helperText={errors?.loanPurpose?.message}
             placeholder="Purpose"

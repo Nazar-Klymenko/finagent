@@ -6,8 +6,6 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 
-import validateAppData from "@helpers/validateAppData";
-
 import useTitle from "@hooks/useTitle";
 
 import { useData } from "@context/dataContext";
@@ -56,12 +54,7 @@ const Page1 = () => {
 
   const appDataValid = appData.insuranceEstate?.insuranceData;
 
-  const {
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       country: appDataValid?.country,
       city: appDataValid?.city,
@@ -92,6 +85,7 @@ const Page1 = () => {
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),
   });
+  const { handleSubmit, watch } = methods;
 
   const estateType = watch("estateType", appDataValid?.estateType);
   const assignedToBank = watch(
@@ -117,45 +111,26 @@ const Page1 = () => {
           label={t("InsuranceEstate.Page1.title")}
         />
         <Subtitle>{t("InsuranceEstate.Page1.title")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <MuiInput
-            control={control}
             name="country"
             labelName={t("InsuranceEstate.Page1.country")}
-            error={!!errors.country}
-            helperText={errors?.country?.message}
           />
+          <MuiInput name="city" labelName={t("InsuranceEstate.Page1.city")} />
           <MuiInput
-            control={control}
-            name="city"
-            labelName={t("InsuranceEstate.Page1.city")}
-            error={!!errors.city}
-            helperText={errors?.city?.message}
-          />
-          <MuiInput
-            control={control}
             name="postIndex"
             labelName={t("InsuranceEstate.Page1.postIndex")}
-            error={!!errors.postIndex}
-            helperText={errors?.postIndex?.message}
           />
           <MuiInput
-            control={control}
             name="street"
             labelName={t("InsuranceEstate.Page1.street")}
-            error={!!errors.street}
-            helperText={errors?.street?.message}
           />
           <MuiInput
-            control={control}
             name="houseNumber"
             labelName={t("InsuranceEstate.Page1.houseNumber")}
-            error={!!errors.houseNumber}
-            helperText={errors?.houseNumber?.message}
           />
 
           <MuiRadio
-            control={control}
             name="estateType"
             legend={t("InsuranceEstate.Page1.estateType")}
             options={[
@@ -171,7 +146,6 @@ const Page1 = () => {
           />
           {estateType === "apartment" && (
             <MuiRadio
-              control={control}
               name="floor"
               legend={t("InsuranceEstate.Page1.floor")}
               options={[
@@ -192,7 +166,6 @@ const Page1 = () => {
           )}
 
           <MuiRadio
-            control={control}
             name="structure"
             legend={t("InsuranceEstate.Page1.structure")}
             options={[
@@ -207,22 +180,15 @@ const Page1 = () => {
             ]}
           />
           <MuiInput
-            control={control}
             name="areaM2"
             labelName={t("InsuranceEstate.Page1.areaM2")}
-            error={!!errors.areaM2}
-            helperText={errors?.areaM2?.message}
           />
           <MuiInput
-            control={control}
             name="constructionYear"
             labelName={t("InsuranceEstate.Page1.constructionYear")}
-            error={!!errors.constructionYear}
-            helperText={errors?.constructionYear?.message}
           />
 
           <MuiRadio
-            control={control}
             name="underConstruction"
             legend={t("InsuranceEstate.Page1.underConstruction")}
             options={[
@@ -238,7 +204,6 @@ const Page1 = () => {
           />
 
           <MuiRadio
-            control={control}
             name="ownershipForm"
             legend={t("InsuranceEstate.Page1.ownershipForm")}
             options={[
@@ -254,7 +219,6 @@ const Page1 = () => {
           />
 
           <MuiRadio
-            control={control}
             name="creditOwnership"
             legend={t("InsuranceEstate.Page1.creditOwnership")}
             options={[
@@ -271,40 +235,24 @@ const Page1 = () => {
           {assignedToBank === "yes" && (
             <>
               <MuiInput
-                control={control}
                 name="bankName"
                 labelName={t("InsuranceEstate.Page1.bankName")}
-                error={!!errors.bankName}
-                helperText={errors?.bankName?.message}
               />
               <MuiInput
-                control={control}
                 name="regon"
                 labelName={t("InsuranceEstate.Page1.regon")}
-                error={!!errors.regon}
-                helperText={errors?.regon?.message}
               />
-              <MuiInput
-                control={control}
-                name="nip"
-                labelName={t("InsuranceEstate.Page1.nip")}
-                error={!!errors.nip}
-                helperText={errors?.nip?.message}
-              />
+              <MuiInput name="nip" labelName={t("InsuranceEstate.Page1.nip")} />
             </>
           )}
           <MuiSelect
-            control={control}
             name="security"
             labelName={t("InsuranceEstate.Page1.security")}
             defaultValue={appDataValid.security}
             optionArray={nameSecurityOptions}
-            error={!!errors.security}
-            helperText={errors?.security?.message}
           />
 
           <MuiRadio
-            control={control}
             name="damagesNumber"
             legend={t("InsuranceEstate.Page1.damagesNumber")}
             options={[
@@ -328,7 +276,6 @@ const Page1 = () => {
           />
 
           <MuiRadio
-            control={control}
             name="insurancePeriod"
             legend={t("InsuranceEstate.Page1.insurancePeriod")}
             options={[
@@ -343,30 +290,21 @@ const Page1 = () => {
             ]}
           />
           <DateInput
-            control={control}
             name="insuranceStart"
             labelName={t("InsuranceEstate.Page1.insuranceStart")}
-            error={!!errors.insuranceStart}
-            helperText={errors?.insuranceStart?.message}
             defaultValue={appDataValid.insuranceStartDate}
             disablePast
             placeholder={t("Form.Placeholder.dateFull")}
           />
           <Subtitle>{t("InsuranceEstate.Page1.subjectAndSum")}</Subtitle>
           <MuiInput
-            control={control}
             name="flatAndFixed"
             labelName={t("InsuranceEstate.Page1.flatAndFixed")}
-            error={!!errors.flatAndFixed}
-            helperText={errors?.flatAndFixed?.message}
             placeholder="200 000 zl"
           />
           <MuiInput
-            control={control}
             name="householdGoods"
             labelName={t("InsuranceEstate.Page1.householdGoods")}
-            error={!!errors.householdGoods}
-            helperText={errors?.householdGoods?.message}
             placeholder="100 000 zl"
           />
         </Form>

@@ -2,7 +2,7 @@ import React from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
@@ -50,12 +50,7 @@ const Page2 = () => {
   const { appData, setValues, setAllowSummary } = useData();
   const appDataValid = validateAppData(appData, "PersonalData");
 
-  const {
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "natural",
       name: appDataValid.name,
@@ -78,6 +73,8 @@ const Page2 = () => {
     resolver: yupResolver(pageTwoSchema),
   });
 
+  const { handleSubmit, watch } = methods;
+
   const policyholderIs = watch("policyholderIs") || appDataValid.policyholderIs;
 
   const formSubmit = handleSubmit((data) => {
@@ -97,9 +94,8 @@ const Page2 = () => {
           label={t("InsuranceTravel.Page2.title")}
         />
         <Subtitle>{t("InsuranceTravel.Page2.title")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <MuiRadio
-            control={control}
             name="policyholderIs"
             legend={t("InsuranceTravel.Page2.policyholderIs")}
             options={[
@@ -118,109 +114,59 @@ const Page2 = () => {
             ]}
             defaultValue={appDataValid.policyholderIs || "natural"}
           />
-          <MuiInput
-            control={control}
-            name="name"
-            labelName={t("InsuranceTravel.Page2.name")}
-            error={!!errors.name}
-            helperText={errors?.name?.message}
-          />
+          <MuiInput name="name" labelName={t("InsuranceTravel.Page2.name")} />
           {policyholderIs !== "legal" && (
             <>
               <MuiInput
-                control={control}
                 name="surname"
                 labelName={t("InsuranceTravel.Page2.surname")}
-                error={!!errors.surname}
-                helperText={errors?.surname?.message}
               />
               <MuiInput
-                control={control}
                 name="pesel"
                 labelName={t("InsuranceTravel.Page2.pesel")}
-                error={!!errors.pesel}
-                helperText={errors?.pesel?.message}
               />
             </>
           )}
           {policyholderIs !== "natural" && (
             <>
+              <MuiInput name="nip" labelName={t("InsuranceTravel.Page2.nip")} />
               <MuiInput
-                control={control}
-                name="nip"
-                labelName={t("InsuranceTravel.Page2.nip")}
-                error={!!errors.nip}
-                helperText={errors?.nip?.message}
-              />
-              <MuiInput
-                control={control}
                 name="regon"
                 labelName={t("InsuranceTravel.Page2.regon")}
-                error={!!errors.regon}
-                helperText={errors?.regon?.message}
               />
             </>
           )}
           {policyholderIs !== "entrepreneurial" && (
             <DateInput
-              control={control}
               name="birthDate"
               labelName={t("InsuranceTravel.Page2.birthDate")}
-              error={!!errors.birthDate}
-              helperText={errors?.birthDate?.message}
               placeholder={t("Form.Placeholder.dateFull")}
             />
           )}
           <MuiPhoneInput
-            control={control}
             name="phone"
             labelName={t("InsuranceTravel.Page2.phone")}
-            error={!!errors.phone}
-            helperText={errors?.phone?.message}
           />
+          <MuiInput name="email" labelName={t("InsuranceTravel.Page2.email")} />
           <MuiInput
-            control={control}
-            name="email"
-            labelName={t("InsuranceTravel.Page2.email")}
-            error={!!errors.email}
-            helperText={errors?.email?.message}
-          />
-          <MuiInput
-            control={control}
             name="country"
             labelName={t("InsuranceTravel.Page2.country")}
-            error={!!errors.country}
-            helperText={errors?.country?.message}
           />
+          <MuiInput name="city" labelName={t("InsuranceTravel.Page2.city")} />
           <MuiInput
-            control={control}
-            name="city"
-            labelName={t("InsuranceTravel.Page2.city")}
-            error={!!errors.city}
-            helperText={errors?.city?.message}
-          />
-          <MuiInput
-            control={control}
             name="postIndex"
             labelName={t("InsuranceTravel.Page2.postIndex")}
-            error={!!errors.postIndex}
-            helperText={errors?.postIndex?.message}
           />
           <MuiInput
-            control={control}
             name="street"
             labelName={t("InsuranceTravel.Page2.street")}
-            error={!!errors.street}
-            helperText={errors?.street?.message}
           />
           <MuiInput
-            control={control}
             name="houseNumber"
             labelName={t("InsuranceTravel.Page2.houseNumber")}
-            error={!!errors.houseNumber}
-            helperText={errors?.houseNumber?.message}
           />
         </Form>
+
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}

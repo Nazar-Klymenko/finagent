@@ -51,12 +51,7 @@ const Page1 = () => {
   const { appData, setValues, setCurrentPage } = useData();
   const appDataValid = appData?.insuranceSpecialist?.personalData;
 
-  const {
-    handleSubmit,
-    watch,
-    control,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       insuranceStart: appDataValid?.insuranceStart || undefined,
       insuranceEnd: appDataValid?.insuranceEnd || undefined,
@@ -81,6 +76,8 @@ const Page1 = () => {
     resolver: yupResolver(pageOneSchema()),
   });
 
+  const { handleSubmit, watch } = methods;
+
   const policyholderIs = watch("policyholderIs") || appDataValid.policyholderIs;
 
   const formSubmit = handleSubmit((data) => {
@@ -101,22 +98,17 @@ const Page1 = () => {
           label={t("InsuranceDiagnostic.Page1.subtitle")}
         />
         <Subtitle>{t("InsuranceDiagnostic.Page1.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <DateInput
-            control={control}
             name="insuranceStart"
             labelName={t("InsuranceDiagnostic.Page1.insuranceStart")}
-            error={!!errors.insuranceStart}
-            helperText={errors?.insuranceStart?.message}
             disablePast
             placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
-            control={control}
             name="insuranceEnd"
             labelName={t("InsuranceDiagnostic.Page1.insuranceEnd")}
-            error={!!errors.insuranceEnd}
-            helperText={errors?.insuranceEnd?.message}
             disablePast
             view={["year", "month", "date"]}
             placeholder={t("Form.Placeholder.dateFull")}
@@ -124,7 +116,6 @@ const Page1 = () => {
           />
 
           <MuiRadio
-            control={control}
             name="policyholderIs"
             legend={t("InsuranceDiagnostic.Page1.policyholderIs")}
             options={[
@@ -143,42 +134,30 @@ const Page1 = () => {
             ]}
           />
           <MuiInput
-            control={control}
             name="name"
             labelName={t("InsuranceDiagnostic.Page1.name")}
             type="text"
-            error={!!errors.name}
-            helperText={errors?.name?.message}
             autoComplete="given-name"
           />
           {policyholderIs === "individual" && (
             <MuiInput
-              control={control}
               name="surname"
               labelName={t("InsuranceDiagnostic.Page1.surname")}
               type="text"
-              error={!!errors.surname}
-              helperText={errors?.surname?.message}
               autoComplete="family-name"
             />
           )}
           {!(policyholderIs === "individual") && (
             <MuiInput
-              control={control}
               name="nip"
               labelName={t("InsuranceDiagnostic.Page1.nip")}
               type="text"
-              error={!!errors.nip}
-              helperText={errors?.nip?.message}
             />
           )}
           {policyholderIs === "individual" && (
             <DateInput
-              control={control}
               name="birthDate"
               labelName={t("InsuranceDiagnostic.Page1.birthDate")}
-              error={!!errors.birthDate}
-              helperText={errors?.birthDate?.message}
               disableFuture
               placeholder={t("Form.Placeholder.dateFull")}
               view={["year", "month", "date"]}
@@ -187,74 +166,47 @@ const Page1 = () => {
           )}
           {policyholderIs === "individual" && (
             <MuiInput
-              control={control}
               name="pesel"
               labelName={t("InsuranceDiagnostic.Page1.pesel")}
               type="text"
-              error={!!errors.pesel}
-              helperText={errors?.pesel?.message}
             />
           )}
           {!(policyholderIs === "individual") && (
             <MuiInput
-              control={control}
               name="regon"
               labelName={t("InsuranceDiagnostic.Page1.regon")}
               type="text"
-              error={!!errors.regon}
-              helperText={errors?.regon?.message}
             />
           )}
           <MuiPhoneInput
-            control={control}
             name="phoneNumber"
             labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
-            error={!!errors.phoneNumber}
-            helperText={errors?.phoneNumber?.message}
           />
           <MuiInput
-            control={control}
             name="email"
             labelName={t("InsuranceDiagnostic.Page1.email")}
-            error={!!errors.email}
-            helperText={errors?.email?.message}
           />
           <MuiInput
-            control={control}
             name="country"
             labelName={t("InsuranceDiagnostic.Page1.country")}
             type="text"
-            error={!!errors.country}
-            helperText={errors?.country?.message}
           />
           <MuiInput
-            control={control}
             name="city"
             labelName={t("InsuranceDiagnostic.Page1.city")}
             type="text"
-            error={!!errors.city}
-            helperText={errors?.city?.message}
           />
           <MuiInput
-            control={control}
             name="postIndex"
             labelName={t("InsuranceDiagnostic.Page1.postIndex")}
-            error={!!errors.postIndex}
-            helperText={errors?.postIndex?.message}
           />
           <MuiInput
-            control={control}
             name="street"
             labelName={t("InsuranceDiagnostic.Page1.street")}
-            error={!!errors.street}
-            helperText={errors?.street?.message}
           />
           <MuiInput
-            control={control}
             name="houseNumber"
             labelName={t("InsuranceDiagnostic.Page1.houseNumber")}
-            error={!!errors.houseNumber}
-            helperText={errors?.houseNumber?.message}
           />
         </Form>
         <ButtonsWrap>

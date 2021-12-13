@@ -25,8 +25,6 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
-import AddAdditionalIncome from "./AddAdditionalIncome";
-import AddApplicant from "./AddApplicant";
 
 type FormTypes = {
   maritalStatus: string;
@@ -58,12 +56,13 @@ const Page1 = () => {
 
   const history = useHistory();
 
-  const { handleSubmit, watch, control } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {},
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
   });
+  const { handleSubmit, watch, control } = methods;
 
   const maritalStatus = watch("maritalStatus", appDataValid?.maritalStatus);
   const bothSpousesStart = watch(
@@ -91,9 +90,8 @@ const Page1 = () => {
           label={t("LoanCash.Page1.subtitle")}
         />
         <Subtitle>{t("LoanCash.Page1.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <MuiRadio
-            control={control}
             name="maritalStatus"
             legend={t("LoanCash.Page1.maritalStatus")}
             options={[
@@ -111,7 +109,6 @@ const Page1 = () => {
           {maritalStatus === "married" && (
             <>
               <MuiRadio
-                control={control}
                 name="propertySeparation"
                 legend={t("LoanCash.Page1.propertySeparation")}
                 options={[
@@ -128,7 +125,6 @@ const Page1 = () => {
               />
 
               <MuiRadio
-                control={control}
                 name="bothSpousesStart"
                 legend={t("LoanCash.Page1.bothSpousesStart")}
                 options={[

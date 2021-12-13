@@ -103,120 +103,112 @@ const Page1 = () => {
           label={t("InsuranceTransport.Page1.subtitle")}
         />
         <Subtitle>{t("InsuranceTransport.Page1.subtitle")}</Subtitle>
-        <FormProvider {...methods}>
-          <Form id="form" onSubmit={formSubmit}>
-            <Legend>{t("InsuranceTransport.Page1.insuranceCoverage")}</Legend>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
+          <Legend>{t("InsuranceTransport.Page1.insuranceCoverage")}</Legend>
 
-            <MuiCheckbox
-              labelName={t("InsuranceTransport.Page1.oc")}
-              name="oc"
-            />
-            <MuiCheckbox
-              labelName={t("InsuranceTransport.Page1.ac")}
-              name="ac"
-            />
-            <MuiCheckbox
-              labelName={t("InsuranceTransport.Page1.greenCard")}
-              name="greenCard"
-            />
-            <MuiCheckbox
-              labelName={t("InsuranceTransport.Page1.assistance")}
-              name="assistance"
-            />
+          <MuiCheckbox labelName={t("InsuranceTransport.Page1.oc")} name="oc" />
+          <MuiCheckbox labelName={t("InsuranceTransport.Page1.ac")} name="ac" />
+          <MuiCheckbox
+            labelName={t("InsuranceTransport.Page1.greenCard")}
+            name="greenCard"
+          />
+          <MuiCheckbox
+            labelName={t("InsuranceTransport.Page1.assistance")}
+            name="assistance"
+          />
 
-            <InputErrorMessage>
-              <span className="invis-star">*</span>
-              {errors?.coverage && <span>{t(errors?.coverage?.message)}</span>}
-            </InputErrorMessage>
+          <InputErrorMessage>
+            <span className="invis-star">*</span>
+            {errors?.coverage && <span>{t(errors?.coverage?.message)}</span>}
+          </InputErrorMessage>
 
-            <MuiInput
-              name="name"
-              labelName={t("InsuranceTransport.Page1.name")}
-              type="text"
-              autoComplete="given-name"
-            />
-            <MuiInput
-              name="surname"
-              labelName={t("InsuranceTransport.Page1.surname")}
-              type="text"
-              autoComplete="family-name"
-            />
-            <MuiPhoneInput
-              name="phoneNumber"
-              labelName={t("InsuranceTransport.Page1.phoneNumber")}
-            />
-            <MuiInput
-              name="postIndex"
-              labelName={t("InsuranceTransport.Page1.postIndex")}
-              autoComplete="postal-code"
-            />
-            <MuiInput
-              name="city"
-              labelName={t("InsuranceTransport.Page1.city")}
-            />
-            <MuiInput
-              name="voivodeship"
-              labelName={t("InsuranceTransport.Page1.voivodeship")}
-            />
-            <MuiInput
-              name="street"
-              labelName={t("InsuranceTransport.Page1.street")}
-            />
-            <MuiInput
-              name="houseNumber"
-              labelName={t("InsuranceTransport.Page1.houseNumber")}
-            />
+          <MuiInput
+            name="name"
+            labelName={t("InsuranceTransport.Page1.name")}
+            type="text"
+            autoComplete="given-name"
+          />
+          <MuiInput
+            name="surname"
+            labelName={t("InsuranceTransport.Page1.surname")}
+            type="text"
+            autoComplete="family-name"
+          />
+          <MuiPhoneInput
+            name="phoneNumber"
+            labelName={t("InsuranceTransport.Page1.phoneNumber")}
+          />
+          <MuiInput
+            name="postIndex"
+            labelName={t("InsuranceTransport.Page1.postIndex")}
+            autoComplete="postal-code"
+          />
+          <MuiInput
+            name="city"
+            labelName={t("InsuranceTransport.Page1.city")}
+          />
+          <MuiInput
+            name="voivodeship"
+            labelName={t("InsuranceTransport.Page1.voivodeship")}
+          />
+          <MuiInput
+            name="street"
+            labelName={t("InsuranceTransport.Page1.street")}
+          />
+          <MuiInput
+            name="houseNumber"
+            labelName={t("InsuranceTransport.Page1.houseNumber")}
+          />
 
-            <MuiRadio
-              name="documentAddedType"
-              legend={t("InsuranceTransport.Page1.documentAddedType")}
-              options={[
-                {
-                  label: t("InsuranceTransport.Page1.pesel"),
-                  value: "pesel",
-                },
-                {
-                  label: t("InsuranceTransport.Page1.regon"),
-                  value: "regon",
-                },
-                {
-                  label: t("InsuranceTransport.Page1.passport"),
-                  value: "passport",
-                },
-              ]}
-            />
-            <MuiInput
-              name="documentAdded"
-              labelName={t(`InsuranceTransport.Page1.${documentTypeName}`)}
-            />
+          <MuiRadio
+            name="documentAddedType"
+            legend={t("InsuranceTransport.Page1.documentAddedType")}
+            options={[
+              {
+                label: t("InsuranceTransport.Page1.pesel"),
+                value: "pesel",
+              },
+              {
+                label: t("InsuranceTransport.Page1.regon"),
+                value: "regon",
+              },
+              {
+                label: t("InsuranceTransport.Page1.passport"),
+                value: "passport",
+              },
+            ]}
+          />
+          <MuiInput
+            name="documentAdded"
+            labelName={t(`InsuranceTransport.Page1.${documentTypeName}`)}
+          />
 
-            <MuiSelect
-              name="profession"
-              labelName={t("InsuranceTransport.Page1.profession")}
-              optionArray={professionOptions}
-            />
-            <MuiSelect
-              name="maritalStatus"
-              labelName={t("InsuranceTransport.Page1.maritalStatus")}
-              optionArray={maritalStatusOptions}
-            />
+          <MuiSelect
+            name="profession"
+            labelName={t("InsuranceTransport.Page1.profession")}
+            optionArray={professionOptions}
+          />
+          <MuiSelect
+            name="maritalStatus"
+            labelName={t("InsuranceTransport.Page1.maritalStatus")}
+            optionArray={maritalStatusOptions}
+          />
 
-            <MuiCheckbox
-              name="isAppropLicence"
-              labelName={t("InsuranceTransport.Page1.isAppropLicence")}
-            />
+          <MuiCheckbox
+            name="isAppropLicence"
+            labelName={t("InsuranceTransport.Page1.isAppropLicence")}
+          />
 
-            {isAppropLicence && (
-              <DateInput
-                name="drivingLicenceDate"
-                labelName={t("InsuranceTransport.Page1.drivingLicenceDate")}
-                placeholder={t("Form.Placeholder.dateFull")}
-                disableFuture
-                view={["year", "month", "date"]}
-              />
-            )}
-          </Form>
-        </FormProvider>
+          {isAppropLicence && (
+            <DateInput
+              name="drivingLicenceDate"
+              labelName={t("InsuranceTransport.Page1.drivingLicenceDate")}
+              placeholder={t("Form.Placeholder.dateFull")}
+              disableFuture
+              view={["year", "month", "date"]}
+            />
+          )}
+        </Form>
 
         <ButtonsWrap>
           <CTA text={t("Basic.buttonNext")} form="form" color="primary" />

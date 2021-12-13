@@ -37,12 +37,7 @@ const Page2 = () => {
 
   useTitle("Cash loan | FinAgent");
 
-  const {
-    handleSubmit,
-    control,
-
-    formState: { errors },
-  } = useForm({
+  const methods = useForm({
     defaultValues: {
       remainingPayOff: appDataValid.remainingPayOff,
       lastApplications: appDataValid.lastApplications,
@@ -57,6 +52,10 @@ const Page2 = () => {
     shouldFocusError: true,
     resolver: yupResolver(pageThreeSchema()),
   });
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = methods;
 
   const formSubmit = handleSubmit((data) => {
     setValues(data, "LoanData");
@@ -76,63 +75,43 @@ const Page2 = () => {
           label={t("LoanCash.Page2.subtitle")}
         />
         <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <Textarea
-            control={control}
             name="remainingPayOff"
             labelName={t("LoanCash.Page2.remainingPayOff")}
-            error={!!errors.remainingPayOff}
-            helperText={errors?.remainingPayOff?.message}
             placeholder="number"
           />
           <Textarea
-            control={control}
             name="lastApplications"
             labelName={t("LoanCash.Page2.lastApplications")}
-            error={!!errors.lastApplications}
-            helperText={errors?.lastApplications?.message}
             placeholder="Yes, open answer / No"
           />
           <MuiInput
-            control={control}
             name="custody"
             labelName={t("LoanCash.Page2.custody")}
             type="text"
-            error={!!errors.custody}
-            helperText={errors?.custody?.message}
             placeholder="number"
           />
           <Textarea
-            control={control}
             name="loanPurpose"
             labelName={t("LoanCash.Page2.loanPurpose")}
-            error={!!errors.loanPurpose}
-            helperText={errors?.loanPurpose?.message}
             placeholder="Purpose"
           />
           <MuiInput
-            control={control}
             name="loanAmount"
             labelName={t("LoanCash.Page2.loanAmount")}
             type="text"
-            error={!!errors.loanAmount}
-            helperText={errors?.loanAmount?.message}
             placeholder="number"
           />
           <MuiInput
-            control={control}
             name="paymentTerm"
             labelName={t("LoanCash.Page2.paymentTerm")}
             type="text"
-            error={!!errors.paymentTerm}
-            helperText={errors?.paymentTerm?.message}
             placeholder="number"
           />
           <MuiCheckbox
-            control={control}
             name="conditions"
             labelName={t("LoanCash.Page2.conditions")}
-            helperText={errors?.conditions?.message}
           />
           <InputErrorMessage>
             <span className="invis-star">*</span>

@@ -72,39 +72,37 @@ const Page5 = () => {
 
         <Subtitle>{t("InsuranceTransport.Page5.subtitle")}</Subtitle>
 
-        <FormProvider {...methods}>
-          <Form id="form" onSubmit={formSubmit}>
-            <Subheader
-              subheader={t("InsuranceTransport.Page5.registration")}
-              description={t("InsuranceTransport.Page5.twoSides")}
-            />
-            <FileInput name="filesTechPassport" labelName="" showFiles />
-            <Subheader
-              subheader={t("InsuranceTransport.Page5.driversLicence")}
-              description={t("InsuranceTransport.Page5.twoSides")}
-            />
-            <FileInput name="filesPassport" labelName="" showFiles />
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
+          <Subheader
+            subheader={t("InsuranceTransport.Page5.registration")}
+            description={t("InsuranceTransport.Page5.twoSides")}
+          />
+          <FileInput name="filesTechPassport" labelName="" showFiles />
+          <Subheader
+            subheader={t("InsuranceTransport.Page5.driversLicence")}
+            description={t("InsuranceTransport.Page5.twoSides")}
+          />
+          <FileInput name="filesPassport" labelName="" showFiles />
 
-            <Subheader
-              subheader={t("InsuranceTransport.Page5.currentInsurance")}
-              description=""
-            />
-            <FileInput name="filesInsurance" labelName="" showFiles />
-            <MuiCheckbox
-              labelName={t("InsuranceTransport.Page5.registeredOnMe")}
-              name="isFirstOwner"
-            />
-            {!firstOwner && (
-              <>
-                <Subheader
-                  subheader={t("InsuranceTransport.Page5.salesContract")}
-                  description={t("InsuranceTransport.Page5.twoSides")}
-                />
-                <FileInput name="filesCarSale" labelName="" showFiles />
-              </>
-            )}
-          </Form>
-        </FormProvider>
+          <Subheader
+            subheader={t("InsuranceTransport.Page5.currentInsurance")}
+            description=""
+          />
+          <FileInput name="filesInsurance" labelName="" showFiles />
+          <MuiCheckbox
+            labelName={t("InsuranceTransport.Page5.registeredOnMe")}
+            name="isFirstOwner"
+          />
+          {!firstOwner && (
+            <>
+              <Subheader
+                subheader={t("InsuranceTransport.Page5.salesContract")}
+                description={t("InsuranceTransport.Page5.twoSides")}
+              />
+              <FileInput name="filesCarSale" labelName="" showFiles />
+            </>
+          )}
+        </Form>
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}

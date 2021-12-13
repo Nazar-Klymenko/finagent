@@ -44,13 +44,7 @@ const Page1 = () => {
 
   const appDataValid = appData.insuranceHealth?.insuranceData;
 
-  const {
-    handleSubmit,
-    control,
-    watch,
-
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       clauseOne: true,
       clauseTwo: appDataValid?.clauseTwo,
@@ -61,6 +55,7 @@ const Page1 = () => {
     shouldFocusError: false,
     resolver: yupResolver(pageOneSchema()),
   });
+  const { handleSubmit, watch } = methods;
 
   let showTwoAmount = watch("clauseTwo");
   let showThreeAmount = watch("clauseThree");
@@ -84,72 +79,54 @@ const Page1 = () => {
         />
         <Subtitle>{t("InsuranceHealth.Page1.subtitle")}</Subtitle>
 
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <DateInput
-            control={control}
             name="insuranceStart"
             labelName={t("InsuranceHealth.Page1.insuranceStart")}
-            error={!!errors.insuranceStart}
-            helperText={errors?.insuranceStart?.message}
             disablePast
             placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
-            control={control}
             name="insuranceEnd"
             labelName={t("InsuranceHealth.Page1.insuranceEnd")}
-            error={!!errors.insuranceEnd}
-            helperText={errors?.insuranceEnd?.message}
             placeholder={t("Form.Placeholder.dateFull")}
             disablePast
           />
           <Subtitle>{t("InsuranceHealth.Page1.riskType")}</Subtitle>
           <MuiCheckbox
-            control={control}
             name="clauseOne"
             readOnly={true}
             defaultChecked={true}
             labelName={t("InsuranceHealth.Page1.clauseOne")}
           />
           <MuiSelect
-            control={control}
             name="clauseOnePrice"
             labelName={t("InsuranceHealth.Page1.chooseAmountEuro")}
             optionArray={clauseOnePriceOptions}
             placeholder="Amount:"
-            error={!!errors.clauseOnePrice}
-            helperText={errors?.clauseOnePrice?.message}
           />
           <MuiCheckbox
-            control={control}
             name="clauseTwo"
             labelName={t("InsuranceHealth.Page1.clauseTwo")}
           />
           {showTwoAmount && (
             <MuiSelect
-              control={control}
               name="clauseTwoPrice"
               labelName={t("InsuranceHealth.Page1.chooseAmountZlote")}
               optionArray={clauseTwoPriceOptions}
               placeholder="Amount:"
-              error={!!errors.clauseTwoPrice}
-              helperText={errors?.clauseTwoPrice?.message}
             />
           )}
           <MuiCheckbox
-            control={control}
             name="clauseThree"
             labelName={t("InsuranceHealth.Page1.clauseThree")}
           />
           {showThreeAmount && (
             <MuiSelect
-              control={control}
               name="clauseThreePrice"
               labelName={t("InsuranceHealth.Page1.chooseAmountZlote")}
               optionArray={clauseThreePriceOptions}
               placeholder="Amount:"
-              error={!!errors.clauseThreePrice}
-              helperText={errors?.clauseThreePrice?.message}
             />
           )}
         </Form>

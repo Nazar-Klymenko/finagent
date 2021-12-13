@@ -1,16 +1,20 @@
 import React from "react";
 
+import { FormProvider } from "react-hook-form";
 import styled from "styled-components/macro";
 
 interface Props {
   id: string;
   onSubmit?: any;
+  methods: any;
 }
-const Form: React.FC<Props> = ({ id, children, ...props }) => {
+const Form: React.FC<Props> = ({ id, children, methods, ...props }) => {
   return (
-    <FormStyled id={id} className="super-form" noValidate {...props}>
-      {children}
-    </FormStyled>
+    <FormProvider {...methods}>
+      <FormStyled id={id} className="super-form" noValidate {...props}>
+        {children}
+      </FormStyled>
+    </FormProvider>
   );
 };
 

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import WorkIcon from "@material-ui/icons/Work";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-
-import validateAppData from "@helpers/validateAppData";
 
 import useTitle from "@hooks/useTitle";
 
@@ -25,7 +27,17 @@ import {
   Textarea,
 } from "@components/input";
 
-import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
+import {
+  Applicant,
+  ApplicantAdd,
+  ApplicantBox,
+  ApplicantName,
+  AvatarStyled,
+  ButtonsWrap,
+  Page,
+  Subtitle,
+  Title,
+} from "../LocalStyles";
 import { AdditionalIncomeSchema } from "./applicationHelpers/loan-cash.schema";
 
 type FormTypes = {
@@ -48,6 +60,7 @@ type FormTypes = {
 
 const Page2 = () => {
   const { t } = useTranslation();
+  useTitle("Cash loan | FinAgent");
 
   const [openDialog, setOpenDialog] = useState(true);
   const [formInitiated, setFormInitiated] = useState(false);
@@ -57,22 +70,15 @@ const Page2 = () => {
 
   const { appData, setValues, setAllowSummary } = useData();
 
-  const appDataValid = appData.loanCash?.insuredData?.income;
+  const appDataValid = appData.loanCash?.incomedData?.income;
 
   const history = useHistory();
 
-  useTitle("Cash loan | FinAgent");
-
-  const {
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       income: [
         {
-          truckDriver: appDataValid?.[0]?.truckDriver || "yes",
+          truckDriver: appDataValid?.[0]?.truckDriver || "no",
           industry: appDataValid?.[0]?.industry,
           basicIncome: appDataValid?.[0]?.basicIncome || "indefinitePeriod",
           firstContract: appDataValid?.[0]?.firstContract || "yes",
@@ -91,7 +97,12 @@ const Page2 = () => {
     shouldFocusError: true,
     resolver: yupResolver(AdditionalIncomeSchema()),
   });
-
+  const {
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = methods;
   // header={t("LoanCash.IncomeModal.title")}
 
   const { fields, append, remove } = useFieldArray({
@@ -113,7 +124,7 @@ const Page2 = () => {
     setFormInitiated(true);
     setEditingMode(false);
     setAddingMode(false);
-    setValues(data, "insuranceSpecialist", "insuredData");
+    setValues(data, "loanCash", "incomedData");
   });
 
   const handleClose = (index: number) => {
@@ -146,6 +157,8 @@ const Page2 = () => {
     }
   };
 
+  console.log(errors);
+
   return (
     <ContentWrap fullWidth>
       <QuestState data={appData} />
@@ -162,11 +175,11 @@ const Page2 = () => {
         {editingMode &&
           fields.map((field: any, index: number) => {
             //@ts-ignore
-            const truckDriver = watch(`income.${index}.truckDriver`);
+            const truckDriver = watch(`income[${index}].truckDriver`);
             //@ts-ignore
-            const basicIncome = watch(`income.${index}.basicIncome`);
+            const basicIncome = watch(`income[${index}].basicIncome`);
             //@ts-ignore
-            const firstContract = watch(`income.${index}.firstContract`);
+            const firstContract = watch(`income[${index}].firstContract`);
 
             return (
               editingIndex === index && (
@@ -176,14 +189,17 @@ const Page2 = () => {
                   handleClose={() => {
                     handleClose(index);
                   }}
-                  formId="insured-data-form"
+                  formId="additional-income-form"
                   title={t("LoanCash.IncomeModal.title")}
                   description=""
                 >
-                  <Form id="form" onSubmit={formSubmit}>
+                  <Form
+                    methods={methods}
+                    id="additional-income-form"
+                    onSubmit={formSubmit}
+                  >
                     <MuiRadio
-                      control={control}
-                      name="truckDriver"
+                      name={`income[${index}].truckDriver`}
                       legend={t("LoanCash.IncomeModal.truckDriver")}
                       options={[
                         {
@@ -195,22 +211,20 @@ const Page2 = () => {
                           value: "no",
                         },
                       ]}
+                      defaultValue={field.truckDriver || ""}
                     />
                     {truckDriver === "no" && (
                       <MuiInput
-                        control={control}
-                        name="industry"
+                        name={`income[${index}].industry`}
                         labelName={t("LoanCash.IncomeModal.industry")}
                         type="text"
-                        error={!!errors.income?.[index]?.industry}
-                        helperText={errors?.income?.[index]?.industry?.message}
                         placeholder="industry"
+                        defaultValue={field.industry || ""}
                       />
                     )}
 
                     <MuiRadio
-                      control={control}
-                      name="basicIncome"
+                      name={`income[${index}].basicIncome`}
                       legend={t("LoanCash.IncomeModal.basicIncome")}
                       options={[
                         {
@@ -234,6 +248,7 @@ const Page2 = () => {
                           value: "economicActivity",
                         },
                       ]}
+                      defaultValue={field.basicIncome || ""}
                     />
 
                     {(basicIncome === "specificTime" ||
@@ -241,8 +256,7 @@ const Page2 = () => {
                       basicIncome === "contract") && (
                       <>
                         <MuiRadio
-                          control={control}
-                          name="firstContract"
+                          name={`income[${index}].firstContract`}
                           legend={t("LoanCash.IncomeModal.firstContract")}
                           options={[
                             {
@@ -254,12 +268,12 @@ const Page2 = () => {
                               value: "no",
                             },
                           ]}
+                          defaultValue={field.firstContract || "yes"}
                         />
                         {firstContract === "no" && (
                           <>
                             <MuiRadio
-                              control={control}
-                              name="sameEmployer"
+                              name={`income[${index}].sameEmployer`}
                               legend={t("LoanCash.IncomeModal.sameEmployer")}
                               options={[
                                 {
@@ -271,11 +285,11 @@ const Page2 = () => {
                                   value: "no",
                                 },
                               ]}
+                              defaultValue={field.sameEmployer || ""}
                             />
 
                             <MuiRadio
-                              control={control}
-                              name="withoutPause"
+                              name={`income[${index}].withoutPause`}
                               legend={t("LoanCash.IncomeModal.withoutPause")}
                               options={[
                                 {
@@ -287,63 +301,47 @@ const Page2 = () => {
                                   value: "no",
                                 },
                               ]}
+                              defaultValue={field.withoutPause || ""}
                             />
                           </>
                         )}
                         <DateInput
-                          control={control}
-                          name="contractFrom"
+                          name={`income[${index}].contractFrom`}
                           labelName={t("LoanCash.IncomeModal.contractFrom")}
-                          error={!!errors.income?.[index]?.contractFrom}
-                          helperText={
-                            errors?.income?.[index]?.contractFrom?.message
-                          }
                           placeholder={t("Form.Placeholder.dateFull")}
+                          defaultValue={field.contractFrom || null}
                         />
                         <DateInput
-                          control={control}
-                          name="contractUntil"
+                          name={`income[${index}].contractUntil`}
                           labelName={t("LoanCash.IncomeModal.contractUntil")}
-                          error={!!errors.income?.[index]?.contractUntil}
-                          helperText={
-                            errors?.income?.[index]?.contractUntil?.message
-                          }
                           disablePast
                           placeholder={t("Form.Placeholder.dateFull")}
+                          defaultValue={field.contractUntil || null}
                         />
                       </>
                     )}
                     {basicIncome === "mandate" && (
                       <MuiInput
-                        control={control}
-                        name="averageIncome"
+                        name={`income[${index}].averageIncome12`}
                         labelName={t("LoanCash.IncomeModal.averageIncome12")}
                         type="text"
-                        error={!!errors.income?.[index]?.averageIncome}
-                        helperText={
-                          errors?.income?.[index]?.averageIncome?.message
-                        }
                         placeholder="value"
+                        defaultValue={field.averageIncome12 || ""}
                       />
                     )}
                     {basicIncome === "specificTime" && (
                       <MuiInput
-                        control={control}
-                        name="averageIncome"
+                        name={`income[${index}].averageIncome6`}
                         labelName={t("LoanCash.IncomeModal.averageIncome6")}
                         type="text"
-                        error={!!errors.income?.[index]?.averageIncome}
-                        helperText={
-                          errors?.income?.[index]?.averageIncome?.message
-                        }
                         placeholder="value"
+                        defaultValue={field.averageIncome6 || ""}
                       />
                     )}
                     {basicIncome === "economicActivity" && (
                       <>
                         <MuiRadio
-                          control={control}
-                          name="accountancy"
+                          name={`income[${index}].accountancy`}
                           legend={t("LoanCash.IncomeModal.accountancy")}
                           options={[
                             {
@@ -363,17 +361,14 @@ const Page2 = () => {
                               value: "fullAccounting",
                             },
                           ]}
+                          defaultValue={field.accountancy || ""}
                         />
                         <MuiInput
-                          control={control}
-                          name="averageIncome"
+                          name={`income[${index}].averageIncome`}
                           labelName={t("LoanCash.IncomeModal.averageIncome6")}
                           type="text"
-                          error={!!errors.income?.[index]?.averageIncome}
-                          helperText={
-                            errors?.income?.[index]?.averageIncome?.message
-                          }
                           placeholder="value"
+                          defaultValue={field.averageIncome || ""}
                         />
                       </>
                     )}
@@ -383,32 +378,82 @@ const Page2 = () => {
                       basicIncome === "specificTime"
                     ) && (
                       <MuiInput
-                        control={control}
-                        name="averageIncome"
+                        name={`income[${index}].averageIncome`}
                         labelName={t("LoanCash.IncomeModal.averageIncome3")}
                         type="text"
-                        error={!!errors.income?.[index]?.averageIncome}
-                        helperText={
-                          errors?.income?.[index]?.averageIncome?.message
-                        }
                         placeholder="value"
+                        defaultValue={field.averageIncome || ""}
                       />
                     )}
                     <MuiInput
-                      control={control}
-                      name="pit"
+                      name={`income[${index}].pit`}
                       labelName={t("LoanCash.IncomeModal.pit")}
                       type="text"
-                      error={!!errors.income?.[index]?.pit}
-                      helperText={errors?.income?.[index]?.pit?.message}
                       placeholder="value"
+                      defaultValue={field.pit || ""}
                     />
                   </Form>
                 </MuiDialog>
               )
             );
           })}
-
+        {formInitiated &&
+          fields.map((field: any, index: number) => {
+            //@ts-ignore
+            let income = watch(`income[${index}].industry`);
+            return (
+              <Applicant key={field.id} error={!!errors.income?.[index]}>
+                <AvatarStyled>
+                  <WorkIcon />
+                </AvatarStyled>
+                <ApplicantName>{income}</ApplicantName>
+                <IconButton
+                  onClick={() => {
+                    editData(index);
+                  }}
+                >
+                  <EditIcon />
+                </IconButton>
+                <IconButton
+                  onClick={() => {
+                    removeData(index);
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Applicant>
+            );
+          })}
+        {!formInitiated ? (
+          <ApplicantBox
+            onClick={() => {
+              setEditingMode(true);
+              setOpenDialog(true);
+            }}
+          >
+            <ApplicantAdd>
+              <WorkIcon />
+              <span>{t("LoanCash.IncomeBox.addIncome")}</span>
+            </ApplicantAdd>
+          </ApplicantBox>
+        ) : (
+          fields.length < 5 && (
+            <ApplicantBox
+              onClick={() => {
+                append({ truckDriver: "no" });
+                setAddingMode(true);
+                setEditingMode(true);
+                setOpenDialog(true);
+                setEditingIndex(fields.length);
+              }}
+            >
+              <ApplicantAdd>
+                <WorkIcon />
+                <span>{t("LoanCash.IncomeBox.addIncome")}</span>
+              </ApplicantAdd>
+            </ApplicantBox>
+          )
+        )}
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}
@@ -418,7 +463,12 @@ const Page2 = () => {
               history.push("./1");
             }}
           />
-          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
+          <CTA
+            text={t("Basic.buttonNext")}
+            form="form"
+            color="primary"
+            onClick={finalizeForm}
+          />
         </ButtonsWrap>
       </Page>
     </ContentWrap>

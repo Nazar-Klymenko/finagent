@@ -66,48 +66,46 @@ const Page2 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page2.subtitle")}</Subtitle>
-        <FormProvider {...methods}>
-          <Form id="form" onSubmit={formSubmit}>
-            <MuiInput
-              name="brand"
-              labelName={t("InsuranceTransport.Page2.brand")}
-              type="text"
-            />
-            <MuiInput
-              name="model"
-              labelName={t("InsuranceTransport.Page2.model")}
-              type="text"
-            />
-            <MuiInput
-              name="version"
-              labelName={t("InsuranceTransport.Page2.version")}
-              type="text"
-            />
-            <MuiInput
-              name="regNumber"
-              labelName={t("InsuranceTransport.Page2.regNumber")}
-              type="text"
-            />
-            <MuiInput
-              name="vinNumber"
-              labelName={t("InsuranceTransport.Page2.vinNumber")}
-              type="text"
-            />
-            <DateInput
-              name="yearManufacture"
-              labelName={t("InsuranceTransport.Page2.yearManufacture")}
-              placeholder={t("Form.Placeholder.dateYear")}
-              view={["year"]}
-              format="yyyy"
-              disableFuture
-            />
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
+          <MuiInput
+            name="brand"
+            labelName={t("InsuranceTransport.Page2.brand")}
+            type="text"
+          />
+          <MuiInput
+            name="model"
+            labelName={t("InsuranceTransport.Page2.model")}
+            type="text"
+          />
+          <MuiInput
+            name="version"
+            labelName={t("InsuranceTransport.Page2.version")}
+            type="text"
+          />
+          <MuiInput
+            name="regNumber"
+            labelName={t("InsuranceTransport.Page2.regNumber")}
+            type="text"
+          />
+          <MuiInput
+            name="vinNumber"
+            labelName={t("InsuranceTransport.Page2.vinNumber")}
+            type="text"
+          />
+          <DateInput
+            name="yearManufacture"
+            labelName={t("InsuranceTransport.Page2.yearManufacture")}
+            placeholder={t("Form.Placeholder.dateYear")}
+            view={["year"]}
+            format="yyyy"
+            disableFuture
+          />
 
-            <MuiCheckbox
-              labelName={t("InsuranceTransport.Page2.registeredPoland")}
-              name="registeredPoland"
-            />
-          </Form>
-        </FormProvider>
+          <MuiCheckbox
+            labelName={t("InsuranceTransport.Page2.registeredPoland")}
+            name="registeredPoland"
+          />
+        </Form>
 
         <ButtonsWrap multiple>
           <CTA

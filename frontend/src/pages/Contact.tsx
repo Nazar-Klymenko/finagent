@@ -29,16 +29,14 @@ const Contact = () => {
   const { t } = useTranslation();
   useTitle("Contact | FinAgent");
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormData>({
+  const methods = useForm<FormData>({
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(schema),
   });
+  const { handleSubmit } = methods;
+
   const formSubmit = handleSubmit((data) => {
     console.log(data);
   });
@@ -51,28 +49,13 @@ const Contact = () => {
       <MainContainer>
         <FormSide>
           <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
-          <Form id="form" onSubmit={formSubmit}>
-            <MuiInput
-              control={control}
-              labelName={t("Contact.Form.fullName")}
-              name="fullName"
-              error={!!errors.fullName}
-              helperText={errors?.fullName?.message}
-            />
-            <MuiInput
-              control={control}
-              labelName={t("Contact.Form.email")}
-              name="email"
-              error={!!errors.email}
-              helperText={errors?.email?.message}
-            />
+          <Form methods={methods} id="form" onSubmit={formSubmit}>
+            <MuiInput labelName={t("Contact.Form.fullName")} name="fullName" />
+            <MuiInput labelName={t("Contact.Form.email")} name="email" />
             <Textarea
-              control={control}
               labelName={t("Contact.Form.message")}
               rows={8}
               name="message"
-              error={!!errors.message}
-              helperText={errors?.message?.message}
             />
             <ButtonPlace>
               <CTA

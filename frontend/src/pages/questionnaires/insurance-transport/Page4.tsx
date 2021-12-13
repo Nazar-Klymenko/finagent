@@ -70,35 +70,33 @@ const Page4 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page4.subtitle")}</Subtitle>
-        <FormProvider {...methods}>
-          <Form id="form" onSubmit={formSubmit}>
-            <MuiSelect
-              name="predictMileage"
-              labelName={t("InsuranceTransport.Page4.predictMileage")}
-              optionArray={predictMileageOptions}
-            />
-            <MuiSelect
-              name="useAbroad"
-              labelName={t("InsuranceTransport.Page4.useAbroad")}
-              optionArray={useAbroadOptions}
-            />
-            <MuiSelect
-              name="usePurpose"
-              labelName={t("InsuranceTransport.Page4.usePurpose")}
-              optionArray={usePurposeOptions}
-            />
-            <MuiSelect
-              name="parkingPlace"
-              labelName={t("InsuranceTransport.Page4.parkingPlace")}
-              optionArray={parkingPlaceOptions}
-            />
-            <MuiSelect
-              name="security"
-              labelName={t("InsuranceTransport.Page4.security")}
-              optionArray={securityOptions}
-            />
-          </Form>
-        </FormProvider>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
+          <MuiSelect
+            name="predictMileage"
+            labelName={t("InsuranceTransport.Page4.predictMileage")}
+            optionArray={predictMileageOptions}
+          />
+          <MuiSelect
+            name="useAbroad"
+            labelName={t("InsuranceTransport.Page4.useAbroad")}
+            optionArray={useAbroadOptions}
+          />
+          <MuiSelect
+            name="usePurpose"
+            labelName={t("InsuranceTransport.Page4.usePurpose")}
+            optionArray={usePurposeOptions}
+          />
+          <MuiSelect
+            name="parkingPlace"
+            labelName={t("InsuranceTransport.Page4.parkingPlace")}
+            optionArray={parkingPlaceOptions}
+          />
+          <MuiSelect
+            name="security"
+            labelName={t("InsuranceTransport.Page4.security")}
+            optionArray={securityOptions}
+          />
+        </Form>
 
         <ButtonsWrap multiple>
           <CTA

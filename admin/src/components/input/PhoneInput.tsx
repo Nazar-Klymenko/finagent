@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 
-import { InputContainer, Label, InputStyled, InputError } from "./SharedStyles";
+import { InputContainer, InputError, InputStyled, Label } from "./SharedStyles";
 
 interface Props {
   name: string;

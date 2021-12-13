@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
-import { getAllOperatorsAPI } from "@api/supervisorAPI";
-import { FullPage } from "@components/content";
-import Table from "@components/Table";
+import { useEffect, useState } from "react";
+
 import { useTranslation } from "react-i18next";
+
+import { getAllOperatorsAPI } from "@api/supervisorAPI";
+
+import Table from "@components/Table";
+import { FullPage } from "@components/content";
 
 import { OperatorsToggle } from "./index.js";
 

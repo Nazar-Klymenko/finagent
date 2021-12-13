@@ -1,8 +1,10 @@
-import PageToggle from "@components/PageToggle";
 import React from "react";
-import { NavLink } from "react-router-dom";
+
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+
+import PageToggle from "@components/PageToggle";
 
 const Operators = () => {
   const { t } = useTranslation();

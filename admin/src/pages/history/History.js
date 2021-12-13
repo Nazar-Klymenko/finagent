@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-import Record from "./Record";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+
 import { getHistory } from "@api/mainAPI";
-import { FullPage } from "@components/content";
-import Table from "@components/Table";
+
 import MuiPagination from "@components/MuiPagination";
+import Subheader from "@components/Subheader";
+import Table from "@components/Table";
+import { FullPage } from "@components/content";
 
 import HistoryToggle from "./HistoryToggle";
-import Subheader from "@components/Subheader";
-import { useQuery } from "react-query";
+import Record from "./Record";
 
 const History = () => {
   const { t } = useTranslation();

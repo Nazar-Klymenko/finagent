@@ -1,6 +1,6 @@
-import { applyMiddleware, Action, createStore } from "@reduxjs/toolkit";
-import reduxThunk, { ThunkAction } from "redux-thunk";
+import { Action, applyMiddleware, createStore } from "@reduxjs/toolkit";
 import { composeWithDevTools } from "redux-devtools-extension";
+import reduxThunk, { ThunkAction } from "redux-thunk";
 
 import rootReducer, { RootState } from "./rootReducer";
 

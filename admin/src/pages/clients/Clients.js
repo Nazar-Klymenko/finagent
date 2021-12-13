@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-import { getClients } from "@api/mainAPI";
-import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useHistory, useParams } from "react-router-dom";
 
-import { FullPage } from "@components/content";
+import { getClients } from "@api/mainAPI";
 
-import Table from "@components/Table";
 import MuiPagination from "@components/MuiPagination";
 import Subheader from "@components/Subheader";
-import { useQuery } from "react-query";
+import Table from "@components/Table";
+import { FullPage } from "@components/content";
 
 const Clients = () => {
   const { t } = useTranslation();

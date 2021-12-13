@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import moment from "moment";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useHistory, useParams } from "react-router-dom";
 
 import { getApplications } from "@api/mainAPI";
-import { FullPage } from "@components/content";
-import MuiPagination from "@components/MuiPagination";
 
-import Table from "@components/Table";
+import MuiPagination from "@components/MuiPagination";
 import Subheader from "@components/Subheader";
-import { useQuery } from "react-query";
+import Table from "@components/Table";
+import { FullPage } from "@components/content";
 
 const MyApplications = () => {
   const { t } = useTranslation();

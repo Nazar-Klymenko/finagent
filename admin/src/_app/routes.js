@@ -1,27 +1,21 @@
+import { Redirect, Route, Switch } from "react-router-dom";
+
 import { PrivateRoute } from "../components/CustomRoutes";
-import { Route, Switch, Redirect } from "react-router-dom";
-
-import Welcome from "../pages/welcome";
-
-import { Applications } from "../pages/applications";
-
 import ApplicationOpen from "../pages/applicationOpen";
-import Clients from "../pages/clients";
-import ClientOpen from "../pages/clientOpen";
-import MyApplications from "../pages/myApplications";
-import { History } from "../pages/history";
+import { Applications } from "../pages/applications";
 import Archive from "../pages/archive";
-
-import { AllOperators, AcceptOperators } from "../pages/operators";
-
-import Login from "../pages/login";
-import SignUp from "../pages/signUp";
-import ForgotPassword from "../pages/forgotPassword";
-
-import Settings from "../pages/settings/Settings";
-
 import BufferPage from "../pages/bufferPage";
+import ClientOpen from "../pages/clientOpen";
+import Clients from "../pages/clients";
 import Error404 from "../pages/error404";
+import ForgotPassword from "../pages/forgotPassword";
+import { History } from "../pages/history";
+import Login from "../pages/login";
+import MyApplications from "../pages/myApplications";
+import { AcceptOperators, AllOperators } from "../pages/operators";
+import Settings from "../pages/settings/Settings";
+import SignUp from "../pages/signUp";
+import Welcome from "../pages/welcome";
 
 const Routes = () => (
   <Switch>

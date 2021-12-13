@@ -1,9 +1,10 @@
 import React, { forwardRef } from "react";
+
 import {
   InputContainer,
-  Label,
-  InputStyled,
   InputErrorMessage,
+  InputStyled,
+  Label,
 } from "./SharedStyles";
 
 interface Props {

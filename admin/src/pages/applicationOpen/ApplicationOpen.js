@@ -1,37 +1,34 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { useParams, useHistory } from "react-router-dom";
+
 import moment from "moment";
 import { useTranslation } from "react-i18next";
-
-import {
-  getSpecificApplicationAPI,
-  assignAppAPI,
-  returnAppAPI,
-} from "@api/mainAPI";
-
-import { returnApplicationToMainPoolAPI } from "@api/supervisorAPI";
+import { useQuery } from "react-query";
+import { useHistory, useParams } from "react-router-dom";
+import styled from "styled-components";
 
 import determineType from "@helpers/determineType";
 
-import { BackArrow, AdminButton } from "@components/buttons";
+import {
+  assignAppAPI,
+  getSpecificApplicationAPI,
+  returnAppAPI,
+} from "@api/mainAPI";
+import { returnApplicationToMainPoolAPI } from "@api/supervisorAPI";
+
+import InfoCell from "@components/InfoCell";
 import Subheader from "@components/Subheader";
 import SummaryList from "@components/SummaryList";
-import InfoCell from "@components/InfoCell";
+import { AdminButton, BackArrow } from "@components/buttons";
+import { FullPage } from "@components/content";
 
 import {
   ApplicationStatuses,
   ApplicationStatusesPreview,
 } from "./localComponents/ApplicationStatuses";
-
-import Feedback from "./localComponents/Feedback";
-import FeedbackPreview from "./localComponents/FeedbackPreview";
 import AttachDocuments from "./localComponents/AttachDocuments";
 import Attachments from "./localComponents/Attachments";
-
-import { FullPage } from "@components/content";
-
-import { useQuery } from "react-query";
+import Feedback from "./localComponents/Feedback";
+import FeedbackPreview from "./localComponents/FeedbackPreview";
 
 const ApplicationOpen = ({ returnTo }) => {
   const { t } = useTranslation();

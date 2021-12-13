@@ -2,23 +2,18 @@
 // import styled from "styled-components/macro";
 // import { useForm } from "react-hook-form";
 // import moment from "moment";
-
 // import Form from "@components/Form";
 // import { CTA } from "@components/buttons";
 // import Subheader from "@components/Subheader";
 // import { Textarea } from "@components/input";
-
 // import Section from "./Section";
-
 // import { sendFeedbackAPI } from "@api/mainAPI";
-
 // interface Props {
 //   setApplication: (arg0: object) => void;
 //   id: string;
 //   feedbackArray: [];
 //   defaultTime: string;
 // }
-
 // const Feedback: React.FC<Props> = ({
 //   setApplication,
 //   id,
@@ -34,21 +29,18 @@
 //     </div>
 //   );
 // };
-
 // export default Feedback;
-
-import { useForm } from "react-hook-form";
 import moment from "moment";
+import { useForm } from "react-hook-form";
+import styled from "styled-components/macro";
 
 import { sendFeedbackAPI } from "@api/mainAPI";
+
 import Form from "@components/Form";
-import { CTA } from "@components/buttons";
-
-import { Message } from "@components/svgs";
 import Subheader from "@components/Subheader";
+import { CTA } from "@components/buttons";
 import { Textarea } from "@components/input";
-
-import styled from "styled-components/macro";
+import { Message } from "@components/svgs";
 
 import Section from "./Section";
 

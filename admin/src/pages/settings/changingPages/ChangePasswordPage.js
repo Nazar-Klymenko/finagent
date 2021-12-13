@@ -1,14 +1,14 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { changePasswordSchema } from "../settingsSchema";
-
-import { CTA } from "@components/buttons/index";
+import { useAuth } from "@context/authContext";
 
 import Form from "@components/Form";
+import { CTA } from "@components/buttons/index";
 import { InputPassword } from "@components/input/index";
-import { useAuth } from "@context/authContext";
+
+import { changePasswordSchema } from "../settingsSchema";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();

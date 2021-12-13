@@ -1,9 +1,12 @@
-import React, { useRef, useState, forwardRef } from "react";
+import React, { forwardRef, useRef, useState } from "react";
+
 import styled, { css } from "styled-components";
-import { ArrowDown } from "@components/svgs";
+
 import useClickOutside from "@hooks/useClickOutside";
 
-import { Label, InputErrorMessage } from "./SharedStyles";
+import { ArrowDown } from "@components/svgs";
+
+import { InputErrorMessage, Label } from "./SharedStyles";
 
 interface Props {
   name: string;

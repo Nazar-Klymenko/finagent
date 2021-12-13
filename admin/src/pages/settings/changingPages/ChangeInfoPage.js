@@ -1,17 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { settingsSchema } from "../settingsSchema";
-
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import { Input } from "@components/input";
-import Loader from "@components/Loader";
 
 import { getSettingsAPI, updateSettingsAPI } from "@api/settingsAPI";
-import { ChangingPage, StatusError, ButtonPosition } from "./LocalStyles";
+
 import { useAuth } from "@context/authContext";
+
+import Form from "@components/Form";
+import Loader from "@components/Loader";
+import { CTA } from "@components/buttons";
+import { Input } from "@components/input";
+
+import { settingsSchema } from "../settingsSchema";
+import { ButtonPosition, ChangingPage, StatusError } from "./LocalStyles";
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();

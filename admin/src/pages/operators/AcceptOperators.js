@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-import {
-  getAwaitingOperatorsAPI,
-  acceptOperatorAPI,
-  declineOperatorAPI,
-} from "@api/supervisorAPI.js";
+import React, { useEffect, useState } from "react";
+
 import { useTranslation } from "react-i18next";
 
-import { FullPage } from "@components/content";
+import {
+  acceptOperatorAPI,
+  declineOperatorAPI,
+  getAwaitingOperatorsAPI,
+} from "@api/supervisorAPI.js";
+
 import Table from "@components/Table";
+import { FullPage } from "@components/content";
 
 import { OperatorsToggle } from "./index.js";
 

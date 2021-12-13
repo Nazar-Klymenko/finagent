@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+
 import moment from "moment";
 import { useTranslation } from "react-i18next";
-
-import { getApplications, assignAppAPI } from "@api/mainAPI";
-
-import { FullPage } from "@components/content";
-
-import Table from "@components/Table";
-import AssignCell from "@components/AssignCell";
-import MuiPagination from "@components/MuiPagination";
-import ApplicationsToggle from "./ApplicationsToggle";
-import Subheader from "@components/Subheader";
 import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+
+import { assignAppAPI, getApplications } from "@api/mainAPI";
 
 import { setSnackbar } from "@redux/alert/actions";
+
+import AssignCell from "@components/AssignCell";
+import MuiPagination from "@components/MuiPagination";
+import Subheader from "@components/Subheader";
+import Table from "@components/Table";
+import { FullPage } from "@components/content";
+
+import ApplicationsToggle from "./ApplicationsToggle";
 
 const Applications = () => {
   const { t } = useTranslation();

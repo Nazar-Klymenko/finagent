@@ -1,24 +1,23 @@
 import React from "react";
+
+import ArchiveIcon from "@material-ui/icons/Archive";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import MailIcon from "@material-ui/icons/Mail";
+import PeopleIcon from "@material-ui/icons/People";
+import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
 import styled from "styled-components/macro";
-import { useTranslation } from "react-i18next";
-
-import UserDropdown from "./UserDropdown";
-import LanguageMenu from "./LanguageMenu";
-
-import { UserAuth } from "@components/buttons";
-
-import LogoWrap from "@components/LogoWrap";
-import {
-  Logo,
-  SideApplications,
-  SideClients,
-  SideMyApplications,
-  SideCalendar,
-  SideArchive,
-} from "@components/svgs";
 
 import { useAuth } from "@context/authContext";
+
+import LogoWrap from "@components/LogoWrap";
+import { UserAuth } from "@components/buttons";
+import { Logo } from "@components/svgs";
+
+import LanguageMenu from "./LanguageMenu";
+import UserDropdown from "./UserDropdown";
 
 const Navbar: React.FC = () => {
   const { t } = useTranslation();
@@ -44,7 +43,7 @@ const Navbar: React.FC = () => {
           activeClassName="selected"
           className="item"
         >
-          <SideApplications />
+          <AssignmentIcon />
           <span>{t("Navbar.applications")}</span>
         </NavLink>
         <NavLink
@@ -57,7 +56,7 @@ const Navbar: React.FC = () => {
           activeClassName="selected"
           className="item"
         >
-          <SideClients />
+          <PeopleIcon />
           <span>{t("Navbar.clients")}</span>
         </NavLink>
         <NavLink
@@ -70,8 +69,21 @@ const Navbar: React.FC = () => {
           activeClassName="selected"
           className="item"
         >
-          <SideMyApplications />
+          <AssignmentIndIcon />
           <span>{t("Navbar.myApplications")}</span>
+        </NavLink>
+        <NavLink
+          to="/tickets/all/1"
+          isActive={() => {
+            const regex = /tickets\/all\/\d+/gm;
+            const matches = regex.test(pathname);
+            return matches;
+          }}
+          activeClassName="selected"
+          className="item"
+        >
+          <MailIcon />
+          <span>{t("Navbar.tickets")}</span>
         </NavLink>
         <NavLink
           isActive={() => {
@@ -83,7 +95,7 @@ const Navbar: React.FC = () => {
           activeClassName="selected"
           className="item"
         >
-          <SideCalendar />
+          <DateRangeIcon />
           <span>{t("Navbar.history")}</span>
         </NavLink>
         <NavLink
@@ -96,7 +108,7 @@ const Navbar: React.FC = () => {
           activeClassName="selected"
           className="item"
         >
-          <SideArchive />
+          <ArchiveIcon />
           <span>{t("Navbar.archive")}</span>
         </NavLink>
       </NavbarColumn>

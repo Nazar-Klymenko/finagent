@@ -14,6 +14,7 @@
     "applications": "Aplikacje",
     "clients": "Klienci",
     "myApplications": "Moje aplikacje",
+    "tickets": "Tickety",
     "history": "Historia",
     "archive": "Archiwum",
     "logIn": "Logowanie",
@@ -77,7 +78,8 @@
     "surname": "Nazwisko",
     "email": "Email",
     "phone": "Telefon",
-    "language": "Język"
+    "language": "Język",
+    "provider": "Sposób rejestracji"
   },
   "MyApplications": {
     "title": "Dodane aplikacje",

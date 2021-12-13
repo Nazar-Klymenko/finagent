@@ -1,5 +1,5 @@
 import Header from "./Header";
-import Text from "./Text";
 import Subheader from "./Subheader";
+import Text from "./Text";
 
 export { Header, Text, Subheader };

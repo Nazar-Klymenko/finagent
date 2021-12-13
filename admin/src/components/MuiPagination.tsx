@@ -1,8 +1,8 @@
 import React, { FC } from "react";
+
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import { Link } from "react-router-dom";
-
 import styled from "styled-components/macro";
 
 interface Props {

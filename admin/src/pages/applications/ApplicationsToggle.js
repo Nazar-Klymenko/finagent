@@ -1,9 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import PageToggle from "@components/PageToggle";
+
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 
 import { useAuth } from "@context/authContext";
+
+import PageToggle from "@components/PageToggle";
 
 const ApplicationsToggle = () => {
   const { t } = useTranslation();

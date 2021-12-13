@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { NavLink, useHistory } from "react-router-dom";
+import styled from "styled-components";
 
-import loginSchema from "./login.schema";
-
-import { Input, InputPassword } from "@components/input";
-import { ContentWrap } from "@components/content";
-import { CTA } from "@components/buttons";
-import Form from "@components/Form";
-import { Header } from "@components/typography";
 import { useAuth } from "@context/authContext";
 
-import styled from "styled-components";
+import Form from "@components/Form";
+import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { Input, InputPassword } from "@components/input";
+import { Header } from "@components/typography";
+
+import loginSchema from "./login.schema";
 
 const Login = (props) => {
   const { t } = useTranslation();

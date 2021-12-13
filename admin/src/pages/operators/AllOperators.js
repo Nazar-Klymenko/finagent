@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import { getAllOperatorsAPI } from "@api/supervisorAPI";
+
 import { FullPage } from "@components/content";
-import Table from "@components/Table";
-import { useTranslation } from "react-i18next";
+import { MuiTable, TableCell, TableRow } from "@components/table";
 
 import { OperatorsToggle } from "./index.js";
 
 const AllOperators = () => {
-  const { t } = useTranslation();
   const [admins, setAdmins] = useState([]);
 
   useEffect(() => {
@@ -24,25 +24,18 @@ const AllOperators = () => {
   return (
     <FullPage>
       <OperatorsToggle />
-      <Table>
-        <thead>
-          <tr>
-            <th>{t("Operators.name")}</th>
-            <th>{t("Operators.surname")}</th>
-            <th>{t("Operators.email")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {admins &&
-            admins.map((user) => (
-              <tr key={user._id}>
-                <td>{user.name}</td>
-                <td>{user.surname}</td>
-                <td>{user.email}</td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
+      <MuiTable
+        headers={["Operators.name", "Operators.surname", "Operators.email"]}
+      >
+        {admins &&
+          admins.map((user) => (
+            <TableRow key={user._id} hover>
+              <TableCell>{user.name}</TableCell>
+              <TableCell>{user.surname}</TableCell>
+              <TableCell>{user.email}</TableCell>
+            </TableRow>
+          ))}
+      </MuiTable>
     </FullPage>
   );
 };

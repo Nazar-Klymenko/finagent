@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-import Record from "./Record";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+
 import { getHistory } from "@api/mainAPI";
-import { FullPage } from "@components/content";
-import Table from "@components/Table";
+
 import MuiPagination from "@components/MuiPagination";
+import Subheader from "@components/Subheader";
+import { FullPage } from "@components/content";
+import { MuiTable, TableCell, TableRow } from "@components/table";
 
 import HistoryToggle from "./HistoryToggle";
-import Subheader from "@components/Subheader";
-import { useQuery } from "react-query";
+import Record from "./Record";
 
 const History = () => {
   const { t } = useTranslation();
@@ -48,24 +50,19 @@ const History = () => {
         description={t("History.subtitle")}
       />
       <HistoryToggle />
-      <Table>
-        <thead>
-          <tr>
-            <th>{t("History.date")}</th>
-            <th>{t("History.time")}</th>
-            <th>{t("History.operator")}</th>
-            <th>{t("History.action")}</th>
-            <th>{t("History.description")}</th>
-            <th>{t("History.application")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.history?.length > 0 &&
-            data.history.map((record, idx) => (
-              <Record row={record} key={idx} />
-            ))}
-        </tbody>
-      </Table>
+      <MuiTable
+        headers={[
+          "History.date",
+          "History.time",
+          "History.operator",
+          "History.action",
+          "History.description",
+          "History.application",
+        ]}
+      >
+        {data?.history?.length > 0 &&
+          data.history.map((record, idx) => <Record row={record} key={idx} />)}
+      </MuiTable>
       <MuiPagination
         category="history"
         status={status}

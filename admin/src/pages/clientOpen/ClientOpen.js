@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
 
 import { getApplicationsForUserAPI, getSpecificClientAPI } from "@api/mainAPI";
 
 import ApplicationCard from "@components/ApplicationCard";
+import InfoCell from "@components/InfoCell";
 import { BackArrow } from "@components/buttons";
 import { FullPage } from "@components/content";
-import InfoCell from "@components/InfoCell";
 
 const ClientOpen = () => {
   let { id } = useParams();

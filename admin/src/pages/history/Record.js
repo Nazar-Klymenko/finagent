@@ -1,5 +1,7 @@
 import { useHistory } from "react-router-dom";
 
+import { TableCell, TableRow } from "@components/table";
+
 const Record = ({ row }) => {
   const history = useHistory();
 
@@ -18,20 +20,20 @@ const Record = ({ row }) => {
   };
 
   return (
-    <tr>
-      <td>{createdAt}</td>
-      <td>{`${hours}:${minutes}:${seconds}`}</td>
-      <td>{row.employee?.name}</td>
-      <td>{row.action}</td>
-      <td>{row.description}</td>
-      <td
+    <TableRow hover>
+      <TableCell>{createdAt}</TableCell>
+      <TableCell>{`${hours}:${minutes}:${seconds}`}</TableCell>
+      <TableCell>{row.employee?.name}</TableCell>
+      <TableCell>{row.action}</TableCell>
+      <TableCell>{row.description}</TableCell>
+      <TableCell
         onClick={() => {
           openApplication(row.application?._id);
         }}
       >
         {row.application?._id}
-      </td>
-    </tr>
+      </TableCell>
+    </TableRow>
   );
 };
 

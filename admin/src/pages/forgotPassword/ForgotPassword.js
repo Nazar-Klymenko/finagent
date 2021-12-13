@@ -1,11 +1,11 @@
-import { useHistory, NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import { ContentWrap } from "@components/content";
 import Form from "@components/Form";
-import { Input } from "@components/input";
 import { CTA } from "@components/buttons";
+import { ContentWrap } from "@components/content";
+import { Input } from "@components/input";
 
 const ForgotPassword = () => {
   const { register, handleSubmit, errors } = useForm();

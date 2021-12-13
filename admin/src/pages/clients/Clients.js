@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-import { getClients } from "@api/mainAPI";
-import { useHistory, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useHistory, useParams } from "react-router-dom";
 
-import { FullPage } from "@components/content";
+import { getClients } from "@api/mainAPI";
 
-import Table from "@components/Table";
 import MuiPagination from "@components/MuiPagination";
 import Subheader from "@components/Subheader";
-import { useQuery } from "react-query";
+import { FullPage } from "@components/content";
+import { MuiTable, TableCell, TableRow } from "@components/table";
 
 const Clients = () => {
   const { t } = useTranslation();
@@ -42,36 +42,34 @@ const Clients = () => {
         subheader={t("Clients.title")}
         description={t("Clients.subtitle")}
       />
-      <Table>
-        <thead>
-          <tr>
-            <th>{t("Clients.name")}</th>
-            <th>{t("Clients.surname")}</th>
-            <th>{t("Clients.email")}</th>
-            <th>{t("Clients.phone")}</th>
-            <th>{t("Clients.language")}</th>
-            <th>{t("Clients.provider")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.users?.length > 0 &&
-            data.users.map((user) => (
-              <tr
-                onClick={() => {
-                  history.push(`/clients/${user._id}`);
-                }}
-                key={user._id}
-              >
-                <td>{user.name}</td>
-                <td>{user.surname}</td>
-                <td>{user.email}</td>
-                <td>{user.phone}</td>
-                <td>{user.language}</td>
-                <td>{user.provider}</td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
+
+      <MuiTable
+        headers={[
+          "Clients.name",
+          "Clients.email",
+          "Clients.phone",
+          "Clients.language",
+          "Clients.provider",
+        ]}
+      >
+        {data?.users?.length > 0 &&
+          data.users.map((user) => (
+            <TableRow
+              onClick={() => {
+                history.push(`/clients/${user._id}`);
+              }}
+              key={user._id}
+              hover
+            >
+              <TableCell>{user.fullName}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.phone}</TableCell>
+              <TableCell>{user.language || "pl"}</TableCell>
+              <TableCell>{user.provider}</TableCell>
+            </TableRow>
+          ))}
+      </MuiTable>
+
       <MuiPagination
         currentPage={currentPage}
         maximumPages={maximumPages}

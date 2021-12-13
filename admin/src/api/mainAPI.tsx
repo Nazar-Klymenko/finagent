@@ -5,6 +5,16 @@ export const getClients = (page: string, size: string) => {
     method: "GET",
   });
 };
+export const getTickets = (page: number, size: number) => {
+  return axios(`/admin/tickets?page=${page}&size=${size}`, {
+    method: "GET",
+  });
+};
+export const deleteTicket = (id: number) => {
+  return axios(`/admin/tickets/${id}`, {
+    method: "DELETE",
+  });
+};
 
 export const getSpecificClientAPI = (id: string) => {
   return axios(`/admin/clients/${id}`, {

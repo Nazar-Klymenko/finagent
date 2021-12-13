@@ -1,10 +1,9 @@
 import React, { useCallback } from "react";
-import { useHistory } from "react-router-dom";
 
 import moment from "moment";
-
-import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components/macro";
 
 interface Props {
   appDataForUser: any;

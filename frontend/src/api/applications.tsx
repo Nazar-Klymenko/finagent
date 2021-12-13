@@ -11,6 +11,19 @@ export const getApplicationsQuantityAPI = (category: string) => {
     method: "GET",
   });
 };
+export const submitTicket = (data: {
+  fullName: string;
+  email: string;
+  message: string;
+}) => {
+  return axios(`/user/application/submit/ticket`, {
+    method: "POST",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+};
 
 //needs a filename specified at the end
 //url: `user/application/files/${id}/${type}/FILENAME`,

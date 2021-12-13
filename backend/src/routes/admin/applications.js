@@ -1,13 +1,3 @@
-import express from "express";
-const router = express.Router();
-
-import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";
-import { verifyAdmin, verifySupervisor } from "middleware/admin";
-
-import { verifyAccessTokenFirebaseQueryAdmin } from "middleware/auth";
-import { accessToImage } from "middleware/imageAcess";
-import serveDocument from "controllers/serveDocument";
-
 import {
   getAllApplications,
   getTakenApplications,
@@ -22,6 +12,14 @@ import {
   attachDocumentsAdmin,
   getArchivedApplications,
 } from "controllers/admin/applicationActions.js";
+import serveDocument from "controllers/serveDocument";
+import express from "express";
+import { verifyAdmin, verifySupervisor } from "middleware/admin";
+import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";
+import { verifyAccessTokenFirebaseQueryAdmin } from "middleware/auth";
+import { accessToImage } from "middleware/imageAcess";
+
+const router = express.Router();
 
 router
   .route("/show/:status")

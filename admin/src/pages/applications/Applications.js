@@ -13,8 +13,8 @@ import { setSnackbar } from "@redux/alert/actions";
 import AssignCell from "@components/AssignCell";
 import MuiPagination from "@components/MuiPagination";
 import Subheader from "@components/Subheader";
-import Table from "@components/Table";
 import { FullPage } from "@components/content";
+import { MuiTable, TableCell, TableRow } from "@components/table";
 
 import ApplicationsToggle from "./ApplicationsToggle";
 
@@ -76,53 +76,49 @@ const Applications = () => {
 
       <ApplicationsToggle />
 
-      <Table>
-        <thead>
-          <tr>
-            <th>{t("Applications.admin")}</th>
-            <th>{t("Applications.name")}</th>
-            <th>{t("Applications.surname")}</th>
-            <th>{t("Applications.email")}</th>
-            <th>{t("Applications.phone")}</th>
-            <th>{t("Applications.service")}</th>
-            <th>{t("Applications.type")}</th>
-            <th>{t("Applications.createdAt")}</th>
-            <th>{t("Applications.lastUpdate")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.applications?.length > 0 &&
-            data.applications.map((app) => {
-              const createdAt = new Date(app.createdAt).toLocaleDateString(
-                "pl"
-              );
-              const updatedAt = moment(app.updatedAt).fromNow();
+      <MuiTable
+        headers={[
+          "Applications.admin",
+          "Applications.name",
+          "Applications.surname",
+          "Applications.email",
+          "Applications.phone",
+          "Applications.service",
+          "Applications.type",
+          "Applications.createdAt",
+          "Applications.lastUpdate",
+        ]}
+      >
+        {data?.applications?.length > 0 &&
+          data.applications.map((app) => {
+            const createdAt = new Date(app.createdAt).toLocaleDateString("pl");
+            const updatedAt = moment(app.updatedAt).fromNow();
 
-              return (
-                <tr
-                  key={app._id}
-                  onClick={() => {
-                    history.push(`/applications/open/${app._id}`);
-                  }}
-                >
-                  <AssignCell
-                    id={app._id}
-                    employee={app.employee}
-                    assignApplication={assignApplication}
-                  />
-                  <td>{app.user?.name}</td>
-                  <td>{app.user?.surname}</td>
-                  <td>{app.user?.email}</td>
-                  <td>{app.user?.phone}</td>
-                  <td>{app.category}</td>
-                  <td>{app.type}</td>
-                  <td>{createdAt}</td>
-                  <td>{updatedAt}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </Table>
+            return (
+              <TableRow
+                key={app._id}
+                onClick={() => {
+                  history.push(`/applications/open/${app._id}`);
+                }}
+                hover
+              >
+                <AssignCell
+                  id={app._id}
+                  employee={app.employee}
+                  assignApplication={assignApplication}
+                />
+                <TableCell>{app.user?.name}</TableCell>
+                <TableCell>{app.user?.surname}</TableCell>
+                <TableCell>{app.user?.email}</TableCell>
+                <TableCell>{app.user?.phone}</TableCell>
+                <TableCell>{app.category}</TableCell>
+                <TableCell>{app.type}</TableCell>
+                <TableCell>{createdAt}</TableCell>
+                <TableCell>{updatedAt}</TableCell>
+              </TableRow>
+            );
+          })}
+      </MuiTable>
       <MuiPagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

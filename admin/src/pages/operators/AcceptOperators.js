@@ -8,8 +8,8 @@ import {
   getAwaitingOperatorsAPI,
 } from "@api/supervisorAPI.js";
 
-import Table from "@components/Table";
 import { FullPage } from "@components/content";
+import { MuiTable, TableCell, TableRow } from "@components/table";
 
 import { OperatorsToggle } from "./index.js";
 
@@ -61,49 +61,46 @@ const AcceptOperators = () => {
   return (
     <FullPage>
       <OperatorsToggle />
-      <Table>
-        <thead>
-          <tr>
-            <th>{t("Operators.name")}</th>
-            <th>{t("Operators.surname")}</th>
-            <th>{t("Operators.email")}</th>
-            <th>{t("Operators.secret")}</th>
-            <th>{t("Operators.actionAccept")}</th>
-            <th>{t("Operators.actionDecline")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {admins &&
-            admins.map((user) => (
-              <tr key={user._id}>
-                <td>{user.name}</td>
-                <td>{user.surname}</td>
-                <td>{user.email}</td>
-                <td>{user.secret}</td>
-                <td>
-                  <button
-                    className="accept-cell"
-                    onClick={() => {
-                      acceptOperator(user._id);
-                    }}
-                  >
-                    Accept
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="decline-cell"
-                    onClick={() => {
-                      declineOperator(user._id);
-                    }}
-                  >
-                    Decline
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
+      <MuiTable
+        headers={[
+          "Operators.name",
+          "Operators.surname",
+          "Operators.email",
+          "Operators.secret",
+          "Operators.actionAccept",
+          "Operators.actionDecline",
+        ]}
+      >
+        {admins &&
+          admins.map((user) => (
+            <TableRow key={user._id} hover>
+              <TableCell>{user.name}</TableCell>
+              <TableCell>{user.surname}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.secret}</TableCell>
+              <TableCell>
+                <button
+                  className="accept-cell"
+                  onClick={() => {
+                    acceptOperator(user._id);
+                  }}
+                >
+                  Accept
+                </button>
+              </TableCell>
+              <TableCell>
+                <button
+                  className="decline-cell"
+                  onClick={() => {
+                    declineOperator(user._id);
+                  }}
+                >
+                  Decline
+                </button>
+              </TableCell>
+            </TableRow>
+          ))}
+      </MuiTable>
     </FullPage>
   );
 };

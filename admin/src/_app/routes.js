@@ -15,6 +15,7 @@ import MyApplications from "../pages/myApplications";
 import { AcceptOperators, AllOperators } from "../pages/operators";
 import Settings from "../pages/settings/Settings";
 import SignUp from "../pages/signUp";
+import Tickets from "../pages/tickets/Tickets";
 import Welcome from "../pages/welcome";
 
 const Routes = () => (
@@ -39,6 +40,7 @@ const Routes = () => (
     <PrivateRoute path="/applications/:status/:page" component={Applications} />
     <PrivateRoute path="/clients/all/:page" component={Clients} />
     <PrivateRoute path="/clients/open/:id" component={ClientOpen} />
+    <PrivateRoute path="/tickets/all/:page" component={Tickets} />
     <PrivateRoute path="/history/:status/:page" component={History} />
     <Route
       path="/operators"

@@ -5,6 +5,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -53,7 +54,7 @@ const MuiPasswordInput: FC<Props> = ({
           <OutlinedInput
             id={name}
             type={showPassword ? "text" : "password"}
-            error={!!errors[name]}
+            error={!!_.get(errors, name)}
             autoComplete={autoComplete}
             onChange={field.onChange}
             value={field.value}
@@ -75,7 +76,7 @@ const MuiPasswordInput: FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.[name]?.message)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
       {/* <Requirements>
         {errorList &&

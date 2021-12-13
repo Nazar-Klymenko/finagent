@@ -2,6 +2,7 @@ import React, { FC } from "react";
 
 import { Select } from "@material-ui/core/";
 import MenuItem from "@material-ui/core/MenuItem";
+import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -39,7 +40,7 @@ const MuiSelect: FC<Props> = ({
             onChange={field.onChange}
             value={field.value}
             placeholder={placeholder}
-            error={!!errors[name]}
+            error={!!_.get(errors, name)}
             labelId="demo-customized-select-label"
             id={name}
             style={{
@@ -70,7 +71,7 @@ const MuiSelect: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.[name]?.message)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
     </>
   );

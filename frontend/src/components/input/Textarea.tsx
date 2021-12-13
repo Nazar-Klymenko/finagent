@@ -1,6 +1,7 @@
 import React from "react";
 
 import { OutlinedInput } from "@material-ui/core";
+import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -48,7 +49,7 @@ const Textarea: React.FC<Props> = ({
             rowsMax={8}
             fullWidth
             placeholder={placeholder}
-            error={!!errors[name]}
+            error={!!_.get(errors, name)}
             id={name}
           />
         )}
@@ -56,7 +57,7 @@ const Textarea: React.FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.[name]?.message)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
     </>
   );

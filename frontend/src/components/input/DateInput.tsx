@@ -7,6 +7,7 @@ import {
 } from "@material-ui/pickers";
 import "date-fns";
 import { enGB, pl, ru, uk } from "date-fns/esm/locale";
+import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -75,7 +76,7 @@ const DateInput: FC<Props> = ({
             okLabel="OK"
             clearLabel="Clear"
             cancelLabel="Cancel"
-            error={!!errors[name]}
+            error={!!_.get(errors, name)}
             inputVariant="outlined"
             helperText={null}
             style={{
@@ -91,7 +92,7 @@ const DateInput: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.[name]?.message)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
     </MuiPickersUtilsProvider>
   );

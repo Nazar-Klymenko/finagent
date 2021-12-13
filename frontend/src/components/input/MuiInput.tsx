@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -26,15 +27,11 @@ const MuiInput: FC<Props> = ({
   ...other
 }) => {
   const { t } = useTranslation();
-
   const {
     control,
     formState: { errors },
   } = useFormContext();
 
-  // console.log(errors);
-  // console.log(errors?.name?.message);
-  // console.log(control);
   return (
     <>
       <Label htmlFor={name}>
@@ -57,7 +54,7 @@ const MuiInput: FC<Props> = ({
             }}
             id={name}
             autoComplete={autoComplete}
-            error={!!errors[name]}
+            error={!!_.get(errors, name)}
             {...other}
           />
         )}
@@ -65,7 +62,7 @@ const MuiInput: FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.[name]?.message)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
     </>
   );

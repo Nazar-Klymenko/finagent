@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 
+import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
@@ -40,7 +41,7 @@ const MuiPhoneInput: FC<Props> = ({
             onChange={field.onChange}
             value={field.value}
             country="pl"
-            isValid={!errors[name]}
+            isValid={!_.get(errors, name)}
             defaultErrorMessage="testtttt "
             onlyCountries={["pl", "ua", "by", "ru"]}
             specialLabel=""
@@ -54,7 +55,7 @@ const MuiPhoneInput: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(errors?.[name]?.message)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
     </>
   );

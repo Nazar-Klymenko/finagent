@@ -2,6 +2,7 @@ import React, { FC } from "react";
 
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -55,7 +56,7 @@ const MuiCheckbox: FC<Props> = ({
       {spacer && (
         <InputErrorMessage>
           <span className="invis-star">*</span>
-          {t(errors?.[name]?.message)}
+          {t(_.get(errors, `${name}.message`))}
         </InputErrorMessage>
       )}
     </>

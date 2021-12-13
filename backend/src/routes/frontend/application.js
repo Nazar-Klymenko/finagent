@@ -1,25 +1,24 @@
-import express from "express";
-const router = express.Router();
-
-import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth.js";
-import { accessToImage } from "middleware/imageAcess";
-
 import {
   getPreviewApplications,
   getSpecificApplication,
   getQuantityApplications,
   archiveApplication,
 } from "controllers/frontend/applicationsActions";
-
-import serveDocument from "controllers/serveDocument";
-import InsuranceCarOCSubmit from "controllers/frontend/submits/InsuranceCarOC.submit.js";
 import InsuranceBorderSubmit from "controllers/frontend/submits/InsuranceBorder.submit.js";
+import InsuranceCarOCSubmit from "controllers/frontend/submits/InsuranceCarOC.submit.js";
+import InsuranceEstateSubmit from "controllers/frontend/submits/InsuranceEstate.submit.js";
 import InsuranceHealthMedicalSubmit from "controllers/frontend/submits/InsuranceHealthMedical.submit.js";
 import InsuranceHealthSpecialistSubmit from "controllers/frontend/submits/InsuranceHealthSpecialist.submit.js";
 import InsuranceTravelSubmit from "controllers/frontend/submits/InsuranceTravel.submit.js";
-import InsuranceEstateSubmit from "controllers/frontend/submits/InsuranceEstate.submit.js";
 import LoanCashSubmit from "controllers/frontend/submits/LoanCash.submit.js";
 import LoanMortgageSubmit from "controllers/frontend/submits/LoanMortgage.submit.js";
+import { TicketSubmit } from "controllers/frontend/submits/Ticket.submit.js";
+import serveDocument from "controllers/serveDocument";
+import express from "express";
+import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth.js";
+import { accessToImage } from "middleware/imageAcess";
+
+const router = express.Router();
 
 router
   .route("/show/:category/:status")
@@ -66,6 +65,8 @@ router
 router
   .route("/submit/loan_mortgage")
   .post(verifyAccessTokenFirebase, isEmailVerified, LoanMortgageSubmit);
+
+router.route("/submit/ticket").post(TicketSubmit);
 
 router
   .route("/files/:id/:type/:filename")

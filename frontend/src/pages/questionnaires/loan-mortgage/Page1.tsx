@@ -12,7 +12,6 @@ import useTitle from "@hooks/useTitle";
 import { useData } from "@context/dataContext";
 
 import Form from "@components/Form";
-import FormError from "@components/FormError";
 import ProgressBar from "@components/ProgressBar";
 import { CTA } from "@components/buttons";
 import { ContentWrap } from "@components/content";
@@ -21,6 +20,7 @@ import { MuiRadio } from "@components/input";
 import {
   ApplicantBox,
   ButtonsWrap,
+  ErrorBottom,
   Page,
   Subtitle,
   Title,
@@ -30,7 +30,8 @@ import AddApplicant from "./AddApplicant";
 
 const Page1 = () => {
   const { t } = useTranslation();
-  useTitle("Cash loan | FinAgent");
+  useTitle("Mortgage | FinAgent");
+  const history = useHistory();
 
   const {
     appData,
@@ -43,7 +44,6 @@ const Page1 = () => {
   } = useData();
 
   const appDataValid = validateAppData(appData, "ApplicantsData");
-  const history = useHistory();
 
   const [openModal, setOpenModal] = useState(false);
   const [openIncomeModal, setOpenIncomeModal] = useState(false);
@@ -67,24 +67,24 @@ const Page1 = () => {
     shouldFocusError: true,
   });
 
-  const maritalStatus = watch("maritalStatus") || appDataValid.maritalStatus;
-  const bothSpousesStart =
-    watch("bothSpousesStart") || appDataValid.bothSpousesStart;
+  // const maritalStatus = watch("maritalStatus") || appDataValid.maritalStatus;
+  // const bothSpousesStart =
+  //   watch("bothSpousesStart") || appDataValid.bothSpousesStart;
 
-  const formSubmit = (data) => {
-    setValues(data, "ApplicantsData");
-    if (!applicantData["Applicant1"]?.basicIncome) {
-      setIsError(t("LoanCash.Error.noFirstApplicant"));
-    } else if (
-      bothSpousesStart === "yes" &&
-      !applicantData["Applicant2"]?.basicIncome
-    ) {
-      setIsError(t("LoanCash.Error.noSecondApplicant"));
-    } else {
-      setCurrentPage(2);
-      history.push("./2");
-    }
-  };
+  // const formSubmit = (data) => {
+  //   setValues(data, "ApplicantsData");
+  //   if (!applicantData["Applicant1"]?.basicIncome) {
+  //     setIsError(t("LoanMortgage.Error.noFirstApplicant"));
+  //   } else if (
+  //     bothSpousesStart === "yes" &&
+  //     !applicantData["Applicant2"]?.basicIncome
+  //   ) {
+  //     setIsError(t("LoanMortgage.Error.noSecondApplicant"));
+  //   } else {
+  //     setCurrentPage(2);
+  //     history.push("./2");
+  //   }
+  // };
 
   useEffect(() => {
     setValues(applicantData, "Applicants");
@@ -97,37 +97,30 @@ const Page1 = () => {
     setAdditionalData(incomeData);
   }, [incomeData]);
 
-  const removeIncome = (e) => {
-    let newIncome = [...incomeData];
-    const idx = e.target.getAttribute("value");
-    newIncome.splice(idx, 1);
-    setIncomeData(newIncome);
-  };
-
   return (
     <ContentWrap fullWidth>
       <QuestState data={appData} />
 
       <Page>
-        <Title>{t("LoanCash.title")}</Title>
+        <Title>{t("LoanMortgage.title")}</Title>
         <ProgressBar
           maxSteps={2}
           currentStep={1}
-          label={t("LoanCash.Page1.subtitle")}
+          label={t("LoanMortgage.Page1.subtitle")}
         />
-        <Subtitle>{t("LoanCash.Page1.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+        <Subtitle>{t("LoanMortgage.Page1.subtitle")}</Subtitle>
+        {/* <Form id="form" onSubmit={handleSubmit(formSubmit)}>
           <MuiRadio
             control={control}
             name="maritalStatus"
-            legend={t("LoanCash.Page1.maritalStatus")}
+            legend={t("LoanMortgage.Page1.maritalStatus")}
             options={[
               {
-                label: t("LoanCash.Page1.notMarried"),
+                label: t("LoanMortgage.Page1.notMarried"),
                 value: "notMarried",
               },
               {
-                label: t("LoanCash.Page1.married"),
+                label: t("LoanMortgage.Page1.married"),
                 value: "married",
               },
             ]}
@@ -138,14 +131,14 @@ const Page1 = () => {
               <MuiRadio
                 control={control}
                 name="propertySeparation"
-                legend={t("LoanCash.Page1.propertySeparation")}
+                legend={t("LoanMortgage.Page1.propertySeparation")}
                 options={[
                   {
-                    label: t("LoanCash.Page1.no"),
+                    label: t("LoanMortgage.Page1.no"),
                     value: "no",
                   },
                   {
-                    label: t("LoanCash.Page1.yes"),
+                    label: t("LoanMortgage.Page1.yes"),
                     value: "yes",
                   },
                 ]}
@@ -155,14 +148,14 @@ const Page1 = () => {
               <MuiRadio
                 control={control}
                 name="bothSpousesStart"
-                legend={t("LoanCash.Page1.bothSpousesStart")}
+                legend={t("LoanMortgage.Page1.bothSpousesStart")}
                 options={[
                   {
-                    label: t("LoanCash.Page1.no"),
+                    label: t("LoanMortgage.Page1.no"),
                     value: "no",
                   },
                   {
-                    label: t("LoanCash.Page1.yes"),
+                    label: t("LoanMortgage.Page1.yes"),
                     value: "yes",
                   },
                 ]}
@@ -170,7 +163,7 @@ const Page1 = () => {
               />
             </>
           )}
-          <Subtitle>{t("LoanCash.ApplicantBox.title")}</Subtitle>
+          <Subtitle>{t("LoanMortgage.ApplicantBox.title")}</Subtitle>
           <ApplicantBox>
             {applicantData.Applicant1 && (
               <div className="person">
@@ -186,7 +179,7 @@ const Page1 = () => {
                       setOpenModal(true);
                     }}
                   >
-                    {t("LoanCash.ApplicantBox.edit")}
+                    {t("LoanMortgage.ApplicantBox.edit")}
                   </span>
                 </div>
               </div>
@@ -200,7 +193,7 @@ const Page1 = () => {
                   setDefaultPerson(null);
                 }}
               >
-                {t("LoanCash.ApplicantBox.addApplicant1")}
+                {t("LoanMortgage.ApplicantBox.addApplicant1")}
               </span>
             )}
           </ApplicantBox>
@@ -221,7 +214,7 @@ const Page1 = () => {
                           setOpenModal(true);
                         }}
                       >
-                        {t("LoanCash.ApplicantBox.edit")}
+                        {t("LoanMortgage.ApplicantBox.edit")}
                       </span>
                     </div>
                   </div>
@@ -235,13 +228,13 @@ const Page1 = () => {
                       setDefaultPerson(null);
                     }}
                   >
-                    {t("LoanCash.ApplicantBox.addApplicant2")}
+                    {t("LoanMortgage.ApplicantBox.addApplicant2")}
                   </span>
                 )}
               </ApplicantBox>
             </>
           )}
-          <Subtitle>{t("LoanCash.IncomeBox.title")}</Subtitle>
+          <Subtitle>{t("LoanMortgage.IncomeBox.title")}</Subtitle>
           <ApplicantBox>
             {incomeData &&
               incomeData.map((income, idx) => (
@@ -261,7 +254,7 @@ const Page1 = () => {
                         setOpenIncomeModal(true);
                       }}
                     >
-                      {t("LoanCash.IncomeBox.edit")}
+                      {t("LoanMortgage.IncomeBox.edit")}
                     </span>
                     <span className="delete" value={idx} onClick={removeIncome}>
                       {t("InsuranceHealth.ApplicantBox.delete")}
@@ -276,10 +269,10 @@ const Page1 = () => {
                 setOpenIncomeModal(true);
               }}
             >
-              {t("LoanCash.IncomeBox.addIncome")}
+              {t("LoanMortgage.IncomeBox.addIncome")}
             </span>
           </ApplicantBox>
-        </Form>
+        </Form> */}
         <AddApplicant
           openModal={openModal}
           setOpenModal={setOpenModal}
@@ -299,7 +292,7 @@ const Page1 = () => {
         <ButtonsWrap>
           <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
-        {isError && <FormError>{isError}</FormError>}
+        {isError && <ErrorBottom>{isError}</ErrorBottom>}
       </Page>
     </ContentWrap>
   );

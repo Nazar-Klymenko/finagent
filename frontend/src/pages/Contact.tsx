@@ -3,10 +3,15 @@ import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import styled from "styled-components/macro";
 import * as yup from "yup";
 
+import { submitTicket } from "@api/applications";
+
 import useTitle from "@hooks/useTitle";
+
+import { setSnackbar } from "@redux/alert/actions";
 
 import Form from "@components/Form";
 import { CTA } from "@components/buttons";
@@ -16,7 +21,9 @@ import { Mail, Phone, Point } from "@components/svgs";
 import { Header } from "@components/typography";
 
 const schema = yup.object().shape({
-  oc: yup.boolean(),
+  fullName: yup.string().required("lala"),
+  email: yup.string().required("lala"),
+  message: yup.string().required("lala"),
 });
 
 type FormData = {
@@ -29,18 +36,24 @@ const Contact = () => {
   const { t } = useTranslation();
   useTitle("Contact | FinAgent");
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormData>({
+  const dispatch = useDispatch();
+
+  const methods = useForm<FormData>({
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(schema),
   });
-  const formSubmit = handleSubmit((data) => {
-    console.log(data);
+  const { handleSubmit, reset } = methods;
+
+  const formSubmit = handleSubmit(async (data) => {
+    try {
+      await submitTicket(data);
+      dispatch(setSnackbar("success", "Submitted succesfully"));
+      reset({ fullName: "", email: "", message: "" });
+    } catch (error) {
+      dispatch(setSnackbar("error", "Error submitting"));
+    }
   });
 
   return (
@@ -51,28 +64,13 @@ const Contact = () => {
       <MainContainer>
         <FormSide>
           <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
-          <Form id="form" onSubmit={formSubmit}>
-            <MuiInput
-              control={control}
-              labelName={t("Contact.Form.fullName")}
-              name="fullName"
-              error={!!errors.fullName}
-              helperText={errors?.fullName?.message}
-            />
-            <MuiInput
-              control={control}
-              labelName={t("Contact.Form.email")}
-              name="email"
-              error={!!errors.email}
-              helperText={errors?.email?.message}
-            />
+          <Form methods={methods} id="form" onSubmit={formSubmit}>
+            <MuiInput labelName={t("Contact.Form.fullName")} name="fullName" />
+            <MuiInput labelName={t("Contact.Form.email")} name="email" />
             <Textarea
-              control={control}
               labelName={t("Contact.Form.message")}
-              rows="8"
+              rows={8}
               name="message"
-              error={!!errors.message}
-              helperText={errors?.message?.message}
             />
             <ButtonPlace>
               <CTA

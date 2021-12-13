@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -48,17 +48,13 @@ const SignUp = () => {
     }
   }, []);
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: { terms: false },
     mode: "onChange",
     resolver: yupResolver(signUpSchema),
     shouldFocusError: true,
   });
-
+  const { handleSubmit } = methods;
   const formSubmit = handleSubmit((data) => {
     data.language = interfaceLanguage;
     signup(data);
@@ -81,40 +77,28 @@ const SignUp = () => {
       <Header align="center" bottomGutter variant="h1">
         {t("SignUp.title")}
       </Header>
-      <Form id="form" onSubmit={formSubmit}>
+      <Form methods={methods} id="form" onSubmit={formSubmit}>
         <MuiInput
-          control={control}
           name="fullName"
           labelName={t("SignUp.Individual.fullName")}
-          error={!!errors.fullName}
-          helperText={errors?.fullName?.message}
           autoFocus={true}
           autoComplete="name"
         />
 
         <MuiInput
-          control={control}
           name="email"
           labelName={t("SignUp.Individual.email")}
           type="email"
-          error={!!errors.email}
-          helperText={errors?.email?.message}
           autoComplete="email"
         />
         <MuiPhoneInput
-          control={control}
           name="phone"
           labelName={t("SignUp.Individual.phone")}
-          error={!!errors.phone}
-          helperText={errors?.phone?.message}
           optional
         />
         <MuiPasswordInput
-          control={control}
           name="password"
           labelName={t("SignUp.Individual.password")}
-          error={!!errors.password}
-          helperText={errors?.password?.message}
           autoComplete="new-password"
         />
       </Form>

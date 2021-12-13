@@ -7,32 +7,30 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import InsertDriveFile from "@material-ui/icons/InsertDriveFile";
+import _ from "lodash";
 import Dropzone from "react-dropzone";
-import { Control, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import formatBytes from "@helpers/formatBytes";
 
 import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
-  control: Control<any>;
   name: string;
   labelName: string;
-  error: boolean;
   showFiles?: boolean;
-  helperText: string | undefined;
   defaultValue?: any;
 }
 
-const FileInput: FC<Props> = ({
-  control,
-  name,
-  labelName,
-  showFiles,
-  error,
-  defaultValue,
-  helperText = "",
-}) => {
+const FileInput: FC<Props> = ({ name, labelName, showFiles, defaultValue }) => {
+  const { t } = useTranslation();
+
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
   const styles = useStyles();
 
   return (
@@ -79,7 +77,7 @@ const FileInput: FC<Props> = ({
           )}
           <InputErrorMessage>
             <span className="invis-star">*</span>
-            {helperText}
+            {t(_.get(errors, `${name}.message`))}
           </InputErrorMessage>
         </>
       )}

@@ -40,12 +40,7 @@ const Page2 = () => {
 
   const appDataValid = appData.insuranceEstate?.personalData;
 
-  const {
-    handleSubmit,
-    watch,
-    control,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "individual",
       name: appDataValid.name,
@@ -60,7 +55,7 @@ const Page2 = () => {
     shouldFocusError: true,
     resolver: yupResolver(pageTwoSchema),
   });
-
+  const { handleSubmit, watch } = methods;
   const policyholderIs = watch("policyholderIs", "individual");
 
   const formSubmit = handleSubmit((data) => {
@@ -81,9 +76,8 @@ const Page2 = () => {
           label={t("InsuranceEstate.Page2.title")}
         />
         <Subtitle>{t("InsuranceEstate.Page2.title")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <MuiRadio
-            control={control}
             name="policyholderIs"
             legend={t("InsuranceEstate.Page2.policyholderIs")}
             options={[
@@ -104,25 +98,16 @@ const Page2 = () => {
           {policyholderIs !== "legal" && (
             <>
               <MuiInput
-                control={control}
                 name="name"
                 labelName={t("InsuranceEstate.Page2.name")}
-                error={!!errors.name}
-                helperText={errors?.name?.message}
               />
               <MuiInput
-                control={control}
                 name="surname"
                 labelName={t("InsuranceEstate.Page2.surname")}
-                error={!!errors.surname}
-                helperText={errors?.surname?.message}
               />
               <MuiInput
-                control={control}
                 name="pesel"
                 labelName={t("InsuranceEstate.Page2.pesel")}
-                error={!!errors.pesel}
-                helperText={errors?.pesel?.message}
               />
             </>
           )}
@@ -130,46 +115,21 @@ const Page2 = () => {
           {policyholderIs !== "individual" && (
             <>
               <MuiInput
-                control={control}
                 name="firmName"
                 labelName={t("InsuranceEstate.Page2.firmName")}
-                error={!!errors.firmName}
-                helperText={errors?.firmName?.message}
               />
+              <MuiInput name="nip" labelName={t("InsuranceEstate.Page2.nip")} />
               <MuiInput
-                control={control}
-                name="nip"
-                labelName={t("InsuranceEstate.Page2.nip")}
-                error={!!errors.nip}
-                helperText={errors?.nip?.message}
-              />
-              <MuiInput
-                control={control}
                 name="regon"
                 labelName={t("InsuranceEstate.Page2.regon")}
-                error={!!errors.regon}
-                helperText={errors?.regon?.message}
               />
             </>
           )}
 
-          <MuiInput
-            control={control}
-            name="phone"
-            labelName={t("InsuranceEstate.Page2.phone")}
-            error={!!errors.phone}
-            helperText={errors?.phone?.message}
-          />
-          <MuiInput
-            control={control}
-            name="email"
-            labelName={t("InsuranceEstate.Page2.email")}
-            error={!!errors.email}
-            helperText={errors?.email?.message}
-          />
+          <MuiInput name="phone" labelName={t("InsuranceEstate.Page2.phone")} />
+          <MuiInput name="email" labelName={t("InsuranceEstate.Page2.email")} />
 
           <MuiRadio
-            control={control}
             name="peopleNumber"
             legend={t("InsuranceEstate.Page2.peopleNumber")}
             options={[

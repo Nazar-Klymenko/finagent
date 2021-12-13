@@ -1,12 +1,14 @@
 import React, { forwardRef, useState } from "react";
+
 import styled from "styled-components/macro";
-import { EyeOpen, EyeClosed } from "@components/svgs";
+
+import { EyeClosed, EyeOpen } from "@components/svgs";
 
 import {
   InputContainer,
-  Label,
-  InputStyled,
   InputErrorMessage,
+  InputStyled,
+  Label,
 } from "./SharedStyles";
 
 interface Props {

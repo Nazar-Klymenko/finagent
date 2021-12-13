@@ -1,26 +1,27 @@
 import { createContext, useContext, useEffect, useState } from "react";
+
+import {
+  EmailAuthProvider,
+  confirmPasswordReset,
+  createUserWithEmailAndPassword,
+  deleteUser,
+  getAdditionalUserInfo,
+  onAuthStateChanged,
+  reauthenticateWithCredential,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signOut,
+  updatePassword,
+  updateProfile,
+} from "firebase/auth";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { auth } from "@services/firebase";
-import { setSnackbar } from "@redux/alert/actions";
-import { useDispatch } from "react-redux";
-
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  getAdditionalUserInfo,
-  reauthenticateWithCredential,
-  EmailAuthProvider,
-  onAuthStateChanged,
-  signOut,
-  confirmPasswordReset,
-  updatePassword,
-  deleteUser,
-  updateProfile,
-} from "firebase/auth";
 
 import { fetchUserAPI, signUpAPI } from "@api/auth";
+
+import { setSnackbar } from "@redux/alert/actions";
 
 const AuthContext = createContext({
   currentUser: {

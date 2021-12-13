@@ -1,17 +1,16 @@
-import Dropzone from "react-dropzone";
-import { Controller } from "react-hook-form";
 import List from "@material-ui/core/List";
-import { makeStyles } from "@material-ui/core/styles";
-
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InsertDriveFile from "@material-ui/icons/InsertDriveFile";
-
 import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
+import InsertDriveFile from "@material-ui/icons/InsertDriveFile";
+import Dropzone from "react-dropzone";
+import { Controller } from "react-hook-form";
+
 import formatBytes from "@helpers/formatBytes";
 
-import { Label, InputErrorMessage } from "./LocalStyles";
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 const useStyles = makeStyles((theme) => ({
   root: {

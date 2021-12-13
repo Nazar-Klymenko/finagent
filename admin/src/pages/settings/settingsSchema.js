@@ -1,4 +1,5 @@
 import * as yup from "yup";
+
 export const settingsSchema = () => {
   return yup.object().shape({
     name: yup.string().required("This field can't be blank"),

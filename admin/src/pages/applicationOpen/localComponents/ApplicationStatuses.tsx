@@ -1,20 +1,21 @@
 import React from "react";
+
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-
+import { useDispatch } from "react-redux";
 import styled from "styled-components/macro";
-
-import Form from "@components/Form";
-import { Radio } from "@components/input";
-import { CTA } from "@components/buttons";
 
 import { sendStatusAPI } from "@api/mainAPI";
 
+import { setSnackbar } from "@redux/alert/actions";
+
+import Form from "@components/Form";
 import Subheader from "@components/Subheader";
+import { CTA } from "@components/buttons";
+import { Radio } from "@components/input";
+
 import Section from "./Section";
 
-import { useDispatch } from "react-redux";
-import { setSnackbar } from "@redux/alert/actions";
 interface Props {
   id: string;
   currentStatus: number;

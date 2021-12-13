@@ -46,29 +46,42 @@ export const addApplicantSchema = () => {
   });
 };
 
-export const addAdditionalIncomeSchema = () => {
+export const AdditionalIncomeSchema = () => {
   return yup.object().shape({
-    industry: yup.string().when("truckDriver", {
-      is: "no",
-      then: yup.string().required("Form.Error.blank"),
-    }),
-    contractFrom: yup.date().when("basicIncome", {
-      is: (value) =>
-        value === "specificTime" || value === "mandate" || value === "contract",
-      then: yup.date().nullable().required("Form.Error.missingDate"),
-    }),
-    contractUntil: yup.date().when("basicIncome", {
-      is: (value) =>
-        value === "specificTime" || value === "mandate" || value === "contract",
-      then: yup.date().nullable().required("Form.Error.missingDate"),
-    }),
-
-    averageIncome: yup.string().required("Form.Error.blank"),
-    pit: yup.string().required("Form.Error.blank"),
+    income: yup.array().of(
+      yup.object().shape({
+        industry: yup.string().when("truckDriver", {
+          is: "no",
+          then: yup.string().required("Form.Error.blank"),
+        }),
+        contractFrom: yup
+          .date()
+          .nullable()
+          .when("basicIncome", {
+            is: (value) =>
+              value === "specificTime" ||
+              value === "mandate" ||
+              value === "contract",
+            then: yup.date().nullable().required("Form.Error.missingDate"),
+          }),
+        contractUntil: yup
+          .date()
+          .nullable()
+          .when("basicIncome", {
+            is: (value) =>
+              value === "specificTime" ||
+              value === "mandate" ||
+              value === "contract",
+            then: yup.date().nullable().required("Form.Error.missingDate"),
+          }),
+        averageIncome: yup.string().required("Form.Error.blank"),
+        pit: yup.string().required("Form.Error.blank"),
+      })
+    ),
   });
 };
 
-export const pageTwoSchema = () => {
+export const pageThreeSchema = () => {
   return yup.object().shape({
     remainingPayOff: yup.string().required("Form.Error.blank"),
     lastApplications: yup.string().required("Form.Error.blank"),

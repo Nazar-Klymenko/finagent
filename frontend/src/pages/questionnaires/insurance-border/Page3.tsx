@@ -40,11 +40,7 @@ const Page3 = () => {
 
   const appDataValid = appData.insuranceBorder?.personalData;
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       name: appDataValid?.name,
       surname: appDataValid?.surname,
@@ -61,6 +57,7 @@ const Page3 = () => {
     shouldFocusError: true,
     resolver: yupResolver(pageThreeSchema),
   });
+  const { handleSubmit } = methods;
 
   const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceBorder", "personalData");
@@ -80,78 +77,51 @@ const Page3 = () => {
           label={t("InsuranceBorder.Page3.subtitle")}
         />
         <Subtitle>{t("InsuranceBorder.Page3.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <MuiInput
-            control={control}
             name="name"
             labelName={t("InsuranceBorder.Page3.name")}
-            error={!!errors.name}
-            helperText={errors?.name?.message}
             autoComplete="given-name"
           />
           <MuiInput
-            control={control}
             name="surname"
             labelName={t("InsuranceBorder.Page3.surname")}
-            error={!!errors.surname}
-            helperText={errors?.surname?.message}
             autoComplete="family-name"
           />
           <MuiPhoneInput
-            control={control}
             name="phoneNumber"
             labelName={t("InsuranceBorder.Page3.phoneNumber")}
-            error={!!errors.phoneNumber}
-            helperText={errors?.phoneNumber?.message}
           />
           <MuiInput
-            control={control}
             name="email"
             labelName={t("InsuranceBorder.Page3.email")}
-            error={!!errors.email}
-            helperText={errors?.email?.message}
             placeholder="example@mail.com"
           />
           <MuiInput
-            control={control}
             name="country"
             labelName={t("InsuranceBorder.Page3.country")}
             type="text"
-            error={!!errors.country}
-            helperText={errors?.country?.message}
             placeholder="Poland"
           />
           <MuiInput
-            control={control}
             name="city"
             labelName={t("InsuranceBorder.Page3.city")}
             type="text"
-            error={!!errors.city}
-            helperText={errors?.city?.message}
             placeholder="Warsaw"
           />
           <MuiInput
-            control={control}
             name="postIndex"
             labelName={t("InsuranceBorder.Page3.postIndex")}
-            error={!!errors.postIndex}
-            helperText={errors?.postIndex?.message}
             placeholder="123-45"
           />
           <MuiInput
-            control={control}
             name="street"
             labelName={t("InsuranceBorder.Page3.street")}
-            error={!!errors.street}
-            helperText={errors?.street?.message}
             placeholder="Bialostocka"
           />
           <MuiInput
-            control={control}
             name="houseNumber"
             labelName={t("InsuranceBorder.Page3.houseNumber")}
-            error={!!errors.houseNumber}
-            helperText={errors?.houseNumber?.message}
             placeholder="14"
           />
         </Form>

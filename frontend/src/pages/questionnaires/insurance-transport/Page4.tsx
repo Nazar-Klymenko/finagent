@@ -2,7 +2,7 @@ import React from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
@@ -41,17 +41,14 @@ const Page4 = () => {
 
   const appDataValid = appData?.insuranceTransport?.additionalData;
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: pageFourValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(pageFourSchema),
   });
+  const { handleSubmit } = methods;
 
   const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceTransport", "additionalData");
@@ -73,48 +70,34 @@ const Page4 = () => {
         />
 
         <Subtitle>{t("InsuranceTransport.Page4.subtitle")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <MuiSelect
-            control={control}
             name="predictMileage"
             labelName={t("InsuranceTransport.Page4.predictMileage")}
             optionArray={predictMileageOptions}
-            error={!!errors.predictMileage}
-            helperText={errors?.predictMileage?.message}
           />
           <MuiSelect
-            control={control}
             name="useAbroad"
             labelName={t("InsuranceTransport.Page4.useAbroad")}
             optionArray={useAbroadOptions}
-            error={!!errors.useAbroad}
-            helperText={errors?.useAbroad?.message}
           />
           <MuiSelect
-            control={control}
             name="usePurpose"
             labelName={t("InsuranceTransport.Page4.usePurpose")}
             optionArray={usePurposeOptions}
-            error={!!errors.usePurpose}
-            helperText={errors?.usePurpose?.message}
           />
           <MuiSelect
-            control={control}
             name="parkingPlace"
             labelName={t("InsuranceTransport.Page4.parkingPlace")}
             optionArray={parkingPlaceOptions}
-            error={!!errors.parkingPlace}
-            helperText={errors?.parkingPlace?.message}
           />
           <MuiSelect
-            control={control}
             name="security"
             labelName={t("InsuranceTransport.Page4.security")}
             optionArray={securityOptions}
-            error={!!errors.security}
-            helperText={errors?.security?.message}
           />
         </Form>
+
         <ButtonsWrap multiple>
           <CTA
             text={t("Basic.buttonBack")}

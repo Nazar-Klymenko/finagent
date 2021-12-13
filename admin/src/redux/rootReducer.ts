@@ -1,4 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
+
 import { alerts } from "./alert/reducers";
 
 const rootReducer = combineReducers({ alerts });

@@ -1,12 +1,13 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+
+import { PrivateRoute } from "@components/CustomRoutes";
 
 import ChangeInfoPage from "./changingPages/ChangeInfoPage";
 import ChangePasswordPage from "./changingPages/ChangePasswordPage";
-
-import { PrivateRoute } from "@components/CustomRoutes";
 
 const Settings = () => {
   const { t } = useTranslation();

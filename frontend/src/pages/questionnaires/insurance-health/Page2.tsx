@@ -71,12 +71,7 @@ const Page2 = () => {
 
   const appDataValid = appData?.insuranceHealth?.insuredData?.policyholder;
 
-  const {
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       policyholder: [
         {
@@ -99,6 +94,12 @@ const Page2 = () => {
     shouldFocusError: true,
     resolver: yupResolver(policyholderSchema()),
   });
+  const {
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = methods;
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -182,9 +183,12 @@ const Page2 = () => {
                   title={t("InsuranceDiagnostic.ApplicantBox.title")}
                   description=""
                 >
-                  <Form id="insured-data-form" onSubmit={formSubmit}>
+                  <Form
+                    methods={methods}
+                    id="insured-data-form"
+                    onSubmit={formSubmit}
+                  >
                     <MuiRadio
-                      control={control}
                       name={`policyholder.${index}.policyholderIs`}
                       legend={t("InsuranceHealth.Page2.policyholderIs")}
                       options={[
@@ -201,22 +205,16 @@ const Page2 = () => {
                     />
                     {policyholderIs === "foreigner" && (
                       <MuiInput
-                        control={control}
                         name={`policyholder.${index}.citizenship`}
                         labelName={t(
                           "InsuranceHealth.ApplicantModal.citizenship"
                         )}
                         type="text"
-                        error={!!errors.policyholder?.[index].citizenship}
-                        helperText={
-                          errors?.policyholder?.[index].citizenship?.message
-                        }
                         placeholder="Type here"
                         defaultValue={field.citizenship}
                       />
                     )}
                     <MuiInput
-                      control={control}
                       name={`policyholder.${index}.documentAdded`}
                       labelName={`${
                         policyholderIs === "polish"
@@ -224,100 +222,62 @@ const Page2 = () => {
                           : t("InsuranceHealth.ApplicantModal.passport")
                       }`}
                       type="text"
-                      error={!!errors.policyholder?.[index].documentAdded}
-                      helperText={
-                        errors?.policyholder?.[index].documentAdded?.message
-                      }
                       placeholder="XXXXXXXXXXX"
                       defaultValue={field.documentAdded}
                     />
                     <MuiInput
-                      control={control}
                       name={`policyholder.${index}.name`}
                       labelName={t("InsuranceHealth.ApplicantModal.name")}
                       type="text"
-                      error={!!errors.policyholder?.[index].name}
-                      helperText={errors?.policyholder?.[index].name?.message}
                       placeholder="John"
                       autoComplete="given-name"
                       defaultValue={field.name}
                     />
                     <MuiInput
-                      control={control}
                       name={`policyholder.${index}.surname`}
                       labelName={t("InsuranceHealth.ApplicantModal.surname")}
                       type="text"
-                      error={!!errors.policyholder?.[index].surname}
-                      helperText={
-                        errors?.policyholder?.[index].surname?.message
-                      }
                       placeholder="Doe"
                       autoComplete="family-name"
                       defaultValue={field.surname}
                     />
                     <DateInput
-                      control={control}
                       name={`policyholder.${index}.birthDate`}
                       labelName={t("InsuranceHealth.Page2.birthDate")}
-                      error={!!errors.policyholder?.[index].birthDate}
-                      helperText={
-                        errors?.policyholder?.[index].birthDate?.message
-                      }
                       defaultValue={field.birthDate}
                       placeholder={t("Form.Placeholder.dateFull")}
                     />
                     <MuiInput
-                      control={control}
                       name={`policyholder.${index}.country`}
                       labelName={t("InsuranceHealth.ApplicantModal.country")}
                       type="text"
-                      error={!!errors.policyholder?.[index].country}
-                      helperText={
-                        errors?.policyholder?.[index].country?.message
-                      }
                       placeholder="Poland"
                       defaultValue={field.country}
                     />
                     <MuiInput
-                      control={control}
                       name={`policyholder.${index}.city`}
                       labelName={t("InsuranceHealth.ApplicantModal.city")}
                       type="text"
-                      error={!!errors.policyholder?.[index].city}
-                      helperText={errors?.policyholder?.[index].city?.message}
                       placeholder="Warsaw"
                       defaultValue={field.city}
                     />
                     <MuiInput
-                      control={control}
                       name={`policyholder.${index}.postIndex`}
                       labelName={t("InsuranceHealth.ApplicantModal.postIndex")}
-                      error={!!errors.policyholder?.[index].postIndex}
-                      helperText={
-                        errors?.policyholder?.[index].postIndex?.message
-                      }
                       placeholder="123-45"
                       defaultValue={field.postIndex}
                     />
                     <MuiInput
-                      control={control}
                       name={`policyholder.${index}.street`}
                       labelName={t("InsuranceHealth.ApplicantModal.street")}
-                      error={!!errors.policyholder?.[index].street}
-                      helperText={errors?.policyholder?.[index].street?.message}
                       placeholder="Bialostocka"
                       defaultValue={field.street}
                     />
                     <MuiInput
-                      control={control}
                       name={`policyholder.${index}.houseNumber`}
                       labelName={t(
                         "InsuranceHealth.ApplicantModal.houseNumber"
                       )}
-                      error={!!errors.policyholder?.[index].houseNumber}
-                      helperText={
-                        errors?.policyholder?.[index].houseNumber?.message
-                      }
                       defaultValue={field.houseNumber}
                     />
                   </Form>

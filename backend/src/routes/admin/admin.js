@@ -1,25 +1,22 @@
-import express from "express";
-const router = express.Router();
-
-import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";
-import { verifyAdmin, verifySupervisor } from "middleware/admin";
-
+import { allUsers, SpecificUser } from "controllers/admin/client";
+import { getHistory, getHistoryAll } from "controllers/admin/history.js";
+import {
+  deleteAdmin,
+  getSettingsAdmin,
+  updateSettings,
+} from "controllers/admin/settings.js";
 import {
   allOperators,
   awaitingOperators,
   grantAdministatorRole,
   declineAdministator,
 } from "controllers/admin/supervisor";
+import { getAllTickets, deleteTicket } from "controllers/admin/tickets.js";
+import express from "express";
+import { verifyAdmin, verifySupervisor } from "middleware/admin";
+import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";
 
-import { allUsers, SpecificUser } from "controllers/admin/client";
-
-import {
-  deleteAdmin,
-  getSettingsAdmin,
-  updateSettings,
-} from "controllers/admin/settings.js";
-
-import { getHistory, getHistoryAll } from "controllers/admin/history.js";
+const router = express.Router();
 
 router
   .route("/clients/show")
@@ -63,5 +60,12 @@ router
 router
   .route("/history/all")
   .get(verifyAccessTokenFirebaseAdmin, verifySupervisor, getHistoryAll);
+
+router
+  .route("/tickets")
+  .get(verifyAccessTokenFirebaseAdmin, verifyAdmin, getAllTickets);
+router
+  .route("/tickets/:id")
+  .delete(verifyAccessTokenFirebaseAdmin, verifyAdmin, deleteTicket);
 
 export default router;

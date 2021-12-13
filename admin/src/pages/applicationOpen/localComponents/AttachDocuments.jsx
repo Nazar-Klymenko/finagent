@@ -1,15 +1,17 @@
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-
-import Form from "@components/Form";
-import { CTA } from "@components/buttons";
-import Subheader from "@components/Subheader";
-import Section from "./Section";
+import { useDispatch } from "react-redux";
 
 import { uploadDocumentsAPI } from "@api/mainAPI";
-import { FileInput } from "@components/input";
-import { useDispatch } from "react-redux";
+
 import { setSnackbar } from "@redux/alert/actions";
+
+import Form from "@components/Form";
+import Subheader from "@components/Subheader";
+import { CTA } from "@components/buttons";
+import { FileInput } from "@components/input";
+
+import Section from "./Section";
 
 const AttachDocuments = ({ id }) => {
   const { t } = useTranslation();

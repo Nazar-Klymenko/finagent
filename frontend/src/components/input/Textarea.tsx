@@ -1,41 +1,36 @@
 import React from "react";
 
 import { OutlinedInput } from "@material-ui/core";
-import { Control, Controller } from "react-hook-form";
+import _ from "lodash";
+import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import {
-  InputContainer,
-  InputErrorMessage,
-  Label,
-  Optional,
-} from "./LocalStyles";
+import { InputErrorMessage, Label, Optional } from "./LocalStyles";
 
 interface Props {
-  control: Control<any>;
   name: string;
   labelName: string;
-  error: boolean;
-  helperText: string | undefined;
   placeholder?: string;
   optional?: boolean;
-  rows: string;
+  rows?: number;
   defaultValue?: string | undefined;
 }
 
 const Textarea: React.FC<Props> = ({
   name,
   labelName,
-  error,
-  helperText = "",
-  control,
+  rows,
   placeholder,
   optional,
   defaultValue,
 }) => {
   const { t } = useTranslation();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
   return (
-    <InputContainer error={error}>
+    <>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
@@ -50,11 +45,11 @@ const Textarea: React.FC<Props> = ({
             onChange={field.onChange}
             value={field.value}
             multiline
-            rows={4}
+            rows={rows}
             rowsMax={8}
             fullWidth
             placeholder={placeholder}
-            error={error}
+            error={!!_.get(errors, name)}
             id={name}
           />
         )}
@@ -62,9 +57,9 @@ const Textarea: React.FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(helperText)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
-    </InputContainer>
+    </>
   );
 };
 

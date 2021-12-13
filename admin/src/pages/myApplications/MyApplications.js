@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import moment from "moment";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
+import { useHistory, useParams } from "react-router-dom";
 
 import { getApplications } from "@api/mainAPI";
-import { FullPage } from "@components/content";
-import MuiPagination from "@components/MuiPagination";
 
-import Table from "@components/Table";
+import MuiPagination from "@components/MuiPagination";
 import Subheader from "@components/Subheader";
-import { useQuery } from "react-query";
+import { FullPage } from "@components/content";
+import { MuiTable, TableCell, TableRow } from "@components/table";
 
 const MyApplications = () => {
   const { t } = useTranslation();
@@ -42,19 +43,17 @@ const MyApplications = () => {
         subheader={t("MyApplications.title")}
         description={t("MyApplications.subtitle")}
       />
-      <Table>
-        <thead>
-          <tr>
-            <th>{t("Applications.name")}</th>
-            <th>{t("Applications.surname")}</th>
-            <th>{t("Applications.email")}</th>
-            <th>{t("Applications.phone")}</th>
-            <th>{t("Applications.service")}</th>
-            <th>{t("Applications.type")}</th>
-            <th>{t("Applications.createdAt")}</th>
-            <th>{t("Applications.lastUpdate")}</th>
-          </tr>
-        </thead>
+      <MuiTable
+        headers={[
+          "Applications.name",
+          "Applications.surname",
+          "Applications.email",
+          "Applications.service",
+          "Applications.type",
+          "Applications.createdAt",
+          "Applications.lastUpdate",
+        ]}
+      >
         <tbody>
           {data?.applications?.length > 0 &&
             data.applications.map((app) => {
@@ -64,25 +63,26 @@ const MyApplications = () => {
               const updatedAt = moment(app.updatedAt).fromNow();
 
               return (
-                <tr
+                <TableRow
                   key={app._id}
                   onClick={() => {
                     history.push(`/applications/open/${app._id}`);
                   }}
+                  hover
                 >
-                  <td>{app.user?.name}</td>
-                  <td>{app.user?.surname}</td>
-                  <td>{app.user?.email}</td>
-                  <td>{app.user?.phone}</td>
-                  <td>{app.category}</td>
-                  <td>{app.type}</td>
-                  <td>{createdAt}</td>
-                  <td>{updatedAt}</td>
-                </tr>
+                  <TableCell>{app.user?.name}</TableCell>
+                  <TableCell>{app.user?.surname}</TableCell>
+                  <TableCell>{app.user?.email}</TableCell>
+                  <TableCell>{app.user?.phone}</TableCell>
+                  <TableCell>{app.category}</TableCell>
+                  <TableCell>{app.type}</TableCell>
+                  <TableCell>{createdAt}</TableCell>
+                  <TableCell>{updatedAt}</TableCell>
+                </TableRow>
               );
             })}
         </tbody>
-      </Table>
+      </MuiTable>
       <MuiPagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

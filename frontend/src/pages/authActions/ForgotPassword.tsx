@@ -21,18 +21,13 @@ const ForgotPassword = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { resetPassword } = useAuth();
-  const {
-    handleSubmit,
-    control,
-
-    formState: { errors },
-  } = useForm({
+  const methods = useForm({
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(forgotPasswordSchema()),
   });
-
+  const { handleSubmit } = methods;
   const formSubmit = async (data: any) => {
     try {
       resetPassword(data.email);
@@ -48,18 +43,16 @@ const ForgotPassword = () => {
         subheader={t("RestorePassword.title")}
         description={t("RestorePassword.Form.explain")}
       />
-      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+      <Form methods={methods} id="form" onSubmit={handleSubmit(formSubmit)}>
         <MuiInput
-          control={control}
           name="email"
           labelName={t("RestorePassword.Form.email")}
           type="email"
           autoFocus={true}
-          error={!!errors.email}
-          helperText={errors?.email?.message}
           placeholder=""
         />
       </Form>
+
       <ButtonsWrap>
         <CTA
           form="form"

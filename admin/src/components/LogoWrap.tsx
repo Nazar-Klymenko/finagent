@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components/macro";
+
 import { useHistory } from "react-router-dom";
+import styled from "styled-components/macro";
 
 const LogoWrap: React.FC = ({ children }) => {
   const history = useHistory();

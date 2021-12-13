@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+import DateFnsUtils from "@date-io/date-fns";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+import "date-fns";
+import { enGB, pl, ru, uk } from "date-fns/esm/locale";
+import { Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Controller } from "react-hook-form";
-
-import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
-import { uk, ru, pl, enGB } from "date-fns/esm/locale";
-import { useTranslation } from "react-i18next";
-
-import { Label, InputErrorMessage } from "./LocalStyles";
-
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 const theme = createMuiTheme({
   palette: {

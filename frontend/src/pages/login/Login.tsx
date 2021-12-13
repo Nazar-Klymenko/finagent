@@ -38,16 +38,12 @@ const Login: React.FC<Props> = (props) => {
     }
   }, []);
 
-  const {
-    handleSubmit,
-    control,
-
-    formState: { errors },
-  } = useForm({
+  const methods = useForm({
     mode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(loginSchema),
   });
+  const { handleSubmit } = methods;
 
   const [originalRoute, setOriginalRoute] = useState(
     "/dashboard/insurances/ready/1"
@@ -84,24 +80,19 @@ const Login: React.FC<Props> = (props) => {
       <Header bottomGutter variant="h1" align="center">
         {t("LogIn.title")}
       </Header>
-      <Form id="form" onSubmit={handleSubmit(formSubmit)}>
+
+      <Form methods={methods} id="form" onSubmit={handleSubmit(formSubmit)}>
         <MuiInput
-          control={control}
           name="email"
           // placeholder="E-mail"
           labelName={t("LogIn.Form.email")}
           type="email"
-          error={!!errors.email}
-          helperText={t(errors?.email?.message)}
           autoFocus={false}
           autoComplete="email"
         />
         <MuiPasswordInput
-          control={control}
           name="password"
           labelName={t("LogIn.Form.password")}
-          error={!!errors.password}
-          helperText={errors?.password?.message}
           autoComplete="current-password"
         />
       </Form>

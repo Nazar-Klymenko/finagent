@@ -1,12 +1,14 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useCallback, useRef, useState } from "react";
+
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
-import { useTranslation } from "react-i18next";
 
-import { Profile, Settings, SignOut } from "@components/svgs";
 import useClickOutside from "@hooks/useClickOutside";
 
 import { useAuth } from "@context/authContext";
+
+import { Profile, Settings, SignOut } from "@components/svgs";
 
 interface Styled {
   isOpen?: boolean;

@@ -42,12 +42,7 @@ const Page1 = () => {
     "insuranceData"
   );
 
-  const {
-    handleSubmit,
-    watch,
-    control,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       pesel: appDataValid.pesel,
       passportNumber: appDataValid.passportNumber,
@@ -58,6 +53,7 @@ const Page1 = () => {
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),
   });
+  const { handleSubmit, watch } = methods;
 
   const documentTypeName = watch("documentType") || appDataValid.documentType;
 
@@ -80,10 +76,9 @@ const Page1 = () => {
         />
         <Subtitle>{t("InsuranceBorder.Page1.subtitle")}</Subtitle>
 
-        <Form id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <MuiRadio
             name="documentType"
-            control={control}
             legend={t("InsuranceBorder.Page1.documentType")}
             options={[
               {
@@ -99,25 +94,18 @@ const Page1 = () => {
           />
           {!(documentTypeName === "passportNumber") && (
             <MuiInput
-              control={control}
               name="pesel"
               labelName={t("InsuranceBorder.Page1.pesel")}
-              error={!!errors.pesel}
-              helperText={errors?.pesel?.message}
             />
           )}
           {documentTypeName === "passportNumber" && (
             <MuiInput
-              control={control}
               name="passportNumber"
               labelName={t("InsuranceBorder.Page1.passportNumber")}
-              error={!!errors.passportNumber}
-              helperText={errors?.passportNumber?.message}
             />
           )}
 
           <MuiRadio
-            control={control}
             name="registeredNotInEU"
             legend={t("InsuranceBorder.Page1.registeredNotInEU")}
             options={[
@@ -133,13 +121,10 @@ const Page1 = () => {
             defaultValue={appDataValid.registeredNotInEU || "no"}
           />
           <MuiSelect
-            control={control}
             name="insurancePeriod"
             labelName={t("InsuranceBorder.Page1.insurancePeriod")}
             defaultValue={appDataValid.insurancePeriod}
             optionArray={insurancePeriodOptions}
-            error={!!errors.insurancePeriod}
-            helperText={errors?.insurancePeriod?.message}
           />
         </Form>
         <ButtonsWrap>

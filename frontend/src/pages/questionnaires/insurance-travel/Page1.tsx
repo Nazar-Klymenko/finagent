@@ -2,7 +2,7 @@ import React from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router";
 
@@ -36,12 +36,7 @@ const Page1 = () => {
   const appDataValid = appData?.InsuranceData?.InsuraceTravel;
   const history = useHistory();
 
-  const {
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FormTypes>({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       insuranceType: appDataValid?.insuranceType || "individual",
       insuranceStart: appDataValid?.insuranceStart,
@@ -56,6 +51,7 @@ const Page1 = () => {
     shouldFocusError: true,
     resolver: yupResolver(pageOneSchema),
   });
+  const { handleSubmit, watch } = methods;
 
   const choosedType = watch("insuranceType") || appDataValid.insuranceType;
 
@@ -77,33 +73,26 @@ const Page1 = () => {
           label={t("InsuranceTravel.Page1.title")}
         />
         <Subtitle>{t("InsuranceTravel.Page1.title")}</Subtitle>
-        <Form id="form" onSubmit={formSubmit}>
+
+        <Form methods={methods} id="form" onSubmit={formSubmit}>
           <DateInput
-            control={control}
             name="insuranceStart"
             labelName={t("InsuranceTravel.Page1.insuranceStart")}
-            error={!!errors.insuranceStart}
-            helperText={errors?.insuranceStart?.message}
             disablePast
             placeholder={t("Form.Placeholder.dateFull")}
           />
           <DateInput
-            control={control}
             name="insuranceEnd"
             labelName={t("InsuranceTravel.Page1.insuranceEnd")}
-            error={!!errors.insuranceEnd}
-            helperText={errors?.insuranceEnd?.message}
             disablePast
             placeholder={t("Form.Placeholder.dateFull")}
           />
           <MuiCheckbox
-            control={control}
             name="inPoland"
             labelName={t("InsuranceTravel.Page1.inPoland")}
           />
 
           <MuiRadio
-            control={control}
             name="insuranceType"
             legend={t("InsuranceTravel.Page1.insuranceType")}
             options={[
@@ -123,26 +112,17 @@ const Page1 = () => {
           />
           {choosedType !== "individual" && (
             <MuiInput
-              control={control}
               name="peopleAmount"
               labelName={t("InsuranceTravel.Page1.peopleAmount")}
-              error={!!errors.peopleAmount}
-              helperText={errors?.peopleAmount?.message}
             />
           )}
           <MuiInput
-            control={control}
             name="destination"
             labelName={t("InsuranceTravel.Page1.destination")}
-            error={!!errors.destination}
-            helperText={errors?.destination?.message}
           />
           <MuiInput
-            control={control}
             name="purpose"
             labelName={t("InsuranceTravel.Page1.purpose")}
-            error={!!errors.purpose}
-            helperText={errors?.purpose?.message}
           />
         </Form>
         <ButtonsWrap>

@@ -1,22 +1,18 @@
 import { FC, useState } from "react";
 
-import { useTranslation } from "react-i18next";
-
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { Control, Controller } from "react-hook-form";
-import styled from "styled-components";
+import _ from "lodash";
+import { Controller, useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
-  control: Control<any>;
   name: string;
-  error: boolean;
-  helperText: string | undefined;
   errorList?: {};
   labelName: string;
   autoComplete?: string;
@@ -24,11 +20,7 @@ interface Props {
 }
 
 const MuiPasswordInput: FC<Props> = ({
-  
-  control,
   name,
-  error,
-  helperText = "",
   errorList,
   defaultValue,
   labelName,
@@ -36,6 +28,10 @@ const MuiPasswordInput: FC<Props> = ({
   ...other
 }) => {
   const { t } = useTranslation();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -58,7 +54,7 @@ const MuiPasswordInput: FC<Props> = ({
           <OutlinedInput
             id={name}
             type={showPassword ? "text" : "password"}
-            error={error}
+            error={!!_.get(errors, name)}
             autoComplete={autoComplete}
             onChange={field.onChange}
             value={field.value}
@@ -80,7 +76,7 @@ const MuiPasswordInput: FC<Props> = ({
 
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(helperText)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
       {/* <Requirements>
         {errorList &&

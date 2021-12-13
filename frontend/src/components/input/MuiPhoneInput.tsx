@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
-import { Control, Controller } from "react-hook-form";
+import _ from "lodash";
+import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
@@ -8,26 +9,23 @@ import "react-phone-input-2/lib/material.css";
 import { InputErrorMessage, Label, Optional } from "./LocalStyles";
 
 interface Props {
-  control: Control<any>;
   name: string;
-  error: boolean;
-  helperText: string | undefined;
   labelName: string;
   optional?: boolean;
   defaultValue?: string | undefined;
 }
 
 const MuiPhoneInput: FC<Props> = ({
-  control,
   name,
-  error,
   defaultValue,
-  helperText = "",
   labelName,
   optional,
 }) => {
   const { t } = useTranslation();
-
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
   return (
     <>
       <Label htmlFor={name}>
@@ -43,7 +41,7 @@ const MuiPhoneInput: FC<Props> = ({
             onChange={field.onChange}
             value={field.value}
             country="pl"
-            isValid={!error}
+            isValid={!_.get(errors, name)}
             defaultErrorMessage="testtttt "
             onlyCountries={["pl", "ua", "by", "ru"]}
             specialLabel=""
@@ -57,7 +55,7 @@ const MuiPhoneInput: FC<Props> = ({
       />
       <InputErrorMessage>
         <span className="invis-star">*</span>
-        {t(helperText)}
+        {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
     </>
   );

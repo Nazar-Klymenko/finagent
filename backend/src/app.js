@@ -1,28 +1,26 @@
-import path from "path";
-import fs from "fs";
-const __dirname = path.resolve();
-import express from "express";
-const app = express();
-
-import mongoSanitize from "express-mongo-sanitize";
-import xss from "xss-clean";
-import rateLimit from "express-rate-limit";
-import hpp from "hpp";
-import helmet from "helmet";
-import cors from "cors";
+import adminRoute from "./@routes/admin/admin.js";
+import adminApplicationRoute from "./@routes/admin/applications.js";
+import adminAuthRoute from "./@routes/admin/auth.js";
+import userApplicationRoute from "./@routes/frontend/application.js";
+import userAuthRoute from "./@routes/frontend/auth.js";
+import userRoute from "./@routes/frontend/user.js";
 import compression from "compression";
 import cookieParser from "cookie-parser";
-
+import cors from "cors";
+import express from "express";
 import fileUpload from "express-fileupload";
+import mongoSanitize from "express-mongo-sanitize";
+import rateLimit from "express-rate-limit";
+import fs from "fs";
+import helmet from "helmet";
+import hpp from "hpp";
 import morgan from "morgan";
+import path from "path";
+import xss from "xss-clean";
 
-import userRoute from "./routes/frontend/user.js";
-import userAuthRoute from "./routes/frontend/auth.js";
-import userApplicationRoute from "./routes/frontend/application.js";
+const __dirname = path.resolve();
 
-import adminRoute from "./routes/admin/admin.js";
-import adminAuthRoute from "./routes/admin/auth.js";
-import adminApplicationRoute from "./routes/admin/applications.js";
+const app = express();
 
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins

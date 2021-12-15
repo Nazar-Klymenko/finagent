@@ -1,6 +1,6 @@
-import asyncHandler from "helpers/asyncHandler.js";
-import History from "models/history.js";
-import { PaginationHelper } from "helpers/paginationHelper";
+import asyncHandler from "@helpers/asyncHandler.js";
+import { PaginationHelper } from "@helpers/paginationHelper";
+import History from "@models/history.js";
 
 export const getHistory = asyncHandler(async (req, res) => {
   let { page, size } = req.query;

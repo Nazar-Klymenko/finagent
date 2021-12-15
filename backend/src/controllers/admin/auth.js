@@ -1,7 +1,6 @@
+import Admin from "@models/admin.js";
+import { adminAuth } from "@services/firebase";
 import createError from "http-errors";
-import Admin from "models/admin.js";
-
-import { adminAuth } from "services/firebase";
 
 export const signUp = async (req, res, next) => {
   const { name, surname, email, secret, IdToken } = req.body;

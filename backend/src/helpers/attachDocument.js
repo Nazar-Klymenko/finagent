@@ -1,8 +1,9 @@
+import Application from "@models/application.js";
 import fs, { mkdir } from "fs";
 import path from "path";
 import PDFDocument from "pdfkit";
+
 const __dirname = path.resolve();
-import Application from "models/application.js";
 
 async function attachImagesUser(id, files, model) {
   files.forEach(async (file) => {

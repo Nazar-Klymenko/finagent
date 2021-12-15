@@ -1,4 +1,4 @@
-import loanMortgage from "models/applications/loanMortgage.js";
+import loanMortgage from "@models/applications/loanMortgage.js";
 
 const LoanMortgageSubmit = async (req, res, next) => {
   try {

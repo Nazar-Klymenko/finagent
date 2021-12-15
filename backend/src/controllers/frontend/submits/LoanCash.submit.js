@@ -1,4 +1,4 @@
-import loanCash from "models/applications/loanCash.js";
+import loanCash from "@models/applications/loanCash.js";
 
 const LoanCashSubmit = async (req, res, next) => {
   try {

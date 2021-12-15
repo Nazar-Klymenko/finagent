@@ -1,4 +1,4 @@
-import Notification from "models/notification.js";
+import Notification from "@models/notification.js";
 
 const sendNotification = async (
   user_id,

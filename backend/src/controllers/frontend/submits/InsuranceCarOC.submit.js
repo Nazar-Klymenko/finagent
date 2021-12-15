@@ -1,5 +1,5 @@
-import InsuranceCarOC from "models/applications/insuranceCarOC.js";
-import { attachImagesUser } from "helpers/attachDocument";
+import { attachImagesUser } from "@helpers/attachDocument";
+import InsuranceCarOC from "@models/applications/insuranceCarOC.js";
 
 export default async function InsuranceCarOCSubmit(req, res, next) {
   try {

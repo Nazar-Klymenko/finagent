@@ -1,5 +1,5 @@
+import Application from "../@models/application.js";
 import createError from "http-errors";
-import Application from "../models/application.js";
 
 export const accessToImage = async (req, res, next) => {
   try {

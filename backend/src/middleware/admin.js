@@ -1,5 +1,5 @@
+import Admin from "@models/admin";
 import createError from "http-errors";
-import Admin from "models/admin";
 
 export const verifyAdmin = async (req, res, next) => {
   try {

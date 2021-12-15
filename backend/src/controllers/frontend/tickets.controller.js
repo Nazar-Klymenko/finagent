@@ -2,7 +2,7 @@ import asyncHandler from "helpers/asyncHandler.js";
 import { PaginationHelper } from "helpers/paginationHelper";
 import Ticket from "models/ticket.js";
 
-export const getAllTickets = asyncHandler(async (req, res) => {
+export const TicketsGetAll = asyncHandler(async (req, res) => {
   let { page, size } = req.query;
 
   const { skip, limit } = PaginationHelper(page, size);
@@ -18,10 +18,20 @@ export const getAllTickets = asyncHandler(async (req, res) => {
   res.status(200).send({ tickets, maximumPages });
 });
 
-export const deleteTicket = asyncHandler(async (req, res) => {
+export const TicketDeleteOne = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
-  const tickets = await Ticket.findByIdAndRemove(id);
+  await Ticket.findByIdAndRemove(id);
 
   res.status(200).send({ message: "success" });
+});
+
+export const TicketsPost = asyncHandler(async (req, res) => {
+  const { fullName, email, message } = req.body;
+
+  await new Ticket({ fullName, email, message }).save();
+
+  res.status(200).send({
+    message: "ticket submitted",
+  });
 });

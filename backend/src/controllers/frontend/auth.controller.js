@@ -1,4 +1,3 @@
-import createError from "http-errors";
 import User from "models/user.js";
 // import asyncHandler from "helpers/asyncHandler.js";
 import { auth } from "services/firebase";

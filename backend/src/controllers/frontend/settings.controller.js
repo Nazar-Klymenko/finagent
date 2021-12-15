@@ -1,19 +1,8 @@
-import createError from "http-errors";
 import asyncHandler from "helpers/asyncHandler.js";
+import createError from "http-errors";
 import User from "models/user.js";
-import Application from "models/application";
 
-export const deleteUser = asyncHandler(async (req, res) => {
-  await User.findByIdAndDelete(req.currentUser.uid);
-  await Application.updateMany(
-    { user_id: req.currentUser.uid },
-    { $set: { archived: true } }
-  );
-
-  res.status(200).send({ message: "user deleted successfully" });
-});
-
-export const getSettings = asyncHandler(async (req, res, next) => {
+export const SettingsGet = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.currentUser.uid);
 
   if (!user) {
@@ -25,7 +14,7 @@ export const getSettings = asyncHandler(async (req, res, next) => {
   });
 });
 
-export const updateSettings = asyncHandler(async (req, res, next) => {
+export const settingsUpdate = asyncHandler(async (req, res) => {
   const { fullName, phone } = req.body;
   const user = await User.findByIdAndUpdate(
     req.currentUser.uid,

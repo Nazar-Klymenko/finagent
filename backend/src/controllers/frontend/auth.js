@@ -1,7 +1,7 @@
-import User from "@models/user.js";
-// import asyncHandler from "@helpers/asyncHandler.js";
-import { auth } from "@services/firebase";
 import createError from "http-errors";
+import User from "models/user.js";
+// import asyncHandler from "helpers/asyncHandler.js";
+import { auth } from "services/firebase";
 
 export const signUp = async (req, res, next) => {
   const { fullName, phone, language, IdToken, provider } = req.body;

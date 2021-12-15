@@ -1,5 +1,6 @@
-import { auth, adminAuth } from "@services/firebase";
 import CreateError from "http-errors";
+
+import { auth, adminAuth } from "services/firebase";
 
 let verifiedEmail;
 

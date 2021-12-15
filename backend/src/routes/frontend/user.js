@@ -1,20 +1,19 @@
-import {
-  getAllNotifications,
-  getNewNotifications,
-  getSpecificNotification,
-} from "@controllers/frontend/notifications.js";
+import express from "express";
+const router = express.Router();
+
+import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth.js";
+
 import {
   deleteUser,
   getSettings,
   updateSettings,
-} from "@controllers/frontend/settings.js";
-import {
-  verifyAccessTokenFirebase,
-  isEmailVerified,
-} from "@middleware/auth.js";
-import express from "express";
+} from "controllers/frontend/settings.js";
 
-const router = express.Router();
+import {
+  getAllNotifications,
+  getNewNotifications,
+  getSpecificNotification,
+} from "controllers/frontend/notifications.js";
 
 router
   .route("/settings")

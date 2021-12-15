@@ -1,8 +1,8 @@
-import asyncHandler from "@helpers/asyncHandler.js";
-import { PaginationHelper } from "@helpers/paginationHelper";
-import Application from "@models/application.js";
-import User from "@models/application.js";
+import Application from "models/application.js";
+import User from "models/application.js";
+import asyncHandler from "helpers/asyncHandler.js";
 import createError from "http-errors";
+import { PaginationHelper } from "helpers/paginationHelper";
 
 export const getPreviewApplications = asyncHandler(async (req, res) => {
   let { category, status } = req.params;

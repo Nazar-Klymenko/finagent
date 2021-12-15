@@ -1,4 +1,4 @@
-import insuranceBorder from "../../../@models/applications/insuranceBorder.js";
+import insuranceBorder from "../../../models/applications/insuranceBorder.js";
 
 const InsuranceBorderSubmit = async (req, res, next) => {
   try {

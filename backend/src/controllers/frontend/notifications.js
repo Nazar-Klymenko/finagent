@@ -1,5 +1,5 @@
-import asyncHandler from "@helpers/asyncHandler.js";
-import Notification from "@models/notification.js";
+import Notification from "models/notification.js";
+import asyncHandler from "helpers/asyncHandler.js";
 
 export const getAllNotifications = asyncHandler(async (req, res, next) => {
   const NotificationList = await Notification.find({

@@ -1,11 +1,11 @@
+import express from "express";
+const router = express.Router();
+
 import {
   signUp,
   signUpFacebook,
   verifyEmail,
-} from "@controllers/frontend/auth.js";
-import express from "express";
-
-const router = express.Router();
+} from "controllers/frontend/auth.js";
 
 router.route("/signup").post(signUp);
 router.route("/signup_facebook").post(signUpFacebook);

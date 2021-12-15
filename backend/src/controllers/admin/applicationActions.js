@@ -1,10 +1,11 @@
-import asyncHandler from "@helpers/asyncHandler.js";
-import { attachImagesAdmin } from "@helpers/attachDocument";
-import { PaginationHelper } from "@helpers/paginationHelper";
-import Application from "@models/application.js";
-import addHistoryRecord from "@utils/history.js";
-import sendNotification from "@utils/notification.js";
+import Application from "models/application.js";
 import createError from "http-errors";
+import asyncHandler from "helpers/asyncHandler.js";
+import { attachImagesAdmin } from "helpers/attachDocument";
+
+import addHistoryRecord from "utils/history.js";
+import sendNotification from "utils/notification.js";
+import { PaginationHelper } from "helpers/paginationHelper";
 
 export const getAllApplications = asyncHandler(async (req, res) => {
   let { page, size } = req.query;

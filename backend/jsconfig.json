@@ -3,21 +3,20 @@
     "module": "es6",
     "moduleResolution": "node",
     "target": "es6",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
-      "controllers/*": ["controllers/*"],
-      "helpers/*": ["helpers/*"],
-      "middleware/*": ["middleware/*"],
-      "models/*": ["models/*"],
-      "routes/*": ["routes/*"],
-      "utils/*": ["utils/*"],
-      "databases": ["databases/*"],
-      "services/*": ["services/*"]
+      "controllers/*": ["controllers/"],
+      "helpers/*": ["helpers/"],
+      "middlewares/*": ["middlewares/"],
+      "models/*": ["models/"],
+      "routes/*": ["routes/"],
+      "utils/*": ["utils/"],
+      "databases": ["databases/"],
+      "services/*": ["services"]
     },
     "checkJs": false,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "dist"],
   "include": ["src"],
   "typeAcquisition": {
     "exclude": ["dotenv"]

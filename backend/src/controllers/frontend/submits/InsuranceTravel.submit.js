@@ -1,4 +1,4 @@
-import insuranceTravel from "@models/applications/insuranceTravel.js";
+import insuranceTravel from "models/applications/insuranceTravel.js";
 
 const InsuranceTravelSubmit = async (req, res, next) => {
   try {

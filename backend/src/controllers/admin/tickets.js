@@ -1,6 +1,6 @@
-import asyncHandler from "@helpers/asyncHandler.js";
-import { PaginationHelper } from "@helpers/paginationHelper";
-import Ticket from "@models/ticket.js";
+import asyncHandler from "helpers/asyncHandler.js";
+import { PaginationHelper } from "helpers/paginationHelper";
+import Ticket from "models/ticket.js";
 
 export const getAllTickets = asyncHandler(async (req, res) => {
   let { page, size } = req.query;

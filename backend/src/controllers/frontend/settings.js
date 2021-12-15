@@ -1,7 +1,7 @@
-import asyncHandler from "@helpers/asyncHandler.js";
-import Application from "@models/application";
-import User from "@models/user.js";
 import createError from "http-errors";
+import asyncHandler from "helpers/asyncHandler.js";
+import User from "models/user.js";
+import Application from "models/application";
 
 export const deleteUser = asyncHandler(async (req, res) => {
   await User.findByIdAndDelete(req.currentUser.uid);

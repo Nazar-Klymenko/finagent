@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { QuestState } from "@dev/QuestState";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
@@ -25,6 +25,7 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
+import { pageOneValues } from "./applicationHelpers/default-values";
 
 type FormTypes = {
   maritalStatus: string;
@@ -49,34 +50,82 @@ type FormTypes = {
 const Page1 = () => {
   const { t } = useTranslation();
   useTitle("Cash loan | FinAgent");
-
-  const { appData, setValues, setCurrentPage } = useData();
-
-  const appDataValid = appData.loanCash?.ApplicantsData;
-
   const history = useHistory();
 
+  const { appData, setValues, setCurrentPage } = useData();
+  const appDataValid = appData.loanCash?.ApplicantsData;
+
+  const [openDialog, setOpenDialog] = useState(true);
+  const [formInitiated, setFormInitiated] = useState(false);
+  const [editingMode, setEditingMode] = useState(false);
+  const [addingMode, setAddingMode] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(0);
+
   const methods = useForm<FormTypes>({
-    defaultValues: {},
+    defaultValues: pageOneValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
   });
   const { handleSubmit, watch, control } = methods;
 
-  const maritalStatus = watch("maritalStatus", appDataValid?.maritalStatus);
-  const bothSpousesStart = watch(
-    "bothSpousesStart",
-    appDataValid?.bothSpousesStart
-  );
+  const maritalStatus = watch("maritalStatus");
+  const bothSpousesStart = watch("bothSpousesStart");
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+
+    //@ts-ignore
+    name: "income",
+  });
+
+  function removeData(index: number) {
+    remove(index);
+    appDataValid.splice(index, 1);
+  }
+  function editData(index: number) {
+    setEditingMode(true);
+    setEditingIndex(index);
+    setOpenDialog(true);
+  }
 
   const formSubmit = handleSubmit((data) => {
-    setValues(data, "ApplicantsData");
-    // setIsError(t("LoanCash.Error.noFirstApplicant"));
-    // setIsError(t("LoanCash.Error.noSecondApplicant"));
-    setCurrentPage(2);
-    history.push("./2");
+    setFormInitiated(true);
+    setEditingMode(false);
+    setAddingMode(false);
+    setValues(data, "loanCash", "incomedData");
   });
+
+  const handleClose = (index: number) => {
+    if (addingMode) {
+      removeData(index);
+      setAddingMode(false);
+    } else {
+      setOpenDialog(false);
+    }
+  };
+
+  useEffect(() => {
+    if (appDataValid && !formInitiated) {
+      setFormInitiated(true);
+      setAddingMode(false);
+
+      for (let i = 1; i < appDataValid.length; i++) {
+        //@ts-ignore
+        append(appDataValid[i]);
+      }
+    }
+  }, [appDataValid, append, formInitiated]);
+
+  // const finalizeForm = () => {
+  //   if (formInitiated && fields.length > 0 && !!errors.income === false) {
+  //     setValues(data, "ApplicantsData");
+  //     setCurrentPage(2);
+  //     history.push("./2");
+  //   } else {
+  //     alert(t("InsuranceHealth.Error.noApplicant"));
+  //   }
+  // };
 
   return (
     <ContentWrap fullWidth>
@@ -104,7 +153,6 @@ const Page1 = () => {
                 value: "married",
               },
             ]}
-            defaultValue={appDataValid?.maritalStatus || "notMarried"}
           />
           {maritalStatus === "married" && (
             <>
@@ -121,7 +169,6 @@ const Page1 = () => {
                     value: "yes",
                   },
                 ]}
-                defaultValue={appDataValid?.propertySeparation || "no"}
               />
 
               <MuiRadio
@@ -137,7 +184,6 @@ const Page1 = () => {
                     value: "yes",
                   },
                 ]}
-                defaultValue={appDataValid?.bothSpousesStart || "no"}
               />
             </>
           )}
@@ -146,25 +192,54 @@ const Page1 = () => {
           {/* {t("LoanCash.ApplicantBox.addApplicant2")} */}
           {/* {t("LoanCash.IncomeBox.addIncome")} */}
 
-          {/* {bothSpousesStart === "yes" && maritalStatus === "married" && ()} */}
           <Subtitle>{t("LoanCash.IncomeBox.title")}</Subtitle>
         </Form>
-        {/* <AddApplicant
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          setApplicantData={setApplicantData}
-          defaultPerson={defaultPerson}
-          applicantNumber={applicantNumber}
-        />
-        <AddAdditionalIncome
-          openIncomeModal={openIncomeModal}
-          setOpenIncomeModal={setOpenIncomeModal}
-          incomeData={incomeData}
-          setIncomeData={setIncomeData}
-          defaultIncome={defaultIncome}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-        /> */}
+
+        {/* <Form>
+
+
+          {editingMode &&
+          fields.map((field: any, index: number) => {
+            //@ts-ignore
+            const truckDriver = watch(`income[${index}].truckDriver`);
+            //@ts-ignore
+            const basicIncome = watch(`income[${index}].basicIncome`);
+            //@ts-ignore
+            const firstContract = watch(`income[${index}].firstContract`);
+
+            return (
+              editingIndex === index && (
+                <MuiDialog
+                  key={field.id}
+                  isOpen={openDialog}
+                  handleClose={() => {
+                    handleClose(index);
+                  }}
+                  formId="additional-income-form"
+                  title={t("LoanCash.IncomeModal.title")}
+                  description=""
+                >
+                  <Form
+                    methods={methods}
+                    id="additional-income-form"
+                    onSubmit={formSubmit}
+                  >
+                    <MuiRadio
+                      name={`income[${index}].truckDriver`}
+                      legend={t("LoanCash.IncomeModal.truckDriver")}
+                      options={[
+                        {
+                          label: t("LoanCash.IncomeModal.yes"),
+                          value: "yes",
+                        },
+                        {
+                          label: t("LoanCash.IncomeModal.no"),
+                          value: "no",
+                        },
+                      ]}
+                      defaultValue={field.truckDriver || ""}
+                    />
+        </Form> */}
         <ButtonsWrap>
           <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>

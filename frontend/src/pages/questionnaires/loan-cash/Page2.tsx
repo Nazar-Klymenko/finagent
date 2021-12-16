@@ -38,6 +38,7 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
+import { pageTwoValues } from "./applicationHelpers/default-values";
 import { AdditionalIncomeSchema } from "./applicationHelpers/loan-cash.schema";
 
 type FormTypes = {
@@ -75,23 +76,7 @@ const Page2 = () => {
   const history = useHistory();
 
   const methods = useForm<FormTypes>({
-    defaultValues: {
-      income: [
-        {
-          truckDriver: appDataValid?.[0]?.truckDriver || "no",
-          industry: appDataValid?.[0]?.industry,
-          basicIncome: appDataValid?.[0]?.basicIncome || "indefinitePeriod",
-          firstContract: appDataValid?.[0]?.firstContract || "yes",
-          sameEmployer: appDataValid?.[0]?.sameEmployer || "yes",
-          withoutPause: appDataValid?.[0]?.withoutPause || "yes",
-          contractFrom: appDataValid?.[0]?.contractFrom,
-          contractUntil: appDataValid?.[0]?.contractUntil,
-          averageIncome: appDataValid?.[0]?.averageIncome,
-          accountancy: appDataValid?.[0]?.accountancy || "generalRules",
-          pit: appDataValid?.[0]?.pit,
-        },
-      ],
-    },
+    defaultValues: pageTwoValues(appDataValid),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
@@ -103,7 +88,6 @@ const Page2 = () => {
     watch,
     formState: { errors },
   } = methods;
-  // header={t("LoanCash.IncomeModal.title")}
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -156,8 +140,6 @@ const Page2 = () => {
       alert(t("InsuranceHealth.Error.noApplicant"));
     }
   };
-
-  console.log(errors);
 
   return (
     <ContentWrap fullWidth>

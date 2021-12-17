@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormProvider, useForm } from "react-hook-form";
+import Typography from "@material-ui/core/Typography";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { NavLink, useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -13,7 +14,6 @@ import Loader from "@components/Loader";
 import { CTA } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiInput, MuiPasswordInput, MuiPhoneInput } from "@components/input";
-import { Header } from "@components/typography";
 
 import signUpSchema from "./signUp.schema";
 
@@ -74,9 +74,10 @@ const SignUp = () => {
 
   return !isLoading ? (
     <ContentWrap xl authForm direction="column">
-      <Header align="center" bottomGutter variant="h1">
+      <Typography gutterBottom align="center" variant="h2">
         {t("SignUp.title")}
-      </Header>
+      </Typography>
+
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <MuiInput
           name="fullName"

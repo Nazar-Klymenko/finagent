@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import Typography from "@material-ui/core/Typography";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { NavLink, useHistory } from "react-router-dom";
@@ -13,7 +14,6 @@ import Loader from "@components/Loader";
 import { CTA } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiInput, MuiPasswordInput } from "@components/input";
-import { Header } from "@components/typography";
 
 import loginSchema from "./login.schema";
 
@@ -77,9 +77,9 @@ const Login: React.FC<Props> = (props) => {
 
   return !isLoading ? (
     <ContentWrap xl authForm direction="column">
-      <Header bottomGutter variant="h1" align="center">
+      <Typography gutterBottom align="center" variant="h2">
         {t("LogIn.title")}
-      </Header>
+      </Typography>
 
       <Form methods={methods} id="form" onSubmit={handleSubmit(formSubmit)}>
         <MuiInput

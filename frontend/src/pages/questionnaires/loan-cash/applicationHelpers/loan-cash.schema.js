@@ -1,23 +1,30 @@
 import * as yup from "yup";
 
-export const addApplicantSchema = () => {
+export const ApplicantSchema = () => {
   return yup.object().shape({
+    nationality: yup.string(),
     otherNation: yup.string().when("nationality", {
       is: "other",
       then: yup.string().required("Form.Error.blank"),
     }),
 
-    validFrom: yup.date().when("nationality", {
-      is: "other",
-      then: yup.date().nullable().required("Form.Error.missingDate"),
-    }),
-    validUntil: yup.date().when("nationality", {
-      is: "other",
-      then: yup.date().when("residenceDocument", {
-        is: (value) => value !== "permanentCard",
+    validFrom: yup
+      .date()
+      .nullable()
+      .when("nationality", {
+        is: "other",
         then: yup.date().nullable().required("Form.Error.missingDate"),
       }),
-    }),
+    validUntil: yup
+      .date()
+      .nullable()
+      .when("nationality", {
+        is: "other",
+        then: yup.date().when("residenceDocument", {
+          is: (value) => value !== "permanentCard",
+          then: yup.date().nullable().required("Form.Error.missingDate"),
+        }),
+      }),
 
     name: yup.string().required("Form.Error.blank"),
     surname: yup.string().required("Form.Error.blank"),
@@ -28,16 +35,26 @@ export const addApplicantSchema = () => {
     email: yup.string().required("Form.Error.blank"),
     pesel: yup.string().required("Form.Error.blank"),
 
-    contractFrom: yup.date().when("basicIncome", {
-      is: (value) =>
-        value === "specificTime" || value === "mandate" || value === "contract",
-      then: yup.date().nullable().required("Form.Error.missingDate"),
-    }),
-    contractUntil: yup.date().when("basicIncome", {
-      is: (value) =>
-        value === "specificTime" || value === "mandate" || value === "contract",
-      then: yup.date().nullable().required("Form.Error.missingDate"),
-    }),
+    contractFrom: yup
+      .date()
+      .nullable()
+      .when("basicIncome", {
+        is: (value) =>
+          value === "specificTime" ||
+          value === "mandate" ||
+          value === "contract",
+        then: yup.date().nullable().required("Form.Error.missingDate"),
+      }),
+    contractUntil: yup
+      .date()
+      .nullable()
+      .when("basicIncome", {
+        is: (value) =>
+          value === "specificTime" ||
+          value === "mandate" ||
+          value === "contract",
+        then: yup.date().nullable().required("Form.Error.missingDate"),
+      }),
 
     averageIncome: yup.string().required("Form.Error.blank"),
     currency: yup.string().required("Form.Error.blank"),

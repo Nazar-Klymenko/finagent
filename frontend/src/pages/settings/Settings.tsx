@@ -8,7 +8,7 @@ import useTitle from "@hooks/useTitle";
 
 import { useAuth } from "@context/authContext";
 
-import { PrivateRoute } from "@components/CustomRoutes/";
+import { PrivateRoute } from "@components/CustomRoutes";
 import { ContentWrap } from "@components/content";
 
 import ChangeInfoPage from "./changingPages/ChangeInfoPage";
@@ -51,17 +51,20 @@ const Settings = () => {
       </Menu>
       <ActionZone>
         <Overlay>
-          <PrivateRoute path="/settings/change_info">
-            <ChangeInfoPage />
-          </PrivateRoute>
+          <PrivateRoute
+            path="/settings/change_info"
+            component={<ChangeInfoPage />}
+          />
 
-          <PrivateRoute path="/settings/change_password">
-            <ChangePasswordPage />
-          </PrivateRoute>
+          <PrivateRoute
+            path="/settings/change_password"
+            component={<ChangePasswordPage />}
+          />
 
-          <PrivateRoute path="/settings/danger_zone">
-            <DangerZonePage />
-          </PrivateRoute>
+          <PrivateRoute
+            path="/settings/danger_zone"
+            component={<DangerZonePage />}
+          />
         </Overlay>
       </ActionZone>
     </ContentWrap>

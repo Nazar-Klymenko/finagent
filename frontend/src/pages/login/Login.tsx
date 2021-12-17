@@ -77,7 +77,7 @@ const Login: React.FC<Props> = (props) => {
 
   return !isLoading ? (
     <ContentWrap xl authForm direction="column">
-      <Typography gutterBottom align="center" variant="h2">
+      <Typography gutterBottom align="center" variant="h3">
         {t("LogIn.title")}
       </Typography>
 

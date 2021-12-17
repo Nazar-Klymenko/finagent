@@ -53,17 +53,17 @@ const Settings = () => {
         <Overlay>
           <PrivateRoute
             path="/settings/change_info"
-            component={<ChangeInfoPage />}
+            component={ChangeInfoPage}
           />
 
           <PrivateRoute
             path="/settings/change_password"
-            component={<ChangePasswordPage />}
+            component={ChangePasswordPage}
           />
 
           <PrivateRoute
             path="/settings/danger_zone"
-            component={<DangerZonePage />}
+            component={DangerZonePage}
           />
         </Overlay>
       </ActionZone>

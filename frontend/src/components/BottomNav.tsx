@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
@@ -52,10 +53,10 @@ const BottomNav = () => {
       />
       <BottomNavigationAction
         component={NavLink}
-        to="/help"
-        label={t("NavbarBottom.help")}
-        value="/help"
-        icon={<HelpRoundedIcon />}
+        to="/notifications"
+        label={t("Notifications.title")}
+        value="/notifications"
+        icon={<NotificationsNoneRoundedIcon />}
       />
       <BottomNavigationAction
         component={NavLink}
@@ -85,7 +86,19 @@ const BottomNavStyled = styled(BottomNavigation)`
   }
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
     display: flex !important;
-  } ;
+  }
+  /* @media screen and (max-width: ${({ theme }) => theme.widthSmallPhone}) {
+    a {
+      padding: 6px 8px 8px;
+      width: 3rem;
+    }
+    .MuiBottomNavigationAction-root {
+      max-width: 2.5rem;
+    }
+    .MuiBottomNavigationAction-label {
+      display: none;
+    }
+  } ; */
 `;
 
 export default BottomNav;

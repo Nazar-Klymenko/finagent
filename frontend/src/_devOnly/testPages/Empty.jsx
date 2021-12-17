@@ -12,7 +12,7 @@ const Empty = () => {
         header="test"
         applicationType="InsuranceDiagnostic.Page1"
         object={Object.entries(insuranceSpecialist.personalData)}
-        array={insuranceSpecialist.insuredData.policyholder}
+        // array={insuranceSpecialist.insuredData.policyholder}
       />
     </ContentWrap>
   );

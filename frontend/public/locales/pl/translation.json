@@ -760,6 +760,7 @@
       "insuranceEnd": "Koniec ubezpieczenia",
       "policyholderIs": "Ubezpieczony",
       "name": "Imię",
+      "companyName": "Nazwa firmy",
       "surname": "Nazwisko",
       "nip": "NIP",
       "birthDate": "Data urodzenia",

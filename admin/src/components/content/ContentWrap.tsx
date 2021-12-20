@@ -58,7 +58,6 @@ const ContentWrapStyled = styled.div<Props>`
 
   @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
     flex: 1 1;
-    width: auto;
     border-radius: unset;
     margin: 0;
     padding-bottom: 90px;

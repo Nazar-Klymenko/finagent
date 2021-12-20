@@ -73,14 +73,17 @@ export const pageThreeSchema = yup.object().shape({
     .required("Form.Error.missingDate")
     .nullable()
     .typeError("Form.Error.invalidDate"),
-  polandRegDate: yup.date().when("abroadImport", {
-    is: true,
-    then: yup
-      .date()
-      .required("Form.Error.missingDate")
-      .nullable()
-      .typeError("Form.Error.invalidDate"),
-  }),
+  polandRegDate: yup
+    .date()
+    .nullable()
+    .when("abroadImport", {
+      is: true,
+      then: yup
+        .date()
+        .required("Form.Error.missingDate")
+        .nullable()
+        .typeError("Form.Error.invalidDate"),
+    }),
 });
 
 export const pageFourSchema = yup.object().shape({

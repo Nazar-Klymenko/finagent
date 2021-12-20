@@ -31,7 +31,7 @@ const Page2 = () => {
   const { t } = useTranslation();
   const { appData, setValues, setAllowSummary } = useData();
 
-  const appDataValid = validateAppData(appData, "LoanData");
+  const appDataValid = appData.loanCash?.loanData;
 
   const history = useHistory();
 
@@ -39,13 +39,13 @@ const Page2 = () => {
 
   const methods = useForm({
     defaultValues: {
-      remainingPayOff: appDataValid.remainingPayOff,
-      lastApplications: appDataValid.lastApplications,
-      custody: appDataValid.custody,
-      loanPurpose: appDataValid.loanPurpose,
-      loanAmount: appDataValid.loanAmount,
-      paymentTerm: appDataValid.paymentTerm,
-      conditions: appDataValid.conditions,
+      remainingPayOff: appDataValid?.remainingPayOff,
+      lastApplications: appDataValid?.lastApplications,
+      custody: appDataValid?.custody,
+      loanPurpose: appDataValid?.loanPurpose,
+      loanAmount: appDataValid?.loanAmount,
+      paymentTerm: appDataValid?.paymentTerm,
+      conditions: appDataValid?.conditions,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -70,8 +70,8 @@ const Page2 = () => {
       <Page>
         <Title>{t("LoanCash.title")}</Title>
         <ProgressBar
-          maxSteps={2}
-          currentStep={2}
+          maxSteps={3}
+          currentStep={3}
           label={t("LoanCash.Page2.subtitle")}
         />
         <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
@@ -124,7 +124,7 @@ const Page2 = () => {
             form=""
             color="secondary"
             onClick={() => {
-              history.push("./1");
+              history.push("./2");
             }}
           />
           <CTA text={t("Basic.buttonNext")} form="form" color="primary" />

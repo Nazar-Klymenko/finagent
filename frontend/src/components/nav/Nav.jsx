@@ -65,7 +65,7 @@ const Nav = () => {
 
         <FlexWrap f1 flexEnd>
           <LanguageMenu />
-          {isLoggedIn && <Notifications />}
+          {!isTabletOrMobile && isLoggedIn && <Notifications />}
 
           {!isTabletOrMobile &&
             (isLoggedIn ? (

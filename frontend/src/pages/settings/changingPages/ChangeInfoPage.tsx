@@ -21,6 +21,11 @@ import { MuiInput, MuiPhoneInput } from "@components/input";
 import { ButtonPosition, ChangingPage, StatusError } from "../LocalStyles";
 import { settingsSchema } from "../settingsSchema";
 
+type FormTypes = {
+  fullName: string;
+  phone: string;
+};
+
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
   const { data, error, loading } = useFetch(getSettingsAPI());
@@ -30,7 +35,7 @@ const ChangePasswordPage = () => {
 
   const { updateDisplayName } = useAuth();
 
-  const { handleSubmit, reset, formState, control } = useForm({
+  const methods = useForm<FormTypes>({
     defaultValues: {
       fullName: data?.displayName,
       phone: data?.phone,
@@ -40,8 +45,7 @@ const ChangePasswordPage = () => {
     shouldFocusError: false,
     resolver: yupResolver(settingsSchema()),
   });
-
-  const { errors } = formState;
+  const { handleSubmit, reset, formState } = methods;
 
   useEffect(() => {
     reset(data);
@@ -49,7 +53,7 @@ const ChangePasswordPage = () => {
 
   const { isDirty } = formState;
 
-  const formSubmit = async (data) => {
+  const formSubmit = handleSubmit(async (data) => {
     setIsBtnLoading(true);
     try {
       await updateSettingsAPI(data);
@@ -60,7 +64,7 @@ const ChangePasswordPage = () => {
       setPostError(t("Settings.ChangeInfo.errorResponse"));
     }
     setIsBtnLoading(false);
-  };
+  });
 
   if (loading) {
     return <Loader />;
@@ -69,22 +73,16 @@ const ChangePasswordPage = () => {
     <ChangingPage>
       <h3>{t("Settings.ChangeInfo.title")}</h3>
       <div className="form">
-        <Form id="settings-form" onSubmit={handleSubmit(formSubmit)}>
+        <Form methods={methods} id="settings-form" onSubmit={formSubmit}>
           <MuiInput
-            control={control}
             name="fullName"
             labelName={t("Settings.ChangeInfo.fullName")}
             autoComplete="name"
-            error={!!errors.fullName}
-            helperText={errors?.fullName?.message}
           />
 
           <MuiPhoneInput
-            control={control}
             name="phone"
             labelName={t("Settings.ChangeInfo.phone")}
-            error={!!errors.phone}
-            helperText={errors?.phone?.message}
             optional
           />
         </Form>

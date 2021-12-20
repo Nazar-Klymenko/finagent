@@ -34,6 +34,7 @@ const MuiCheckbox: FC<Props> = ({
   return (
     <>
       <FormControlLabel
+        style={{ maxWidth: "680px" }}
         control={
           <Controller
             name={name}

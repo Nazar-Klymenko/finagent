@@ -8,6 +8,7 @@ import Mortgage from "@assets/images/mortgage.svg";
 import SpecialistInsurance from "@assets/images/specialist.svg";
 import Transport from "@assets/images/transport.svg";
 import Travel from "@assets/images/travel_insurance.svg";
+import { Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -23,9 +24,9 @@ const Services = () => {
   const { t } = useTranslation();
   return (
     <ContentWrap fullWidth direction="column" blank>
-      <Header variant="h1" bottomGutter>
+      <Typography variant="h3" gutterBottom>
         {t("Services.Titles.insurances")}
-      </Header>
+      </Typography>
       <ServicesWrap>
         <ServiceCard
           to="quest/transport/1"
@@ -70,10 +71,11 @@ const Services = () => {
           description={t("Services.Estate.subtitle")}
         />
       </ServicesWrap>
+      <Spacer />
 
-      <Header variant="h1" bottomGutter>
+      <Typography variant="h3" gutterBottom>
         {t("Services.Titles.loans")}
-      </Header>
+      </Typography>
       <ServicesWrap>
         <ServiceCard
           to="quest/cashloan/1"
@@ -89,6 +91,7 @@ const Services = () => {
           header={t("Services.Mortgage.title")}
           description={t("Services.Mortgage.subtitle")}
         />
+        <Collapsed></Collapsed>
       </ServicesWrap>
     </ContentWrap>
   );
@@ -101,5 +104,16 @@ const ServicesWrap = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(340px, max-content));
   grid-gap: 48px;
   justify-content: left;
-  padding-bottom: 32px;
+
+  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+    grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+  } ;
+`;
+
+const Collapsed = styled.div`
+  visibility: collape;
+`;
+const Spacer = styled.div`
+  width: 100%;
+  height: 32px;
 `;

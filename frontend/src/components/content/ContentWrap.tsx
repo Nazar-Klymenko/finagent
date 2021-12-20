@@ -47,8 +47,6 @@ const ContentWrapStyled = styled.div<Props>`
   height: 100%;
   border: 1px solid ${({ theme }) => theme.border};
 
-  width: ${({ xl }) => (xl ? "70%" : "50%")};
-
   display: flex;
   justify-content: center;
   align-content: center;
@@ -76,6 +74,7 @@ const ContentWrapStyled = styled.div<Props>`
   ${({ authForm }) =>
     authForm &&
     css`
+      width: 500px;
       min-width: 500px !important;
       max-width: 500px !important;
       padding-left: 2rem !important;
@@ -147,11 +146,11 @@ ${({ flipDirection }) =>
     max-width: 100%;
     border-radius: unset;
     margin: 0;
-    padding: 8px !important;
+    padding: 1.5rem 1rem;
   }
   @media all and (max-width: ${({ theme }) => theme.widthSmallPhone}) {
     flex: 1 1;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
     flex: 1;
     border-radius: unset;
     margin: 0;

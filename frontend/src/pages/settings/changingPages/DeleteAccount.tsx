@@ -22,6 +22,10 @@ import DeletionDialog from "../DeletionDialog";
 import { ButtonPosition, ChangingPage, StatusError } from "../LocalStyles";
 import { dangerZoneSchema } from "../settingsSchema";
 
+type FormTypes = {
+  password: string;
+};
+
 const DangerZonePage = () => {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -30,28 +34,28 @@ const DangerZonePage = () => {
 
   const { currentUser, deleteAccount, deleteAccountFacebook } = useAuth();
   const { provider } = currentUser;
-  const {
-    control,
-    handleSubmit,
-
-    formState: { errors },
-  } = useForm({
+  const methods = useForm<FormTypes>({
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: false,
     resolver: yupResolver(dangerZoneSchema()),
   });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = methods;
 
-  const formSubmit = async (data) => {
+  const formSubmit = handleSubmit(async (data) => {
     if (provider === "facebook.com") {
-      await deleteAccountFacebook();
-
+      deleteAccountFacebook();
       setOpenDialog(false);
     } else {
-      await deleteAccount(data.password);
+      deleteAccount(data.password);
       setOpenDialog(false);
     }
-  };
+  });
+
   const handleClickOpen = () => {
     setOpenDialog(true);
   };
@@ -70,8 +74,9 @@ const DangerZonePage = () => {
         {t("Settings.Disposal.deleteAction")}
       </Button>
       <Form
+        methods={methods}
         id="settings-form-delete-account"
-        onSubmit={handleSubmit(formSubmit)}
+        onSubmit={formSubmit}
       >
         {provider === "facebook.com" ? (
           <DeletionDialog
@@ -90,11 +95,8 @@ const DangerZonePage = () => {
             description="You are about to delete your account. Please provide your password below to confirm the deletion"
           >
             <MuiPasswordInput
-              control={control}
               name="password"
               labelName={t("Settings.Disposal.password")}
-              error={!!errors.password}
-              helperText={errors?.password?.message}
             />
           </DeletionDialog>
         )}

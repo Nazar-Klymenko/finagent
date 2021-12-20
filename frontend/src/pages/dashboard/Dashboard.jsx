@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Paper, Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { Redirect, Route, useRouteMatch } from "react-router-dom";
 import styled from "styled-components/macro";
@@ -57,18 +58,15 @@ const Dashboard = () => {
   );
 };
 
-const DashboardMain = styled.div`
+const DashboardMain = styled(Paper)`
   display: flex;
   width: auto;
   flex-direction: column;
-  border: 1px solid $BorderGray;
   overflow: hidden;
   margin-left: 20px;
   flex: 1;
   background: white;
   border-radius: 4px;
-  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
-  border: 1px solid ${({ theme }) => theme.border};
 
   position: relative;
   .empty {

@@ -28,6 +28,7 @@ const UserDropdown: React.FC<Props> = ({ navOpen, setNavOpen }) => {
   const { t } = useTranslation();
   const { currentUser, logout } = useAuth();
   const { displayName, isSendingRequest, photoURL } = currentUser;
+  const [avatarError, setAvatarError] = useState(false);
 
   const history = useHistory();
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -53,8 +54,13 @@ const UserDropdown: React.FC<Props> = ({ navOpen, setNavOpen }) => {
       navOpen={navOpen}
     >
       <MainUser navOpen={navOpen}>
-        {photoURL ? (
-          <AvatarFB src={photoURL} />
+        {photoURL && !avatarError ? (
+          <AvatarFB
+            onError={() => {
+              setAvatarError(true);
+            }}
+            src={photoURL}
+          />
         ) : (
           <AvatarEmail>{displayName?.[0]}</AvatarEmail>
         )}

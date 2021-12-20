@@ -74,7 +74,7 @@ const SignUp = () => {
 
   return !isLoading ? (
     <ContentWrap xl authForm direction="column">
-      <Typography gutterBottom align="center" variant="h2">
+      <Typography gutterBottom align="center" variant="h3">
         {t("SignUp.title")}
       </Typography>
 

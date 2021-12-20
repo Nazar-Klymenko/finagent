@@ -11,7 +11,7 @@ export const Page = styled.div`
     min-width: 540px;
   }
   @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
-    min-width: 280px;
+    min-width: unset;
   }
 `;
 

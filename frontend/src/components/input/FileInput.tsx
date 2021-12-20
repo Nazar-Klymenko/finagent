@@ -58,23 +58,24 @@ const FileInput: FC<Props> = ({ name, labelName, showFiles, defaultValue }) => {
               </Paper>
             )}
           </Dropzone>
-          {showFiles && (
+          {/* {showFiles && (
             <List>
-              {field!.value!.map(
-                (f: { name: string; size: string }, idx: number) => (
-                  <ListItem key={idx}>
-                    <ListItemIcon>
-                      <InsertDriveFile />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={f.name}
-                      secondary={formatBytes(f.size)}
-                    />
-                  </ListItem>
-                )
-              )}
+              {field &&
+                field!.value!.map(
+                  (f: { name: string; size: string }, idx: number) => (
+                    <ListItem key={idx}>
+                      <ListItemIcon>
+                        <InsertDriveFile />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={f.name}
+                        secondary={formatBytes(f.size)}
+                      />
+                    </ListItem>
+                  )
+                )}
             </List>
-          )}
+          )} */}
           <InputErrorMessage>
             <span className="invis-star">*</span>
             {t(_.get(errors, `${name}.message`))}

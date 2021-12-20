@@ -752,6 +752,7 @@
       "insuranceEnd": "Страхование заканчивается",
       "policyholderIs": "Страхователь",
       "name": "Имя",
+      "companyName": "Название фирмы",
       "surname": "Фамилия",
       "nip": "NIP",
       "birthDate": "Дата рождения",

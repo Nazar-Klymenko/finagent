@@ -40,10 +40,7 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
-import {
-  ApplicantValue,
-  pageOneValues,
-} from "./applicationHelpers/default-values";
+import { pageOneValues } from "./applicationHelpers/default-values";
 import { ApplicantSchema } from "./applicationHelpers/loan-cash.schema";
 
 type FormTypes1 = {
@@ -80,16 +77,18 @@ const Page1 = () => {
   const history = useHistory();
 
   const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid = appData.loanCash?.applicantsData;
+  const appDataValid1 = appData.loanCash?.applicantData;
+  const appDataValid = appData.loanCash?.applicantData?.applicant;
 
   const [openDialog, setOpenDialog] = useState(true);
   const [formInitiated, setFormInitiated] = useState(false);
   const [editingMode, setEditingMode] = useState(false);
   const [addingMode, setAddingMode] = useState(false);
   const [editingIndex, setEditingIndex] = useState(0);
+  const [maxFields, setMaxFields] = useState(1);
 
   const methods1 = useForm<FormTypes1>({
-    defaultValues: pageOneValues(appDataValid),
+    defaultValues: pageOneValues(appDataValid1),
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
@@ -155,7 +154,7 @@ const Page1 = () => {
 
   const handleClose = (index: number) => {
     if (addingMode) {
-      // removeData(index);
+      removeData(index);
       setAddingMode(false);
     } else {
       setOpenDialog(false);
@@ -176,6 +175,9 @@ const Page1 = () => {
 
   const finalizeForm = () => {
     if (formInitiated && fields.length > 0 && !!errors.applicant === false) {
+      appDataValid1.maritalStatus = maritalStatus;
+      appDataValid1.bothSpousesStart = bothSpousesStart;
+      appDataValid1.propertySeparation = propertySeparation;
       setCurrentPage(2);
       history.push("./2");
     } else {
@@ -185,8 +187,22 @@ const Page1 = () => {
 
   const maritalStatus = watch1("maritalStatus");
   const bothSpousesStart = watch1("bothSpousesStart");
+  const propertySeparation = watch1("propertySeparation");
 
-  console.log({ errors });
+  useEffect(() => {
+    if (bothSpousesStart === "yes") {
+      setMaxFields(2);
+    } else {
+      setMaxFields(1);
+    }
+  }, [bothSpousesStart]);
+
+  useEffect(() => {
+    if (appDataValid?.length === 2 && bothSpousesStart === "no") {
+      remove(1);
+      appDataValid.splice(1, 1);
+    }
+  }, [appDataValid, bothSpousesStart, remove]);
 
   return (
     <ContentWrap fullWidth>
@@ -195,7 +211,7 @@ const Page1 = () => {
       <Page>
         <Title>{t("LoanCash.title")}</Title>
         <ProgressBar
-          maxSteps={2}
+          maxSteps={3}
           currentStep={1}
           label={t("LoanCash.Page1.subtitle")}
         />
@@ -361,9 +377,9 @@ const Page1 = () => {
                       type="text"
                       placeholder="John"
                       autoComplete="given-name"
-                      defaultValue={field.name}
+                      defaultValue={field.name || ""}
                     />
-                    {/* <MuiInput
+                    <MuiInput
                       name={`applicant[${index}].surname`}
                       labelName={t("LoanCash.ApplicantModal.surname")}
                       type="text"
@@ -582,75 +598,20 @@ const Page1 = () => {
                       type="text"
                       placeholder="Millenium"
                       defaultValue={field.bank}
-                    /> */}
+                    />
                   </Form>
                 </MuiDialog>
               )
             );
           })}
-        {/* 
-        {appDataValid?.length === 0 || !appDataValid?.length ? (
-          <ApplicantBox
-            onClick={() => {
-              setAddingMode(true);
-              setEditingMode(true);
-              setOpenDialog(true);
-              setEditingIndex(0);
-            }}
-          >
-            <ApplicantAdd>
-              <PersonAddIcon />
-              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
-            </ApplicantAdd>
-          </ApplicantBox>
-        ) : (
-          fields.map((field: any, index: number) => {
-            //@ts-ignore
-            let applicant = watch(`applicant[${index}].name`, "aa");
-            return (
-              <Applicant key={field.id} error={!!errors.applicant?.[index]}>
-                <AvatarStyled>{applicant?.[0] || ""}</AvatarStyled>
-                <ApplicantName>{applicant}</ApplicantName>
-                <IconButton
-                  onClick={() => {
-                    editData(index);
-                  }}
-                >
-                  <EditIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => {
-                    removeData(index);
-                  }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </Applicant>
-            );
-          })
-        )}
 
-        {bothSpousesStart === "yes" && appDataValid?.length !== 0 ? (
-          <ApplicantBox
-            onClick={() => {
-              append({ name: "", surname: "" });
-              setAddingMode(true);
-              setEditingMode(true);
-              setOpenDialog(true);
-              setEditingIndex(1);
-            }}
-          >
-            <ApplicantAdd>
-              <PersonAddIcon />
-              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
-            </ApplicantAdd>
-          </ApplicantBox>
-        ) : (
+        {formInitiated &&
           fields.map((field: any, index: number) => {
             //@ts-ignore
-            let applicant = watch(`applicant[${index}].name`, "aa");
+            let applicant = watch(`applicant[${index}].name`);
             return (
               <Applicant key={field.id} error={!!errors.applicant?.[index]}>
+                {/* @ts-ignore */}
                 <AvatarStyled>{applicant?.[0] || ""}</AvatarStyled>
                 <ApplicantName>{applicant}</ApplicantName>
                 <IconButton
@@ -669,34 +630,8 @@ const Page1 = () => {
                 </IconButton>
               </Applicant>
             );
-          })
-        )} */}
+          })}
 
-        {/* {formInitiated &&
-          fields.map((field: any, index: number) => {
-            //@ts-ignore
-            let applicant = watch(`applicant[${index}].name`, "aa");
-            return (
-              <Applicant key={field.id} error={!!errors.applicant?.[index]}>
-                <AvatarStyled>{applicant?.[0] || ""}</AvatarStyled>
-                <ApplicantName>{applicant}</ApplicantName>
-                <IconButton
-                  onClick={() => {
-                    editData(index);
-                  }}
-                >
-                  <EditIcon />
-                </IconButton>
-                <IconButton
-                  onClick={() => {
-                    removeData(index);
-                  }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </Applicant>
-            );
-          })} */}
         {!formInitiated ? (
           <ApplicantBox
             onClick={() => {
@@ -706,13 +641,11 @@ const Page1 = () => {
           >
             <ApplicantAdd>
               <PersonAddIcon />
-              <span>
-                {t("InsuranceDiagnostic.ApplicantBox.addApplicant")} 1
-              </span>
+              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
             </ApplicantAdd>
           </ApplicantBox>
         ) : (
-          fields.length < 1 && (
+          fields.length < maxFields && (
             <ApplicantBox
               onClick={() => {
                 append({ name: "", surname: "" });
@@ -732,7 +665,12 @@ const Page1 = () => {
           )
         )}
         <ButtonsWrap>
-          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
+          <CTA
+            text={t("Basic.buttonNext")}
+            form="form"
+            color="primary"
+            onClick={finalizeForm}
+          />
         </ButtonsWrap>
       </Page>
     </ContentWrap>

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Paper, Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
@@ -28,17 +29,21 @@ const SideNav: React.FC = () => {
         strict
         to={`/dashboard/insurances/`}
       >
-        <span>{t("Dashboard.SideMenu.insurances")}</span>
+        <Typography variant="body1">
+          {t("Dashboard.SideMenu.insurances")}
+        </Typography>
         {data?.quantityInsurances > 0 && (
           <Quantity>{data?.quantityInsurances}</Quantity>
         )}
       </NavLink>
       <NavLink activeClassName="link--selected" strict to={`/dashboard/loans/`}>
-        <span>{t("Dashboard.SideMenu.loans")}</span>
+        <Typography variant="body1">{t("Dashboard.SideMenu.loans")}</Typography>
         {data?.quantityLoans > 0 && <Quantity>{data?.quantityLoans}</Quantity>}
       </NavLink>
       <NavLink activeClassName="link--selected" to={`/dashboard/archived/`}>
-        <span>{t("Dashboard.SideMenu.history")}</span>
+        <Typography variant="body1">
+          {t("Dashboard.SideMenu.history")}
+        </Typography>
 
         {data?.quantityArchived > 0 && (
           <Quantity>{data?.quantityArchived}</Quantity>
@@ -48,9 +53,9 @@ const SideNav: React.FC = () => {
   );
 };
 
-const Nav = styled.div`
+const Nav = styled(Paper)`
   padding: 8px;
-  background-color: white;
+  /* background-color: white; */
   border-radius: 4px;
   list-style: none;
   display: flex;
@@ -58,8 +63,8 @@ const Nav = styled.div`
   width: max-content;
   z-index: 15;
   height: max-content;
-  border: 1px solid ${({ theme }) => theme.border};
-  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
+  /* border: 1px solid ${({ theme }) => theme.border}; */
+  /* box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1); */
   min-width: 14rem;
 
   a {

@@ -52,6 +52,7 @@ import {
 import {
   Page1_Cash,
   Page2_Cash,
+  Page3_Cash,
   Summary_Cash,
 } from "@pages/questionnaires/loan-cash";
 import {
@@ -204,6 +205,7 @@ const Routes = () => (
 
     <QuestRoute path="/quest/cashloan/1" exact component={Page1_Cash} />
     <QuestRoute path="/quest/cashloan/2" exact component={Page2_Cash} />
+    <QuestRoute path="/quest/cashloan/3" exact component={Page3_Cash} />
     <QuestRoute path="/quest/cashloan/summary" exact component={Summary_Cash} />
 
     <QuestRoute path="/quest/mortgage/1" exact component={Page1_Mortgage} />

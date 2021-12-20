@@ -758,6 +758,7 @@
       "insuranceEnd": "Insurance period ends",
       "policyholderIs": "Policyholder is",
       "name": "Name",
+      "companyName": "Firm name",
       "surname": "Surname",
       "nip": "NIP",
       "birthDate": "Date of birth",

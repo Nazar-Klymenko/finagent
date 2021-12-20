@@ -20,7 +20,7 @@
     "buttonNext": "Далі",
     "buttonBack": "Назад",
     "buttonAdd": "Додати",
-    "buttonConfirm": "Піттвердити",
+    "buttonConfirm": "Підтвердити",
     "summary": "Підсумок",
     "no": "Ні",
     "yes": "Так",
@@ -767,6 +767,8 @@
       "insuranceEnd": "Страховий період закінчюется",
       "policyholderIs": "Страхувальник",
       "name": "Ім'я",
+      "companyName": "Назва фірми",
+
       "surname": "Прізвище",
       "nip": "NIP",
       "birthDate": "Дата народження",

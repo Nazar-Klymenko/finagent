@@ -214,7 +214,13 @@ const Page2 = () => {
                     />
                     <MuiInput
                       name={`policyholder[${index}].name`}
-                      labelName={t("InsuranceDiagnostic.Page1.name")}
+                      labelName={t(
+                        `InsuranceDiagnostic.Page1.${
+                          policyholderIs === "individual"
+                            ? "name"
+                            : "companyName"
+                        }`
+                      )}
                       autoComplete="given-name"
                       defaultValue={field.name || ""}
                     />

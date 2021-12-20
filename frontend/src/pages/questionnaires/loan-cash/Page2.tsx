@@ -69,14 +69,30 @@ const Page2 = () => {
   const [addingMode, setAddingMode] = useState(false);
   const [editingIndex, setEditingIndex] = useState(0);
 
-  const { appData, setValues, setAllowSummary } = useData();
+  const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = appData.loanCash?.incomedData?.income;
+  const appDataValid = appData.loanCash?.incomeData?.income;
 
   const history = useHistory();
 
   const methods = useForm<FormTypes>({
-    defaultValues: pageTwoValues(appDataValid),
+    defaultValues: {
+      income: [
+        {
+          truckDriver: appDataValid?.[0]?.truckDriver || "no",
+          industry: appDataValid?.[0]?.industry,
+          basicIncome: appDataValid?.[0]?.basicIncome || "indefinitePeriod",
+          firstContract: appDataValid?.[0]?.firstContract || "yes",
+          sameEmployer: appDataValid?.[0]?.sameEmployer || "yes",
+          withoutPause: appDataValid?.[0]?.withoutPause || "yes",
+          contractFrom: appDataValid?.[0]?.contractFrom,
+          contractUntil: appDataValid?.[0]?.contractUntil,
+          averageIncome: appDataValid?.[0]?.averageIncome,
+          accountancy: appDataValid?.[0]?.accountancy || "generalRules",
+          pit: appDataValid?.[0]?.pit,
+        },
+      ],
+    },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
@@ -108,7 +124,7 @@ const Page2 = () => {
     setFormInitiated(true);
     setEditingMode(false);
     setAddingMode(false);
-    setValues(data, "loanCash", "incomedData");
+    setValues(data, "loanCash", "incomeData");
   });
 
   const handleClose = (index: number) => {
@@ -134,12 +150,14 @@ const Page2 = () => {
 
   const finalizeForm = () => {
     if (formInitiated && fields.length > 0 && !!errors.income === false) {
-      setAllowSummary(true);
-      history.push("./summary");
+      setCurrentPage(3);
+      history.push("./3");
     } else {
       alert(t("InsuranceHealth.Error.noApplicant"));
     }
   };
+
+  console.log({ errors });
 
   return (
     <ContentWrap fullWidth>
@@ -148,7 +166,7 @@ const Page2 = () => {
       <Page>
         <Title>{t("LoanCash.title")}</Title>
         <ProgressBar
-          maxSteps={2}
+          maxSteps={3}
           currentStep={2}
           label={t("LoanCash.Page2.subtitle")}
         />

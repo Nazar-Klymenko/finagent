@@ -16,11 +16,16 @@ import styled, { css } from "styled-components";
 interface Props {
   header: string;
   applicationType: string;
-  object: any[];
-  array?: any[];
+  array: any[];
+  fieldArray?: any[];
 }
 
-const Table: FC<Props> = ({ header, applicationType, object, array }) => {
+const Table: FC<Props> = ({
+  header,
+  applicationType,
+  array = [],
+  fieldArray = [],
+}) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(true);
 
@@ -47,23 +52,43 @@ const Table: FC<Props> = ({ header, applicationType, object, array }) => {
 
         {open && (
           <TableBody>
-            {object.map((row: any) => (
-              <TableRow key={row[0]}>
-                <TableCell component="th" scope="row">
-                  {t(`${applicationType}.${row[0]}`)}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {/* {row[1]} */}
-                  {t(`${applicationType}.${row[0]}`)}
-                </TableCell>
-              </TableRow>
-            ))}
-
-            {array!.map((item, index) => (
-              <ArrayRow row={item} />
+            {array.map((item: any, idx: number) => (
+              <div key={idx}>
+                <span>{t(item[0])}</span>
+                {Object.entries(item[1]).map((item: any, idx) => (
+                  <TableRow key={idx}>
+                    <TableCell className="value">
+                      {t(`${applicationType}.${item[0]}`)}
+                    </TableCell>
+                    <TableCell className="name">
+                      {/* {t(`${applicationType}.${item[1]}`)} */}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </div>
             ))}
           </TableBody>
         )}
+        {/* {open && (
+          <TableBody>
+            {array.length > 0 &&
+              array.map((row: any, index: number) => {
+                console.log("here");
+                console.log(row);
+                console.log(array);
+                return (
+                  <TableRow key={row[0]}>
+                    <TableCell component="th" scope="row">
+                      {t(`${applicationType}.${row[0]}`)}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {t(`${applicationType}.${row[0]}`)}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        )} */}
       </MuiTable>
     </TableContainerStyled>
   );
@@ -90,6 +115,20 @@ const ArrayRow = ({ row }: { row: any }) => {
 };
 
 export default Table;
+
+// {array.map((row: any) => (
+//   <TableRow key={row[0]}>
+//     <TableCell component="th" scope="row">
+//       {t(`${applicationType}.${row[0]}`)}
+//     </TableCell>
+//     <TableCell component="th" scope="row">
+//       {/* {row[1]} */}
+//       {t(`${applicationType}.${row[0]}`)}
+//     </TableCell>
+//   </TableRow>
+// ))}
+//{fieldArray?.length > 0 &&
+//fieldArray!.map((item, index) => <ArrayRow row={item} />)}
 
 const TableContainerStyled = styled(TableContainer)<any>`
   ${({ open }) =>

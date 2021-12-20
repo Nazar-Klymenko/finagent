@@ -11,6 +11,7 @@ export const InputContainer = styled.div<Props>`
 
 export const Label = styled.label`
   /* font-size: 0.9rem; */
+  max-width: 680px;
   display: flex;
   width: 100%;
 `;

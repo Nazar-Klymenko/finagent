@@ -95,10 +95,7 @@ export const postLoanMortgageAPI = (object) => {
 
 /////////////////// Settings API ////////////////////////
 export const getSettingsAPI = () => {
-  return {
-    url: "/user/settings",
-    options: { method: "GET" },
-  };
+  return axios("/user/settings", { method: "GET" });
 };
 
 export const updateSettingsAPI = (object) => {

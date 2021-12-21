@@ -11,7 +11,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 
 interface Props {
   isOpen: boolean;
@@ -56,7 +56,11 @@ const DeletionDialog: FC<Props> = ({
           <Button onClick={handleClose} color="primary" autoFocus>
             {t("Basic.buttonBack")}
           </Button>
-          <CTA text={t("Basic.buttonConfirm")} form={formId} color="primary" />
+          <MuiButton
+            text={t("Basic.buttonConfirm")}
+            form={formId}
+            color="primary"
+          />
         </DialogActions>
       </Dialog>
     </div>

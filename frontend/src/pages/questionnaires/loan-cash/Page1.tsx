@@ -20,7 +20,7 @@ import Form from "@components/Form";
 import FormError from "@components/FormError";
 import MuiDialog from "@components/MuiDialog";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import {
   DateInput,
@@ -665,10 +665,17 @@ const Page1 = () => {
           )
         )}
         <ButtonsWrap>
-          <CTA
+          {/* <MuiButton
             text={t("Basic.buttonNext")}
             form="form"
             color="primary"
+            onClick={finalizeForm}
+          /> */}
+
+          <MuiButton
+            text={t("Basic.buttonNext")}
+            color="primary"
+            form="form"
             onClick={finalizeForm}
           />
         </ButtonsWrap>

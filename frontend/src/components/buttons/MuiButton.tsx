@@ -11,6 +11,7 @@ interface Props extends ButtonProps {
   isLoading?: boolean;
   isDisabled?: boolean;
   onClick?: () => void;
+  large?: boolean;
 }
 
 const MuiButton: FC<Props> = ({
@@ -28,6 +29,7 @@ const MuiButton: FC<Props> = ({
       size="large"
       color={color}
       form={form}
+      type="submit"
       onClick={onClick}
       disabled={isDisabled || isLoading}
       startIcon={

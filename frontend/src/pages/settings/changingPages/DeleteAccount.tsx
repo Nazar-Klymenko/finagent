@@ -14,7 +14,7 @@ import { setSnackbar } from "@redux/alert/actions";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
 import MuiDialog from "@components/MuiDialog";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { MuiPasswordInput } from "@components/input";
 import { Header } from "@components/typography";
 

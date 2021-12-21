@@ -14,7 +14,7 @@ import useTitle from "@hooks/useTitle";
 import { setSnackbar } from "@redux/alert/actions";
 
 import Form from "@components/Form";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiInput, Textarea } from "@components/input";
 import { Mail, Phone, Point } from "@components/svgs";
@@ -73,7 +73,7 @@ const Contact = () => {
               name="message"
             />
             <ButtonPlace>
-              <CTA
+              <MuiButton
                 text={t("Contact.Form.submit")}
                 form="form"
                 color="primary"

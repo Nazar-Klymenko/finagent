@@ -17,7 +17,7 @@ import { useData } from "@context/dataContext";
 import Form from "@components/Form";
 import MuiDialog from "@components/MuiDialog";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import {
   DateInput,
@@ -346,7 +346,7 @@ const Page2 = () => {
         )}
 
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             color="secondary"
             form=""
@@ -354,7 +354,7 @@ const Page2 = () => {
               history.push("./1");
             }}
           />
-          <CTA
+          <MuiButton
             large={true}
             text={t("Basic.buttonNext")}
             color="primary"

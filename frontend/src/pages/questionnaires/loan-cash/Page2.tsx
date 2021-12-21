@@ -17,7 +17,7 @@ import { useData } from "@context/dataContext";
 import Form from "@components/Form";
 import MuiDialog from "@components/MuiDialog";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import ContentWrap from "@components/content/ContentWrap";
 import {
   DateInput,
@@ -55,6 +55,7 @@ type FormTypes = {
       averageIncome: string;
       accountancy: string;
       pit: string;
+      bank: string;
     }
   ];
 };
@@ -90,6 +91,7 @@ const Page2 = () => {
           averageIncome: appDataValid?.[0]?.averageIncome,
           accountancy: appDataValid?.[0]?.accountancy || "generalRules",
           pit: appDataValid?.[0]?.pit,
+          bank: appDataValid?.[0]?.bank || "",
         },
       ],
     },
@@ -156,8 +158,6 @@ const Page2 = () => {
       alert(t("InsuranceHealth.Error.noApplicant"));
     }
   };
-
-  console.log({ errors });
 
   return (
     <ContentWrap fullWidth>
@@ -392,6 +392,13 @@ const Page2 = () => {
                       placeholder="value"
                       defaultValue={field.pit || ""}
                     />
+                    <MuiInput
+                      name={`income[${index}].bank`}
+                      labelName={t("LoanCash.ApplicantModal.bank")}
+                      type="text"
+                      placeholder="Millenium"
+                      defaultValue={field.bank}
+                    />
                   </Form>
                 </MuiDialog>
               )
@@ -455,7 +462,7 @@ const Page2 = () => {
           )
         )}
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             form=""
             color="secondary"
@@ -463,7 +470,7 @@ const Page2 = () => {
               history.push("./1");
             }}
           />
-          <CTA
+          <MuiButton
             text={t("Basic.buttonNext")}
             form="form"
             color="primary"

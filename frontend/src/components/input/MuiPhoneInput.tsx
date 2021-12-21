@@ -40,10 +40,10 @@ const MuiPhoneInput: FC<Props> = ({
           <PhoneInput
             onChange={field.onChange}
             value={field.value}
-            country="pl"
             isValid={!_.get(errors, name)}
-            defaultErrorMessage="testtttt "
+            defaultErrorMessage=""
             onlyCountries={["pl", "ua", "by", "ru"]}
+            country="pl"
             specialLabel=""
             priority={{ pl: 0 }}
             inputStyle={{

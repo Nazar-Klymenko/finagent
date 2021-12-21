@@ -17,9 +17,9 @@ interface Styled {
   isLoading?: boolean;
 }
 
-const CTA: React.FC<Props> = (props) => {
+const MuiButton: React.FC<Props> = (props) => {
   return (
-    <CTAStyled
+    <MuiButtonStyled
       isLoading={props.isLoading}
       className="button-styled"
       {...props}
@@ -27,7 +27,7 @@ const CTA: React.FC<Props> = (props) => {
   );
 };
 
-const CTAStyled = styled(MainButton)<Styled>`
+const MuiButtonStyled = styled(MainButton)<Styled>`
   user-select: none;
   ${({ color }) =>
     color === "primary" &&
@@ -67,7 +67,7 @@ const CTAStyled = styled(MainButton)<Styled>`
     `}
 `;
 
-// const CTAStyled = styled.button<Styled>`
+// const MuiButtonStyled = styled.button<Styled>`
 //   width: ${({ large }) => (large ? "10rem" : "7rem")};
 //   height: 3rem;
 //   font-family: inherit;
@@ -116,4 +116,4 @@ const CTAStyled = styled(MainButton)<Styled>`
 //   }
 // `;
 
-export default CTA;
+export default MuiButton;

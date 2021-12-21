@@ -16,7 +16,7 @@ import { useData } from "@context/dataContext";
 import ProgressBar from "@components/ProgressBar";
 import SummaryList from "@components/SummaryList";
 import Table from "@components/Table";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 
 import { ButtonsWrap, Page, Title } from "../LocalStyles";
@@ -78,7 +78,7 @@ const Summary = () => {
         </pre> */}
 
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             form=""
             color="secondary"
@@ -86,7 +86,7 @@ const Summary = () => {
               history.push("./2");
             }}
           />
-          <CTA
+          <MuiButton
             text={t("Basic.buttonConfirm")}
             form=""
             color="primary"

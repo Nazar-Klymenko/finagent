@@ -10,7 +10,7 @@ import { useAuth } from "@context/authContext";
 import { setSnackbar } from "@redux/alert/actions";
 
 import Form from "@components/Form";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiInput } from "@components/input";
 import { Subheader } from "@components/typography";
@@ -54,7 +54,7 @@ const ForgotPassword = () => {
       </Form>
 
       <ButtonsWrap>
-        <CTA
+        <MuiButton
           form="form"
           text={t("RestorePassword.Form.button")}
           color="primary"

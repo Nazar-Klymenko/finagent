@@ -17,7 +17,7 @@ import { useData } from "@context/dataContext";
 import Form from "@components/Form";
 import MuiDialog from "@components/MuiDialog";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import {
   DateInput,
@@ -361,7 +361,7 @@ const Page2 = () => {
         )}
 
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             form=""
             text={t("Basic.buttonBack")}
             color="secondary"
@@ -369,7 +369,7 @@ const Page2 = () => {
               history.push("./1");
             }}
           />
-          <CTA
+          <MuiButton
             large={true}
             text={t("Basic.buttonNext")}
             form="insured-data-form"

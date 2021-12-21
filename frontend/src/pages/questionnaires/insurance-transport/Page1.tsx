@@ -12,7 +12,7 @@ import { useData } from "@context/dataContext";
 
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import {
   DateInput,
@@ -103,7 +103,7 @@ const Page1 = () => {
           label={t("InsuranceTransport.Page1.subtitle")}
         />
         <Subtitle>{t("InsuranceTransport.Page1.subtitle")}</Subtitle>
-        <Form methods={methods} id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
           <Legend>{t("InsuranceTransport.Page1.insuranceCoverage")}</Legend>
 
           <MuiCheckbox labelName={t("InsuranceTransport.Page1.oc")} name="oc" />
@@ -211,7 +211,11 @@ const Page1 = () => {
         </Form>
 
         <ButtonsWrap>
-          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
+          <MuiButton
+            text={t("Basic.buttonNext")}
+            form="form-transport"
+            color="primary"
+          />
         </ButtonsWrap>
       </Page>
     </ContentWrap>

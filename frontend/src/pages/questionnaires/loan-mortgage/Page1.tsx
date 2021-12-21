@@ -13,7 +13,7 @@ import { useData } from "@context/dataContext";
 
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiRadio } from "@components/input";
 
@@ -273,7 +273,7 @@ const Page1 = () => {
             </span>
           </ApplicantBox>
         </Form> */}
-        <AddApplicant
+        {/* <AddApplicant
           openModal={openModal}
           setOpenModal={setOpenModal}
           setApplicantData={setApplicantData}
@@ -288,9 +288,9 @@ const Page1 = () => {
           defaultIncome={defaultIncome}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
-        />
+        /> */}
         <ButtonsWrap>
-          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
+          <MuiButton text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
         {isError && <ErrorBottom>{isError}</ErrorBottom>}
       </Page>

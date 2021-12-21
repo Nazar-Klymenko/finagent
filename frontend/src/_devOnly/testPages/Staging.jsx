@@ -3,7 +3,7 @@ import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import Form from "@components/Form";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { DateInput, MuiInput, MuiRadio } from "@components/input";
 
@@ -74,7 +74,7 @@ const Staging = () => {
         ))}
       </div> */}
 
-      <CTA text="Next" form="form" color="primary" />
+      <MuiButton text="Next" form="form" color="primary" />
     </ContentWrap>
   );
 };

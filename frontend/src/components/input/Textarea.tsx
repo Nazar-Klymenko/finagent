@@ -56,7 +56,6 @@ const Textarea: React.FC<Props> = ({
       />
 
       <InputErrorMessage>
-        <span className="invis-star">*</span>
         {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
     </>

@@ -6,7 +6,7 @@ import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { InputErrorMessage, Label } from "./LocalStyles";
+import { InputContainer, InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   name: string;
@@ -14,6 +14,7 @@ interface Props {
   optionArray: { label: string; value: string }[];
   placeholder?: string;
   defaultValue?: string | undefined;
+  width?: "s" | "m" | "l";
 }
 
 const MuiSelect: FC<Props> = ({
@@ -22,6 +23,7 @@ const MuiSelect: FC<Props> = ({
   optionArray,
   placeholder,
   defaultValue,
+  width = "l",
 }) => {
   const { t } = useTranslation();
   const {
@@ -29,7 +31,7 @@ const MuiSelect: FC<Props> = ({
     formState: { errors },
   } = useFormContext();
   return (
-    <>
+    <InputContainer width={width}>
       <Label htmlFor={name}>{labelName}</Label>
       <Controller
         control={control}
@@ -70,10 +72,9 @@ const MuiSelect: FC<Props> = ({
         )}
       />
       <InputErrorMessage>
-        <span className="invis-star">*</span>
         {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
-    </>
+    </InputContainer>
   );
 };
 

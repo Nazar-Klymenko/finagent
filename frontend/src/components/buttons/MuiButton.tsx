@@ -32,15 +32,7 @@ const MuiButton: FC<Props> = ({
       type="submit"
       onClick={onClick}
       disabled={isDisabled || isLoading}
-      startIcon={
-        isLoading && (
-          <CircularProgress
-            color="primary"
-            // color={color === "primary" ? "secondary" : "primary"}
-            size={16}
-          />
-        )
-      }
+      startIcon={isLoading && <CircularProgress color="primary" size={16} />}
       {...other}
     >
       {text}

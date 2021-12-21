@@ -92,4 +92,5 @@ const AccordionContainer = styled.div`
   border-radius: 4px;
   height: auto;
   width: 100%;
+  max-width: 680px;
 `;

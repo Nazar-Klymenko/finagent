@@ -76,7 +76,7 @@ const Page3 = () => {
   const abroadImport = watch("abroadImport");
   const vehicleType = watch("vehicleType");
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>

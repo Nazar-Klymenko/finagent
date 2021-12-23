@@ -9,7 +9,7 @@ import { ContentWrap } from "@components/content";
 const Error404: FC = () => {
   const { t } = useTranslation();
   return (
-    <ContentWrap direction="column" fullWidth>
+    <ContentWrap direction="column">
       <Container>
         <Number>404</Number>
         <h1>{t("404.title")}</h1>

@@ -87,7 +87,7 @@ const Page1 = () => {
   });
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>

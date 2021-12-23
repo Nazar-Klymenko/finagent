@@ -97,7 +97,7 @@ const Page2 = () => {
   }, [householdData]);
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
       <Page>
         <Title>{t("LoanMortgage.title")}</Title>

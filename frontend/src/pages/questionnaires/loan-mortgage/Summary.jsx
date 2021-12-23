@@ -40,7 +40,7 @@ const Summary = () => {
     }
   };
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>

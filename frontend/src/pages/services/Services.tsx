@@ -23,7 +23,7 @@ const Services = () => {
   useTitle("Services | FinAgent");
   const { t } = useTranslation();
   return (
-    <ContentWrap fullWidth direction="column" blank>
+    <ContentWrap direction="column">
       <Typography variant="h3" gutterBottom>
         {t("Services.Titles.insurances")}
       </Typography>

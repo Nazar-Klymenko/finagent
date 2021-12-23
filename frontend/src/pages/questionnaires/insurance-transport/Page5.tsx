@@ -59,7 +59,7 @@ const Page5 = () => {
   const firstOwner = watch("isFirstOwner");
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>

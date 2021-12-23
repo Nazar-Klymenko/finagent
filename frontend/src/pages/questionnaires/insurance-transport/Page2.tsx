@@ -55,7 +55,7 @@ const Page2 = () => {
   });
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>

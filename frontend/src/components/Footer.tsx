@@ -1,5 +1,6 @@
 import React from "react";
 
+import Container from "@material-ui/core/Container";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
@@ -20,7 +21,7 @@ const Footer: React.FC = () => {
 
   return (
     <FooterStyled isAuthenticated={isLoggedIn}>
-      <div className="wrap">
+      <ContainerStyled maxWidth="lg" disableGutters>
         <div className="testimonial">
           <LogoWrap>
             <Logo fillColor="#CDCDCD" />
@@ -61,24 +62,20 @@ const Footer: React.FC = () => {
             </NavLink>
           </div>
         </div>
-      </div>
+      </ContainerStyled>
       <Copyright>© {new Date().getFullYear()} FinAgent</Copyright>
     </FooterStyled>
   );
 };
 
+const ContainerStyled = styled(Container)`
+  display: flex;
+  padding: 40px 20px;
+`;
+
 const FooterStyled = styled.footer<Styled>`
   background-color: ${({ theme }) => theme.black};
-  padding: 100px 40px 20px;
 
-  .wrap {
-    display: flex;
-    margin: 0 auto;
-    max-width: 1080px;
-    @media (min-width: 1200px) {
-      max-width: 1200px;
-    }
-  }
   .testimonial {
     display: flex;
     flex: 1;
@@ -117,7 +114,7 @@ const FooterStyled = styled.footer<Styled>`
   }
 
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
-    padding: 60px 60px 20px;
+    padding: 60px 0px 20px;
     .wrap {
       flex-direction: column-reverse;
     }
@@ -147,7 +144,7 @@ const Copyright = styled.span`
   color: ${({ theme }) => theme.gray};
   font-size: 0.8rem;
   text-align: center;
-  padding: 32px 0px 0px;
+  padding: 32px 0px 16px;
   display: block;
 `;
 

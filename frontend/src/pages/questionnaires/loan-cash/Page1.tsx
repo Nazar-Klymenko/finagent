@@ -206,7 +206,7 @@ const Page1 = () => {
   }, [appDataValid, bothSpousesStart, remove]);
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>

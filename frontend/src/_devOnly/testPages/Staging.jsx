@@ -32,7 +32,7 @@ const Staging = () => {
     console.log(data);
   };
   return (
-    <ContentWrap fullHeight xl direction="column">
+    <ContentWrap direction="column">
       <Form id="form" onSubmit={handleSubmit(formSubmit)}>
         <ul>
           {fields.map((item, index) => {

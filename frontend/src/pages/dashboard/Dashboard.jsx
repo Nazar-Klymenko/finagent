@@ -19,7 +19,7 @@ const Dashboard = () => {
   let { path } = useRouteMatch();
   useTitle(t("Dashboard.title"));
   return (
-    <ContentWrap fullWidth flipDirection blank P0>
+    <ContentWrap flipDirection>
       <SideNav />
 
       <DashboardMain>
@@ -67,7 +67,6 @@ const DashboardMain = styled(Paper)`
   flex: 1;
   background: white;
   border-radius: 4px;
-
   position: relative;
   .empty {
     text-align: center;

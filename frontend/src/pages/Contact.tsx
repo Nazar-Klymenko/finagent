@@ -57,7 +57,7 @@ const Contact = () => {
   });
 
   return (
-    <ContentWrap fullWidth blank direction="column">
+    <ContentWrap direction="column">
       <Header variant="h1" bottomGutter>
         {t("Contact.title")}
       </Header>

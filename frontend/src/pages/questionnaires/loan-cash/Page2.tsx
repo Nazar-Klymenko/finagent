@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -151,7 +152,7 @@ const Page2 = () => {
   }, [appDataValid, append, formInitiated]);
 
   const finalizeForm = () => {
-    if (formInitiated && fields.length > 0 && !!errors.income === false) {
+    if (!!errors.income === false) {
       setCurrentPage(3);
       history.push("./3");
     } else {
@@ -171,7 +172,10 @@ const Page2 = () => {
           label={t("LoanCash.Page2.subtitle")}
         />
         <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
-
+        <Typography variant="body1">
+          This is optional. If you do not have any additional income, simply
+          press next.
+        </Typography>
         {editingMode &&
           fields.map((field: any, index: number) => {
             //@ts-ignore

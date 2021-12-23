@@ -26,6 +26,7 @@ import {
 import {
   ButtonsWrap,
   InputErrorMessage,
+  InputsWrap,
   Legend,
   Page,
   Subtitle,
@@ -139,26 +140,31 @@ const Page1 = () => {
             labelName={t("InsuranceTransport.Page1.phoneNumber")}
           />
           <MuiInput
-            name="postIndex"
-            labelName={t("InsuranceTransport.Page1.postIndex")}
-            autoComplete="postal-code"
+            name="voivodeship"
+            labelName={t("InsuranceTransport.Page1.voivodeship")}
           />
           <MuiInput
             name="city"
             labelName={t("InsuranceTransport.Page1.city")}
           />
-          <MuiInput
-            name="voivodeship"
-            labelName={t("InsuranceTransport.Page1.voivodeship")}
-          />
-          <MuiInput
-            name="street"
-            labelName={t("InsuranceTransport.Page1.street")}
-          />
-          <MuiInput
-            name="houseNumber"
-            labelName={t("InsuranceTransport.Page1.houseNumber")}
-          />
+
+          <InputsWrap>
+            <MuiInput
+              name="street"
+              labelName={t("InsuranceTransport.Page1.street")}
+            />
+            <MuiInput
+              name="houseNumber"
+              labelName={t("InsuranceTransport.Page1.houseNumber")}
+              width="s"
+            />
+            <MuiInput
+              name="postIndex"
+              labelName={t("InsuranceTransport.Page1.postIndex")}
+              autoComplete="postal-code"
+              width="s"
+            />
+          </InputsWrap>
 
           <MuiRadio
             name="documentAddedType"

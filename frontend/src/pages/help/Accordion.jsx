@@ -1,8 +1,7 @@
 import { useState } from "react";
 
+import { Typography } from "@material-ui/core";
 import styled from "styled-components/macro";
-
-import { Header, Text } from "@components/typography";
 
 const Accordion = ({ header, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,11 +12,11 @@ const Accordion = ({ header, children }) => {
       }}
     >
       <AccordionInner>
-        <Header variant="h3">{header}</Header>
+        <Typography variant="h6">{header}</Typography>
         <Plus>{isOpen ? "-" : "+"}</Plus>
       </AccordionInner>
       <Desc isOpen={isOpen}>
-        <Text> {children}</Text>
+        <Typography variant="body1"> {children}</Typography>
       </Desc>
     </AccordionStyled>
   );

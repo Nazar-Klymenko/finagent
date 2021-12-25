@@ -1,12 +1,12 @@
 import React from "react";
 
+import { Typography } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
 import useTitle from "@hooks/useTitle";
 
 import { ContentWrap } from "@components/content";
-import { Header } from "@components/typography";
 
 import { Accordion } from "./Accordion";
 
@@ -16,7 +16,9 @@ const Help = () => {
 
   return (
     <ContentWrap xs direction="column">
-      <Header bottomGutter>{t("Help.title")}</Header>
+      <Typography variant="h3" align="center" gutterBottom>
+        {t("Help.title")}
+      </Typography>
       <AccordionContainer>
         <Accordion header="Example question">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta ipsum

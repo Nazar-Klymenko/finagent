@@ -15,7 +15,6 @@ import styled from "styled-components";
 import useTitle from "@hooks/useTitle";
 
 import { ContentWrap } from "@components/content";
-import { Header } from "@components/typography";
 
 import ServiceCard from "./ServiceCard";
 

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Typography } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -18,7 +19,6 @@ import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiInput, Textarea } from "@components/input";
 import { Mail, Phone, Point } from "@components/svgs";
-import { Header } from "@components/typography";
 
 const schema = yup.object().shape({
   fullName: yup.string().required("lala"),
@@ -58,9 +58,9 @@ const Contact = () => {
 
   return (
     <ContentWrap direction="column">
-      <Header variant="h1" bottomGutter>
+      <Typography variant="h3" gutterBottom>
         {t("Contact.title")}
-      </Header>
+      </Typography>
       <MainContainer>
         <FormSide>
           <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>

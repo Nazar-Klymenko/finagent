@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 
 import { getApplicationsQuantityAPI } from "@api/applications";
 
@@ -77,14 +77,14 @@ const Nav = styled(Paper)`
     transition: color 0.2s ease-in-out;
   }
   .link--selected {
-    color: ${({ theme }) => theme.blue} !important;
-    background: ${({ theme }) => theme.lightBlue};
+    color: ${({ theme }) => theme.palette.primary.main} !important;
+    background: ${({ theme }) => theme.palette.secondary.main};
     &:hover {
-      color: ${({ theme }) => theme.blue};
+      color: ${({ theme }) => theme.palette.primary.main};
     }
   }
 
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     padding: 2px 8px 0px;
     position: sticky;
     top: 50px;
@@ -94,7 +94,7 @@ const Nav = styled(Paper)`
     justify-content: center;
     padding-bottom: 0;
     border-radius: 0;
-    border-bottom: 1px solid ${({ theme }) => theme.lightGray};
+    border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
     box-shadow: none;
     width: auto;
     a {
@@ -109,20 +109,20 @@ const Nav = styled(Paper)`
 
     .link--selected {
       background: transparent;
-      border-bottom: 2px solid ${({ theme }) => theme.blue} !important;
+      border-bottom: 2px solid ${({ theme }) => theme.palette.primary.main} !important;
       box-shadow: none;
     }
   }
 `;
 
-const Quantity = styled.span`
+const Quantity = styled("span")`
   height: 1.5rem;
   width: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 999px;
-  background: ${({ theme }) => theme.lightBlue};
+  background: ${({ theme }) => theme.palette.secondary.main};
   margin: 0 0 0 1.5rem;
   font-size: 0.9rem;
 `;

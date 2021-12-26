@@ -1,11 +1,11 @@
 import React from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import styled from "styled-components/macro";
 import * as yup from "yup";
 
 import { submitTicket } from "@api/applications";
@@ -63,7 +63,7 @@ const Contact = () => {
       </Typography>
       <MainContainer>
         <FormSide>
-          <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
+          <Typography variant="h6">{t("Contact.subtitleForm")}</Typography>
           <Form methods={methods} id="form" onSubmit={formSubmit}>
             <MuiInput labelName={t("Contact.Form.fullName")} name="fullName" />
             <MuiInput labelName={t("Contact.Form.email")} name="email" />
@@ -82,7 +82,7 @@ const Contact = () => {
           </Form>
         </FormSide>
         <InfoSide>
-          <ContactSubtitle>{t("Contact.subtitleInfo")}</ContactSubtitle>
+          <Typography variant="h6">{t("Contact.subtitleInfo")}</Typography>
           <InfoWrap>
             <ContactInfo>
               <InfoIcon>
@@ -118,65 +118,61 @@ const Contact = () => {
 };
 export default Contact;
 
-const ContactSubtitle = styled.h3`
-  text-align: left;
-  padding-bottom: 1.5rem;
-`;
-const MainContainer = styled.div`
+const MainContainer = styled("div")`
   display: flex;
-  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     flex-direction: column-reverse;
   }
 `;
-const FormSide = styled.div`
+const FormSide = styled("div")`
   flex: 1;
   display: flex;
   flex-direction: column;
-  border-right: 2px solid ${({ theme }) => theme.lightGray};
+  border-right: 2px solid ${({ theme }) => theme.palette.grey[400]};
   padding-right: 3.5rem;
-  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     padding-right: 0rem;
     border-right: none;
   }
 `;
 
-const ButtonPlace = styled.div`
+const ButtonPlace = styled("div")`
   display: flex;
   justify-content: flex-end;
 `;
-const InfoSide = styled.div`
+const InfoSide = styled("div")`
   flex: 1;
   padding-left: 3.5rem;
-  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     padding-left: 0rem;
   }
 `;
-const InfoWrap = styled.div`
+const InfoWrap = styled("div")`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 `;
-const ContactInfo = styled.div`
+const ContactInfo = styled("div")`
   display: flex;
   align-items: center;
 `;
-const InfoIcon = styled.div`
+const InfoIcon = styled("div")`
   min-width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.blue};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
-const Info = styled.div`
+const Info = styled("div")`
   margin: 0.5rem 1rem;
   display: flex;
   flex-direction: column;
   a {
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.palette.common.black};
   }
-  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     margin: 1.5rem 1rem;
   }
 `;

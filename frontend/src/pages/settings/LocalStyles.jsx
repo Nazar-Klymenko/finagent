@@ -1,6 +1,6 @@
-import styled from "styled-components/macro";
+import { styled } from "@mui/material/styles";
 
-export const ChangingPage = styled.div`
+export const ChangingPage = styled("div")`
   max-width: 100%;
   height: 100%;
   display: flex;
@@ -10,13 +10,13 @@ export const ChangingPage = styled.div`
   }
 `;
 
-export const StatusError = styled.div`
+export const StatusError = styled("div")`
   margin-top: 1rem;
   text-align: center;
   color: ${({ theme }) => theme.red};
 `;
 
-export const ButtonPosition = styled.div`
+export const ButtonPosition = styled("div")`
   display: flex;
   justify-content: flex-end;
 `;

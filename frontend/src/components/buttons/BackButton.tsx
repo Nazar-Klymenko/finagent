@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
-import styled, { css } from "styled-components/macro";
 
 interface Props {
   large?: boolean;
@@ -27,7 +27,7 @@ const BackButton: React.FC<Props> = ({ large, text, to }) => {
   );
 };
 
-const BackButtonStyled = styled.button<Styled>`
+const BackButtonStyled = styled("button")<Styled>`
   width: 7rem;
   height: 3rem;
   font-family: inherit;
@@ -35,16 +35,16 @@ const BackButtonStyled = styled.button<Styled>`
   background-color: white;
   box-shadow: 0px 1px 4px 0px rgba(127, 8, 251, 0.25);
   border-radius: 5px;
-  border: 2px solid ${({ theme }) => theme.blue};
+  border: 2px solid ${({ theme }) => theme.palette.primary.main};
 
-  color: ${({ theme }) => theme.blue};
+  color: ${({ theme }) => theme.palette.primary.main};
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.015em;
 
   ${({ large }) =>
     large &&
-    css`
+    `
       width: 10rem;
       align-self: center;
     `}
@@ -56,10 +56,10 @@ const BackButtonStyled = styled.button<Styled>`
   &:focus {
     box-shadow: 0 0 0 4px #cbd6ee;
   }
-  @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     ${({ large }) =>
       large &&
-      css`
+      `
         max-width: 7rem;
       `}
   }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 import { QuestState } from "@dev/QuestState";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 import determineType from "@helpers/determineType";
 
@@ -101,7 +101,7 @@ const Summary = () => {
 
 export default Summary;
 
-const Spacer = styled.div`
+const Spacer = styled("div")`
   width: 100%;
   height: 32px;
 `;

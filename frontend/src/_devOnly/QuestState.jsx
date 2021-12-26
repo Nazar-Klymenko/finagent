@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
 
 export const QuestState = ({ data }) => {
   let show = true;
@@ -25,7 +25,7 @@ export const QuestState = ({ data }) => {
   }
 };
 
-const OpenBtn = styled.div`
+const OpenBtn = styled("div")`
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -34,7 +34,7 @@ const OpenBtn = styled.div`
   font-weight: bolder;
   height: 32px;
   width: 32px;
-  background-color: ${({ theme }) => theme.blue};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   position: fixed;
   bottom: 10px;
   left: 64px;
@@ -42,7 +42,7 @@ const OpenBtn = styled.div`
   z-index: 99999999;
 `;
 
-const Wrap = styled.div`
+const Wrap = styled("div")`
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.gray};
   position: fixed;

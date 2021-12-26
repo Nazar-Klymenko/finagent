@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components/macro";
 
 const LanguageMenu: React.FC = () => {
   const { i18n } = useTranslation();
   const [lang, setLang] = useState(i18n.language.slice(0, 2));
-  const handleLangChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+
+  const handleLangChange = (event: any) => {
     setLang(event.target.value as string);
     i18n.changeLanguage(event.target.value as string);
     let threeMonths = new Date(Date.now() + 86400e3 * 90).toUTCString();
@@ -21,11 +22,6 @@ const LanguageMenu: React.FC = () => {
   return (
     <LanguageMenuStyled
       disableUnderline
-      style={{
-        zIndex: 100,
-        fontFamily: ["Poppins", "sans-serif"].join(","),
-        width: 46,
-      }}
       labelId="demo-customized-select-label"
       id="demo-customized-select"
       value={lang}
@@ -41,7 +37,6 @@ const LanguageMenu: React.FC = () => {
           vertical: "top",
           horizontal: "left",
         },
-        getContentAnchorEl: null,
       }}
     >
       <MenuItemStyled value={"pl"}>PL</MenuItemStyled>
@@ -55,6 +50,9 @@ const LanguageMenu: React.FC = () => {
 export default LanguageMenu;
 
 const LanguageMenuStyled = styled(Select)`
+  z-index: 100;
+  font-family: "Poppins", "sans-serif";
+  width: 46px;
   .MuiSelect-select:focus {
     background-color: unset;
   }

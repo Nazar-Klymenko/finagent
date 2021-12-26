@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 
 import { getApplicationsAPI } from "@api/userAPI";
 
@@ -85,7 +85,7 @@ const ApplicationsTab = () => {
 
 export default ApplicationsTab;
 
-const EmptyMessage = styled.span`
+const EmptyMessage = styled("span")`
   margin: 0 auto;
   color: ${({ theme }) => theme.typography.gray};
   padding: 1rem;

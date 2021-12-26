@@ -12,7 +12,6 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-family: "Poppins", sans-serif;
-    color: ${({ theme }) => theme.typography.black};
     height: 100%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -26,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    background: ${(props) => props.theme.bg};
+
   }
 
   h1,

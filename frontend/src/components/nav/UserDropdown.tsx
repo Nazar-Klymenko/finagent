@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useState } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import useClickOutside from "@hooks/useClickOutside";
 
@@ -107,7 +107,7 @@ const UserDropdown: React.FC<Props> = ({ navOpen, setNavOpen }) => {
 
 export default UserDropdown;
 
-const UserDrop = styled.div<Styled>`
+const UserDrop = styled("div")<Styled>`
   cursor: pointer;
   position: relative;
   height: 100%;
@@ -117,14 +117,14 @@ const UserDrop = styled.div<Styled>`
   font-size: 15px;
   box-shadow: ${({ isOpen }) =>
     isOpen ? "0 1px 6px 0 rgba(32, 33, 36, 0.15)" : ""};
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     max-width: max-content;
     border-radius: unset;
     height: unset;
   }
 `;
 
-const MainUser = styled.div<Styled>`
+const MainUser = styled("div")<Styled>`
   display: flex;
   align-items: center;
   margin: 0px 20px 0px 8px;
@@ -145,14 +145,14 @@ const MainUser = styled.div<Styled>`
   .name {
     white-space: nowrap;
   }
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     &::after {
       content: unset;
     }
   }
 `;
 
-const AvatarEmail = styled.div`
+const AvatarEmail = styled("div")`
   pointer-events: none;
   display: flex;
   height: 32px;
@@ -167,7 +167,7 @@ const AvatarEmail = styled.div`
   text-transform: uppercase;
 `;
 
-const AvatarFB = styled.img<AvatarStyled>`
+const AvatarFB = styled("img")<AvatarStyled>`
   pointer-events: none;
   height: 32px;
   width: 32px;
@@ -175,7 +175,7 @@ const AvatarFB = styled.img<AvatarStyled>`
   margin: 4px 8px 4px -2px;
 `;
 
-const Dropdown = styled.div<Styled>`
+const Dropdown = styled("div")<Styled>`
   position: absolute;
   opacity: 1;
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.15);
@@ -196,23 +196,23 @@ const Dropdown = styled.div<Styled>`
     z-index: 2;
     transform: scaleY(1);
   }
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     box-shadow: unset;
     width: unset;
     right: unset;
   }
 `;
 
-const MenuItem = styled.div<Styled>`
+const MenuItem = styled("div")<Styled>`
   background: white;
   height: 50px;
   font-size: 0.9rem;
   display: flex;
   align-items: center;
   transition: 0.2s;
-  border-top: 1px solid ${({ theme }) => theme.lightGray};
+  border-top: 1px solid ${({ theme }) => theme.palette.grey[400]};
   &:hover {
-    background: ${({ theme }) => theme.lightGray};
+    background: ${({ theme }) => theme.palette.grey[400]};
   }
   &:last-of-type {
     justify-content: flex-end;
@@ -223,7 +223,7 @@ const MenuItem = styled.div<Styled>`
     height: 1.3rem;
     width: 1.3rem;
   }
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     border-top: unset;
     &:last-of-type {
       justify-content: ${({ navOpen }) =>
@@ -234,9 +234,9 @@ const MenuItem = styled.div<Styled>`
   }
 `;
 
-const UserDropLoader = styled.div`
+const UserDropLoader = styled("div")`
   height: 80%;
   min-width: 190px;
   border-radius: 5px;
-  background: ${({ theme }) => theme.lightGray};
+  background: ${({ theme }) => theme.palette.grey[400]};
 `;

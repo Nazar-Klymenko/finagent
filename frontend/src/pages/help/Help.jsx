@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components/macro";
 
 import useTitle from "@hooks/useTitle";
 
@@ -89,8 +89,8 @@ const Help = () => {
 
 export default Help;
 
-const AccordionContainer = styled.div`
-  border: 1px solid ${({ theme }) => theme.lightGray};
+const AccordionContainer = styled("div")`
+  border: 1px solid ${({ theme }) => theme.palette.grey[400]};
   border-radius: 4px;
   height: auto;
   width: 100%;

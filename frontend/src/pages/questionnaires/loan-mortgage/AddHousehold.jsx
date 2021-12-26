@@ -11,7 +11,6 @@ import { useData } from "@context/dataContext";
 import Form from "@components/Form";
 import { MuiButton } from "@components/buttons";
 import { MuiInput } from "@components/input";
-import Modal from "@components/modals/Modal";
 
 import { ButtonsWrap } from "../LocalStyles";
 import { addHouseholdSchema } from "./applicationHelpers/loan-mortgage.schema";
@@ -58,51 +57,52 @@ const AddHousehold = ({
     setOpenModal(false);
   };
 
-  return (
-    openModal && (
-      <Modal
-        header={t("LoanMortgage.HouseholdModal.title")}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      >
-        <Form id="household-form" onSubmit={handleSubmit(AddHouseholdSubmit)}>
-          <MuiInput
-            control={control}
-            name="peopleInHousehold"
-            labelName={t("LoanMortgage.HouseholdModal.peopleInHousehold")}
-            type="text"
-            error={!!errors.peopleInHousehold}
-            helperText={errors?.peopleInHousehold?.message}
-            placeholder="number"
-            defaultValue={appDataValid.peopleInHousehold}
-          />
-          <MuiInput
-            control={control}
-            name="monthlyExpenses"
-            labelName={t("LoanMortgage.HouseholdModal.monthlyExpenses")}
-            type="text"
-            error={!!errors.monthlyExpenses}
-            helperText={errors?.monthlyExpenses?.message}
-            placeholder="number"
-            defaultValue={appDataValid.monthlyExpenses}
-          />
-        </Form>
-        <ButtonsWrap multiple>
-          <MuiButton
-            text={t("Basic.buttonBack")}
-            form=""
-            color="secondary"
-            onClick={() => setOpenModal(false)}
-          />
-          <MuiButton
-            color="primary"
-            text={t("Basic.buttonAdd")}
-            form="household-form"
-          />
-        </ButtonsWrap>
-      </Modal>
-    )
-  );
+  return null;
+  // return (
+  //   openModal && (
+  //     <Modal
+  //       header={t("LoanMortgage.HouseholdModal.title")}
+  //       openModal={openModal}
+  //       setOpenModal={setOpenModal}
+  //     >
+  //       <Form id="household-form" onSubmit={handleSubmit(AddHouseholdSubmit)}>
+  //         <MuiInput
+  //           control={control}
+  //           name="peopleInHousehold"
+  //           labelName={t("LoanMortgage.HouseholdModal.peopleInHousehold")}
+  //           type="text"
+  //           error={!!errors.peopleInHousehold}
+  //           helperText={errors?.peopleInHousehold?.message}
+  //           placeholder="number"
+  //           defaultValue={appDataValid.peopleInHousehold}
+  //         />
+  //         <MuiInput
+  //           control={control}
+  //           name="monthlyExpenses"
+  //           labelName={t("LoanMortgage.HouseholdModal.monthlyExpenses")}
+  //           type="text"
+  //           error={!!errors.monthlyExpenses}
+  //           helperText={errors?.monthlyExpenses?.message}
+  //           placeholder="number"
+  //           defaultValue={appDataValid.monthlyExpenses}
+  //         />
+  //       </Form>
+  //       <ButtonsWrap multiple>
+  //         <MuiButton
+  //           text={t("Basic.buttonBack")}
+  //           form=""
+  //           color="secondary"
+  //           onClick={() => setOpenModal(false)}
+  //         />
+  //         <MuiButton
+  //           color="primary"
+  //           text={t("Basic.buttonAdd")}
+  //           form="household-form"
+  //         />
+  //       </ButtonsWrap>
+  //     </Modal>
+  //   )
+  // );
 };
 
 export default AddHousehold;

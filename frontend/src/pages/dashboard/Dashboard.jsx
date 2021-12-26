@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { Redirect, Route, useRouteMatch } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import useTitle from "@hooks/useTitle";
 
@@ -77,7 +77,7 @@ const DashboardMain = styled(Paper)`
     color: ${({ theme }) => theme.gray};
   }
 
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     margin-left: 0;
     border-radius: 0;
   }

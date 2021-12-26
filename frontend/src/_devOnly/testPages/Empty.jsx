@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
 
 import Table from "@components/Table";
 import { ContentWrap } from "@components/content";

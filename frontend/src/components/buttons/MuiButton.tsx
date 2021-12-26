@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
-import { ButtonProps } from "@material-ui/core/Button";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { ButtonProps } from "@mui/material/Button";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface Props extends ButtonProps {
   text: string;

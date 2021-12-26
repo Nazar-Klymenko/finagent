@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components/macro";
+import { styled } from "@mui/material/styles";
 
 interface Props {
   subheader: string;
@@ -16,7 +16,7 @@ const Subheader: React.FC<Props> = ({ subheader, description }) => {
   );
 };
 
-const SubheaderStyled = styled.div`
+const SubheaderStyled = styled("div")`
   width: 100%;
   margin: 2rem 0rem 0.5rem 0rem;
   display: flex;
@@ -29,7 +29,7 @@ const SubheaderStyled = styled.div`
   }
   .description {
     font-size: 0.9rem;
-    color: ${({ theme }) => theme.typography.gray};
+    color: ${({ theme }) => theme.palette.text.secondary};
   }
 `;
 

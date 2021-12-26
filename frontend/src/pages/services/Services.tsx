@@ -8,9 +8,9 @@ import Mortgage from "@assets/images/mortgage.svg";
 import SpecialistInsurance from "@assets/images/specialist.svg";
 import Transport from "@assets/images/transport.svg";
 import Travel from "@assets/images/travel_insurance.svg";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
 
 import useTitle from "@hooks/useTitle";
 
@@ -98,21 +98,21 @@ const Services = () => {
 
 export default Services;
 
-const ServicesWrap = styled.div`
+const ServicesWrap = styled("div")`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, max-content));
   grid-gap: 48px;
   justify-content: left;
 
-  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
   } ;
 `;
 
-const Collapsed = styled.div`
+const Collapsed = styled("div")`
   visibility: collape;
 `;
-const Spacer = styled.div`
+const Spacer = styled("div")`
   width: 100%;
   height: 32px;
 `;

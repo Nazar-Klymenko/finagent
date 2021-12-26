@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 
 import { ContentWrap } from "@components/content";
 
@@ -20,17 +20,17 @@ const Error404: FC = () => {
 };
 export default Error404;
 
-const Number = styled.span`
-  color: ${({ theme }) => theme.blue};
+const Number = styled("span")`
+  color: ${({ theme }) => theme.palette.primary.main};
   font-size: 5rem;
 `;
-const Container = styled.div`
+const Container = styled("div")`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   margin: 20vh auto;
   a {
-    color: ${({ theme }) => theme.blue};
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 `;

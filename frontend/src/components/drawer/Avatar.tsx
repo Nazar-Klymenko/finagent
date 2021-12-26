@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components/macro";
+import { styled } from "@mui/material/styles";
 
 import { useAuth } from "@context/authContext";
 
@@ -18,18 +18,18 @@ const Avatar = () => {
 
 export default Avatar;
 
-const AvatarStyled = styled.div`
+const AvatarStyled = styled("div")`
   width: 100%;
   height: auto;
   padding: 1rem;
   display: flex;
   align-items: center;
-  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     padding: 12px 0;
   }
 `;
 
-const AvatarCircle = styled.div`
+const AvatarCircle = styled("div")`
   height: 2.5rem;
   width: 2.5rem;
   background: blue;
@@ -42,6 +42,6 @@ const AvatarCircle = styled.div`
   align-items: center;
 `;
 
-const Name = styled.div`
+const Name = styled("div")`
   margin-left: 0.5rem;
 `;

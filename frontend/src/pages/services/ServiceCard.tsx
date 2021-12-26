@@ -1,11 +1,11 @@
 import React from "react";
 
-import { CardActionArea } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import { CardActionArea } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 interface Props {
   to: string;
@@ -53,22 +53,13 @@ const CardStyled = styled(Card)`
 `;
 const CardContentStyled = styled(CardContent)`
   min-height: 200px;
-  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     min-height: 150px;
   } ;
 `;
 
-const CardImage = styled.img`
+const CardImage = styled("img")`
   height: 180px;
   padding: 24px;
   margin: 0 auto;
-`;
-
-const CardHeader = styled.h3`
-  font-size: 17px;
-  font-weight: 500;
-`;
-const CardDescription = styled.p`
-  color: ${({ theme }) => theme.gray};
-  font-size: 14px;
 `;

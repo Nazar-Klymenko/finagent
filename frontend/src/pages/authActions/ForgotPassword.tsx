@@ -1,9 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { styled } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 
 import { useAuth } from "@context/authContext";
 
@@ -74,20 +74,20 @@ const ForgotPassword = () => {
 
 export default ForgotPassword;
 
-const ButtonsWrap = styled.div<{ multiple?: boolean }>`
+const ButtonsWrap = styled("div")<{ multiple?: boolean }>`
   padding: 0px 0px 16px;
   display: flex;
   justify-content: ${({ multiple }) =>
     multiple ? "space-between" : "flex-end"};
 `;
-const LogInOption = styled.div`
+const LogInOption = styled("div")`
   font-size: 0.8rem;
   margin: 0 auto;
   .login-link {
-    color: ${({ theme }) => theme.typography.blue};
+    color: ${({ theme }) => theme.palette.primary.main};
     padding: 0.5rem;
     &:visited {
-      color: ${({ theme }) => theme.typography.blue};
+      color: ${({ theme }) => theme.palette.primary.main};
     }
   }
 `;

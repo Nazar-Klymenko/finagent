@@ -1,7 +1,7 @@
 import React from "react";
 
-import Container, { ContainerProps } from "@material-ui/core/Container";
-import styled, { css } from "styled-components/macro";
+import Container, { ContainerProps } from "@mui/material/Container";
+import { styled } from "@mui/material/styles";
 
 import { useAuth } from "@context/authContext";
 
@@ -29,11 +29,11 @@ const ContainerStyled = styled(Container)<Styled>`
   align-items: center;
   min-height: calc(100vh - 50px);
 
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     padding: 0 0;
     ${({ isLoggedIn }) =>
       isLoggedIn &&
-      css`
+      `
         min-height: auto;
         margin: 50px 0 0px;
       `}

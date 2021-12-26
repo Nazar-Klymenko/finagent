@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
+import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
+import { styled } from "@mui/material/styles";
+import makeStyles from "@mui/styles/makeStyles";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { useNotifications } from "@context/notificationContext";
 
@@ -39,7 +39,7 @@ const Notifications = () => {
 
 export default Notifications;
 
-const NotiticationsStyled = styled.div`
+const NotiticationsStyled = styled("div")`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,10 +53,10 @@ const NotiticationsStyled = styled.div`
     position: absolute;
     top: 0px;
     right: 4px;
-    background: ${({ theme }) => theme.blue};
+    background: ${({ theme }) => theme.palette.primary.main};
   }
 
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     padding: 0px 4px;
   }
 `;

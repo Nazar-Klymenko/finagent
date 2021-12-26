@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 
-import OutlinedInput from "@material-ui/core/OutlinedInput";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { styled } from "@mui/material/styles";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import styled, { css } from "styled-components";
 
 import {
   InputContainer,

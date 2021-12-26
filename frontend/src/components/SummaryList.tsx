@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import styled, { css } from "styled-components/macro";
 
 import { ArrowDown } from "@components/svgs";
 
@@ -60,7 +60,7 @@ const SummaryList: FC<Props> = ({
   );
 };
 
-const SummaryListStyled = styled.div<Styled>`
+const SummaryListStyled = styled("div")<Styled>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -68,35 +68,35 @@ const SummaryListStyled = styled.div<Styled>`
   overflow: hidden;
   margin-top: ${({ inDashboard }) => (inDashboard ? "0rem" : "1rem")};
 
-  border: 1px solid ${({ theme }) => theme.lightGray};
+  border: 1px solid ${({ theme }) => theme.palette.divider};
   box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.082);
 `;
-const Header = styled.div<Styled>`
+const Header = styled("div")<Styled>`
   text-align: ${({ inDashboard }) => (inDashboard ? "left" : "center")};
   font-size: 1.2rem;
   color: white;
-  background: ${({ theme }) => theme.blue};
+  background: ${({ theme }) => theme.palette.primary.main};
   position: relative;
   padding: 8px 1.5rem;
   cursor: pointer;
 `;
-const ArrowWrap = styled.div<Styled>`
+const ArrowWrap = styled("div")<Styled>`
   position: absolute;
   right: 1.5rem;
   top: 50%;
   transform: translate(-50%, -50%);
 `;
-const List = styled.ul<Styled>`
+const List = styled("ul")<Styled>`
   display: flex;
   flex-direction: column;
   ${({ isOpen }) =>
     !isOpen &&
-    css`
+    `
       height: 0;
       overflow: hidden;
     `}
 `;
-const Category = styled.li`
+const Category = styled("li")`
   background: white;
   display: flex;
   flex-direction: column;
@@ -105,7 +105,7 @@ const Category = styled.li`
     padding: 8px 8px;
   }
 `;
-const Item = styled.div`
+const Item = styled("div")`
   display: flex;
   padding: 8px 12px;
   font-size: 0.85rem;

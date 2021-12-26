@@ -1,9 +1,9 @@
 import React from "react";
 
-import Container from "@material-ui/core/Container";
+import Container from "@mui/material/Container";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { useAuth } from "@context/authContext";
 
@@ -73,8 +73,8 @@ const ContainerStyled = styled(Container)`
   padding: 40px 20px;
 `;
 
-const FooterStyled = styled.footer<Styled>`
-  background-color: ${({ theme }) => theme.black};
+const FooterStyled = styled("footer")<Styled>`
+  background-color: ${({ theme }) => theme.palette.grey[900]};
 
   .testimonial {
     display: flex;
@@ -83,7 +83,7 @@ const FooterStyled = styled.footer<Styled>`
     p {
       font-size: 0.9rem;
       font-weight: 300;
-      color: ${({ theme }) => theme.gray};
+      color: ${({ theme }) => theme.palette.grey[500]};
       padding-top: 8px;
     }
   }
@@ -95,25 +95,25 @@ const FooterStyled = styled.footer<Styled>`
   .block {
     display: flex;
     flex-direction: column;
-    color: ${({ theme }) => theme.gray};
+    color: ${({ theme }) => theme.palette.grey[500]};
     font-size: 0.9rem;
     .header {
       font-size: 1rem;
       font-weight: 400;
-      color: ${({ theme }) => theme.lightGray};
+      color: ${({ theme }) => theme.palette.grey[400]};
     }
     .content {
       cursor: pointer;
-      color: ${({ theme }) => theme.gray};
+      color: ${({ theme }) => theme.palette.grey[500]};
       text-decoration: none;
       transition: color 0.1s ease-in-out;
       &:hover {
-        color: ${({ theme }) => theme.lightGray};
+        color: ${({ theme }) => theme.palette.grey[400]};
       }
     }
   }
 
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     padding: 60px 0px 20px;
     .wrap {
       flex-direction: column-reverse;
@@ -128,7 +128,7 @@ const FooterStyled = styled.footer<Styled>`
     }
     display: ${({ isAuthenticated }) => (isAuthenticated ? "none" : "block")};
   }
-  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     padding: 32px 32px 20px;
 
     .block-container {
@@ -140,8 +140,8 @@ const FooterStyled = styled.footer<Styled>`
   }
 `;
 
-const Copyright = styled.span`
-  color: ${({ theme }) => theme.gray};
+const Copyright = styled("span")`
+  color: ${({ theme }) => theme.palette.text.secondary};
   font-size: 0.8rem;
   text-align: center;
   padding: 32px 0px 16px;

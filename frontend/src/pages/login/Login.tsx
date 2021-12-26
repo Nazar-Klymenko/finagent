@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { NavLink, useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { useAuth } from "@context/authContext";
 
@@ -124,7 +124,7 @@ const Login: React.FC<Props> = (props) => {
 
 export default Login;
 
-const AuthOptions = styled.div`
+const AuthOptions = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,21 +136,21 @@ const AuthOptions = styled.div`
   }
 `;
 
-const SignUpOption = styled.div`
+const SignUpOption = styled("div")`
   font-size: 0.8rem;
   .signup-link {
-    color: ${({ theme }) => theme.typography.blue};
+    color: ${({ theme }) => theme.palette.primary.main};
     padding: 0.5rem;
     &:visited {
-      color: ${({ theme }) => theme.typography.blue};
+      color: ${({ theme }) => theme.palette.primary.main};
     }
   }
 `;
 
-const FacebookButton = styled.button`
+const FacebookButton = styled("button")`
   cursor: pointer;
   height: 48px;
-  background: ${({ theme }) => theme.buttons.facebook};
+  background: "#3B5998";
   color: white;
   border-radius: 3px;
   border: none;
@@ -161,8 +161,8 @@ const FacebookButton = styled.button`
   }
 `;
 
-const AlternativeLine = styled.div`
-  color: ${({ theme }) => theme.gray};
+const AlternativeLine = styled("div")`
+  color: ${({ theme }) => theme.palette.divider};
   font-size: 0.8rem;
   padding: 0.5rem;
   margin-top: 0.5rem;

@@ -23,14 +23,6 @@ const theme = {
 
     blockedBg: "#e9e9e9",
     blockedColor: "#7d7d7d",
-
-    facebook: "#3B5998",
-  },
-
-  input: {
-    hover: "#000000DE",
-    border: "#cccccc",
-    focused: "#1672ec",
   },
 
   blue: "#1672ec",
@@ -42,9 +34,6 @@ const theme = {
 
   bg: "#ffffff",
   border: "#dfdfdf",
-
-  regularWrap: "1080px",
-  bigWrap: "1200px",
 
   widthSmallPhone: "400px",
   widthPhone: "688px",

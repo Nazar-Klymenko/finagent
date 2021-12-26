@@ -1,6 +1,7 @@
 import React from "react";
 
-import styled, { css } from "styled-components/macro";
+import { Theme } from "@mui/material";
+import { css, styled } from "@mui/material/styles";
 
 interface Props {
   xs?: boolean;
@@ -28,7 +29,7 @@ const ContentWrap: React.FC<Props> = ({
   );
 };
 
-const ContentWrapStyled = styled.div<Props>`
+const ContentWrapStyled = styled("div")<Props>`
   height: 100%;
   width: 100%;
   display: flex;
@@ -40,47 +41,35 @@ const ContentWrapStyled = styled.div<Props>`
   border-radius: 6px;
   flex: 1;
 
-  ${({ authForm }) =>
-    authForm &&
-    css`
+  ${(props) => {
+    if (props.authForm) {
+      return `
       width: 500px;
       max-width: 500px !important;
-      border: 1px solid ${({ theme }) => theme.border};
+      border: 1px solid ${({ theme }: any) => theme.palette.divider};
       flex: 0;
-      @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+      @media all and (max-width: ${({ theme }: any) =>
+        theme.breakpoints.values.md}) {
         border: none;
         width: auto;
       }
-    `}
+      `;
+    }
+  }}
 
-  ${({ xs }) =>
-    xs &&
-    css`
-      min-width: 680px;
-      max-width: 680px;
-      @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
-        width: 100%;
-        min-width: unset;
-        max-width: unset;
-      }
-    `}
-
-    ${({ direction }) =>
-    direction === "column" &&
-    css`
-      flex-direction: column;
-      justify-content: flex-start;
-    `}
-
-${({ flipDirection }) =>
-    flipDirection &&
-    css`
+  ${(props) => {
+    if (props.flipDirection) {
+      return `
       flex-direction: row;
-      @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+      @media all and (max-width: ${({ theme }: any) =>
+        theme.breakpoints.values.md}) {
         flex-direction: column;
         justify-content: flex-start;
         padding: 0 !important;
       }
-    `}
+      `;
+    }
+  }}
 `;
+
 export default ContentWrap;

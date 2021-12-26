@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components/macro";
 
 import { getNotificationsAPI } from "@api/userAPI";
 
@@ -52,11 +52,11 @@ const Notifications = () => {
 
 export default Notifications;
 
-const NotificationsStyled = styled.div`
+const NotificationsStyled = styled("div")`
   width: 100%;
   text-align: center;
 `;
-const NotificationsTitle = styled.div`
+const NotificationsTitle = styled("div")`
   text-align: center;
   margin: 0.5rem 0;
   h2 {

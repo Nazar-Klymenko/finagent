@@ -1,8 +1,8 @@
 import React from "react";
 
+import { styled } from "@mui/material/styles";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components/macro";
 
 import { Message } from "@components/svgs/Svgs";
 
@@ -72,18 +72,18 @@ const MessageIcon = ({ idx, length }) => {
   );
 };
 
-const FeedbackStyled = styled.div`
+const FeedbackStyled = styled("div")`
   display: flex;
   justify-content: flex-start;
 `;
-const FeedbackContainerStyled = styled.div`
+const FeedbackContainerStyled = styled("div")`
   display: flex;
   flex-direction: column;
   max-height: 400px;
   min-height: 90px;
   overflow-y: scroll;
   width: 560px;
-  border: 1px solid ${({ theme }) => theme.lightGray};
+  border: 1px solid ${({ theme }) => theme.palette.grey[400]};
   border-radius: 4px;
   padding: 12px;
   &::-webkit-scrollbar {
@@ -96,21 +96,21 @@ const FeedbackContainerStyled = styled.div`
     background: ${({ theme }) => theme.gray};
   }
 `;
-const MessageStyled = styled.div`
+const MessageStyled = styled("div")`
   margin: 16px 0;
   display: flex;
   align-items: flex-start;
   height: auto;
 `;
 
-const MessageDateStyled = styled.div`
+const MessageDateStyled = styled("div")`
   font-size: 0.8rem;
   color: ${({ theme }) => theme.gray};
   min-width: 8rem;
   padding-top: 6px;
 `;
 
-const MessageTextStyled = styled.div`
+const MessageTextStyled = styled("div")`
   padding-left: 12px;
   font-size: 0.95rem;
   padding-top: 4px;

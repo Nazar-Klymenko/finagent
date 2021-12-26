@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
-import { Select } from "@material-ui/core/";
-import MenuItem from "@material-ui/core/MenuItem";
+import { Select } from "@mui/material/";
+import MenuItem from "@mui/material/MenuItem";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -59,7 +59,6 @@ const MuiSelect: FC<Props> = ({
                 vertical: "top",
                 horizontal: "left",
               },
-              getContentAnchorEl: null,
             }}
           >
             {optionArray.length > 0 &&

@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 
-import SaveAltRoundedIcon from "@material-ui/icons/SaveAltRounded";
-import Skeleton from "@material-ui/lab/Skeleton";
+import SaveAltRoundedIcon from "@mui/icons-material/SaveAltRounded";
+import Skeleton from "@mui/material/Skeleton";
+import { styled } from "@mui/material/styles";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-import styled from "styled-components/macro";
 
 import { getUserAttachmentsAPI } from "@api/applications";
 
@@ -54,11 +54,11 @@ const Attachments: FC<Props> = ({ attachments, id, type }) => {
   );
 };
 
-const AttachmentsStyled = styled.div`
+const AttachmentsStyled = styled("div")`
   display: flex;
   border-radius: 5px;
-  border: 1px solid ${({ theme }) => theme.border};
-  background: ${({ theme }) => theme.lightestGray};
+  border: 1px solid ${({ theme }) => theme.palette.divider};
+  background: ${({ theme }) => theme.palette.grey[300]};
   min-height: 128px;
   flex-wrap: wrap;
   padding: 5px 8px;
@@ -77,7 +77,7 @@ const Thumbnail = styled(Document)`
   position: relative;
   overflow: hidden;
 `;
-const ThumbBackground = styled.div`
+const ThumbBackground = styled("div")`
   position: absolute;
   height: 100%;
   width: 100%;
@@ -96,7 +96,7 @@ const ThumbBackground = styled.div`
   }
 `;
 
-const ThumbTitle = styled.div`
+const ThumbTitle = styled("div")`
   position: absolute;
   top: 0;
   left: 0;

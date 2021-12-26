@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { useAuth } from "@context/authContext";
 
@@ -56,13 +56,13 @@ const SignOutLink = styled(NavLink)`
   }
 `;
 
-const AuthLinksWrap = styled.div`
+const AuthLinksWrap = styled("div")`
   display: flex;
   flex-direction: row;
   background: white;
   padding: 12px 1rem;
 
-  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     padding: 12px 0;
   }
 `;

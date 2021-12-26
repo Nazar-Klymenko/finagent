@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
+import { styled } from "@mui/material/styles";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 
 import determineType from "@helpers/determineType";
 
@@ -126,17 +126,17 @@ const CardOpen = () => {
 
 export default CardOpen;
 
-const CardStyled = styled.div`
+const CardStyled = styled("div")`
   flex: 1;
   display: flex;
   flex-direction: column;
   padding: 20px;
 `;
 
-const CardHeader = styled.div`
+const CardHeader = styled("div")`
   display: flex;
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.lightGray};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.grey[400]};
   margin: -10px -20px 0px -20px;
   padding-bottom: 10px;
   .arrow-wrap {
@@ -151,7 +151,7 @@ const CardHeader = styled.div`
     width: 1.8rem;
     transition: 0.1s background-color ease-in-out;
     &:hover {
-      background-color: ${({ theme }) => theme.lightGray};
+      background-color: ${({ theme }) => theme.palette.grey[400]};
     }
   }
   p {
@@ -159,34 +159,34 @@ const CardHeader = styled.div`
     font-size: 1.1rem;
     margin-left: 0.5rem;
   }
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     border-bottom: 1px solid transparent;
   }
 `;
 
-const Info = styled.div`
+const Info = styled("div")`
   display: flex;
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     flex-direction: column;
   }
 `;
-const InfoWrap = styled.div`
+const InfoWrap = styled("div")`
   display: flex;
   flex-direction: column;
   margin: 1rem 3rem 1rem 0rem;
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     flex-direction: row;
   }
 `;
 
-const InfoKey = styled.span`
+const InfoKey = styled("span")`
   color: ${({ theme }) => theme.gray};
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     min-width: 180px;
   }
 `;
-const InfoValue = styled.span`
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+const InfoValue = styled("span")`
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     margin-left: 24px;
   }
 `;

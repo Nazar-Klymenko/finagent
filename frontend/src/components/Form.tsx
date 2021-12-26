@@ -1,7 +1,7 @@
 import React from "react";
 
+import { styled } from "@mui/material/styles";
 import { FormProvider } from "react-hook-form";
-import styled from "styled-components/macro";
 
 interface Props {
   id: string;
@@ -18,16 +18,16 @@ const Form: React.FC<Props> = ({ id, children, methods, ...props }) => {
   );
 };
 
-const FormStyled = styled.form`
+const FormStyled = styled("form")`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-width: 300px;
   max-width: 100%;
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     min-width: unset;
   }
-  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     min-width: unset;
   }
 `;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { OutlinedInput } from "@material-ui/core";
+import { OutlinedInput } from "@mui/material";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -46,7 +46,7 @@ const Textarea: React.FC<Props> = ({
             value={field.value}
             multiline
             rows={rows}
-            rowsMax={8}
+            maxRows={8}
             fullWidth
             placeholder={placeholder}
             error={!!_.get(errors, name)}

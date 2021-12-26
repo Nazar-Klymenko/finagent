@@ -1,9 +1,9 @@
 import React from "react";
 import { useCallback } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { useAuth } from "@context/authContext";
 
@@ -49,13 +49,13 @@ const Links = ({ navOpen, setNavOpen }) => {
 
 export default Links;
 
-const Nav = styled.nav`
+const Nav = styled("nav")`
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-const Ul = styled.ul`
+const Ul = styled("ul")`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +64,7 @@ const Ul = styled.ul`
   li {
     padding: 0px 30px;
   }
-  a {
+  /* a {
     color: ${({ theme }) => theme.gray};
     transition: 0.2s;
     &:hover {
@@ -81,12 +81,12 @@ const Ul = styled.ul`
         height: 3px;
         width: 100%;
         border-radius: 2px;
-        background: ${({ theme }) => theme.blue};
+        background: ${({ theme }) => theme.palette.primary.main};
         transition: inherit;
       }
     }
-  }
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  } */
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     display: none;
   }
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import styled, { css } from "styled-components/macro";
 
 import { Checkmark } from "@components/svgs/Svgs";
 
@@ -67,76 +67,78 @@ const ApplicationStatus: React.FC<Props> = ({ currentStep }) => {
     </ApplicationStatusStyled>
   );
 };
-const ApplicationStatusStyled = styled.div`
+const ApplicationStatusStyled = styled("div")`
   overflow: hidden;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  border: 1px solid ${({ theme }) => theme.border};
+  border: 1px solid ${({ theme }) => theme.palette.divider};
 `;
-const Step = styled.div<Styled>`
+const Step = styled("div")<Styled>`
   padding: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid ${({ theme }) => theme.border};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
   &:last-of-type {
     border-bottom: none;
   }
 `;
 
-const CheckmarkWrap = styled.div<Styled>`
+const CheckmarkWrap = styled("div")<Styled>`
   opacity: ${({ addedClass }) => (addedClass === "finished" ? 1 : 0)};
 `;
 
-const Number = styled.div<Styled>`
+const Number = styled("div")<Styled>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid ${({ theme }) => theme.border};
-  color: ${({ theme }) => theme.lightGray};
+  border: 2px solid ${({ theme }) => theme.palette.divider};
+  color: ${({ theme }) => theme.palette.grey[400]};
   border-radius: 999px;
   width: 2.2rem;
   height: 2.2rem;
 
   ${({ addedClass }) =>
     addedClass === "current" &&
-    css`
-      border: 2px solid ${({ theme }) => theme.blue};
-      color: ${({ theme }) => theme.blue};
+    `
+      border: 2px solid ${({ theme }: any) => theme.palette.primary.main};
+      color: ${({ theme }: any) => theme.palette.primary.main};
     `}
   ${({ addedClass }) =>
     addedClass === "finished" &&
-    css`
-      border: 2px solid ${({ theme }) => theme.blue};
-      background: ${({ theme }) => theme.blue};
+    `
+      border: 2px solid ${({ theme }: any) => theme.palette.primary.main};
+      background: ${({ theme }: any) => theme.palette.primary.main};
       color: white;
-      border: 2px solid ${({ theme }) => theme.blue};
+      border: 2px solid ${({ theme }: any) => theme.palette.primary.main};
     `}
 
-    @media screen and (max-width:${({ theme }) => theme.widthPhone}) {
+    @media screen and (max-width:${({ theme }) =>
+    theme.breakpoints.values.sm}) {
     width: 1.8rem;
     height: 1.8rem;
   }
 `;
 
-const Subheader = styled.div<Styled>`
-  color: ${({ theme }) => theme.lightGray};
+const Subheader = styled("div")<Styled>`
+  color: ${({ theme }) => theme.palette.grey[400]};
   flex: 1;
   padding-left: 1rem;
 
   ${({ addedClass }) =>
     addedClass === "current" &&
-    css`
-      color: ${({ theme }) => theme.black};
+    `
+      color: ${({ theme }: any) => theme.palette.common.black};
     `}
   ${({ addedClass }) =>
     addedClass === "finished" &&
-    css`
-      color: ${({ theme }) => theme.gray};
+    `
+      color: ${({ theme }: any) => theme.palette.grey[300]};
     `}
 
-    @media screen and (max-width:${({ theme }) => theme.widthPhone}) {
+    @media screen and (max-width:${({ theme }) =>
+    theme.breakpoints.values.sm}) {
     font-size: 14px;
   }
 `;

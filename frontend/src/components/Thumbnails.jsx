@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { styled } from "@mui/material/styles";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-import styled from "styled-components/macro";
 
 const Thumbnails = ({ files, id, type }) => {
   // let url = `${process.env.REACT_APP_API_SERVER_URL}user/application/files/${token}/${id}/${type}`;
@@ -33,13 +33,13 @@ const Thumbnails = ({ files, id, type }) => {
 
 export default Thumbnails;
 
-const ThumbContainer = styled.aside`
+const ThumbContainer = styled("aside")`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 16px;
 `;
-const ThumbWrap = styled.div`
+const ThumbWrap = styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,7 +52,7 @@ const ThumbWrap = styled.div`
   }
 `;
 
-const Thumb = styled.div`
+const Thumb = styled("div")`
   display: inline-flex;
   border-radius: 2px;
   border: 1px solid #eaeaea;
@@ -64,15 +64,5 @@ const Thumb = styled.div`
   transition: 0.1s ease-in-out;
   &:hover {
     opacity: 0.85;
-  }
-`;
-const ThumbInner = styled.a`
-  display: flex;
-  min-width: 0px;
-  overflow: hidden;
-  img {
-    display: block;
-    width: auto;
-    height: 100%;
   }
 `;

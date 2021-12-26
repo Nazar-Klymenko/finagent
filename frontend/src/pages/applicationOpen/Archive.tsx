@@ -1,8 +1,8 @@
 import React from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import styled from "styled-components/macro";
 
 import { archiveApplicationAPI } from "@api/applications";
 
@@ -41,7 +41,7 @@ const Archive: React.FC<Props> = ({ id, callback }) => {
   );
 };
 
-const ButtonWrap = styled.div`
+const ButtonWrap = styled("div")`
   display: flex;
   justify-content: flex-end;
   align-items: center;

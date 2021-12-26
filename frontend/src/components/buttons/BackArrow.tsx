@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { ArrowDown } from "@components/svgs";
 
@@ -19,7 +19,7 @@ const BackArrow: React.FC = () => {
   );
 };
 
-const BackArrowStyled = styled.div`
+const BackArrowStyled = styled("div")`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@ const BackArrowStyled = styled.div`
   margin-left: 1rem;
   transition: 0.1s background-color ease-in-out;
   &:hover {
-    background-color: ${({ theme }) => theme.lightGray};
+    background-color: ${({ theme }) => theme.palette.grey[400]};
   }
 `;
 

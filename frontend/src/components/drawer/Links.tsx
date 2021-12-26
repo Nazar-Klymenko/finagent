@@ -1,12 +1,12 @@
 import React from "react";
 
-// import GroupRoundedIcon from "@material-ui/icons/GroupRounded";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
-import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
+// import GroupRoundedIcon from "@mui/icons-material/GroupRounded";
+import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
+import HelpRoundedIcon from "@mui/icons-material/HelpRounded";
+import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { useAuth } from "@context/authContext";
 
@@ -46,13 +46,13 @@ const Links: React.FC<Props> = ({ navOpen, setNavOpen }) => {
   );
 };
 
-const LinksStyled = styled.div`
+const LinksStyled = styled("div")`
   width: 100%;
   padding: 1rem;
   display: flex;
   flex: 1;
   flex-direction: column;
-  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     padding: 12px 0;
   }
 `;

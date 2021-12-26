@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import InsertDriveFile from "@material-ui/icons/InsertDriveFile";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Paper from "@mui/material/Paper";
+import makeStyles from '@mui/styles/makeStyles';
+import InsertDriveFile from "@mui/icons-material/InsertDriveFile";
 import _ from "lodash";
 import Dropzone from "react-dropzone";
 import { Controller, useFormContext } from "react-hook-form";

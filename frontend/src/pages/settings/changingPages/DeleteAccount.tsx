@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Typography } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";

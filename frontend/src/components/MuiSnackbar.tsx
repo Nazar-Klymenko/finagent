@@ -1,8 +1,8 @@
 import React from "react";
 
-import Slide, { SlideProps } from "@material-ui/core/Slide";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
+import Alert from "@mui/material/Alert";
+import Slide, { SlideProps } from "@mui/material/Slide";
+import Snackbar from "@mui/material/Snackbar";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,7 +23,10 @@ const MuiSnackbar: React.FC = () => {
   const message = useSelector((state: any) => state.alerts.alertInfo?.message);
   const alertOpen = useSelector((state: any) => state.alerts.alertInfo?.isOpen);
 
-  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === "clickaway") {
       return;
     }

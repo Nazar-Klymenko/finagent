@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 
-import Backdrop from "@material-ui/core/Backdrop";
-import Container from "@material-ui/core/Container";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import Backdrop from "@mui/material/Backdrop";
+import Container from "@mui/material/Container";
+import { styled } from "@mui/material/styles";
+import createStyles from "@mui/styles/createStyles";
+import makeStyles from "@mui/styles/makeStyles";
 import { useMediaQuery } from "react-responsive";
-import styled, { css } from "styled-components/macro";
 
 import { useAuth } from "@context/authContext";
 
 import LogoWrap from "@components/LogoWrap";
 import { UserAuth } from "@components/buttons";
-import Drawer from "@components/nav/drawer/Drawer";
+import Drawer from "@components/drawer/Drawer";
 import { Logo } from "@components/svgs";
 
 import Hamburger from "./Hamburger";
@@ -98,7 +99,7 @@ const ContainerStyled = styled(Container)`
   justify-content: space-between;
   padding: 0 20px;
 `;
-const NavStyled = styled.div`
+const NavStyled = styled("div")`
   display: flex;
   position: fixed;
   justify-content: space-between;
@@ -111,11 +112,11 @@ const NavStyled = styled.div`
   height: 50px;
 
   background: white;
-  border-bottom: 1px solid ${({ theme }) => theme.border};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
   box-shadow: 0 1px 6px 0 rgba(58, 60, 66, 0.1);
   z-index: 50;
 `;
-const FlexWrap = styled.div`
+const FlexWrap = styled("div")`
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -124,30 +125,30 @@ const FlexWrap = styled.div`
   align-items: center;
   ${({ flexStart }) =>
     flexStart &&
-    css`
+    `
       justify-content: flex-start;
     `}
 
   ${({ center }) =>
     center &&
-    css`
+    `
       justify-content: center;
     `}
 
   ${({ flexEnd }) =>
     flexEnd &&
-    css`
+    `
       justify-content: flex-end;
     `}
 
     ${({ f1 }) =>
     f1 &&
-    css`
+    `
       flex: 1;
     `}
     ${({ f2 }) =>
     f2 &&
-    css`
+    `
       flex: 2;
     `}
 `;

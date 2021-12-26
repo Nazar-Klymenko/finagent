@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components/macro";
+import { styled } from "@mui/material/styles";
 
 const Hamburger = ({ navOpen, onClick }) => {
   return (
@@ -12,14 +12,14 @@ const Hamburger = ({ navOpen, onClick }) => {
   );
 };
 
-const HamburgerIcon = styled.div`
+const HamburgerIcon = styled("div")`
   display: none;
   cursor: pointer;
   padding: 4px 8px;
   div {
     width: 28px;
     height: 3px;
-    background-color: ${(props) => props.theme.black};
+    background-color: ${({ theme }) => theme.palette.text.primary};
     margin: 7px 0;
     transition: 0.3s ease-in-out;
     border-radius: 5px;

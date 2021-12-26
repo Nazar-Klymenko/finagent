@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
-import RefreshIcon from "@material-ui/icons/Refresh";
-import styled from "styled-components";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import { styled } from "@mui/material/styles";
 
 interface Props {
   callback?: () => void;
@@ -19,7 +19,7 @@ const ErrorRefetch: FC<Props> = ({ text, callback }) => {
 
 export default ErrorRefetch;
 
-const ErrorRefetchStyled = styled.div`
+const ErrorRefetchStyled = styled("div")`
   cursor: pointer;
   display: flex;
   align-items: center;

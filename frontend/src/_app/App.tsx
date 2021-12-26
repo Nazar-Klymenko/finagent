@@ -1,15 +1,13 @@
 import React, { Suspense } from "react";
 
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core";
+import { ThemeProvider as MuiThemeProvider, Theme } from "@mui/material";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "@styles/GlobalStyle";
 import muiTheme from "@styles/muiTheme";
-import theme from "@styles/theme";
 
 import { ProviderComposer, provider } from "@helpers/combineProviders";
 
@@ -29,6 +27,11 @@ import Nav from "@components/nav";
 
 import Routes from "./routes";
 
+declare module "@mui/styles/defaultTheme" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -39,7 +42,6 @@ const App = () => {
         provider(AuthContextProvider),
         provider(DataProvider),
         provider(NotificationProvider),
-        provider(ThemeProvider, { theme: theme }),
         provider(MuiThemeProvider, { theme: muiTheme }),
         provider(QueryClientProvider, { client: queryClient }),
       ]}

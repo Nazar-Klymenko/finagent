@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
-import styled, { css } from "styled-components/macro";
 
 import { getApplicationsQuantityAPI } from "@api/applications";
 
@@ -83,61 +83,62 @@ const PageToggle: React.FC<Props> = ({
   }
 };
 
-const Tab = styled.div<Styled>`
+const Tab = styled("div")<Styled>`
   cursor: pointer;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.lightestGray};
-  border-bottom: 1px solid ${({ theme }) => theme.border};
+  background: ${({ theme }) => theme.palette.grey[300]};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
   span {
     padding: 12px;
-    color: ${({ theme }) => theme.gray};
+    color: ${({ theme }) => theme.palette.grey[500]};
   }
   &:first-of-type {
-    border-right: 1px solid ${({ theme }) => theme.border};
+    border-right: 1px solid ${({ theme }) => theme.palette.divider};
   }
   ${({ selected }) =>
     selected &&
-    css`
+    `
       background: white;
       border-bottom: 1px solid transparent;
       span {
-        color: ${({ theme }) => theme.black};
+        color: ${({ theme }: any) => theme.palette.common.black};
       }
     `}
 
   ${({ blocked }) =>
     blocked &&
-    css`
-      background: ${({ theme }) => theme.lightestGray};
-      border-bottom: 1px solid ${({ theme }) => theme.border};
+    `
+      background: ${({ theme }: any) => theme.lightestGray};
+      border-bottom: 1px solid ${({ theme }: any) => theme.palette.divider};
     `}
 
 
-    @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
-    border: 1px solid ${({ theme }) => theme.blue};
+    @media screen and (max-width: ${({ theme }) =>
+    theme.breakpoints.values.md}) {
+    border: 1px solid ${({ theme }) => theme.palette.primary.main};
     background: white;
     border-radius: 4px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     span {
       padding: 8px;
-      color: ${({ theme }) => theme.blue};
+      color: ${({ theme }) => theme.palette.primary.main};
     }
 
     ${({ selected }) =>
       selected &&
-      css`
-        background: ${({ theme }) => theme.blue};
+      `
+        background: ${({ theme }: any) => theme.palette.primary.main};
         span {
           color: white;
         }
       `}
 
     &:first-of-type {
-      border-right: 1px solid ${({ theme }) => theme.blue};
+      border-right: 1px solid ${({ theme }) => theme.palette.primary.main};
       border-radius: 4px;
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
@@ -145,16 +146,16 @@ const Tab = styled.div<Styled>`
 
     ${({ blocked }) =>
       blocked &&
-      css`
+      `
         pointer-events: none;
         opacity: 0.7;
       `}
   }
 `;
 
-const PageToggleStyled = styled.div`
+const PageToggleStyled = styled("div")`
   display: flex;
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     padding: 20px;
   }
 `;

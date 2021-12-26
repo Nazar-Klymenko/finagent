@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
-import styled from "styled-components/macro";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { styled } from "@mui/material/styles";
+import makeStyles from "@mui/styles/makeStyles";
 
 import useClickOutside from "@hooks/useClickOutside";
 
@@ -49,7 +49,7 @@ const Drawer: React.FC<Props> = ({ navOpen, setNavOpen }) => {
 
 export default Drawer;
 
-const DrawerStyled = styled.div<Styled>`
+const DrawerStyled = styled("div")<Styled>`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -66,7 +66,7 @@ const DrawerStyled = styled.div<Styled>`
   z-index: 150;
   transition: transform 0.25s ease-in-out;
   z-index: 99999;
-  @media screen and (min-width: ${({ theme }) => theme.widthPhone}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     width: 40%;
   } ;
 `;

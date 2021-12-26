@@ -1,7 +1,7 @@
 import React from "react";
 
+import { styled } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { ArrowDown } from "@components/svgs";
 
@@ -36,7 +36,7 @@ const MessageCard = ({ notification }) => {
 
 export default MessageCard;
 
-const MessageCardStyled = styled.div`
+const MessageCardStyled = styled("div")`
   cursor: pointer;
   position: relative;
   width: 100%;
@@ -49,25 +49,25 @@ const MessageCardStyled = styled.div`
   padding: 0.5rem;
 `;
 
-const NewLabel = styled.div`
+const NewLabel = styled("div")`
   top: 5px;
   left: 5px;
   position: absolute;
   display: flex;
   align-items: center;
   span {
-    color: ${({ theme }) => theme.blue};
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 `;
-const BlueLabel = styled.div`
+const BlueLabel = styled("div")`
   width: 10px;
   height: 10px;
-  background-color: ${({ theme }) => theme.blue};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   border-radius: 3px;
   margin: 0 0.5rem;
 `;
 
-const MessageTitle = styled.div`
+const MessageTitle = styled("div")`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -76,15 +76,15 @@ const MessageTitle = styled.div`
   h4 {
     font-size: 1.2rem;
     font-weight: 500;
-    @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
+    @media all and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
       font-size: 1rem;
     }
   }
 `;
 
-const MessageDate = styled.span`
+const MessageDate = styled("span")`
   position: absolute;
-  color: ${({ theme }) => theme.blue};
+  color: ${({ theme }) => theme.palette.primary.main};
   right: 20px;
   bottom: 10px;
 `;

@@ -1,16 +1,15 @@
 import React from "react";
 
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import { makeStyles } from "@material-ui/core/styles";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
-import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
+import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import { styled } from "@mui/material/styles";
+import makeStyles from "@mui/styles/makeStyles";
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { useAuth } from "@context/authContext";
 
@@ -84,21 +83,9 @@ const BottomNavStyled = styled(BottomNavigation)`
   .MuiIcon-colorPrimary.active {
     color: #1672ec;
   }
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     display: flex !important;
   }
-  /* @media screen and (max-width: ${({ theme }) => theme.widthSmallPhone}) {
-    a {
-      padding: 6px 8px 8px;
-      width: 3rem;
-    }
-    .MuiBottomNavigationAction-root {
-      max-width: 2.5rem;
-    }
-    .MuiBottomNavigationAction-label {
-      display: none;
-    }
-  } ; */
 `;
 
 export default BottomNav;

@@ -1,17 +1,17 @@
 import React, { FC, useState } from "react";
 
-import { Table as MuiTable } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { Table as MuiTable } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import styled, { css } from "styled-components";
 
 interface Props {
   header: string;
@@ -133,7 +133,7 @@ export default Table;
 const TableContainerStyled = styled(TableContainer)<any>`
   ${({ open }) =>
     !open &&
-    css`
+    `
       box-shadow: none;
     `}
 `;
@@ -141,7 +141,7 @@ const TableHeadStyled = styled(TableHead)`
   padding: 16px;
 `;
 const TableCellStyled = styled(TableCell)`
-  background-color: ${({ theme }) => theme.blue};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   span {
     font-size: 1.2rem;
     color: white;

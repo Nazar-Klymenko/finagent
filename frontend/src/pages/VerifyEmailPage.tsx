@@ -1,5 +1,5 @@
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
 
 import { useAuth } from "@context/authContext";
 
@@ -28,17 +28,17 @@ const VerifyEmailPage = () => {
 
 export default VerifyEmailPage;
 
-const ResendEmail = styled.div`
-  color: ${({ theme }) => theme.blue};
+const ResendEmail = styled("div")`
+  color: ${({ theme }) => theme.palette.primary.main};
   cursor: pointer;
 `;
-const Container = styled.div`
+const Container = styled("div")`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   margin: 20vh auto;
   a {
-    color: ${({ theme }) => theme.blue};
+    color: ${({ theme }) => theme.palette.primary.main};
   }
 `;

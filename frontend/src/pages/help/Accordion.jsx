@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { Typography } from "@material-ui/core";
-import styled from "styled-components/macro";
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const Accordion = ({ header, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,27 +24,27 @@ const Accordion = ({ header, children }) => {
 
 export { Accordion };
 
-const AccordionStyled = styled.div`
+const AccordionStyled = styled("div")`
   min-height: 6rem;
   padding: 1.5rem;
-  border-bottom: 1px solid ${({ theme }) => theme.lightGray};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.grey[400]};
   overflow: hidden;
   cursor: pointer;
   line-height: 130%;
 `;
 
-const AccordionInner = styled.div`
+const AccordionInner = styled("div")`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-const Desc = styled.span`
+const Desc = styled("span")`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   cursor: text;
 `;
 
-const Plus = styled.span`
+const Plus = styled("span")`
   padding: 1rem;
   font-size: 1.5rem;
   &::selection {

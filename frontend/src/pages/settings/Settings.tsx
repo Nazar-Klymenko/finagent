@@ -1,8 +1,8 @@
 import React from "react";
 
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import { NavLink, Redirect } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import useTitle from "@hooks/useTitle";
 
@@ -73,11 +73,11 @@ const Settings = () => {
 
 export default Settings;
 
-const Menu = styled.div`
-  border: 1px solid ${({ theme }) => theme.border};
+const Menu = styled("div")`
+  border: 1px solid ${({ theme }) => theme.palette.divider};
   border-radius: 4px;
   height: max-content;
-  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     display: flex;
     flex-direction: row;
     border-radius: 0;
@@ -90,7 +90,7 @@ const Menu = styled.div`
     }
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
-      background: ${({ theme }) => theme.lightGray};
+      background: ${({ theme }) => theme.palette.grey[400]};
     }
   }
 `;
@@ -100,34 +100,34 @@ const SettingsLink = styled(NavLink)`
   font-size: 14px;
   text-decoration: none;
   white-space: nowrap;
-  border-bottom: 1px solid ${({ theme }) => theme.border};
+  border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
   &:last-of-type {
     border-bottom: none;
   }
-  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     border-bottom: none;
   }
 
   &.selected {
     background-color: #e1edfc;
-    color: ${({ theme }) => theme.blue};
+    color: ${({ theme }) => theme.palette.primary.main};
   }
   &:hover {
     background-color: #f1f1f1;
   }
-  @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     padding: 0.5rem;
   }
 `;
-const ActionZone = styled.div`
+const ActionZone = styled("div")`
   padding: 0 2rem;
   width: 100%;
 
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     padding: 1rem 2rem;
   }
 `;
 
-const Overlay = styled.div`
+const Overlay = styled("div")`
   max-width: 600px;
 `;

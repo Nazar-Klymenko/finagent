@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 
+import { styled } from "@mui/material/styles";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
 
 interface Props {
   appDataForUser: any;
@@ -60,15 +60,15 @@ const Card: React.FC<Props> = ({ appDataForUser }) => {
   );
 };
 
-const CardWrap = styled.div`
+const CardWrap = styled("div")`
   padding: 20px 20px 0px;
 `;
-const CardStyled = styled.div`
+const CardStyled = styled("div")`
   cursor: pointer;
   padding: 10px 32px 20px;
   position: relative;
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.border};
+  border: 1px solid ${({ theme }) => theme.palette.divider};
   transition: 0.15s box-shadow ease-in-out;
   &::after {
     content: ">";
@@ -83,7 +83,7 @@ const CardStyled = styled.div`
     font-size: 1.5rem;
     width: 1.5rem;
     height: 100%;
-    background: ${({ theme }) => theme.blue};
+    background: ${({ theme }) => theme.palette.primary.main};
     border-radius: 0px 4px 4px 0px;
     opacity: 0;
     transition: 0.15s opacity ease-in-out;
@@ -94,36 +94,36 @@ const CardStyled = styled.div`
       opacity: 1;
     }
   }
-  @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     &::after {
       align-items: flex-start;
       opacity: 1;
       background: white;
-      color: ${({ theme }) => theme.blue};
+      color: ${({ theme }) => theme.palette.primary.main};
     }
   }
 `;
-const Title = styled.div``;
+const Title = styled("div")``;
 
-const Info = styled.div`
+const Info = styled("div")`
   display: flex;
   padding-top: 12px;
-  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     flex-direction: column;
   }
 `;
 
-const StatusColor = styled.div`
+const StatusColor = styled("div")`
   position: absolute;
   left: 0;
   top: 0;
   width: 0.5rem;
   height: 100%;
-  background: ${({ theme }) => theme.blue};
+  background: ${({ theme }) => theme.palette.primary.main};
   border-radius: 4px 0px 0px 4px;
 `;
 
-const Cell = styled.div`
+const Cell = styled("div")`
   display: flex;
   flex-direction: column;
   min-width: max-content;
@@ -131,11 +131,11 @@ const Cell = styled.div`
   padding-right: 32px;
 
   .key {
-    color: ${({ theme }) => theme.gray};
+    color: ${({ theme }) => theme.palette.text.secondary};
     font-size: 0.9rem;
   }
 
-  @media all and (max-width: ${({ theme }) => theme.widthTablet}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.md}) {
     flex-direction: row;
     align-items: center;
     padding: 0.4rem;

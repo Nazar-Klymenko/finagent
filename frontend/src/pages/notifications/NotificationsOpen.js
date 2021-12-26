@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { styled } from "@mui/material/styles";
 import { useHistory, useParams } from "react-router-dom";
-import styled from "styled-components/macro";
 
 import { getSpecificNotificationAPI } from "@api/userAPI";
 
@@ -61,7 +61,7 @@ const NotificationsOpen = () => {
 
 export default NotificationsOpen;
 
-const NotificationStyled = styled.div`
+const NotificationStyled = styled("div")`
   position: relative;
   width: 60%;
   flex: 1;
@@ -71,18 +71,18 @@ const NotificationStyled = styled.div`
   margin: 1rem auto;
   border-radius: 14px;
   box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.08);
-  @media all and (max-width: ${({ theme }) => theme.widthPhone}) {
+  @media all and (max-width: ${({ theme }) => theme.breakpoints.values.sm}) {
     margin: unset;
     min-height: 85vh;
     width: 100%;
     border-radius: 0;
   }
 `;
-const NotficationBody = styled.div`
+const NotficationBody = styled("div")`
   display: flex;
   flex-direction: column;
 `;
-const NotificationHeader = styled.div`
+const NotificationHeader = styled("div")`
   text-align: center;
   position: relative;
   &::after {
@@ -95,20 +95,20 @@ const NotificationHeader = styled.div`
     background-color: #cccccc;
   }
 `;
-const ButtonPosition = styled.div`
+const ButtonPosition = styled("div")`
   position: absolute;
   left: 0rem;
   top: 0rem;
 `;
-const NotificationContent = styled.p`
+const NotificationContent = styled("p")`
   margin-top: 1rem;
 `;
-const ToAppRedirect = styled.p`
+const ToAppRedirect = styled("p")`
   cursor: pointer;
-  color: ${({ theme }) => theme.blue};
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
-const CreatedAt = styled.span`
-  color: ${({ theme }) => theme.blue};
+const CreatedAt = styled("span")`
+  color: ${({ theme }) => theme.palette.primary.main};
   position: absolute;
   bottom: 1rem;
   left: 1rem;

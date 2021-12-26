@@ -1,7 +1,7 @@
 import React from "react";
 
+import { styled } from "@mui/material/styles";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components/macro";
 
 const LogoWrap: React.FC = ({ children }) => {
   const history = useHistory();
@@ -16,7 +16,7 @@ const LogoWrap: React.FC = ({ children }) => {
   );
 };
 
-const LogoWrapStyled = styled.div`
+const LogoWrapStyled = styled("div")`
   display: flex;
   align-items: center;
   padding: 3px 0px;

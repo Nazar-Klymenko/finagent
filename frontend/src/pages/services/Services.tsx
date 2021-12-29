@@ -15,7 +15,6 @@ import styled from "styled-components";
 import useTitle from "@hooks/useTitle";
 
 import { ContentWrap } from "@components/content";
-import { Header } from "@components/typography";
 
 import ServiceCard from "./ServiceCard";
 
@@ -23,7 +22,7 @@ const Services = () => {
   useTitle("Services | FinAgent");
   const { t } = useTranslation();
   return (
-    <ContentWrap fullWidth direction="column" blank>
+    <ContentWrap direction="column">
       <Typography variant="h3" gutterBottom>
         {t("Services.Titles.insurances")}
       </Typography>

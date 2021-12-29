@@ -11,7 +11,7 @@ import { useAuth } from "@context/authContext";
 
 import Form from "@components/Form";
 import Loader from "@components/Loader";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiInput, MuiPasswordInput, MuiPhoneInput } from "@components/input";
 
@@ -73,7 +73,7 @@ const SignUp = () => {
   };
 
   return !isLoading ? (
-    <ContentWrap xl authForm direction="column">
+    <ContentWrap authForm direction="column">
       <Typography gutterBottom align="center" variant="h3">
         {t("SignUp.title")}
       </Typography>
@@ -104,7 +104,12 @@ const SignUp = () => {
         />
       </Form>
 
-      <CTA text={t("SignUp.Form.button")} form="form" color="primary" large />
+      <MuiButton
+        text={t("SignUp.Form.button")}
+        form="form"
+        color="primary"
+        large
+      />
 
       <AlternativeLine>Or sign up using other methods</AlternativeLine>
       <FacebookButton onClick={signupWithFacebook}>Facebook</FacebookButton>

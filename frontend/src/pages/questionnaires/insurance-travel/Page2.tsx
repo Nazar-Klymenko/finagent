@@ -14,7 +14,7 @@ import { useData } from "@context/dataContext";
 
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import {
   DateInput,
@@ -84,7 +84,7 @@ const Page2 = () => {
   });
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
       <Page>
         <Title>{t("InsuranceTravel.title")}</Title>
@@ -168,7 +168,7 @@ const Page2 = () => {
         </Form>
 
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             form=""
             color="secondary"
@@ -176,7 +176,7 @@ const Page2 = () => {
               history.push("./1");
             }}
           />
-          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
+          <MuiButton text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
       </Page>
     </ContentWrap>

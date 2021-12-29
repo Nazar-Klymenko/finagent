@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -17,7 +18,7 @@ import { useData } from "@context/dataContext";
 import Form from "@components/Form";
 import MuiDialog from "@components/MuiDialog";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import ContentWrap from "@components/content/ContentWrap";
 import {
   DateInput,
@@ -55,6 +56,7 @@ type FormTypes = {
       averageIncome: string;
       accountancy: string;
       pit: string;
+      bank: string;
     }
   ];
 };
@@ -90,6 +92,7 @@ const Page2 = () => {
           averageIncome: appDataValid?.[0]?.averageIncome,
           accountancy: appDataValid?.[0]?.accountancy || "generalRules",
           pit: appDataValid?.[0]?.pit,
+          bank: appDataValid?.[0]?.bank || "",
         },
       ],
     },
@@ -149,7 +152,7 @@ const Page2 = () => {
   }, [appDataValid, append, formInitiated]);
 
   const finalizeForm = () => {
-    if (formInitiated && fields.length > 0 && !!errors.income === false) {
+    if (!!errors.income === false) {
       setCurrentPage(3);
       history.push("./3");
     } else {
@@ -157,10 +160,8 @@ const Page2 = () => {
     }
   };
 
-  console.log({ errors });
-
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>
@@ -171,7 +172,10 @@ const Page2 = () => {
           label={t("LoanCash.Page2.subtitle")}
         />
         <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
-
+        <Typography variant="body1">
+          This is optional. If you do not have any additional income, simply
+          press next.
+        </Typography>
         {editingMode &&
           fields.map((field: any, index: number) => {
             //@ts-ignore
@@ -392,6 +396,13 @@ const Page2 = () => {
                       placeholder="value"
                       defaultValue={field.pit || ""}
                     />
+                    <MuiInput
+                      name={`income[${index}].bank`}
+                      labelName={t("LoanCash.ApplicantModal.bank")}
+                      type="text"
+                      placeholder="Millenium"
+                      defaultValue={field.bank}
+                    />
                   </Form>
                 </MuiDialog>
               )
@@ -455,7 +466,7 @@ const Page2 = () => {
           )
         )}
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             form=""
             color="secondary"
@@ -463,7 +474,7 @@ const Page2 = () => {
               history.push("./1");
             }}
           />
-          <CTA
+          <MuiButton
             text={t("Basic.buttonNext")}
             form="form"
             color="primary"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
@@ -20,7 +21,7 @@ import Form from "@components/Form";
 import FormError from "@components/FormError";
 import MuiDialog from "@components/MuiDialog";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import {
   DateInput,
@@ -205,7 +206,7 @@ const Page1 = () => {
   }, [appDataValid, bothSpousesStart, remove]);
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>
@@ -272,7 +273,11 @@ const Page1 = () => {
           )}
           <Subtitle>{t("LoanCash.ApplicantBox.title")}</Subtitle>
         </Form>
-        {t("LoanCash.ApplicantModal.title")}
+
+        <Typography variant="body1">
+          Dodaj wnioskodawcę ({bothSpousesStart === "yes" ? 2 : 1})
+        </Typography>
+        {/* {t("LoanCash.ApplicantModal.title")} */}
 
         {editingMode &&
           fields.map((field: any, index: number) => {
@@ -665,10 +670,17 @@ const Page1 = () => {
           )
         )}
         <ButtonsWrap>
-          <CTA
+          {/* <MuiButton
             text={t("Basic.buttonNext")}
             form="form"
             color="primary"
+            onClick={finalizeForm}
+          /> */}
+
+          <MuiButton
+            text={t("Basic.buttonNext")}
+            color="primary"
+            form="form"
             onClick={finalizeForm}
           />
         </ButtonsWrap>

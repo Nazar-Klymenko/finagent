@@ -41,7 +41,7 @@ const BottomNav = () => {
         component={NavLink}
         to="/dashboard/insurances"
         label={t("NavbarBottom.dashboard")}
-        value={`/dashboard/`}
+        value={`/dashboard`}
         icon={<HomeRoundedIcon />}
       />
       <BottomNavigationAction

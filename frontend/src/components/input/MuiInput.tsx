@@ -4,8 +4,14 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import styled, { css } from "styled-components";
 
-import { InputErrorMessage, Label, Optional } from "./LocalStyles";
+import {
+  InputContainer,
+  InputErrorMessage,
+  Label,
+  Optional,
+} from "./LocalStyles";
 
 interface Props {
   labelName: string;
@@ -16,6 +22,7 @@ interface Props {
   autoFocus?: boolean;
   autoComplete?: string;
   defaultValue?: string | undefined;
+  width?: "s" | "m" | "l";
 }
 
 const MuiInput: FC<Props> = ({
@@ -24,6 +31,7 @@ const MuiInput: FC<Props> = ({
   autoComplete,
   optional,
   defaultValue,
+  width = "l",
   ...other
 }) => {
   const { t } = useTranslation();
@@ -33,7 +41,7 @@ const MuiInput: FC<Props> = ({
   } = useFormContext();
 
   return (
-    <>
+    <InputContainer width={width}>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
@@ -45,13 +53,10 @@ const MuiInput: FC<Props> = ({
         control={control}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <OutlinedInput
+          <StyledInput
             key={name}
             onChange={field.onChange}
             value={field.value}
-            style={{
-              fontFamily: ["Poppins", "sans-serif"].join(","),
-            }}
             id={name}
             autoComplete={autoComplete}
             error={!!_.get(errors, name)}
@@ -61,11 +66,14 @@ const MuiInput: FC<Props> = ({
       />
 
       <InputErrorMessage>
-        <span className="invis-star">*</span>
         {t(_.get(errors, `${name}.message`))}
       </InputErrorMessage>
-    </>
+    </InputContainer>
   );
 };
 
 export default MuiInput;
+
+const StyledInput = styled(OutlinedInput)`
+  font-family: "Poppins", "sans-serif";
+`;

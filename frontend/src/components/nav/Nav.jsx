@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Backdrop from "@material-ui/core/Backdrop";
+import Container from "@material-ui/core/Container";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useMediaQuery } from "react-responsive";
 import styled, { css } from "styled-components/macro";
@@ -45,7 +46,7 @@ const Nav = () => {
 
   return (
     <NavStyled>
-      <NavInnerWrap>
+      <ContainerStyled maxWidth="lg" disableGutters>
         <Backdrop
           className={classes.backdrop}
           open={openBackdrop}
@@ -84,23 +85,18 @@ const Nav = () => {
         {isTabletOrMobile && (
           <Drawer navOpen={navOpen} setNavOpen={setNavOpen} />
         )}
-      </NavInnerWrap>
+      </ContainerStyled>
     </NavStyled>
   );
 };
 
 export default Nav;
 
-const NavInnerWrap = styled.div`
-  max-width: 1080px;
+const ContainerStyled = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  width: 100%;
-  @media (min-width: 1200px) {
-    max-width: 1200px;
-  }
+  padding: 0 20px;
 `;
 const NavStyled = styled.div`
   display: flex;
@@ -114,17 +110,10 @@ const NavStyled = styled.div`
   right: 0;
   height: 50px;
 
-  padding-left: 40px;
-  padding-right: 40px;
-
   background: white;
   border-bottom: 1px solid ${({ theme }) => theme.border};
   box-shadow: 0 1px 6px 0 rgba(58, 60, 66, 0.1);
   z-index: 50;
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
 `;
 const FlexWrap = styled.div`
   display: flex;

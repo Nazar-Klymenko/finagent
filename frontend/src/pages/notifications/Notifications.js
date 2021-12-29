@@ -33,7 +33,7 @@ const Notifications = () => {
   // }, [socket]);
 
   return (
-    <ContentWrap fullHeight>
+    <ContentWrap>
       <NotificationsStyled>
         <NotificationsTitle>
           <h2>{t("Notifications.title")}</h2>

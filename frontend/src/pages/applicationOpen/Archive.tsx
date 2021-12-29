@@ -8,7 +8,7 @@ import { archiveApplicationAPI } from "@api/applications";
 
 import { setSnackbar } from "@redux/alert/actions";
 
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 
 type Props = {
   id: string;
@@ -31,7 +31,7 @@ const Archive: React.FC<Props> = ({ id, callback }) => {
 
   return (
     <ButtonWrap>
-      <CTA
+      <MuiButton
         form=""
         onClick={archiveApplication}
         text={t("ApplicationOpen.Archive.button")}

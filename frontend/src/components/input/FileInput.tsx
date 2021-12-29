@@ -77,7 +77,6 @@ const FileInput: FC<Props> = ({ name, labelName, showFiles, defaultValue }) => {
             </List>
           )} */}
           <InputErrorMessage>
-            <span className="invis-star">*</span>
             {t(_.get(errors, `${name}.message`))}
           </InputErrorMessage>
         </>

@@ -11,7 +11,7 @@ import { useAuth } from "@context/authContext";
 
 import Form from "@components/Form";
 import Loader from "@components/Loader";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiInput, MuiPasswordInput } from "@components/input";
 
@@ -76,7 +76,7 @@ const Login: React.FC<Props> = (props) => {
   };
 
   return !isLoading ? (
-    <ContentWrap xl authForm direction="column">
+    <ContentWrap authForm direction="column">
       <Typography gutterBottom align="center" variant="h3">
         {t("LogIn.title")}
       </Typography>
@@ -96,7 +96,7 @@ const Login: React.FC<Props> = (props) => {
           autoComplete="current-password"
         />
       </Form>
-      <CTA
+      <MuiButton
         isLoading={isLoading}
         text={t("LogIn.Form.button")}
         form="form"

@@ -9,7 +9,7 @@ import validateAppData from "@helpers/validateAppData";
 import { useData } from "@context/dataContext";
 
 import Form from "@components/Form";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { DateInput, MuiInput, MuiRadio } from "@components/input";
 import { Modal } from "@components/modals";
 
@@ -294,13 +294,17 @@ const AddAdditionalIncome = ({
           />
         </Form>
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             form=""
             color="secondary"
             onClick={() => setOpenIncomeModal(false)}
           />
-          <CTA color="primary" text={t("Basic.buttonAdd")} form="income-form" />
+          <MuiButton
+            color="primary"
+            text={t("Basic.buttonAdd")}
+            form="income-form"
+          />
         </ButtonsWrap>
       </Modal>
     )

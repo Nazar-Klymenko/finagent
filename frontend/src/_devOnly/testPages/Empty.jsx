@@ -7,7 +7,7 @@ import { ContentWrap } from "@components/content";
 
 const Empty = () => {
   return (
-    <ContentWrap authForm blank direction="column">
+    <ContentWrap authForm direction="column">
       <Table
         header="test"
         applicationType="InsuranceDiagnostic.Page1"

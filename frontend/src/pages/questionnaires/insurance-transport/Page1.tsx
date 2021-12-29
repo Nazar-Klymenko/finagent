@@ -12,7 +12,7 @@ import { useData } from "@context/dataContext";
 
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import {
   DateInput,
@@ -26,6 +26,7 @@ import {
 import {
   ButtonsWrap,
   InputErrorMessage,
+  InputsWrap,
   Legend,
   Page,
   Subtitle,
@@ -93,7 +94,7 @@ const Page1 = () => {
   });
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
       <Page>
         <Title>{t("InsuranceTransport.title")}</Title>
@@ -103,7 +104,7 @@ const Page1 = () => {
           label={t("InsuranceTransport.Page1.subtitle")}
         />
         <Subtitle>{t("InsuranceTransport.Page1.subtitle")}</Subtitle>
-        <Form methods={methods} id="form" onSubmit={formSubmit}>
+        <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
           <Legend>{t("InsuranceTransport.Page1.insuranceCoverage")}</Legend>
 
           <MuiCheckbox labelName={t("InsuranceTransport.Page1.oc")} name="oc" />
@@ -139,26 +140,31 @@ const Page1 = () => {
             labelName={t("InsuranceTransport.Page1.phoneNumber")}
           />
           <MuiInput
-            name="postIndex"
-            labelName={t("InsuranceTransport.Page1.postIndex")}
-            autoComplete="postal-code"
+            name="voivodeship"
+            labelName={t("InsuranceTransport.Page1.voivodeship")}
           />
           <MuiInput
             name="city"
             labelName={t("InsuranceTransport.Page1.city")}
           />
-          <MuiInput
-            name="voivodeship"
-            labelName={t("InsuranceTransport.Page1.voivodeship")}
-          />
-          <MuiInput
-            name="street"
-            labelName={t("InsuranceTransport.Page1.street")}
-          />
-          <MuiInput
-            name="houseNumber"
-            labelName={t("InsuranceTransport.Page1.houseNumber")}
-          />
+
+          <InputsWrap>
+            <MuiInput
+              name="street"
+              labelName={t("InsuranceTransport.Page1.street")}
+            />
+            <MuiInput
+              name="houseNumber"
+              labelName={t("InsuranceTransport.Page1.houseNumber")}
+              width="s"
+            />
+            <MuiInput
+              name="postIndex"
+              labelName={t("InsuranceTransport.Page1.postIndex")}
+              autoComplete="postal-code"
+              width="s"
+            />
+          </InputsWrap>
 
           <MuiRadio
             name="documentAddedType"
@@ -211,7 +217,11 @@ const Page1 = () => {
         </Form>
 
         <ButtonsWrap>
-          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
+          <MuiButton
+            text={t("Basic.buttonNext")}
+            form="form-transport"
+            color="primary"
+          />
         </ButtonsWrap>
       </Page>
     </ContentWrap>

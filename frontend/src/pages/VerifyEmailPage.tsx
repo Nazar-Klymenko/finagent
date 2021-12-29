@@ -15,7 +15,7 @@ const VerifyEmailPage = () => {
   };
 
   return (
-    <ContentWrap direction="column" fullWidth>
+    <ContentWrap direction="column">
       <Container>
         <h1>{t("ActivateEmail.content")}</h1>
         <ResendEmail onClick={resendEmail}>

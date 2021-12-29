@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
@@ -14,9 +15,8 @@ import { setSnackbar } from "@redux/alert/actions";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
 import MuiDialog from "@components/MuiDialog";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { MuiPasswordInput } from "@components/input";
-import { Header } from "@components/typography";
 
 import DeletionDialog from "../DeletionDialog";
 import { ButtonPosition, ChangingPage, StatusError } from "../LocalStyles";
@@ -65,7 +65,9 @@ const DangerZonePage = () => {
 
   return (
     <ChangingPage>
-      <Header variant="h3">{t("Settings.Disposal.title")}</Header>
+      <Typography variant="h3" gutterBottom>
+        {t("Settings.Disposal.title")}
+      </Typography>
       <Button
         onClick={handleClickOpen}
         className={classes.dangerButton}

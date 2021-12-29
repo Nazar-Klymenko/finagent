@@ -97,3 +97,11 @@ export const ApplicantName = styled.span`
   flex: 1;
   margin-left: 8px;
 `;
+
+export const InputsWrap = styled.div`
+  display: flex;
+  gap: 12px;
+  @media screen and (max-width: ${({ theme }) => theme.widthPhone}) {
+    flex-direction: column;
+  }
+`;

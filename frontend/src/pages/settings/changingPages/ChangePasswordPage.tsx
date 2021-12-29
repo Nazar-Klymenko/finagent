@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@context/authContext";
 
 import Form from "@components/Form";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { MuiPasswordInput } from "@components/input";
 
 import { ButtonPosition, ChangingPage } from "../LocalStyles";
@@ -47,7 +47,7 @@ const ChangePasswordPage = () => {
             labelName={t("Settings.ChangePassword.newPassword")}
           />
           <ButtonPosition>
-            <CTA
+            <MuiButton
               text={t("Settings.ChangePassword.button")}
               form="settings-form"
               color="primary"

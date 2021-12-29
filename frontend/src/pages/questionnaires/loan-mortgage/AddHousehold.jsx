@@ -9,7 +9,7 @@ import validateAppData from "@helpers/validateAppData";
 import { useData } from "@context/dataContext";
 
 import Form from "@components/Form";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { MuiInput } from "@components/input";
 import Modal from "@components/modals/Modal";
 
@@ -88,13 +88,13 @@ const AddHousehold = ({
           />
         </Form>
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             form=""
             color="secondary"
             onClick={() => setOpenModal(false)}
           />
-          <CTA
+          <MuiButton
             color="primary"
             text={t("Basic.buttonAdd")}
             form="household-form"

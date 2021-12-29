@@ -12,7 +12,7 @@ import { useData } from "@context/dataContext";
 
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 import { MuiSelect } from "@components/input";
 
@@ -57,7 +57,7 @@ const Page4 = () => {
   });
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>
@@ -99,7 +99,7 @@ const Page4 = () => {
         </Form>
 
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             form=""
             color="secondary"
@@ -107,7 +107,7 @@ const Page4 = () => {
               history.push("./3");
             }}
           />
-          <CTA text={t("Basic.buttonNext")} form="form" color="primary" />
+          <MuiButton text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
       </Page>
     </ContentWrap>

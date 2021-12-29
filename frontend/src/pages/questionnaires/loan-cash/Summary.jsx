@@ -14,7 +14,7 @@ import { useData } from "@context/dataContext";
 
 import ProgressBar from "@components/ProgressBar";
 import SummaryList from "@components/SummaryList";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { ContentWrap } from "@components/content";
 
 import { ButtonsWrap, Page, Title } from "../LocalStyles";
@@ -41,7 +41,7 @@ const Summary = () => {
   };
 
   return (
-    <ContentWrap fullWidth>
+    <ContentWrap>
       <QuestState data={appData} />
 
       <Page>
@@ -53,7 +53,7 @@ const Summary = () => {
           defaultOpen
         />
         <ButtonsWrap multiple>
-          <CTA
+          <MuiButton
             text={t("Basic.buttonBack")}
             color="secondary"
             form=""
@@ -61,7 +61,7 @@ const Summary = () => {
               history.push("./2");
             }}
           />
-          <CTA
+          <MuiButton
             text={t("Basic.buttonNext")}
             form=""
             color="primary"

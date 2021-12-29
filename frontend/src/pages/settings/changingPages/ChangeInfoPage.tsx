@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 
 import { getSettingsAPI, updateSettingsAPI } from "@api/userAPI";
-
-import useFetch from "@hooks/useFetch";
 
 import { useAuth } from "@context/authContext";
 
@@ -15,7 +14,7 @@ import { setSnackbar } from "@redux/alert/actions";
 
 import Form from "@components/Form";
 import Loader from "@components/Loader";
-import { CTA } from "@components/buttons";
+import { MuiButton } from "@components/buttons";
 import { MuiInput, MuiPhoneInput } from "@components/input";
 
 import { ButtonPosition, ChangingPage, StatusError } from "../LocalStyles";
@@ -28,7 +27,6 @@ type FormTypes = {
 
 const ChangePasswordPage = () => {
   const { t } = useTranslation();
-  const { data, error, loading } = useFetch(getSettingsAPI());
   const dispatch = useDispatch();
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [postError, setPostError] = useState("");
@@ -36,10 +34,6 @@ const ChangePasswordPage = () => {
   const { updateDisplayName } = useAuth();
 
   const methods = useForm<FormTypes>({
-    defaultValues: {
-      fullName: data?.displayName,
-      phone: data?.phone,
-    },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: false,
@@ -47,18 +41,24 @@ const ChangePasswordPage = () => {
   });
   const { handleSubmit, reset, formState } = methods;
 
-  useEffect(() => {
-    reset(data);
-  }, [data, reset]);
-
   const { isDirty } = formState;
+
+  async function getSettings() {
+    const { data } = await getSettingsAPI();
+    return data;
+  }
+  let { data, error, isFetching, refetch } = useQuery(
+    [`settings`],
+    () => getSettings(),
+    { keepPreviousData: true, staleTime: 5000, refetchOnWindowFocus: false }
+  );
 
   const formSubmit = handleSubmit(async (data) => {
     setIsBtnLoading(true);
     try {
       await updateSettingsAPI(data);
       reset(data);
-      await updateDisplayName(data.fullName);
+      updateDisplayName(data.fullName);
       dispatch(setSnackbar("success", "Settings.ChangeInfo.alertSuccess"));
     } catch (error) {
       setPostError(t("Settings.ChangeInfo.errorResponse"));
@@ -66,7 +66,7 @@ const ChangePasswordPage = () => {
     setIsBtnLoading(false);
   });
 
-  if (loading) {
+  if (isFetching) {
     return <Loader />;
   }
   return (
@@ -78,18 +78,22 @@ const ChangePasswordPage = () => {
             name="fullName"
             labelName={t("Settings.ChangeInfo.fullName")}
             autoComplete="name"
+            // @ts-ignore
+            defaultValue={data?.fullName}
           />
 
           <MuiPhoneInput
             name="phone"
             labelName={t("Settings.ChangeInfo.phone")}
             optional
+            // @ts-ignore
+            defaultValue={data?.phone}
           />
         </Form>
 
         <ButtonPosition>
-          <CTA
-            isBlocked={!isDirty}
+          <MuiButton
+            isDisabled={!isDirty}
             isLoading={isBtnLoading}
             text={t("Settings.ChangeInfo.button")}
             form="settings-form"

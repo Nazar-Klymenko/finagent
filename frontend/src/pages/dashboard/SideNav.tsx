@@ -55,7 +55,6 @@ const SideNav: React.FC = () => {
 
 const Nav = styled(Paper)`
   padding: 8px;
-  /* background-color: white; */
   border-radius: 4px;
   list-style: none;
   display: flex;
@@ -63,8 +62,7 @@ const Nav = styled(Paper)`
   width: max-content;
   z-index: 15;
   height: max-content;
-  /* border: 1px solid ${({ theme }) => theme.border}; */
-  /* box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1); */
+
   min-width: 14rem;
 
   a {
@@ -72,7 +70,6 @@ const Nav = styled(Paper)`
     text-transform: capitalize;
     text-decoration: none;
     font-weight: 500;
-    /* color: ${({ theme }) => theme.gray}; */
     display: flex;
     justify-content: space-between;
     padding: 8px 20px;
@@ -88,6 +85,7 @@ const Nav = styled(Paper)`
   }
 
   @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+    padding: 2px 8px 0px;
     position: sticky;
     top: 50px;
     left: 0;
@@ -104,7 +102,7 @@ const Nav = styled(Paper)`
       border-radius: 0;
       border-bottom: 2px solid transparent;
       font-size: 0.9rem;
-      padding: 8px 26px;
+      padding: 4px 16px 8px;
       margin-bottom: -1px;
       justify-content: center;
     }

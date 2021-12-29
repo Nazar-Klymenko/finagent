@@ -5,6 +5,9 @@ let muiTheme = createTheme({
     primary: {
       main: "#1672ec",
     },
+    secondary: {
+      main: "#e9e9e9",
+    },
   },
 });
 muiTheme = responsiveFontSizes(muiTheme);

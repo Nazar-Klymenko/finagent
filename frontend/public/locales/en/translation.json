@@ -336,7 +336,8 @@
     },
     "Error": {
       "noFirstApplicant": "You must provide first applicant",
-      "noSecondApplicant": "You must provide second applicant"
+      "noSecondApplicant": "You must provide second applicant",
+      "emptyFields": "Please complete all of the fields"
     },
     "Page1": {
       "subtitle": "Policyholder information",

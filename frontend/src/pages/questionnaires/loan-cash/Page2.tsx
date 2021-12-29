@@ -156,7 +156,7 @@ const Page2 = () => {
       setCurrentPage(3);
       history.push("./3");
     } else {
-      alert(t("InsuranceHealth.Error.noApplicant"));
+      alert(t("LoanCash.Error.emptyFields"));
     }
   };
 

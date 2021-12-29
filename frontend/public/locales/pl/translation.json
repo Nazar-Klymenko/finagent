@@ -336,7 +336,8 @@
     },
     "Error": {
       "noFirstApplicant": "Musisz wpisać pierwszego wnioskodawcę",
-      "noSecondApplicant": "Musisz wpisać drugiego wnioskodawcę"
+      "noSecondApplicant": "Musisz wpisać drugiego wnioskodawcę",
+      "emptyFields": "Wypełnij wszystkie puste pola"
     },
     "Page1": {
       "subtitle": "Informacja osobista",

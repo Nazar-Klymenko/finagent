@@ -45,7 +45,7 @@ const Page2 = () => {
       loanPurpose: appDataValid?.loanPurpose,
       loanAmount: appDataValid?.loanAmount,
       paymentTerm: appDataValid?.paymentTerm,
-      conditions: appDataValid?.conditions,
+      conditions: appDataValid?.conditions || false,
     },
     mode: "onChange",
     reValidateMode: "onChange",

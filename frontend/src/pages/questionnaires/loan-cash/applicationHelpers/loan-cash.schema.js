@@ -111,6 +111,6 @@ export const pageThreeSchema = () => {
     loanPurpose: yup.string().required("Form.Error.blank"),
     loanAmount: yup.string().required("Form.Error.blank"),
     paymentTerm: yup.string().required("Form.Error.blank"),
-    conditions: yup.bool().oneOf([true], "Field must be checked"),
+    conditions: yup.bool().oneOf([true], "Form.Error.mustBeChecked"),
   });
 };

@@ -5,8 +5,6 @@ import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRo
 import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
 
-import { useNotifications } from "@context/notificationContext";
-
 const useStyles = makeStyles({
   root: {
     color: "#7d7d7d",
@@ -17,12 +15,6 @@ const Notifications = () => {
   const history = useHistory();
   const classes = useStyles();
 
-  const { newNotifications, checkNotifications } = useNotifications();
-
-  useEffect(() => {
-    checkNotifications();
-  }, [checkNotifications]);
-
   return (
     <NotiticationsStyled
       className={classes.root}
@@ -30,7 +22,6 @@ const Notifications = () => {
         history.push("/notifications");
       }}
     >
-      {newNotifications && <span className="new-notifications"></span>}
       {/* <Message width="22" height="22" /> */}
       <NotificationsNoneRoundedIcon />
     </NotiticationsStyled>

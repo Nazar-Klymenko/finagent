@@ -10,7 +10,7 @@ import { useAuth } from "@context/authContext";
 
 import LogoWrap from "@components/LogoWrap";
 import { UserAuth } from "@components/buttons";
-import Drawer from "@components/nav/drawer/Drawer";
+import Drawer from "@components/drawer/Drawer";
 import { Logo } from "@components/svgs";
 
 import Hamburger from "./Hamburger";

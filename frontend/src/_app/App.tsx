@@ -17,7 +17,6 @@ import ScrollToTop from "@hooks/ScrollToTop";
 
 import { AuthContextProvider } from "@context/authContext";
 import { DataProvider } from "@context/dataContext";
-import { NotificationProvider } from "@context/notificationContext";
 
 import BottomNav from "@components/BottomNav";
 import Footer from "@components/Footer";
@@ -38,7 +37,6 @@ const App = () => {
         provider(HelmetProvider),
         provider(AuthContextProvider),
         provider(DataProvider),
-        provider(NotificationProvider),
         provider(ThemeProvider, { theme: theme }),
         provider(MuiThemeProvider, { theme: muiTheme }),
         provider(QueryClientProvider, { client: queryClient }),

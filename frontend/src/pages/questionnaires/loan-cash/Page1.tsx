@@ -22,13 +22,13 @@ import FormError from "@components/FormError";
 import MuiDialog from "@components/MuiDialog";
 import ProgressBar from "@components/ProgressBar";
 import { MuiButton } from "@components/buttons";
-import { ContentWrap } from "@components/content";
 import {
   DateInput,
   MuiInput,
   MuiPhoneInput,
   MuiRadio,
 } from "@components/input";
+import { ContentWrap } from "@components/layout";
 
 import {
   Applicant,

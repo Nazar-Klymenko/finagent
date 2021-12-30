@@ -17,7 +17,7 @@ import ProgressBar from "@components/ProgressBar";
 import SummaryList from "@components/SummaryList";
 import Table from "@components/Table";
 import { MuiButton } from "@components/buttons";
-import { ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/layout";
 
 import { ButtonsWrap, Page, Title } from "../LocalStyles";
 

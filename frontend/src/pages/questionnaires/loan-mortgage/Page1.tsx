@@ -14,8 +14,8 @@ import { useData } from "@context/dataContext";
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
 import { MuiButton } from "@components/buttons";
-import { ContentWrap } from "@components/content";
 import { MuiRadio } from "@components/input";
+import { ContentWrap } from "@components/layout";
 
 import {
   ApplicantBox,

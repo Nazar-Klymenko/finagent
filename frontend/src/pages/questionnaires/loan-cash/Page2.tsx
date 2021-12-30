@@ -19,7 +19,6 @@ import Form from "@components/Form";
 import MuiDialog from "@components/MuiDialog";
 import ProgressBar from "@components/ProgressBar";
 import { MuiButton } from "@components/buttons";
-import ContentWrap from "@components/content/ContentWrap";
 import {
   DateInput,
   MuiCheckbox,
@@ -27,6 +26,7 @@ import {
   MuiRadio,
   Textarea,
 } from "@components/input";
+import ContentWrap from "@components/layout/ContentWrap";
 
 import {
   Applicant,

@@ -15,7 +15,7 @@ import { useData } from "@context/dataContext";
 import ProgressBar from "@components/ProgressBar";
 import SummaryList from "@components/SummaryList";
 import { MuiButton } from "@components/buttons";
-import ContentWrap from "@components/content/ContentWrap";
+import ContentWrap from "@components/layout/ContentWrap";
 
 import { ButtonsWrap, Page, Title } from "../LocalStyles";
 

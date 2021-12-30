@@ -13,13 +13,13 @@ import { useData } from "@context/dataContext";
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
 import { MuiButton } from "@components/buttons";
-import { ContentWrap } from "@components/content";
 import {
   DateInput,
   MuiInput,
   MuiPhoneInput,
   MuiRadio,
 } from "@components/input";
+import { ContentWrap } from "@components/layout";
 
 import { ButtonsWrap, Page, Subtitle, Title } from "../LocalStyles";
 import { pageOneSchema } from "./applicationHelpers/insurance-specialist.schema";

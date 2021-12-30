@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/layout";
 
 const Error404: FC = () => {
   const { t } = useTranslation();

@@ -12,8 +12,8 @@ import { useAuth } from "@context/authContext";
 import Form from "@components/Form";
 import Loader from "@components/Loader";
 import { MuiButton } from "@components/buttons";
-import { ContentWrap } from "@components/content";
 import { MuiInput, MuiPasswordInput } from "@components/input";
+import { ContentWrap } from "@components/layout";
 
 import loginSchema from "./login.schema";
 

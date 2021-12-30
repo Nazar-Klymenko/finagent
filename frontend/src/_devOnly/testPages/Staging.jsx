@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import Form from "@components/Form";
 import { MuiButton } from "@components/buttons";
-import { ContentWrap } from "@components/content";
 import { DateInput, MuiInput, MuiRadio } from "@components/input";
+import { ContentWrap } from "@components/layout";
 
 const Staging = () => {
   const { t } = useTranslation();

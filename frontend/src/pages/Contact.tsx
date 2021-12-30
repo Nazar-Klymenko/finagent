@@ -16,8 +16,8 @@ import { setSnackbar } from "@redux/alert/actions";
 
 import Form from "@components/Form";
 import { MuiButton } from "@components/buttons";
-import { ContentWrap } from "@components/content";
 import { MuiInput, Textarea } from "@components/input";
+import { ContentWrap } from "@components/layout";
 import { Mail, Phone, Point } from "@components/svgs";
 
 const schema = yup.object().shape({

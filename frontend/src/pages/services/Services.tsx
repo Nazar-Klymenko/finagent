@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 import useTitle from "@hooks/useTitle";
 
-import { ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/layout";
 
 import ServiceCard from "./ServiceCard";
 

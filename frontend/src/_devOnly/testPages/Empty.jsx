@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Table from "@components/Table";
-import { ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/layout";
 
 const Empty = () => {
   return (

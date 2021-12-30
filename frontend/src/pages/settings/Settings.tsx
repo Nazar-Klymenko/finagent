@@ -9,7 +9,7 @@ import useTitle from "@hooks/useTitle";
 import { useAuth } from "@context/authContext";
 
 import { PrivateRoute } from "@components/CustomRoutes";
-import { ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/layout";
 
 import ChangeInfoPage from "./changingPages/ChangeInfoPage";
 import ChangePasswordPage from "./changingPages/ChangePasswordPage";

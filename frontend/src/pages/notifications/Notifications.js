@@ -7,7 +7,7 @@ import { getNotificationsAPI } from "@api/userAPI";
 
 import useTitle from "@hooks/useTitle";
 
-import { ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/layout";
 
 import MessageCard from "./MessageCard";
 

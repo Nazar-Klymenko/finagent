@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useAuth } from "@context/authContext";
 
-import { ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/layout";
 
 const VerifyEmailPage = () => {
   const { t } = useTranslation();

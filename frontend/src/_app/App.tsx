@@ -24,7 +24,7 @@ import Footer from "@components/Footer";
 import Loader from "@components/Loader";
 import { LocalizeMoment } from "@components/LocalizeMoment";
 import MuiSnackbar from "@components/MuiSnackbar";
-import { ContentMain } from "@components/content";
+import { ContentMain } from "@components/layout";
 import Nav from "@components/nav";
 
 import Routes from "./routes";

@@ -11,8 +11,8 @@ import { setSnackbar } from "@redux/alert/actions";
 
 import Form from "@components/Form";
 import { MuiButton } from "@components/buttons";
-import { ContentWrap } from "@components/content";
 import { MuiInput } from "@components/input";
+import { ContentWrap } from "@components/layout";
 import { Subheader } from "@components/typography";
 
 import { forgotPasswordSchema } from "./passwordSchema";

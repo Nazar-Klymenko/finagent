@@ -7,7 +7,7 @@ import styled from "styled-components/macro";
 
 import useTitle from "@hooks/useTitle";
 
-import { ContentWrap } from "@components/content";
+import { ContentWrap } from "@components/layout";
 
 import ApplicationsTab from "./ApplicationsTab";
 import SideNav from "./SideNav";

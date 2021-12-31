@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
 
-import { MainButton } from "./ButtonBase";
+// import { MainButton } from "./ButtonBase";
 
 interface Props {
   navOpen: boolean;
@@ -25,23 +25,18 @@ const UserAuth: React.FC<Props> = ({ navOpen, setNavOpen }) => {
       <NavLink to="/auth/login/">
         <LogIn
           onClick={LogInAction}
-          text={t("Navbar.logIn")}
-          color="primary"
           className="signup-button"
           form=""
-          noRipple
-        />
+        >{t("Navbar.logIn")}</LogIn>
       </NavLink>
 
       <NavLink to="/auth/signup/">
         <SignUp
           onClick={SignUpAction}
-          text={t("Navbar.signUp")}
           color="primary"
           className="signup-button"
           form=""
-          noRipple
-        />
+        >{t("Navbar.signUp")}</SignUp>
       </NavLink>
     </UserAuthStyled>
   );
@@ -52,7 +47,7 @@ const UserAuthStyled = styled.div`
   display: flex;
 `;
 
-const LogIn = styled(MainButton)`
+const LogIn = styled.button`
   font-size: 14px;
   height: 2rem;
   margin-left: 0.5rem;
@@ -62,7 +57,7 @@ const LogIn = styled(MainButton)`
   white-space: nowrap;
 `;
 
-const SignUp = styled(MainButton)`
+const SignUp = styled.button`
   font-size: 14px;
   height: 2rem;
   margin-left: 0.5rem;

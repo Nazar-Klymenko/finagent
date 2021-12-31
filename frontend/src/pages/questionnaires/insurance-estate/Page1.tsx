@@ -248,7 +248,7 @@ const Page1 = () => {
           <MuiSelect
             name="security"
             labelName={t("InsuranceEstate.Page1.security")}
-            defaultValue={appDataValid.security}
+            defaultValue={appDataValid?.security}
             optionArray={nameSecurityOptions}
           />
 
@@ -292,7 +292,7 @@ const Page1 = () => {
           <DateInput
             name="insuranceStart"
             labelName={t("InsuranceEstate.Page1.insuranceStart")}
-            defaultValue={appDataValid.insuranceStartDate}
+            defaultValue={appDataValid?.insuranceStartDate}
             disablePast
             placeholder={t("Form.Placeholder.dateFull")}
           />

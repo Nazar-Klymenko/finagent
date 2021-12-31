@@ -42,13 +42,13 @@ const Page2 = () => {
 
   const methods = useForm<FormTypes>({
     defaultValues: {
-      policyholderIs: appDataValid.policyholderIs || "individual",
-      name: appDataValid.name,
-      surname: appDataValid.surname,
-      pesel: appDataValid.pesel,
-      phone: appDataValid.phone,
-      email: appDataValid.email,
-      peopleNumber: appDataValid.peopleNumber || "0",
+      policyholderIs: appDataValid?.policyholderIs || "individual",
+      name: appDataValid?.name,
+      surname: appDataValid?.surname,
+      pesel: appDataValid?.pesel,
+      phone: appDataValid?.phone,
+      email: appDataValid?.email,
+      peopleNumber: appDataValid?.peopleNumber || "0",
     },
     mode: "onChange",
     reValidateMode: "onChange",

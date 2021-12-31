@@ -5,12 +5,10 @@ import styled from "styled-components/macro";
 
 import { getSpecificNotificationAPI } from "@api/userAPI";
 
-import { useNotifications } from "@context/notificationContext";
 
 import { BackArrow } from "@components/buttons";
 
 const NotificationsOpen = () => {
-  const { checkNotifications } = useNotifications();
 
   let { id } = useParams();
   let history = useHistory();
@@ -26,7 +24,6 @@ const NotificationsOpen = () => {
         const response = await getSpecificNotificationAPI(id);
         setNotification(response.data.SpecificNotification);
         setIsLoading(false);
-        checkNotifications();
       } catch (error) {
         setIsLoading(false);
       }

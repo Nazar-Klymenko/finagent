@@ -514,7 +514,7 @@ const Page1 = () => {
                         />
                       </>
                     )}
-                    {basicIncome === "mandate" && (
+                    {_basicIncome === "mandate" && (
                       <MuiInput
                         name={`applicant[${index}].averageIncome`}
                         labelName={t("LoanCash.ApplicantModal.averageIncome12")}
@@ -523,7 +523,7 @@ const Page1 = () => {
                         defaultValue={field.averageIncome}
                       />
                     )}
-                    {basicIncome === "specificTime" && (
+                    {_basicIncome === "specificTime" && (
                       <MuiInput
                         name={`applicant[${index}].averageIncome`}
                         labelName={t("LoanCash.ApplicantModal.averageIncome6")}
@@ -532,7 +532,7 @@ const Page1 = () => {
                         defaultValue={field.averageIncome}
                       />
                     )}
-                    {basicIncome === "economicActivity" && (
+                    {_basicIncome === "economicActivity" && (
                       <>
                         <MuiRadio
                           name={`applicant[${index}].accountancy`}
@@ -571,9 +571,9 @@ const Page1 = () => {
                       </>
                     )}
                     {!(
-                      basicIncome === "economicActivity" ||
-                      basicIncome === "mandate" ||
-                      basicIncome === "specificTime"
+                      _basicIncome === "economicActivity" ||
+                      _basicIncome === "mandate" ||
+                      _basicIncome === "specificTime"
                     ) && (
                       <MuiInput
                         name={`applicant[${index}].averageIncome`}

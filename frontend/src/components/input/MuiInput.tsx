@@ -1,10 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 
-import OutlinedInput from "@material-ui/core/OutlinedInput";
+import { OutlinedInput } from "@mui/material";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import styled, { css } from "styled-components";
+import { useTranslation } from "next-i18next";
 
 import {
   InputContainer,
@@ -53,7 +52,7 @@ const MuiInput: FC<Props> = ({
         control={control}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <StyledInput
+          <OutlinedInput
             key={name}
             onChange={field.onChange}
             value={field.value}
@@ -73,7 +72,3 @@ const MuiInput: FC<Props> = ({
 };
 
 export default MuiInput;
-
-const StyledInput = styled(OutlinedInput)`
-  font-family: "Poppins", "sans-serif";
-`;

@@ -1,4 +1,4 @@
-import ContentMain from "./ContentMain";
-import ContentWrap from "./ContentWrap";
-
-export { ContentMain, ContentWrap };
+import Wrapper from "./Wrapper";
+import PageContainer from "./PageContainer";
+import AuthContainer from "./AuthContainer";
+export { Wrapper, PageContainer, AuthContainer };

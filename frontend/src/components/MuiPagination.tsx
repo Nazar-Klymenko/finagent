@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import { Link } from "react-router-dom";
-import styled from "styled-components/macro";
+import { styled } from "@mui/material/styles";
 
 interface Props {
   category: string;
@@ -39,7 +39,7 @@ const MuiPagination: FC<Props> = ({
   );
 };
 
-const PaginationStyled = styled.div`
+const PaginationStyled = styled("div")`
   padding: 20px 20px;
   display: flex;
   flex: 1;

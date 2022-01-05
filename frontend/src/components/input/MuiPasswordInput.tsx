@@ -1,13 +1,11 @@
 import { FC, useState } from "react";
 
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { OutlinedInput, InputAdornment, IconButton } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { InputErrorMessage, Label } from "./LocalStyles";
 
@@ -92,12 +90,12 @@ const MuiPasswordInput: FC<Props> = ({
 
 export default MuiPasswordInput;
 
-// const Requirements = styled.div`
+// const Requirements = styled("div")`
 //   font-size: 14px;
 //   color: ${({ theme }) => theme.typography.gray};
 //   display: flex;
 //   flex-direction: column;
 // `;
-// const RequirementsRow = styled.div`
+// const RequirementsRow = styled("div")`
 //   display: flex;
 // `;

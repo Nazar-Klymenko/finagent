@@ -1,20 +1,31 @@
-import { styled } from "@material-ui/core/styles";
+import { styled } from "@mui/material/styles";
+import { Button as MuiButton, ButtonProps } from "@mui/material";
 import react from "React";
 
-const FacebookButton = (): JSX.Element => {
-  return <FacebookButtonStyled></FacebookButtonStyled>;
+interface Props extends ButtonProps {
+  onClick?: () => void;
+  children: string;
+}
+
+const FacebookButton = ({
+  onClick,
+  children,
+  ...other
+}: Props): JSX.Element => {
+  return (
+    <MuiButton
+      variant="contained"
+      onClick={onClick}
+      type="submit"
+      size="large"
+      form=""
+      color="primary"
+      style={{ backgroundColor: "#3B5998", margin: "0.5rem" }}
+      {...other}
+    >
+      {children}
+    </MuiButton>
+  );
 };
 
-const FacebookButtonStyled = styled("button")`
-  cursor: pointer;
-  height: 48px;
-  background: ${({ theme }) => theme.buttons.facebook};
-  color: white;
-  border-radius: 3px;
-  border: none;
-  margin: 0.5rem 0;
-  font-size: 1rem;
-  &:hover {
-    opacity: 0.8;
-  }
-`;
+export default FacebookButton;

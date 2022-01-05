@@ -1,34 +1,29 @@
 import React from "react";
 
 import Container from "@material-ui/core/Container";
-import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components/macro";
+// import { useTranslation } from "react-i18next";
+// import { NavLink } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 
 import { useAuth } from "@context/authContext";
-
-import LogoWrap from "@components/LogoWrap";
-import { Logo } from "@components/svgs";
+import Image from "next/image";
 
 interface Styled {
   isAuthenticated: boolean;
 }
 
 const Footer: React.FC = () => {
-  const { t } = useTranslation();
-  const { currentUser } = useAuth();
-  const { isLoggedIn } = currentUser;
+  // const { currentUser } = useAuth();
+  // const { isLoggedIn } = currentUser;
 
   return (
-    <FooterStyled isAuthenticated={isLoggedIn}>
+    <FooterStyled>
       <ContainerStyled maxWidth="lg" disableGutters>
         <div className="testimonial">
-          <LogoWrap>
-            <Logo fillColor="#CDCDCD" />
-          </LogoWrap>
-          <p>{t("Footer.content")}</p>
+          <Image height={48} width={120} src="/logo-pale.svg" alt="" />
         </div>
-        <div className="block-container">
+      </ContainerStyled>
+      {/* <div className="block-container">
           <div className="block">
             <span className="header">{t("Footer.contact")}</span>
             <a className="content" href="tel:+48531937973">
@@ -62,8 +57,7 @@ const Footer: React.FC = () => {
             </NavLink>
           </div>
         </div>
-      </ContainerStyled>
-      <Copyright>© {new Date().getFullYear()} FinAgent</Copyright>
+      </ContainerStyled> */}
     </FooterStyled>
   );
 };
@@ -73,9 +67,12 @@ const ContainerStyled = styled(Container)`
   padding: 40px 20px;
 `;
 
-const FooterStyled = styled.footer<Styled>`
-  background-color: ${({ theme }) => theme.black};
+const FooterStyled = styled("footer")`
+  background-color: ${({ theme }) => theme.palette.common.black};
+`;
 
+{
+  /*
   .testimonial {
     display: flex;
     flex: 1;
@@ -147,5 +144,6 @@ const Copyright = styled.span`
   padding: 32px 0px 16px;
   display: block;
 `;
-
+*/
+}
 export default Footer;

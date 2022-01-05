@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 

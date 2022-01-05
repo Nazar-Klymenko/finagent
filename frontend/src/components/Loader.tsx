@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled from "styled-components/macro";
+import { styled } from "@mui/material/styles";
 
 const Loader: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const Loader: React.FC = () => {
   );
 };
 
-const LoaderStyled = styled.div`
+const LoaderStyled = styled("div")`
   position: absolute;
   top: 0;
   right: 0;
@@ -27,9 +27,9 @@ const LoaderStyled = styled.div`
   z-index: 49;
 
   .loader {
-    border: 8px solid ${({ theme }) => theme.lightBlue};
+    border: 8px solid ${({ theme }) => theme.palette.secondary.main};
     border-radius: 50%;
-    border-top: 8px solid ${({ theme }) => theme.blue};
+    border-top: 8px solid ${({ theme }) => theme.palette.primary.main};
     height: 4rem;
     width: 4rem;
     animation: spin 2s linear infinite;

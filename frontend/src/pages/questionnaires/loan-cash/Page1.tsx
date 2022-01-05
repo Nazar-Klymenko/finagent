@@ -274,9 +274,9 @@ const Page1 = () => {
           <Subtitle>{t("LoanCash.ApplicantBox.title")}</Subtitle>
         </Form>
 
-        <Typography variant="body1">
+        {/* <Typography variant="body1">
           Dodaj wnioskodawcę ({bothSpousesStart === "yes" ? 2 : 1})
-        </Typography>
+        </Typography> */}
         {/* {t("LoanCash.ApplicantModal.title")} */}
 
         {editingMode &&

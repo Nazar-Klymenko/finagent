@@ -284,10 +284,10 @@ const Page1 = () => {
             //@ts-ignore
             const nationality = watch(`applicant[${index}].nationality`);
             //@ts-ignore
-            const residenceDocument = watch(`applicant[${index}
+            const _residenceDocument = watch(`applicant[${index}
             ].residenceDocument`);
             //@ts-ignore
-            const basicIncome = watch(`applicant[${index}
+            const _basicIncome = watch(`applicant[${index}
             ].basicIncome`);
             //@ts-ignore
             const firstContract = watch(`applicant[${index}
@@ -365,7 +365,7 @@ const Page1 = () => {
                           placeholder={t("Form.Placeholder.dateFull")}
                           defaultValue={field.validFrom}
                         />
-                        {residenceDocument !== "permanentCard" && (
+                        {_residenceDocument !== "permanentCard" && (
                           <DateInput
                             name={`applicant[${index}].validUntil`}
                             labelName={t("LoanCash.ApplicantModal.validUntil")}
@@ -445,9 +445,9 @@ const Page1 = () => {
                       ]}
                       defaultValue={field.basicIncome || "indefinitePeriod"}
                     />
-                    {(basicIncome === "specificTime" ||
-                      basicIncome === "mandate" ||
-                      basicIncome === "contract") && (
+                    {(_basicIncome === "specificTime" ||
+                      _basicIncome === "mandate" ||
+                      _basicIncome === "contract") && (
                       <>
                         <MuiRadio
                           name={`applicant[${index}].firstContract`}
@@ -670,12 +670,7 @@ const Page1 = () => {
           )
         )}
         <ButtonsWrap>
-          {/* <MuiButton
-            text={t("Basic.buttonNext")}
-            form="form"
-            color="primary"
-            onClick={finalizeForm}
-          /> */}
+
 
           <MuiButton
             text={t("Basic.buttonNext")}

@@ -90,11 +90,6 @@ const Page2 = () => {
     }
   };
 
-  useEffect(() => {
-    setValues(householdData, "HouseholdData");
-    setAddHouseholdData(householdData);
-    setIsError("");
-  }, [householdData]);
 
   return (
     <ContentWrap>
@@ -110,45 +105,7 @@ const Page2 = () => {
         <Form methods={methods} id="form" onSubmit={handleSubmit(formSubmit)}>
           <Subtitle>{t("LoanMortgage.HouseholdBox.title")}</Subtitle>
 
-          <ApplicantBox>
-            {/* {householdData &&
-              householdData.map((household, idx) => (
-                <div key={idx} className="person">
-                  <div className="minor-data-place">
-                    <span>{household.monthlyExpenses}</span>
-                  </div>
-                  <div className="action-place">
-                    <span
-                      className="edit"
-                      onClick={() => {
-                        setDefaultHousehold(idx);
-                        setIsEditing(!isEditing);
-                        setOpenModal(true);
-                      }}
-                    >
-                      {t("LoanMortgage.HouseholdBox.edit")}
-                    </span>
-                    <span
-                      className="delete"
-                      value={idx}
-                      onClick={removeHousehold}
-                    >
-                      {t("InsuranceHealth.ApplicantBox.delete")}
-                    </span>
-                  </div>
-                </div>
-              ))} */}
-
-            <span
-              className="add"
-              onClick={() => {
-                setOpenModal(true);
-                setDefaultHousehold(null);
-              }}
-            >
-              {t("LoanMortgage.HouseholdBox.addHousehold")}
-            </span>
-          </ApplicantBox>
+    
 
           <MuiInput
             name="custody"
@@ -240,15 +197,7 @@ const Page2 = () => {
             labelName={t("LoanMortgage.Page2.conditions")}
           />
         </Form>
-        <AddHousehold
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          householdData={householdData}
-          setHouseholdData={setHouseholdData}
-          defaultHousehold={defaultHousehold}
-          isEditing={isEditing}
-          setIsEditing={setIsEditing}
-        />
+
         <ButtonsWrap multiple>
           <MuiButton
             text={t("Basic.buttonBack")}

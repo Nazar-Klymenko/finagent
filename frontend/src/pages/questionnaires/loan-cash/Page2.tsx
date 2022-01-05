@@ -171,11 +171,11 @@ const Page2 = () => {
           currentStep={2}
           label={t("LoanCash.Page2.subtitle")}
         />
-        <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
-        <Typography variant="body1">
-          This is optional. If you do not have any additional income, simply
-          press next.
-        </Typography>
+        <Subtitle>{t("LoanCash.Page2.subtitle")} - {t("Form.optional")}</Subtitle>
+        {/* <Typography variant="body1">
+          {/* This is optional. If you do not have any additional income, simply
+          press next. 
+        </Typography> */}
         {editingMode &&
           fields.map((field: any, index: number) => {
             //@ts-ignore

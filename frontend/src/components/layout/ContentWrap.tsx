@@ -1,7 +1,7 @@
 import React from "react";
 
 // import styled, { css } from "styled-components/macro";
-import { css, styled } from "@material-ui/core/styles";
+import styled, { css } from "styled-components/macro";
 
 interface Props {
   xs?: boolean;

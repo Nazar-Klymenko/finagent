@@ -25,8 +25,7 @@ import {
   Subtitle,
   Title,
 } from "../LocalStyles";
-import AddAdditionalIncome from "./AddAdditionalIncome";
-import AddApplicant from "./AddApplicant";
+
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -37,28 +36,13 @@ const Page1 = () => {
     appData,
     setValues,
     setCurrentPage,
-    peopleData,
-    setPeopleData,
-    additionalData,
-    setAdditionalData,
   } = useData();
 
   const appDataValid = validateAppData(appData, "ApplicantsData");
 
-  const [openModal, setOpenModal] = useState(false);
-  const [openIncomeModal, setOpenIncomeModal] = useState(false);
 
-  const [isError, setIsError] = useState("");
 
-  let [defaultPerson, setDefaultPerson] = useState(null);
-  let [defaultIncome, setDefaultIncome] = useState(null);
 
-  const [applicantNumber, setApplicantNumber] = useState(null);
-
-  let [applicantData, setApplicantData] = useState(peopleData || []);
-  let [incomeData, setIncomeData] = useState(additionalData || []);
-
-  let [isEditing, setIsEditing] = useState(false);
 
   const { handleSubmit, watch, control } = useForm({
     defaultValues: {},
@@ -86,16 +70,6 @@ const Page1 = () => {
   //   }
   // };
 
-  useEffect(() => {
-    setValues(applicantData, "Applicants");
-    setPeopleData(applicantData);
-    setIsError("");
-  }, [applicantData]);
-
-  useEffect(() => {
-    setValues(incomeData, "AdditionalIncome");
-    setAdditionalData(incomeData);
-  }, [incomeData]);
 
   return (
     <ContentWrap>
@@ -292,7 +266,6 @@ const Page1 = () => {
         <ButtonsWrap>
           <MuiButton text={t("Basic.buttonNext")} form="form" color="primary" />
         </ButtonsWrap>
-        {isError && <ErrorBottom>{isError}</ErrorBottom>}
       </Page>
     </ContentWrap>
   );

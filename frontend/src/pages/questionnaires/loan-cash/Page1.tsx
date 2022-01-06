@@ -301,7 +301,7 @@ const Page1 = () => {
                     handleClose(index);
                   }}
                   formId="applicant-form"
-                  title={t("LoanCash.IncomeModal.title")}
+                  title={t("LoanCash.ApplicantBox.title")}
                   description=""
                 >
                   <Form
@@ -670,8 +670,6 @@ const Page1 = () => {
           )
         )}
         <ButtonsWrap>
-
-
           <MuiButton
             text={t("Basic.buttonNext")}
             color="primary"

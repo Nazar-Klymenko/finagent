@@ -209,44 +209,11 @@ const Page1 = () => {
             </>
           )}
           <Subtitle>{t("LoanMortgage.IncomeBox.title")}</Subtitle>
-          <ApplicantBox>
-            {incomeData &&
-              incomeData.map((income, idx) => (
-                <div key={idx} className="person">
-                  <div className="minor-data-place">
-                    <span>
-                      {income?.industry ||
-                        t("LoanCash.IncomeBox.transportDriver")}
-                    </span>
-                  </div>
-                  <div className="action-place">
-                    <span
-                      className="edit"
-                      onClick={() => {
-                        setIsEditing(true);
-                        setDefaultIncome(idx);
-                        setOpenIncomeModal(true);
-                      }}
-                    >
-                      {t("LoanMortgage.IncomeBox.edit")}
-                    </span>
-                    <span className="delete" value={idx} onClick={removeIncome}>
-                      {t("InsuranceHealth.ApplicantBox.delete")}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            <span
-              className="add"
-              onClick={() => {
-                setDefaultIncome(null);
-                setOpenIncomeModal(true);
-              }}
-            >
-              {t("LoanMortgage.IncomeBox.addIncome")}
-            </span>
-          </ApplicantBox>
+  
         </Form> */}
+
+
+
         {/* <AddApplicant
           openModal={openModal}
           setOpenModal={setOpenModal}

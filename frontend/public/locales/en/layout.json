@@ -1,0 +1,30 @@
+{
+  "Navbar": {
+    "dashboard": "Dashboard",
+    "services": "Services",
+    "contact": "Contact",
+    "help": "Help",
+    "logIn": "Log In",
+    "signUp": "Sign Up"
+  },
+  "UserDropdown": {
+    "changeProfile": "Change profile",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "NavbarBottom": {
+    "dashboard": "Dashboard",
+    "services": "Services",
+    "help": "Help",
+    "settings": "Settings"
+  },
+  "Footer": {
+    "content": "Your instrument for quick and comfortable access to taking out insurance and loan services. Selection of the best offer on the market through consultation with qualified specialists.",
+    "contact": "Contact",
+    "help": "Help",
+    "legal": "Legal",
+    "GDPR": "GDPR",
+    "policy": "Privacy policy",
+    "terms": "Terms of use"
+  }
+}

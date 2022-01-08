@@ -1,0 +1,30 @@
+{
+  "Navbar": {
+    "dashboard": "Pulpit",
+    "services": "Usługi",
+    "contact": "Kontakty",
+    "help": "Pomoc",
+    "logIn": "Logowanie",
+    "signUp": "Rejestracja"
+  },
+  "UserDropdown": {
+    "changeProfile": "Zmiana konta",
+    "settings": "Ustawienia",
+    "signOut": "Wyjść"
+  },
+  "NavbarBottom": {
+    "dashboard": "Pulpit",
+    "services": "Usługi",
+    "help": "Pomoc",
+    "settings": "Ustawienia"
+  },
+  "Footer": {
+    "content": "Twoje narzędzie do szybkiego i łatwego dostępu do usług ubezpieczeniowych i kredytowych. Wybór najlepszej oferty na rynku, dzięki konsultacjom z wykwalifikowanymi specjalistami.",
+    "contact": "Kontakty",
+    "help": "Pomoc",
+    "legal": "Prawa",
+    "GDPR": "RODO",
+    "policy": "Polityka prywatności",
+    "terms": "Regulamin"
+  }
+}

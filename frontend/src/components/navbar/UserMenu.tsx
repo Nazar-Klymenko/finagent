@@ -1,27 +1,28 @@
 import React, { useState } from "react";
 
-import Tooltip from "@components/Tooltip";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+// import Tooltip from "@components/Tooltip";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { styled } from "@mui/material/styles";
-import Image from "next/image";
 import Link from "next/link";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
-  Container,
   IconButton,
-  LinearProgress,
   ListItemIcon,
   Menu,
   MenuItem,
   Typography,
 } from "@mui/material";
+import useLayoutTranslation from "@hooks/useLayoutTranslation";
+import { useRouter } from "next/router";
 
 import { useAuth } from "@context/authContext";
 
 const UserMenu = (): JSX.Element => {
   const { currentUser, logout } = useAuth();
+  const { locale } = useRouter();
+  //@ts-ignore
+  const { _t } = useLayoutTranslation(locale);
   const { displayName, isSendingRequest, photoURL } = currentUser;
   const [avatarError, setAvatarError] = useState(false);
 
@@ -34,27 +35,25 @@ const UserMenu = (): JSX.Element => {
     setAnchorElNav(event.currentTarget);
   };
   return (
-    <>
-      <Tooltip title="Account">
-        <UserContainer>
-          {photoURL && !avatarError ? (
-            <AvatarFB
-              onError={() => {
-                setAvatarError(true);
-              }}
-              src={photoURL}
-            />
-          ) : (
-            <AvatarEmail>{displayName?.[0]}</AvatarEmail>
-          )}
-          <Typography sx={{ px: 1 }} variant="body2">
-            {displayName}
-          </Typography>
-          <IconButton onClick={handleOpenNavMenu}>
-            <MoreVertIcon />
-          </IconButton>
-        </UserContainer>
-      </Tooltip>
+    <UserMenuContainer>
+      <UserContainer>
+        {photoURL && !avatarError ? (
+          <AvatarFB
+            onError={() => {
+              setAvatarError(true);
+            }}
+            src={photoURL}
+          />
+        ) : (
+          <AvatarEmail>{displayName?.[0]}</AvatarEmail>
+        )}
+        <MenuName sx={{ px: 1 }} variant="body2">
+          {displayName}
+        </MenuName>
+        <IconButton onClick={handleOpenNavMenu}>
+          <MoreVertIcon />
+        </IconButton>
+      </UserContainer>
       <MenuStyled
         id="menu-appbar"
         anchorEl={anchorElNav}
@@ -67,6 +66,7 @@ const UserMenu = (): JSX.Element => {
           vertical: "top",
           horizontal: "right",
         }}
+        disableScrollLock
         open={Boolean(anchorElNav)}
         onClose={handleCloseNavMenu}
       >
@@ -76,25 +76,35 @@ const UserMenu = (): JSX.Element => {
               <SettingsIcon fontSize="small" />
             </ListItemIcon>
             <Typography component="a" variant="body2" textAlign="center">
-              Settings
+              {_t("UserDropdown.settings")}
             </Typography>
           </MenuItemStyled>
         </Link>
-        <MenuItemStyled onClick={handleCloseNavMenu}>
+
+        <MenuItemStyled
+          onClick={() => {
+            handleCloseNavMenu();
+            logout();
+          }}
+        >
           <ListItemIcon>
             <LogoutRoundedIcon fontSize="small" />
           </ListItemIcon>
 
           <Typography variant="body2" textAlign="center">
-            Logout
+            {_t("UserDropdown.signOut")}
           </Typography>
         </MenuItemStyled>
       </MenuStyled>
-    </>
+    </UserMenuContainer>
   );
 };
 
 export default UserMenu;
+
+const UserMenuContainer = styled("div")`
+  margin: 0 0 0 8px;
+`;
 
 const UserContainer = styled("div")`
   display: flex;
@@ -135,4 +145,10 @@ const AvatarFB = styled("img")`
   width: 32px;
   border-radius: 50%;
   margin: 4px 8px 4px -2px;
+`;
+
+const MenuName = styled(Typography)`
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    display: none;
+  }
 `;

@@ -231,7 +231,7 @@ export const AuthContextProvider = ({ children }) => {
 
   async function logout(redirectCallback) {
     await signOut(auth);
-    redirectCallback();
+    if (redirectCallback) redirectCallback();
   }
 
   async function deleteAccount(currentPassword) {

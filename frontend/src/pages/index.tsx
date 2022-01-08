@@ -6,12 +6,8 @@ import { useAuth } from "@context/authContext";
 import { BackArrow } from "@components/buttons";
 
 const Home: NextPage = () => {
-  const { loginFacebook } = useAuth();
-
   return (
     <>
-      <div onClick={loginFacebook}>Test</div>
-
       <BackArrow></BackArrow>
     </>
   );

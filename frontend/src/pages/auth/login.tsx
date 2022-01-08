@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -109,7 +109,7 @@ const Login: NextPage = (props) => {
             </Link>
             <span>
               {t("LogIn.addActions.noAccount")}
-              <Link href="/auth/signup">
+              <Link href="/auth/sign-up">
                 <a>{t("LogIn.addActions.signUp")}</a>
               </Link>
             </span>

@@ -1,44 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Container, LinearProgress, Typography } from "@mui/material";
+import { Container, LinearProgress, Typography, Skeleton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import Link from "next/link";
 
 import useRouteLoader from "@hooks/useRouteLoader";
-
+import Notifications from "./Notifications";
 import { useAuth } from "@context/authContext";
 import UserMenu from "./UserMenu";
-
-const Navbar = (): JSX.Element => {
+import LanguageMenu from "./LanguageMenu";
+import Links from "./Links";
+import AuthButtons from "./AuthButtons";
+const Navbar = (props: any): JSX.Element => {
   const { loading } = useRouteLoader();
   const { currentUser } = useAuth();
-  const { isLoggedIn } = currentUser;
+  const { isLoggedIn, isSendingRequest } = currentUser;
 
   return (
     <>
       <NavbarBg>
         <Container maxWidth="lg">
           <InnerNavbar>
-            <Link href={"/home"} passHref>
-              <Logo>
-                <Image src="/logo.svg" height="44" width="90" alt="" />
-              </Logo>
-            </Link>
+            <LogoWrap>
+              <Link href={"/home"} passHref>
+                <Logo>
+                  <Image src="/logo.svg" height="44" width="90" alt="" />
+                </Logo>
+              </Link>
+            </LogoWrap>
 
             <LinksContainer>
-              <Link href={"/home"} passHref>
-                <StyledLinkText as="a" variant="body1">
-                  Home
-                </StyledLinkText>
-              </Link>
-              <Link href={"/test-form"} passHref>
-                <StyledLinkText as="a" variant="body1">
-                  Form
-                </StyledLinkText>
-              </Link>
+              <Links />
             </LinksContainer>
-            <UserMenu />
+
+            <ControlsWrap>
+              {isLoggedIn && <Notifications />}
+              <LanguageMenu />
+              {isSendingRequest && (
+                <Skeleton variant="rectangular" width={210}>
+                  <UserMenu />
+                </Skeleton>
+              )}
+              {!isSendingRequest &&
+                (isLoggedIn ? <UserMenu /> : <AuthButtons />)}
+            </ControlsWrap>
           </InnerNavbar>
         </Container>
       </NavbarBg>
@@ -72,18 +78,24 @@ const Logo = styled("a")`
   align-items: center;
 `;
 
+const ControlsWrap = styled("div")`
+  display: flex;
+  flex: 0 3 auto;
+  justify-content: flex-end;
+`;
+
+const LogoWrap = styled("div")`
+  flex: 1 3 auto;
+`;
 const LinksContainer = styled("div")`
-  flex: 1;
+  flex: 2 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
 
-const StyledLinkText = styled(Typography)`
-  color: ${({ theme }) => theme.palette.text.primary};
-  text-decoration: none;
-  padding: 8px;
-  font-weight: ${({ theme }) => theme.typography.fontWeightBold};
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    display: none;
+  }
 `;
 
 const LoaderWrap = styled("div")`

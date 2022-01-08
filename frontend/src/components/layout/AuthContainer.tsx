@@ -22,10 +22,13 @@ const BoxStyled = styled(Box)`
   padding: 1.5rem;
   height: fit-content;
   max-width: 500px;
+  width: 500px;
   border: 1px solid ${({ theme }) => theme.palette.divider};
   border-radius: ${({ theme }) => theme.shape.borderRadius}px;
   ${({ theme }) => theme.breakpoints.down("md")} {
     border: none;
+    max-width: 100%;
+
     /* margin: 0 auto; */
     padding: 1.5rem 0;
   }

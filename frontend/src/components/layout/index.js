@@ -1,4 +1,5 @@
 import Wrapper from "./Wrapper";
 import PageContainer from "./PageContainer";
 import AuthContainer from "./AuthContainer";
-export { Wrapper, PageContainer, AuthContainer };
+import Layout from "./Layout";
+export { Wrapper, PageContainer, AuthContainer, Layout };

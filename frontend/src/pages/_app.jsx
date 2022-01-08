@@ -14,11 +14,8 @@ import GlobalStyles from "@styles/GlobalStyle";
 import createEmotionCache from "@styles/createEmotionCache";
 import muiTheme from "@styles/muiTheme";
 
-import Footer from "@components/Footer";
-import { Wrapper } from "@components/layout";
-import Navbar from "@components/navbar/Navbar";
 import { AuthContextProvider } from "@context/authContext";
-
+import { Layout } from "@components/layout";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -27,11 +24,8 @@ const MyApp = (props) => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>My page</title>
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1"
-        ></meta>
+        <title>Finagent</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
       <GlobalStyles />
       <Provider store={store}>
@@ -39,11 +33,9 @@ const MyApp = (props) => {
           <ThemeProvider theme={muiTheme}>
             <EmotionThemeProvider theme={muiTheme}>
               <CssBaseline />
-              <Navbar />
-              <Wrapper>
+              <Layout>
                 <Component {...pageProps} />
-              </Wrapper>
-              <Footer />
+              </Layout>
             </EmotionThemeProvider>
           </ThemeProvider>
         </AuthContextProvider>

@@ -1,72 +1,64 @@
 import React from "react";
+import Link from "next/link";
 
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import { makeStyles } from "@material-ui/core/styles";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
-import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { useTranslation } from "react-i18next";
-import { NavLink, useLocation } from "react-router-dom";
-import styled from "styled-components/macro";
+// import { NavLink, useLocation } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import useLayoutTranslation from "@hooks/useLayoutTranslation";
 
 import { useAuth } from "@context/authContext";
-
-const useStyles = makeStyles({
-  root: {
-    "& .Mui-selected": {
-      color: "#1672ec",
-    },
-  },
-});
+import { useRouter } from "next/router";
 
 const BottomNav = () => {
-  const { t } = useTranslation();
+  const router = useRouter(),
+    { locale } = router;
+  //@ts-ignore
+  const { _t } = useLayoutTranslation(locale);
+
   const { currentUser } = useAuth();
   const { isLoggedIn } = currentUser;
+  const [value, setValue] = React.useState(0);
 
-  const classes = useStyles();
+  const onLink = (href: string) => {
+    router.push(href);
+  };
 
-  const location = useLocation();
-
-  return isLoggedIn ? (
+  return (
     <BottomNavStyled
-      className={classes.root}
-      value={location.pathname}
       showLabels
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
     >
       <BottomNavigationAction
-        component={NavLink}
-        to="/dashboard/insurances"
-        label={t("NavbarBottom.dashboard")}
-        value={`/dashboard`}
+        label={_t("NavbarBottom.dashboard")}
+        onClick={() => onLink("/dashboard")}
         icon={<HomeRoundedIcon />}
       />
       <BottomNavigationAction
-        component={NavLink}
-        to="/services"
-        label={t("NavbarBottom.services")}
-        value="/services"
+        label={_t("NavbarBottom.services")}
+        onClick={() => onLink("/services")}
         icon={<AssignmentRoundedIcon />}
       />
       <BottomNavigationAction
-        component={NavLink}
-        to="/notifications"
-        label={t("Notifications.title")}
-        value="/notifications"
-        icon={<NotificationsNoneRoundedIcon />}
+        onClick={() => onLink("/notifications")}
+        label={_t("NavbarBottom.notifications")}
+        icon={<NotificationsIcon />}
       />
       <BottomNavigationAction
-        component={NavLink}
-        to="/settings/change_info"
-        label={t("NavbarBottom.settings")}
-        value={`/settings/change_info`}
+        label={_t("NavbarBottom.settings")}
+        onClick={() => onLink("/settings")}
         icon={<SettingsRoundedIcon />}
       />
     </BottomNavStyled>
-  ) : null;
+  );
 };
 
 const BottomNavStyled = styled(BottomNavigation)`
@@ -84,21 +76,9 @@ const BottomNavStyled = styled(BottomNavigation)`
   .MuiIcon-colorPrimary.active {
     color: #1672ec;
   }
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
+  ${({ theme }) => theme.breakpoints.down("md")} {
     display: flex !important;
   }
-  /* @media screen and (max-width: ${({ theme }) => theme.widthSmallPhone}) {
-    a {
-      padding: 6px 8px 8px;
-      width: 3rem;
-    }
-    .MuiBottomNavigationAction-root {
-      max-width: 2.5rem;
-    }
-    .MuiBottomNavigationAction-label {
-      display: none;
-    }
-  } ; */
 `;
 
 export default BottomNav;

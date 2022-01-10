@@ -18,7 +18,6 @@ const Links = (): JSX.Element => {
   return (
     <>
       {links.map((link, idx) => {
-        console.log(link);
         return (
           <Link key={idx} href={link.href} passHref>
             <StyledLinkText

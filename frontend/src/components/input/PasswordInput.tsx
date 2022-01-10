@@ -17,7 +17,7 @@ interface Props {
   defaultValue?: string | undefined;
 }
 
-const MuiPasswordInput: FC<Props> = ({
+const PasswordInput: FC<Props> = ({
   name,
   errorList,
   defaultValue,
@@ -88,7 +88,7 @@ const MuiPasswordInput: FC<Props> = ({
   );
 };
 
-export default MuiPasswordInput;
+export default PasswordInput;
 
 // const Requirements = styled("div")`
 //   font-size: 14px;

@@ -13,7 +13,7 @@ import { useAuth } from "@context/authContext";
 
 import Form from "@components/Form";
 import { Button, FacebookButton } from "@components/buttons";
-import { MuiInput, MuiPasswordInput, MuiPhoneInput } from "@components/input";
+import { Input, PasswordInput, MuiPhoneInput } from "@components/input";
 import type { NextPage } from "next";
 
 import * as yup from "yup";
@@ -79,14 +79,14 @@ const SignUp: NextPage = () => {
           </Typography>
 
           <Form methods={methods} id="form" onSubmit={formSubmit}>
-            <MuiInput
+            <Input
               name="fullName"
               labelName={t("SignUp.Individual.fullName")}
               autoFocus={true}
               autoComplete="name"
             />
 
-            <MuiInput
+            <Input
               name="email"
               labelName={t("SignUp.Individual.email")}
               type="email"
@@ -97,7 +97,7 @@ const SignUp: NextPage = () => {
               labelName={t("SignUp.Individual.phone")}
               optional
             />
-            <MuiPasswordInput
+            <PasswordInput
               name="password"
               labelName={t("SignUp.Individual.password")}
               autoComplete="new-password"

@@ -6,7 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
 const AuthButtons = (): JSX.Element => {
-  const { locale, asPath } = useRouter();
+  const { locale } = useRouter();
   //@ts-ignore
   const { _t } = useLayoutTranslation(locale);
 

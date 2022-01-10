@@ -24,7 +24,7 @@ interface Props {
   width?: "s" | "m" | "l";
 }
 
-const MuiInput: FC<Props> = ({
+const Input: FC<Props> = ({
   name,
   labelName,
   autoComplete,
@@ -71,4 +71,4 @@ const MuiInput: FC<Props> = ({
   );
 };
 
-export default MuiInput;
+export default Input;

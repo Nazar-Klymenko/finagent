@@ -16,7 +16,8 @@
     "dashboard": "Pulpit",
     "services": "Usługi",
     "help": "Pomoc",
-    "settings": "Ustawienia"
+    "settings": "Ustawienia",
+    "notifications": "Powiadomienia"
   },
   "Footer": {
     "content": "Twoje narzędzie do szybkiego i łatwego dostępu do usług ubezpieczeniowych i kredytowych. Wybór najlepszej oferty na rynku, dzięki konsultacjom z wykwalifikowanymi specjalistami.",

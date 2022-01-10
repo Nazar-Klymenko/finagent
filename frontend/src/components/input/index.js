@@ -1,5 +1,6 @@
-import MuiInput from "./MuiInput";
-import MuiPasswordInput from "./MuiPasswordInput";
+import Input from "./Input";
+import PasswordInput from "./PasswordInput";
 import MuiPhoneInput from "./MuiPhoneInput";
+import FileInput from "./FileInput";
 
-export { MuiInput, MuiPasswordInput, MuiPhoneInput };
+export { Input, PasswordInput, MuiPhoneInput, FileInput };

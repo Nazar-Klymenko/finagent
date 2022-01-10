@@ -14,8 +14,10 @@ import Links from "./Links";
 import AuthButtons from "./AuthButtons";
 const Navbar = (props: any): JSX.Element => {
   const { loading } = useRouteLoader();
-  const { currentUser } = useAuth();
-  const { isLoggedIn, isSendingRequest } = currentUser;
+  const { currentUser } = useAuth(),
+    { isLoggedIn, isSendingRequest } = currentUser;
+
+  // const { isLoggedIn, isSendingRequest } = currentUser;
 
   return (
     <>

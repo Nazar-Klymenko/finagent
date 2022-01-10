@@ -28,7 +28,8 @@ const BoxStyled = styled(Box)`
   ${({ theme }) => theme.breakpoints.down("md")} {
     border: none;
     max-width: 100%;
-
+    height: auto;
+    min-height: 100%;
     /* margin: 0 auto; */
     padding: 1.5rem 0;
   }

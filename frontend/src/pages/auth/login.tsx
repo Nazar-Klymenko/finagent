@@ -12,7 +12,7 @@ import { useAuth } from "@context/authContext";
 
 import Form from "@components/Form";
 import { Button, FacebookButton } from "@components/buttons";
-import { MuiInput, MuiPasswordInput, MuiPhoneInput } from "@components/input";
+import { Input, PasswordInput, MuiPhoneInput } from "@components/input";
 import type { NextPage } from "next";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -78,14 +78,14 @@ const Login: NextPage = (props) => {
             {t("LogIn.title")}
           </Typography>
           <Form methods={methods} id="form" onSubmit={formSubmit}>
-            <MuiInput
+            <Input
               name="email"
               labelName={t("LogIn.Form.email")}
               type="email"
               autoFocus={false}
               autoComplete="email"
             />
-            <MuiPasswordInput
+            <PasswordInput
               name="password"
               labelName={t("LogIn.Form.password")}
               autoComplete="current-password"

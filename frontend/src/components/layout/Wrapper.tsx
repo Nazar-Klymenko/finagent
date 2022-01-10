@@ -14,7 +14,7 @@ const Wrapper = ({ children }: Props): JSX.Element => {
 export default Wrapper;
 
 const ContainerStyled = styled(Container)`
-  min-height: calc(100% - 64px);
+  min-height: 100% auto;
   height: calc(100% - 64px);
   display: flex !important;
   flex-direction: column;

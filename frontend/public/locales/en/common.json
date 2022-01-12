@@ -1,4 +1,12 @@
 {
+  "Pages": {
+    "dashboard": "Dashboard",
+    "services": "Services",
+    "contact": "Contact",
+    "help": "Help",
+    "logIn": "Log In",
+    "signUp": "Sign Up"
+  },
   "Form": {
     "optional": "optional",
     "Error": {

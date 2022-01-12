@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState, useCallback } from "react";
 import { styled } from "@mui/material/styles";
 
-import _, { values } from "lodash";
+import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import { useDropzone } from "react-dropzone";

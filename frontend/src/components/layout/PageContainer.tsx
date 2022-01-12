@@ -1,6 +1,8 @@
 import * as React from "react";
 import Head from "next/head";
-import { Box } from "@mui/material";
+// import { Box } from "@mui/material";
+import { Container } from "@mui/material";
+
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "next-i18next";
 
@@ -18,7 +20,7 @@ const PageContainer = ({
   const { t } = useTranslation();
 
   return (
-    <BoxStyled xs={xs}>
+    <BoxStyled disableGutters maxWidth={false} xs={xs}>
       <Head>
         <title>{t(title)}</title>
         <meta charSet="utf-8" />
@@ -31,7 +33,7 @@ const PageContainer = ({
 
 export default PageContainer;
 
-const BoxStyled = styled(Box)<{ xs: boolean }>`
+const BoxStyled = styled(Container)<{ xs: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;

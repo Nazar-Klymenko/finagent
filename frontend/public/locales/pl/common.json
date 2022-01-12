@@ -1,4 +1,13 @@
 {
+  "Pages": {
+    "dashboard": "Pulpit",
+    "services": "Usługi",
+    "contact": "Kontakty",
+    "help": "Pomoc",
+    "logIn": "Logowanie",
+    "signUp": "Rejestracja"
+  },
+
   "Form": {
     "optional": "opcjonalnie",
     "Error": {

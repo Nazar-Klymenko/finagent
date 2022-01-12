@@ -29,7 +29,7 @@ const BoxStyled = styled(Box)`
     border: none;
     max-width: 100%;
     height: auto;
-    min-height: 100%;
+    /* min-height: 100%; */
     /* margin: 0 auto; */
     padding: 1.5rem 0;
   }

@@ -1,4 +1,13 @@
 {
+  "Pages": {
+    "dashboard": "Кабінет",
+    "services": "Послуги",
+    "contact": "Контакти",
+    "help": "Допомога",
+    "logIn": "Увійти",
+    "signUp": "Реєстрація"
+  },
+
   "Form": {
     "optional": "необов'язково",
     "Error": {

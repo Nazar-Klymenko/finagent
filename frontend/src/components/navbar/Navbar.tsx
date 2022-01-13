@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 
-import { Container, LinearProgress, Typography, Skeleton } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Container, LinearProgress, Skeleton, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
 import useRouteLoader from "@hooks/useRouteLoader";
-import Notifications from "./Notifications";
+
 import { useAuth } from "@context/authContext";
-import UserMenu from "./UserMenu";
+
+import AuthButtons from "./AuthButtons";
 import LanguageMenu from "./LanguageMenu";
 import Links from "./Links";
-import AuthButtons from "./AuthButtons";
+import Notifications from "./Notifications";
+import UserMenu from "./UserMenu";
+
 const Navbar = (props: any): JSX.Element => {
   const { loading } = useRouteLoader();
   const { currentUser } = useAuth(),
@@ -66,6 +70,7 @@ const NavbarBg = styled("div")`
   border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
   background-color: ${({ theme }) => theme.palette.background.default};
   ${({ theme }) => theme.mixins.toolbar}
+  z-index:${({ theme }) => theme.zIndex.appBar}
 `;
 const InnerNavbar = styled("div")`
   display: flex;

@@ -1,9 +1,11 @@
-import { Button, Typography } from "@mui/material";
-import useLayoutTranslation from "@hooks/useLayoutTranslation";
-import { useRouter } from "next/router";
 import Link from "next/link";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { useRouter } from "next/router";
+
+import { Button, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+import useLayoutTranslation from "@hooks/useLayoutTranslation";
 
 const AuthButtons = (): JSX.Element => {
   const { locale } = useRouter();
@@ -11,7 +13,7 @@ const AuthButtons = (): JSX.Element => {
   const { _t } = useLayoutTranslation(locale);
 
   const theme = useTheme();
-  const sm = useMediaQuery(theme.breakpoints.up("sm"));
+  const sm = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
       <Link href="/auth/login" passHref>
@@ -22,7 +24,7 @@ const AuthButtons = (): JSX.Element => {
         </Button>
       </Link>
 
-      {sm && (
+      {!sm && (
         <Link href="/auth/sign-up" passHref>
           <Button
             sx={{ ml: "0.5rem" }}

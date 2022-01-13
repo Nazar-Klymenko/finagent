@@ -23,4 +23,8 @@ export const vehicleTypeOptions = [
   { value: "personal", label: "InsuranceTransport.SelectVehicle.personal" },
   { value: "truck", label: "InsuranceTransport.SelectVehicle.truck" },
   { value: "bus", label: "InsuranceTransport.SelectVehicle.bus" },
+  {
+    value: "otherVehicle",
+    label: "InsuranceTransport.SelectVehicle.otherVehicle",
+  },
 ];

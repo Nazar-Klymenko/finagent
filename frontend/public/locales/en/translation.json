@@ -400,7 +400,7 @@
       "averageIncome3": "Average monthly official net income in Poland (EU) for the last 3 months",
       "currency": "What is the currency your income source?",
       "pit": "Your proven net income in Poland for the last reporting year (PIT)",
-      "bank": "Which bank account receives the reward?",
+      "bank": "In which bank do you have an account?",
       "accountancy": "Accountancy type"
     },
     "IncomeModal": {
@@ -827,7 +827,8 @@
       "motorcycle": "Motorcycle",
       "personal": "Personal car",
       "truck": "Truck",
-      "bus": "Bus"
+      "bus": "Bus",
+      "otherVehicle": "Other"
     },
     "SelectFuel": {
       "petrol": "Petrol",
@@ -905,6 +906,8 @@
       "registeredPoland": "The car is registered in Poland"
     },
     "Page3": {
+      "vehicleType": "Vehicle type",
+
       "subtitle": "Additional information",
       "enginePower": "Engine power(kW)",
       "engineVolume": "Engine volume(ccm)",

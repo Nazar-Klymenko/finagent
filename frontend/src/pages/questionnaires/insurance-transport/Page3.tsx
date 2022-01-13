@@ -39,6 +39,7 @@ import { vehicleTypeOptions } from "./applicationHelpers/options";
 
 type FormTypes = {
   vehicleType: string;
+  otherVehicleType: string;
   enginePower: string;
   engineVolume: string;
   fuelType: string;
@@ -95,6 +96,13 @@ const Page3 = () => {
             labelName={t("InsuranceTransport.Page2.vehicleType")}
             optionArray={vehicleTypeOptions}
           />
+          {vehicleType === "otherVehicle" && (
+            <MuiInput
+              name="otherVehicleType"
+              labelName={t("InsuranceTransport.Page3.vehicleType")}
+              type="text"
+            />
+          )}
           <MuiSelect
             name="fuelType"
             labelName={t("InsuranceTransport.Page3.fuelType")}

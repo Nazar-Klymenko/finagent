@@ -42,7 +42,7 @@
   "Navbar": {
     "dashboard": "Pulpit",
     "services": "Usługi",
-    "contact": "Kontakty",
+    "contact": "Kontakt",
     "help": "Pomoc",
     "logIn": "Logowanie",
     "signUp": "Rejestracja"
@@ -55,7 +55,7 @@
   },
   "Footer": {
     "content": "Twoje narzędzie do szybkiego i łatwego dostępu do usług ubezpieczeniowych i kredytowych. Wybór najlepszej oferty na rynku, dzięki konsultacjom z wykwalifikowanymi specjalistami.",
-    "contact": "Kontakty",
+    "contact": "Kontakt",
     "help": "Pomoc",
     "legal": "Prawa",
     "GDPR": "RODO",
@@ -400,7 +400,7 @@
       "averageIncome3": "Średni miesięczny oficjalny dochód netto za ostatnie 3 miesięcy w Polsce(UE)",
       "currency": "W jakiej walucie dostajesz dochód?",
       "pit": "Twój udokumentowany dochód netto w Polsce za ostatni rok sprawozdawczy (PIT)",
-      "bank": "Twoje konto bankowe, na które dostajesz wynagrodzenie?",
+      "bank": "W jakim banku masz konto na które dostajesz wynagrodzenie?",
       "accountancy": "Księgowość"
     },
     "IncomeModal": {
@@ -827,9 +827,10 @@
     },
     "SelectVehicle": {
       "motorcycle": "Motocykl",
-      "personal": "Prywatny samochód",
+      "personal": "Samochód osobowy",
       "truck": "Samochód ciężarowy",
-      "bus": "Autobus"
+      "bus": "Autobus",
+      "otherVehicle": "Inne"
     },
     "SelectFuel": {
       "petrol": "Benzyna",
@@ -908,6 +909,8 @@
     },
     "Page3": {
       "subtitle": "Dodatkowe informacje",
+      "vehicleType": "Typ pojazdu",
+
       "enginePower": "Moc silnika(kW)",
       "engineVolume": "Objętość silnika(ccm)",
       "fuelType": "Typ paliwa",

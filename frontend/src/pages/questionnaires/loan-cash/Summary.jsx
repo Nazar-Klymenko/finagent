@@ -26,7 +26,7 @@ const Summary = () => {
   const { appData } = useData();
   useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("Cash", appData);
+  const addDataLabeled = determineType("Cash", appData.loanCash);
 
   const confirmApplication = async () => {
     setIsLoading(true);
@@ -46,7 +46,7 @@ const Summary = () => {
 
       <Page>
         <Title>{t("LoanCash.title")}</Title>
-        <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
+        <ProgressBar maxSteps={3} currentStep={3} label={t("Basic.summary")} />
         <SummaryList
           header={t("Basic.summary")}
           array={addDataLabeled}

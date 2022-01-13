@@ -837,9 +837,10 @@
     },
     "SelectVehicle": {
       "motorcycle": "Мотоцикл",
-      "personal": "Особистий автомобіль",
+      "personal": "Легковий автомобіль",
       "truck": "Вантажівка",
-      "bus": "Автобус"
+      "bus": "Автобус",
+      "otherVehicle": "Інше"
     },
     "SelectFuel": {
       "petrol": "Бензин",
@@ -918,6 +919,8 @@
     },
     "Page3": {
       "subtitle": "Додаткова інформація",
+      "vehicleType": "Тип транспортного засобу",
+
       "enginePower": "Потужність двигуна (кВт)",
       "engineVolume": "Об'єм двигуна (см3)",
       "fuelType": "Тип палива",

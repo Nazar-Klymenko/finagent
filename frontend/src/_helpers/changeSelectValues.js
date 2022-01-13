@@ -199,6 +199,9 @@ const changeSelectValues = (obj) => {
       case "bus":
         prop[1] = "InsuranceTransport.SelectVehicle.bus";
         break;
+      case "otherVehicle":
+        prop[1] = "InsuranceTransport.SelectVehicle.otherVehicle";
+        break;
 
       //Estate insurance
 

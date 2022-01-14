@@ -54,7 +54,10 @@ const AuthContext = createContext({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const dispatch = () => {
+    return null;
+  };
   // const history = useHistory();
 
   const [currentUser, setCurrentUser] = useState({
@@ -127,7 +130,7 @@ export const AuthContextProvider = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, [dispatch]);
+  }, []);
 
   async function signup(data) {
     let newData = data;

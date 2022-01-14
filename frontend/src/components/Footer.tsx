@@ -2,7 +2,7 @@ import React from "react";
 
 import Image from "next/image";
 
-import Container from "@material-ui/core/Container";
+import Container from "@mui/material/Container";
 // import { useTranslation } from "react-i18next";
 // import { NavLink } from "react-router-dom";
 import { styled } from "@mui/material/styles";

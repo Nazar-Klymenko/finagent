@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
-import Pagination from "@material-ui/lab/Pagination";
-import PaginationItem from "@material-ui/lab/PaginationItem";
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from "@mui/lab/PaginationItem";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -149,11 +148,3 @@ const loginSchema = yup.object().shape({
     .trim(),
   password: yup.string().required("Password can't be blank"),
 });
-
-export async function getStaticProps({ locale }: any) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
-}

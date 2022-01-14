@@ -1,8 +1,7 @@
 import * as React from "react";
 
-import Document, { Head, Html, Main, NextScript } from "next/document";
-
 import createEmotionServer from "@emotion/server/create-instance";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 import createEmotionCache from "@styles/createEmotionCache";
 import muiTheme from "@styles/muiTheme";
@@ -14,13 +13,10 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={muiTheme.palette.primary.main} />
-          <link rel="shortcut icon" href="/favicon.ico" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
-          {/* Inject MUI styles first to match with the prepend: true configuration. */}
-          {(this.props as any).emotionStyleTags}
         </Head>
         <body>
           <Main />
@@ -65,7 +61,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App: any) =>
+      enhanceApp: (App) =>
         function EnhanceApp(props) {
           return <App emotionCache={cache} {...props} />;
         },
@@ -86,6 +82,10 @@ MyDocument.getInitialProps = async (ctx) => {
 
   return {
     ...initialProps,
-    emotionStyleTags,
+    // Styles fragment is rendered after the app and page rendering finish.
+    styles: [
+      ...emotionStyleTags,
+      ...React.Children.toArray(initialProps.styles),
+    ],
   };
 };

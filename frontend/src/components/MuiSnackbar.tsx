@@ -1,8 +1,8 @@
 import React from "react";
 
-import Slide, { SlideProps } from "@material-ui/core/Slide";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
+import Slide, { SlideProps } from "@mui/material/Slide";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from '@mui/material/Alert';
 import { useTranslation } from "next-i18next";
 import { useDispatch, useSelector } from "react-redux";
 

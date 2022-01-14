@@ -1,6 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+
+import Typography from "@mui/material/Typography";
+
 import { useAuth } from "@context/authContext";
 
 import { BackArrow } from "@components/buttons";
@@ -8,7 +11,7 @@ import { BackArrow } from "@components/buttons";
 const Home: NextPage = () => {
   return (
     <>
-      <BackArrow></BackArrow>
+      <Typography variant="h3"> Test with no wrap</Typography>
     </>
   );
 };

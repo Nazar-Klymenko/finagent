@@ -1,12 +1,16 @@
 import * as React from "react";
 
 import { appWithTranslation } from "next-i18next";
+import { AppProps } from "next/app";
 import Head from "next/head";
 
-import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
-import { CacheProvider } from "@emotion/react";
+import { CacheProvider, EmotionCache } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
+import {
+  ThemeProvider,
+  createTheme,
+  responsiveFontSizes,
+} from "@mui/material/styles";
 import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 
@@ -18,12 +22,15 @@ import { AuthContextProvider } from "@context/authContext";
 
 import store from "@redux/store";
 
-import { Layout } from "@components/layout";
+import { Wrapper } from "@components/layout";
+import { Navbar } from "@components/navbar";
 
-// Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-const MyApp = (props) => {
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+const MyApp = (props: MyAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
     <CacheProvider value={emotionCache}>
@@ -35,12 +42,14 @@ const MyApp = (props) => {
       <Provider store={store}>
         <AuthContextProvider>
           <ThemeProvider theme={muiTheme}>
-            {/* <EmotionThemeProvider theme={muiTheme}> */}
             <CssBaseline />
-            <Layout>
+            <Navbar />
+            <Wrapper>
+              <Component {...pageProps}></Component>
+            </Wrapper>
+            {/* <Layout>
               <Component {...pageProps} />
-            </Layout>
-            {/* </EmotionThemeProvider> */}
+            </Layout> */}
           </ThemeProvider>
         </AuthContextProvider>
       </Provider>
@@ -48,9 +57,9 @@ const MyApp = (props) => {
   );
 };
 
+//@ts-ignore
 export default appWithTranslation(MyApp);
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };

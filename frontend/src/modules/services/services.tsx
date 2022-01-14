@@ -15,38 +15,43 @@ const Services: NextPage = () => {
   const { t } = useTranslation();
 
   return (
-    <PageContainer title="Pages.services">
+    <>
       <Typography variant="h3" gutterBottom>
         {t("Services.Titles.insurances")}
       </Typography>
-      <ServicesWrap>
-        {insurances.map((card, idx) => (
-          <ServiceCard
-            key={idx}
-            to={card.to}
-            image={card.image}
-            header={t(card.header)}
-            description={t(card.description)}
-          />
-        ))}
-      </ServicesWrap>
-      <Spacer />
-      <Typography variant="h3" gutterBottom>
-        {t("Services.Titles.loans")}
-      </Typography>
-      <ServicesWrap>
-        {loans.map((card, idx) => (
-          <ServiceCard
-            key={idx}
-            to={card.to}
-            image={card.image}
-            header={t(card.header)}
-            description={t(card.description)}
-          />
-        ))}
-        <Collapsed />
-      </ServicesWrap>
-    </PageContainer>
+      <PageContainer title="Pages.services">
+        <Typography variant="h3" gutterBottom>
+          {t("Services.Titles.insurances")}
+        </Typography>
+        <ServicesWrap>
+          {insurances.map((card, idx) => (
+            <ServiceCard
+              key={idx}
+              to={card.to}
+              image={card.image}
+              header={t(card.header)}
+              description={t(card.description)}
+            />
+          ))}
+        </ServicesWrap>
+        <Spacer />
+        <Typography variant="h3" gutterBottom>
+          {t("Services.Titles.loans")}
+        </Typography>
+        <ServicesWrap>
+          {loans.map((card, idx) => (
+            <ServiceCard
+              key={idx}
+              to={card.to}
+              image={card.image}
+              header={t(card.header)}
+              description={t(card.description)}
+            />
+          ))}
+          <Collapsed />
+        </ServicesWrap>
+      </PageContainer>
+    </>
   );
 };
 

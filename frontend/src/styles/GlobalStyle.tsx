@@ -18,6 +18,10 @@ const GlobalStyles = (): JSX.Element => {
           height: 100%;
           min-height: 100%;
         }
+        html,
+        body {
+          font-family: "Poppins", sans-serif;
+        }
         #__next {
           min-height: 100%;
           display: flex;

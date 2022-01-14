@@ -1,27 +1,9 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-declare module "@mui/material/styles/createTheme" {
-  interface ThemeOptions {
-    themeName?: string;
-    custom: {
-      palette: {
-        facebook: string;
-      };
-    };
-  }
-}
-
 const themeName = "Light";
 let font = "'Poppins', sans-serif";
 
 let muiTheme = createTheme({
-  components: {
-    MuiTypography: {
-      defaultProps: {
-        fontFamily: font,
-      },
-    },
-  },
   palette: {
     primary: {
       main: "#1672ec",
@@ -33,14 +15,32 @@ let muiTheme = createTheme({
       main: "#f44336",
     },
   },
-  custom: {
-    palette: {
-      facebook: "#3B5998",
-    },
-  },
-  themeName,
 });
-
 muiTheme = responsiveFontSizes(muiTheme);
 
 export default muiTheme;
+
+// typography: {
+//   h1: { fontFamily: font },
+//   h2: { fontFamily: font },
+//   h3: { fontFamily: font, fontSize: "4rem" },
+//   h4: { fontFamily: font },
+//   h5: { fontFamily: font },
+//   h6: { fontFamily: font },
+// },
+
+// components: {
+//   MuiTypography: {
+//     defaultProps: {
+//       fontFamily: font,
+//     },
+//   },
+// },
+
+// custom: {
+//   palette: {
+//     facebook: "#3B5998",
+//   },
+// },
+
+// themeName,

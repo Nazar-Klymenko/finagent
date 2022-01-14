@@ -1,12 +1,13 @@
 import React from "react";
 
+import Image from "next/image";
+
 import Container from "@material-ui/core/Container";
 // import { useTranslation } from "react-i18next";
 // import { NavLink } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
 import { useAuth } from "@context/authContext";
-import Image from "next/image";
 
 interface Styled {
   isAuthenticated: boolean;

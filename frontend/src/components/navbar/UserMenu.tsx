@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 // import Tooltip from "@components/Tooltip";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { styled } from "@mui/material/styles";
-import Link from "next/link";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import SettingsIcon from "@mui/icons-material/Settings";
 import {
   IconButton,
   ListItemIcon,
@@ -13,8 +14,9 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
-import { useRouter } from "next/router";
 
 import { useAuth } from "@context/authContext";
 

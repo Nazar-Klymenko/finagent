@@ -1,10 +1,11 @@
 import * as React from "react";
+
+import { useTranslation } from "next-i18next";
 import Head from "next/head";
+
 // import { Box } from "@mui/material";
 import { Container } from "@mui/material";
-
 import { styled } from "@mui/material/styles";
-import { useTranslation } from "next-i18next";
 
 interface Props {
   xs?: boolean;

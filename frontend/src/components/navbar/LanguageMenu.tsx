@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Select, MenuItem, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { useTranslation, i18n } from "next-i18next";
+
+import { i18n, useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+
+import { MenuItem, Select, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const LanguageMenu = (): JSX.Element => {
   const router = useRouter(),

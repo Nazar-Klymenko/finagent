@@ -9,16 +9,20 @@ const GlobalStyles = (): JSX.Element => {
           margin: 0;
           box-sizing: border-box;
         }
-        html,
-        body,
+        html {
+          height: 100%;
+          overflow-y: scroll;
+          -webkit-overflow-scrolling: touch;
+        }
+        body {
+          height: 100%;
+          min-height: 100%;
+        }
         #__next {
           min-height: 100%;
-          height: 100%;
-        }
-
-        body,
-        #__next {
-          height: 100%;
+          display: flex;
+          flex-direction: column;
+          min-height: 100%;
         }
       `}
     />

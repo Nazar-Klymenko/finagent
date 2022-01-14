@@ -1,10 +1,13 @@
-import React, { FC, useEffect, useState, useCallback } from "react";
-import { styled } from "@mui/material/styles";
+import React, { FC, useCallback, useEffect, useState } from "react";
 
-import _ from "lodash";
-import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
+
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import _ from "lodash";
 import { useDropzone } from "react-dropzone";
+import { Controller, useFormContext } from "react-hook-form";
 
 import {
   InputContainer,
@@ -12,8 +15,6 @@ import {
   Label,
   Optional,
 } from "./LocalStyles";
-import Image from "next/image";
-import { Typography } from "@mui/material";
 
 interface Props extends InputProps {
   placeholder?: string;
@@ -50,9 +51,9 @@ const FileInput = ({
         name={name}
         control={control}
         defaultValue={defaultValue}
-        render={({ field: { onChange, value } }) => {
-          return <Dropzone onChange={onChange} value={value} />;
-        }}
+        render={({ field: { onChange, value } }) => (
+          <Dropzone onChange={onChange} value={value} />
+        )}
       />
 
       <InputErrorMessage>
@@ -80,13 +81,7 @@ const Dropzone = ({ value, onChange }: any): JSX.Element => {
       )
     );
   }, []);
-  const {
-    getRootProps,
-    getInputProps,
-    isDragActive,
-    isDragAccept,
-    isDragReject,
-  } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: "image/jpeg, image/png",
   });
@@ -148,10 +143,10 @@ const Base = styled("div")<{ isDragActive: boolean }>`
     border: 1px dashed ${({ theme }) => theme.palette.grey.A700};
   }
 
-  /* ${({ isDragActive }) =>
+  ${({ isDragActive }) =>
     isDragActive &&
     `  border-color: #2196f3
-`} */
+`}
 `;
 
 // isDragActive,

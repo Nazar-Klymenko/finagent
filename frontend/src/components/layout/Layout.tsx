@@ -1,8 +1,10 @@
+import { useAuth } from "@context/authContext";
+
 import BottomNav from "@components/BottomNav";
 import Footer from "@components/Footer";
-import Navbar from "@components/navbar/Navbar";
+import { Navbar } from "@components/navbar";
+
 import Wrapper from "./Wrapper";
-import { useAuth } from "@context/authContext";
 
 const Layout = ({ children }: any): JSX.Element => {
   const { currentUser } = useAuth(),

@@ -1,19 +1,21 @@
 import React from "react";
-import Link from "next/link";
 
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import { useTranslation } from "react-i18next";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 // import { NavLink, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
+
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
 
 import { useAuth } from "@context/authContext";
-import { useRouter } from "next/router";
 
 const BottomNav = () => {
   const router = useRouter(),

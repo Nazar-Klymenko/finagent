@@ -17,7 +17,8 @@ import Notifications from "./Notifications";
 import UserMenu from "./UserMenu";
 
 const Navbar = (props: any): JSX.Element => {
-  const { loading } = useRouteLoader();
+  // const { loading } = useRouteLoader();
+  let loading = false;
   const { currentUser } = useAuth(),
     { isLoggedIn, isSendingRequest } = currentUser;
 

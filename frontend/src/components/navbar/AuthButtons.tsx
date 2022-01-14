@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Button, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import useLayoutTranslation from "@hooks/useLayoutTranslation";

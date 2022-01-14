@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
-import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
-import { styled } from "@mui/material/styles";
+
 import { useRouter } from "next/router";
 
+import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import { IconButton } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const BackArrow: React.FC = () => {
   const router = useRouter();

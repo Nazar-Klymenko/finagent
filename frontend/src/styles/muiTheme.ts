@@ -12,14 +12,15 @@ declare module "@mui/material/styles/createTheme" {
 }
 
 const themeName = "Light";
+let font = "'Poppins', sans-serif";
 
-const theme = createTheme({
+let muiTheme = createTheme({
   components: {
-    // MuiButtonBase: {
-    //   defaultProps: {
-    //     disableRipple: true,
-    //   },
-    // },
+    MuiTypography: {
+      defaultProps: {
+        fontFamily: font,
+      },
+    },
   },
   palette: {
     primary: {
@@ -40,6 +41,6 @@ const theme = createTheme({
   themeName,
 });
 
-const muiTheme = responsiveFontSizes(theme);
+muiTheme = responsiveFontSizes(muiTheme);
 
 export default muiTheme;

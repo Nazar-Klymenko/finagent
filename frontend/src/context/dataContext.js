@@ -4,10 +4,10 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [appData, setAppData] = useState({
-    insuranceBorder: {},
     insuranceTransport: {},
-    insuranceEstate: {},
+    insuranceBorder: {},
     insuranceHealth: {},
+    insuranceEstate: {},
     insuranceSpecialist: {},
     insuranceTravel: {},
     loanCash: {},

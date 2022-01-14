@@ -2,8 +2,8 @@ import React, { FC } from "react";
 
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
-import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 interface Props {
   category: string;

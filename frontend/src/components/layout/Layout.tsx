@@ -4,7 +4,7 @@ import BottomNav from "@components/BottomNav";
 import Footer from "@components/Footer";
 import { Navbar } from "@components/navbar";
 
-import Wrapper from "./Wrapper";
+import MainWrapper from "./MainWrapper";
 
 const Layout = ({ children }: any): JSX.Element => {
   const { currentUser } = useAuth(),
@@ -12,7 +12,7 @@ const Layout = ({ children }: any): JSX.Element => {
   return (
     <>
       <Navbar />
-      <Wrapper>{children}</Wrapper>
+      <MainWrapper>{children}</MainWrapper>
 
       {isLoggedIn ? <BottomNav /> : <Footer />}
     </>

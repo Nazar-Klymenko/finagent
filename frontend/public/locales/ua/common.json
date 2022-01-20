@@ -26,7 +26,16 @@
     },
     "Inputs": {
       "dropzone": "Перетягніть свої файли сюди, або",
-      "dropzoneBrowse": "вибрати"
+      "dropzoneBrowse": "вибрати",
+      "DateInput": {
+        "rightArrowButtonText": "Наступний місяць",
+        "leftArrowButtonText": "Попередній місяць",
+        "todayText": "Сьогодні",
+        "clearText": "Очистити",
+        "toolbarTitle": "Виберіть дату",
+        "cancelText": "Відмінити",
+        "okText": "Підтвердити"
+      }
     }
   },
   "Basic": {

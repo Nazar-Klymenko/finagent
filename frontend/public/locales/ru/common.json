@@ -26,7 +26,16 @@
     },
     "Inputs": {
       "dropzone": "Перетяните сюда свои файлы, или",
-      "dropzoneBrowse": "выбрать"
+      "dropzoneBrowse": "выбрать",
+      "DateInput": {
+        "rightArrowButtonText": "Следующий месяц",
+        "leftArrowButtonText": "Предыдущий месяц",
+        "todayText": "Сегодня",
+        "clearText": "Очистить",
+        "toolbarTitle": "Виберите дату",
+        "cancelText": "Отменить",
+        "okText": "Подтвердить"
+      }
     }
   },
   "Basic": {

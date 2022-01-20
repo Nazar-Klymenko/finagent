@@ -5,7 +5,7 @@ import Head from "next/head";
 
 // import { Box } from "@mui/material";
 import { Container } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { styled, css } from "@mui/material/styles";
 
 interface Props {
   xs?: boolean;
@@ -21,7 +21,7 @@ const PageContainer = ({
   const { t } = useTranslation();
 
   return (
-    <BoxStyled disableGutters maxWidth={false} xs={xs}>
+    <BoxStyled xs={xs}>
       <Head>
         <title>{t(title)}</title>
         <meta charSet="utf-8" />
@@ -34,13 +34,21 @@ const PageContainer = ({
 
 export default PageContainer;
 
-const BoxStyled = styled(Container)<{ xs: boolean }>`
+const BoxStyled = styled("div", {
+  shouldForwardProp: (prop) => prop !== "xs",
+})<{ xs: boolean }>`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin: 0 auto;
-  padding: 1.5rem;
+  place-content: center flex-start;
+  padding: 1.5rem 0;
+  width: 100%;
   height: 100%;
-  max-width: ${({ xs }) => (xs ? "600px" : "unset")};
+  margin: 0px auto;
+  flex: 1;
+  ${({ xs }) =>
+    xs &&
+    css`
+      margin: 0 auto;
+      max-width: 600px;
+    `};
 `;

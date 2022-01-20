@@ -38,7 +38,9 @@ const Links = (): JSX.Element => {
 
 export default Links;
 
-const StyledLinkText = styled(Typography)<{ isActive?: boolean }>`
+const StyledLinkText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "isActive",
+})<{ isActive?: boolean }>`
   color: ${({ isActive, theme }) =>
     isActive ? theme.palette.text.primary : theme.palette.text.secondary};
   text-decoration: none;

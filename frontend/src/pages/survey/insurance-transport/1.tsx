@@ -1,25 +1,23 @@
 import React from "react";
 
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 // import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form";
-import { useTranslation } from "next-i18next";
 
 // import useTitle from "@hooks/useTitle";
-
 import { useData } from "@context/dataContext";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import Form from "@components/Form";
 import ProgressBar from "@components/ProgressBar";
 import { Button } from "@components/buttons";
 import {
-  // DateInput,
-  // MuiCheckbox,
-  Input,
+  DateInput, // MuiCheckbox,
   FileInput,
-  MuiPhoneInput,
-  // MuiRadio,
+  Input,
+  MuiPhoneInput, // MuiRadio,
   // MuiSelect,
 } from "@components/input";
 import { PageContainer } from "@components/layout";
@@ -96,7 +94,7 @@ const Page1 = () => {
   });
 
   return (
-    <PageContainer title="InsuranceTransport.title">
+    <PageContainer xs title="InsuranceTransport.title">
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <Input
           name="name"
@@ -107,6 +105,13 @@ const Page1 = () => {
         <FileInput
           name="files"
           labelName={t("InsuranceTransport.Page1.name")}
+        />
+        <DateInput
+          name="drivingLicenceDate"
+          labelName={t("InsuranceTransport.Page1.drivingLicenceDate")}
+          placeholder={t("Form.Placeholder.dateFull")}
+          disableFuture
+          view={["year", "month", "day"]}
         />
       </Form>
       <Button form="form-transport" color="primary">

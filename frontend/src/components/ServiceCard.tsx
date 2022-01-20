@@ -43,7 +43,7 @@ const ServiceCard = ({
     </CardActionArea>
   );
 };
-export default ServiceCard;
+export { ServiceCard };
 
 const CardStyled = styled(Card)`
   justify-content: center !important;

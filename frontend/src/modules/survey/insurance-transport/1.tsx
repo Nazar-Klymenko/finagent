@@ -96,7 +96,7 @@ const Page1 = () => {
   });
 
   return (
-    <PageContainer title="InsuranceTransport.title">
+    <PageContainer xs title="InsuranceTransport.title">
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <Input
           name="name"

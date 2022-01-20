@@ -25,7 +25,16 @@
     },
     "Inputs": {
       "dropzone": "Drag and drop your files here or",
-      "dropzoneBrowse": "browse"
+      "dropzoneBrowse": "browse",
+      "DateInput": {
+        "rightArrowButtonText": "Next month",
+        "leftArrowButtonText": "Previous month",
+        "todayText": "Today",
+        "clearText": "Clear",
+        "toolbarTitle": "Select date",
+        "cancelText": "Cancel",
+        "okText": "Ok"
+      }
     }
   },
   "Basic": {

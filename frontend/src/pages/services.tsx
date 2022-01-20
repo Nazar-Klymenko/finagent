@@ -1,6 +1,127 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import Services from "@modules/services/Services";
+import type { NextPage } from "next";
+import { useTranslation } from "next-i18next";
+
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+import { PageContainer } from "@components/layout";
+
+import { ServiceCard } from "@components/ServiceCard";
+
+const Services: NextPage = () => {
+  const { t } = useTranslation();
+
+  return (
+    <PageContainer title="Pages.services">
+      <Typography variant="h3" gutterBottom>
+        {t("Services.Titles.insurances")}
+      </Typography>
+      <ServicesWrap>
+        {insurances.map((card, idx) => (
+          <ServiceCard
+            key={idx}
+            to={card.to}
+            image={card.image}
+            header={t(card.header)}
+            description={t(card.description)}
+          />
+        ))}
+      </ServicesWrap>
+      <Spacer />
+      <Typography variant="h3" gutterBottom>
+        {t("Services.Titles.loans")}
+      </Typography>
+      <ServicesWrap>
+        {loans.map((card, idx) => (
+          <ServiceCard
+            key={idx}
+            to={card.to}
+            image={card.image}
+            header={t(card.header)}
+            description={t(card.description)}
+          />
+        ))}
+        <Collapsed />
+      </ServicesWrap>
+    </PageContainer>
+  );
+};
+
+export default Services;
+
+const ServicesWrap = styled("div")`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-gap: 48px;
+  justify-content: left;
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  } ;
+`;
+
+const Collapsed = styled("div")`
+  visibility: collape;
+`;
+const Spacer = styled("div")`
+  width: 100%;
+  height: 32px;
+`;
+
+const insurances = [
+  {
+    to: "survey/insurance-transport/1",
+    image: "/images/transport.svg",
+    description: "Services.Transport.subtitle",
+    header: "Services.Transport.title",
+  },
+  {
+    to: "survey/insurance-border/1",
+    image: "/images/border.svg",
+    description: "Services.Border.subtitle",
+    header: "Services.Border.title",
+  },
+  {
+    to: "survey/insurance-health/1",
+    image: "/images/health_insurance.svg",
+    description: "Services.Health.subtitle",
+    header: "Services.Health.title",
+  },
+  {
+    to: "survey/insurance-specialist/1",
+    image: "/images/specialist.svg",
+    description: "Services.Diagnostic.subtitle",
+    header: "Services.Diagnostic.title",
+  },
+  {
+    to: "survey/insurance-travel/1",
+    image: "/images/travel_insurance.svg",
+    description: "Services.Travel.subtitle",
+    header: "Services.Travel.title",
+  },
+  {
+    to: "survey/insurance-estate/1",
+    image: "/images/estate.svg",
+    description: "Services.Estate.subtitle",
+    header: "Services.Estate.title",
+  },
+];
+const loans = [
+  {
+    to: "survey/loan-cash/1",
+    image: "/images/loan.svg",
+    description: "Services.Cash.subtitle",
+    header: "Services.Cash.title",
+  },
+  {
+    to: "survey/loan-mortgage/1",
+    image: "/images/mortgage.svg",
+    description: "Services.Mortgage.subtitle",
+    header: "Services.Mortgage.title",
+  },
+];
 
 export async function getStaticProps({ locale }: any) {
   return {
@@ -9,5 +130,3 @@ export async function getStaticProps({ locale }: any) {
     },
   };
 }
-
-export default Services;

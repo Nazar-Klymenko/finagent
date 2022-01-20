@@ -1,4 +1,4 @@
-import { Button as MuiButton, ButtonProps } from "@mui/material";
+import { ButtonProps, Button as MuiButton } from "@mui/material";
 
 interface Props extends ButtonProps {
   form?: string;
@@ -15,7 +15,7 @@ const Button = ({ children, form, onClick, ...other }: Props): JSX.Element => {
       form={form}
       onClick={onClick}
       {...other}
-      style={{ margin: "0.5rem" }}
+      sx={{ my: "0.5rem" }}
     >
       {children}
     </MuiButton>

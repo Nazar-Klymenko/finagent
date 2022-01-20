@@ -18,14 +18,11 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import { useDispatch } from "react-redux";
 
 import { auth } from "@services/firebase";
 
 import { deleteUserAPI } from "@api/userAPI";
 import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
-
-import { setSnackbar } from "@redux/alert/actions";
 
 const AuthContext = createContext({
   currentUser: {
@@ -56,6 +53,9 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   // const dispatch = useDispatch();
   const dispatch = () => {
+    return null;
+  };
+  const setSnackbar = () => {
     return null;
   };
   // const history = useHistory();

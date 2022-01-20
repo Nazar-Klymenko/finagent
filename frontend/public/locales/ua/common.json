@@ -23,6 +23,10 @@
       "dateYear": "РРРР",
       "dateYearMonth": "мм/РРРР",
       "dateFull": "дд/мм/РРРР"
+    },
+    "Inputs": {
+      "dropzone": "Перетягніть свої файли сюди, або",
+      "dropzoneBrowse": "вибрати"
     }
   },
   "Basic": {

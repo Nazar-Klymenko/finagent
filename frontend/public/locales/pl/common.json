@@ -23,6 +23,10 @@
       "dateYear": "rrrr",
       "dateYearMonth": "mm/RRRR",
       "dateFull": "dd/mm/RRRR"
+    },
+    "Inputs": {
+      "dropzone": "Przeciągnij i upuść swoje pliki lub",
+      "dropzoneBrowse": "przeglądaj"
     }
   },
   "Basic": {

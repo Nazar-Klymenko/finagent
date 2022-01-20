@@ -23,6 +23,10 @@
       "dateYear": "ГГГГ",
       "dateYearMonth": "мм/ГГГГ",
       "dateFull": "дд/мм/ГГГГ"
+    },
+    "Inputs": {
+      "dropzone": "Перетяните сюда свои файлы, или",
+      "dropzoneBrowse": "выбрать"
     }
   },
   "Basic": {

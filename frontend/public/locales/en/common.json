@@ -22,6 +22,10 @@
       "dateYear": "YYYY",
       "dateYearMonth": "mm/YYYY",
       "dateFull": "dd/mm/YYYY"
+    },
+    "Inputs": {
+      "dropzone": "Drag and drop your files here or",
+      "dropzoneBrowse": "browse"
     }
   },
   "Basic": {

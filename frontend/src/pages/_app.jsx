@@ -1,13 +1,14 @@
 import * as React from "react";
 
 import Head from "next/head";
-
+import { appWithTranslation } from "next-i18next";
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import { AuthContextProvider } from "src/context/authContext";
+import Script from "next/script";
 
 import GlobalStyles from "@styles/GlobalStyle";
 import createEmotionCache from "@styles/createEmotionCache";
@@ -18,10 +19,15 @@ import { Layout } from "@components/layout";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp(props) {
+function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
     <CacheProvider value={emotionCache}>
+      {/*old ios polyfill */}
+      <Script
+        src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"
+        strategy="beforeInteractive"
+      />
       <Head>
         <title>My page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -40,6 +46,7 @@ export default function MyApp(props) {
     </CacheProvider>
   );
 }
+export default appWithTranslation(MyApp);
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,

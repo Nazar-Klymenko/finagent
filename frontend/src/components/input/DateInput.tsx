@@ -63,6 +63,7 @@ const DateInput = ({
             views={view}
             renderInput={(params) => (
               <TextField
+                {...params}
                 error={!!_.get(errors, name)}
                 placeholder={placeholder}
                 helperText={null}

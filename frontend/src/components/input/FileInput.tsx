@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -42,7 +42,7 @@ const FileInput = ({
   } = useFormContext();
 
   return (
-    <InputContainer width={width}>
+    <InputContainer>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
@@ -59,7 +59,9 @@ const FileInput = ({
       />
 
       <InputErrorMessage>
-        {t(_.get(errors, `${name}.message`))}
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
       </InputErrorMessage>
     </InputContainer>
   );
@@ -71,7 +73,6 @@ const Dropzone = ({ value, onChange }: any): JSX.Element => {
   const { t } = useTranslation();
   const [files, setFiles] = useState<any>(value || []);
 
-  console.log(files);
   const onDrop = useCallback(
     (acceptedFiles) => {
       let newFiles = [

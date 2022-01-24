@@ -2,7 +2,11 @@ import React from "react";
 
 import { useTranslation } from "next-i18next";
 
-import { TextField, Typography } from "@mui/material";
+import {
+  Autocomplete as MuiAutocomplete,
+  TextField,
+  Typography,
+} from "@mui/material";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -23,16 +27,16 @@ interface Props {
   autoComplete?: string;
   defaultValue?: string | undefined;
   width?: "s" | "m" | "l";
+  options: { label: string }[];
 }
 
-const Input = ({
+const Autocomplete = ({
   name,
   labelName,
-  autoComplete,
   optional,
   defaultValue,
+  options,
   width = "l",
-  ...other
 }: Props): JSX.Element => {
   const { t } = useTranslation();
   const {
@@ -53,15 +57,22 @@ const Input = ({
         control={control}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <TextField
-            inputRef={field.ref}
-            key={name}
-            onChange={field.onChange}
-            value={field.value}
+          <MuiAutocomplete
             id={name}
-            autoComplete={autoComplete}
-            error={!!_.get(errors, name)}
-            {...other}
+            disablePortal
+            options={options}
+            onChange={(e, data) => field.onChange(data)}
+            freeSolo
+            autoSelect
+            renderInput={(params) => {
+              return (
+                <TextField
+                  {...params}
+                  error={!!_.get(errors, name)}
+                  inputRef={field.ref}
+                />
+              );
+            }}
           />
         )}
       />
@@ -75,4 +86,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default Autocomplete;

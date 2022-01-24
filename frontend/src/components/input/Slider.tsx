@@ -2,7 +2,8 @@ import React from "react";
 
 import { useTranslation } from "next-i18next";
 
-import { TextField, Typography } from "@mui/material";
+import { Slider as MuiSlider, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -14,25 +15,20 @@ import {
 } from "./LocalStyles";
 
 interface Props {
-  labelName: string;
   name: string;
-  placeholder?: string;
-  type?: string;
+  labelName: string;
   optional?: boolean;
-  autoFocus?: boolean;
-  autoComplete?: string;
+  options: { value: number; label: string }[];
+  rows?: number;
   defaultValue?: string | undefined;
-  width?: "s" | "m" | "l";
 }
 
-const Input = ({
+const Slider: React.FC<Props> = ({
   name,
   labelName,
-  autoComplete,
+  options,
   optional,
   defaultValue,
-  width = "l",
-  ...other
 }: Props): JSX.Element => {
   const { t } = useTranslation();
   const {
@@ -40,28 +36,31 @@ const Input = ({
     formState: { errors },
   } = useFormContext();
 
+  //TODO: add custom text function as prop
+  function valuetext(value: number) {
+    return `${value}`;
+  }
   return (
-    <InputContainer width={width}>
+    <InputContainer>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
       </Label>
 
       <Controller
-        key={name}
         name={name}
         control={control}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <TextField
-            inputRef={field.ref}
-            key={name}
+          <SliderStyled
             onChange={field.onChange}
             value={field.value}
             id={name}
-            autoComplete={autoComplete}
-            error={!!_.get(errors, name)}
-            {...other}
+            marks={options}
+            min={Number(options[0].value)}
+            max={Number(options[options?.length - 1].value)}
+            getAriaValueText={valuetext}
+            valueLabelDisplay="auto"
           />
         )}
       />
@@ -75,4 +74,12 @@ const Input = ({
   );
 };
 
-export default Input;
+const SliderStyled = styled(MuiSlider)`
+  max-width: 80%;
+  margin: 0 auto;
+  .MuiSlider-mark {
+    visibility: hidden !important;
+  }
+`;
+
+export default Slider;

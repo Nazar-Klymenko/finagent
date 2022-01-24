@@ -1,13 +1,14 @@
-import React, { FC, useEffect, useState } from "react";
+import React from "react";
 
 import { useTranslation } from "next-i18next";
 
 import DatePicker from "@mui/lab/DatePicker";
+import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 
-import { InputErrorMessage, Label } from "./LocalStyles";
+import { InputContainer, InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   labelName: string;
@@ -38,7 +39,7 @@ const DateInput = ({
     formState: { errors },
   } = useFormContext();
   return (
-    <>
+    <InputContainer>
       <Label htmlFor={name}>{labelName}</Label>
 
       <Controller
@@ -61,21 +62,29 @@ const DateInput = ({
             value={field.value}
             mask="__/__/____"
             views={view}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                error={!!_.get(errors, name)}
-                placeholder={placeholder}
-                helperText={null}
-              />
-            )}
+            inputRef={field.ref}
+            renderInput={(params) => {
+              return (
+                <TextField
+                  {...params}
+                  // inputProps={{
+                  //   placeholder: placeholder,
+                  // }}
+                  placeholder={placeholder}
+                  error={!!_.get(errors, name)}
+                  helperText={null}
+                />
+              );
+            }}
           />
         )}
       />
       <InputErrorMessage>
-        {t(_.get(errors, `${name}.message`))}
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
       </InputErrorMessage>
-    </>
+    </InputContainer>
   );
 };
 

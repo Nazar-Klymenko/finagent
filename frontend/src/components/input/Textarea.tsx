@@ -2,7 +2,7 @@ import React from "react";
 
 import { useTranslation } from "next-i18next";
 
-import { TextField, Typography } from "@mui/material";
+import { OutlinedInput, Typography } from "@mui/material";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -14,54 +14,48 @@ import {
 } from "./LocalStyles";
 
 interface Props {
-  labelName: string;
   name: string;
+  labelName: string;
   placeholder?: string;
-  type?: string;
   optional?: boolean;
-  autoFocus?: boolean;
-  autoComplete?: string;
+  rows?: number;
   defaultValue?: string | undefined;
-  width?: "s" | "m" | "l";
 }
 
-const Input = ({
+const Textarea = ({
   name,
   labelName,
-  autoComplete,
+  placeholder,
   optional,
   defaultValue,
-  width = "l",
-  ...other
 }: Props): JSX.Element => {
   const { t } = useTranslation();
   const {
     control,
     formState: { errors },
   } = useFormContext();
-
   return (
-    <InputContainer width={width}>
+    <InputContainer>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
       </Label>
 
       <Controller
-        key={name}
         name={name}
         control={control}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <TextField
-            inputRef={field.ref}
-            key={name}
+          <OutlinedInput
             onChange={field.onChange}
             value={field.value}
-            id={name}
-            autoComplete={autoComplete}
+            multiline
+            inputRef={field.ref}
+            maxRows={8}
+            fullWidth
+            placeholder={placeholder}
             error={!!_.get(errors, name)}
-            {...other}
+            id={name}
           />
         )}
       />
@@ -75,4 +69,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default Textarea;

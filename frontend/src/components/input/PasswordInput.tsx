@@ -1,13 +1,19 @@
-import { FC, useState } from "react";
+import React, { useState } from "react";
 
-import { OutlinedInput, InputAdornment, IconButton } from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import _ from "lodash";
-import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 
-import { InputErrorMessage, Label } from "./LocalStyles";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import {
+  IconButton,
+  InputAdornment,
+  OutlinedInput,
+  Typography,
+} from "@mui/material";
+import _ from "lodash";
+import { Controller, useFormContext } from "react-hook-form";
+
+import { InputContainer, InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   name: string;
@@ -17,14 +23,14 @@ interface Props {
   defaultValue?: string | undefined;
 }
 
-const PasswordInput: FC<Props> = ({
+const PasswordInput = ({
   name,
   errorList,
   defaultValue,
   labelName,
   autoComplete,
   ...other
-}) => {
+}: Props): JSX.Element => {
   const { t } = useTranslation();
   const {
     control,
@@ -42,7 +48,7 @@ const PasswordInput: FC<Props> = ({
   };
 
   return (
-    <>
+    <InputContainer>
       <Label htmlFor={name}>{labelName}</Label>
       <Controller
         name={name}
@@ -50,13 +56,14 @@ const PasswordInput: FC<Props> = ({
         defaultValue={defaultValue}
         render={({ field }) => (
           <OutlinedInput
+            {...other}
             id={name}
             type={showPassword ? "text" : "password"}
             error={!!_.get(errors, name)}
             autoComplete={autoComplete}
             onChange={field.onChange}
             value={field.value}
-            {...other}
+            inputRef={field.ref}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -73,7 +80,9 @@ const PasswordInput: FC<Props> = ({
       />
 
       <InputErrorMessage>
-        {t(_.get(errors, `${name}.message`))}
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
       </InputErrorMessage>
       {/* <Requirements>
         {errorList &&
@@ -84,18 +93,8 @@ const PasswordInput: FC<Props> = ({
             </RequirementsRow>
           ))}
       </Requirements> */}
-    </>
+    </InputContainer>
   );
 };
 
 export default PasswordInput;
-
-// const Requirements = styled("div")`
-//   font-size: 14px;
-//   color: ${({ theme }) => theme.typography.gray};
-//   display: flex;
-//   flex-direction: column;
-// `;
-// const RequirementsRow = styled("div")`
-//   display: flex;
-// `;

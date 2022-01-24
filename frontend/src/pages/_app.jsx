@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useMemo } from "react";
+import { createTheme } from "@mui/material/styles";
 
 import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
@@ -23,6 +24,7 @@ import plLocale from "date-fns/locale/pl";
 import ruLocale from "date-fns/locale/ru";
 import ukLocale from "date-fns/locale/uk";
 import enLocale from "date-fns/locale/en-GB";
+import { plPL, ukUA, enUS, ruRU } from "@mui/material/locale";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -34,10 +36,22 @@ const localeMap = {
   ua: ukLocale,
 };
 
+const muiLocales = {
+  en: enUS,
+  pl: plPL,
+  ru: ruRU,
+  ua: ukUA,
+};
+
 function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const router = useRouter();
   let currentLocale = router.locale;
+
+  const themeWithLocale = useMemo(
+    () => createTheme(muiTheme, muiLocales[currentLocale]),
+    [currentLocale]
+  );
   return (
     <CacheProvider value={emotionCache}>
       {/*old ios polyfill */}
@@ -50,8 +64,8 @@ function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <GlobalStyles />
-      <ThemeProvider theme={muiTheme}>
-        <EmotionThemeProvider theme={muiTheme}>
+      <ThemeProvider theme={themeWithLocale}>
+        <EmotionThemeProvider theme={themeWithLocale}>
           <AuthContextProvider>
             <LocalizationProvider
               dateAdapter={DateAdapter}

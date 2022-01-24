@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import Container from "@mui/material/Container";
-// import { useTranslation } from "react-i18next";
+// import { useTranslation } from "next-i18next";
 // import { NavLink } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 

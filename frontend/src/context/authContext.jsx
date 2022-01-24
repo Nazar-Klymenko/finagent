@@ -245,7 +245,6 @@ export const AuthContextProvider = ({ children }) => {
       await deleteUser(user);
       dispatch(setSnackbar("success", "Account deleted successfully"));
     } catch (error) {
-      console.log({ error });
       dispatch(setSnackbar("error", "Account couldnt be deleted"));
     }
   }

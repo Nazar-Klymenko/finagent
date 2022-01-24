@@ -11,7 +11,7 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 // import { NavLink, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
 

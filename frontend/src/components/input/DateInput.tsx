@@ -2,7 +2,7 @@ import React from "react";
 
 import { useTranslation } from "next-i18next";
 
-import DatePicker from "@mui/lab/DatePicker";
+import DatePicker, { DatePickerProps } from "@mui/lab/DatePicker";
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import _ from "lodash";
@@ -10,9 +10,7 @@ import { Controller, useFormContext } from "react-hook-form";
 
 import { InputContainer, InputErrorMessage, Label } from "./LocalStyles";
 
-interface Props {
-  labelName: string;
-  name: string;
+interface Props extends InputProps {
   defaultValue?: any;
   placeholder: string;
   view?: ["day"] | ["year", "month"] | ["year", "month", "day"] | ["year"];
@@ -31,6 +29,7 @@ const DateInput = ({
   placeholder,
   view = ["year", "month", "day"],
   format = "dd/MM/yyyy",
+  autoComplete,
   ...other
 }: Props): JSX.Element => {
   const { t } = useTranslation();
@@ -48,6 +47,7 @@ const DateInput = ({
         defaultValue={defaultValue || null}
         render={({ field }) => (
           <DatePicker
+            {...other}
             leftArrowButtonText={t("Form.Inputs.DateInput.leftArrowButtonText")}
             rightArrowButtonText={t(
               "Form.Inputs.DateInput.rightArrowButtonText"
@@ -70,6 +70,7 @@ const DateInput = ({
                   // inputProps={{
                   //   placeholder: placeholder,
                   // }}
+                  autoComplete={autoComplete}
                   placeholder={placeholder}
                   error={!!_.get(errors, name)}
                   helperText={null}

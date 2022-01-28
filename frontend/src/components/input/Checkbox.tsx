@@ -16,7 +16,7 @@ interface Props {
   name: string;
   labelName: string;
   defaultValue?: boolean | undefined;
-  spacer?: boolean;
+  errorSpacer?: boolean;
   readOnly?: boolean;
   defaultChecked?: boolean;
 }
@@ -25,8 +25,8 @@ const Checkbox = ({
   name,
   labelName,
   defaultValue,
+  errorSpacer,
   readOnly,
-  spacer,
 }: Props): JSX.Element => {
   const { t } = useTranslation();
   const {
@@ -56,11 +56,13 @@ const Checkbox = ({
         )}
       />
 
-      <InputErrorMessage>
-        <Typography variant="caption">
-          {t(_.get(errors, `${name}.message`))}
-        </Typography>
-      </InputErrorMessage>
+      {errorSpacer && (
+        <InputErrorMessage>
+          <Typography variant="caption">
+            {t(_.get(errors, `${name}.message`))}
+          </Typography>
+        </InputErrorMessage>
+      )}
     </InputContainer>
   );
 };

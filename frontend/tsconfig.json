@@ -27,7 +27,8 @@
       "@hooks/*": ["./src/hooks/*"],
       "@pages/*": ["./src/pages/*"],
       "@redux/*": ["./src/redux/*"],
-      "@dev/*": ["./src/_devOnly/*"]
+      "@dev/*": ["./src/_devOnly/*"],
+      "@hoc/*": ["./src/hoc/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

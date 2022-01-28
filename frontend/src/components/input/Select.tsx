@@ -11,7 +11,8 @@ import { InputContainer, InputErrorMessage, Label } from "./LocalStyles";
 interface Props {
   name: string;
   labelName: string;
-  options: { label: string; value: string }[];
+  // options: { label: string; value: string }[];
+  options: string[];
   placeholder?: string;
   defaultValue?: string | undefined;
   width?: "s" | "m" | "l";
@@ -60,10 +61,16 @@ const Select = ({
           >
             {options.length > 0 &&
               options.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
+                <MenuItem key={option} value={option}>
+                  {option}
                 </MenuItem>
               ))}
+            {/* {options.length > 0 &&
+              options.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {t(option.label)}
+                </MenuItem>
+              ))} */}
           </MuiSelect>
         )}
       />

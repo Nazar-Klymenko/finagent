@@ -55,12 +55,12 @@ const Autocomplete = ({
         key={name}
         name={name}
         control={control}
-        defaultValue={defaultValue}
         render={({ field }) => (
           <MuiAutocomplete
             id={name}
             disablePortal
             options={options}
+            defaultValue={defaultValue}
             onChange={(e, data) => field.onChange(data)}
             freeSolo
             autoSelect

@@ -8,7 +8,9 @@ import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { AuthContextProvider } from "src/context/authContext";
+import { AuthContextProvider } from "@context/authContext";
+import { DataProvider } from "@context/dataContext";
+
 import Script from "next/script";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
@@ -67,15 +69,17 @@ function MyApp(props) {
       <ThemeProvider theme={themeWithLocale}>
         <EmotionThemeProvider theme={themeWithLocale}>
           <AuthContextProvider>
-            <LocalizationProvider
-              dateAdapter={DateAdapter}
-              locale={localeMap[currentLocale]}
-            >
-              <CssBaseline />
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </LocalizationProvider>
+            <DataProvider>
+              <LocalizationProvider
+                dateAdapter={DateAdapter}
+                locale={localeMap[currentLocale]}
+              >
+                <CssBaseline />
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </LocalizationProvider>
+            </DataProvider>
           </AuthContextProvider>
         </EmotionThemeProvider>
       </ThemeProvider>

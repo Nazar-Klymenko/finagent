@@ -85,7 +85,7 @@ const Dev = () => {
         />
 
         <Input name="text" labelName="input" />
-        <Checkbox name="checkbox" labelName="checkbox" spacer />
+        <Checkbox name="checkbox" labelName="checkbox" errorSpacer />
         <DateInput
           name="drivingLicenceDate"
           labelName="Date input"

@@ -2,7 +2,7 @@ import React from "react";
 
 import { useTranslation } from "next-i18next";
 
-import { TextField, Typography } from "@mui/material";
+import { TextField, TextFieldProps, Typography } from "@mui/material";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -13,14 +13,11 @@ import {
   Optional,
 } from "./LocalStyles";
 
-interface Props {
-  labelName: string;
-  name: string;
+interface Props extends InputProps {
   placeholder?: string;
   type?: string;
   optional?: boolean;
   autoFocus?: boolean;
-  autoComplete?: string;
   defaultValue?: string | undefined;
   width?: "s" | "m" | "l";
 }

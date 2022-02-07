@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -49,7 +49,7 @@ const ForgotPassword: NextPage = (props) => {
   }, [isLoggedIn, isActive, router]);
 
   return (
-    <AuthContainer>
+    <AuthContainer isLoading={false}>
       <Typography gutterBottom align="center" variant="h3">
         {t("RestorePassword.title")}
       </Typography>

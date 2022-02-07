@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
@@ -67,10 +67,10 @@ const Login: NextPage = (props) => {
   }, [isLoggedIn, isActive, router]);
 
   return (
-    <AuthContainer>
+    <AuthContainer isLoading={isLoading}>
       {!isLoading ? (
         <>
-          <Typography gutterBottom align="center" variant="h3">
+          <Typography gutterBottom align="center" variant="h4">
             {t("LogIn.title")}
           </Typography>
           <Form methods={methods} id="form" onSubmit={formSubmit}>

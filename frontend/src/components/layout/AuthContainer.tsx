@@ -1,24 +1,25 @@
 import * as React from "react";
 
 import { Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { css, styled } from "@mui/material/styles";
 
 interface Props {
   children: any;
+  isLoading: boolean;
 }
 
-const AuthContainer = ({ children }: Props): JSX.Element => {
-  return <BoxStyled>{children}</BoxStyled>;
+const AuthContainer = ({ children, isLoading }: Props): JSX.Element => {
+  return <BoxStyled isLoading={isLoading}>{children}</BoxStyled>;
 };
 
 export default AuthContainer;
 
-const BoxStyled = styled(Box)`
+const BoxStyled = styled(Box)<{ isLoading: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: auto auto;
+  margin: 1.5rem auto;
   padding: 1.5rem;
   height: fit-content;
   max-width: 500px;
@@ -31,6 +32,11 @@ const BoxStyled = styled(Box)`
     height: auto;
     /* min-height: 100%; */
     /* margin: 0 auto; */
-    padding: 1.5rem 0;
+    padding: 1.5rem 16px;
   }
+  ${({ isLoading }) =>
+    isLoading &&
+    css`
+      border: none;
+    `}
 `;

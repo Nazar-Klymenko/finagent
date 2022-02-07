@@ -20,7 +20,10 @@ import {
 
 import insuranceTransportSubmit from "controllers/frontend/submits/insuranceTransportSubmit.js";
 
-import { getAllAplications } from "controllers/frontend/applicationsActions";
+import {
+  getAllAplications,
+  getSpecificApplication,
+} from "controllers/frontend/applicationsActions";
 
 router.route("/auth/signup").post(signUp);
 router.route("/auth/signup_facebook").post(signUpFacebook);
@@ -42,6 +45,10 @@ router
 router
   .route("/submit/insraunce-transport")
   .post(verifyAccessTokenFirebase, isEmailVerified, insuranceTransportSubmit);
+
+router
+  .route("/applications/specific/:id")
+  .get(verifyAccessTokenFirebase, isEmailVerified, getSpecificApplication);
 
 router
   .route("/applications/:category")

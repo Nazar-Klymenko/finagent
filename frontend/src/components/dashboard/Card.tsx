@@ -8,7 +8,6 @@ import { styled } from "@mui/material/styles";
 import useDatefnsLocalized from "@hooks/useDatefnsLocalized";
 
 const Card = ({ app }: any): JSX.Element => {
-  console.log(app);
   const { t } = useTranslation();
 
   const { formatDistanceToNow, format } = useDatefnsLocalized();

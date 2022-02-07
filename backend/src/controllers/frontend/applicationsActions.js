@@ -67,17 +67,17 @@ export const getPreviewApplications = asyncHandler(async (req, res) => {
 });
 
 export const getSpecificApplication = asyncHandler(async (req, res) => {
-  const SpecificApplication = await Application.findOne({
+  const data = await Application.findOne({
     _id: req.params.id,
     user_id: req.currentUser.uid,
   }).populate("user");
-  // .populate("user_id", "-_id -__v -isActive -createdAt -updatedAt ");
-  if (!SpecificApplication) {
+
+  if (!data) {
     throw createError.Forbidden();
-  } else if (SpecificApplication.length === 0) {
+  } else if (data.length === 0) {
     throw createError.Forbidden();
   }
-  res.status(200).send(SpecificApplication);
+  res.send(data);
 });
 
 export const archiveApplication = asyncHandler(async (req, res) => {

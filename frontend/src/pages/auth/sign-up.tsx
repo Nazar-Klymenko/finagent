@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -11,7 +12,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { useAuth } from "@context/authContext";
 
@@ -71,10 +71,10 @@ const SignUp: NextPage = () => {
   };
 
   return (
-    <AuthContainer>
+    <AuthContainer isLoading={isLoading}>
       {!isLoading ? (
         <>
-          <Typography gutterBottom align="center" variant="h3">
+          <Typography gutterBottom align="center" variant="h4">
             {t("SignUp.title")}
           </Typography>
 

@@ -884,6 +884,7 @@
       "assistance": "Допомога на дорозі (Assistance)",
       "name": "Ім'я",
       "surname": "Прізвище",
+      "fullName": "Ім'я і Прізвище",
       "phoneNumber": "Номер телефону",
       "postIndex": "Поштовий індекс",
       "city": "Місто",

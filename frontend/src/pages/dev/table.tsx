@@ -1,16 +1,28 @@
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
+import { summaryLabels } from "@modules/survey/insurance-transport/helpers/summaryLabels";
+// import { isDate } from "date-fns";
+import { isDate } from "lodash";
+
+import { SummaryList } from "@components/SummaryList";
 import Table from "@components/Table";
 import { PageContainer } from "@components/layout";
 
 const DevTable = () => {
+  const { t } = useTranslation();
+
+  const summaryReady = summaryLabels(array);
+
   return (
     <PageContainer xs title="table">
-      <Table
-        header="test"
+      <SummaryList
+        header={t("Basic.summary")}
         applicationType="InsuranceTransport"
-        array={Object.entries(array)}
-      ></Table>
+        //@ts-ignore
+        array={summaryReady}
+        defaultOpen
+      />
     </PageContainer>
   );
 };

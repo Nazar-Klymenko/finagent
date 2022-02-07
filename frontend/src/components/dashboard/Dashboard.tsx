@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { fetcher } from "@helpers/swrFetcher";
 
 import Loader from "@components/Loader";
+import MuiPagination from "@components/MuiPagination";
 
 import Card from "./Card";
 
@@ -18,6 +19,12 @@ const Dashboard = (): JSX.Element => {
     <DashboardMain>
       {data?.length > 0 &&
         data.map((app: any) => <Card key={app.id} app={app} />)}
+      <MuiPagination
+        category="insurance"
+        currentPage={1}
+        maximumPages={1}
+        status="ready"
+      />
     </DashboardMain>
   );
 };

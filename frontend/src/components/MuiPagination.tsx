@@ -1,9 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 
-import Pagination from '@mui/material/Pagination';
+import Link from "next/link";
+
 import PaginationItem from "@mui/lab/PaginationItem";
+import Pagination from "@mui/material/Pagination";
 import { styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
 
 interface Props {
   category: string;
@@ -12,12 +13,12 @@ interface Props {
   maximumPages: number;
 }
 
-const MuiPagination: FC<Props> = ({
+const MuiPagination = ({
   category,
   currentPage,
   maximumPages,
   status,
-}) => {
+}: Props): JSX.Element => {
   if (maximumPages === 0) {
     maximumPages = 1;
   }
@@ -29,8 +30,8 @@ const MuiPagination: FC<Props> = ({
         shape="rounded"
         renderItem={(item) => (
           <PaginationItem
-            component={Link}
-            to={`/dashboard/${category}/${status}/${item.page}`}
+            component="a"
+            href={`/dashboard/${category}/${item.page}`}
             {...item}
           />
         )}

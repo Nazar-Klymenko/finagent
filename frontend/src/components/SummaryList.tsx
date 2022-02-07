@@ -1,11 +1,11 @@
 import React, { FC, useCallback, useState } from "react";
 
-import { useTranslation } from "react-i18next";
-import { css, styled } from "@mui/material/styles";
-
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography } from "@mui/material";
+import { css, styled } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
+
 interface Props {
   header: string;
   array: any[] | undefined;
@@ -35,7 +35,9 @@ const SummaryList: FC<Props> = ({
   return (
     <SummaryListStyled inDashboard={inDashboard}>
       <Header inDashboard={inDashboard} onClick={toggleOpen}>
-        <Typography sx={{ flex: "1" }}>{header}</Typography>
+        <Typography variant="h6" sx={{ flex: "1" }}>
+          {header}
+        </Typography>
 
         {isOpen ? (
           <KeyboardArrowUpIcon fontSize="large" />
@@ -45,22 +47,30 @@ const SummaryList: FC<Props> = ({
       </Header>
 
       <List isOpen={isOpen}>
-        {array &&
-          array.map((item: any, idx) => (
-            <Category key={idx}>
-              <Typography variant="h6">
-                {t(`${applicationType}.${item[0]}`)}
-              </Typography>
-              {Object.entries(item[1]).map((subitem: any, idx) => (
-                <Item key={idx}>
-                  <div className="value">
-                    {t(`${applicationType}.Page${idx + 1}.${subitem[0]}`)}
-                  </div>
-                  <div className="name"> {subitem[1]?.label || subitem[1]}</div>
-                </Item>
-              ))}
-            </Category>
-          ))}
+        {/*@ts-ignore */}
+        {array?.length > 0 &&
+          array?.map((item: any, idx: number) => {
+            return (
+              <React.Fragment key={idx}>
+                <Category>
+                  <Typography variant="h6" sx={{ px: "0.5rem" }}>
+                    {t(`${applicationType}.Page${idx + 1}.subtitle`)}
+                  </Typography>
+
+                  {Object.entries(item[1]).map((subitem: any, subidx) => (
+                    <Item key={subidx}>
+                      <div className="value">
+                        {t(`${applicationType}.Page${idx + 1}.${subitem[0]}`)}
+                      </div>
+                      <div className="name">
+                        {t(subitem[1]?.label) || t(subitem[1])}
+                      </div>
+                    </Item>
+                  ))}
+                </Category>
+              </React.Fragment>
+            );
+          })}
       </List>
     </SummaryListStyled>
   );

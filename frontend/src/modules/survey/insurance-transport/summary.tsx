@@ -12,6 +12,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import { QuestState } from "@helpers/QuestState";
+import determineAppType from "@helpers/determineAppType";
 import withAuthForm from "@helpers/withAuthForm";
 
 import { auth, storage } from "@services/firebase";
@@ -45,7 +46,7 @@ const Summary = () => {
   const { progress, running, paused, upload } = useFileUpload();
 
   const appDataValid = appData.insuranceTransport;
-  const appDataSummary = summaryLabels(appDataValid);
+  const summaryReady = determineAppType("transport", appDataValid);
 
   const methods = useForm<FormTypes>({
       defaultValues: {
@@ -80,6 +81,8 @@ const Summary = () => {
             upload(storageRef, file);
           });
       });
+
+      router.push("dashboard/insurances");
     } catch (error) {
       console.log(error);
       alert("error");
@@ -91,16 +94,13 @@ const Summary = () => {
       <Typography variant="h4">{t("InsuranceTransport.title")}</Typography>
       <ProgressBar maxSteps={5} currentStep={5} label={t("Basic.summary")} />
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
-        <h1>Upload: {progress} %</h1>
-        <h1>running: {running + ""} </h1>
-        <h1>paused: {paused + ""} </h1>
         <QuestState data={appData}></QuestState>
 
         <SummaryList
           header={t("Basic.summary")}
           applicationType="InsuranceTransport"
           //@ts-ignore
-          array={appDataSummary}
+          array={summaryReady}
           defaultOpen
         />
 

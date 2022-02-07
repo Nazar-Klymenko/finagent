@@ -4,12 +4,13 @@ import { Box, Paper, Switch, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import useSWR from "swr";
 
+import determineAppType from "@helpers/determineAppType";
 import { fetcher } from "@helpers/swrFetcher";
 
 import useDatefnsLocalized from "@hooks/useDatefnsLocalized";
 
 import Loader from "@components/Loader";
-import SummaryList from "@components/SummaryList";
+import { SummaryList } from "@components/SummaryList";
 import { BackArrow } from "@components/buttons";
 
 import { Status } from "./Status";
@@ -22,9 +23,10 @@ const Application = ({ id }: Props): JSX.Element => {
   const { t } = useTranslation();
   const { formatDistanceToNow, format } = useDatefnsLocalized();
 
-  console.log(data);
-
   if (!data && !error) return <Loader />;
+
+  const summaryReady = determineAppType(data?.type, data);
+  console.log(data);
 
   return (
     <ApplicationMain>
@@ -80,12 +82,14 @@ const Application = ({ id }: Props): JSX.Element => {
             </Typography>
           </Cell>
         </InfoContainer>
-
         <SummaryList
           inDashboard
           header={t("ApplicationOpen.Summary.summary")}
-          array={Object.entries(data)}
-          applicationType={data.applicationType}
+          array={summaryReady}
+          applicationType={
+            data.applicationType[0].toUpperCase() +
+            data.applicationType.slice(1)
+          }
         />
         <Status currentStep={data.status} />
       </ApplicationBody>

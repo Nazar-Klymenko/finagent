@@ -30,7 +30,7 @@ const Status: React.FC<Props> = ({ currentStep }) => {
     <ApplicationStatusStyled>
       {[...Array(4)].map((x, idx) => (
         <Step key={idx} addedClass={checkClass(idx)}>
-          <Number addedClass={checkClass(idx)}>{idx}</Number>
+          <Number addedClass={checkClass(idx)}>{idx + 1}</Number>
           <Subheader addedClass={checkClass(idx)}>
             {t(`ApplicationOpen.StatusIndex.status${idx + 1}`)}
           </Subheader>

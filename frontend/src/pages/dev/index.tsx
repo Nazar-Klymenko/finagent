@@ -107,26 +107,11 @@ const Dev = () => {
           name="select"
           labelName="Select"
           options={[
-            {
-              value: "individual",
-              label: t("InsuranceTransport.SelectParking.individual"),
-            },
-            {
-              value: "shared",
-              label: t("InsuranceTransport.SelectParking.shared"),
-            },
-            {
-              value: "guarded",
-              label: t("InsuranceTransport.SelectParking.guarded"),
-            },
-            {
-              value: "fenced",
-              label: t("InsuranceTransport.SelectParking.fenced"),
-            },
-            {
-              value: "unsecured",
-              label: t("InsuranceTransport.SelectParking.unsecured"),
-            },
+            t("InsuranceTransport.SelectParking.individual"),
+            t("InsuranceTransport.SelectParking.shared"),
+            t("InsuranceTransport.SelectParking.guarded"),
+            t("InsuranceTransport.SelectParking.fenced"),
+            t("InsuranceTransport.SelectParking.unsecured"),
           ]}
         />
         <Slider

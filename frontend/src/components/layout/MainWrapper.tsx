@@ -8,7 +8,11 @@ interface Props {
 }
 
 const MainWrapper = ({ children }: Props): JSX.Element => {
-  return <ContainerStyled maxWidth="lg">{children}</ContainerStyled>;
+  return (
+    <ContainerStyled maxWidth="lg" disableGutters>
+      {children}
+    </ContainerStyled>
+  );
 };
 
 export default MainWrapper;
@@ -18,6 +22,13 @@ const ContainerStyled = styled(Container)`
   min-height: calc(100vh - 64px);
   display: flex !important;
   flex-direction: column;
-  margin-top: 64px;
+  margin-top: 56px;
   flex: 1;
+
+  @media (min-width: 0px) and (orientation: landscape) {
+    margin-top: 48px;
+  }
+  @media (min-width: 600px) {
+    margin-top: 64px;
+  }
 `;

@@ -22,8 +22,6 @@ import { Button } from "@components/buttons";
 import { Input, Textarea } from "@components/input";
 import { PageContainer } from "@components/layout";
 
-// import { Mail, Phone, Point } from "@components/svgs";
-
 type FormData = {
   fullName: string;
   email: string;

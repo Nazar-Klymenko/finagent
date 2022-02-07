@@ -46,7 +46,7 @@
     "no": "No",
     "yes": "Yes",
     "ApplicationType": {
-      "OC": "Transport insurance",
+      "transport": "Transport insurance",
       "Estate": "Real estate insurance",
       "Travel": "Travel insurance",
       "HealthSpecialist": "Specialists access",

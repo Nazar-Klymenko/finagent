@@ -47,7 +47,7 @@
     "no": "Nie",
     "yes": "Tak",
     "ApplicationType": {
-      "OC": "Ubezpieczenie transportu",
+      "transport": "Ubezpieczenie transportu",
       "Estate": "Ubezpieczenia nieruchomości",
       "Travel": "Ubezpieczenie turystyczne",
       "HealthSpecialist": "Dostęp do specjalistów",

@@ -6,11 +6,19 @@ import { useRouter } from "next/router";
 
 // import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Typography } from "@mui/material";
+import { Dialog, Typography } from "@mui/material";
+import { ref, updateMetadata, uploadBytes } from "firebase/storage";
 import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
 
+import { QuestState } from "@helpers/QuestState";
 import withAuthForm from "@helpers/withAuthForm";
+
+import { auth, storage } from "@services/firebase";
+
+import { postApplication } from "@api/applications";
+
+import useFileUpload from "@hooks/useFileUpload";
 
 import { useData } from "@context/dataContext";
 
@@ -18,24 +26,72 @@ import Form from "@components/Form";
 import FormBuilder from "@components/FormBuilder";
 import ProgressBar from "@components/ProgressBar";
 import { Button } from "@components/buttons";
-import { Checkbox, FileInput } from "@components/input";
+import { Checkbox } from "@components/input";
 import { PageContainer } from "@components/layout";
+
+type FormTypes = {
+  agree: boolean;
+};
 
 const Summary = () => {
   const { t } = useTranslation();
   const { appData, setValues } = useData();
   const router = useRouter();
 
-  const appDataValid = appData.insuranceTransport;
+  const { progress, running, paused, upload } = useFileUpload();
 
-  console.log(appDataValid);
+  const appDataValid = appData.insuranceTransport;
+  const methods = useForm<FormTypes>({
+      defaultValues: {
+        agree: false,
+      },
+      mode: "onChange",
+      reValidateMode: "onChange",
+      shouldFocusError: true,
+      shouldUnregister: true,
+      resolver: yupResolver(pageSummarySchema),
+    }),
+    { handleSubmit } = methods;
+
+  const formSubmit = handleSubmit(async (data) => {
+    try {
+      if (!auth.currentUser) return;
+      const response = await postApplication(
+        "insraunce-transport",
+        appDataValid
+      );
+
+      Object.entries(appDataValid.appendedDocuments).forEach((fileArray) => {
+        //@ts-ignore
+        fileArray[1]?.length > 0 &&
+          //@ts-ignore
+          fileArray[1].forEach((file) => {
+            const storageRef = ref(
+              storage, //@ts-ignore
+              `files/${auth.currentUser.uid}/${response.data.id}/userAttachments/${file.path}`
+            );
+            //@ts-ignore
+            upload(storageRef, file);
+          });
+      });
+    } catch (error) {
+      console.log(error);
+      alert("error");
+    }
+  });
 
   return (
     <PageContainer xs title="InsuranceTransport.title">
       <Typography variant="h4">{t("InsuranceTransport.title")}</Typography>
       <ProgressBar maxSteps={5} currentStep={5} label={t("Basic.summary")} />
+      <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
+        <h1>Upload: {progress} %</h1>
+        <h1>running: {running + ""} </h1>
+        <h1>paused: {paused + ""} </h1>
+        <QuestState data={appData}></QuestState>
 
-      {"summary"}
+        <Checkbox name="agree" labelName="klikając wyrażam zgodę" errorSpacer />
+      </Form>
       <FormBuilder.ButtonsWrap multiple>
         <Button
           onClick={() => {
@@ -63,3 +119,6 @@ export async function getStaticProps({ locale }: any) {
     },
   };
 }
+const pageSummarySchema = yup.object().shape({
+  agree: yup.boolean().isTrue("pleace accept"),
+});

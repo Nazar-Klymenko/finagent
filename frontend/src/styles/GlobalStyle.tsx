@@ -1,4 +1,5 @@
 import { Global, css } from "@emotion/react";
+
 import muiTheme from "@styles/muiTheme";
 
 const GlobalStyles = (): JSX.Element => {
@@ -29,13 +30,11 @@ const GlobalStyles = (): JSX.Element => {
           flex-direction: column;
           min-height: 100%;
         }
-
-        /* a {
-          color: ${muiTheme.palette.primary.main};
-          &:visited {
-            color: ${muiTheme.palette.primary.main};
-          }
-        } */
+        a {
+          text-decoration: none;
+          cursor: pointer;
+          color: inherit;
+        }
       `}
     />
   );

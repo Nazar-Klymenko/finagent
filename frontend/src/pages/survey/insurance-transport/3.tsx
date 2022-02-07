@@ -142,7 +142,6 @@ const Page3 = () => {
           name="techExamDate"
           labelName={t("InsuranceTransport.Page3.techExamDate")}
           placeholder={t("Form.Placeholder.dateFull")}
-          disableFuture
           autoComplete="off"
         />
 

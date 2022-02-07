@@ -34,7 +34,6 @@ type FormTypes = {
   ac: boolean;
   greenCard: boolean;
   assistance: boolean;
-  coverage: any;
   fullName: string;
   phoneNumber: string;
   postIndex: string;
@@ -48,7 +47,6 @@ type FormTypes = {
   drivingLicenceDate: Date | null;
   profession: string;
   maritalStatus: string;
-  atleastOneCheckbox: any;
 };
 
 const Page1 = () => {

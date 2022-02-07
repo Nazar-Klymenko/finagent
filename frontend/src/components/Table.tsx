@@ -38,7 +38,7 @@ const Table: FC<Props> = ({
   return (
     <TableContainerStyled open={open} component={Paper}>
       <MuiTable size="small">
-        <TableHeadStyled>
+        <TableHead>
           <TableRow>
             <TableCellStyled>
               <span>{header}</span>
@@ -55,7 +55,7 @@ const Table: FC<Props> = ({
               </IconButton>
             </TableCellStyled>
           </TableRow>
-        </TableHeadStyled>
+        </TableHead>
 
         {open && (
           <TableBody>
@@ -69,10 +69,10 @@ const Table: FC<Props> = ({
                       </Typography>
                     </TableCell>
                   </TableRow>
-                  {Object.entries(item[1]).map((subitem: any, idx) => (
-                    <TableRow key={idx} hover>
+                  {Object.entries(item[1]).map((subitem: any, subidx) => (
+                    <TableRow key={subidx} hover>
                       <TableCell className="value">
-                        {t(`${applicationType}.Page1.${subitem[0]}`)}
+                        {t(`${applicationType}.Page${idx + 1}.${subitem[0]}`)}
                       </TableCell>
                       <TableCell className="name" align="left">
                         {subitem[1]?.label || subitem[1]}
@@ -112,9 +112,7 @@ const TableContainerStyled = styled(TableContainer)<any>`
       box-shadow: none;
     `}
 `;
-const TableHeadStyled = styled(TableHead)`
-  padding: 16px;
-`;
+
 const TableCellStyled = styled(TableCell)`
   background-color: ${({ theme }) => theme.palette.primary.main};
   color: ${({ theme }) => theme.palette.common.white};

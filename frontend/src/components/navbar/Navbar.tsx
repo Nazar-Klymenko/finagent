@@ -55,9 +55,9 @@ const Navbar = (props: any): JSX.Element => {
           </InnerNavbar>
         </Container>
       </NavbarBg>
-      <LoaderWrap>
+      {/* <LoaderWrap>
         {loading && <LinearProgress variant="indeterminate" />}
-      </LoaderWrap>
+      </LoaderWrap> */}
     </>
   );
 };

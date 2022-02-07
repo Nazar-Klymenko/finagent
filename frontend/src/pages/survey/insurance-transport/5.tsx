@@ -10,6 +10,7 @@ import { Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import * as yup from "yup";
 
+import { QuestState } from "@helpers/QuestState";
 import withAuthForm from "@helpers/withAuthForm";
 
 import { useData } from "@context/dataContext";
@@ -54,8 +55,8 @@ const Page5 = () => {
     { handleSubmit, watch } = methods;
 
   const formSubmit = handleSubmit((data) => {
-    console.log(data);
-    setValues(data, "insuranceTransport", "appendedDocuments");
+    setValues(data, "insuranceTransport", `appendedDocuments`);
+    console.log({ data });
     setAllowSummary(true);
     router.push("./summary");
   });
@@ -78,21 +79,30 @@ const Page5 = () => {
           {t("InsuranceTransport.Page5.registration")} (
           {t("InsuranceTransport.Page5.twoSides")})
         </Typography>
-
-        <FileInput name="filesTechPassport" labelName="" />
-
+        <FileInput
+          name="filesTechPassport"
+          labelName=""
+          defaultValue={appDataValid.filesTechPassport}
+        />
         <Typography variant="body1">
           {t("InsuranceTransport.Page5.driversLicence")} (
           {t("InsuranceTransport.Page5.twoSides")})
         </Typography>
-
-        <FileInput name="filesPassport" labelName="" />
+        <FileInput
+          name="filesPassport"
+          labelName=""
+          defaultValue={appDataValid.filesPassport}
+        />
 
         <Typography variant="body1">
           {t("InsuranceTransport.Page5.currentInsurance")}
         </Typography>
 
-        <FileInput name="filesInsurance" labelName="" />
+        <FileInput
+          name="filesInsurance"
+          labelName=""
+          defaultValue={appDataValid.filesInsurance}
+        />
         <Checkbox
           labelName={t("InsuranceTransport.Page5.registeredOnMe")}
           name="isFirstOwner"
@@ -103,10 +113,17 @@ const Page5 = () => {
               {t("InsuranceTransport.Page5.salesContract")} (
               {t("InsuranceTransport.Page5.twoSides")})
             </Typography>
-            <FileInput name="filesCarSale" labelName="" />
+            <FileInput
+              name="filesCarSale"
+              labelName=""
+              defaultValue={appDataValid.filesCarSale}
+            />
           </>
         )}
       </Form>
+
+      <QuestState data={appData}></QuestState>
+
       <FormBuilder.ButtonsWrap multiple>
         <Button
           onClick={() => {
@@ -144,56 +161,56 @@ const pageFiveSchema = yup.object().shape({
       "nieodpowiedni typ plików",
       checkIfFilesAreCorrectType
     ),
-  filesPassport: yup
-    .array()
-    .nullable()
-    .required("Form.Error.blank")
-    .min(1, "minimalnie 1 plik")
-    .max(5, "maksymalnie 5 plików")
-    .test(
-      "is-big-file",
-      "maksymalny rozmiar pliku to 5MB",
-      checkIfFilesAreTooBig
-    )
-    .test(
-      "is-correct-file",
-      "nieodpowiedni typ plików",
-      checkIfFilesAreCorrectType
-    ),
-  filesCarSale: yup.array().when("isFirstOwner", {
-    is: false,
-    then: yup
-      .array()
-      .nullable()
-      .required("Form.Error.blank")
-      .min(1, "minimalnie 1 plik")
-      .max(5, "maksymalnie 5 plików")
-      .test(
-        "is-big-file",
-        "maksymalny rozmiar pliku to 5MB",
-        checkIfFilesAreTooBig
-      )
-      .test(
-        "is-correct-file",
-        "nieodpowiedni typ plików",
-        checkIfFilesAreCorrectType
-      ),
-  }),
-  filesInsurance: yup
-    .array()
-    .nullable()
-    .notRequired()
-    .max(5, "maksymalnie 5 plików")
-    .test(
-      "is-big-file",
-      "maksymalny rozmiar pliku to 5MB",
-      checkIfFilesAreTooBig
-    )
-    .test(
-      "is-correct-file",
-      "nieodpowiedni typ plików",
-      checkIfFilesAreCorrectType
-    ),
+  // filesPassport: yup
+  //   .array()
+  //   .nullable()
+  //   .required("Form.Error.blank")
+  //   .min(1, "minimalnie 1 plik")
+  //   .max(5, "maksymalnie 5 plików")
+  //   .test(
+  //     "is-big-file",
+  //     "maksymalny rozmiar pliku to 5MB",
+  //     checkIfFilesAreTooBig
+  //   )
+  //   .test(
+  //     "is-correct-file",
+  //     "nieodpowiedni typ plików",
+  //     checkIfFilesAreCorrectType
+  //   ),
+  // filesCarSale: yup.array().when("isFirstOwner", {
+  //   is: false,
+  //   then: yup
+  //     .array()
+  //     .nullable()
+  //     .required("Form.Error.blank")
+  //     .min(1, "minimalnie 1 plik")
+  //     .max(5, "maksymalnie 5 plików")
+  //     .test(
+  //       "is-big-file",
+  //       "maksymalny rozmiar pliku to 5MB",
+  //       checkIfFilesAreTooBig
+  //     )
+  //     .test(
+  //       "is-correct-file",
+  //       "nieodpowiedni typ plików",
+  //       checkIfFilesAreCorrectType
+  //     ),
+  // }),
+  // filesInsurance: yup
+  //   .array()
+  //   .nullable()
+  //   .notRequired()
+  //   .max(5, "maksymalnie 5 plików")
+  //   .test(
+  //     "is-big-file",
+  //     "maksymalny rozmiar pliku to 5MB",
+  //     checkIfFilesAreTooBig
+  //   )
+  //   .test(
+  //     "is-correct-file",
+  //     "nieodpowiedni typ plików",
+  //     checkIfFilesAreCorrectType
+  //   ),
 });
 function checkIfFilesAreTooBig(files: any) {
   let valid = true;

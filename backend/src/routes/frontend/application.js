@@ -5,7 +5,7 @@ import {
   archiveApplication,
 } from "controllers/frontend/applicationsActions";
 import InsuranceBorderSubmit from "controllers/frontend/submits/InsuranceBorder.submit.js";
-import InsuranceCarOCSubmit from "controllers/frontend/submits/InsuranceCarOC.submit.js";
+// import InsuranceCarOCSubmit from "controllers/frontend/submits/InsuranceCarOC.submit.js";
 import InsuranceEstateSubmit from "controllers/frontend/submits/InsuranceEstate.submit.js";
 import InsuranceHealthMedicalSubmit from "controllers/frontend/submits/InsuranceHealthMedical.submit.js";
 import InsuranceHealthSpecialistSubmit from "controllers/frontend/submits/InsuranceHealthSpecialist.submit.js";
@@ -33,9 +33,9 @@ router
   .get(verifyAccessTokenFirebase, isEmailVerified, getSpecificApplication)
   .put(verifyAccessTokenFirebase, isEmailVerified, archiveApplication);
 
-router
-  .route("/submit/insurance_car_oc")
-  .post(verifyAccessTokenFirebase, isEmailVerified, InsuranceCarOCSubmit);
+// router
+//   .route("/submit/insurance_car_oc")
+//   .post(verifyAccessTokenFirebase, isEmailVerified, InsuranceCarOCSubmit);
 router
   .route("/submit/insurance_border")
   .post(verifyAccessTokenFirebase, isEmailVerified, InsuranceBorderSubmit);

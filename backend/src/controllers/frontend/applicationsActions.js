@@ -4,6 +4,25 @@ import asyncHandler from "helpers/asyncHandler.js";
 import createError from "http-errors";
 import { PaginationHelper } from "helpers/paginationHelper";
 
+export const getAllAplications = asyncHandler(async (req, res) => {
+  let { category } = req.params;
+
+  let filters = {
+    user_id: req.currentUser.uid,
+    category: category,
+    archived: false,
+  };
+
+  const data = await Application.find(
+    filters,
+    "_id user_id user status type category createdAt updatedAt"
+  )
+    .populate("user")
+    .sort({ createdAt: -1 });
+
+  res.send(data);
+});
+
 export const getPreviewApplications = asyncHandler(async (req, res) => {
   let { category, status } = req.params;
   let { page, size } = req.query;

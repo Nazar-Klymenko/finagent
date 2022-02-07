@@ -31,7 +31,7 @@ let theme = createTheme({
       main: "#1672ec",
     },
     secondary: {
-      main: "#e9e9e9",
+      main: "#ebf4ff",
     },
     error: {
       main: "#f44336",

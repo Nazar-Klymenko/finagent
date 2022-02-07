@@ -1,5 +1,11 @@
 import { axios } from "./axiosConfig";
 
+export const getAllAplications = (category: string) => {
+  return axios(`/user/applications/${category}/`, {
+    method: "GET",
+  });
+};
+
 export const archiveApplicationAPI = (id: string) => {
   return axios(`/user/application/${id}`, {
     method: "PUT",
@@ -35,4 +41,14 @@ export const getUserAttachmentsAPI = (id: string, type: string) => {
       responseType: "blob",
     },
   };
+};
+
+export const postApplication = (applicationType: string, data: any) => {
+  return axios(`/user/submit/${applicationType}`, {
+    method: "POST",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
 };

@@ -5,10 +5,11 @@ import Head from "next/head";
 
 // import { Box } from "@mui/material";
 import { Container } from "@mui/material";
-import { styled, css } from "@mui/material/styles";
+import { css, styled } from "@mui/material/styles";
 
 interface Props {
   xs?: boolean;
+  dashboard?: boolean;
   children: any;
   title: string;
 }
@@ -16,12 +17,13 @@ interface Props {
 const PageContainer = ({
   children,
   xs = false,
+  dashboard,
   title = "Finagent",
 }: Props): JSX.Element => {
   const { t } = useTranslation();
 
   return (
-    <BoxStyled xs={xs}>
+    <BoxStyled xs={xs} dashboard={dashboard}>
       <Head>
         <title>{t(title)}</title>
         <meta charSet="utf-8" />
@@ -35,20 +37,32 @@ const PageContainer = ({
 export default PageContainer;
 
 const BoxStyled = styled("div", {
-  shouldForwardProp: (prop) => prop !== "xs",
-})<{ xs: boolean }>`
+  shouldForwardProp: (prop) => prop !== "xs" && prop !== "dashboard",
+})<{ xs: boolean; dashboard?: boolean }>`
   display: flex;
   flex-direction: column;
   place-content: center flex-start;
   padding: 1.5rem 0;
   width: 100%;
   height: 100%;
+  min-height: 100%;
+
   margin: 0px auto;
   flex: 1;
+  padding-left: 16px;
+  padding-right: 16px;
+
   ${({ xs }) =>
     xs &&
     css`
       margin: 0 auto;
       max-width: 600px;
+    `};
+  ${({ dashboard, theme }) =>
+    dashboard &&
+    css`
+      ${theme.breakpoints.down("md")} {
+        padding: 0 0;
+      }
     `};
 `;

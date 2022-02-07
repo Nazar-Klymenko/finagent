@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -22,7 +22,7 @@ interface Props extends InputProps {
   placeholder?: string;
   optional?: boolean;
   autoComplete?: string;
-  defaultValue?: string | undefined;
+  defaultValue?: File | null | undefined;
   width?: "s" | "m" | "l";
 }
 
@@ -38,6 +38,7 @@ const FileInput = ({
   const { t } = useTranslation();
   const {
     control,
+    setValue,
     formState: { errors },
   } = useFormContext();
 
@@ -49,12 +50,16 @@ const FileInput = ({
       </Label>
 
       <Controller
-        key={name}
         name={name}
         control={control}
-        defaultValue={defaultValue}
-        render={({ field: { onChange, value } }) => (
-          <Dropzone onChange={onChange} value={value} />
+        render={({ field: { onChange, value, name } }) => (
+          <Dropzone
+            defaultValue={defaultValue}
+            onChange={onChange}
+            value={value}
+            name={name}
+            setValue={setValue}
+          />
         )}
       />
 
@@ -69,9 +74,15 @@ const FileInput = ({
 
 export default FileInput;
 
-const Dropzone = ({ value, onChange }: any): JSX.Element => {
+const Dropzone = ({
+  defaultValue,
+  value,
+  onChange,
+  setValue,
+  name,
+}: any): JSX.Element => {
   const { t } = useTranslation();
-  const [files, setFiles] = useState<any>(value || []);
+  const [files, setFiles] = useState<any>(defaultValue || []);
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -88,6 +99,10 @@ const Dropzone = ({ value, onChange }: any): JSX.Element => {
     },
     [files, onChange]
   );
+
+  useEffect(() => {
+    setValue(name, files);
+  }, [name, files, setValue]);
 
   // useEffect(() => {
   //   return () =>
@@ -109,50 +124,51 @@ const Dropzone = ({ value, onChange }: any): JSX.Element => {
     URL.revokeObjectURL(file.preview);
   };
 
-  const thumbs =
-    files?.length > 0 &&
-    files.map((file: any, idx: number) => (
-      <ImagePreview key={idx}>
-        <ImageWrap>
-          <Image
-            src={file.preview}
-            alt={file.name}
-            height={100}
-            width={120}
-            objectFit="cover"
-          />
-        </ImageWrap>
-        <ImageNameContainer>
-          <ImageName
-            sx={{ typography: { sm: "body1", xs: "body2" } }}
-            variant="body1"
-          >
-            {_.truncate(file.name, {
-              length: 18,
-              omission:
-                "..." + file.name.substr(file.name.lastIndexOf(".") + 1),
-            })}
-          </ImageName>
-          <Typography variant="body2">{formatBytes(file.size)}</Typography>
-        </ImageNameContainer>
-
-        <IconButton sx={{ mx: "0.5rem" }} onClick={removeFile(file)}>
-          <DeleteIcon />
-        </IconButton>
-      </ImagePreview>
-    ));
-
   return (
     <section>
       <Base {...getRootProps({ isFocused, isDragActive, isDragReject })}>
-        <input {...getInputProps()} />
-        <FileUploadIcon sx={{ mx: "auto" }}></FileUploadIcon>
+        <input name={name} {...getInputProps()} />
+        <FileUploadIcon sx={{ mx: "auto" }} />
         <Typography variant="body2" align="center">
           {t("Form.Inputs.dropzone")}{" "}
           <a href="#">{t("Form.Inputs.dropzoneBrowse")}</a>
         </Typography>
       </Base>
-      <Aside>{thumbs}</Aside>
+      <Aside>
+        {files?.length > 0 &&
+          files.map((file: any, idx: number) => (
+            <ImagePreview key={idx}>
+              <ImageWrap>
+                <Image
+                  src={file.preview}
+                  alt={file.name}
+                  height={100}
+                  width={120}
+                  objectFit="cover"
+                />
+              </ImageWrap>
+              <ImageNameContainer>
+                <ImageName
+                  sx={{ typography: { sm: "body1", xs: "body2" } }}
+                  variant="body1"
+                >
+                  {_.truncate(file.name, {
+                    length: 18,
+                    omission:
+                      "..." + file.name.substr(file.name.lastIndexOf(".") + 1),
+                  })}
+                </ImageName>
+                <Typography variant="body2">
+                  {formatBytes(file.size)}
+                </Typography>
+              </ImageNameContainer>
+
+              <IconButton sx={{ mx: "0.5rem" }} onClick={removeFile(file)}>
+                <DeleteIcon />
+              </IconButton>
+            </ImagePreview>
+          ))}
+      </Aside>
     </section>
   );
 };

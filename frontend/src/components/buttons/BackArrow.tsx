@@ -3,10 +3,9 @@ import React, { useCallback } from "react";
 import { useRouter } from "next/router";
 
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
-import { IconButton } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { IconButton, IconButtonProps } from "@mui/material";
 
-const BackArrow: React.FC = () => {
+const BackArrow = (props: IconButtonProps): JSX.Element => {
   const router = useRouter();
 
   const returnFn = useCallback(() => {
@@ -14,7 +13,7 @@ const BackArrow: React.FC = () => {
   }, [router]);
 
   return (
-    <IconButton onClick={returnFn}>
+    <IconButton {...props} onClick={returnFn}>
       <ArrowBackIosNewRoundedIcon width="16" height="10" />
     </IconButton>
   );

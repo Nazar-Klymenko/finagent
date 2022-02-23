@@ -18,7 +18,8 @@ import {
   getSpecificNotification,
 } from "controllers/frontend/notifications.js";
 
-import insuranceTransportSubmit from "controllers/frontend/submits/insuranceTransportSubmit.js";
+import insuranceTransportSubmit from "controllers/frontend/submits/insuranceTransport.js";
+import insuranceBorderSubmit from "controllers/frontend/submits/insuranceBorder.js";
 
 import {
   getAllAplications,
@@ -45,6 +46,9 @@ router
 router
   .route("/submit/insraunce-transport")
   .post(verifyAccessTokenFirebase, isEmailVerified, insuranceTransportSubmit);
+router
+  .route("/submit/insraunce-border")
+  .post(verifyAccessTokenFirebase, isEmailVerified, insuranceBorderSubmit);
 
 router
   .route("/applications/specific/:id")

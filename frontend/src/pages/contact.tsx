@@ -17,7 +17,7 @@ import * as yup from "yup";
 
 import { submitTicket } from "@api/applications";
 
-import Form from "@components/Form";
+import { Form } from "@components/Form";
 import { Button } from "@components/buttons";
 import { Input, Textarea } from "@components/input";
 import { PageContainer } from "@components/layout";
@@ -53,12 +53,14 @@ const Contact: NextPage = () => {
 
   return (
     <PageContainer title="Pages.contact">
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         {t("Contact.title")}
       </Typography>
       <MainContainer>
         <FormSide>
-          <ContactSubtitle>{t("Contact.subtitleForm")}</ContactSubtitle>
+          <Typography variant="h6" gutterBottom>
+            {t("Contact.subtitleForm")}
+          </Typography>
           <Form methods={methods} id="form" onSubmit={formSubmit}>
             <Input labelName={t("Contact.Form.fullName")} name="fullName" />
             <Input labelName={t("Contact.Form.email")} name="email" />
@@ -75,7 +77,9 @@ const Contact: NextPage = () => {
           </Form>
         </FormSide>
         <InfoSide>
-          <ContactSubtitle>{t("Contact.subtitleInfo")}</ContactSubtitle>
+          <Typography variant="h6" gutterBottom>
+            {t("Contact.subtitleInfo")}
+          </Typography>
           <InfoWrap>
             <ContactInfo>
               <InfoIcon>
@@ -118,10 +122,6 @@ const schema = yup.object().shape({
   message: yup.string().required("lala"),
 });
 
-const ContactSubtitle = styled("h3")`
-  text-align: left;
-  padding-bottom: 1.5rem;
-`;
 const MainContainer = styled("div")`
   display: flex;
 

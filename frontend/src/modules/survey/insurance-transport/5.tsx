@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
-// import { QuestState } from "@dev/QuestState";
+// import { QuestState } from "@helpers/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
@@ -15,9 +15,9 @@ import withAuthForm from "@helpers/withAuthForm";
 
 import { useData } from "@context/dataContext";
 
-import Form from "@components/Form";
-import FormBuilder from "@components/FormBuilder";
-import ProgressBar from "@components/ProgressBar";
+import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
+import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
 import { Checkbox, FileInput } from "@components/input";
 import { PageContainer } from "@components/layout";
@@ -65,21 +65,21 @@ const Page5 = () => {
   const firstOwner = watch("isFirstOwner");
 
   return (
-    <PageContainer xs title="InsuranceTransport.title">
-      <Typography variant="h4">{t("InsuranceTransport.title")}</Typography>
+    <PageContainer xs title="insuranceTransport.title">
+      <Typography variant="h4">{t("insuranceTransport.title")}</Typography>
       <ProgressBar
         maxSteps={5}
         currentStep={5}
-        label={t("InsuranceTransport.Page5.subtitle")}
+        label={t("insuranceTransport.Page5.subtitle")}
       />
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceTransport.Page5.subtitle")}
+        {t("insuranceTransport.Page5.subtitle")}
       </Typography>
 
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <Typography variant="body1">
-          {t("InsuranceTransport.Page5.registration")} (
-          {t("InsuranceTransport.Page5.twoSides")})
+          {t("insuranceTransport.Page5.registration")} (
+          {t("insuranceTransport.Page5.twoSides")})
         </Typography>
         <FileInput
           name="filesTechPassport"
@@ -87,8 +87,8 @@ const Page5 = () => {
           defaultValue={appDataValid.filesTechPassport}
         />
         <Typography variant="body1">
-          {t("InsuranceTransport.Page5.driversLicence")} (
-          {t("InsuranceTransport.Page5.twoSides")})
+          {t("insuranceTransport.Page5.driversLicence")} (
+          {t("insuranceTransport.Page5.twoSides")})
         </Typography>
         <FileInput
           name="filesPassport"
@@ -97,7 +97,7 @@ const Page5 = () => {
         />
 
         <Typography variant="body1">
-          {t("InsuranceTransport.Page5.currentInsurance")}
+          {t("insuranceTransport.Page5.currentInsurance")}
         </Typography>
 
         <FileInput
@@ -106,14 +106,14 @@ const Page5 = () => {
           defaultValue={appDataValid.filesInsurance}
         />
         <Checkbox
-          labelName={t("InsuranceTransport.Page5.registeredOnMe")}
+          labelName={t("insuranceTransport.Page5.registeredOnMe")}
           name="isFirstOwner"
         />
         {!firstOwner && (
           <>
             <Typography variant="body1">
-              {t("InsuranceTransport.Page5.salesContract")} (
-              {t("InsuranceTransport.Page5.twoSides")})
+              {t("insuranceTransport.Page5.salesContract")} (
+              {t("insuranceTransport.Page5.twoSides")})
             </Typography>
             <FileInput
               name="filesCarSale"

@@ -19,19 +19,3 @@ export const summaryLabels = (object: any) => {
 
   return finalArray;
 };
-
-// export const summaryLabels = (object: any) => {
-//   let finalArray: any = [];
-//   let appDataCopy = JSON.parse(JSON.stringify(object));
-
-//   delete appDataCopy.appendedDocuments;
-
-//   Object.entries(appDataCopy).forEach((item: any) => {
-//     let obj = Object.entries(item[1]);
-//     formatDates(obj);
-//     formatBooleans(obj);
-//     finalArray.push(obj);
-//   });
-
-//   return finalArray;
-// };

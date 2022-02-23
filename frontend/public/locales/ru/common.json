@@ -1,4 +1,8 @@
 {
+  "404": {
+    "title": "Эту страницу не найдено",
+    "link": "вернуться в Кабинет"
+  },
   "Pages": {
     "dashboard": "Кабинет",
     "services": "Услуги",
@@ -7,7 +11,6 @@
     "logIn": "Войти",
     "signUp": "Регистрация"
   },
-
   "Form": {
     "optional": "необязательно",
     "Error": {
@@ -47,14 +50,14 @@
     "no": "Да",
     "yes": "Нет",
     "ApplicationType": {
-      "transport": "Страхование транспортного средтсва",
-      "Estate": "Страхование недвижимости",
-      "Travel": "Туристическая страховка",
-      "HealthSpecialist": "Доступ к специалистам",
-      "HealthMedical": "Медицинская страховка",
-      "Border": "Пограничное страхование",
-      "Mortgage": "Ипотека",
-      "Cash": "Наличный кредит"
+      "insuranceTransport": "Страхование транспортного средтсва",
+      "insuranceEstate": "Страхование недвижимости",
+      "insuranceTravel": "Туристическая страховка",
+      "insuranceHealthSpecialist": "Доступ к специалистам",
+      "insuranceHealthMedical": "Медицинская страховка",
+      "insuranceBorder": "Пограничное страхование",
+      "loanMortgage": "Ипотека",
+      "loanCash": "Наличный кредит"
     }
   },
   "Summary": {
@@ -141,8 +144,7 @@
     }
   },
   "Help": {
-    "title": "Часто задаваемые вопросы",
-    "": ""
+    "title": "Часто задаваемые вопросы"
   },
   "LogIn": {
     "title": "Войдите в свой аккаунт",
@@ -313,7 +315,6 @@
       "errorInvalidPassword": "Неверный текущий пароль"
     }
   },
-
   "LoanCash": {
     "title": "Кредит наличными",
     "ApplicantBox": {
@@ -669,7 +670,8 @@
       "notificationAlarm": "Сигнализация с уведомлением",
       "localAlarm": "Местная сигнализация",
       "none": "Отсутствует"
-    }
+    },
+    "buttonBack": "Вернуть"
   },
   "InsuranceHealth": {
     "title": "Медицинская страховка",
@@ -773,7 +775,7 @@
       "title": "Добавить следующего заявителя"
     }
   },
-  "InsuranceTransport": {
+  "insuranceTransport": {
     "title": "Страхование транспорта",
     "SelectProfession": {
       "unemployed": "Безработный",
@@ -930,7 +932,7 @@
       "salesContract": "Фото договора купли-продажи"
     }
   },
-  "InsuranceBorder": {
+  "insuranceBorder": {
     "title": "Пограничное страхование",
     "Page1": {
       "subtitle": "Информация о страховании",
@@ -976,9 +978,5 @@
     "loginError": "Ошибка входа в систему",
     "emailWasResent": "Письмо было отправлено повторно",
     "errorResendingEmail": "Ошибка повторной отправки письма"
-  },
-  "404": {
-    "title": "Эту страницу не найдено",
-    "link": "вернуться в Кабинет"
   }
 }

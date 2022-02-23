@@ -47,7 +47,7 @@ const InsuranceEstateSchema = new Schema(
 );
 
 const InsuranceEstate = Application.discriminator(
-  "InsuranceEstate",
+  "insuranceEstate",
   InsuranceEstateSchema
 );
 

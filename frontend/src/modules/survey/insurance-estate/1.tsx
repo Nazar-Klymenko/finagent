@@ -1,0 +1,304 @@
+import React from "react";
+
+import { useRouter } from "next/router";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Typography } from "@mui/material";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+
+import { useData } from "@context/dataContext";
+
+import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
+import { ProgressBar } from "@components/ProgressBar";
+import { Button } from "@components/buttons";
+import { DateInput, Input, Radio, Select } from "@components/input";
+import { PageContainer } from "@components/layout";
+
+import { pageOneSchema } from "./helpers/insurance-estate.schema";
+import { nameSecurityOptions } from "./helpers/options";
+
+type FormTypes = {
+  country: string;
+  city: string;
+  postIndex: string;
+  street: string;
+  houseNumber: string;
+  estateType: string;
+  floor: string;
+  structure: string;
+  areaM2: string;
+  constructionYear: string;
+  underConstruction: string;
+  ownershipForm: string;
+  creditOwnership: string;
+  bankName: string;
+  regon: string;
+  nip: string;
+  security: string;
+  damagesNumber: string;
+  insurancePeriod: string;
+  insuranceStart: Date | null;
+  subjectAndSum: string;
+  flatAndFixed: string;
+  householdGoods: string;
+};
+
+const Page1 = () => {
+  const { t } = useTranslation();
+  const router = useRouter();
+  const { appData, setValues, setCurrentPage } = useData();
+
+  const appDataValid = appData.insuranceEstate?.insuranceData;
+
+  const methods = useForm<FormTypes>({
+    defaultValues: {
+      country: appDataValid.country,
+      city: appDataValid.city,
+      postIndex: appDataValid.postIndex,
+      street: appDataValid.street,
+      houseNumber: appDataValid.houseNumber,
+      estateType: appDataValid.estateType,
+      floor: appDataValid.floor,
+      structure: appDataValid.structure,
+      areaM2: appDataValid.areaM2,
+      constructionYear: appDataValid.constructionYear,
+      underConstruction: appDataValid.underConstruction,
+      ownershipForm: appDataValid.ownershipForm,
+      creditOwnership: appDataValid.creditOwnership,
+      bankName: appDataValid.bankName,
+      regon: appDataValid.regon,
+      nip: appDataValid.nip,
+      security: appDataValid.security,
+      damagesNumber: appDataValid.damagesNumber,
+      insurancePeriod: appDataValid.insurancePeriod,
+      insuranceStart: appDataValid.insuranceStart,
+      subjectAndSum: appDataValid.subjectAndSum,
+      flatAndFixed: appDataValid.flatAndFixed,
+      householdGoods: appDataValid.householdGoods,
+    },
+    mode: "onChange",
+    reValidateMode: "onChange",
+    shouldFocusError: true,
+    resolver: yupResolver(pageOneSchema),
+  });
+  const { handleSubmit, watch } = methods;
+
+  const estateType = watch("estateType", appDataValid.estateType);
+  const assignedToBank = watch("creditOwnership", appDataValid.creditOwnership);
+
+  const formSubmit = handleSubmit((data) => {
+    setValues(data, "insuranceEstate", "insuranceData");
+    setCurrentPage(2);
+    router.push("./2");
+  });
+
+  return (
+    <PageContainer xs title="InsuranceEstate.title">
+      <Typography variant="h4">{t("InsuranceEstate.title")}</Typography>
+
+      <ProgressBar
+        maxSteps={2}
+        currentStep={1}
+        label={t("InsuranceEstate.Page1.title")}
+      />
+      <Typography variant="h6" gutterBottom>
+        {t("InsuranceEstate.Page1.title")}
+      </Typography>
+      <Form methods={methods} id="form" onSubmit={formSubmit}>
+        <Input name="country" labelName={t("InsuranceEstate.Page1.country")} />
+        <Input name="city" labelName={t("InsuranceEstate.Page1.city")} />
+        <Input
+          name="postIndex"
+          labelName={t("InsuranceEstate.Page1.postIndex")}
+        />
+        <Input name="street" labelName={t("InsuranceEstate.Page1.street")} />
+        <Input
+          name="houseNumber"
+          labelName={t("InsuranceEstate.Page1.houseNumber")}
+        />
+
+        <Radio
+          name="estateType"
+          labelName={t("InsuranceEstate.Page1.estateType")}
+          options={[
+            {
+              label: t("InsuranceEstate.Page1.house"),
+              value: "house",
+            },
+            {
+              label: t("InsuranceEstate.Page1.apartment"),
+              value: "apartment",
+            },
+          ]}
+        />
+        {estateType === "apartment" && (
+          <Radio
+            name="floor"
+            labelName={t("InsuranceEstate.Page1.floor")}
+            options={[
+              {
+                label: t("InsuranceEstate.Page1.last"),
+                value: "last",
+              },
+              {
+                label: t("InsuranceEstate.Page1.intermediate"),
+                value: "intermediate",
+              },
+              {
+                label: t("InsuranceEstate.Page1.ground"),
+                value: "ground",
+              },
+            ]}
+          />
+        )}
+
+        <Radio
+          name="structure"
+          labelName={t("InsuranceEstate.Page1.structure")}
+          options={[
+            {
+              label: t("InsuranceEstate.Page1.brick"),
+              value: "brick",
+            },
+            {
+              label: t("InsuranceEstate.Page1.wood"),
+              value: "wood",
+            },
+          ]}
+        />
+        <Input name="areaM2" labelName={t("InsuranceEstate.Page1.areaM2")} />
+        <Input
+          name="constructionYear"
+          labelName={t("InsuranceEstate.Page1.constructionYear")}
+        />
+
+        <Radio
+          name="underConstruction"
+          labelName={t("InsuranceEstate.Page1.underConstruction")}
+          options={[
+            {
+              label: t("InsuranceEstate.Page1.no"),
+              value: "no",
+            },
+            {
+              label: t("InsuranceEstate.Page1.yes"),
+              value: "yes",
+            },
+          ]}
+        />
+
+        <Radio
+          name="ownershipForm"
+          labelName={t("InsuranceEstate.Page1.ownershipForm")}
+          options={[
+            {
+              label: t("InsuranceEstate.Page1.coOwnership"),
+              value: "coOwnership",
+            },
+            {
+              label: t("InsuranceEstate.Page1.lease"),
+              value: "lease",
+            },
+          ]}
+        />
+
+        <Radio
+          name="creditOwnership"
+          labelName={t("InsuranceEstate.Page1.creditOwnership")}
+          options={[
+            {
+              label: t("InsuranceEstate.Page1.no"),
+              value: "no",
+            },
+            {
+              label: t("InsuranceEstate.Page1.yes"),
+              value: "yes",
+            },
+          ]}
+        />
+        {assignedToBank === "yes" && (
+          <>
+            <Input
+              name="bankName"
+              labelName={t("InsuranceEstate.Page1.bankName")}
+            />
+            <Input name="regon" labelName={t("InsuranceEstate.Page1.regon")} />
+            <Input name="nip" labelName={t("InsuranceEstate.Page1.nip")} />
+          </>
+        )}
+        <Select
+          name="security"
+          labelName={t("InsuranceEstate.Page1.security")}
+          defaultValue={appDataValid.security}
+          options={nameSecurityOptions(t)}
+        />
+
+        <Radio
+          name="damagesNumber"
+          labelName={t("InsuranceEstate.Page1.damagesNumber")}
+          options={[
+            {
+              label: "0",
+              value: "0",
+            },
+            {
+              label: "1",
+              value: "1",
+            },
+            {
+              label: "2",
+              value: "2",
+            },
+            {
+              label: "3+",
+              value: "3+",
+            },
+          ]}
+        />
+
+        <Radio
+          name="insurancePeriod"
+          labelName={t("InsuranceEstate.Page1.insurancePeriod")}
+          options={[
+            {
+              label: t("InsuranceEstate.Page1.annual"),
+              value: "annual",
+            },
+            {
+              label: t("InsuranceEstate.Page1.year3"),
+              value: "year3",
+            },
+          ]}
+        />
+        <DateInput
+          name="insuranceStart"
+          labelName={t("InsuranceEstate.Page1.insuranceStart")}
+          disablePast
+          placeholder={t("Form.Placeholder.dateFull")}
+        />
+        <Typography variant="body1">
+          {t("InsuranceEstate.Page1.subjectAndSum")}
+        </Typography>
+        <Input
+          name="flatAndFixed"
+          labelName={t("InsuranceEstate.Page1.flatAndFixed")}
+          placeholder="200 000 zl"
+        />
+        <Input
+          name="householdGoods"
+          labelName={t("InsuranceEstate.Page1.householdGoods")}
+          placeholder="100 000 zl"
+        />
+      </Form>
+      <FormBuilder.ButtonsWrap>
+        <Button form="form" color="primary">
+          {t("Basic.buttonNext")}
+        </Button>
+      </FormBuilder.ButtonsWrap>
+    </PageContainer>
+  );
+};
+
+export default Page1;

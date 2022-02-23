@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
-// import { QuestState } from "@dev/QuestState";
+// import { QuestState } from "@helpers/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
@@ -14,9 +14,9 @@ import withAuthForm from "@helpers/withAuthForm";
 
 import { useData } from "@context/dataContext";
 
-import Form from "@components/Form";
-import FormBuilder from "@components/FormBuilder";
-import ProgressBar from "@components/ProgressBar";
+import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
+import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
 import { Select } from "@components/input";
 import { PageContainer } from "@components/layout";
@@ -63,21 +63,21 @@ const Page4 = () => {
   });
 
   return (
-    <PageContainer xs title="InsuranceTransport.title">
-      <Typography variant="h4">{t("InsuranceTransport.title")}</Typography>
+    <PageContainer xs title="insuranceTransport.title">
+      <Typography variant="h4">{t("insuranceTransport.title")}</Typography>
       <ProgressBar
         maxSteps={5}
         currentStep={4}
-        label={t("InsuranceTransport.Page4.subtitle")}
+        label={t("insuranceTransport.Page4.subtitle")}
       />
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceTransport.Page4.subtitle")}
+        {t("insuranceTransport.Page4.subtitle")}
       </Typography>
 
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <Select
           name="predictMileage"
-          labelName={t("InsuranceTransport.Page4.predictMileage")}
+          labelName={t("insuranceTransport.Page4.predictMileage")}
           options={[
             "< 5 000",
             "5 001 - 7 500",
@@ -98,49 +98,49 @@ const Page4 = () => {
         />
         <Select
           name="useAbroad"
-          labelName={t("InsuranceTransport.Page4.useAbroad")}
+          labelName={t("insuranceTransport.Page4.useAbroad")}
           options={[
-            t("InsuranceTransport.SelectAbroad.noUse"),
-            t("InsuranceTransport.SelectAbroad.twoWeeks"),
-            t("InsuranceTransport.SelectAbroad.month"),
-            t("InsuranceTransport.SelectAbroad.month2"),
-            t("InsuranceTransport.SelectAbroad.month6"),
-            t("InsuranceTransport.SelectAbroad.year"),
+            t("insuranceTransport.SelectAbroad.noUse"),
+            t("insuranceTransport.SelectAbroad.twoWeeks"),
+            t("insuranceTransport.SelectAbroad.month"),
+            t("insuranceTransport.SelectAbroad.month2"),
+            t("insuranceTransport.SelectAbroad.month6"),
+            t("insuranceTransport.SelectAbroad.year"),
           ]}
         />
         <Select
           name="usePurpose"
-          labelName={t("InsuranceTransport.Page4.usePurpose")}
+          labelName={t("insuranceTransport.Page4.usePurpose")}
           options={[
-            t("InsuranceTransport.SelectPurpose.regular"),
-            t("InsuranceTransport.SelectPurpose.taxi"),
-            t("InsuranceTransport.SelectPurpose.rent"),
-            t("InsuranceTransport.SelectPurpose.lease"),
-            t("InsuranceTransport.SelectPurpose.bank"),
-            t("InsuranceTransport.SelectPurpose.course"),
+            t("insuranceTransport.SelectPurpose.regular"),
+            t("insuranceTransport.SelectPurpose.taxi"),
+            t("insuranceTransport.SelectPurpose.rent"),
+            t("insuranceTransport.SelectPurpose.lease"),
+            t("insuranceTransport.SelectPurpose.bank"),
+            t("insuranceTransport.SelectPurpose.course"),
           ]}
         />
         <Select
           name="parkingPlace"
-          labelName={t("InsuranceTransport.Page4.parkingPlace")}
+          labelName={t("insuranceTransport.Page4.parkingPlace")}
           options={[
-            t("InsuranceTransport.SelectParking.individual"),
-            t("InsuranceTransport.SelectParking.shared"),
-            t("InsuranceTransport.SelectParking.guarded"),
-            t("InsuranceTransport.SelectParking.fenced"),
-            t("InsuranceTransport.SelectParking.unsecured"),
+            t("insuranceTransport.SelectParking.individual"),
+            t("insuranceTransport.SelectParking.shared"),
+            t("insuranceTransport.SelectParking.guarded"),
+            t("insuranceTransport.SelectParking.fenced"),
+            t("insuranceTransport.SelectParking.unsecured"),
           ]}
         />
         <Select
           name="security"
-          labelName={t("InsuranceTransport.Page4.security")}
+          labelName={t("insuranceTransport.Page4.security")}
           options={[
-            t("InsuranceTransport.SelectSecurity.alarm"),
-            t("InsuranceTransport.SelectSecurity.immob"),
-            t("InsuranceTransport.SelectSecurity.alarmImmob"),
-            t("InsuranceTransport.SelectSecurity.alarmImmonOther"),
-            t("InsuranceTransport.SelectSecurity.other"),
-            t("InsuranceTransport.SelectSecurity.none"),
+            t("insuranceTransport.SelectSecurity.alarm"),
+            t("insuranceTransport.SelectSecurity.immob"),
+            t("insuranceTransport.SelectSecurity.alarmImmob"),
+            t("insuranceTransport.SelectSecurity.alarmImmonOther"),
+            t("insuranceTransport.SelectSecurity.other"),
+            t("insuranceTransport.SelectSecurity.none"),
           ]}
         />
       </Form>

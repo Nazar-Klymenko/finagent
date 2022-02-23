@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
-// import { QuestState } from "@dev/QuestState";
+// import { QuestState } from "@helpers/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
@@ -14,9 +14,9 @@ import withAuthForm from "@helpers/withAuthForm";
 
 import { useData } from "@context/dataContext";
 
-import Form from "@components/Form";
-import FormBuilder from "@components/FormBuilder";
-import ProgressBar from "@components/ProgressBar";
+import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
+import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
 import {
   Autocomplete,
@@ -86,70 +86,70 @@ const Page3 = () => {
   const abroadImport = watch("abroadImport");
   const vehicleType = watch("vehicleType");
   return (
-    <PageContainer xs title="InsuranceTransport.title">
-      <Typography variant="h4">{t("InsuranceTransport.title")}</Typography>
+    <PageContainer xs title="insuranceTransport.title">
+      <Typography variant="h4">{t("insuranceTransport.title")}</Typography>
       <ProgressBar
         maxSteps={5}
         currentStep={3}
-        label={t("InsuranceTransport.Page3.subtitle")}
+        label={t("insuranceTransport.Page3.subtitle")}
       />
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceTransport.Page3.subtitle")}
+        {t("insuranceTransport.Page3.subtitle")}
       </Typography>
 
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <Autocomplete
           name="vehicleType"
           defaultValue={appDataValid.vehicleType}
-          labelName={t("InsuranceTransport.Page2.vehicleType")}
+          labelName={t("insuranceTransport.Page2.vehicleType")}
           options={[
-            t("InsuranceTransport.SelectVehicle.motorcycle"),
-            t("InsuranceTransport.SelectVehicle.personal"),
-            t("InsuranceTransport.SelectVehicle.truck"),
-            t("InsuranceTransport.SelectVehicle.bus"),
+            t("insuranceTransport.SelectVehicle.motorcycle"),
+            t("insuranceTransport.SelectVehicle.personal"),
+            t("insuranceTransport.SelectVehicle.truck"),
+            t("insuranceTransport.SelectVehicle.bus"),
           ]}
         />
         <Select
           name="fuelType"
-          labelName={t("InsuranceTransport.Page3.fuelType")}
+          labelName={t("insuranceTransport.Page3.fuelType")}
           options={[
-            t("InsuranceTransport.SelectFuel.petrol"),
-            t("InsuranceTransport.SelectFuel.gas"),
-            t("InsuranceTransport.SelectFuel.diesel"),
-            t("InsuranceTransport.SelectFuel.propane"),
-            t("InsuranceTransport.SelectFuel.electric"),
+            t("insuranceTransport.SelectFuel.petrol"),
+            t("insuranceTransport.SelectFuel.gas"),
+            t("insuranceTransport.SelectFuel.diesel"),
+            t("insuranceTransport.SelectFuel.propane"),
+            t("insuranceTransport.SelectFuel.electric"),
           ]}
         />
         <Input
           name="enginePower"
-          labelName={t("InsuranceTransport.Page3.enginePower")}
+          labelName={t("insuranceTransport.Page3.enginePower")}
           type="text"
           placeholder="150"
         />
         <Input
           name="engineVolume"
-          labelName={t("InsuranceTransport.Page3.engineVolume")}
+          labelName={t("insuranceTransport.Page3.engineVolume")}
           type="text"
           placeholder="1500"
         />
 
         <DateInput
           name="vehicleRegDate"
-          labelName={t("InsuranceTransport.Page3.vehicleRegDate")}
+          labelName={t("insuranceTransport.Page3.vehicleRegDate")}
           placeholder={t("Form.Placeholder.dateFull")}
           disableFuture
           autoComplete="off"
         />
         <DateInput
           name="techExamDate"
-          labelName={t("InsuranceTransport.Page3.techExamDate")}
+          labelName={t("insuranceTransport.Page3.techExamDate")}
           placeholder={t("Form.Placeholder.dateFull")}
           autoComplete="off"
         />
 
         <DateInput
           name="purchaseYear"
-          labelName={t("InsuranceTransport.Page3.purchaseYear")}
+          labelName={t("insuranceTransport.Page3.purchaseYear")}
           placeholder={t("Form.Placeholder.dateYear")}
           view={["year"]}
           format="yyyy"
@@ -159,21 +159,21 @@ const Page3 = () => {
 
         <Input
           name="kilometrage"
-          labelName={t("InsuranceTransport.Page3.kilometrage")}
+          labelName={t("insuranceTransport.Page3.kilometrage")}
           placeholder="eg. 100000"
         />
 
-        {vehicleType !== t("InsuranceTransport.SelectVehicle.motorcycle") && (
+        {vehicleType !== t("insuranceTransport.SelectVehicle.motorcycle") && (
           <Radio
-            labelName={t("InsuranceTransport.Page3.steeringWheel")}
+            labelName={t("insuranceTransport.Page3.steeringWheel")}
             name="steeringWheel"
             options={[
               {
-                label: t("InsuranceTransport.Page3.left"),
+                label: t("insuranceTransport.Page3.left"),
                 value: "left",
               },
               {
-                label: t("InsuranceTransport.Page3.right"),
+                label: t("insuranceTransport.Page3.right"),
                 value: "right",
               },
             ]}
@@ -182,30 +182,30 @@ const Page3 = () => {
 
         <Radio
           name="transmissionType"
-          labelName={t("InsuranceTransport.Page3.transmissionType")}
+          labelName={t("insuranceTransport.Page3.transmissionType")}
           options={[
             {
-              label: t("InsuranceTransport.Page3.mechanical"),
+              label: t("insuranceTransport.Page3.mechanical"),
               value: "mechanical",
             },
             {
-              label: t("InsuranceTransport.Page3.automatic"),
+              label: t("insuranceTransport.Page3.automatic"),
               value: "automatic",
             },
           ]}
         />
         <Checkbox
-          labelName={t("InsuranceTransport.Page3.gasInstalation")}
+          labelName={t("insuranceTransport.Page3.gasInstalation")}
           name="gasInstalation"
         />
         <Checkbox
-          labelName={t("InsuranceTransport.Page3.abroadImport")}
+          labelName={t("insuranceTransport.Page3.abroadImport")}
           name="abroadImport"
         />
         {abroadImport && (
           <DateInput
             name="polandRegDate"
-            labelName={t("InsuranceTransport.Page3.polandRegDate")}
+            labelName={t("insuranceTransport.Page3.polandRegDate")}
             placeholder={t("Form.Placeholder.dateFull")}
             disableFuture
             autoComplete="off"

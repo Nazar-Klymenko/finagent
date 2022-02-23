@@ -8,7 +8,7 @@ interface Props {
   label: string;
 }
 
-const ProgressBar: React.FC<Props> = ({ maxSteps, currentStep, label }) => {
+const ProgressBar = ({ maxSteps, currentStep, label }: Props): JSX.Element => {
   const [fillWidth, setFillWidth] = useState(0);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const ProgressBar: React.FC<Props> = ({ maxSteps, currentStep, label }) => {
     </>
   );
 };
+export { ProgressBar };
 
 const InfoWrap = styled("div")`
   display: flex;
@@ -61,5 +62,3 @@ const ProgressFill = styled("div")<{ fillWidth: number }>`
   background-color: ${({ theme }) => theme.palette.primary.main};
   box-shadow: 0px 1px 4px 0px ${({ theme }) => theme.palette.secondary.main};
 `;
-
-export default ProgressBar;

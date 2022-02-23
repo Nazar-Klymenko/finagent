@@ -35,7 +35,7 @@ const InsuranceTravelSchema = new Schema(
 );
 
 const InsuranceTravel = Application.discriminator(
-  "InsuranceTravel",
+  "insuranceTravel",
   InsuranceTravelSchema
 );
 

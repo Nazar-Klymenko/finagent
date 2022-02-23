@@ -1,21 +1,19 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { PageContainer } from "@components/layout";
-
 import { ServiceCard } from "@components/ServiceCard";
+import { PageContainer } from "@components/layout";
 
 const Services: NextPage = () => {
   const { t } = useTranslation();
 
   return (
     <PageContainer title="Pages.services">
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         {t("Services.Titles.insurances")}
       </Typography>
       <ServicesWrap>
@@ -30,7 +28,7 @@ const Services: NextPage = () => {
         ))}
       </ServicesWrap>
       <Spacer />
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         {t("Services.Titles.loans")}
       </Typography>
       <ServicesWrap>

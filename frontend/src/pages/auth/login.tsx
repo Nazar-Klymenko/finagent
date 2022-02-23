@@ -15,7 +15,7 @@ import * as yup from "yup";
 
 import { useAuth } from "@context/authContext";
 
-import Form from "@components/Form";
+import { Form } from "@components/Form";
 import { Button, FacebookButton } from "@components/buttons";
 import { Input, MuiPhoneInput, PasswordInput } from "@components/input";
 import { AuthContainer } from "@components/layout";
@@ -60,7 +60,7 @@ const Login: NextPage = (props) => {
   };
   useEffect(() => {
     if (isLoggedIn && isActive) {
-      router.push("/dashboard/insurances/ready/1");
+      router.push("/dashboard/insurance");
     } else if (isLoggedIn && !isActive) {
       router.push("/verify-email");
     }

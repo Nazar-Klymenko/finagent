@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -7,17 +8,14 @@ import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-// import { NavLink, useLocation } from "react-router-dom";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useTranslation } from "next-i18next";
 
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
 
 import { useAuth } from "@context/authContext";
 
-const BottomNav = () => {
+const BottomNav = (): JSX.Element => {
   const router = useRouter(),
     { locale } = router;
   //@ts-ignore
@@ -32,55 +30,40 @@ const BottomNav = () => {
   };
 
   return (
-    <BottomNavStyled
-      showLabels
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
+    <Paper
+      sx={{ position: "sticky", bottom: 0, left: 0, right: 0 }}
+      elevation={3}
     >
-      <BottomNavigationAction
-        label={_t("NavbarBottom.dashboard")}
-        onClick={() => onLink("/dashboard")}
-        icon={<HomeRoundedIcon />}
-      />
-      <BottomNavigationAction
-        label={_t("NavbarBottom.services")}
-        onClick={() => onLink("/services")}
-        icon={<AssignmentRoundedIcon />}
-      />
-      <BottomNavigationAction
-        onClick={() => onLink("/notifications")}
-        label={_t("NavbarBottom.notifications")}
-        icon={<NotificationsIcon />}
-      />
-      <BottomNavigationAction
-        label={_t("NavbarBottom.settings")}
-        onClick={() => onLink("/settings")}
-        icon={<SettingsRoundedIcon />}
-      />
-    </BottomNavStyled>
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      >
+        <BottomNavigationAction
+          label={_t("NavbarBottom.dashboard")}
+          onClick={() => onLink("/dashboard")}
+          icon={<HomeRoundedIcon />}
+        />
+        <BottomNavigationAction
+          label={_t("NavbarBottom.services")}
+          onClick={() => onLink("/services")}
+          icon={<AssignmentRoundedIcon />}
+        />
+        <BottomNavigationAction
+          onClick={() => onLink("/notifications")}
+          label={_t("NavbarBottom.notifications")}
+          icon={<NotificationsIcon />}
+        />
+        <BottomNavigationAction
+          label={_t("NavbarBottom.settings")}
+          onClick={() => onLink("/settings")}
+          icon={<SettingsRoundedIcon />}
+        />
+      </BottomNavigation>
+    </Paper>
   );
 };
 
-const BottomNavStyled = styled(BottomNavigation)`
-  width: 100%;
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  display: none !important;
-  box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.12);
-  .MuiBottomNavigationAction-label.Mui-selected {
-    font-size: 0.75rem;
-    color: #1672ec;
-  }
-
-  .MuiIcon-colorPrimary.active {
-    color: #1672ec;
-  }
-  ${({ theme }) => theme.breakpoints.down("md")} {
-    display: flex !important;
-  }
-`;
-
-export default BottomNav;
+export { BottomNav };

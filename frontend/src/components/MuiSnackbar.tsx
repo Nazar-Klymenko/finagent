@@ -52,4 +52,4 @@ const MuiSnackbar: React.FC = () => {
   );
 };
 
-export default MuiSnackbar;
+export { MuiSnackbar };

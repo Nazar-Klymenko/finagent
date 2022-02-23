@@ -12,6 +12,6 @@ const Tooltip = ({ children, title }: Props): JSX.Element => {
   return <TooltipStyled title={title}>{children}</TooltipStyled>;
 };
 
-export default Tooltip;
+export { Tooltip };
 
 const TooltipStyled = styled(MuiTooltip)``;

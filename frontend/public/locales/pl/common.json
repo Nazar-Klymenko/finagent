@@ -47,14 +47,14 @@
     "no": "Nie",
     "yes": "Tak",
     "ApplicationType": {
-      "transport": "Ubezpieczenie transportu",
-      "Estate": "Ubezpieczenia nieruchomości",
-      "Travel": "Ubezpieczenie turystyczne",
-      "HealthSpecialist": "Dostęp do specjalistów",
-      "HealthMedical": "Ubezpieczenie zdrowotne",
-      "Border": "Ubezpieczenie graniczne",
-      "Mortgage": "Kredyt hipoteczny",
-      "Cash": "Kredyt gotówkowy"
+      "insuranceTransport": "Ubezpieczenie transportu",
+      "insuranceEstate": "Ubezpieczenia nieruchomości",
+      "insuranceTravel": "Ubezpieczenie turystyczne",
+      "insuranceHealthSpecialist": "Dostęp do specjalistów",
+      "insuranceHealthMedical": "Ubezpieczenie zdrowotne",
+      "insuranceBorder": "Ubezpieczenie graniczne",
+      "loanMortgage": "Kredyt hipoteczny",
+      "loanCash": "Kredyt gotówkowy"
     }
   },
   "Summary": {
@@ -142,8 +142,7 @@
     }
   },
   "Help": {
-    "title": "Często zadawane pytania",
-    "": ""
+    "title": "Często zadawane pytania"
   },
   "LogIn": {
     "title": "Zaloguj się na swoje konto",
@@ -782,7 +781,7 @@
       "title": "Dodać kolejnego wnioskodawcę"
     }
   },
-  "InsuranceTransport": {
+  "insuranceTransport": {
     "title": "Ubezpieczenie pojazdu",
 
     "SelectProfession": {
@@ -940,7 +939,7 @@
       "salesContract": "Zdjęcie umowy kupna-sprzedaży"
     }
   },
-  "InsuranceBorder": {
+  "insuranceBorder": {
     "title": "Ubezpieczenie graniczne",
 
     "Page1": {

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -18,13 +18,13 @@ interface Styled {
   inDashboard?: boolean;
 }
 
-const SummaryList: FC<Props> = ({
+const SummaryList = ({
   header,
   array,
   inDashboard,
   defaultOpen,
   applicationType,
-}) => {
+}: Props): JSX.Element => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -75,6 +75,7 @@ const SummaryList: FC<Props> = ({
     </SummaryListStyled>
   );
 };
+export { SummaryList };
 
 const SummaryListStyled = styled("div")<Styled>`
   width: 100%;
@@ -140,5 +141,3 @@ const Item = styled("div")`
     min-width: 50%;
   }
 `;
-
-export { SummaryList };

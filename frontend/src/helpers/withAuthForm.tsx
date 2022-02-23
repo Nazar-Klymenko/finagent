@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "@context/authContext";
 import { useData } from "@context/dataContext";
 
-import Loader from "@components/Loader";
+import { Loader } from "@components/Loader";
 
 const withAuthForm = (Component: NextPage) => {
   const Auth = (props: any) => {

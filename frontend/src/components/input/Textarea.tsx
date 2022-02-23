@@ -2,7 +2,7 @@ import React from "react";
 
 import { useTranslation } from "next-i18next";
 
-import { OutlinedInput, Typography } from "@mui/material";
+import { OutlinedInput, OutlinedInputProps, Typography } from "@mui/material";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -13,7 +13,7 @@ import {
   Optional,
 } from "./LocalStyles";
 
-interface Props {
+interface Props extends OutlinedInputProps {
   name: string;
   labelName: string;
   placeholder?: string;
@@ -28,6 +28,7 @@ const Textarea = ({
   placeholder,
   optional,
   defaultValue,
+  ...other
 }: Props): JSX.Element => {
   const { t } = useTranslation();
   const {
@@ -56,6 +57,7 @@ const Textarea = ({
             placeholder={placeholder}
             error={!!_.get(errors, name)}
             id={name}
+            {...other}
           />
         )}
       />

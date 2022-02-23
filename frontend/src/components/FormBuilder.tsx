@@ -69,4 +69,4 @@ const FormBuilder = {
   ApplicantName,
   InputsWrap,
 };
-export default FormBuilder;
+export { FormBuilder };

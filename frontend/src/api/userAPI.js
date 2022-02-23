@@ -43,7 +43,7 @@ export const postInsuranceOcAPI = (object) => {
     headers: { "Content-Type": "multipart/form-data" },
   });
 };
-export const postInsuranceBorderAPI = (object) => {
+export const postinsuranceBorderAPI = (object) => {
   return axios(`/user/application/submit/insurance_border`, {
     method: "POST",
     data: JSON.stringify(object),

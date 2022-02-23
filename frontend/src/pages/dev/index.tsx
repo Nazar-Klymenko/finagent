@@ -8,7 +8,7 @@ import _ from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import Form from "@components/Form";
+import { Form } from "@components/Form";
 import { Button } from "@components/buttons";
 import {
   Autocomplete,
@@ -68,7 +68,7 @@ const Dev = () => {
   });
 
   return (
-    <PageContainer xs title="InsuranceTransport.title">
+    <PageContainer xs title="insuranceTransport.title">
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <MuiPhoneInput name="phone" labelName="phone" />
         <FileInput name="files" labelName="file input" />
@@ -77,10 +77,10 @@ const Dev = () => {
           name="autocomplete"
           labelName="autocomplete"
           options={[
-            t("InsuranceTransport.SelectVehicle.motorcycle"),
-            t("InsuranceTransport.SelectVehicle.personal"),
-            t("InsuranceTransport.SelectVehicle.truck"),
-            t("InsuranceTransport.SelectVehicle.bus"),
+            t("insuranceTransport.SelectVehicle.motorcycle"),
+            t("insuranceTransport.SelectVehicle.personal"),
+            t("insuranceTransport.SelectVehicle.truck"),
+            t("insuranceTransport.SelectVehicle.bus"),
           ]}
         />
 
@@ -107,11 +107,11 @@ const Dev = () => {
           name="select"
           labelName="Select"
           options={[
-            t("InsuranceTransport.SelectParking.individual"),
-            t("InsuranceTransport.SelectParking.shared"),
-            t("InsuranceTransport.SelectParking.guarded"),
-            t("InsuranceTransport.SelectParking.fenced"),
-            t("InsuranceTransport.SelectParking.unsecured"),
+            t("insuranceTransport.SelectParking.individual"),
+            t("insuranceTransport.SelectParking.shared"),
+            t("insuranceTransport.SelectParking.guarded"),
+            t("insuranceTransport.SelectParking.fenced"),
+            t("insuranceTransport.SelectParking.unsecured"),
           ]}
         />
         <Slider

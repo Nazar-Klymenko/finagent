@@ -7,8 +7,9 @@ interface Props {
   id: string;
   onSubmit?: any;
   methods: any;
+  children: any;
 }
-const Form: React.FC<Props> = ({ id, children, methods, ...props }) => {
+const Form = ({ id, children, methods, ...props }: Props): JSX.Element => {
   return (
     <FormProvider {...methods}>
       <FormStyled id={id} className="super-form" noValidate {...props}>
@@ -17,6 +18,7 @@ const Form: React.FC<Props> = ({ id, children, methods, ...props }) => {
     </FormProvider>
   );
 };
+export { Form };
 
 const FormStyled = styled("form")`
   display: flex;
@@ -29,4 +31,3 @@ const FormStyled = styled("form")`
     min-width: unset;
   }
 `;
-export default Form;

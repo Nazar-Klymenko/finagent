@@ -1,4 +1,8 @@
 {
+  "404": {
+    "title": "Цю сторінку не знайдено",
+    "link": "повернутись до Кабінету"
+  },
   "Pages": {
     "dashboard": "Кабінет",
     "services": "Послуги",
@@ -7,7 +11,6 @@
     "logIn": "Увійти",
     "signUp": "Реєстрація"
   },
-
   "Form": {
     "optional": "необов'язково",
     "Error": {
@@ -47,14 +50,14 @@
     "no": "Ні",
     "yes": "Так",
     "ApplicationType": {
-      "transport": "Транспортне страхування",
-      "Estate": "Страхування нерухомості",
-      "Travel": "Туристична страховка",
-      "HealthSpecialist": "Доступ до спеціалістів",
-      "HealthMedical": "Медична страховка",
-      "Border": "Прикордонне страхування",
-      "Mortgage": "Іпотека",
-      "Cash": "Кредит готівкою"
+      "insuranceTransport": "Транспортне страхування",
+      "insuranceEstate": "Страхування нерухомості",
+      "insuranceTravel": "Туристична страховка",
+      "insuranceHealthSpecialist": "Доступ до спеціалістів",
+      "insuranceHealthMedical": "Медична страховка",
+      "insuranceBorder": "Прикордонне страхування",
+      "loanMortgage": "Іпотека",
+      "loanCash": "Кредит готівкою"
     }
   },
   "Summary": {
@@ -141,8 +144,7 @@
     }
   },
   "Help": {
-    "title": "Часто задаване питання",
-    "": ""
+    "title": "Часто задаване питання"
   },
   "LogIn": {
     "title": "Увійди в свій аккаунт",
@@ -313,12 +315,9 @@
       "errorInvalidPassword": "Неправильний пароль"
     }
   },
-
   "LoanCash": {
     "title": "Кредит готівкою",
-
     "buttonConfirm": "Підтвердити",
-
     "ApplicantBox": {
       "title": "Додати заявника",
       "addApplicant1": "Додати заявника 1",
@@ -430,9 +429,7 @@
   },
   "LoanMortgage": {
     "title": "Іпотечна позика",
-
     "buttonConfirm": "Підтвердити",
-
     "ApplicantBox": {
       "title": "Додати заявника",
       "addApplicant1": "Додати заявника 1",
@@ -575,9 +572,7 @@
   },
   "InsuranceTravel": {
     "title": "Туристична страховка",
-
     "buttonConfirm": "Підтвердити",
-
     "Page1": {
       "title": "Інформація про страхування",
       "insuranceStart": "Початок страхування",
@@ -614,9 +609,7 @@
   },
   "InsuranceEstate": {
     "title": "Страхування нерухомості",
-
     "buttonConfirm": "Підтвердити",
-
     "Page1": {
       "title": "Інформація про нерухомість",
       "country": "Країна",
@@ -681,11 +674,11 @@
       "notificationAlarm": "Сигналізація з повідомленням",
       "localAlarm": "Місцева сигналізація",
       "none": "Відсутня"
-    }
+    },
+    "buttonBack": "Return"
   },
   "InsuranceHealth": {
     "title": "Медична страховка",
-
     "ApplicantBox": {
       "title": "Додати наступного заявника",
       "addApplicant": "Додати заявника",
@@ -750,7 +743,6 @@
   },
   "InsuranceDiagnostic": {
     "title": "Доступ до спеціалістів",
-
     "Error": {
       "noApplicant": "Ви повинні додати мінімум одного заявника"
     },
@@ -764,7 +756,6 @@
       "policyholderIs": "Страхувальник",
       "name": "Ім'я",
       "companyName": "Назва фірми",
-
       "surname": "Прізвище",
       "nip": "NIP",
       "birthDate": "Дата народження",
@@ -789,11 +780,9 @@
       "title": "Додати наступного заявника"
     }
   },
-  "InsuranceTransport": {
+  "insuranceTransport": {
     "title": "Транспортне страхування",
-
     "buttonConfirm": "Підтвердити",
-
     "SelectProfession": {
       "unemployed": "Безробітний",
       "retired": "Пенсіонер",
@@ -949,9 +938,8 @@
       "salesContract": "Фото договору купівлі-продажу"
     }
   },
-  "InsuranceBorder": {
+  "insuranceBorder": {
     "title": "Прикордонне страхування",
-
     "Page1": {
       "subtitle": "Інформація про страхування",
       "documentType": "Тип документу",
@@ -996,9 +984,5 @@
     "loginError": "Помилка входу",
     "emailWasResent": "Електронну пошту було надіслано повторно",
     "errorResendingEmail": "Помилка повторного надсилання електронної пошти"
-  },
-  "404": {
-    "title": "Цю сторінку не знайдено",
-    "link": "повернутись до Кабінету"
   }
 }

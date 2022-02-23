@@ -1,21 +1,17 @@
 import React from "react";
 
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
-// import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
-
-import withAuthForm from "@helpers/withAuthForm";
+import { useForm } from "react-hook-form";
 
 import { useData } from "@context/dataContext";
 
-import Form from "@components/Form";
-import FormBuilder from "@components/FormBuilder";
-import ProgressBar from "@components/ProgressBar";
+import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
+import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
 import {
   Autocomplete,
@@ -95,63 +91,63 @@ const Page1 = () => {
   });
 
   return (
-    <PageContainer xs title="InsuranceTransport.title">
-      <Typography variant="h4">{t("InsuranceTransport.title")}</Typography>
+    <PageContainer xs title="insuranceTransport.title">
+      <Typography variant="h4">{t("insuranceTransport.title")}</Typography>
       <ProgressBar
         maxSteps={5}
         currentStep={1}
-        label={t("InsuranceTransport.Page1.subtitle")}
+        label={t("insuranceTransport.Page1.subtitle")}
       />
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceTransport.Page1.subtitle")}
+        {t("insuranceTransport.Page1.subtitle")}
       </Typography>
 
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <Typography variant="body1">
-          {t("InsuranceTransport.Page1.insuranceCoverage")}
+          {t("insuranceTransport.Page1.insuranceCoverage")}
         </Typography>
 
-        <Checkbox labelName={t("InsuranceTransport.Page1.oc")} name="oc" />
-        <Checkbox labelName={t("InsuranceTransport.Page1.ac")} name="ac" />
+        <Checkbox labelName={t("insuranceTransport.Page1.oc")} name="oc" />
+        <Checkbox labelName={t("insuranceTransport.Page1.ac")} name="ac" />
         <Checkbox
-          labelName={t("InsuranceTransport.Page1.greenCard")}
+          labelName={t("insuranceTransport.Page1.greenCard")}
           name="greenCard"
         />
         <Checkbox
           errorSpacer
-          labelName={t("InsuranceTransport.Page1.assistance")}
+          labelName={t("insuranceTransport.Page1.assistance")}
           name="assistance"
         />
 
         <Input
           name="fullName"
-          labelName={t("InsuranceTransport.Page1.name")}
+          labelName={t("insuranceTransport.Page1.name")}
           type="text"
           autoComplete="name"
         />
         <MuiPhoneInput
           name="phoneNumber"
-          labelName={t("InsuranceTransport.Page1.phoneNumber")}
+          labelName={t("insuranceTransport.Page1.phoneNumber")}
         />
         <Input
           name="voivodeship"
-          labelName={t("InsuranceTransport.Page1.voivodeship")}
+          labelName={t("insuranceTransport.Page1.voivodeship")}
         />
-        <Input name="city" labelName={t("InsuranceTransport.Page1.city")} />
+        <Input name="city" labelName={t("insuranceTransport.Page1.city")} />
 
         <FormBuilder.InputsWrap>
           <Input
             name="street"
-            labelName={t("InsuranceTransport.Page1.street")}
+            labelName={t("insuranceTransport.Page1.street")}
           />
           <Input
             name="houseNumber"
-            labelName={t("InsuranceTransport.Page1.houseNumber")}
+            labelName={t("insuranceTransport.Page1.houseNumber")}
             width="s"
           />
           <Input
             name="postIndex"
-            labelName={t("InsuranceTransport.Page1.postIndex")}
+            labelName={t("insuranceTransport.Page1.postIndex")}
             autoComplete="postal-code"
             width="s"
           />
@@ -159,18 +155,18 @@ const Page1 = () => {
 
         <Radio
           name="documentAddedType"
-          labelName={t("InsuranceTransport.Page1.documentAddedType")}
+          labelName={t("insuranceTransport.Page1.documentAddedType")}
           options={[
             {
-              label: t("InsuranceTransport.Page1.pesel"),
+              label: t("insuranceTransport.Page1.pesel"),
               value: "pesel",
             },
             {
-              label: t("InsuranceTransport.Page1.regon"),
+              label: t("insuranceTransport.Page1.regon"),
               value: "regon",
             },
             {
-              label: t("InsuranceTransport.Page1.passport"),
+              label: t("insuranceTransport.Page1.passport"),
               value: "passport",
             },
           ]}
@@ -178,64 +174,64 @@ const Page1 = () => {
 
         <Input
           name="documentAdded"
-          labelName={t(`InsuranceTransport.Page1.${documentTypeName}`)}
+          labelName={t(`insuranceTransport.Page1.${documentTypeName}`)}
         />
 
         <Autocomplete
           name="profession"
           defaultValue={appDataValid.profession}
-          labelName={t("InsuranceTransport.Page1.profession")}
+          labelName={t("insuranceTransport.Page1.profession")}
           options={[
-            t("InsuranceTransport.SelectProfession.unemployed"),
-            t("InsuranceTransport.SelectProfession.retired"),
-            t("InsuranceTransport.SelectProfession.housewife"),
-            t("InsuranceTransport.SelectProfession.engineer"),
-            t("InsuranceTransport.SelectProfession.management"),
-            t("InsuranceTransport.SelectProfession.driver"),
-            t("InsuranceTransport.SelectProfession.doctor"),
-            t("InsuranceTransport.SelectProfession.teacher"),
-            t("InsuranceTransport.SelectProfession.operator"),
-            t("InsuranceTransport.SelectProfession.administration"),
-            t("InsuranceTransport.SelectProfession.office"),
-            t("InsuranceTransport.SelectProfession.it"),
-            t("InsuranceTransport.SelectProfession.customer"),
-            t("InsuranceTransport.SelectProfession.sales"),
-            t("InsuranceTransport.SelectProfession.physical"),
-            t("InsuranceTransport.SelectProfession.poczta"),
-            t("InsuranceTransport.SelectProfession.education"),
-            t("InsuranceTransport.SelectProfession.technical"),
-            t("InsuranceTransport.SelectProfession.lawyer"),
-            t("InsuranceTransport.SelectProfession.entrepreneur"),
-            t("InsuranceTransport.SelectProfession.comercial"),
-            t("InsuranceTransport.SelectProfession.farmer"),
-            t("InsuranceTransport.SelectProfession.uniformed"),
-            t("InsuranceTransport.SelectProfession.athlete"),
-            t("InsuranceTransport.SelectProfession.student"),
-            t("InsuranceTransport.SelectProfession.soldier"),
-            t("InsuranceTransport.SelectProfession.other"),
+            t("insuranceTransport.SelectProfession.unemployed"),
+            t("insuranceTransport.SelectProfession.retired"),
+            t("insuranceTransport.SelectProfession.housewife"),
+            t("insuranceTransport.SelectProfession.engineer"),
+            t("insuranceTransport.SelectProfession.management"),
+            t("insuranceTransport.SelectProfession.driver"),
+            t("insuranceTransport.SelectProfession.doctor"),
+            t("insuranceTransport.SelectProfession.teacher"),
+            t("insuranceTransport.SelectProfession.operator"),
+            t("insuranceTransport.SelectProfession.administration"),
+            t("insuranceTransport.SelectProfession.office"),
+            t("insuranceTransport.SelectProfession.it"),
+            t("insuranceTransport.SelectProfession.customer"),
+            t("insuranceTransport.SelectProfession.sales"),
+            t("insuranceTransport.SelectProfession.physical"),
+            t("insuranceTransport.SelectProfession.poczta"),
+            t("insuranceTransport.SelectProfession.education"),
+            t("insuranceTransport.SelectProfession.technical"),
+            t("insuranceTransport.SelectProfession.lawyer"),
+            t("insuranceTransport.SelectProfession.entrepreneur"),
+            t("insuranceTransport.SelectProfession.comercial"),
+            t("insuranceTransport.SelectProfession.farmer"),
+            t("insuranceTransport.SelectProfession.uniformed"),
+            t("insuranceTransport.SelectProfession.athlete"),
+            t("insuranceTransport.SelectProfession.student"),
+            t("insuranceTransport.SelectProfession.soldier"),
+            t("insuranceTransport.SelectProfession.other"),
           ]}
         />
         <Select
           name="maritalStatus"
-          labelName={t("InsuranceTransport.Page1.maritalStatus")}
+          labelName={t("insuranceTransport.Page1.maritalStatus")}
           options={[
-            t("InsuranceTransport.SelectMarital.married"),
-            t("InsuranceTransport.SelectMarital.single"),
-            t("InsuranceTransport.SelectMarital.divorced"),
-            t("InsuranceTransport.SelectMarital.widow"),
-            t("InsuranceTransport.SelectMarital.separation"),
+            t("insuranceTransport.SelectMarital.married"),
+            t("insuranceTransport.SelectMarital.single"),
+            t("insuranceTransport.SelectMarital.divorced"),
+            t("insuranceTransport.SelectMarital.widow"),
+            t("insuranceTransport.SelectMarital.separation"),
           ]}
         />
 
         <Checkbox
           name="isAppropLicence"
-          labelName={t("InsuranceTransport.Page1.isAppropLicence")}
+          labelName={t("insuranceTransport.Page1.isAppropLicence")}
         />
 
         {isAppropLicence && (
           <DateInput
             name="drivingLicenceDate"
-            labelName={t("InsuranceTransport.Page1.drivingLicenceDate")}
+            labelName={t("insuranceTransport.Page1.drivingLicenceDate")}
             placeholder={t("Form.Placeholder.dateFull")}
             disableFuture
             view={["year", "month", "day"]}

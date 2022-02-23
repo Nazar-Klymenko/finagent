@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-// import Tooltip from "@components/Tooltip";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import {Tooltip} from "@components/Tooltip";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -53,7 +54,8 @@ const UserMenu = (): JSX.Element => {
           {displayName}
         </MenuName>
         <IconButton onClick={handleOpenNavMenu}>
-          <MoreVertIcon />
+          {/* <MoreVertIcon /> */}
+          <ExpandMoreIcon />
         </IconButton>
       </UserContainer>
       <MenuStyled

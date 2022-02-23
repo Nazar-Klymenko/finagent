@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { useTheme } from "@mui/material";
 import { Container, LinearProgress, Skeleton, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import useRouteLoader from "@hooks/useRouteLoader";
 
@@ -22,15 +24,16 @@ const Navbar = (props: any): JSX.Element => {
   const { currentUser } = useAuth(),
     { isLoggedIn, isSendingRequest } = currentUser;
 
-  // const { isLoggedIn, isSendingRequest } = currentUser;
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <>
-      <NavbarBg>
+      <NavbarBg className="mui-fixed">
         <Container maxWidth="lg">
           <InnerNavbar>
             <LogoWrap>
-              <Link href={"/home"} passHref>
+              <Link href={"/dashboard/insurance"} passHref>
                 <Logo>
                   <Image src="/logo.svg" height="44" width="90" alt="" />
                 </Logo>
@@ -42,7 +45,7 @@ const Navbar = (props: any): JSX.Element => {
             </LinksContainer>
 
             <ControlsWrap>
-              {isLoggedIn && <Notifications />}
+              {isLoggedIn && !md && <Notifications />}
               <LanguageMenu />
               {isSendingRequest && (
                 <Skeleton variant="rectangular" width={210}>
@@ -79,7 +82,9 @@ const InnerNavbar = styled("div")`
   width: 100%;
   ${({ theme }) => theme.mixins.toolbar}
 `;
-
+const LogoWrap = styled("div")`
+  flex: 1 3 auto;
+`;
 const Logo = styled("a")`
   height: 100%;
   display: flex;
@@ -92,9 +97,6 @@ const ControlsWrap = styled("div")`
   justify-content: flex-end;
 `;
 
-const LogoWrap = styled("div")`
-  flex: 1 3 auto;
-`;
 const LinksContainer = styled("div")`
   flex: 2 1 auto;
   display: flex;

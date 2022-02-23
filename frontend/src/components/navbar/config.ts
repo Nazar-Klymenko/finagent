@@ -4,8 +4,8 @@ const links = [
     label: "Navbar.dashboard",
     activePaths: [
       "/dashboard",
-      "/dashboard/loans",
-      "/dashboard/insurances",
+      "/dashboard/loan",
+      "/dashboard/insurance",
       "/dashboard/history",
     ],
   },

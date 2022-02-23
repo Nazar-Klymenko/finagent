@@ -1,6 +1,7 @@
+import { summaryLabels as BorderSummaryLabels } from "@modules/survey/insurance-border/helpers/summaryLabels";
 import { summaryLabels as TransportSummaryLabels } from "@modules/survey/insurance-transport/helpers/summaryLabels";
 
-export default function determineAppType(type: string, object: {}) {
+export function determineAppType(type: string, object: {}) {
   let appDataCopy = JSON.parse(JSON.stringify(object));
 
   delete appDataCopy.status;
@@ -34,7 +35,13 @@ export default function determineAppType(type: string, object: {}) {
   delete appDataCopy.admin_attachments;
   delete appDataCopy.user_attachments;
 
-  if (type === "transport") {
-    return TransportSummaryLabels(appDataCopy);
+  switch (type) {
+    case "insuranceBorder": {
+      BorderSummaryLabels;
+      return BorderSummaryLabels(appDataCopy);
+    }
+    case "insuranceTransport": {
+      return TransportSummaryLabels(appDataCopy);
+    }
   }
 }

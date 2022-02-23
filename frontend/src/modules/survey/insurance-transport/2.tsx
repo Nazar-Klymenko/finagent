@@ -1,21 +1,17 @@
 import React from "react";
 
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
-// import { QuestState } from "@dev/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
-
-import withAuthForm from "@helpers/withAuthForm";
+import { useForm } from "react-hook-form";
 
 import { useData } from "@context/dataContext";
 
-import Form from "@components/Form";
-import FormBuilder from "@components/FormBuilder";
-import ProgressBar from "@components/ProgressBar";
+import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
+import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
 import { Autocomplete, Checkbox, DateInput, Input } from "@components/input";
 import { PageContainer } from "@components/layout";
@@ -65,22 +61,22 @@ const Page2 = () => {
   });
 
   return (
-    <PageContainer xs title="InsuranceTransport.title">
-      <Typography variant="h4">{t("InsuranceTransport.title")}</Typography>
+    <PageContainer xs title="insuranceTransport.title">
+      <Typography variant="h4">{t("insuranceTransport.title")}</Typography>
       <ProgressBar
         maxSteps={5}
         currentStep={2}
-        label={t("InsuranceTransport.Page2.subtitle")}
+        label={t("insuranceTransport.Page2.subtitle")}
       />
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceTransport.Page2.subtitle")}
+        {t("insuranceTransport.Page2.subtitle")}
       </Typography>
 
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <Autocomplete
           name="brand"
           defaultValue={appDataValid.brand}
-          labelName={t("InsuranceTransport.Page2.brand")}
+          labelName={t("insuranceTransport.Page2.brand")}
           options={
             [
               "Abarth",
@@ -151,23 +147,23 @@ const Page2 = () => {
           }
         />
 
-        <Input name="model" labelName={t("InsuranceTransport.Page2.model")} />
+        <Input name="model" labelName={t("insuranceTransport.Page2.model")} />
         <Input
           name="version"
           optional
-          labelName={t("InsuranceTransport.Page2.version")}
+          labelName={t("insuranceTransport.Page2.version")}
         />
         <Input
           name="regNumber"
-          labelName={t("InsuranceTransport.Page2.regNumber")}
+          labelName={t("insuranceTransport.Page2.regNumber")}
         />
         <Input
           name="vinNumber"
-          labelName={t("InsuranceTransport.Page2.vinNumber")}
+          labelName={t("insuranceTransport.Page2.vinNumber")}
         />
         <DateInput
           name="yearManufacture"
-          labelName={t("InsuranceTransport.Page2.yearManufacture")}
+          labelName={t("insuranceTransport.Page2.yearManufacture")}
           placeholder={t("Form.Placeholder.dateYear")}
           view={["year"]}
           format="yyyy"
@@ -176,7 +172,7 @@ const Page2 = () => {
         />
 
         <Checkbox
-          labelName={t("InsuranceTransport.Page2.registeredPoland")}
+          labelName={t("insuranceTransport.Page2.registeredPoland")}
           name="registeredPoland"
         />
       </Form>

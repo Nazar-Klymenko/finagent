@@ -6,7 +6,7 @@ import Application from "../application.js";
 const InsuranceBorderSchema = new Schema(
   {
     insuranceData: {
-      documentAddedType: String,
+      documentType: String,
       pesel: String,
       passportNumber: String,
       registeredNotInEU: String,
@@ -38,7 +38,7 @@ const InsuranceBorderSchema = new Schema(
 );
 
 const InsuranceBorder = Application.discriminator(
-  "InsuranceBorder",
+  "insuranceBorder",
   InsuranceBorderSchema
 );
 

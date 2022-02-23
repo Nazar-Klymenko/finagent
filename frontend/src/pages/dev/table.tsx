@@ -6,7 +6,6 @@ import { summaryLabels } from "@modules/survey/insurance-transport/helpers/summa
 import { isDate } from "lodash";
 
 import { SummaryList } from "@components/SummaryList";
-import Table from "@components/Table";
 import { PageContainer } from "@components/layout";
 
 const DevTable = () => {
@@ -18,7 +17,7 @@ const DevTable = () => {
     <PageContainer xs title="table">
       <SummaryList
         header={t("Basic.summary")}
-        applicationType="InsuranceTransport"
+        applicationType="insuranceTransport"
         //@ts-ignore
         array={summaryReady}
         defaultOpen

@@ -1,4 +1,8 @@
 {
+  "404": {
+    "title": "This page doesnt exist",
+    "link": "return to Dashboard"
+  },
   "Pages": {
     "dashboard": "Dashboard",
     "services": "Services",
@@ -46,14 +50,14 @@
     "no": "No",
     "yes": "Yes",
     "ApplicationType": {
-      "transport": "Transport insurance",
-      "Estate": "Real estate insurance",
-      "Travel": "Travel insurance",
-      "HealthSpecialist": "Specialists access",
-      "HealthMedical": "Health insurance",
-      "Border": "Border insurance",
-      "Mortgage": "Mortgage loan",
-      "Cash": "Cash loan"
+      "insuranceTransport": "Transport insurance",
+      "insuranceEstate": "Real estate insurance",
+      "insuranceTravel": "Travel insurance",
+      "insuranceHealthSpecialist": "Specialists access",
+      "insuranceHealthMedical": "Health insurance",
+      "insuranceBorder": "Border insurance",
+      "loanMortgage": "Mortgage loan",
+      "loanCash": "Cash loan"
     }
   },
   "Summary": {
@@ -140,8 +144,7 @@
     }
   },
   "Help": {
-    "title": "Frequently asked questions",
-    "": ""
+    "title": "Frequently asked questions"
   },
   "LogIn": {
     "title": "Log in to your account",
@@ -312,10 +315,8 @@
       "errorInvalidPassword": "Invalid password"
     }
   },
-
   "LoanCash": {
     "title": "Cash loan",
-
     "ApplicantBox": {
       "title": "Add Applicant",
       "addApplicant1": "Add Applicant 1",
@@ -427,7 +428,6 @@
   },
   "LoanMortgage": {
     "title": "Mortgage loan",
-
     "ApplicantBox": {
       "title": "Add Applicant",
       "addApplicant1": "Add Applicant 1",
@@ -570,7 +570,6 @@
   },
   "InsuranceTravel": {
     "title": "Travel insurance",
-
     "Page1": {
       "title": "Insurance info",
       "insuranceStart": "Insurance period starts",
@@ -607,7 +606,6 @@
   },
   "InsuranceEstate": {
     "title": "Real estate insurance",
-
     "Page1": {
       "title": "Real estate info",
       "country": "Country",
@@ -672,11 +670,11 @@
       "notificationAlarm": "Notification alarm",
       "localAlarm": "Local alarm",
       "none": "None"
-    }
+    },
+    "buttonBack": "Return"
   },
   "InsuranceHealth": {
     "title": "Health insurance",
-
     "ApplicantBox": {
       "title": "Add additional applicant",
       "addApplicant": "Add applicant",
@@ -740,7 +738,6 @@
   },
   "InsuranceDiagnostic": {
     "title": "Specialists access",
-
     "Error": {
       "noApplicant": "You must provide minimum 1 applicant"
     },
@@ -778,9 +775,8 @@
       "title": "Add another applicant"
     }
   },
-  "InsuranceTransport": {
+  "insuranceTransport": {
     "title": "Transport insurance",
-
     "SelectProfession": {
       "unemployed": "Unemployed",
       "retired": "Retired / Pensioner",
@@ -936,7 +932,7 @@
       "salesContract": "Photo of the sales contract"
     }
   },
-  "InsuranceBorder": {
+  "insuranceBorder": {
     "title": "Border insurance",
     "Page1": {
       "subtitle": "Insurance Info",
@@ -982,9 +978,5 @@
     "loginError": "Error logging in",
     "emailWasResent": "Email was re-sent",
     "errorResendingEmail": "Error re-sending email"
-  },
-  "404": {
-    "title": "This page doesnt exist",
-    "link": "return to Dashboard"
   }
 }

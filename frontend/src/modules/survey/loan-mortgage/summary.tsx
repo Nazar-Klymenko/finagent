@@ -28,7 +28,7 @@ const Summary = () => {
 
   const confirmApplication = async () => {
     await postApplication("loan-mortgage", appDataValid);
-    router.push("/dashboard/loans");
+    router.push("/dashboard/loan");
   };
 
   return (

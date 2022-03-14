@@ -9,7 +9,8 @@
     "contact": "Contact",
     "help": "Help",
     "logIn": "Log In",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "settings": "Settings"
   },
   "Form": {
     "optional": "optional",
@@ -315,7 +316,7 @@
       "errorInvalidPassword": "Invalid password"
     }
   },
-  "LoanCash": {
+  "loanCash": {
     "title": "Cash loan",
     "ApplicantBox": {
       "title": "Add Applicant",
@@ -461,7 +462,7 @@
       "yes": "Yes",
       "no": "No"
     },
-    "Page2": {
+    "Page3": {
       "subtitle": "Additional information",
       "custody": "Number of people in family without income",
       "monthlyLoanPayments": "The amount of loans payments each month",
@@ -572,6 +573,7 @@
     "title": "Travel insurance",
     "Page1": {
       "title": "Insurance info",
+      "subtitle": "Insurance info",
       "insuranceStart": "Insurance period starts",
       "insuranceEnd": "Insurance period ends",
       "inPoland": "The insured are in Poland at the moment of the signing of the contract",
@@ -585,6 +587,7 @@
     },
     "Page2": {
       "title": "Policyholder info",
+      "subtitle": "Policyholder info",
       "policyholderIs": "Policyholder is",
       "natural": "Natural person",
       "legal": "Legal person",
@@ -608,6 +611,7 @@
     "title": "Real estate insurance",
     "Page1": {
       "title": "Real estate info",
+      "subtitle": "Real estate info",
       "country": "Country",
       "city": "City",
       "postIndex": "Post index",
@@ -648,6 +652,7 @@
     },
     "Page2": {
       "title": "Policyholder info",
+      "subtitle": "Policyholder info",
       "policyholderIs": "Policyholder is",
       "individual": "Individual",
       "legal": "Legal",

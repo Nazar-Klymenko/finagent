@@ -145,16 +145,16 @@ const Page2 = () => {
   };
 
   return (
-    <PageContainer xs title="LoanCash.title">
+    <PageContainer xs title="loanCash.title">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("LoanCash.title")}</Typography>
+      <Typography variant="h4">{t("loanCash.title")}</Typography>
       <ProgressBar
         maxSteps={3}
         currentStep={2}
-        label={t("LoanCash.Page2.subtitle")}
+        label={t("loanCash.Page2.subtitle")}
       />
-      <Typography variant="h6">{t("LoanCash.Page2.subtitle")}</Typography>
+      <Typography variant="h6">{t("loanCash.Page2.subtitle")}</Typography>
 
       {editingMode &&
         fields.map((field: any, index: number) => {
@@ -180,7 +180,7 @@ const Page2 = () => {
                   handleClose(index);
                 }}
                 formId="additional-income-form"
-                title={t("LoanCash.IncomeModal.title")}
+                title={t("loanCash.IncomeModal.title")}
                 description=""
               >
                 <Form
@@ -190,14 +190,14 @@ const Page2 = () => {
                 >
                   <Radio
                     name={`income[${index}].truckDriver`}
-                    labelName={t("LoanCash.IncomeModal.truckDriver")}
+                    labelName={t("loanCash.IncomeModal.truckDriver")}
                     options={[
                       {
-                        label: t("LoanCash.IncomeModal.yes"),
+                        label: t("loanCash.IncomeModal.yes"),
                         value: "yes",
                       },
                       {
-                        label: t("LoanCash.IncomeModal.no"),
+                        label: t("loanCash.IncomeModal.no"),
                         value: "no",
                       },
                     ]}
@@ -206,7 +206,7 @@ const Page2 = () => {
                   {truckDriver === "no" && (
                     <Input
                       name={`income[${index}].industry`}
-                      labelName={t("LoanCash.IncomeModal.industry")}
+                      labelName={t("loanCash.IncomeModal.industry")}
                       type="text"
                       placeholder="industry"
                       defaultValue={field.industry || ""}
@@ -215,26 +215,26 @@ const Page2 = () => {
 
                   <Radio
                     name={`income[${index}].basicIncome`}
-                    labelName={t("LoanCash.IncomeModal.basicIncome")}
+                    labelName={t("loanCash.IncomeModal.basicIncome")}
                     options={[
                       {
-                        label: t("LoanCash.IncomeModal.indefinitePeriod"),
+                        label: t("loanCash.IncomeModal.indefinitePeriod"),
                         value: "indefinitePeriod",
                       },
                       {
-                        label: t("LoanCash.IncomeModal.specificTime"),
+                        label: t("loanCash.IncomeModal.specificTime"),
                         value: "specificTime",
                       },
                       {
-                        label: t("LoanCash.IncomeModal.mandate"),
+                        label: t("loanCash.IncomeModal.mandate"),
                         value: "mandate",
                       },
                       {
-                        label: t("LoanCash.IncomeModal.contract"),
+                        label: t("loanCash.IncomeModal.contract"),
                         value: "contract",
                       },
                       {
-                        label: t("LoanCash.IncomeModal.economicActivity"),
+                        label: t("loanCash.IncomeModal.economicActivity"),
                         value: "economicActivity",
                       },
                     ]}
@@ -247,14 +247,14 @@ const Page2 = () => {
                     <>
                       <Radio
                         name={`income[${index}].firstContract`}
-                        labelName={t("LoanCash.IncomeModal.firstContract")}
+                        labelName={t("loanCash.IncomeModal.firstContract")}
                         options={[
                           {
-                            label: t("LoanCash.IncomeModal.yes"),
+                            label: t("loanCash.IncomeModal.yes"),
                             value: "yes",
                           },
                           {
-                            label: t("LoanCash.IncomeModal.no"),
+                            label: t("loanCash.IncomeModal.no"),
                             value: "no",
                           },
                         ]}
@@ -264,14 +264,14 @@ const Page2 = () => {
                         <>
                           <Radio
                             name={`income[${index}].sameEmployer`}
-                            labelName={t("LoanCash.IncomeModal.sameEmployer")}
+                            labelName={t("loanCash.IncomeModal.sameEmployer")}
                             options={[
                               {
-                                label: t("LoanCash.IncomeModal.yes"),
+                                label: t("loanCash.IncomeModal.yes"),
                                 value: "yes",
                               },
                               {
-                                label: t("LoanCash.IncomeModal.no"),
+                                label: t("loanCash.IncomeModal.no"),
                                 value: "no",
                               },
                             ]}
@@ -280,14 +280,14 @@ const Page2 = () => {
 
                           <Radio
                             name={`income[${index}].withoutPause`}
-                            labelName={t("LoanCash.IncomeModal.withoutPause")}
+                            labelName={t("loanCash.IncomeModal.withoutPause")}
                             options={[
                               {
-                                label: t("LoanCash.IncomeModal.yes"),
+                                label: t("loanCash.IncomeModal.yes"),
                                 value: "yes",
                               },
                               {
-                                label: t("LoanCash.IncomeModal.no"),
+                                label: t("loanCash.IncomeModal.no"),
                                 value: "no",
                               },
                             ]}
@@ -297,13 +297,13 @@ const Page2 = () => {
                       )}
                       <DateInput
                         name={`income[${index}].contractFrom`}
-                        labelName={t("LoanCash.IncomeModal.contractFrom")}
+                        labelName={t("loanCash.IncomeModal.contractFrom")}
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.contractFrom || null}
                       />
                       <DateInput
                         name={`income[${index}].contractUntil`}
-                        labelName={t("LoanCash.IncomeModal.contractUntil")}
+                        labelName={t("loanCash.IncomeModal.contractUntil")}
                         disablePast
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.contractUntil || null}
@@ -313,7 +313,7 @@ const Page2 = () => {
                   {basicIncome === "mandate" && (
                     <Input
                       name={`income[${index}].averageIncome12`}
-                      labelName={t("LoanCash.IncomeModal.averageIncome12")}
+                      labelName={t("loanCash.IncomeModal.averageIncome12")}
                       type="text"
                       placeholder="value"
                       defaultValue={field.averageIncome12 || ""}
@@ -322,7 +322,7 @@ const Page2 = () => {
                   {basicIncome === "specificTime" && (
                     <Input
                       name={`income[${index}].averageIncome6`}
-                      labelName={t("LoanCash.IncomeModal.averageIncome6")}
+                      labelName={t("loanCash.IncomeModal.averageIncome6")}
                       type="text"
                       placeholder="value"
                       defaultValue={field.averageIncome6 || ""}
@@ -332,22 +332,22 @@ const Page2 = () => {
                     <>
                       <Radio
                         name={`income[${index}].accountancy`}
-                        labelName={t("LoanCash.IncomeModal.accountancy")}
+                        labelName={t("loanCash.IncomeModal.accountancy")}
                         options={[
                           {
-                            label: t("LoanCash.IncomeModal.generalRules"),
+                            label: t("loanCash.IncomeModal.generalRules"),
                             value: "generalRules",
                           },
                           {
-                            label: t("LoanCash.IncomeModal.lumpSum"),
+                            label: t("loanCash.IncomeModal.lumpSum"),
                             value: "lumpSum",
                           },
                           {
-                            label: t("LoanCash.IncomeModal.taxCard"),
+                            label: t("loanCash.IncomeModal.taxCard"),
                             value: "taxCard",
                           },
                           {
-                            label: t("LoanCash.IncomeModal.fullAccounting"),
+                            label: t("loanCash.IncomeModal.fullAccounting"),
                             value: "fullAccounting",
                           },
                         ]}
@@ -355,7 +355,7 @@ const Page2 = () => {
                       />
                       <Input
                         name={`income[${index}].averageIncome`}
-                        labelName={t("LoanCash.IncomeModal.averageIncome6")}
+                        labelName={t("loanCash.IncomeModal.averageIncome6")}
                         type="text"
                         placeholder="value"
                         defaultValue={field.averageIncome || ""}
@@ -369,7 +369,7 @@ const Page2 = () => {
                   ) && (
                     <Input
                       name={`income[${index}].averageIncome`}
-                      labelName={t("LoanCash.IncomeModal.averageIncome3")}
+                      labelName={t("loanCash.IncomeModal.averageIncome3")}
                       type="text"
                       placeholder="value"
                       defaultValue={field.averageIncome || ""}
@@ -377,14 +377,14 @@ const Page2 = () => {
                   )}
                   <Input
                     name={`income[${index}].pit`}
-                    labelName={t("LoanCash.IncomeModal.pit")}
+                    labelName={t("loanCash.IncomeModal.pit")}
                     type="text"
                     placeholder="value"
                     defaultValue={field.pit || ""}
                   />
                   <Input
                     name={`income[${index}].bank`}
-                    labelName={t("LoanCash.ApplicantModal.bank")}
+                    labelName={t("loanCash.ApplicantModal.bank")}
                     type="text"
                     placeholder="Millenium"
                     defaultValue={field.bank}
@@ -433,7 +433,7 @@ const Page2 = () => {
         >
           <FormBuilder.ApplicantAdd>
             <WorkIcon />
-            <span>{t("LoanCash.IncomeBox.addIncome")}</span>
+            <span>{t("loanCash.IncomeBox.addIncome")}</span>
           </FormBuilder.ApplicantAdd>
         </FormBuilder.ApplicantBox>
       ) : (
@@ -449,7 +449,7 @@ const Page2 = () => {
           >
             <FormBuilder.ApplicantAdd>
               <WorkIcon />
-              <span>{t("LoanCash.IncomeBox.addIncome")}</span>
+              <span>{t("loanCash.IncomeBox.addIncome")}</span>
             </FormBuilder.ApplicantAdd>
           </FormBuilder.ApplicantBox>
         )

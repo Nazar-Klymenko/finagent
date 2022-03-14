@@ -45,7 +45,7 @@ const Application = (): JSX.Element => {
             <Typography variant="h6" sx={{ flex: "1" }}>
               {t(`Basic.ApplicationType.${data?.applicationType}`)}
             </Typography>
-            <ContextMenu />
+            <ContextMenu id={id} isArchived={data?.archived} />
           </ApplicationHeader>
           <ApplicationBody>
             <InfoContainer>

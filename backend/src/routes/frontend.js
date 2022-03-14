@@ -31,6 +31,7 @@ import { ticketSubmit } from "controllers/frontend/submits/ticket.js";
 import {
   getAllAplications,
   getSpecificApplication,
+  archiveApplication,
 } from "controllers/frontend/applicationsActions";
 
 router.route("/auth/signup").post(signUp);
@@ -79,7 +80,8 @@ router
 
 router
   .route("/applications/specific/:id")
-  .get(verifyAccessTokenFirebase, isEmailVerified, getSpecificApplication);
+  .get(verifyAccessTokenFirebase, isEmailVerified, getSpecificApplication)
+  .put(verifyAccessTokenFirebase, isEmailVerified, archiveApplication);
 
 router
   .route("/applications/:category")

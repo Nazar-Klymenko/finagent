@@ -46,7 +46,7 @@ const MuiDialog = ({
           {children}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="secondary">
             {t("Basic.buttonBack")}
           </Button>
           <Button form={formId} color="primary">

@@ -1,10 +1,10 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { Dashboard } from "@modules/dashboard/Dashboard";
+import { Settings } from "@modules/settings/Settings";
 
 import withAuth from "@helpers/withAuth";
 
-export default withAuth(Dashboard);
+export default withAuth(Settings);
 
 export async function getStaticProps({ locale }: any) {
   return {
@@ -15,7 +15,7 @@ export async function getStaticProps({ locale }: any) {
 }
 
 export async function getStaticPaths({ locales }: any) {
-  const pages = ["insurance", "loan", "archive"];
+  const pages = ["personal", "password", "delete"];
 
   return {
     paths: locales

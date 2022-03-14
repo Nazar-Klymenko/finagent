@@ -51,14 +51,12 @@ const AuthContext = createContext({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {
-  // const dispatch = useDispatch();
   const dispatch = () => {
     return null;
   };
   const setSnackbar = () => {
     return null;
   };
-  // const history = useHistory();
 
   const [currentUser, setCurrentUser] = useState({
     displayName: "",

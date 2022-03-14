@@ -6,7 +6,7 @@ const links = [
       "/dashboard",
       "/dashboard/loan",
       "/dashboard/insurance",
-      "/dashboard/history",
+      "/dashboard/archive",
     ],
   },
   {

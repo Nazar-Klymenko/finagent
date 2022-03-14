@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { Paper, Typography } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
 
-const SideNav = (): JSX.Element => {
+const SideNav = ({ links }: any): JSX.Element => {
   const { t } = useTranslation();
   const { asPath } = useRouter();
 
@@ -16,7 +16,7 @@ const SideNav = (): JSX.Element => {
   }
   return (
     <Nav>
-      {links.map((link, idx) => {
+      {links.map((link: any, idx: number) => {
         return (
           <Link key={idx} href={link.href} passHref>
             <StyledLinkText
@@ -33,24 +33,6 @@ const SideNav = (): JSX.Element => {
   );
 };
 export { SideNav };
-
-const links = [
-  {
-    href: "/dashboard/insurance",
-    label: "Dashboard.SideMenu.insurances",
-    activePaths: ["/dashboard/insurance"],
-  },
-  {
-    href: "/dashboard/loans",
-    label: "Dashboard.SideMenu.loans",
-    activePaths: ["/dashboard/loans"],
-  },
-  {
-    href: "/dashboard/history",
-    label: "Dashboard.SideMenu.history",
-    activePaths: ["/dashboard/history"],
-  },
-];
 
 const StyledLinkText = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "isActive",

@@ -6,6 +6,8 @@ export async function middleware(req: any, ev: any) {
     return NextResponse.redirect("/dashboard/insurance");
   } else if (pathname == "/dashboard") {
     return NextResponse.redirect("/dashboard/insurance");
+  } else if (pathname == "/settings") {
+    return NextResponse.redirect("/settings/personal");
   }
   return NextResponse.next();
 }

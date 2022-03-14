@@ -7,7 +7,7 @@ export const getAllAplications = (category: string) => {
 };
 
 export const archiveApplicationAPI = (id: string) => {
-  return axios(`/user/application/${id}`, {
+  return axios(`/user/applications/specific/${id}`, {
     method: "PUT",
   });
 };

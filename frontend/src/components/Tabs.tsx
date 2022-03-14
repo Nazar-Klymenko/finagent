@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 
 import { Tabs as MuiTabs, Paper, Tab } from "@mui/material/";
 
-const Tabs = (): JSX.Element => {
+const Tabs = ({ links }: any): JSX.Element => {
   const { t } = useTranslation();
   const [value, setValue] = useState(0);
 
@@ -19,7 +19,7 @@ const Tabs = (): JSX.Element => {
       scrollButtons="auto"
       sx={{ borderBottom: 1, borderColor: "divider" }}
     >
-      {links.map((link, idx) => (
+      {links.map((link: any, idx: number) => (
         <Tab key={idx} label={t(link.label)}></Tab>
       ))}
     </MuiTabs>
@@ -27,21 +27,3 @@ const Tabs = (): JSX.Element => {
 };
 
 export { Tabs };
-
-const links = [
-  {
-    href: "/dashboard/insurance",
-    label: "Dashboard.SideMenu.insurances",
-    activePaths: ["/dashboard/insurance"],
-  },
-  {
-    href: "/dashboard/loans",
-    label: "Dashboard.SideMenu.loans",
-    activePaths: ["/dashboard/loans"],
-  },
-  {
-    href: "/dashboard/history",
-    label: "Dashboard.SideMenu.history",
-    activePaths: ["/dashboard/history"],
-  },
-];

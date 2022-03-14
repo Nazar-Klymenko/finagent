@@ -15,6 +15,10 @@ export const getAllAplications = asyncHandler(async (req, res) => {
     archived: false,
   };
 
+  if (category === "archive") {
+    delete filters.category;
+    filters.archived = true;
+  }
   let applications = await Application.find(
     filters,
     "_id user_id user status type category createdAt updatedAt"
@@ -46,9 +50,12 @@ export const getSpecificApplication = asyncHandler(async (req, res) => {
 });
 
 export const archiveApplication = asyncHandler(async (req, res) => {
-  await Application.findByIdAndUpdate(req.params.id, {
-    archived: true,
+  const applicationObj = await Application.findOne({
+    _id: req.params.id,
+    user_id: req.currentUser.uid,
   });
 
+  applicationObj.archived = true;
+  await applicationObj.save();
   res.status(200).send({ message: "application updated successfully" });
 });

@@ -52,7 +52,7 @@ const Summary = () => {
         >
           {t("Basic.buttonBack")}
         </Button>
-        <Button form="form-estate" color="primary">
+        <Button form="form-estate" color="primary" onClick={confirmApplication}>
           {t("Basic.buttonNext")}
         </Button>
       </FormBuilder.ButtonsWrap>

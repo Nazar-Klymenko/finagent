@@ -5,7 +5,8 @@
     "contact": "Kontakty",
     "help": "Pomoc",
     "logIn": "Logowanie",
-    "signUp": "Rejestracja"
+    "signUp": "Rejestracja",
+    "settings": "Ustawienia"
   },
 
   "Form": {
@@ -314,7 +315,7 @@
     }
   },
 
-  "LoanCash": {
+  "loanCash": {
     "title": "Kredyt gotówkowy",
 
     "ApplicantBox": {
@@ -462,7 +463,7 @@
       "yes": "Tak",
       "no": "Nie"
     },
-    "Page2": {
+    "Page3": {
       "subtitle": "Dodatkowa informacj",
       "custody": "Liczba osób w rodzinie bez dochodu",
       "monthlyLoanPayments": "Kwota spłat kredytów w każdym miesiącu",
@@ -575,6 +576,7 @@
     "buttonBack": "Powrót",
     "Page1": {
       "title": "Informacje o ubezpieczeniu",
+      "subtitle": "Informacje o ubezpieczeniu",
       "insuranceStart": "Początek ubezpieczenia",
       "insuranceEnd": "Koniec ubezpieczenia",
       "inPoland": "Ubezpieczający znajduję się w Polsce w chwili podpisania umowy",
@@ -588,6 +590,7 @@
     },
     "Page2": {
       "title": "Dane osobowe",
+      "subtitle": "Dane osobowe",
       "policyholderIs": "Ubezpieczający",
       "natural": "Osoba fizyczna",
       "legal": "Osoba prawna",
@@ -613,6 +616,7 @@
     "buttonBack": "Powrót",
     "Page1": {
       "title": "Informacja o nieruchomości",
+      "subtitle": "Informacja o nieruchomości",
       "country": "Kraj",
       "city": "Miasto",
       "postIndex": "Kod pocztowy",
@@ -653,6 +657,7 @@
     },
     "Page2": {
       "title": "Dane osobowe",
+      "subtitle": "Dane osobowe",
       "policyholderIs": "Ubezpieczający",
       "individual": "Osoba prywatna",
       "legal": "Osoba prawna",

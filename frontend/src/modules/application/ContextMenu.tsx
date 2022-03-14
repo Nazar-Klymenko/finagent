@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 
 import ArchiveIcon from "@mui/icons-material/Archive";
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import SettingsIcon from "@mui/icons-material/Settings";
 import {
   IconButton,
   ListItemIcon,
@@ -15,7 +13,9 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const ContextMenu = (): JSX.Element => {
+import { archiveApplicationAPI } from "@api/applications";
+
+const ContextMenu = ({ id, isArchived }: any): JSX.Element => {
   const { t } = useTranslation();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -25,9 +25,13 @@ const ContextMenu = (): JSX.Element => {
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
+
+  const archiveApplication = async () => {
+    await archiveApplicationAPI(id);
+  };
   return (
     <>
-      <IconButton onClick={handleOpenNavMenu}>
+      <IconButton disabled={isArchived} onClick={handleOpenNavMenu}>
         <MoreVertIcon />
       </IconButton>
       <MenuStyled
@@ -48,6 +52,7 @@ const ContextMenu = (): JSX.Element => {
       >
         <MenuItemStyled
           onClick={() => {
+            archiveApplication();
             handleCloseNavMenu();
           }}
         >

@@ -36,14 +36,6 @@ export const getSpecificApplication = (id) => {
   });
 };
 
-export const postInsuranceOcAPI = (object) => {
-  return axios(`/user/application/submit/insurance_car_oc`, {
-    method: "POST",
-    data: object,
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-};
-
 /////////////////// Settings API ////////////////////////
 export const getSettingsAPI = () => {
   return axios("/user/settings", { method: "GET" });

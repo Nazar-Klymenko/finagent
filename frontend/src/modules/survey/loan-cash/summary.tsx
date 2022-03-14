@@ -28,14 +28,14 @@ const Summary = () => {
 
   const confirmApplication = async () => {
     await postApplication("loan-cash", appDataValid);
-    router.push("/dashboard/loans");
+    router.push("/dashboard/loan");
   };
 
   return (
     <PageContainer xs title={t("Basic.summary")}>
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("LoanCash.title")}</Typography>
+      <Typography variant="h4">{t("loanCash.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
       <SummaryList
         header={t("Basic.summary")}

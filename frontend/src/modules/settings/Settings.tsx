@@ -24,67 +24,47 @@ import { SideNav } from "@components/SideNav";
 import { Tabs } from "@components/Tabs";
 import { PageContainer } from "@components/layout";
 
-import Card from "./Card";
-
-const Dashboard = (): JSX.Element => {
+const Settings = (): JSX.Element => {
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter();
   const { tab } = router.query;
+  const { currentUser } = useAuth();
+  const { provider } = currentUser;
 
-  const [pageIndex, setPageIndex] = useState(1);
-  const [pageSize, setPageSize] = useState(4);
-  const [maximumPages, setMaximumPages] = useState(1);
+  const { data, error } = useSWR("/user/settings", fetcher);
 
-  let { data, error } = useSWR(
-    `/user/applications/${tab}?page=${pageIndex}&size=${pageSize}`,
-    fetcher
-  );
-  let applications = data?.applications;
-  useEffect(() => {
-    if (data) setMaximumPages(data.maximumPages);
-  }, [data]);
   return (
-    <PageContainer title="Dashboard.title" dashboard>
+    <PageContainer title="Pages.settings" dashboard>
       <DashboardInner>
         {md ? <Tabs links={links} /> : <SideNav links={links} />}
         <DashboardMain>
-          <Typography variant="h6">Twoje ankiety</Typography>
+          <Typography variant="h6">Ustawienia</Typography>
 
-          <DataWrapper>
-            {!data && !error && <Loader />}
-            {applications?.length > 0 &&
-              applications.map((app: any) => <Card key={app.id} app={app} />)}
-          </DataWrapper>
-
-          <Pagination
-            currentPage={pageIndex}
-            setCurrentPage={setPageIndex}
-            maximumPages={maximumPages}
-          />
+          <DataWrapper></DataWrapper>
         </DashboardMain>
       </DashboardInner>
     </PageContainer>
   );
 };
 
-export { Dashboard };
+export { Settings };
 
 const links = [
   {
-    href: "/dashboard/insurance",
-    label: "Dashboard.SideMenu.insurances",
-    activePaths: ["/dashboard/insurance"],
+    href: "/settings/personal",
+    label: "Settings.ChangeInfo.title",
+    activePaths: ["/settings/personal"],
   },
   {
-    href: "/dashboard/loan",
-    label: "Dashboard.SideMenu.loans",
-    activePaths: ["/dashboard/loan"],
+    href: "/settings/password",
+    label: "Settings.ChangePassword.title",
+    activePaths: ["/settings/password"],
   },
   {
-    href: "/dashboard/archive",
-    label: "Dashboard.SideMenu.history",
-    activePaths: ["/dashboard/archive"],
+    href: "/settings/delete",
+    label: "Settings.Disposal.title",
+    activePaths: ["/settings/delete"],
   },
 ];
 

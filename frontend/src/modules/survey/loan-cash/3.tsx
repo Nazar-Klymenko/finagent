@@ -66,53 +66,53 @@ const Page2 = () => {
   });
 
   return (
-    <PageContainer xs title="LoanCash.title">
+    <PageContainer xs title="loanCash.title">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("LoanCash.title")}</Typography>
+      <Typography variant="h4">{t("loanCash.title")}</Typography>
       <ProgressBar
         maxSteps={3}
         currentStep={3}
-        label={t("LoanCash.Page2.subtitle")}
+        label={t("loanCash.Page2.subtitle")}
       />
-      <Typography variant="h6">{t("LoanCash.Page2.subtitle")}</Typography>
+      <Typography variant="h6">{t("loanCash.Page2.subtitle")}</Typography>
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <Textarea
           name="remainingPayOff"
-          labelName={t("LoanCash.Page2.remainingPayOff")}
+          labelName={t("loanCash.Page2.remainingPayOff")}
           placeholder="number"
         />
         <Textarea
           name="lastApplications"
-          labelName={t("LoanCash.Page2.lastApplications")}
+          labelName={t("loanCash.Page2.lastApplications")}
           placeholder="Yes, open answer / No"
         />
         <Input
           name="custody"
-          labelName={t("LoanCash.Page2.custody")}
+          labelName={t("loanCash.Page2.custody")}
           type="text"
           placeholder="number"
         />
         <Textarea
           name="loanPurpose"
-          labelName={t("LoanCash.Page2.loanPurpose")}
+          labelName={t("loanCash.Page2.loanPurpose")}
           placeholder="Purpose"
         />
         <Input
           name="loanAmount"
-          labelName={t("LoanCash.Page2.loanAmount")}
+          labelName={t("loanCash.Page2.loanAmount")}
           type="text"
           placeholder="number"
         />
         <Input
           name="paymentTerm"
-          labelName={t("LoanCash.Page2.paymentTerm")}
+          labelName={t("loanCash.Page2.paymentTerm")}
           type="text"
           placeholder="number"
         />
         <Checkbox
           name="conditions"
-          labelName={t("LoanCash.Page2.conditions")}
+          labelName={t("loanCash.Page2.conditions")}
           errorSpacer
         />
       </Form>

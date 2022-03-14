@@ -35,7 +35,7 @@ const Summary = () => {
     <PageContainer xs title="">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("InsuranceDiagnostic.title")}</Typography>
+      <Typography variant="h4">{t("insuranceSpecialist.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
       <Typography variant="h4">{t("Basic.summary")}</Typography>
 

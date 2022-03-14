@@ -146,17 +146,17 @@ const Page2 = () => {
   };
 
   return (
-    <PageContainer xs title="InsuranceDiagnostic.title">
+    <PageContainer xs title="insuranceSpecialist.title">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("InsuranceDiagnostic.title")}</Typography>
+      <Typography variant="h4">{t("insuranceSpecialist.title")}</Typography>
       <ProgressBar
         maxSteps={2}
         currentStep={2}
-        label={t("InsuranceDiagnostic.ApplicantBox.title")}
+        label={t("insuranceSpecialist.ApplicantBox.title")}
       />
       <Typography variant="h6">
-        {t("InsuranceDiagnostic.ApplicantBox.title")}
+        {t("insuranceSpecialist.ApplicantBox.title")}
       </Typography>
       {editingMode &&
         fields.map((field: any, index: number) => {
@@ -173,7 +173,7 @@ const Page2 = () => {
                   handleClose(index);
                 }}
                 formId="insured-data-form"
-                title={t("InsuranceDiagnostic.ApplicantBox.title")}
+                title={t("insuranceSpecialist.ApplicantBox.title")}
                 description=""
               >
                 <Form
@@ -183,18 +183,18 @@ const Page2 = () => {
                 >
                   <Radio
                     name={`policyholder[${index}].policyholderIs`}
-                    labelName={t("InsuranceDiagnostic.Page1.policyholderIs")}
+                    labelName={t("insuranceSpecialist.Page1.policyholderIs")}
                     options={[
                       {
-                        label: t("InsuranceDiagnostic.Page1.firm"),
+                        label: t("insuranceSpecialist.Page1.firm"),
                         value: "firm",
                       },
                       {
-                        label: t("InsuranceDiagnostic.Page1.individual"),
+                        label: t("insuranceSpecialist.Page1.individual"),
                         value: "individual",
                       },
                       {
-                        label: t("InsuranceDiagnostic.Page1.legal"),
+                        label: t("insuranceSpecialist.Page1.legal"),
                         value: "legal",
                       },
                     ]}
@@ -203,7 +203,7 @@ const Page2 = () => {
                   <Input
                     name={`policyholder[${index}].name`}
                     labelName={t(
-                      `InsuranceDiagnostic.Page1.${
+                      `insuranceSpecialist.Page1.${
                         policyholderIs === "individual" ? "name" : "companyName"
                       }`
                     )}
@@ -214,14 +214,14 @@ const Page2 = () => {
                   {policyholderIs !== "individual" && (
                     <Input
                       name={`policyholder[${index}].nip`}
-                      labelName={t("InsuranceDiagnostic.Page1.nip")}
+                      labelName={t("insuranceSpecialist.Page1.nip")}
                       defaultValue={field.nip || ""}
                     />
                   )}
                   {policyholderIs === "individual" && (
                     <DateInput
                       name={`policyholder[${index}].birthDate`}
-                      labelName={t("InsuranceDiagnostic.Page1.birthDate")}
+                      labelName={t("insuranceSpecialist.Page1.birthDate")}
                       defaultValue={field.birthDate}
                       placeholder={t("Form.Placeholder.dateFull")}
                     />
@@ -229,50 +229,50 @@ const Page2 = () => {
                   {policyholderIs === "individual" && (
                     <Input
                       name={`policyholder[${index}].pesel`}
-                      labelName={t("InsuranceDiagnostic.Page1.pesel")}
+                      labelName={t("insuranceSpecialist.Page1.pesel")}
                       defaultValue={field.pesel || ""}
                     />
                   )}
                   {policyholderIs !== "individual" && (
                     <Input
                       name={`policyholder[${index}].regon`}
-                      labelName={t("InsuranceDiagnostic.Page1.regon")}
+                      labelName={t("insuranceSpecialist.Page1.regon")}
                       defaultValue={field.regon || ""}
                     />
                   )}
                   <MuiPhoneInput
                     name={`policyholder[${index}].phoneNumber`}
-                    labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
+                    labelName={t("insuranceSpecialist.Page1.phoneNumber")}
                     defaultValue={field.phoneNumber || ""}
                   />
                   <Input
                     name={`policyholder[${index}].email`}
-                    labelName={t("InsuranceDiagnostic.Page1.email")}
+                    labelName={t("insuranceSpecialist.Page1.email")}
                     defaultValue={field.email || ""}
                   />
                   <Input
                     name={`policyholder[${index}].country`}
-                    labelName={t("InsuranceDiagnostic.Page1.country")}
+                    labelName={t("insuranceSpecialist.Page1.country")}
                     defaultValue={field.country || ""}
                   />
                   <Input
                     name={`policyholder[${index}].city`}
-                    labelName={t("InsuranceDiagnostic.Page1.city")}
+                    labelName={t("insuranceSpecialist.Page1.city")}
                     defaultValue={field.city || ""}
                   />
                   <Input
                     name={`policyholder[${index}].postIndex`}
-                    labelName={t("InsuranceDiagnostic.Page1.postIndex")}
+                    labelName={t("insuranceSpecialist.Page1.postIndex")}
                     defaultValue={field.postIndex || ""}
                   />
                   <Input
                     name={`policyholder[${index}].street`}
-                    labelName={t("InsuranceDiagnostic.Page1.street")}
+                    labelName={t("insuranceSpecialist.Page1.street")}
                     defaultValue={field.street || ""}
                   />
                   <Input
                     name={`policyholder[${index}].houseNumber`}
-                    labelName={t("InsuranceDiagnostic.Page1.houseNumber")}
+                    labelName={t("insuranceSpecialist.Page1.houseNumber")}
                     defaultValue={field.houseNumber || ""}
                   />
                 </Form>
@@ -284,16 +284,18 @@ const Page2 = () => {
         fields.map((field: any, index: number) => {
           //@ts-ignore
           let policyholder = watch(`policyholder[${index}].name`);
+          //@ts-ignore
+          let policyholderCompany = watch(`policyholder[${index}].companyName`);
           return (
             <FormBuilder.Applicant
               key={field.id}
               error={!!errors.policyholder?.[index]}
             >
               <FormBuilder.AvatarStyled>
-                {policyholder?.[0] || ""}
+                {policyholder?.[0] || policyholderCompany?.[0]}
               </FormBuilder.AvatarStyled>
               <FormBuilder.ApplicantName>
-                {policyholder}
+                {policyholder || policyholderCompany}
               </FormBuilder.ApplicantName>
               <IconButton
                 onClick={() => {
@@ -323,7 +325,7 @@ const Page2 = () => {
         >
           <FormBuilder.ApplicantAdd>
             <PersonAddIcon />
-            <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
+            <span>{t("insuranceSpecialist.ApplicantBox.addApplicant")}</span>
           </FormBuilder.ApplicantAdd>
         </FormBuilder.ApplicantBox>
       ) : (
@@ -339,7 +341,7 @@ const Page2 = () => {
           >
             <FormBuilder.ApplicantAdd>
               <PersonAddIcon />
-              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
+              <span>{t("insuranceSpecialist.ApplicantBox.addApplicant")}</span>
             </FormBuilder.ApplicantAdd>
           </FormBuilder.ApplicantBox>
         )

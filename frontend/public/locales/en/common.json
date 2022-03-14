@@ -53,8 +53,8 @@
       "insuranceTransport": "Transport insurance",
       "insuranceEstate": "Real estate insurance",
       "insuranceTravel": "Travel insurance",
-      "insuranceHealthSpecialist": "Specialists access",
-      "insuranceHealthMedical": "Health insurance",
+      "insuranceSpecialist": "Specialists access",
+      "insuranceHealth": "Health insurance",
       "insuranceBorder": "Border insurance",
       "loanMortgage": "Mortgage loan",
       "loanCash": "Cash loan"
@@ -736,13 +736,40 @@
       "houseNumber": "House number"
     }
   },
-  "InsuranceDiagnostic": {
+  "insuranceSpecialist": {
     "title": "Specialists access",
     "Error": {
       "noApplicant": "You must provide minimum 1 applicant"
     },
     "Page1": {
       "subtitle": "Insurance Info",
+      "individual": "Individual",
+      "firm": "Firm",
+      "legal": "Legal",
+      "insuranceStart": "Insurance period starts",
+      "insuranceEnd": "Insurance period ends",
+      "policyholderIs": "Policyholder is",
+      "name": "Name",
+      "companyName": "Firm name",
+      "surname": "Surname",
+      "nip": "NIP",
+      "birthDate": "Date of birth",
+      "pesel": "PESEL",
+      "regon": "REGON",
+      "phoneNumber": "Phone number",
+      "email": "Email",
+      "country": "Country",
+      "city": "City",
+      "postIndex": "Post index",
+      "street": "Street",
+      "houseNumber": "House number"
+    },
+    "Page2": {
+      "subtitle": "Add Applicant",
+      "addApplicant": "Add applicant",
+      "edit": "Edit",
+      "delete": "Delete",
+      "maxPeople": "You can only add 14 people",
       "individual": "Individual",
       "firm": "Firm",
       "legal": "Legal",

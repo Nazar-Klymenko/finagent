@@ -617,7 +617,7 @@ const Page1 = () => {
         >
           <FormBuilder.ApplicantAdd>
             <PersonAddIcon />
-            <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
+            <span>{t("insuranceSpecialist.ApplicantBox.addApplicant")}</span>
           </FormBuilder.ApplicantAdd>
         </FormBuilder.ApplicantBox>
       ) : (
@@ -633,7 +633,7 @@ const Page1 = () => {
           >
             <FormBuilder.ApplicantAdd>
               <PersonAddIcon />
-              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
+              <span>{t("insuranceSpecialist.ApplicantBox.addApplicant")}</span>
             </FormBuilder.ApplicantAdd>
           </FormBuilder.ApplicantBox>
         )

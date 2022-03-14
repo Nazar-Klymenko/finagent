@@ -53,8 +53,8 @@
       "insuranceTransport": "Транспортне страхування",
       "insuranceEstate": "Страхування нерухомості",
       "insuranceTravel": "Туристична страховка",
-      "insuranceHealthSpecialist": "Доступ до спеціалістів",
-      "insuranceHealthMedical": "Медична страховка",
+      "insuranceSpecialist": "Доступ до спеціалістів",
+      "insuranceHealth": "Медична страховка",
       "insuranceBorder": "Прикордонне страхування",
       "loanMortgage": "Іпотека",
       "loanCash": "Кредит готівкою"
@@ -741,13 +741,40 @@
       "houseNumber": "Номер дому"
     }
   },
-  "InsuranceDiagnostic": {
+  "insuranceSpecialist": {
     "title": "Доступ до спеціалістів",
     "Error": {
       "noApplicant": "Ви повинні додати мінімум одного заявника"
     },
     "Page1": {
       "subtitle": "Інформація про страхування",
+      "individual": "Приватна особа",
+      "firm": "Фірма",
+      "legal": "Юридична особа",
+      "insuranceStart": "Страховий період починається",
+      "insuranceEnd": "Страховий період закінчюется",
+      "policyholderIs": "Страхувальник",
+      "name": "Ім'я",
+      "companyName": "Назва фірми",
+      "surname": "Прізвище",
+      "nip": "NIP",
+      "birthDate": "Дата народження",
+      "pesel": "PESEL",
+      "regon": "REGON",
+      "phoneNumber": "Номер телефону",
+      "email": "Email",
+      "country": "Країна",
+      "city": "Місто",
+      "postIndex": "Поштовий індекс",
+      "street": "Вулиця",
+      "houseNumber": "Номер дому"
+    },
+    "Page2": {
+      "subtitle": "Додати заявника",
+      "addApplicant": "Додати заявника",
+      "edit": "Змінити",
+      "delete": "Видалити",
+      "maxPeople": "Ви можете додати лише 14 осіб",
       "individual": "Приватна особа",
       "firm": "Фірма",
       "legal": "Юридична особа",

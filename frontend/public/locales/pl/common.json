@@ -50,8 +50,8 @@
       "insuranceTransport": "Ubezpieczenie transportu",
       "insuranceEstate": "Ubezpieczenia nieruchomości",
       "insuranceTravel": "Ubezpieczenie turystyczne",
-      "insuranceHealthSpecialist": "Dostęp do specjalistów",
-      "insuranceHealthMedical": "Ubezpieczenie zdrowotne",
+      "insuranceSpecialist": "Dostęp do specjalistów",
+      "insuranceHealth": "Ubezpieczenie zdrowotne",
       "insuranceBorder": "Ubezpieczenie graniczne",
       "loanMortgage": "Kredyt hipoteczny",
       "loanCash": "Kredyt gotówkowy"
@@ -741,7 +741,7 @@
       "houseNumber": "Numer budynku"
     }
   },
-  "InsuranceDiagnostic": {
+  "insuranceSpecialist": {
     "title": "Dostęp do specjalistów",
 
     "Error": {
@@ -749,6 +749,33 @@
     },
     "Page1": {
       "subtitle": "Informacje o ubezpieczeniu",
+      "individual": "Osoba prywatna",
+      "firm": "Firma",
+      "legal": "Osoba prawna",
+      "insuranceStart": "Początek ubezpieczenia",
+      "insuranceEnd": "Koniec ubezpieczenia",
+      "policyholderIs": "Ubezpieczony",
+      "name": "Imię",
+      "companyName": "Nazwa firmy",
+      "surname": "Nazwisko",
+      "nip": "NIP",
+      "birthDate": "Data urodzenia",
+      "pesel": "PESEL",
+      "regon": "REGON",
+      "phoneNumber": "Telefon",
+      "email": "Email",
+      "country": "Kraj",
+      "city": "Miasto",
+      "postIndex": "Indeks pocztowy",
+      "street": "Ulica",
+      "houseNumber": "Numer domu"
+    },
+    "Page2": {
+      "subtitle": "Dodać wnioskodawcę",
+      "addApplicant": "Dodać wnioskodawcę",
+      "edit": "Zmienić",
+      "delete": "Usunąć",
+      "maxPeople": "Możesz dodać tylko 14 osób",
       "individual": "Osoba prywatna",
       "firm": "Firma",
       "legal": "Osoba prawna",

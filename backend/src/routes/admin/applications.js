@@ -12,12 +12,9 @@ import {
   attachDocumentsAdmin,
   getArchivedApplications,
 } from "controllers/admin/applicationActions.js";
-import serveDocument from "controllers/serveDocument";
 import express from "express";
 import { verifyAdmin, verifySupervisor } from "middleware/admin";
 import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";
-import { verifyAccessTokenFirebaseQueryAdmin } from "middleware/auth";
-import { accessToImage } from "middleware/imageAcess";
 
 const router = express.Router();
 
@@ -66,9 +63,5 @@ router
 router
   .route("/archive/:id")
   .post(verifyAccessTokenFirebaseAdmin, verifyAdmin, putApplicationInArchive);
-
-router
-  .route("/files/:id/:type/:filename")
-  .get(verifyAccessTokenFirebaseAdmin, accessToImage, serveDocument);
 
 export default router;

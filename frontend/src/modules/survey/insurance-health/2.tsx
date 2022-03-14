@@ -170,7 +170,7 @@ const Page2 = () => {
                   handleClose(index);
                 }}
                 formId="insured-data-form"
-                title={t("InsuranceDiagnostic.ApplicantBox.title")}
+                title={t("insuranceSpecialist.ApplicantBox.title")}
                 description=""
               >
                 <Form
@@ -311,7 +311,7 @@ const Page2 = () => {
         >
           <FormBuilder.ApplicantAdd>
             <PersonAddIcon />
-            <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
+            <span>{t("insuranceSpecialist.ApplicantBox.addApplicant")}</span>
           </FormBuilder.ApplicantAdd>
         </FormBuilder.ApplicantBox>
       ) : (
@@ -327,7 +327,7 @@ const Page2 = () => {
           >
             <FormBuilder.ApplicantAdd>
               <PersonAddIcon />
-              <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
+              <span>{t("insuranceSpecialist.ApplicantBox.addApplicant")}</span>
             </FormBuilder.ApplicantAdd>
           </FormBuilder.ApplicantBox>
         )

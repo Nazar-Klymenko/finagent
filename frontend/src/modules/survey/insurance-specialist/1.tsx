@@ -81,29 +81,29 @@ const Page1 = () => {
   });
 
   return (
-    <PageContainer xs title="InsuranceDiagnostic.title">
+    <PageContainer xs title="insuranceSpecialist.title">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("InsuranceDiagnostic.title")}</Typography>
+      <Typography variant="h4">{t("insuranceSpecialist.title")}</Typography>
       <ProgressBar
         maxSteps={2}
         currentStep={1}
-        label={t("InsuranceDiagnostic.Page1.subtitle")}
+        label={t("insuranceSpecialist.Page1.subtitle")}
       />
       <Typography variant="h6">
-        {t("InsuranceDiagnostic.Page1.subtitle")}
+        {t("insuranceSpecialist.Page1.subtitle")}
       </Typography>
 
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <DateInput
           name="insuranceStart"
-          labelName={t("InsuranceDiagnostic.Page1.insuranceStart")}
+          labelName={t("insuranceSpecialist.Page1.insuranceStart")}
           disablePast
           placeholder={t("Form.Placeholder.dateFull")}
         />
         <DateInput
           name="insuranceEnd"
-          labelName={t("InsuranceDiagnostic.Page1.insuranceEnd")}
+          labelName={t("insuranceSpecialist.Page1.insuranceEnd")}
           disablePast
           view={["year", "month", "day"]}
           placeholder={t("Form.Placeholder.dateFull")}
@@ -112,25 +112,25 @@ const Page1 = () => {
 
         <Radio
           name="policyholderIs"
-          labelName={t("InsuranceDiagnostic.Page1.policyholderIs")}
+          labelName={t("insuranceSpecialist.Page1.policyholderIs")}
           options={[
             {
-              label: t("InsuranceDiagnostic.Page1.individual"),
+              label: t("insuranceSpecialist.Page1.individual"),
               value: "individual",
             },
             {
-              label: t("InsuranceDiagnostic.Page1.firm"),
+              label: t("insuranceSpecialist.Page1.firm"),
               value: "firm",
             },
             {
-              label: t("InsuranceDiagnostic.Page1.legal"),
+              label: t("insuranceSpecialist.Page1.legal"),
               value: "legal",
             },
           ]}
         />
         <Input
           name="name"
-          labelName={t("InsuranceDiagnostic.Page1.name")}
+          labelName={t("insuranceSpecialist.Page1.name")}
           type="text"
           autoComplete="name"
         />
@@ -138,14 +138,14 @@ const Page1 = () => {
         {!(policyholderIs === "individual") && (
           <Input
             name="nip"
-            labelName={t("InsuranceDiagnostic.Page1.nip")}
+            labelName={t("insuranceSpecialist.Page1.nip")}
             type="text"
           />
         )}
         {policyholderIs === "individual" && (
           <DateInput
             name="birthDate"
-            labelName={t("InsuranceDiagnostic.Page1.birthDate")}
+            labelName={t("insuranceSpecialist.Page1.birthDate")}
             disableFuture
             placeholder={t("Form.Placeholder.dateFull")}
             view={["year", "month", "day"]}
@@ -155,43 +155,43 @@ const Page1 = () => {
         {policyholderIs === "individual" && (
           <Input
             name="pesel"
-            labelName={t("InsuranceDiagnostic.Page1.pesel")}
+            labelName={t("insuranceSpecialist.Page1.pesel")}
             type="text"
           />
         )}
         {!(policyholderIs === "individual") && (
           <Input
             name="regon"
-            labelName={t("InsuranceDiagnostic.Page1.regon")}
+            labelName={t("insuranceSpecialist.Page1.regon")}
             type="text"
           />
         )}
         <MuiPhoneInput
           name="phoneNumber"
-          labelName={t("InsuranceDiagnostic.Page1.phoneNumber")}
+          labelName={t("insuranceSpecialist.Page1.phoneNumber")}
         />
-        <Input name="email" labelName={t("InsuranceDiagnostic.Page1.email")} />
+        <Input name="email" labelName={t("insuranceSpecialist.Page1.email")} />
         <Input
           name="country"
-          labelName={t("InsuranceDiagnostic.Page1.country")}
+          labelName={t("insuranceSpecialist.Page1.country")}
           type="text"
         />
         <Input
           name="city"
-          labelName={t("InsuranceDiagnostic.Page1.city")}
+          labelName={t("insuranceSpecialist.Page1.city")}
           type="text"
         />
         <Input
           name="postIndex"
-          labelName={t("InsuranceDiagnostic.Page1.postIndex")}
+          labelName={t("insuranceSpecialist.Page1.postIndex")}
         />
         <Input
           name="street"
-          labelName={t("InsuranceDiagnostic.Page1.street")}
+          labelName={t("insuranceSpecialist.Page1.street")}
         />
         <Input
           name="houseNumber"
-          labelName={t("InsuranceDiagnostic.Page1.houseNumber")}
+          labelName={t("insuranceSpecialist.Page1.houseNumber")}
         />
       </Form>
       <FormBuilder.ButtonsWrap>

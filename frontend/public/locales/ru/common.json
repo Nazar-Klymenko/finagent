@@ -53,8 +53,8 @@
       "insuranceTransport": "Страхование транспортного средтсва",
       "insuranceEstate": "Страхование недвижимости",
       "insuranceTravel": "Туристическая страховка",
-      "insuranceHealthSpecialist": "Доступ к специалистам",
-      "insuranceHealthMedical": "Медицинская страховка",
+      "insuranceSpecialist": "Доступ к специалистам",
+      "insuranceHealth": "Медицинская страховка",
       "insuranceBorder": "Пограничное страхование",
       "loanMortgage": "Ипотека",
       "loanCash": "Наличный кредит"
@@ -736,13 +736,40 @@
       "houseNumber": "Номер дома"
     }
   },
-  "InsuranceDiagnostic": {
+  "insuranceSpecialist": {
     "title": "Доступ к специалистам",
     "Error": {
       "noApplicant": "Вы должны добавить минимум одного заявителя"
     },
     "Page1": {
       "subtitle": "Информация о страховании",
+      "individual": "Физическое лицо",
+      "firm": "Фирма",
+      "legal": "Юридическое лицо",
+      "insuranceStart": "Страхование начинается",
+      "insuranceEnd": "Страхование заканчивается",
+      "policyholderIs": "Страхователь",
+      "name": "Имя",
+      "companyName": "Название фирмы",
+      "surname": "Фамилия",
+      "nip": "NIP",
+      "birthDate": "Дата рождения",
+      "pesel": "PESEL",
+      "regon": "REGON",
+      "phoneNumber": "Телефон",
+      "email": "Email",
+      "country": "Страна",
+      "city": "Город",
+      "postIndex": "Почтовый индекс",
+      "street": "Улица",
+      "houseNumber": "Номер дома"
+    },
+    "Page2": {
+      "subtitle": "Добавить заявителя",
+      "addApplicant": "Добавить заявителя",
+      "edit": "Изменить",
+      "delete": "Удалить",
+      "maxPeople": "Вы можете добавить только 14 человек",
       "individual": "Физическое лицо",
       "firm": "Фирма",
       "legal": "Юридическое лицо",

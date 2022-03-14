@@ -8,37 +8,54 @@ const LoanCashSubmit = async (req, res, next) => {
     insuranceObj.category = "loan";
     insuranceObj.type = "cash";
 
-    const incomeArray = Object.keys(req.body.additionalIncome);
+    const applicantArray = Object.keys(req.body.applicantData.applicant);
+    const incomeArray = Object.keys(req.body.incomeData.income);
 
-    for (let i = 0; i < incomeArray.length; i++) {
-      insuranceObj.additionalIncome.push({
-        truckDriver: req.body.additionalIncome[i].truckDriver,
-        industry: req.body.additionalIncome[i].industry,
-        averageIncome: req.body.additionalIncome[i].averageIncome,
-        bank: req.body.additionalIncome[i].bank,
-        basicIncome: req.body.additionalIncome[i].basicIncome,
-        contractUntil: req.body.additionalIncome[i].contractUntil,
-        contractFrom: req.body.additionalIncome[i].contractFrom,
-        currency: req.body.additionalIncome[i].currency,
-        pit: req.body.additionalIncome[i].pit,
-        accountancy: req.body.additionalIncome[i].accountancy,
-        firstContract: req.body.additionalIncome[i].firstContract,
-        sameEmployer: req.body.additionalIncome[i].sameEmployer,
-        withoutPause: req.body.additionalIncome[i].withoutPause,
+    for (let i = 0; i < applicantArray.length; i++) {
+      insuranceObj.applicantData.applicant.push({
+        otherNation: req.body.applicantData.applicant[i].otherNation,
+        nationality: req.body.applicantData.applicant[i].nationality,
+        validFrom: req.body.applicantData.applicant[i].validFrom,
+        validUntil: req.body.applicantData.applicant[i].validUntil,
+        name: req.body.applicantData.applicant[i].name,
+        birthDate: req.body.applicantData.applicant[i].birthDate,
+        phoneNumber: req.body.applicantData.applicant[i].phoneNumber,
+        email: req.body.applicantData.applicant[i].email,
+        pesel: req.body.applicantData.applicant[i].pesel,
+        contractFrom: req.body.applicantData.applicant[i].contractFrom,
+        contractUntil: req.body.applicantData.applicant[i].contractUntil,
+        averageIncome: req.body.applicantData.applicant[i].averageIncome,
+        currency: req.body.applicantData.applicant[i].currency,
+        pit: req.body.applicantData.applicant[i].pit,
+        bank: req.body.applicantData.applicant[i].bank,
       });
     }
-    insuranceObj.additionalIncome.shift();
+    insuranceObj.applicantData.applicant.shift();
 
-    insuranceObj.markModified(
-      "applicants",
-      "applicantsData",
-      "additionalIncome",
-      "loanData"
-    );
+    for (let i = 0; i < incomeArray.length; i++) {
+      insuranceObj.incomeData.income.push({
+        truckDriver: req.body.incomeData.income[i].truckDriver,
+        industry: req.body.incomeData.income[i].industry,
+        averageIncome: req.body.incomeData.income[i].averageIncome,
+        bank: req.body.incomeData.income[i].bank,
+        basicIncome: req.body.incomeData.income[i].basicIncome,
+        contractUntil: req.body.incomeData.income[i].contractUntil,
+        contractFrom: req.body.incomeData.income[i].contractFrom,
+        currency: req.body.incomeData.income[i].currency,
+        pit: req.body.incomeData.income[i].pit,
+        accountancy: req.body.incomeData.income[i].accountancy,
+        firstContract: req.body.incomeData.income[i].firstContract,
+        sameEmployer: req.body.incomeData.income[i].sameEmployer,
+        withoutPause: req.body.incomeData.income[i].withoutPause,
+      });
+    }
+    insuranceObj.incomeData.income.shift();
+
+    insuranceObj.markModified("applicantData", "incomeData", "loanData");
     await insuranceObj.save();
 
     res.status(200).send({
-      message: "app added",
+      message: "Application submitted",
     });
   } catch (error) {
     if (error.name === "ValidationError") res.status(422);

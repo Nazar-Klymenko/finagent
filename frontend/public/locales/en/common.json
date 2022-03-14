@@ -219,7 +219,7 @@
     "confirm": "Password changed successfully"
   },
   "Dashboard": {
-    "title": "Dashboard | FinAgent",
+    "title": "Dashboard",
     "SideMenu": {
       "insurances": "Insurances",
       "loans": "Loans",
@@ -568,7 +568,7 @@
       "monthlyExpenses": "Average monthly living expenses"
     }
   },
-  "InsuranceTravel": {
+  "insuranceTravel": {
     "title": "Travel insurance",
     "Page1": {
       "title": "Insurance info",
@@ -604,7 +604,7 @@
       "houseNumber": "House number"
     }
   },
-  "InsuranceEstate": {
+  "insuranceEstate": {
     "title": "Real estate insurance",
     "Page1": {
       "title": "Real estate info",
@@ -673,7 +673,7 @@
     },
     "buttonBack": "Return"
   },
-  "InsuranceHealth": {
+  "insuranceHealth": {
     "title": "Health insurance",
     "ApplicantBox": {
       "title": "Add additional applicant",
@@ -896,6 +896,7 @@
       "registeredPoland": "The car is registered in Poland"
     },
     "Page3": {
+      "vehicleType": "Vehicle type",
       "subtitle": "Additional information",
       "enginePower": "Engine power(kW)",
       "engineVolume": "Engine volume(ccm)",
@@ -956,6 +957,7 @@
     "Page3": {
       "subtitle": "Personal Info",
       "name": "Name",
+      "vehicleType": "Vehicle type",
       "surname": "Surname",
       "phoneNumber": "Phone number",
       "email": "Email",

@@ -19,10 +19,5 @@ const links = [
     label: "Navbar.contact",
     activePaths: ["/contact"],
   },
-  {
-    href: "/help",
-    label: "Navbar.help",
-    activePaths: ["/help"],
-  },
 ];
 export { links };

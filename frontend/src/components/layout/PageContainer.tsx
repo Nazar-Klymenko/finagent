@@ -25,7 +25,7 @@ const PageContainer = ({
   return (
     <BoxStyled xs={xs} dashboard={dashboard}>
       <Head>
-        <title>{t(title)}</title>
+        <title>{t(title)} | FinAgent</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>

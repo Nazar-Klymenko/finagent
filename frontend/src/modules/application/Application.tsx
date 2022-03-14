@@ -35,7 +35,6 @@ const Application = (): JSX.Element => {
   if (!data && !error) return <Loader />;
 
   const summaryReady = determineAppType(data?.applicationType, data);
-  console.log(data.user_attachments);
   return (
     <PageContainer title="Dashboard.title" dashboard>
       <DashboardInner>
@@ -100,8 +99,6 @@ const Application = (): JSX.Element => {
               applicationType={data.applicationType}
             />
             <Status currentStep={data.status} />
-            <FileBox></FileBox>
-            <FileBox></FileBox>
           </ApplicationBody>
         </ApplicationMain>
       </DashboardInner>

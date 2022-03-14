@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import WorkIcon from "@mui/icons-material/Work";
+import { IconButton, Typography } from "@mui/material";
+import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { QuestState } from "@helpers/QuestState";
@@ -11,256 +15,457 @@ import { QuestState } from "@helpers/QuestState";
 import { useData } from "@context/dataContext";
 
 import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
+import { MuiDialog } from "@components/MuiDialog";
 import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
-import { Input, MuiCheckbox, Select } from "@components/input";
+import { DateInput, Input, Radio } from "@components/input";
 import { PageContainer } from "@components/layout";
 
-import {
-  ApplicantBox,
-  ButtonsWrap,
-  ErrorBottom,
-  Page,
-  Subtitle,
-  Title,
-} from "../LocalStyles";
-import AddHousehold from "./AddHousehold";
-import { pageTwoSchema } from "./applicationHelpers/loan-mortgage.schema";
-import { loanPurposeOptions } from "./applicationHelpers/options";
-import { rialtoOptions } from "./applicationHelpers/options";
-import { paymentTermOptions } from "./applicationHelpers/options";
-import { repaymentOptions } from "./applicationHelpers/options";
-import { monthlyPaymentsOptions } from "./applicationHelpers/options";
+import { pageTwoValues } from "./helpers/default-values";
+import { AdditionalIncomeSchema } from "./helpers/loan-mortgage.schema";
+
+type FormTypes = {
+  income: [
+    {
+      truckDriver: string;
+      industry: string;
+      basicIncome: string;
+      firstContract: string;
+      sameEmployer: string;
+      withoutPause: string;
+      contractFrom: Date | null;
+      contractUntil: Date | null;
+      averageIncome: string;
+      accountancy: string;
+      pit: string;
+      bank: string;
+    }
+  ];
+};
 
 const Page2 = () => {
   const { t } = useTranslation();
-  const {
-    appData,
-    setValues,
-    setAllowSummary,
-    addHouseholdData,
-    setAddHouseholdData,
-  } = useData();
 
-  const appDataValid = validateAppData(appData, "LoanData");
+  const [openDialog, setOpenDialog] = useState(true);
+  const [formInitiated, setFormInitiated] = useState(false);
+  const [editingMode, setEditingMode] = useState(false);
+  const [addingMode, setAddingMode] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(0);
+
+  const { appData, setValues, setCurrentPage } = useData();
+
+  const appDataValid = appData.loanMortgage?.incomeData?.income;
 
   const router = useRouter();
 
-  useTitle("Cash loan | FinAgent");
-
-  const [openModal, setOpenModal] = useState(false);
-  const [isError, setIsError] = useState("");
-  let [isEditing, setIsEditing] = useState(false);
-
-  let [householdData, setHouseholdData] = useState(addHouseholdData || []);
-  let [defaultHousehold, setDefaultHousehold] = useState(null);
-
-  const methods = useForm({
+  const methods = useForm<FormTypes>({
     defaultValues: {
-      custody: appDataValid.custody,
-      monthlyLoanPayments: appDataValid.monthlyLoanPayments,
-      cardLimits: appDataValid.cardLimits,
-      loanPurpose: appDataValid.loanPurpose,
-      rialto: appDataValid.rialto,
-      propertyValue: appDataValid.propertyValue,
-      renovationValue: appDataValid.renovationValue,
-      contributionAmount: appDataValid.contributionAmount,
-      paymentTerm: appDataValid.paymentTerm,
-      repayment: appDataValid.repayment,
-      monthlyPayments: appDataValid.monthlyPayments,
-      voivodeship: appDataValid.voivodeship,
-      town: appDataValid.town,
-      conditions: appDataValid.conditions,
+      income: [
+        {
+          truckDriver: appDataValid?.[0].truckDriver,
+          industry: appDataValid?.[0].industry,
+          basicIncome: appDataValid?.[0].basicIncome,
+          firstContract: appDataValid?.[0].firstContract,
+          sameEmployer: appDataValid?.[0].sameEmployer,
+          withoutPause: appDataValid?.[0].withoutPause,
+          contractFrom: appDataValid?.[0].contractFrom,
+          contractUntil: appDataValid?.[0].contractUntil,
+          averageIncome: appDataValid?.[0].averageIncome,
+          accountancy: appDataValid?.[0].accountancy,
+          pit: appDataValid?.[0].pit,
+          bank: appDataValid?.[0].bank,
+        },
+      ],
     },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
-    resolver: yupResolver(pageTwoSchema()),
+    resolver: yupResolver(AdditionalIncomeSchema()),
   });
-  const { handleSubmit } = methods;
-  const formSubmit = (data: any) => {
-    setValues(data, "LoanData");
-    if (householdData.length === 0) {
-      setIsError(t("LoanMortgage.Error.noHousehold"));
+  const {
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = methods;
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "income",
+  });
+
+  function removeData(index: number) {
+    remove(index);
+    appDataValid.splice(index, 1);
+  }
+  function editData(index: number) {
+    setEditingMode(true);
+    setEditingIndex(index);
+    setOpenDialog(true);
+  }
+
+  const formSubmit = handleSubmit((data) => {
+    setFormInitiated(true);
+    setEditingMode(false);
+    setAddingMode(false);
+    setValues(data, "loanMortgage", "incomeData");
+  });
+
+  const handleClose = (index: number) => {
+    if (addingMode) {
+      removeData(index);
+      setAddingMode(false);
     } else {
-      setAllowSummary(true);
-      history.push("./summary");
+      setOpenDialog(false);
     }
   };
 
   useEffect(() => {
-    setValues(householdData, "HouseholdData");
-    setAddHouseholdData(householdData);
-    setIsError("");
-  }, [householdData]);
+    if (appDataValid && !formInitiated) {
+      setFormInitiated(true);
+      setAddingMode(false);
+
+      for (let i = 1; i < appDataValid.length; i++) {
+        //@ts-ignore
+        append(appDataValid[i]);
+      }
+    }
+  }, [appDataValid, append, formInitiated]);
+
+  const finalizeForm = () => {
+    if (!!errors.income === false) {
+      setCurrentPage(3);
+      router.push("./3");
+    } else {
+      alert(t("insuranceHealth.Error.noApplicant"));
+    }
+  };
 
   return (
-    <PageContainer xs title="">
+    <PageContainer xs title="LoanCash.title">
       <QuestState data={appData} />
 
-      <Title>{t("LoanMortgage.title")}</Title>
+      <Typography variant="h4">{t("LoanCash.title")}</Typography>
       <ProgressBar
-        maxSteps={2}
+        maxSteps={3}
         currentStep={2}
-        label={t("LoanMortgage.Page2.subtitle")}
+        label={t("LoanCash.Page2.subtitle")}
       />
-      <Subtitle>{t("LoanMortgage.Page2.subtitle")}</Subtitle>
-      <Form methods={methods} id="form" onSubmit={handleSubmit(formSubmit)}>
-        <Subtitle>{t("LoanMortgage.HouseholdBox.title")}</Subtitle>
+      <Typography variant="h6">{t("LoanCash.Page2.subtitle")}</Typography>
 
-        <ApplicantBox>
-          {/* {householdData &&
-              householdData.map((household, idx) => (
-                <div key={idx} className="person">
-                  <div className="minor-data-place">
-                    <span>{household.monthlyExpenses}</span>
-                  </div>
-                  <div className="action-place">
-                    <span
-                      className="edit"
-                      onClick={() => {
-                        setDefaultHousehold(idx);
-                        setIsEditing(!isEditing);
-                        setOpenModal(true);
-                      }}
-                    >
-                      {t("LoanMortgage.HouseholdBox.edit")}
-                    </span>
-                    <span
-                      className="delete"
-                      value={idx}
-                      onClick={removeHousehold}
-                    >
-                      {t("InsuranceHealth.ApplicantBox.delete")}
-                    </span>
-                  </div>
-                </div>
-              ))} */}
+      {editingMode &&
+        fields.map((field: any, index: number) => {
+          //@ts-ignore
+          const truckDriver = watch(
+            `income[${index}].truckDriver`
+          ) as unknown as string;
+          //@ts-ignore
+          const basicIncome = watch(
+            `income[${index}].basicIncome`
+          ) as unknown as string;
+          //@ts-ignore
+          const firstContract = watch(
+            `income[${index}].firstContract`
+          ) as unknown as string;
 
-          <span
-            className="add"
+          return (
+            editingIndex === index && (
+              <MuiDialog
+                key={field.id}
+                isOpen={openDialog}
+                handleClose={() => {
+                  handleClose(index);
+                }}
+                formId="additional-income-form"
+                title={t("LoanCash.IncomeModal.title")}
+                description=""
+              >
+                <Form
+                  methods={methods}
+                  id="additional-income-form"
+                  onSubmit={formSubmit}
+                >
+                  <Radio
+                    name={`income[${index}].truckDriver`}
+                    labelName={t("LoanCash.IncomeModal.truckDriver")}
+                    options={[
+                      {
+                        label: t("LoanCash.IncomeModal.yes"),
+                        value: "yes",
+                      },
+                      {
+                        label: t("LoanCash.IncomeModal.no"),
+                        value: "no",
+                      },
+                    ]}
+                    defaultValue={field.truckDriver || ""}
+                  />
+                  {truckDriver === "no" && (
+                    <Input
+                      name={`income[${index}].industry`}
+                      labelName={t("LoanCash.IncomeModal.industry")}
+                      type="text"
+                      placeholder="industry"
+                      defaultValue={field.industry || ""}
+                    />
+                  )}
+
+                  <Radio
+                    name={`income[${index}].basicIncome`}
+                    labelName={t("LoanCash.IncomeModal.basicIncome")}
+                    options={[
+                      {
+                        label: t("LoanCash.IncomeModal.indefinitePeriod"),
+                        value: "indefinitePeriod",
+                      },
+                      {
+                        label: t("LoanCash.IncomeModal.specificTime"),
+                        value: "specificTime",
+                      },
+                      {
+                        label: t("LoanCash.IncomeModal.mandate"),
+                        value: "mandate",
+                      },
+                      {
+                        label: t("LoanCash.IncomeModal.contract"),
+                        value: "contract",
+                      },
+                      {
+                        label: t("LoanCash.IncomeModal.economicActivity"),
+                        value: "economicActivity",
+                      },
+                    ]}
+                    defaultValue={field.basicIncome || ""}
+                  />
+
+                  {(basicIncome === "specificTime" ||
+                    basicIncome === "mandate" ||
+                    basicIncome === "contract") && (
+                    <>
+                      <Radio
+                        name={`income[${index}].firstContract`}
+                        labelName={t("LoanCash.IncomeModal.firstContract")}
+                        options={[
+                          {
+                            label: t("LoanCash.IncomeModal.yes"),
+                            value: "yes",
+                          },
+                          {
+                            label: t("LoanCash.IncomeModal.no"),
+                            value: "no",
+                          },
+                        ]}
+                        defaultValue={field.firstContract || "yes"}
+                      />
+                      {firstContract === "no" && (
+                        <>
+                          <Radio
+                            name={`income[${index}].sameEmployer`}
+                            labelName={t("LoanCash.IncomeModal.sameEmployer")}
+                            options={[
+                              {
+                                label: t("LoanCash.IncomeModal.yes"),
+                                value: "yes",
+                              },
+                              {
+                                label: t("LoanCash.IncomeModal.no"),
+                                value: "no",
+                              },
+                            ]}
+                            defaultValue={field.sameEmployer || ""}
+                          />
+
+                          <Radio
+                            name={`income[${index}].withoutPause`}
+                            labelName={t("LoanCash.IncomeModal.withoutPause")}
+                            options={[
+                              {
+                                label: t("LoanCash.IncomeModal.yes"),
+                                value: "yes",
+                              },
+                              {
+                                label: t("LoanCash.IncomeModal.no"),
+                                value: "no",
+                              },
+                            ]}
+                            defaultValue={field.withoutPause || ""}
+                          />
+                        </>
+                      )}
+                      <DateInput
+                        name={`income[${index}].contractFrom`}
+                        labelName={t("LoanCash.IncomeModal.contractFrom")}
+                        placeholder={t("Form.Placeholder.dateFull")}
+                        defaultValue={field.contractFrom || null}
+                      />
+                      <DateInput
+                        name={`income[${index}].contractUntil`}
+                        labelName={t("LoanCash.IncomeModal.contractUntil")}
+                        disablePast
+                        placeholder={t("Form.Placeholder.dateFull")}
+                        defaultValue={field.contractUntil || null}
+                      />
+                    </>
+                  )}
+                  {basicIncome === "mandate" && (
+                    <Input
+                      name={`income[${index}].averageIncome12`}
+                      labelName={t("LoanCash.IncomeModal.averageIncome12")}
+                      type="text"
+                      placeholder="value"
+                      defaultValue={field.averageIncome12 || ""}
+                    />
+                  )}
+                  {basicIncome === "specificTime" && (
+                    <Input
+                      name={`income[${index}].averageIncome6`}
+                      labelName={t("LoanCash.IncomeModal.averageIncome6")}
+                      type="text"
+                      placeholder="value"
+                      defaultValue={field.averageIncome6 || ""}
+                    />
+                  )}
+                  {basicIncome === "economicActivity" && (
+                    <>
+                      <Radio
+                        name={`income[${index}].accountancy`}
+                        labelName={t("LoanCash.IncomeModal.accountancy")}
+                        options={[
+                          {
+                            label: t("LoanCash.IncomeModal.generalRules"),
+                            value: "generalRules",
+                          },
+                          {
+                            label: t("LoanCash.IncomeModal.lumpSum"),
+                            value: "lumpSum",
+                          },
+                          {
+                            label: t("LoanCash.IncomeModal.taxCard"),
+                            value: "taxCard",
+                          },
+                          {
+                            label: t("LoanCash.IncomeModal.fullAccounting"),
+                            value: "fullAccounting",
+                          },
+                        ]}
+                        defaultValue={field.accountancy || ""}
+                      />
+                      <Input
+                        name={`income[${index}].averageIncome`}
+                        labelName={t("LoanCash.IncomeModal.averageIncome6")}
+                        type="text"
+                        placeholder="value"
+                        defaultValue={field.averageIncome || ""}
+                      />
+                    </>
+                  )}
+                  {!(
+                    basicIncome === "economicActivity" ||
+                    basicIncome === "mandate" ||
+                    basicIncome === "specificTime"
+                  ) && (
+                    <Input
+                      name={`income[${index}].averageIncome`}
+                      labelName={t("LoanCash.IncomeModal.averageIncome3")}
+                      type="text"
+                      placeholder="value"
+                      defaultValue={field.averageIncome || ""}
+                    />
+                  )}
+                  <Input
+                    name={`income[${index}].pit`}
+                    labelName={t("LoanCash.IncomeModal.pit")}
+                    type="text"
+                    placeholder="value"
+                    defaultValue={field.pit || ""}
+                  />
+                  <Input
+                    name={`income[${index}].bank`}
+                    labelName={t("LoanCash.ApplicantModal.bank")}
+                    type="text"
+                    placeholder="Millenium"
+                    defaultValue={field.bank}
+                  />
+                </Form>
+              </MuiDialog>
+            )
+          );
+        })}
+      {formInitiated &&
+        fields.map((field: any, index: number) => {
+          //@ts-ignore
+          let income = watch(`income[${index}].industry`);
+          return (
+            <FormBuilder.Applicant
+              key={field.id}
+              error={!!errors.income?.[index]}
+            >
+              <FormBuilder.AvatarStyled>
+                <WorkIcon />
+              </FormBuilder.AvatarStyled>
+              <FormBuilder.ApplicantName>{income}</FormBuilder.ApplicantName>
+              <IconButton
+                onClick={() => {
+                  editData(index);
+                }}
+              >
+                <EditIcon />
+              </IconButton>
+              <IconButton
+                onClick={() => {
+                  removeData(index);
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </FormBuilder.Applicant>
+          );
+        })}
+      {!formInitiated ? (
+        <FormBuilder.ApplicantBox
+          onClick={() => {
+            setEditingMode(true);
+            setOpenDialog(true);
+          }}
+        >
+          <FormBuilder.ApplicantAdd>
+            <WorkIcon />
+            <span>{t("LoanCash.IncomeBox.addIncome")}</span>
+          </FormBuilder.ApplicantAdd>
+        </FormBuilder.ApplicantBox>
+      ) : (
+        fields.length < 5 && (
+          <FormBuilder.ApplicantBox
             onClick={() => {
-              setOpenModal(true);
-              setDefaultHousehold(null);
+              append({ truckDriver: "no" });
+              setAddingMode(true);
+              setEditingMode(true);
+              setOpenDialog(true);
+              setEditingIndex(fields.length);
             }}
           >
-            {t("LoanMortgage.HouseholdBox.addHousehold")}
-          </span>
-        </ApplicantBox>
-
-        <Input
-          name="custody"
-          labelName={t("LoanMortgage.Page2.custody")}
-          type="text"
-          placeholder="number"
-        />
-        <Input
-          name="monthlyLoanPayments"
-          labelName={t("LoanMortgage.Page2.monthlyLoanPayments")}
-          type="text"
-          placeholder="number"
-        />
-        <Input
-          name="cardLimits"
-          labelName={t("LoanMortgage.Page2.cardLimits")}
-          type="text"
-          placeholder="number"
-        />
-        <Select
-          name="loanPurpose"
-          labelName={t("LoanMortgage.Page2.loanPurpose")}
-          defaultValue={appDataValid.loanPurpose}
-          placeholder="Choose purpose:"
-          optionArray={loanPurposeOptions}
-        />
-
-        <Select
-          name="rialto"
-          labelName={t("LoanMortgage.Page2.rialto")}
-          defaultValue={appDataValid.rialto}
-          placeholder="Choose rialto:"
-          optionArray={rialtoOptions}
-        />
-        <Input
-          name="propertyValue"
-          labelName={t("LoanMortgage.Page2.propertyValue")}
-          type="text"
-          placeholder="number"
-        />
-        <Input
-          name="renovationValue"
-          labelName={t("LoanMortgage.Page2.renovationValue")}
-          type="text"
-          placeholder="number"
-        />
-        <Input
-          name="contributionAmount"
-          labelName={t("LoanMortgage.Page2.contributionAmount")}
-          type="text"
-          placeholder="number"
-        />
-        <Select
-          name="paymentTerm"
-          labelName={t("LoanMortgage.Page2.paymentTerm")}
-          defaultValue={appDataValid.paymentTerm}
-          placeholder="Choose term:"
-          optionArray={paymentTermOptions}
-        />
-        <Select
-          name="repayment"
-          labelName={t("LoanMortgage.Page2.repayment")}
-          defaultValue={appDataValid.repayment}
-          placeholder="Yes / No"
-          optionArray={repaymentOptions}
-        />
-        <Select
-          name="monthlyPayments"
-          labelName={t("LoanMortgage.Page2.monthlyPayments")}
-          defaultValue={appDataValid.monthlyPayments}
-          placeholder="Equal / Decreasing"
-          optionArray={monthlyPaymentsOptions}
-        />
-        <Subtitle>{t("LoanMortgage.Page2.propertyLocation")}</Subtitle>
-        <Input
-          name="voivodeship"
-          labelName={t("LoanMortgage.Page2.voivodeship")}
-          type="text"
-          placeholder="Malopolskie"
-        />
-        <Input
-          name="town"
-          labelName={t("LoanMortgage.Page2.town")}
-          type="text"
-          placeholder="Krakow"
-        />
-        <MuiCheckbox
-          name="conditions"
-          labelName={t("LoanMortgage.Page2.conditions")}
-        />
-      </Form>
-      <AddHousehold
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        householdData={householdData}
-        setHouseholdData={setHouseholdData}
-        defaultHousehold={defaultHousehold}
-        isEditing={isEditing}
-        setIsEditing={setIsEditing}
-      />
+            <FormBuilder.ApplicantAdd>
+              <WorkIcon />
+              <span>{t("LoanCash.IncomeBox.addIncome")}</span>
+            </FormBuilder.ApplicantAdd>
+          </FormBuilder.ApplicantBox>
+        )
+      )}
       <FormBuilder.ButtonsWrap multiple>
         <Button
-          text={t("Basic.buttonBack")}
           form=""
           color="secondary"
           onClick={() => {
-            history.push("./1");
+            router.push("./1");
           }}
-        />
-        <Button form="form" color="primary">
+        >
+          {t("Basic.buttonBack")}
+        </Button>
+        <Button form="form" color="primary" onClick={finalizeForm}>
           {t("Basic.buttonNext")}
         </Button>
       </FormBuilder.ButtonsWrap>
-      {isError && <ErrorBottom>{isError}</ErrorBottom>}
     </PageContainer>
   );
 };

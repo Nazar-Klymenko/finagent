@@ -21,18 +21,21 @@ export const pageOneSchema = () => {
 
 export const policyholderSchema = () => {
   return yup.object().shape({
-    name: yup.string().required("Form.Error.blank"),
-    surname: yup.string().required("Form.Error.blank"),
-    documentAdded: yup.string().required("Form.Error.blank"),
-    birthDate: yup.date().nullable().required("Form.Error.missingDate"),
-    citizenship: yup.string().when("policyholderIs", {
-      is: "Foreigner",
-      then: yup.string().required("Form.Error.blank"),
-    }),
-    country: yup.string().required("Form.Error.blank"),
-    city: yup.string().required("Form.Error.blank"),
-    postIndex: yup.string().required("Form.Error.blank"),
-    street: yup.string().required("Form.Error.blank"),
-    houseNumber: yup.string().required("Form.Error.blank"),
+    applicant: yup.array().of(
+      yup.object().shape({
+        name: yup.string().required("Form.Error.blank"),
+        documentAdded: yup.string().required("Form.Error.blank"),
+        birthDate: yup.date().nullable().required("Form.Error.missingDate"),
+        citizenship: yup.string().when("policyholderIs", {
+          is: "Foreigner",
+          then: yup.string().required("Form.Error.blank"),
+        }),
+        country: yup.string().required("Form.Error.blank"),
+        city: yup.string().required("Form.Error.blank"),
+        postIndex: yup.string().required("Form.Error.blank"),
+        street: yup.string().required("Form.Error.blank"),
+        houseNumber: yup.string().required("Form.Error.blank"),
+      })
+    ),
   });
 };

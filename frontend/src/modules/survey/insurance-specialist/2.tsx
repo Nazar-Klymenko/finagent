@@ -23,7 +23,6 @@ import { Button } from "@components/buttons";
 import { DateInput, Input, MuiPhoneInput, Radio } from "@components/input";
 import { PageContainer } from "@components/layout";
 
-import { policyholderValue } from "./helpers/default-values";
 import { policyholderSchema } from "./helpers/insurance-specialist.schema";
 
 type FormTypes = {
@@ -31,7 +30,6 @@ type FormTypes = {
     {
       policyholderIs: string;
       name: string;
-      surname: string;
       birthDate: any;
       nip: string;
       pesel: string;
@@ -64,26 +62,26 @@ const Page2 = () => {
     defaultValues: {
       policyholder: [
         {
-          policyholderIs: appDataValid?.[0]?.policyholderIs || "firm",
-          name: appDataValid?.[0]?.name || "",
-          surname: appDataValid?.[0]?.surname || "",
-          nip: appDataValid?.[0]?.nip || "",
-          birthDate: appDataValid?.[0]?.birthDate || null,
-          pesel: appDataValid?.[0]?.pesel || "",
-          regon: appDataValid?.[0]?.regon || "",
-          phoneNumber: appDataValid?.[0]?.phoneNumber || "",
-          email: appDataValid?.[0]?.email || "",
-          country: appDataValid?.[0]?.country || "",
-          city: appDataValid?.[0]?.city || "",
-          postIndex: appDataValid?.[0]?.postIndex || "",
-          street: appDataValid?.[0]?.street || "",
-          houseNumber: appDataValid?.[0]?.houseNumber || "",
+          policyholderIs: appDataValid?.[0].policyholderIs,
+          name: appDataValid?.[0].name,
+          nip: appDataValid?.[0].nip,
+          birthDate: appDataValid?.[0].birthDate,
+          pesel: appDataValid?.[0].pesel,
+          regon: appDataValid?.[0].regon,
+          phoneNumber: appDataValid?.[0].phoneNumber,
+          email: appDataValid?.[0].email,
+          country: appDataValid?.[0].country,
+          city: appDataValid?.[0].city,
+          postIndex: appDataValid?.[0].postIndex,
+          street: appDataValid?.[0].street,
+          houseNumber: appDataValid?.[0].houseNumber,
         },
       ],
     },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+    shouldUnregister: true,
     resolver: yupResolver(policyholderSchema()),
   });
   const {
@@ -141,7 +139,7 @@ const Page2 = () => {
       setAllowSummary(true);
       router.push("./summary");
     } else {
-      alert(t("InsuranceHealth.Error.noApplicant"));
+      alert(t("insuranceHealth.Error.noApplicant"));
     }
   };
 
@@ -160,8 +158,10 @@ const Page2 = () => {
       </Typography>
       {editingMode &&
         fields.map((field: any, index: number) => {
-          //@ts-ignore
-          let policyholderIs = watch(`policyholder[${index}].policyholderIs`);
+          let policyholderIs = watch(
+            `policyholder[${index}].policyholderIs`
+          ) as unknown as string;
+
           return (
             editingIndex === index && (
               <MuiDialog
@@ -205,17 +205,9 @@ const Page2 = () => {
                         policyholderIs === "individual" ? "name" : "companyName"
                       }`
                     )}
-                    autoComplete="given-name"
+                    autoComplete="name"
                     defaultValue={field.name || ""}
                   />
-                  {policyholderIs === "individual" && (
-                    <Input
-                      name={`policyholder[${index}].surname`}
-                      labelName={t("InsuranceDiagnostic.Page1.surname")}
-                      autoComplete="family-name"
-                      defaultValue={field.surname || ""}
-                    />
-                  )}
 
                   {policyholderIs !== "individual" && (
                     <Input
@@ -336,7 +328,7 @@ const Page2 = () => {
         fields.length < 14 && (
           <FormBuilder.ApplicantBox
             onClick={() => {
-              append({ policyholderIs: "firm", name: "", surname: "" });
+              append({ policyholderIs: "firm", name: "" });
               setAddingMode(true);
               setEditingMode(true);
               setOpenDialog(true);

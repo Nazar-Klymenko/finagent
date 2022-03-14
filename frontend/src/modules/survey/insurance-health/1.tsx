@@ -24,8 +24,8 @@ import { clauseTwoPriceOptions } from "./helpers/options";
 import { clauseThreePriceOptions } from "./helpers/options";
 
 type FormTypes = {
-  insuranceStart: Date;
-  insuranceEnd: Date;
+  insuranceStart: Date | null;
+  insuranceEnd: Date | null;
   clauseOne: boolean;
   clauseTwo: boolean;
   clauseThree: boolean;
@@ -40,17 +40,23 @@ const Page1 = () => {
 
   const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = appData.insuranceHealth?.insuranceData;
+  const appDataValid = appData.insuranceHealth.insuranceData;
 
   const methods = useForm<FormTypes>({
     defaultValues: {
-      clauseOne: true,
-      clauseTwo: appDataValid?.clauseTwo,
-      clauseThree: appDataValid?.clauseThree,
+      insuranceStart: appDataValid.insuranceStart,
+      insuranceEnd: appDataValid.insuranceEnd,
+      clauseOne: appDataValid.clauseOne,
+      clauseTwo: appDataValid.clauseTwo,
+      clauseThree: appDataValid.clauseThree,
+      clauseOnePrice: appDataValid.clauseOnePrice,
+      clauseTwoPrice: appDataValid.clauseTwoPrice,
+      clauseThreePrice: appDataValid.clauseThreePrice,
     },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: false,
+    shouldUnregister: true,
     resolver: yupResolver(pageOneSchema()),
   });
   const { handleSubmit, watch } = methods;
@@ -65,68 +71,68 @@ const Page1 = () => {
   });
 
   return (
-    <PageContainer xs title="InsuranceHealth.title">
+    <PageContainer xs title="insuranceHealth.title">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("InsuranceHealth.title")}</Typography>
+      <Typography variant="h4">{t("insuranceHealth.title")}</Typography>
 
       <ProgressBar
         maxSteps={2}
         currentStep={1}
-        label={t("InsuranceHealth.Page1.subtitle")}
+        label={t("insuranceHealth.Page1.subtitle")}
       />
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceHealth.Page1.subtitle")}
+        {t("insuranceHealth.Page1.subtitle")}
       </Typography>
 
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <DateInput
           name="insuranceStart"
-          labelName={t("InsuranceHealth.Page1.insuranceStart")}
+          labelName={t("insuranceHealth.Page1.insuranceStart")}
           disablePast
           placeholder={t("Form.Placeholder.dateFull")}
         />
         <DateInput
           name="insuranceEnd"
-          labelName={t("InsuranceHealth.Page1.insuranceEnd")}
+          labelName={t("insuranceHealth.Page1.insuranceEnd")}
           placeholder={t("Form.Placeholder.dateFull")}
           disablePast
         />
         <Typography variant="body1">
-          {t("InsuranceHealth.Page1.riskType")}
+          {t("insuranceHealth.Page1.riskType")}
         </Typography>
         <Checkbox
           name="clauseOne"
           readOnly={true}
           defaultChecked={true}
-          labelName={t("InsuranceHealth.Page1.clauseOne")}
+          labelName={t("insuranceHealth.Page1.clauseOne")}
         />
         <Select
           name="clauseOnePrice"
-          labelName={t("InsuranceHealth.Page1.chooseAmountEuro")}
+          labelName={t("insuranceHealth.Page1.chooseAmountEuro")}
           options={clauseOnePriceOptions}
           placeholder="Amount:"
         />
         <Checkbox
           name="clauseTwo"
-          labelName={t("InsuranceHealth.Page1.clauseTwo")}
+          labelName={t("insuranceHealth.Page1.clauseTwo")}
         />
         {showTwoAmount && (
           <Select
             name="clauseTwoPrice"
-            labelName={t("InsuranceHealth.Page1.chooseAmountZlote")}
+            labelName={t("insuranceHealth.Page1.chooseAmountZlote")}
             options={clauseTwoPriceOptions}
             placeholder="Amount:"
           />
         )}
         <Checkbox
           name="clauseThree"
-          labelName={t("InsuranceHealth.Page1.clauseThree")}
+          labelName={t("insuranceHealth.Page1.clauseThree")}
         />
         {showThreeAmount && (
           <Select
             name="clauseThreePrice"
-            labelName={t("InsuranceHealth.Page1.chooseAmountZlote")}
+            labelName={t("insuranceHealth.Page1.chooseAmountZlote")}
             options={clauseThreePriceOptions}
             placeholder="Amount:"
           />

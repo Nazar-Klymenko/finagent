@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Typography } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { IconButton, Typography } from "@mui/material";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -16,24 +15,13 @@ import { QuestState } from "@helpers/QuestState";
 import { useData } from "@context/dataContext";
 
 import { Form } from "@components/Form";
-import FormError from "@components/FormError";
+import { FormBuilder } from "@components/FormBuilder";
 import { MuiDialog } from "@components/MuiDialog";
 import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
 import { DateInput, Input, MuiPhoneInput, Radio } from "@components/input";
 import { PageContainer } from "@components/layout";
 
-import {
-  Applicant,
-  ApplicantAdd,
-  ApplicantBox,
-  ApplicantName,
-  AvatarStyled,
-  ButtonsWrap,
-  Page,
-  Subtitle,
-  Title,
-} from "../LocalStyles";
 import { pageOneValues } from "./helpers/default-values";
 import { ApplicantSchema } from "./helpers/loan-cash.schema";
 
@@ -47,16 +35,15 @@ type FormTypes2 = {
     {
       otherNation: string;
       nationality: string;
-      validFrom: Date;
-      validUntil: Date;
+      validFrom: Date | null;
+      validUntil: Date | null;
       name: string;
-      surname: string;
-      birthDate: Date;
+      birthDate: Date | null;
       phoneNumber: string;
       email: string;
       pesel: string;
-      contractFrom: Date;
-      contractUntil: Date;
+      contractFrom: Date | null;
+      contractUntil: Date | null;
       averageIncome: string;
       currency: string;
       pit: string;
@@ -67,12 +54,11 @@ type FormTypes2 = {
 
 const Page1 = () => {
   const { t } = useTranslation();
-  useTitle("Cash loan | FinAgent");
   const router = useRouter();
 
   const { appData, setValues, setCurrentPage } = useData();
-  const appDataValid1 = appData.loanCash?.applicantData;
-  const appDataValid = appData.loanCash?.applicantData?.applicant;
+  const appDataValid1 = appData.loanCash.applicantData;
+  const appDataValid = appData.loanCash.applicantData.applicant;
 
   const [openDialog, setOpenDialog] = useState(true);
   const [formInitiated, setFormInitiated] = useState(false);
@@ -93,28 +79,28 @@ const Page1 = () => {
     defaultValues: {
       applicant: [
         {
-          otherNation: appDataValid?.[0]?.otherNation || "no",
-          nationality: appDataValid?.[0]?.nationality || "polish",
-          validFrom: appDataValid?.[0]?.validFrom || null,
-          validUntil: appDataValid?.[0]?.validUntil || null,
-          name: appDataValid?.[0]?.name || "",
-          surname: appDataValid?.[0]?.surname || "",
-          birthDate: appDataValid?.[0]?.birthDate || null,
-          phoneNumber: appDataValid?.[0]?.phoneNumber || "",
-          email: appDataValid?.[0]?.email || "",
-          pesel: appDataValid?.[0]?.pesel || "",
-          contractFrom: appDataValid?.[0]?.contractFrom || null,
-          contractUntil: appDataValid?.[0]?.contractUntil || null,
-          averageIncome: appDataValid?.[0]?.averageIncome || "",
-          currency: appDataValid?.[0]?.currency || "",
-          pit: appDataValid?.[0]?.pit || "",
-          bank: appDataValid?.[0]?.bank || "",
+          otherNation: appDataValid?.[0]?.otherNation,
+          nationality: appDataValid?.[0]?.nationality,
+          validFrom: appDataValid?.[0]?.validFrom,
+          validUntil: appDataValid?.[0]?.validUntil,
+          name: appDataValid?.[0]?.name,
+          birthDate: appDataValid?.[0]?.birthDate,
+          phoneNumber: appDataValid?.[0]?.phoneNumber,
+          email: appDataValid?.[0]?.email,
+          pesel: appDataValid?.[0]?.pesel,
+          contractFrom: appDataValid?.[0]?.contractFrom,
+          contractUntil: appDataValid?.[0]?.contractUntil,
+          averageIncome: appDataValid?.[0]?.averageIncome,
+          currency: appDataValid?.[0]?.currency,
+          pit: appDataValid?.[0]?.pit,
+          bank: appDataValid?.[0]?.bank,
         },
       ],
     },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+    shouldUnregister: true,
     resolver: yupResolver(ApplicantSchema()),
   });
   const {
@@ -173,9 +159,9 @@ const Page1 = () => {
       appDataValid1.bothSpousesStart = bothSpousesStart;
       appDataValid1.propertySeparation = propertySeparation;
       setCurrentPage(2);
-      history.push("./2");
+      router.push("./2");
     } else {
-      alert(t("InsuranceHealth.Error.noApplicant"));
+      alert(t("insuranceHealth.Error.noApplicant"));
     }
   };
 
@@ -199,16 +185,16 @@ const Page1 = () => {
   }, [appDataValid, bothSpousesStart, remove]);
 
   return (
-    <PageContainer xs title="">
+    <PageContainer xs title="LoanCash.title">
       <QuestState data={appData} />
 
-      <Title>{t("LoanCash.title")}</Title>
+      <Typography variant="h4">{t("LoanCash.title")}</Typography>
       <ProgressBar
         maxSteps={3}
         currentStep={1}
         label={t("LoanCash.Page1.subtitle")}
       />
-      <Subtitle>{t("LoanCash.Page1.subtitle")}</Subtitle>
+      <Typography variant="h6">{t("LoanCash.Page1.subtitle")}</Typography>
       <Form
         methods={methods1}
         id="form"
@@ -218,7 +204,7 @@ const Page1 = () => {
       >
         <Radio
           name="maritalStatus"
-          legend={t("LoanCash.Page1.maritalStatus")}
+          labelName={t("LoanCash.Page1.maritalStatus")}
           options={[
             {
               label: t("LoanCash.Page1.notMarried"),
@@ -234,7 +220,7 @@ const Page1 = () => {
           <>
             <Radio
               name="propertySeparation"
-              legend={t("LoanCash.Page1.propertySeparation")}
+              labelName={t("LoanCash.Page1.propertySeparation")}
               options={[
                 {
                   label: t("LoanCash.Page1.no"),
@@ -249,7 +235,7 @@ const Page1 = () => {
 
             <Radio
               name="bothSpousesStart"
-              legend={t("LoanCash.Page1.bothSpousesStart")}
+              labelName={t("LoanCash.Page1.bothSpousesStart")}
               options={[
                 {
                   label: t("LoanCash.Page1.no"),
@@ -263,27 +249,26 @@ const Page1 = () => {
             />
           </>
         )}
-        <Subtitle>{t("LoanCash.ApplicantBox.title")}</Subtitle>
+        <Typography variant="body1">
+          {t("LoanCash.ApplicantBox.title")}
+        </Typography>
       </Form>
-
-      <Typography variant="body1">
-        Dodaj wnioskodawcę ({bothSpousesStart === "yes" ? 2 : 1})
-      </Typography>
-      {/* {t("LoanCash.ApplicantModal.title")} */}
 
       {editingMode &&
         fields.map((field: any, index: number) => {
           //@ts-ignore
-          const nationality = watch(`applicant[${index}].nationality`);
+          const nationality = watch(
+            `applicant[${index}].nationality`
+          ) as unknown as string;
           //@ts-ignore
           const residenceDocument = watch(`applicant[${index}
-            ].residenceDocument`);
+            ].residenceDocument`) as unknown as string;
           //@ts-ignore
           const basicIncome = watch(`applicant[${index}
-            ].basicIncome`);
+            ].basicIncome`) as unknown as string;
           //@ts-ignore
           const firstContract = watch(`applicant[${index}
-            ].firstContract`);
+            ].firstContract`) as unknown as string;
           return (
             editingIndex === index && (
               <MuiDialog
@@ -303,7 +288,7 @@ const Page1 = () => {
                 >
                   <Radio
                     name={`applicant[${index}].nationality`}
-                    legend={t("LoanCash.ApplicantModal.citizenship")}
+                    labelName={t("LoanCash.ApplicantModal.citizenship")}
                     options={[
                       {
                         label: t("LoanCash.ApplicantModal.polish"),
@@ -330,7 +315,9 @@ const Page1 = () => {
 
                       <Radio
                         name={`applicant[${index}].residenceDocument`}
-                        legend={t("LoanCash.ApplicantModal.residenceDocument")}
+                        labelName={t(
+                          "LoanCash.ApplicantModal.residenceDocument"
+                        )}
                         options={[
                           {
                             label: t("LoanCash.ApplicantModal.temporaryCard"),
@@ -370,18 +357,10 @@ const Page1 = () => {
                     name={`applicant[${index}].name`}
                     labelName={t("LoanCash.ApplicantModal.name")}
                     type="text"
-                    placeholder="John"
-                    autoComplete="given-name"
+                    autoComplete="name"
                     defaultValue={field.name || ""}
                   />
-                  <Input
-                    name={`applicant[${index}].surname`}
-                    labelName={t("LoanCash.ApplicantModal.surname")}
-                    type="text"
-                    placeholder="Doe"
-                    autoComplete="family-name"
-                    defaultValue={field.surname}
-                  />
+
                   <DateInput
                     name={`applicant[${index}].birthDate`}
                     labelName={t("LoanCash.ApplicantModal.birthDate")}
@@ -397,20 +376,18 @@ const Page1 = () => {
                     name={`applicant[${index}].email`}
                     labelName={t("LoanCash.ApplicantModal.email")}
                     type="text"
-                    placeholder="example@mail.com"
                     defaultValue={field.email}
                   />
                   <Input
                     name={`applicant[${index}].pesel`}
                     labelName={t("LoanCash.ApplicantModal.pesel")}
                     type="text"
-                    placeholder="XX XXX XXX XXX"
                     defaultValue={field.pesel}
                   />
 
                   <Radio
                     name={`applicant[${index}].basicIncome`}
-                    legend={t("LoanCash.ApplicantModal.basicIncome")}
+                    labelName={t("LoanCash.ApplicantModal.basicIncome")}
                     options={[
                       {
                         label: t("LoanCash.ApplicantModal.indefinitePeriod"),
@@ -441,7 +418,7 @@ const Page1 = () => {
                     <>
                       <Radio
                         name={`applicant[${index}].firstContract`}
-                        legend={t("LoanCash.ApplicantModal.firstContract")}
+                        labelName={t("LoanCash.ApplicantModal.firstContract")}
                         options={[
                           {
                             label: t("LoanCash.ApplicantModal.yes"),
@@ -458,7 +435,9 @@ const Page1 = () => {
                         <>
                           <Radio
                             name={`applicant[${index}].sameEmployer`}
-                            legend={t("LoanCash.ApplicantModal.sameEmployer")}
+                            labelName={t(
+                              "LoanCash.ApplicantModal.sameEmployer"
+                            )}
                             options={[
                               {
                                 label: t("LoanCash.ApplicantModal.yes"),
@@ -474,7 +453,9 @@ const Page1 = () => {
 
                           <Radio
                             name={`applicant[${index}].withoutPause`}
-                            legend={t("LoanCash.ApplicantModal.withoutPause")}
+                            labelName={t(
+                              "LoanCash.ApplicantModal.withoutPause"
+                            )}
                             options={[
                               {
                                 label: t("LoanCash.ApplicantModal.yes"),
@@ -526,7 +507,7 @@ const Page1 = () => {
                     <>
                       <Radio
                         name={`applicant[${index}].accountancy`}
-                        legend={t("LoanCash.ApplicantModal.accountancy")}
+                        labelName={t("LoanCash.ApplicantModal.accountancy")}
                         options={[
                           {
                             label: t("LoanCash.ApplicantModal.generalRules"),
@@ -601,10 +582,15 @@ const Page1 = () => {
           //@ts-ignore
           let applicant = watch(`applicant[${index}].name`);
           return (
-            <Applicant key={field.id} error={!!errors.applicant?.[index]}>
+            <FormBuilder.Applicant
+              key={field.id}
+              error={!!errors.applicant?.[index]}
+            >
               {/* @ts-ignore */}
-              <AvatarStyled>{applicant?.[0] || ""}</AvatarStyled>
-              <ApplicantName>{applicant}</ApplicantName>
+              <FormBuilder.AvatarStyled>
+                {applicant?.[0] || ""}
+              </FormBuilder.AvatarStyled>
+              <FormBuilder.ApplicantName>{applicant}</FormBuilder.ApplicantName>
               <IconButton
                 onClick={() => {
                   editData(index);
@@ -619,54 +605,44 @@ const Page1 = () => {
               >
                 <DeleteIcon />
               </IconButton>
-            </Applicant>
+            </FormBuilder.Applicant>
           );
         })}
 
       {!formInitiated ? (
-        <ApplicantBox
+        <FormBuilder.ApplicantBox
           onClick={() => {
             setEditingMode(true);
             setOpenDialog(true);
           }}
         >
-          <ApplicantAdd>
+          <FormBuilder.ApplicantAdd>
             <PersonAddIcon />
             <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
-          </ApplicantAdd>
-        </ApplicantBox>
+          </FormBuilder.ApplicantAdd>
+        </FormBuilder.ApplicantBox>
       ) : (
         fields.length < maxFields && (
-          <ApplicantBox
+          <FormBuilder.ApplicantBox
             onClick={() => {
-              append({ name: "", surname: "" });
+              append({ name: "" });
               setAddingMode(true);
               setEditingMode(true);
               setOpenDialog(true);
               setEditingIndex(fields.length);
             }}
           >
-            <ApplicantAdd>
+            <FormBuilder.ApplicantAdd>
               <PersonAddIcon />
               <span>{t("InsuranceDiagnostic.ApplicantBox.addApplicant")}</span>
-            </ApplicantAdd>
-          </ApplicantBox>
+            </FormBuilder.ApplicantAdd>
+          </FormBuilder.ApplicantBox>
         )
       )}
       <FormBuilder.ButtonsWrap>
-        {/* <Button
-            text={t("Basic.buttonNext")}
-            form="form"
-            color="primary"
-            onClick={finalizeForm}
-          /> */}
-
-        <Button
-          text={t("Basic.buttonNext")}
-          color="primary"
-          form="form"
-          onClick={finalizeForm}
-        />
+        <Button color="primary" form="form" onClick={finalizeForm}>
+          {t("Basic.buttonNext")}
+        </Button>
       </FormBuilder.ButtonsWrap>
     </PageContainer>
   );

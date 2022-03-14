@@ -31,7 +31,7 @@ type FormTypes = {
   ac: boolean;
   greenCard: boolean;
   assistance: boolean;
-  fullName: string;
+  name: string;
   phoneNumber: string;
   postIndex: string;
   city: string;
@@ -59,7 +59,7 @@ const Page1 = () => {
         ac: appDataValid.ac,
         greenCard: appDataValid.greenCard,
         assistance: appDataValid.assistance,
-        fullName: appDataValid.fullName,
+        name: appDataValid.name,
         phoneNumber: appDataValid.phoneNumber,
         postIndex: appDataValid.postIndex,
         city: appDataValid.city,
@@ -120,8 +120,8 @@ const Page1 = () => {
         />
 
         <Input
-          name="fullName"
-          labelName={t("insuranceTransport.Page1.name")}
+          name="name"
+          labelName={t("insuranceTransport.Page1.fullName")}
           type="text"
           autoComplete="name"
         />

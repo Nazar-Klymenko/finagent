@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import { determineType } from "@helpers/determineType";
+import { determineAppType } from "@helpers/determineAppType";
 
-import { postInsuranceMedicalAPI } from "@api/userAPI";
+import { postApplication } from "@api/applications";
 
 import { useData } from "@context/dataContext";
 
@@ -23,31 +23,22 @@ const Summary = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { appData } = useData();
 
-  const addDataLabeled = determineType(
-    "HealthMedical",
-    appData.insuranceHealth
-  );
+  const appDataValid = appData.insuranceHealth;
+  const summaryReady = determineAppType("insuranceHealth", appDataValid);
 
   const confirmApplication = async () => {
-    delete appData.insuranceHealth.InsuranceData.clauseOne;
-    delete appData.insuranceHealth.InsuranceData.clauseTwo;
-    delete appData.insuranceHealth.InsuranceData.clauseThree;
-    setIsLoading(true);
-    try {
-      await postInsuranceMedicalAPI(appData.insuranceHealth);
-      router.push("/dashboard/insurance");
-    } catch (error) {
-      setIsLoading(false);
-    }
+    await postApplication("insraunce-health", appDataValid);
+    router.push("/dashboard/insurance");
   };
 
   return (
-    <PageContainer xs title="InsuranceHealth.title">
-      <Typography variant="h4">{t("InsuranceHealth.title")}</Typography>
+    <PageContainer xs title="insuranceHealth.title">
+      <Typography variant="h4">{t("insuranceHealth.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
       <SummaryList
         header={t("Basic.summary")}
-        array={addDataLabeled}
+        array={summaryReady}
+        applicationType="insuranceHealth"
         defaultOpen
       />
       <FormBuilder.ButtonsWrap multiple>
@@ -60,12 +51,7 @@ const Summary = () => {
         >
           {t("Basic.buttonBack")}
         </Button>
-        <Button
-          form=""
-          color="primary"
-          onClick={confirmApplication}
-          isLoading={isLoading}
-        >
+        <Button form="" color="primary" onClick={confirmApplication}>
           {t("Basic.buttonConfirm")}
         </Button>
       </FormBuilder.ButtonsWrap>

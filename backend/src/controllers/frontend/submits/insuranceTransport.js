@@ -1,6 +1,6 @@
 import insuranceTransport from "models/applications/insuranceTransport.js";
 
-export default async function insuranceTransportSubmit(req, res, next) {
+const insuranceTransportSubmit = async (req, res, next) => {
   try {
     const userInfo = req.body;
     const insuranceObj = await new insuranceTransport(userInfo);
@@ -8,16 +8,15 @@ export default async function insuranceTransportSubmit(req, res, next) {
     insuranceObj.user_id = req.currentUser.uid;
     insuranceObj.category = "insurance";
     insuranceObj.type = "transport";
-    insuranceObj.fullType = "insuranceTransport";
 
-    Object.entries(userInfo.appendedDocuments).forEach((fileArray) => {
-      fileArray[1]?.length > 0 &&
-        fileArray[1].forEach((file) => {
-          insuranceObj.user_attachments.push({
-            filename: file.path,
-          });
-        });
-    });
+    // Object.entries(userInfo.appendedDocuments).forEach((fileArray) => {
+    //   fileArray[1]?.length > 0 &&
+    //     fileArray[1].forEach((file) => {
+    //       insuranceObj.user_attachments.push({
+    //         filename: file.path,
+    //       });
+    //     });
+    // });
 
     insuranceObj.markModified(
       "personalData",
@@ -38,4 +37,5 @@ export default async function insuranceTransportSubmit(req, res, next) {
 
     next(error);
   }
-}
+};
+export default insuranceTransportSubmit;

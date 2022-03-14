@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { QuestState } from "@helpers/QuestState";
 import { determineAppType } from "@helpers/determineAppType";
 
-import { postInsuranceTravelAPI } from "@api/userAPI";
+import { postApplication } from "@api/applications";
 
 import { useData } from "@context/dataContext";
 
@@ -21,34 +21,29 @@ import { PageContainer } from "@components/layout";
 const Summary = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
   const { appData } = useData();
 
-  const addDataLabeled = determineType("Travel", appData);
+  const appDataValid = appData.insuranceTravel;
+  const summaryReady = determineAppType("insuranceTravel", appDataValid);
 
   const confirmApplication = async () => {
-    setIsLoading(true);
-    try {
-      await postInsuranceTravelAPI(appData);
-      router.push("/dashboard/insurance");
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-    }
+    await postApplication("insraunce-travel", appDataValid);
+    router.push("/dashboard/insurance");
   };
 
   return (
-    <PageContainer xs title="InsuranceTravel.title">
+    <PageContainer xs title="insuranceTravel.title">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("InsuranceTravel.title")}</Typography>
+      <Typography variant="h4">{t("insuranceTravel.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
       <Typography variant="h6">{t("Basic.summary")}</Typography>
 
       <SummaryList
         header={t("Basic.summary")}
         // @ts-ignore
-        array={addDataLabeled}
+        array={summaryReady}
+        applicationType="insuranceTravel"
         defaultOpen
       />
       <FormBuilder.ButtonsWrap multiple>

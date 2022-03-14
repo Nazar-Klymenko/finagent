@@ -3,6 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -20,12 +21,11 @@ import { PageContainer } from "@components/layout";
 import { pageOneSchema } from "./helpers/insurance-specialist.schema";
 
 type FormTypes = {
-  insuranceStart: Date;
-  insuranceEnd: Date;
+  insuranceStart: Date | null;
+  insuranceEnd: Date | null;
   policyholderIs: string;
   name: string;
-  surname: string;
-  birthDate: Date;
+  birthDate: Date | null;
   nip: string;
   pesel: string;
   regon: string;
@@ -47,26 +47,26 @@ const Page1 = () => {
 
   const methods = useForm<FormTypes>({
     defaultValues: {
-      insuranceStart: appDataValid?.insuranceStart || undefined,
-      insuranceEnd: appDataValid?.insuranceEnd || undefined,
-      policyholderIs: appDataValid?.policyholderIs || "individual",
-      name: appDataValid?.name || "",
-      surname: appDataValid?.surname || "",
-      nip: appDataValid?.nip || "",
-      birthDate: appDataValid?.birthDate || undefined,
-      pesel: appDataValid?.pesel || "",
-      regon: appDataValid?.regon || "",
-      phoneNumber: appDataValid?.phoneNumber || "",
-      email: appDataValid?.email || "",
-      country: appDataValid?.country || "",
-      city: appDataValid?.city || "",
-      postIndex: appDataValid?.postIndex || "",
-      street: appDataValid?.street || "",
-      houseNumber: appDataValid?.houseNumber || "",
+      insuranceStart: appDataValid?.insuranceStart,
+      insuranceEnd: appDataValid?.insuranceEnd,
+      policyholderIs: appDataValid?.policyholderIs,
+      name: appDataValid?.name,
+      nip: appDataValid?.nip,
+      birthDate: appDataValid?.birthDate,
+      pesel: appDataValid?.pesel,
+      regon: appDataValid?.regon,
+      phoneNumber: appDataValid?.phoneNumber,
+      email: appDataValid?.email,
+      country: appDataValid?.country,
+      city: appDataValid?.city,
+      postIndex: appDataValid?.postIndex,
+      street: appDataValid?.street,
+      houseNumber: appDataValid?.houseNumber,
     },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+    shouldUnregister: true,
     resolver: yupResolver(pageOneSchema()),
   });
 
@@ -132,16 +132,9 @@ const Page1 = () => {
           name="name"
           labelName={t("InsuranceDiagnostic.Page1.name")}
           type="text"
-          autoComplete="given-name"
+          autoComplete="name"
         />
-        {policyholderIs === "individual" && (
-          <Input
-            name="surname"
-            labelName={t("InsuranceDiagnostic.Page1.surname")}
-            type="text"
-            autoComplete="family-name"
-          />
-        )}
+
         {!(policyholderIs === "individual") && (
           <Input
             name="nip"

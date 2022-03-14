@@ -3,6 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -11,43 +12,46 @@ import { QuestState } from "@helpers/QuestState";
 import { useData } from "@context/dataContext";
 
 import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
 import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
-import ContentWrap from "@components/content/ContentWrap";
-import { Input, MuiCheckbox, Textarea } from "@components/input";
+import { Checkbox, Input, Textarea } from "@components/input";
+import { PageContainer } from "@components/layout";
 
-import {
-  ButtonsWrap,
-  InputErrorMessage,
-  Page,
-  Subtitle,
-  Title,
-} from "../LocalStyles";
 import { pageThreeSchema } from "./helpers/loan-cash.schema";
+
+type FormTypes = {
+  remainingPayOff: string;
+  lastApplications: string;
+  custody: string;
+  loanPurpose: string;
+  loanAmount: string;
+  paymentTerm: string;
+  conditions: boolean;
+};
 
 const Page2 = () => {
   const { t } = useTranslation();
   const { appData, setValues, setAllowSummary } = useData();
 
-  const appDataValid = appData.loanCash?.loanData;
+  const appDataValid = appData.loanCash.loanData;
 
   const router = useRouter();
 
-  useTitle("Cash loan | FinAgent");
-
-  const methods = useForm({
+  const methods = useForm<FormTypes>({
     defaultValues: {
-      remainingPayOff: appDataValid?.remainingPayOff,
-      lastApplications: appDataValid?.lastApplications,
-      custody: appDataValid?.custody,
-      loanPurpose: appDataValid?.loanPurpose,
-      loanAmount: appDataValid?.loanAmount,
-      paymentTerm: appDataValid?.paymentTerm,
-      conditions: appDataValid?.conditions,
+      remainingPayOff: appDataValid.remainingPayOff,
+      lastApplications: appDataValid.lastApplications,
+      custody: appDataValid.custody,
+      loanPurpose: appDataValid.loanPurpose,
+      loanAmount: appDataValid.loanAmount,
+      paymentTerm: appDataValid.paymentTerm,
+      conditions: appDataValid.conditions,
     },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+    shouldUnregister: true,
     resolver: yupResolver(pageThreeSchema()),
   });
   const {
@@ -56,22 +60,22 @@ const Page2 = () => {
   } = methods;
 
   const formSubmit = handleSubmit((data) => {
-    setValues(data, "LoanData");
+    setValues(data, "loanCash", "loanData");
     setAllowSummary(true);
-    history.push("./summary");
+    router.push("./summary");
   });
 
   return (
-    <PageContainer xs title="">
+    <PageContainer xs title="LoanCash.title">
       <QuestState data={appData} />
 
-      <Title>{t("LoanCash.title")}</Title>
+      <Typography variant="h4">{t("LoanCash.title")}</Typography>
       <ProgressBar
         maxSteps={3}
         currentStep={3}
         label={t("LoanCash.Page2.subtitle")}
       />
-      <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
+      <Typography variant="h6">{t("LoanCash.Page2.subtitle")}</Typography>
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <Textarea
           name="remainingPayOff"
@@ -106,24 +110,22 @@ const Page2 = () => {
           type="text"
           placeholder="number"
         />
-        <MuiCheckbox
+        <Checkbox
           name="conditions"
           labelName={t("LoanCash.Page2.conditions")}
+          errorSpacer
         />
-        <InputErrorMessage>
-          <span className="invis-star">*</span>
-          {errors?.conditions && t(errors?.conditions?.message)}
-        </InputErrorMessage>
       </Form>
       <FormBuilder.ButtonsWrap multiple>
         <Button
-          text={t("Basic.buttonBack")}
           form=""
           color="secondary"
           onClick={() => {
-            history.push("./2");
+            router.push("./2");
           }}
-        />
+        >
+          {t("Basic.buttonBack")}
+        </Button>
         <Button form="form" color="primary">
           {t("Basic.buttonNext")}
         </Button>

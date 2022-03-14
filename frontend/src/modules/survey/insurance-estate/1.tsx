@@ -81,6 +81,8 @@ const Page1 = () => {
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+    shouldUnregister: true,
+
     resolver: yupResolver(pageOneSchema),
   });
   const { handleSubmit, watch } = methods;
@@ -95,40 +97,40 @@ const Page1 = () => {
   });
 
   return (
-    <PageContainer xs title="InsuranceEstate.title">
-      <Typography variant="h4">{t("InsuranceEstate.title")}</Typography>
+    <PageContainer xs title="insuranceEstate.title">
+      <Typography variant="h4">{t("insuranceEstate.title")}</Typography>
 
       <ProgressBar
         maxSteps={2}
         currentStep={1}
-        label={t("InsuranceEstate.Page1.title")}
+        label={t("insuranceEstate.Page1.title")}
       />
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceEstate.Page1.title")}
+        {t("insuranceEstate.Page1.title")}
       </Typography>
       <Form methods={methods} id="form" onSubmit={formSubmit}>
-        <Input name="country" labelName={t("InsuranceEstate.Page1.country")} />
-        <Input name="city" labelName={t("InsuranceEstate.Page1.city")} />
+        <Input name="country" labelName={t("insuranceEstate.Page1.country")} />
+        <Input name="city" labelName={t("insuranceEstate.Page1.city")} />
         <Input
           name="postIndex"
-          labelName={t("InsuranceEstate.Page1.postIndex")}
+          labelName={t("insuranceEstate.Page1.postIndex")}
         />
-        <Input name="street" labelName={t("InsuranceEstate.Page1.street")} />
+        <Input name="street" labelName={t("insuranceEstate.Page1.street")} />
         <Input
           name="houseNumber"
-          labelName={t("InsuranceEstate.Page1.houseNumber")}
+          labelName={t("insuranceEstate.Page1.houseNumber")}
         />
 
         <Radio
           name="estateType"
-          labelName={t("InsuranceEstate.Page1.estateType")}
+          labelName={t("insuranceEstate.Page1.estateType")}
           options={[
             {
-              label: t("InsuranceEstate.Page1.house"),
+              label: t("insuranceEstate.Page1.house"),
               value: "house",
             },
             {
-              label: t("InsuranceEstate.Page1.apartment"),
+              label: t("insuranceEstate.Page1.apartment"),
               value: "apartment",
             },
           ]}
@@ -136,18 +138,18 @@ const Page1 = () => {
         {estateType === "apartment" && (
           <Radio
             name="floor"
-            labelName={t("InsuranceEstate.Page1.floor")}
+            labelName={t("insuranceEstate.Page1.floor")}
             options={[
               {
-                label: t("InsuranceEstate.Page1.last"),
+                label: t("insuranceEstate.Page1.last"),
                 value: "last",
               },
               {
-                label: t("InsuranceEstate.Page1.intermediate"),
+                label: t("insuranceEstate.Page1.intermediate"),
                 value: "intermediate",
               },
               {
-                label: t("InsuranceEstate.Page1.ground"),
+                label: t("insuranceEstate.Page1.ground"),
                 value: "ground",
               },
             ]}
@@ -156,34 +158,34 @@ const Page1 = () => {
 
         <Radio
           name="structure"
-          labelName={t("InsuranceEstate.Page1.structure")}
+          labelName={t("insuranceEstate.Page1.structure")}
           options={[
             {
-              label: t("InsuranceEstate.Page1.brick"),
+              label: t("insuranceEstate.Page1.brick"),
               value: "brick",
             },
             {
-              label: t("InsuranceEstate.Page1.wood"),
+              label: t("insuranceEstate.Page1.wood"),
               value: "wood",
             },
           ]}
         />
-        <Input name="areaM2" labelName={t("InsuranceEstate.Page1.areaM2")} />
+        <Input name="areaM2" labelName={t("insuranceEstate.Page1.areaM2")} />
         <Input
           name="constructionYear"
-          labelName={t("InsuranceEstate.Page1.constructionYear")}
+          labelName={t("insuranceEstate.Page1.constructionYear")}
         />
 
         <Radio
           name="underConstruction"
-          labelName={t("InsuranceEstate.Page1.underConstruction")}
+          labelName={t("insuranceEstate.Page1.underConstruction")}
           options={[
             {
-              label: t("InsuranceEstate.Page1.no"),
+              label: t("insuranceEstate.Page1.no"),
               value: "no",
             },
             {
-              label: t("InsuranceEstate.Page1.yes"),
+              label: t("insuranceEstate.Page1.yes"),
               value: "yes",
             },
           ]}
@@ -191,14 +193,14 @@ const Page1 = () => {
 
         <Radio
           name="ownershipForm"
-          labelName={t("InsuranceEstate.Page1.ownershipForm")}
+          labelName={t("insuranceEstate.Page1.ownershipForm")}
           options={[
             {
-              label: t("InsuranceEstate.Page1.coOwnership"),
+              label: t("insuranceEstate.Page1.coOwnership"),
               value: "coOwnership",
             },
             {
-              label: t("InsuranceEstate.Page1.lease"),
+              label: t("insuranceEstate.Page1.lease"),
               value: "lease",
             },
           ]}
@@ -206,14 +208,14 @@ const Page1 = () => {
 
         <Radio
           name="creditOwnership"
-          labelName={t("InsuranceEstate.Page1.creditOwnership")}
+          labelName={t("insuranceEstate.Page1.creditOwnership")}
           options={[
             {
-              label: t("InsuranceEstate.Page1.no"),
+              label: t("insuranceEstate.Page1.no"),
               value: "no",
             },
             {
-              label: t("InsuranceEstate.Page1.yes"),
+              label: t("insuranceEstate.Page1.yes"),
               value: "yes",
             },
           ]}
@@ -222,22 +224,22 @@ const Page1 = () => {
           <>
             <Input
               name="bankName"
-              labelName={t("InsuranceEstate.Page1.bankName")}
+              labelName={t("insuranceEstate.Page1.bankName")}
             />
-            <Input name="regon" labelName={t("InsuranceEstate.Page1.regon")} />
-            <Input name="nip" labelName={t("InsuranceEstate.Page1.nip")} />
+            <Input name="regon" labelName={t("insuranceEstate.Page1.regon")} />
+            <Input name="nip" labelName={t("insuranceEstate.Page1.nip")} />
           </>
         )}
         <Select
           name="security"
-          labelName={t("InsuranceEstate.Page1.security")}
+          labelName={t("insuranceEstate.Page1.security")}
           defaultValue={appDataValid.security}
           options={nameSecurityOptions(t)}
         />
 
         <Radio
           name="damagesNumber"
-          labelName={t("InsuranceEstate.Page1.damagesNumber")}
+          labelName={t("insuranceEstate.Page1.damagesNumber")}
           options={[
             {
               label: "0",
@@ -260,35 +262,35 @@ const Page1 = () => {
 
         <Radio
           name="insurancePeriod"
-          labelName={t("InsuranceEstate.Page1.insurancePeriod")}
+          labelName={t("insuranceEstate.Page1.insurancePeriod")}
           options={[
             {
-              label: t("InsuranceEstate.Page1.annual"),
+              label: t("insuranceEstate.Page1.annual"),
               value: "annual",
             },
             {
-              label: t("InsuranceEstate.Page1.year3"),
+              label: t("insuranceEstate.Page1.year3"),
               value: "year3",
             },
           ]}
         />
         <DateInput
           name="insuranceStart"
-          labelName={t("InsuranceEstate.Page1.insuranceStart")}
+          labelName={t("insuranceEstate.Page1.insuranceStart")}
           disablePast
           placeholder={t("Form.Placeholder.dateFull")}
         />
         <Typography variant="body1">
-          {t("InsuranceEstate.Page1.subjectAndSum")}
+          {t("insuranceEstate.Page1.subjectAndSum")}
         </Typography>
         <Input
           name="flatAndFixed"
-          labelName={t("InsuranceEstate.Page1.flatAndFixed")}
+          labelName={t("insuranceEstate.Page1.flatAndFixed")}
           placeholder="200 000 zl"
         />
         <Input
           name="householdGoods"
-          labelName={t("InsuranceEstate.Page1.householdGoods")}
+          labelName={t("insuranceEstate.Page1.householdGoods")}
           placeholder="100 000 zl"
         />
       </Form>

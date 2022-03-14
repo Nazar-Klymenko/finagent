@@ -10,7 +10,7 @@ const insuranceTransportSchema = new Schema(
       ac: Boolean,
       greenCard: Boolean,
       assistance: Boolean,
-      fullName: String,
+      name: String,
       phoneNumber: String,
       postIndex: String,
       city: String,

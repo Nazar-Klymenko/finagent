@@ -31,9 +31,8 @@ type FormTypes = {
       policyholderIs: string;
       citizenship: string;
       name: string;
-      surname: string;
       documentAdded: string;
-      birthDate: Date;
+      birthDate: Date | null;
       country: string;
       city: string;
       postIndex: string;
@@ -54,29 +53,29 @@ const Page2 = () => {
   const [addingMode, setAddingMode] = useState(false);
   const [editingIndex, setEditingIndex] = useState(0);
 
-  const appDataValid = appData?.insuranceHealth?.insuredData?.policyholder;
+  const appDataValid = appData.insuranceHealth.insuredData.policyholder;
 
   const methods = useForm<FormTypes>({
     defaultValues: {
       policyholder: [
         {
-          policyholderIs: appDataValid?.[0]?.policyholderIs || "polish",
-          citizenship: appDataValid?.[0]?.citizenship || "",
-          name: appDataValid?.[0]?.name || "",
-          surname: appDataValid?.[0]?.surname || "",
-          birthDate: appDataValid?.[0]?.birthDate || null,
-          documentAdded: appDataValid?.[0]?.documentAdded || null,
-          country: appDataValid?.[0]?.country || "",
-          city: appDataValid?.[0]?.city || "",
-          postIndex: appDataValid?.[0]?.postIndex || "",
-          street: appDataValid?.[0]?.street || "",
-          houseNumber: appDataValid?.[0]?.houseNumber || "",
+          policyholderIs: appDataValid?.[0].policyholderIs,
+          name: appDataValid?.[0].name,
+          citizenship: appDataValid?.[0].citizenship,
+          birthDate: appDataValid?.[0].birthDate,
+          documentAdded: appDataValid?.[0].documentAdded,
+          country: appDataValid?.[0].country,
+          city: appDataValid?.[0].city,
+          postIndex: appDataValid?.[0].postIndex,
+          street: appDataValid?.[0].street,
+          houseNumber: appDataValid?.[0].houseNumber,
         },
       ],
     },
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+    shouldUnregister: true,
     resolver: yupResolver(policyholderSchema()),
   });
   const {
@@ -105,7 +104,7 @@ const Page2 = () => {
     setFormInitiated(true);
     setEditingMode(false);
     setAddingMode(false);
-    setValues(data, "insuranceSpecialist", "insuredData");
+    setValues(data, "insuranceHealth", "insuredData");
   });
 
   const handleClose = (index: number) => {
@@ -134,31 +133,33 @@ const Page2 = () => {
       setAllowSummary(true);
       router.push("./summary");
     } else {
-      alert(t("InsuranceHealth.Error.noApplicant"));
+      alert(t("insuranceHealth.Error.noApplicant"));
     }
   };
 
   return (
-    <PageContainer xs title="InsuranceHealth.title">
+    <PageContainer xs title="insuranceHealth.title">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("InsuranceHealth.title")}</Typography>
+      <Typography variant="h4">{t("insuranceHealth.title")}</Typography>
 
       <ProgressBar
         maxSteps={2}
         currentStep={2}
-        label={t("InsuranceHealth.ApplicantBox.title")}
+        label={t("insuranceHealth.ApplicantBox.title")}
       />
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceHealth.ApplicantBox.title")}
+        {t("insuranceHealth.ApplicantBox.title")}
       </Typography>
 
-      <Typography>{t("InsuranceHealth.ApplicantBox.maxPeople")}</Typography>
+      <Typography>{t("insuranceHealth.ApplicantBox.maxPeople")}</Typography>
 
       {editingMode &&
         fields.map((field: any, index: number) => {
           //@ts-ignore
-          let policyholderIs = watch(`policyholder.${index}.policyholderIs`);
+          let policyholderIs = watch(
+            `policyholder.${index}.policyholderIs`
+          ) as unknown as string;
           return (
             editingIndex === index && (
               <MuiDialog
@@ -178,14 +179,14 @@ const Page2 = () => {
                 >
                   <Radio
                     name={`policyholder.${index}.policyholderIs`}
-                    labelName={t("InsuranceHealth.Page2.policyholderIs")}
+                    labelName={t("insuranceHealth.Page2.policyholderIs")}
                     options={[
                       {
-                        label: t("InsuranceHealth.Page2.polish"),
+                        label: t("insuranceHealth.Page2.polish"),
                         value: "polish",
                       },
                       {
-                        label: t("InsuranceHealth.Page2.foreigner"),
+                        label: t("insuranceHealth.Page2.foreigner"),
                         value: "foreigner",
                       },
                     ]}
@@ -195,7 +196,7 @@ const Page2 = () => {
                     <Input
                       name={`policyholder.${index}.citizenship`}
                       labelName={t(
-                        "InsuranceHealth.ApplicantModal.citizenship"
+                        "insuranceHealth.ApplicantModal.citizenship"
                       )}
                       type="text"
                       placeholder="Type here"
@@ -206,8 +207,8 @@ const Page2 = () => {
                     name={`policyholder.${index}.documentAdded`}
                     labelName={`${
                       policyholderIs === "polish"
-                        ? t("InsuranceHealth.ApplicantModal.pesel")
-                        : t("InsuranceHealth.ApplicantModal.passport")
+                        ? t("insuranceHealth.ApplicantModal.pesel")
+                        : t("insuranceHealth.ApplicantModal.passport")
                     }`}
                     type="text"
                     placeholder="XXXXXXXXXXX"
@@ -215,55 +216,48 @@ const Page2 = () => {
                   />
                   <Input
                     name={`policyholder.${index}.name`}
-                    labelName={t("InsuranceHealth.ApplicantModal.name")}
+                    labelName={t("insuranceHealth.ApplicantModal.name")}
                     type="text"
                     placeholder="John"
                     autoComplete="given-name"
                     defaultValue={field.name}
                   />
-                  <Input
-                    name={`policyholder.${index}.surname`}
-                    labelName={t("InsuranceHealth.ApplicantModal.surname")}
-                    type="text"
-                    placeholder="Doe"
-                    autoComplete="family-name"
-                    defaultValue={field.surname}
-                  />
+
                   <DateInput
                     name={`policyholder.${index}.birthDate`}
-                    labelName={t("InsuranceHealth.Page2.birthDate")}
+                    labelName={t("insuranceHealth.Page2.birthDate")}
                     defaultValue={field.birthDate}
                     placeholder={t("Form.Placeholder.dateFull")}
                   />
                   <Input
                     name={`policyholder.${index}.country`}
-                    labelName={t("InsuranceHealth.ApplicantModal.country")}
+                    labelName={t("insuranceHealth.ApplicantModal.country")}
                     type="text"
                     placeholder="Poland"
                     defaultValue={field.country}
                   />
                   <Input
                     name={`policyholder.${index}.city`}
-                    labelName={t("InsuranceHealth.ApplicantModal.city")}
+                    labelName={t("insuranceHealth.ApplicantModal.city")}
                     type="text"
                     placeholder="Warsaw"
                     defaultValue={field.city}
                   />
                   <Input
                     name={`policyholder.${index}.postIndex`}
-                    labelName={t("InsuranceHealth.ApplicantModal.postIndex")}
+                    labelName={t("insuranceHealth.ApplicantModal.postIndex")}
                     placeholder="123-45"
                     defaultValue={field.postIndex}
                   />
                   <Input
                     name={`policyholder.${index}.street`}
-                    labelName={t("InsuranceHealth.ApplicantModal.street")}
+                    labelName={t("insuranceHealth.ApplicantModal.street")}
                     placeholder="Bialostocka"
                     defaultValue={field.street}
                   />
                   <Input
                     name={`policyholder.${index}.houseNumber`}
-                    labelName={t("InsuranceHealth.ApplicantModal.houseNumber")}
+                    labelName={t("insuranceHealth.ApplicantModal.houseNumber")}
                     defaultValue={field.houseNumber}
                   />
                 </Form>
@@ -323,7 +317,7 @@ const Page2 = () => {
         fields.length < 14 && (
           <FormBuilder.ApplicantBox
             onClick={() => {
-              append({ policyholderIs: "polish", name: "", surname: "" });
+              append({ policyholderIs: "polish", name: "" });
               setAddingMode(true);
               setEditingMode(true);
               setOpenDialog(true);

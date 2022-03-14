@@ -2,21 +2,24 @@ import insuranceTravel from "models/applications/insuranceTravel.js";
 
 const InsuranceTravelSubmit = async (req, res, next) => {
   try {
-    //
-    const insuranceObj = await new insuranceTravel(req.body);
+    const userInfo = req.body;
+    const insuranceObj = await new insuranceTravel(userInfo);
 
     insuranceObj.user_id = req.currentUser.uid;
     insuranceObj.category = "insurance";
-    insuranceObj.type = "Travel";
+    insuranceObj.type = "travel";
 
     insuranceObj.markModified("insuranceData", "personalData");
+
     await insuranceObj.save();
 
-    res.status(200).send({
-      message: "app added",
+    res.send({
+      id: insuranceObj.id,
+      message: "Application submitted successfully",
     });
   } catch (error) {
     if (error.name === "ValidationError") res.status(422);
+
     next(error);
   }
 };

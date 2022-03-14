@@ -7,7 +7,7 @@ export const pageOneSchema = yup
     ac: yup.boolean(),
     greenCard: yup.boolean(),
     assistance: yup.boolean(),
-    fullName: yup
+    name: yup
       .string()
       .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
       .required("Form.Error.blank"),

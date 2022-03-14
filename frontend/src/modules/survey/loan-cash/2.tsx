@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Typography } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import WorkIcon from "@material-ui/icons/Work";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import WorkIcon from "@mui/icons-material/Work";
+import { IconButton, Typography } from "@mui/material";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -16,29 +15,13 @@ import { QuestState } from "@helpers/QuestState";
 import { useData } from "@context/dataContext";
 
 import { Form } from "@components/Form";
+import { FormBuilder } from "@components/FormBuilder";
 import { MuiDialog } from "@components/MuiDialog";
 import { ProgressBar } from "@components/ProgressBar";
 import { Button } from "@components/buttons";
-import ContentWrap from "@components/content/ContentWrap";
-import {
-  DateInput,
-  Input,
-  MuiCheckbox,
-  Radio,
-  Textarea,
-} from "@components/input";
+import { DateInput, Input, Radio } from "@components/input";
+import { PageContainer } from "@components/layout";
 
-import {
-  Applicant,
-  ApplicantAdd,
-  ApplicantBox,
-  ApplicantName,
-  AvatarStyled,
-  ButtonsWrap,
-  Page,
-  Subtitle,
-  Title,
-} from "../LocalStyles";
 import { pageTwoValues } from "./helpers/default-values";
 import { AdditionalIncomeSchema } from "./helpers/loan-cash.schema";
 
@@ -51,8 +34,8 @@ type FormTypes = {
       firstContract: string;
       sameEmployer: string;
       withoutPause: string;
-      contractFrom: Date;
-      contractUntil: Date;
+      contractFrom: Date | null;
+      contractUntil: Date | null;
       averageIncome: string;
       accountancy: string;
       pit: string;
@@ -63,7 +46,6 @@ type FormTypes = {
 
 const Page2 = () => {
   const { t } = useTranslation();
-  useTitle("Cash loan | FinAgent");
 
   const [openDialog, setOpenDialog] = useState(true);
   const [formInitiated, setFormInitiated] = useState(false);
@@ -73,7 +55,7 @@ const Page2 = () => {
 
   const { appData, setValues, setCurrentPage } = useData();
 
-  const appDataValid = appData.loanCash?.incomeData?.income;
+  const appDataValid = appData.loanCash.incomeData.income;
 
   const router = useRouter();
 
@@ -81,23 +63,24 @@ const Page2 = () => {
     defaultValues: {
       income: [
         {
-          truckDriver: appDataValid?.[0]?.truckDriver || "no",
-          industry: appDataValid?.[0]?.industry,
-          basicIncome: appDataValid?.[0]?.basicIncome || "indefinitePeriod",
-          firstContract: appDataValid?.[0]?.firstContract || "yes",
-          sameEmployer: appDataValid?.[0]?.sameEmployer || "yes",
-          withoutPause: appDataValid?.[0]?.withoutPause || "yes",
-          contractFrom: appDataValid?.[0]?.contractFrom,
-          contractUntil: appDataValid?.[0]?.contractUntil,
-          averageIncome: appDataValid?.[0]?.averageIncome,
-          accountancy: appDataValid?.[0]?.accountancy || "generalRules",
-          pit: appDataValid?.[0]?.pit,
-          bank: appDataValid?.[0]?.bank || "",
+          truckDriver: appDataValid?.[0].truckDriver,
+          industry: appDataValid?.[0].industry,
+          basicIncome: appDataValid?.[0].basicIncome,
+          firstContract: appDataValid?.[0].firstContract,
+          sameEmployer: appDataValid?.[0].sameEmployer,
+          withoutPause: appDataValid?.[0].withoutPause,
+          contractFrom: appDataValid?.[0].contractFrom,
+          contractUntil: appDataValid?.[0].contractUntil,
+          averageIncome: appDataValid?.[0].averageIncome,
+          accountancy: appDataValid?.[0].accountancy,
+          pit: appDataValid?.[0].pit,
+          bank: appDataValid?.[0].bank,
         },
       ],
     },
     mode: "onChange",
     reValidateMode: "onChange",
+    shouldUnregister: true,
     shouldFocusError: true,
     resolver: yupResolver(AdditionalIncomeSchema()),
   });
@@ -154,35 +137,38 @@ const Page2 = () => {
   const finalizeForm = () => {
     if (!!errors.income === false) {
       setCurrentPage(3);
-      history.push("./3");
+      router.push("./3");
     } else {
-      alert(t("InsuranceHealth.Error.noApplicant"));
+      alert(t("insuranceHealth.Error.noApplicant"));
     }
   };
 
   return (
-    <PageContainer xs title="">
+    <PageContainer xs title="LoanCash.title">
       <QuestState data={appData} />
 
-      <Title>{t("LoanCash.title")}</Title>
+      <Typography variant="h4">{t("LoanCash.title")}</Typography>
       <ProgressBar
         maxSteps={3}
         currentStep={2}
         label={t("LoanCash.Page2.subtitle")}
       />
-      <Subtitle>{t("LoanCash.Page2.subtitle")}</Subtitle>
-      <Typography variant="body1">
-        This is optional. If you do not have any additional income, simply press
-        next.
-      </Typography>
+      <Typography variant="h6">{t("LoanCash.Page2.subtitle")}</Typography>
+
       {editingMode &&
         fields.map((field: any, index: number) => {
           //@ts-ignore
-          const truckDriver = watch(`income[${index}].truckDriver`);
+          const truckDriver = watch(
+            `income[${index}].truckDriver`
+          ) as unknown as string;
           //@ts-ignore
-          const basicIncome = watch(`income[${index}].basicIncome`);
+          const basicIncome = watch(
+            `income[${index}].basicIncome`
+          ) as unknown as string;
           //@ts-ignore
-          const firstContract = watch(`income[${index}].firstContract`);
+          const firstContract = watch(
+            `income[${index}].firstContract`
+          ) as unknown as string;
 
           return (
             editingIndex === index && (
@@ -203,7 +189,7 @@ const Page2 = () => {
                 >
                   <Radio
                     name={`income[${index}].truckDriver`}
-                    legend={t("LoanCash.IncomeModal.truckDriver")}
+                    labelName={t("LoanCash.IncomeModal.truckDriver")}
                     options={[
                       {
                         label: t("LoanCash.IncomeModal.yes"),
@@ -228,7 +214,7 @@ const Page2 = () => {
 
                   <Radio
                     name={`income[${index}].basicIncome`}
-                    legend={t("LoanCash.IncomeModal.basicIncome")}
+                    labelName={t("LoanCash.IncomeModal.basicIncome")}
                     options={[
                       {
                         label: t("LoanCash.IncomeModal.indefinitePeriod"),
@@ -260,7 +246,7 @@ const Page2 = () => {
                     <>
                       <Radio
                         name={`income[${index}].firstContract`}
-                        legend={t("LoanCash.IncomeModal.firstContract")}
+                        labelName={t("LoanCash.IncomeModal.firstContract")}
                         options={[
                           {
                             label: t("LoanCash.IncomeModal.yes"),
@@ -277,7 +263,7 @@ const Page2 = () => {
                         <>
                           <Radio
                             name={`income[${index}].sameEmployer`}
-                            legend={t("LoanCash.IncomeModal.sameEmployer")}
+                            labelName={t("LoanCash.IncomeModal.sameEmployer")}
                             options={[
                               {
                                 label: t("LoanCash.IncomeModal.yes"),
@@ -293,7 +279,7 @@ const Page2 = () => {
 
                           <Radio
                             name={`income[${index}].withoutPause`}
-                            legend={t("LoanCash.IncomeModal.withoutPause")}
+                            labelName={t("LoanCash.IncomeModal.withoutPause")}
                             options={[
                               {
                                 label: t("LoanCash.IncomeModal.yes"),
@@ -345,7 +331,7 @@ const Page2 = () => {
                     <>
                       <Radio
                         name={`income[${index}].accountancy`}
-                        legend={t("LoanCash.IncomeModal.accountancy")}
+                        labelName={t("LoanCash.IncomeModal.accountancy")}
                         options={[
                           {
                             label: t("LoanCash.IncomeModal.generalRules"),
@@ -412,11 +398,14 @@ const Page2 = () => {
           //@ts-ignore
           let income = watch(`income[${index}].industry`);
           return (
-            <Applicant key={field.id} error={!!errors.income?.[index]}>
-              <AvatarStyled>
+            <FormBuilder.Applicant
+              key={field.id}
+              error={!!errors.income?.[index]}
+            >
+              <FormBuilder.AvatarStyled>
                 <WorkIcon />
-              </AvatarStyled>
-              <ApplicantName>{income}</ApplicantName>
+              </FormBuilder.AvatarStyled>
+              <FormBuilder.ApplicantName>{income}</FormBuilder.ApplicantName>
               <IconButton
                 onClick={() => {
                   editData(index);
@@ -431,24 +420,24 @@ const Page2 = () => {
               >
                 <DeleteIcon />
               </IconButton>
-            </Applicant>
+            </FormBuilder.Applicant>
           );
         })}
       {!formInitiated ? (
-        <ApplicantBox
+        <FormBuilder.ApplicantBox
           onClick={() => {
             setEditingMode(true);
             setOpenDialog(true);
           }}
         >
-          <ApplicantAdd>
+          <FormBuilder.ApplicantAdd>
             <WorkIcon />
             <span>{t("LoanCash.IncomeBox.addIncome")}</span>
-          </ApplicantAdd>
-        </ApplicantBox>
+          </FormBuilder.ApplicantAdd>
+        </FormBuilder.ApplicantBox>
       ) : (
         fields.length < 5 && (
-          <ApplicantBox
+          <FormBuilder.ApplicantBox
             onClick={() => {
               append({ truckDriver: "no" });
               setAddingMode(true);
@@ -457,28 +446,26 @@ const Page2 = () => {
               setEditingIndex(fields.length);
             }}
           >
-            <ApplicantAdd>
+            <FormBuilder.ApplicantAdd>
               <WorkIcon />
               <span>{t("LoanCash.IncomeBox.addIncome")}</span>
-            </ApplicantAdd>
-          </ApplicantBox>
+            </FormBuilder.ApplicantAdd>
+          </FormBuilder.ApplicantBox>
         )
       )}
       <FormBuilder.ButtonsWrap multiple>
         <Button
-          text={t("Basic.buttonBack")}
           form=""
           color="secondary"
           onClick={() => {
-            history.push("./1");
+            router.push("./1");
           }}
-        />
-        <Button
-          text={t("Basic.buttonNext")}
-          form="form"
-          color="primary"
-          onClick={finalizeForm}
-        />
+        >
+          {t("Basic.buttonBack")}
+        </Button>
+        <Button form="form" color="primary" onClick={finalizeForm}>
+          {t("Basic.buttonNext")}
+        </Button>
       </FormBuilder.ButtonsWrap>
     </PageContainer>
   );

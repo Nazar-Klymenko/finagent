@@ -1,70 +1,61 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useRouter } from "next/router";
 
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 import { QuestState } from "@helpers/QuestState";
 import { determineAppType } from "@helpers/determineAppType";
 
-import { postLoanMortgageAPI } from "@api/userAPI";
+import { postApplication } from "@api/applications";
 
 import { useData } from "@context/dataContext";
 
+import { FormBuilder } from "@components/FormBuilder";
 import { ProgressBar } from "@components/ProgressBar";
 import { SummaryList } from "@components/SummaryList";
 import { Button } from "@components/buttons";
-import ContentWrap from "@components/content/ContentWrap";
-
-import { ButtonsWrap, Page, Title } from "../LocalStyles";
+import { PageContainer } from "@components/layout";
 
 const Summary = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
   const { appData } = useData();
-  useTitle("Summary | FinAgent");
 
-  const addDataLabeled = determineType("Mortgage", appData);
+  const appDataValid = appData.loanCash;
+  const summaryReady = determineAppType("insuranceTransport", appDataValid);
 
   const confirmApplication = async () => {
-    setIsLoading(true);
-    delete appData.LoanData.conditions;
-    try {
-      await postLoanMortgageAPI(appData);
-      history.push("/dashboard/loans");
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-    }
+    await postApplication("loan-cash", appDataValid);
+    router.push("/dashboard/loans");
   };
+
   return (
-    <PageContainer xs title="">
+    <PageContainer xs title={t("Basic.summary")}>
       <QuestState data={appData} />
 
-      <Title>{t("LoanMortgage.title")}</Title>
+      <Typography variant="h4">{t("LoanCash.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
       <SummaryList
         header={t("Basic.summary")}
-        array={addDataLabeled}
+        array={summaryReady}
+        applicationType="loanCash"
         defaultOpen
       />
       <FormBuilder.ButtonsWrap multiple>
         <Button
-          text={t("Basic.buttonBack")}
           color="secondary"
           form=""
           onClick={() => {
-            history.push("./2");
+            router.push("./2");
           }}
-        />
-        <Button
-          text={t("Basic.buttonNext")}
-          form=""
-          color="primary"
-          onClick={confirmApplication}
-          isLoading={isLoading}
-        />
+        >
+          {t("Basic.buttonBack")}
+        </Button>
+        <Button form="" color="primary" onClick={confirmApplication}>
+          {t("Basic.buttonNext")}
+        </Button>
       </FormBuilder.ButtonsWrap>
     </PageContainer>
   );

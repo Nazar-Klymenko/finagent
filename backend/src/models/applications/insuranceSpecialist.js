@@ -21,31 +21,32 @@ const HealthSchema = new Schema(
       street: String,
       houseNumber: String,
     },
-    insuredData: [
-      {
-        policyholderIs: String,
-        name: String,
-        surname: String,
-        nip: String,
-        birthDate: String,
-        pesel: String,
-        regon: String,
-        phoneNumber: String,
-        email: String,
-        country: String,
-        city: String,
-        postIndex: String,
-        street: String,
-        houseNumber: String,
-      },
-    ],
+    insuredData: {
+      policyholder: [
+        {
+          policyholderIs: String,
+          name: String,
+          nip: String,
+          birthDate: Date,
+          pesel: String,
+          regon: String,
+          phoneNumber: String,
+          email: String,
+          country: String,
+          city: String,
+          postIndex: String,
+          street: String,
+          houseNumber: String,
+        },
+      ],
+    },
   },
   { timestamps: true, _id: false }
 );
 
-const insuranceHealthSpecialist = Application.discriminator(
-  "insuranceHealthSpecialist",
+const insuranceSpecialist = Application.discriminator(
+  "insuranceSpecialist",
   HealthSchema
 );
 
-export default insuranceHealthSpecialist;
+export default insuranceSpecialist;

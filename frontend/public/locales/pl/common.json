@@ -216,7 +216,7 @@
     "confirm": "Hasło zmienione skutecznie"
   },
   "Dashboard": {
-    "title": "Pulpit | FinAgent",
+    "title": "Pulpit",
     "SideMenu": {
       "insurances": "Ubezpieczenia",
       "loans": "Kredyty",
@@ -569,7 +569,7 @@
       "monthlyExpenses": "Średnie miesięczne koszty utrzymania"
     }
   },
-  "InsuranceTravel": {
+  "insuranceTravel": {
     "title": "Ubezpieczenie turystyczne",
 
     "buttonBack": "Powrót",
@@ -607,7 +607,7 @@
       "houseNumber": "Nr domu"
     }
   },
-  "InsuranceEstate": {
+  "insuranceEstate": {
     "title": "Ubezpieczenie nieruchomości",
 
     "buttonBack": "Powrót",
@@ -677,7 +677,7 @@
       "none": "Nic"
     }
   },
-  "InsuranceHealth": {
+  "insuranceHealth": {
     "title": "Ubezpieczenie zdrowotne",
 
     "ApplicantBox": {
@@ -964,6 +964,7 @@
     "Page3": {
       "subtitle": "Dane osobiste",
       "name": "Imię",
+      "vehicleType": "Typ pojazdu",
       "surname": "Nazwisko",
       "phoneNumber": "Telefon",
       "email": "Email",

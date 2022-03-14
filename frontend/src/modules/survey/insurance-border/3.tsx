@@ -20,7 +20,6 @@ import { pageThreeSchema } from "./helpers/schema";
 
 type FormTypes = {
   name: string;
-  surname: string;
   phoneNumber: string;
   email: string;
   country: string;
@@ -41,7 +40,6 @@ const Page3 = () => {
   const methods = useForm<FormTypes>({
     defaultValues: {
       name: appDataValid.name,
-      surname: appDataValid.surname,
       phoneNumber: appDataValid.phoneNumber,
       email: appDataValid.email,
       country: appDataValid.country,
@@ -81,13 +79,9 @@ const Page3 = () => {
         <Input
           name="name"
           labelName={t("insuranceBorder.Page3.name")}
-          autoComplete="given-name"
+          autoComplete="name"
         />
-        <Input
-          name="surname"
-          labelName={t("insuranceBorder.Page3.surname")}
-          autoComplete="family-name"
-        />
+
         <MuiPhoneInput
           name="phoneNumber"
           labelName={t("insuranceBorder.Page3.phoneNumber")}

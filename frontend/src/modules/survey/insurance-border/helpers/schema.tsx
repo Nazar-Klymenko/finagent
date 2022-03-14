@@ -25,7 +25,6 @@ export const pageTwoSchema = yup.object().shape({
 
 export const pageThreeSchema = yup.object().shape({
   name: yup.string().required("Form.Error.blank"),
-  surname: yup.string().required("Form.Error.blank"),
   phoneNumber: yup.string().required("Form.Error.blank"),
   email: yup.string().required("Form.Error.blank"),
   country: yup.string().required("Form.Error.blank"),

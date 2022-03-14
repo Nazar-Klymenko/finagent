@@ -35,10 +35,6 @@ export const pageTwoSchema = yup.object().shape({
     is: (value) => value !== "legal",
     then: yup.string().required("Form.Error.blank"),
   }),
-  surname: yup.string().when("policyholderIs", {
-    is: (value) => value !== "legal",
-    then: yup.string().required("Form.Error.blank"),
-  }),
   pesel: yup.string().when("policyholderIs", {
     is: (value) => value !== "legal",
     then: yup.string().required("Form.Error.blank"),

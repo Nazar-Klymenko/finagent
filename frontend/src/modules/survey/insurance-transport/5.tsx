@@ -1,17 +1,13 @@
 import React from "react";
 
 import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
-// import { QuestState } from "@helpers/QuestState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
-import * as yup from "yup";
+import { useForm } from "react-hook-form";
 
 import { QuestState } from "@helpers/QuestState";
-import withAuthForm from "@helpers/withAuthForm";
 
 import { useData } from "@context/dataContext";
 
@@ -58,7 +54,6 @@ const Page5 = () => {
 
   const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceTransport", `appendedDocuments`);
-    console.log({ data });
     setAllowSummary(true);
     router.push("./summary");
   });

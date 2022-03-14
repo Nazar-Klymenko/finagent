@@ -21,7 +21,6 @@ import { pageTwoSchema } from "./helpers/insurance-estate.schema";
 type FormTypes = {
   policyholderIs: string;
   name: string;
-  surname: string;
   pesel: string;
   firmName: string;
   nip: string;
@@ -42,7 +41,6 @@ const Page2 = () => {
     defaultValues: {
       policyholderIs: appDataValid.policyholderIs || "individual",
       name: appDataValid.name,
-      surname: appDataValid.surname,
       pesel: appDataValid.pesel,
       phone: appDataValid.phone,
       email: appDataValid.email,
@@ -51,6 +49,7 @@ const Page2 = () => {
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
+    shouldUnregister: true,
     resolver: yupResolver(pageTwoSchema),
   });
   const { handleSubmit, watch } = methods;
@@ -63,44 +62,40 @@ const Page2 = () => {
   });
 
   return (
-    <PageContainer xs title="InsuranceEstate.title">
-      <Typography variant="h4">{t("InsuranceEstate.title")}</Typography>
+    <PageContainer xs title="insuranceEstate.title">
+      <Typography variant="h4">{t("insuranceEstate.title")}</Typography>
       <ProgressBar
         maxSteps={2}
         currentStep={2}
-        label={t("InsuranceEstate.Page2.title")}
+        label={t("insuranceEstate.Page2.title")}
       />
 
       <Typography variant="h6" gutterBottom>
-        {t("InsuranceEstate.Page2.title")}
+        {t("insuranceEstate.Page2.title")}
       </Typography>
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <Radio
           name="policyholderIs"
-          labelName={t("InsuranceEstate.Page2.policyholderIs")}
+          labelName={t("insuranceEstate.Page2.policyholderIs")}
           options={[
             {
-              label: t("InsuranceEstate.Page2.individual"),
+              label: t("insuranceEstate.Page2.individual"),
               value: "individual",
             },
             {
-              label: t("InsuranceEstate.Page2.legal"),
+              label: t("insuranceEstate.Page2.legal"),
               value: "legal",
             },
             {
-              label: t("InsuranceEstate.Page2.firm"),
+              label: t("insuranceEstate.Page2.firm"),
               value: "firm",
             },
           ]}
         />
         {policyholderIs !== "legal" && (
           <>
-            <Input name="name" labelName={t("InsuranceEstate.Page2.name")} />
-            <Input
-              name="surname"
-              labelName={t("InsuranceEstate.Page2.surname")}
-            />
-            <Input name="pesel" labelName={t("InsuranceEstate.Page2.pesel")} />
+            <Input name="name" labelName={t("insuranceEstate.Page2.name")} />
+            <Input name="pesel" labelName={t("insuranceEstate.Page2.pesel")} />
           </>
         )}
 
@@ -108,19 +103,19 @@ const Page2 = () => {
           <>
             <Input
               name="firmName"
-              labelName={t("InsuranceEstate.Page2.firmName")}
+              labelName={t("insuranceEstate.Page2.firmName")}
             />
-            <Input name="nip" labelName={t("InsuranceEstate.Page2.nip")} />
-            <Input name="regon" labelName={t("InsuranceEstate.Page2.regon")} />
+            <Input name="nip" labelName={t("insuranceEstate.Page2.nip")} />
+            <Input name="regon" labelName={t("insuranceEstate.Page2.regon")} />
           </>
         )}
 
-        <Input name="phone" labelName={t("InsuranceEstate.Page2.phone")} />
-        <Input name="email" labelName={t("InsuranceEstate.Page2.email")} />
+        <Input name="phone" labelName={t("insuranceEstate.Page2.phone")} />
+        <Input name="email" labelName={t("insuranceEstate.Page2.email")} />
 
         <Radio
           name="peopleNumber"
-          labelName={t("InsuranceEstate.Page2.peopleNumber")}
+          labelName={t("insuranceEstate.Page2.peopleNumber")}
           options={[
             {
               label: "0",

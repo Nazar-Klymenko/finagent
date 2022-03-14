@@ -33,7 +33,7 @@ type FormTypes = {
 
 const Page4 = () => {
   const { t } = useTranslation();
-  const { appData, setValues, setCurrentPage } = useData();
+  const { appData, setValues, setCurrentPage, setAllowSummary } = useData();
   const router = useRouter();
 
   const appDataValid = appData.insuranceTransport.additionalData;
@@ -58,8 +58,10 @@ const Page4 = () => {
   const formSubmit = handleSubmit((data) => {
     console.log(data);
     setValues(data, "insuranceTransport", "additionalData");
-    setCurrentPage(5);
-    router.push("./5");
+    setAllowSummary(true);
+    router.push("./summary");
+    // setCurrentPage(5);
+    // router.push("./5");
   });
 
   return (

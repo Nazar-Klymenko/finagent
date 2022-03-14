@@ -6,10 +6,9 @@ const LoanMortgageSubmit = async (req, res, next) => {
 
     insuranceObj.user_id = req.currentUser.uid;
     insuranceObj.category = "loan";
-    insuranceObj.type = "Mortgage";
+    insuranceObj.type = "mortgage";
 
     const incomeArray = Object.keys(req.body.additionalIncome);
-    const householdArray = Object.keys(req.body.householdData);
 
     for (let i = 0; i < incomeArray.length; i++) {
       insuranceObj.additionalIncome.push({
@@ -30,19 +29,10 @@ const LoanMortgageSubmit = async (req, res, next) => {
     }
     insuranceObj.additionalIncome.shift();
 
-    for (let i = 0; i < householdArray.length; i++) {
-      insuranceObj.householdData.push({
-        peopleInHousehold: req.body.householdData[i].peopleInHousehold,
-        monthlyExpenses: req.body.householdData[i].monthlyExpenses,
-      });
-    }
-    insuranceObj.householdData.shift();
-
     insuranceObj.markModified(
       "applicants",
       "applicantsData",
       "additionalIncome",
-      "householdData",
       "loanData"
     );
     await insuranceObj.save();

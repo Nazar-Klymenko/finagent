@@ -1,12 +1,12 @@
 import insuranceHealthSpecialist from "models/applications/insuranceHealthSpecialist.js";
 
-const InsuranceHealthSpecialistSubmit = async (req, res, next) => {
+const InsuranceSpecialistSubmit = async (req, res, next) => {
   try {
     const insuranceObj = await new insuranceHealthSpecialist(req.body);
 
     insuranceObj.user_id = req.currentUser.uid;
     insuranceObj.category = "insurance";
-    insuranceObj.type = "HealthSpecialist";
+    insuranceObj.type = "specialist";
 
     const userArray = Object.keys(req.body.insuredData);
 
@@ -42,4 +42,4 @@ const InsuranceHealthSpecialistSubmit = async (req, res, next) => {
   }
 };
 
-export default InsuranceHealthSpecialistSubmit;
+export default InsuranceSpecialistSubmit;

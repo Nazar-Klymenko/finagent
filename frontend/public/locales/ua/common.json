@@ -218,7 +218,7 @@
     "confirm": "Пароль успішно відновлено"
   },
   "Dashboard": {
-    "title": "Кабінет | FinAgent",
+    "title": "Кабінет",
     "SideMenu": {
       "insurances": "Страховки",
       "loans": "Кредити",
@@ -570,7 +570,7 @@
       "monthlyExpenses": "Середньомісячні витрати на проживання"
     }
   },
-  "InsuranceTravel": {
+  "insuranceTravel": {
     "title": "Туристична страховка",
     "buttonConfirm": "Підтвердити",
     "Page1": {
@@ -607,7 +607,7 @@
       "houseNumber": "Номер дому"
     }
   },
-  "InsuranceEstate": {
+  "insuranceEstate": {
     "title": "Страхування нерухомості",
     "buttonConfirm": "Підтвердити",
     "Page1": {
@@ -677,7 +677,7 @@
     },
     "buttonBack": "Return"
   },
-  "InsuranceHealth": {
+  "insuranceHealth": {
     "title": "Медична страховка",
     "ApplicantBox": {
       "title": "Додати наступного заявника",
@@ -904,6 +904,8 @@
     "Page3": {
       "subtitle": "Додаткова інформація",
       "enginePower": "Потужність двигуна (кВт)",
+      "vehicleType": "Тип транспортного засобу",
+
       "engineVolume": "Об'єм двигуна (см3)",
       "fuelType": "Тип палива",
       "vehicleRegDate": "Дата першої реєстрації транспортного засобу",
@@ -962,6 +964,7 @@
     "Page3": {
       "subtitle": "Особиста інформація",
       "name": "Ім'я",
+      "vehicleType": "Тип транспортного засобу",
       "surname": "Прізвище",
       "phoneNumber": "Номер телефону",
       "email": "Email",

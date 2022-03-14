@@ -7,7 +7,7 @@ const InsuranceEstateSubmit = async (req, res, next) => {
 
     insuranceObj.user_id = req.currentUser.uid;
     insuranceObj.category = "insurance";
-    insuranceObj.type = "Estate";
+    insuranceObj.type = "estate";
 
     insuranceObj.markModified("insuranceData", "personalData");
     await insuranceObj.save();

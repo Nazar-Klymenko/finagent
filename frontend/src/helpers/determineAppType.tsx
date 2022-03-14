@@ -1,5 +1,11 @@
 import { summaryLabels as BorderSummaryLabels } from "@modules/survey/insurance-border/helpers/summaryLabels";
+import { summaryLabels as EstateSummaryLabels } from "@modules/survey/insurance-estate/helpers/summaryLabels";
+import { summaryLabels as HealthSummaryLabels } from "@modules/survey/insurance-health/helpers/summaryLabels";
+import { summaryLabels as SpecialistSummaryLabels } from "@modules/survey/insurance-specialist/helpers/summaryLabels";
 import { summaryLabels as TransportSummaryLabels } from "@modules/survey/insurance-transport/helpers/summaryLabels";
+import { summaryLabels as LoanSummaryLabels } from "@modules/survey/insurance-transport/helpers/summaryLabels";
+import { summaryLabels as MortgageSummaryLabels } from "@modules/survey/loan-cash/helpers/summaryLabels";
+import { summaryLabels as TravelSummaryLabels } from "@modules/survey/loan-mortgage/helpers/summaryLabels";
 
 export function determineAppType(type: string, object: {}) {
   let appDataCopy = JSON.parse(JSON.stringify(object));
@@ -34,14 +40,35 @@ export function determineAppType(type: string, object: {}) {
   delete appDataCopy.user;
   delete appDataCopy.admin_attachments;
   delete appDataCopy.user_attachments;
+  delete appDataCopy?.incomeData;
+  delete appDataCopy?.insuredData?.policyholder;
+  delete appDataCopy?.insuredData?.policyholder;
+  delete appDataCopy?.applicantData?.applicant;
 
   switch (type) {
     case "insuranceBorder": {
-      BorderSummaryLabels;
       return BorderSummaryLabels(appDataCopy);
+    }
+    case "insuranceEstate": {
+      return EstateSummaryLabels(appDataCopy);
+    }
+    case "insuranceHealth": {
+      return HealthSummaryLabels(appDataCopy);
+    }
+    case "insuranceSpecialist": {
+      return SpecialistSummaryLabels(appDataCopy);
     }
     case "insuranceTransport": {
       return TransportSummaryLabels(appDataCopy);
+    }
+    case "insuranceTravel": {
+      return TravelSummaryLabels(appDataCopy);
+    }
+    case "loanCash": {
+      return LoanSummaryLabels(appDataCopy);
+    }
+    case "loanMortgage": {
+      return MortgageSummaryLabels(appDataCopy);
     }
   }
 }

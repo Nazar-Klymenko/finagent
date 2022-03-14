@@ -24,7 +24,6 @@ const InsuranceBorderSchema = new Schema(
     },
     personalData: {
       name: String,
-      surname: String,
       phoneNumber: String,
       email: String,
       country: String,

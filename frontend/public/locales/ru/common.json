@@ -218,7 +218,7 @@
     "confirm": "Пароль изменён успешно"
   },
   "Dashboard": {
-    "title": "Кабинет | FinAgent",
+    "title": "Кабинет",
     "SideMenu": {
       "insurances": "Страховки",
       "loans": "Кредиты",
@@ -568,7 +568,7 @@
       "monthlyExpenses": "Средние ежемесячные расходы на проживание"
     }
   },
-  "InsuranceTravel": {
+  "insuranceTravel": {
     "title": "Туристическое страхование",
     "Page1": {
       "title": "Информация о страховании",
@@ -604,7 +604,7 @@
       "houseNumber": "Номер дома"
     }
   },
-  "InsuranceEstate": {
+  "insuranceEstate": {
     "title": "Страхование недвижимости",
     "Page1": {
       "title": "Информация про недвижимость",
@@ -673,7 +673,7 @@
     },
     "buttonBack": "Вернуть"
   },
-  "InsuranceHealth": {
+  "insuranceHealth": {
     "title": "Медицинская страховка",
     "ApplicantBox": {
       "title": "Добавить заявителя",
@@ -900,6 +900,7 @@
       "enginePower": "Мощность двигателя(квт)",
       "engineVolume": "Объем двигателя(см3)",
       "fuelType": "Тип топлива",
+      "vehicleType": "Тип транспорта",
       "vehicleRegDate": "Первая дата регистрации автомобиля",
       "techExamDate": "Дата окончания действия техосмотра",
       "purchaseYear": "Год покупки автомобиля",
@@ -957,6 +958,7 @@
       "subtitle": "Личная информация",
       "name": "Имя",
       "surname": "Фамилия",
+      "vehicleType": "Тип транспорта",
       "phoneNumber": "Номер телефона",
       "email": "Email",
       "country": "Страна",

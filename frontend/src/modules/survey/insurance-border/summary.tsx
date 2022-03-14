@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useRouter } from "next/router";
 
 import { Typography } from "@mui/material";
@@ -21,21 +19,14 @@ import { PageContainer } from "@components/layout";
 const Summary = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
   const { appData } = useData();
 
   const appDataValid = appData.insuranceBorder;
-  const addDataLabeled = determineAppType("insuranceBorder", appDataValid);
+  const summaryReady = determineAppType("insuranceBorder", appDataValid);
 
   const confirmApplication = async () => {
-    setIsLoading(true);
-    try {
-      const response = await postApplication("insraunce-border", appDataValid);
-
-      // router.push("/dashboard/insurance");
-    } catch (error) {
-      setIsLoading(false);
-    }
+    await postApplication("insraunce-border", appDataValid);
+    router.push("/dashboard/insurance");
   };
 
   return (
@@ -47,7 +38,7 @@ const Summary = () => {
       <SummaryList
         header={t("Basic.summary")}
         applicationType="insuranceBorder"
-        array={addDataLabeled}
+        array={summaryReady}
         defaultOpen
       />
       <FormBuilder.ButtonsWrap multiple>

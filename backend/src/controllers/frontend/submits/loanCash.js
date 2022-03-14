@@ -6,7 +6,7 @@ const LoanCashSubmit = async (req, res, next) => {
 
     insuranceObj.user_id = req.currentUser.uid;
     insuranceObj.category = "loan";
-    insuranceObj.type = "Cash";
+    insuranceObj.type = "cash";
 
     const incomeArray = Object.keys(req.body.additionalIncome);
 

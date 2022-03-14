@@ -5,9 +5,10 @@ import { useRouter } from "next/router";
 import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
+import { QuestState } from "@helpers/QuestState";
 import { determineAppType } from "@helpers/determineAppType";
 
-import { postInsuranceEstateAPI } from "@api/userAPI";
+import { postApplication } from "@api/applications";
 
 import { useData } from "@context/dataContext";
 
@@ -20,43 +21,39 @@ import { PageContainer } from "@components/layout";
 const Summary = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
   const { appData } = useData();
 
-  const addDataLabeled = determineType("Estate", appData.insuranceEstate);
+  const appDataValid = appData.loanMortgage;
+  const summaryReady = determineAppType("loanMortgage", appDataValid);
 
   const confirmApplication = async () => {
-    setIsLoading(true);
-    try {
-      await postInsuranceEstateAPI(appData.insuranceEstate);
-      router.push("/dashboard/insurance");
-    } catch (error) {
-      setIsLoading(false);
-    }
+    await postApplication("loan-mortgage", appDataValid);
+    router.push("/dashboard/loans");
   };
 
   return (
-    <PageContainer xs title="InsuranceEstate.title">
-      <Typography variant="h4">{t("InsuranceEstate.title")}</Typography>
+    <PageContainer xs title="Basic.summary">
+      <QuestState data={appData} />
 
+      <Typography variant="h4">{t("LoanMortgage.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
       <SummaryList
         header={t("Basic.summary")}
-        array={addDataLabeled}
+        array={summaryReady}
+        applicationType="loanMortgage"
         defaultOpen
       />
-
       <FormBuilder.ButtonsWrap multiple>
         <Button
+          color="secondary"
+          form=""
           onClick={() => {
             router.push("./2");
           }}
-          form=""
-          color="secondary"
         >
           {t("Basic.buttonBack")}
         </Button>
-        <Button form="form-estate" color="primary">
+        <Button form="" color="primary" onClick={confirmApplication}>
           {t("Basic.buttonNext")}
         </Button>
       </FormBuilder.ButtonsWrap>

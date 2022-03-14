@@ -56,25 +56,27 @@ const Page2 = () => {
   const [editingIndex, setEditingIndex] = useState(0);
 
   const { appData, setValues, setAllowSummary } = useData();
+
+  //@ts-ignore
   const appDataValid = appData?.insuranceSpecialist?.insuredData?.policyholder;
 
   const methods = useForm<FormTypes>({
     defaultValues: {
       policyholder: [
         {
-          policyholderIs: appDataValid?.[0].policyholderIs,
-          name: appDataValid?.[0].name,
-          nip: appDataValid?.[0].nip,
-          birthDate: appDataValid?.[0].birthDate,
-          pesel: appDataValid?.[0].pesel,
-          regon: appDataValid?.[0].regon,
-          phoneNumber: appDataValid?.[0].phoneNumber,
-          email: appDataValid?.[0].email,
-          country: appDataValid?.[0].country,
-          city: appDataValid?.[0].city,
-          postIndex: appDataValid?.[0].postIndex,
-          street: appDataValid?.[0].street,
-          houseNumber: appDataValid?.[0].houseNumber,
+          policyholderIs: appDataValid?.[0]?.policyholderIs,
+          name: appDataValid?.[0]?.name,
+          nip: appDataValid?.[0]?.nip,
+          birthDate: appDataValid?.[0]?.birthDate,
+          pesel: appDataValid?.[0]?.pesel,
+          regon: appDataValid?.[0]?.regon,
+          phoneNumber: appDataValid?.[0]?.phoneNumber,
+          email: appDataValid?.[0]?.email,
+          country: appDataValid?.[0]?.country,
+          city: appDataValid?.[0]?.city,
+          postIndex: appDataValid?.[0]?.postIndex,
+          street: appDataValid?.[0]?.street,
+          houseNumber: appDataValid?.[0]?.houseNumber,
         },
       ],
     },

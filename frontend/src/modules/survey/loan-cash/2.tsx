@@ -55,6 +55,7 @@ const Page2 = () => {
 
   const { appData, setValues, setCurrentPage } = useData();
 
+  //@ts-ignore
   const appDataValid = appData.loanCash.incomeData.income;
 
   const router = useRouter();
@@ -63,18 +64,18 @@ const Page2 = () => {
     defaultValues: {
       income: [
         {
-          truckDriver: appDataValid?.[0].truckDriver,
-          industry: appDataValid?.[0].industry,
-          basicIncome: appDataValid?.[0].basicIncome,
-          firstContract: appDataValid?.[0].firstContract,
-          sameEmployer: appDataValid?.[0].sameEmployer,
-          withoutPause: appDataValid?.[0].withoutPause,
-          contractFrom: appDataValid?.[0].contractFrom,
-          contractUntil: appDataValid?.[0].contractUntil,
-          averageIncome: appDataValid?.[0].averageIncome,
-          accountancy: appDataValid?.[0].accountancy,
-          pit: appDataValid?.[0].pit,
-          bank: appDataValid?.[0].bank,
+          truckDriver: appDataValid?.[0]?.truckDriver,
+          industry: appDataValid?.[0]?.industry,
+          basicIncome: appDataValid?.[0]?.basicIncome,
+          firstContract: appDataValid?.[0]?.firstContract,
+          sameEmployer: appDataValid?.[0]?.sameEmployer,
+          withoutPause: appDataValid?.[0]?.withoutPause,
+          contractFrom: appDataValid?.[0]?.contractFrom,
+          contractUntil: appDataValid?.[0]?.contractUntil,
+          averageIncome: appDataValid?.[0]?.averageIncome,
+          accountancy: appDataValid?.[0]?.accountancy,
+          pit: appDataValid?.[0]?.pit,
+          bank: appDataValid?.[0]?.bank,
         },
       ],
     },

@@ -58,6 +58,8 @@ const Page1 = () => {
 
   const { appData, setValues, setCurrentPage } = useData();
   const appDataValid1 = appData.loanCash.applicantData;
+
+  //@ts-ignore
   const appDataValid = appData.loanCash.applicantData.applicant;
 
   const [openDialog, setOpenDialog] = useState(true);

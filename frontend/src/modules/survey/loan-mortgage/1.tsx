@@ -58,6 +58,7 @@ const Page1 = () => {
 
   const { appData, setValues, setCurrentPage } = useData();
   const appDataValid1 = appData.loanMortgage.applicantData;
+  //@ts-ignore
   const appDataValid = appData.loanMortgage.applicantData.applicant;
 
   const [openDialog, setOpenDialog] = useState(true);
@@ -79,21 +80,21 @@ const Page1 = () => {
     defaultValues: {
       applicant: [
         {
-          otherNation: appDataValid?.[0].otherNation,
-          nationality: appDataValid?.[0].nationality,
-          validFrom: appDataValid?.[0].validFrom,
-          validUntil: appDataValid?.[0].validUntil,
-          name: appDataValid?.[0].name,
-          birthDate: appDataValid?.[0].birthDate,
-          phoneNumber: appDataValid?.[0].phoneNumber,
-          email: appDataValid?.[0].email,
-          pesel: appDataValid?.[0].pesel,
-          contractFrom: appDataValid?.[0].contractFrom,
-          contractUntil: appDataValid?.[0].contractUntil,
-          averageIncome: appDataValid?.[0].averageIncome,
-          currency: appDataValid?.[0].currency,
-          pit: appDataValid?.[0].pit,
-          bank: appDataValid?.[0].bank,
+          otherNation: appDataValid?.[0]?.otherNation,
+          nationality: appDataValid?.[0]?.nationality,
+          validFrom: appDataValid?.[0]?.validFrom,
+          validUntil: appDataValid?.[0]?.validUntil,
+          name: appDataValid?.[0]?.name,
+          birthDate: appDataValid?.[0]?.birthDate,
+          phoneNumber: appDataValid?.[0]?.phoneNumber,
+          email: appDataValid?.[0]?.email,
+          pesel: appDataValid?.[0]?.pesel,
+          contractFrom: appDataValid?.[0]?.contractFrom,
+          contractUntil: appDataValid?.[0]?.contractUntil,
+          averageIncome: appDataValid?.[0]?.averageIncome,
+          currency: appDataValid?.[0]?.currency,
+          pit: appDataValid?.[0]?.pit,
+          bank: appDataValid?.[0]?.bank,
         },
       ],
     },

@@ -53,22 +53,23 @@ const Page2 = () => {
   const [addingMode, setAddingMode] = useState(false);
   const [editingIndex, setEditingIndex] = useState(0);
 
-  const appDataValid = appData.insuranceHealth.insuredData.policyholder;
+  //@ts-ignore
+  const appDataValid = appData.insuranceHealth.insuredData?.policyholder;
 
   const methods = useForm<FormTypes>({
     defaultValues: {
       policyholder: [
         {
-          policyholderIs: appDataValid?.[0].policyholderIs,
-          name: appDataValid?.[0].name,
-          citizenship: appDataValid?.[0].citizenship,
-          birthDate: appDataValid?.[0].birthDate,
-          documentAdded: appDataValid?.[0].documentAdded,
-          country: appDataValid?.[0].country,
-          city: appDataValid?.[0].city,
-          postIndex: appDataValid?.[0].postIndex,
-          street: appDataValid?.[0].street,
-          houseNumber: appDataValid?.[0].houseNumber,
+          policyholderIs: appDataValid?.[0]?.policyholderIs,
+          name: appDataValid?.[0]?.name,
+          citizenship: appDataValid?.[0]?.citizenship,
+          birthDate: appDataValid?.[0]?.birthDate,
+          documentAdded: appDataValid?.[0]?.documentAdded,
+          country: appDataValid?.[0]?.country,
+          city: appDataValid?.[0]?.city,
+          postIndex: appDataValid?.[0]?.postIndex,
+          street: appDataValid?.[0]?.street,
+          houseNumber: appDataValid?.[0]?.houseNumber,
         },
       ],
     },

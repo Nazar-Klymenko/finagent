@@ -44,7 +44,7 @@ const Page2 = () => {
 
   const methods = useForm<FormTypes>({
     defaultValues: {
-      policyholderIs: appDataValid.policyholderIs || "natural",
+      policyholderIs: appDataValid.policyholderIs,
       name: appDataValid.name,
       birthDate: appDataValid.birthDate,
       pesel: appDataValid.pesel,

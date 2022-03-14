@@ -1,5 +1,6 @@
 import BackArrow from "./BackArrow";
-import MuiButton from "./MuiButton";
-import UserAuth from "./UserAuth";
+import Button from "./Button";
+// import UserAuth from "./UserAuth";
+import FacebookButton from "./FacebookButton";
 
-export { BackArrow, UserAuth, MuiButton };
+export { BackArrow, Button, FacebookButton };

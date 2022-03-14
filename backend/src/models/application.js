@@ -19,16 +19,16 @@ const ApplicationSchema = new Schema(
     },
     feedback: [
       {
-        date: { type: Date },
-        message: { type: String },
+        date: Date,
+        message: String,
       },
     ],
-    attachments: [
+    user_attachments: [
       {
         filename: String,
       },
     ],
-    documents: [
+    admin_attachments: [
       {
         filename: String,
       },

@@ -1,81 +1,108 @@
 import React from "react";
 
-import Container from "@material-ui/core/Container";
-import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components/macro";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-import { useAuth } from "@context/authContext";
+import { Container, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-import LogoWrap from "@components/LogoWrap";
-import { Logo } from "@components/svgs";
-
-interface Styled {
-  isAuthenticated: boolean;
-}
+import useLayoutTranslation from "@hooks/useLayoutTranslation";
 
 const Footer: React.FC = () => {
-  const { t } = useTranslation();
-  const { currentUser } = useAuth();
-  const { isLoggedIn } = currentUser;
+  const { locale } = useRouter();
+  //@ts-ignore
+  const { _t } = useLayoutTranslation(locale);
 
   return (
-    <FooterStyled isAuthenticated={isLoggedIn}>
+    <FooterStyled>
       <ContainerStyled maxWidth="lg" disableGutters>
-        <div className="testimonial">
-          <LogoWrap>
-            <Logo fillColor="#CDCDCD" />
-          </LogoWrap>
-          <p>{t("Footer.content")}</p>
-        </div>
-        <div className="block-container">
+        <LogoWrap>
+          <Link href={"/dashboard/insurance"} passHref>
+            <Logo>
+              <Image src="/logo-pale.svg" height="44" width="90" alt="" />
+            </Logo>
+          </Link>
+        </LogoWrap>
+        <BlockContainer>
           <div className="block">
-            <span className="header">{t("Footer.contact")}</span>
+            <Typography variant="h6">{_t("Footer.contact")}</Typography>
             <a className="content" href="tel:+48531937973">
-              +48 531 937 973
+              <Typography>+48 531 937 973</Typography>
             </a>
             <a className="content" href="tel:+48574233922">
-              +48 574 233 922
+              <Typography> +48 574 233 922</Typography>
             </a>
             <a className="content" href="mailto:contact@finagent.eu">
-              contact@finagent.eu
+              <Typography>contact@finagent.eu</Typography>
             </a>
           </div>
 
           <div className="block">
-            <span className="header">{t("Footer.help")}</span>
-            <NavLink className="content" to="/help">
-              FAQ
-            </NavLink>
+            <Typography variant="h6">{_t("Footer.help")}</Typography>
+            <Link href="/help">
+              <a className="content">
+                <Typography>FAQ</Typography>
+              </a>
+            </Link>
           </div>
 
           <div className="block">
-            <span className="header">{t("Footer.legal")}</span>
-            <NavLink className="content" to="/rodo">
-              {t("Footer.GDPR")}
-            </NavLink>
-            <NavLink className="content" to="/privacy">
-              {t("Footer.policy")}
-            </NavLink>
-            <NavLink className="content" to="/tos">
-              {t("Footer.terms")}
-            </NavLink>
+            <Typography variant="h6">{_t("Footer.legal")}</Typography>
+            <Link href="/rodo">
+              <a className="content">
+                <Typography>{_t("Footer.GDPR")}</Typography>
+              </a>
+            </Link>
+            <Link href="/privacy">
+              <a className="content">
+                <Typography> {_t("Footer.policy")}</Typography>
+              </a>
+            </Link>
+            <Link href="/tos">
+              <a className="content">
+                <Typography> {_t("Footer.terms")}</Typography>
+              </a>
+            </Link>
           </div>
-        </div>
+        </BlockContainer>
       </ContainerStyled>
-      <Copyright>© {new Date().getFullYear()} FinAgent</Copyright>
     </FooterStyled>
   );
 };
+
+export { Footer };
 
 const ContainerStyled = styled(Container)`
   display: flex;
   padding: 40px 20px;
 `;
 
-const FooterStyled = styled.footer<Styled>`
-  background-color: ${({ theme }) => theme.black};
+const FooterStyled = styled("footer")`
+  background-color: ${({ theme }) => theme.palette.common.black};
+  color: ${({ theme }) => theme.palette.grey[600]};
+`;
+const LogoWrap = styled("div")`
+  flex: 1 3 auto;
+`;
+const Logo = styled("a")`
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+const BlockContainer = styled("div")`
+  display: flex;
+  flex: 2;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  .block {
+    flex: 1 1 200px;
+    margin-top: 20px;
+  }
+`;
 
+{
+  /*
   .testimonial {
     display: flex;
     flex: 1;
@@ -147,5 +174,5 @@ const Copyright = styled.span`
   padding: 32px 0px 16px;
   display: block;
 `;
-
-export default Footer;
+*/
+}

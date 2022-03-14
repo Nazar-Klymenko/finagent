@@ -1,12 +1,19 @@
-import React, { FC } from "react";
+import React, { useEffect, useRef } from "react";
 
+import { useTranslation } from "next-i18next";
+
+import { Typography } from "@mui/material";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 
-import { InputErrorMessage, Label, Optional } from "./LocalStyles";
+import {
+  InputContainer,
+  InputErrorMessage,
+  Label,
+  Optional,
+} from "./LocalStyles";
 
 interface Props {
   name: string;
@@ -15,19 +22,32 @@ interface Props {
   defaultValue?: string | undefined;
 }
 
-const MuiPhoneInput: FC<Props> = ({
+const MuiPhoneInput = ({
   name,
   defaultValue,
   labelName,
   optional,
-}) => {
+}: Props): JSX.Element => {
   const { t } = useTranslation();
   const {
     control,
     formState: { errors },
   } = useFormContext();
+  const ref = useRef();
+
+  useEffect(() => {
+    const handleFocus = () => {
+      //@ts-ignore
+      ref.current.numberInputRef.focus();
+    };
+
+    if (_.get(errors, [name])) {
+      handleFocus();
+    }
+  }, [errors, name]);
+
   return (
-    <>
+    <InputContainer>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
@@ -38,6 +58,9 @@ const MuiPhoneInput: FC<Props> = ({
         defaultValue={defaultValue}
         render={({ field }) => (
           <PhoneInput
+            //@ts-ignore
+            ref={ref}
+            inputProps={{ name: name }}
             onChange={field.onChange}
             value={field.value}
             isValid={!_.get(errors, name)}
@@ -54,9 +77,11 @@ const MuiPhoneInput: FC<Props> = ({
         )}
       />
       <InputErrorMessage>
-        {t(_.get(errors, `${name}.message`))}
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
       </InputErrorMessage>
-    </>
+    </InputContainer>
   );
 };
 

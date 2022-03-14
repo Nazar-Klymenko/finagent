@@ -1,13 +1,19 @@
 import React from "react";
 
-import { OutlinedInput } from "@material-ui/core";
+import { useTranslation } from "next-i18next";
+
+import { OutlinedInput, OutlinedInputProps, Typography } from "@mui/material";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 
-import { InputErrorMessage, Label, Optional } from "./LocalStyles";
+import {
+  InputContainer,
+  InputErrorMessage,
+  Label,
+  Optional,
+} from "./LocalStyles";
 
-interface Props {
+interface Props extends OutlinedInputProps {
   name: string;
   labelName: string;
   placeholder?: string;
@@ -16,21 +22,21 @@ interface Props {
   defaultValue?: string | undefined;
 }
 
-const Textarea: React.FC<Props> = ({
+const Textarea = ({
   name,
   labelName,
-  rows,
   placeholder,
   optional,
   defaultValue,
-}) => {
+  ...other
+}: Props): JSX.Element => {
   const { t } = useTranslation();
   const {
     control,
     formState: { errors },
   } = useFormContext();
   return (
-    <>
+    <InputContainer>
       <Label htmlFor={name}>
         {labelName}
         {optional && <Optional>{t("Form.optional")}</Optional>}
@@ -45,20 +51,23 @@ const Textarea: React.FC<Props> = ({
             onChange={field.onChange}
             value={field.value}
             multiline
-            rows={rows}
-            rowsMax={8}
+            inputRef={field.ref}
+            maxRows={8}
             fullWidth
             placeholder={placeholder}
             error={!!_.get(errors, name)}
             id={name}
+            {...other}
           />
         )}
       />
 
       <InputErrorMessage>
-        {t(_.get(errors, `${name}.message`))}
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
       </InputErrorMessage>
-    </>
+    </InputContainer>
   );
 };
 

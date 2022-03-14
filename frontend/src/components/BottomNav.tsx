@@ -1,104 +1,69 @@
 import React from "react";
 
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import { makeStyles } from "@material-ui/core/styles";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import HelpRoundedIcon from "@material-ui/icons/HelpRounded";
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
-import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
-import { useTranslation } from "react-i18next";
-import { NavLink, useLocation } from "react-router-dom";
-import styled from "styled-components/macro";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
+import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+import useLayoutTranslation from "@hooks/useLayoutTranslation";
 
 import { useAuth } from "@context/authContext";
 
-const useStyles = makeStyles({
-  root: {
-    "& .Mui-selected": {
-      color: "#1672ec",
-    },
-  },
-});
+const BottomNav = (): JSX.Element => {
+  const router = useRouter(),
+    { locale } = router;
+  //@ts-ignore
+  const { _t } = useLayoutTranslation(locale);
 
-const BottomNav = () => {
-  const { t } = useTranslation();
   const { currentUser } = useAuth();
   const { isLoggedIn } = currentUser;
+  const [value, setValue] = React.useState(0);
 
-  const classes = useStyles();
+  const onLink = (href: string) => {
+    router.push(href);
+  };
 
-  const location = useLocation();
-
-  return isLoggedIn ? (
-    <BottomNavStyled
-      className={classes.root}
-      value={location.pathname}
-      showLabels
+  return (
+    <Paper
+      sx={{ position: "sticky", bottom: 0, left: 0, right: 0 }}
+      elevation={3}
     >
-      <BottomNavigationAction
-        component={NavLink}
-        to="/dashboard/insurances"
-        label={t("NavbarBottom.dashboard")}
-        value={`/dashboard`}
-        icon={<HomeRoundedIcon />}
-      />
-      <BottomNavigationAction
-        component={NavLink}
-        to="/services"
-        label={t("NavbarBottom.services")}
-        value="/services"
-        icon={<AssignmentRoundedIcon />}
-      />
-      <BottomNavigationAction
-        component={NavLink}
-        to="/notifications"
-        label={t("Notifications.title")}
-        value="/notifications"
-        icon={<NotificationsNoneRoundedIcon />}
-      />
-      <BottomNavigationAction
-        component={NavLink}
-        to="/settings/change_info"
-        label={t("NavbarBottom.settings")}
-        value={`/settings/change_info`}
-        icon={<SettingsRoundedIcon />}
-      />
-    </BottomNavStyled>
-  ) : null;
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      >
+        <BottomNavigationAction
+          label={_t("NavbarBottom.dashboard")}
+          onClick={() => onLink("/dashboard")}
+          icon={<HomeRoundedIcon />}
+        />
+        <BottomNavigationAction
+          label={_t("NavbarBottom.services")}
+          onClick={() => onLink("/services")}
+          icon={<AssignmentRoundedIcon />}
+        />
+        <BottomNavigationAction
+          onClick={() => onLink("/notifications")}
+          label={_t("NavbarBottom.notifications")}
+          icon={<NotificationsIcon />}
+        />
+        <BottomNavigationAction
+          label={_t("NavbarBottom.settings")}
+          onClick={() => onLink("/settings")}
+          icon={<SettingsRoundedIcon />}
+        />
+      </BottomNavigation>
+    </Paper>
+  );
 };
 
-const BottomNavStyled = styled(BottomNavigation)`
-  width: 100%;
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  display: none !important;
-  box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.12);
-  .MuiBottomNavigationAction-label.Mui-selected {
-    font-size: 0.75rem;
-    color: #1672ec;
-  }
-
-  .MuiIcon-colorPrimary.active {
-    color: #1672ec;
-  }
-  @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
-    display: flex !important;
-  }
-  /* @media screen and (max-width: ${({ theme }) => theme.widthSmallPhone}) {
-    a {
-      padding: 6px 8px 8px;
-      width: 3rem;
-    }
-    .MuiBottomNavigationAction-root {
-      max-width: 2.5rem;
-    }
-    .MuiBottomNavigationAction-label {
-      display: none;
-    }
-  } ; */
-`;
-
-export default BottomNav;
+export { BottomNav };

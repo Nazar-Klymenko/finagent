@@ -16,7 +16,7 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import morgan from "morgan";
 
-import userRoute from "./routes/frontend/user.js";
+import frontendRoutes from "./routes/frontend.js";
 import userAuthRoute from "./routes/frontend/auth.js";
 import userApplicationRoute from "./routes/frontend/application.js";
 
@@ -78,15 +78,15 @@ app.get("/", (req, res) => {
   res.json({ message: "hello there" });
 });
 
-app.use("/api/v1/user/", userRoute);
-app.use("/api/v1/user/auth/", userAuthRoute);
-app.use("/api/v1/user/application/", userApplicationRoute);
+app.use("/api/v1/user/", frontendRoutes);
+// app.use("/api/v1/user/auth/", userAuthRoute);
+// app.use("/api/v1/user/application/", userApplicationRoute);
 
 app.use("/api/v1/admin/", adminRoute);
 app.use("/api/v1/admin/auth/", adminAuthRoute);
 app.use("/api/v1/admin/application/", adminApplicationRoute);
 
-app.use((error, req, res, next) => {
+app.use((error, req, res) => {
   console.log({ error });
   res.status(error.status || 500).send({
     status: error.status || 500,

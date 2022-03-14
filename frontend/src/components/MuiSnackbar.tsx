@@ -1,12 +1,11 @@
 import React from "react";
 
-import Slide, { SlideProps } from "@material-ui/core/Slide";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 
-import { closeSnackbar } from "@redux/alert/actions";
+import Alert from "@mui/material/Alert";
+import Slide, { SlideProps } from "@mui/material/Slide";
+import Snackbar from "@mui/material/Snackbar";
+import { useDispatch, useSelector } from "react-redux";
 
 type TransitionProps = Omit<SlideProps, "direction">;
 
@@ -23,11 +22,13 @@ const MuiSnackbar: React.FC = () => {
   const message = useSelector((state: any) => state.alerts.alertInfo?.message);
   const alertOpen = useSelector((state: any) => state.alerts.alertInfo?.isOpen);
 
-  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+  const handleClose = (
+    event?: Event | React.SyntheticEvent<any, Event>,
+    reason?: string
+  ) => {
     if (reason === "clickaway") {
       return;
     }
-    dispatch(closeSnackbar());
   };
 
   return (
@@ -51,4 +52,4 @@ const MuiSnackbar: React.FC = () => {
   );
 };
 
-export default MuiSnackbar;
+export { MuiSnackbar };

@@ -1,24 +1,19 @@
-import React, { FC, useEffect, useState } from "react";
+import React from "react";
 
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
-import "date-fns";
-import { enGB, pl, ru, uk } from "date-fns/esm/locale";
+import { useTranslation } from "next-i18next";
+
+import DatePicker, { DatePickerProps } from "@mui/lab/DatePicker";
+import { Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 
-import { InputErrorMessage, Label } from "./LocalStyles";
+import { InputContainer, InputErrorMessage, Label } from "./LocalStyles";
 
-interface Props {
-  labelName: string;
-  name: string;
+interface Props extends InputProps {
   defaultValue?: any;
   placeholder: string;
-  view?: ["date"] | ["year", "month"] | ["year", "month", "date"] | ["year"];
+  view?: ["day"] | ["year", "month"] | ["year", "month", "day"] | ["year"];
   format?: "dd/MM/yyyy" | "yyyy";
   disablePast?: boolean;
   disableFuture?: boolean;
@@ -27,44 +22,23 @@ interface Props {
   openTo?: "year";
 }
 
-const DateInput: FC<Props> = ({
+const DateInput = ({
   labelName,
   name,
   defaultValue,
   placeholder,
-  view = ["date"],
+  view = ["year", "month", "day"],
   format = "dd/MM/yyyy",
+  autoComplete,
   ...other
-}) => {
-  const { i18n, t } = useTranslation();
+}: Props): JSX.Element => {
+  const { t } = useTranslation();
   const {
     control,
     formState: { errors },
   } = useFormContext();
-
-  const [language, setLanguage] = useState(pl);
-
-  useEffect(() => {
-    switch (i18n.language) {
-      case "en":
-        setLanguage(enGB);
-        break;
-      case "pl":
-        setLanguage(pl);
-        break;
-      case "ru":
-        setLanguage(ru);
-        break;
-      case "ua":
-        setLanguage(uk);
-        break;
-      default:
-        setLanguage(pl);
-    }
-  }, [i18n.language]);
-
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={language}>
+    <InputContainer>
       <Label htmlFor={name}>{labelName}</Label>
 
       <Controller
@@ -72,28 +46,46 @@ const DateInput: FC<Props> = ({
         control={control}
         defaultValue={defaultValue || null}
         render={({ field }) => (
-          <KeyboardDatePicker
-            okLabel="OK"
-            clearLabel="Clear"
-            cancelLabel="Cancel"
-            error={!!_.get(errors, name)}
-            inputVariant="outlined"
-            helperText={null}
-            style={{
-              fontFamily: ["Poppins", "sans-serif"].join(","),
-            }}
-            format={format}
-            views={view}
+          <DatePicker
+            {...other}
+            leftArrowButtonText={t("Form.Inputs.DateInput.leftArrowButtonText")}
+            rightArrowButtonText={t(
+              "Form.Inputs.DateInput.rightArrowButtonText"
+            )}
+            okText={t("Form.Inputs.DateInput.okText")}
+            todayText={t("Form.Inputs.DateInput.todayText")}
+            clearText={t("Form.Inputs.DateInput.clearText")}
+            cancelText={t("Form.Inputs.DateInput.cancelText")}
+            toolbarTitle={t("Form.Inputs.DateInput.toolbarTitle")}
+            inputFormat={format}
             onChange={field.onChange}
             value={field.value}
-            {...other}
+            mask="__/__/____"
+            views={view}
+            inputRef={field.ref}
+            renderInput={(params) => {
+              return (
+                <TextField
+                  {...params}
+                  // inputProps={{
+                  //   placeholder: placeholder,
+                  // }}
+                  autoComplete={autoComplete}
+                  placeholder={placeholder}
+                  error={!!_.get(errors, name)}
+                  helperText={null}
+                />
+              );
+            }}
           />
         )}
       />
       <InputErrorMessage>
-        {t(_.get(errors, `${name}.message`))}
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
       </InputErrorMessage>
-    </MuiPickersUtilsProvider>
+    </InputContainer>
   );
 };
 

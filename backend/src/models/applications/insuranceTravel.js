@@ -6,8 +6,8 @@ import Application from "../application.js";
 const InsuranceTravelSchema = new Schema(
   {
     insuranceData: {
-      insuranceStart: String,
-      insuranceEnd: String,
+      insuranceStart: Date,
+      insuranceEnd: Date,
       insuranceType: String,
       peopleAmount: String,
       destination: String,
@@ -17,8 +17,7 @@ const InsuranceTravelSchema = new Schema(
     personalData: {
       policyholedIs: String,
       name: String,
-      surname: String,
-      birthDate: String,
+      birthDate: Date,
       pesel: String,
       nip: String,
       regon: String,
@@ -35,7 +34,7 @@ const InsuranceTravelSchema = new Schema(
 );
 
 const InsuranceTravel = Application.discriminator(
-  "InsuranceTravel",
+  "insuranceTravel",
   InsuranceTravelSchema
 );
 

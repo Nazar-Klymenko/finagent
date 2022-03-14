@@ -1,21 +1,25 @@
+import Autocomplete from "./Autocomplete";
+import Checkbox from "./Checkbox";
 import DateInput from "./DateInput";
 import FileInput from "./FileInput";
-import MuiCheckbox from "./MuiCheckbox";
-import MuiInput from "./MuiInput";
-import MuiPasswordInput from "./MuiPasswordInput";
+import Input from "./Input";
 import MuiPhoneInput from "./MuiPhoneInput";
-import MuiRadio from "./MuiRadio";
-import MuiSelect from "./MuiSelect";
+import PasswordInput from "./PasswordInput";
+import Radio from "./Radio";
+import Select from "./Select";
+import Slider from "./Slider";
 import Textarea from "./Textarea";
 
 export {
+  Checkbox,
   DateInput,
-  Textarea,
   FileInput,
-  MuiSelect,
-  MuiRadio,
-  MuiCheckbox,
-  MuiInput,
-  MuiPasswordInput,
+  Input,
   MuiPhoneInput,
+  PasswordInput,
+  Radio,
+  Select,
+  Textarea,
+  Slider,
+  Autocomplete,
 };

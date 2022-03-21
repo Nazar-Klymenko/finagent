@@ -38,7 +38,7 @@ const Application = (): JSX.Element => {
   return (
     <PageContainer title="Dashboard.title" dashboard>
       <DashboardInner>
-        {md ? <Tabs /> : <SideNav />}
+        {md ? <Tabs links={links} /> : <SideNav links={links} />}
         <ApplicationMain>
           <ApplicationHeader hideBorder={md}>
             {!md && <BackArrow sx={{ mr: "0.5rem" }} />}
@@ -105,6 +105,24 @@ const Application = (): JSX.Element => {
     </PageContainer>
   );
 };
+
+const links = [
+  {
+    href: "/dashboard/insurance",
+    label: "Dashboard.SideMenu.insurances",
+    activePaths: ["/dashboard/insurance"],
+  },
+  {
+    href: "/dashboard/loan",
+    label: "Dashboard.SideMenu.loans",
+    activePaths: ["/dashboard/loan"],
+  },
+  {
+    href: "/dashboard/archive",
+    label: "Dashboard.SideMenu.history",
+    activePaths: ["/dashboard/archive"],
+  },
+];
 
 export default Application;
 

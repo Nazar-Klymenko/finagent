@@ -1,5 +1,5 @@
 import createError from "http-errors";
-import Admin from "models/admin.js";
+import Admin from "models/admin";
 
 import { adminAuth } from "services/firebase";
 

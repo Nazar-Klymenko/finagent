@@ -1,10 +1,10 @@
-import asyncHandler from "helpers/asyncHandler.js";
-import History from "models/history.js";
-import { PaginationHelper } from "helpers/paginationHelper";
+import { asyncHandler } from "helpers/asyncHandler";
+import History from "models/history";
+import { pagination } from "helpers/pagination";
 
 export const getHistory = asyncHandler(async (req, res) => {
   let { page, size } = req.query;
-  let { limit, skip } = PaginationHelper(page, size);
+  let { limit, skip } = pagination(page, size);
   let query = { employee_id: req.currentUser.uid };
 
   const history = await History.find(query)
@@ -23,7 +23,7 @@ export const getHistory = asyncHandler(async (req, res) => {
 
 export const getHistoryAll = asyncHandler(async (req, res) => {
   let { page, size } = req.query;
-  let { limit, skip } = PaginationHelper(page, size);
+  let { limit, skip } = pagination(page, size);
   let query = {};
 
   const history = await History.find(query)

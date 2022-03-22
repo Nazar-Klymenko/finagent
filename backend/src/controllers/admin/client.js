@@ -1,11 +1,11 @@
-import User from "models/user.js";
+import User from "models/user";
 import createError from "http-errors";
-import asyncHandler from "helpers/asyncHandler.js";
-import { PaginationHelper } from "helpers/paginationHelper";
+import { asyncHandler } from "helpers/asyncHandler";
+import { pagination } from "helpers/pagination";
 
 export const allUsers = asyncHandler(async (req, res) => {
   let { page, size } = req.query;
-  let { limit, skip } = PaginationHelper(page, size);
+  let { limit, skip } = pagination(page, size);
   let query = {};
 
   console.log(skip, limit);

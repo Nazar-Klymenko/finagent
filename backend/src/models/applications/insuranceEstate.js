@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-import Application from "../application.js";
+import Application from "../application";
 
 const InsuranceEstateSchema = new Schema(
   {

@@ -1,32 +1,32 @@
-import express from "express";
-const router = express.Router();
+import express, { Router } from "express";
+const router: Router = express.Router();
 
-import {
-  signUp,
-  signUpFacebook,
-  verifyEmail,
-} from "controllers/frontend/auth.js";
-import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth.js";
+import { signUp, signUpFacebook, verifyEmail } from "controllers/frontend/auth";
+
+import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth";
 import {
   deleteUser,
   getSettings,
   updateSettings,
-} from "controllers/frontend/settings.js";
+} from "controllers/frontend/settings";
 
 import {
   getAllNotifications,
   getSpecificNotification,
-} from "controllers/frontend/notifications.js";
+} from "controllers/frontend/notifications";
 
-import insuranceBorderSubmit from "controllers/frontend/submits/insuranceBorder.js";
-import insuranceEstateSubmit from "controllers/frontend/submits/insuranceEstate.js";
-import insuranceHealthSubmit from "controllers/frontend/submits/insuranceHealth.js";
-import insuranceSpecialistSubmit from "controllers/frontend/submits/insuranceSpecialist.js";
-import insuranceTransportSubmit from "controllers/frontend/submits/insuranceTransport.js";
-import insuranceTravelSubmit from "controllers/frontend/submits/insuranceTravel.js";
-import loanCashSubmit from "controllers/frontend/submits/loanCash.js";
-import loanMortgageSubmit from "controllers/frontend/submits/loanMortgage.js";
-import { ticketSubmit } from "controllers/frontend/submits/ticket.js";
+import {
+  insuranceBorderSubmit,
+  insuranceEstateSubmit,
+  insuranceHealthSubmit,
+  insuranceSpecialistSubmit,
+  insuranceTransportSubmit,
+  insuranceTravelSubmit,
+  loanCashSubmit,
+  loanMortgageSubmit,
+} from "controllers/frontend/submit";
+
+import { ticketSubmit } from "controllers/frontend/ticket";
 
 import {
   getAllAplications,

@@ -11,7 +11,7 @@ import {
   putApplicationInArchive,
   attachDocumentsAdmin,
   getArchivedApplications,
-} from "controllers/admin/applicationActions.js";
+} from "controllers/admin/applicationActions";
 import express from "express";
 import { verifyAdmin, verifySupervisor } from "middleware/admin";
 import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";

@@ -1,6 +1,6 @@
-import Admin from "models/admin.js";
+import Admin from "models/admin";
 import createError from "http-errors";
-import asyncHandler from "helpers/asyncHandler.js";
+import { asyncHandler } from "helpers/asyncHandler";
 
 export const changeEmail = asyncHandler(async (req, res) => {
   const { email } = req.body;

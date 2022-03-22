@@ -1,11 +1,11 @@
-import Application from "models/application.js";
+import Application from "models/application";
 import createError from "http-errors";
-import asyncHandler from "helpers/asyncHandler.js";
+import { asyncHandler } from "helpers/asyncHandler";
 import { attachImagesAdmin } from "helpers/attachDocument";
 
-import addHistoryRecord from "utils/history.js";
-import sendNotification from "utils/notification.js";
-import { PaginationHelper } from "helpers/paginationHelper";
+import addHistoryRecord from "utils/history";
+import sendNotification from "utils/notification";
+import { pagination } from "helpers/pagination";
 
 export const getAllApplications = asyncHandler(async (req, res) => {
   let { page, size } = req.query;
@@ -33,7 +33,7 @@ export const getAllApplications = asyncHandler(async (req, res) => {
     };
   }
 
-  const { skip, limit } = PaginationHelper(page, size);
+  const { skip, limit } = pagination(page, size);
 
   const applications = await Application.find(query)
     .populate("user")

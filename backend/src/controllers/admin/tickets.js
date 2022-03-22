@@ -1,11 +1,11 @@
-import asyncHandler from "helpers/asyncHandler.js";
-import { PaginationHelper } from "helpers/paginationHelper";
-import Ticket from "models/ticket.js";
+import { asyncHandler } from "helpers/asyncHandler";
+import { pagination } from "helpers/pagination";
+import Ticket from "models/ticket";
 
 export const getAllTickets = asyncHandler(async (req, res) => {
   let { page, size } = req.query;
 
-  const { skip, limit } = PaginationHelper(page, size);
+  const { skip, limit } = pagination(page, size);
 
   const tickets = await Ticket.find()
     .sort({ createdAt: -1 })

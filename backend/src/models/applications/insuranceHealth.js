@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Application from "../application.js";
+import Application from "../application";
 const Schema = mongoose.Schema;
 
 const HealthSchema = new Schema(

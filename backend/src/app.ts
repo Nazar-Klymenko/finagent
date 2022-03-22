@@ -1,8 +1,12 @@
 import path from "path";
-import fs from "fs";
-const __dirname = path.resolve();
-import express from "express";
-const app = express();
+import express, {
+  Application,
+  Request,
+  Response,
+  ErrorRequestHandler,
+} from "express";
+
+const app: Application = express();
 
 import mongoSanitize from "express-mongo-sanitize";
 import xss from "xss-clean";
@@ -13,16 +17,13 @@ import cors from "cors";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 
-import fileUpload from "express-fileupload";
 import morgan from "morgan";
 
-import frontendRoutes from "./routes/frontend.js";
-import userAuthRoute from "./routes/frontend/auth.js";
-import userApplicationRoute from "./routes/frontend/application.js";
+import frontendRoutes from "./routes/frontend";
 
-import adminRoute from "./routes/admin/admin.js";
-import adminAuthRoute from "./routes/admin/auth.js";
-import adminApplicationRoute from "./routes/admin/applications.js";
+import adminRoute from "./routes/admin/admin";
+import adminAuthRoute from "./routes/admin/auth";
+import adminApplicationRoute from "./routes/admin/applications";
 
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 mins
@@ -38,12 +39,6 @@ app.use(limiter);
 app.use(compression());
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  fileUpload({
-    createParentPath: true,
-    limits: { fileSize: 50 * 1024 * 1024 },
-  })
-);
 
 app.use(
   cors({
@@ -72,26 +67,22 @@ app.use(
 //   })
 // );
 
-app.use(express.static(path.resolve(__dirname, "./")));
-
 app.get("/", (req, res) => {
   res.json({ message: "hello there" });
 });
 
 app.use("/api/v1/user/", frontendRoutes);
-// app.use("/api/v1/user/auth/", userAuthRoute);
-// app.use("/api/v1/user/application/", userApplicationRoute);
 
-app.use("/api/v1/admin/", adminRoute);
-app.use("/api/v1/admin/auth/", adminAuthRoute);
-app.use("/api/v1/admin/application/", adminApplicationRoute);
+// app.use("/api/v1/admin/", adminRoute);
+// app.use("/api/v1/admin/auth/", adminAuthRoute);
+// app.use("/api/v1/admin/application/", adminApplicationRoute);
 
-app.use((error, req, res) => {
-  console.log({ error });
+const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
   res.status(error.status || 500).send({
     status: error.status || 500,
     message: error.message,
   });
-});
+};
+app.use(errorHandler);
 
 export { app };

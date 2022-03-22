@@ -1,17 +1,17 @@
 import { allUsers, SpecificUser } from "controllers/admin/client";
-import { getHistory, getHistoryAll } from "controllers/admin/history.js";
+import { getHistory, getHistoryAll } from "controllers/admin/history";
 import {
   deleteAdmin,
   getSettingsAdmin,
   updateSettings,
-} from "controllers/admin/settings.js";
+} from "controllers/admin/settings";
 import {
   allOperators,
   awaitingOperators,
   grantAdministatorRole,
   declineAdministator,
 } from "controllers/admin/supervisor";
-import { getAllTickets, deleteTicket } from "controllers/admin/tickets.js";
+import { getAllTickets, deleteTicket } from "controllers/admin/tickets";
 import express from "express";
 import { verifyAdmin, verifySupervisor } from "middleware/admin";
 import { verifyAccessTokenFirebaseAdmin } from "middleware/auth";

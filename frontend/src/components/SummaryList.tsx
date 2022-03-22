@@ -4,6 +4,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
+import _ from "lodash";
 import { useTranslation } from "react-i18next";
 
 interface Props {
@@ -57,16 +58,25 @@ const SummaryList = ({
                     {t(`${applicationType}.Page${idx + 1}.subtitle`)}
                   </Typography>
 
-                  {Object.entries(item[1]).map((subitem: any, subidx) => (
-                    <Item key={subidx}>
-                      <div className="value">
-                        {t(`${applicationType}.Page${idx + 1}.${subitem[0]}`)}
-                      </div>
-                      <div className="name">
-                        {t(subitem[1]?.label) || t(subitem[1])}
-                      </div>
-                    </Item>
-                  ))}
+                  {Object.entries(item[1]).map((subitem: any, subidx) => {
+                    if (_.isArray(subitem[1])) {
+                      console.log(subitem);
+                      return <h1>Arra</h1>;
+                    } else {
+                      return (
+                        <Item key={subidx}>
+                          <div className="value">
+                            {t(
+                              `${applicationType}.Page${idx + 1}.${subitem[0]}`
+                            )}
+                          </div>
+                          <div className="name">
+                            {t(subitem[1]?.label) || t(subitem[1])}
+                          </div>
+                        </Item>
+                      );
+                    }
+                  })}
                 </Category>
               </React.Fragment>
             );
@@ -124,7 +134,7 @@ const Item = styled("div")`
   padding: 8px 12px;
   font-size: 0.85rem;
 
-  &:nth-child(even) {
+  &:nth-of-type(even) {
     background: #f5f4f4;
   }
   &:hover {

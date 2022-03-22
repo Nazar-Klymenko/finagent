@@ -35,6 +35,7 @@ const Application = (): JSX.Element => {
   if (!data && !error) return <Loader />;
 
   const summaryReady = determineAppType(data?.applicationType, data);
+
   return (
     <PageContainer title="Dashboard.title" dashboard>
       <DashboardInner>

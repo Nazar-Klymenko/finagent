@@ -355,7 +355,7 @@
       "paymentTerm": "Payment time frame",
       "conditions": "I agree to the use of my personal data for the preparation and assistance in choosing an offer for cash loan"
     },
-    "ApplicantModal": {
+    "policyholder": {
       "title": "Add another person",
       "citizenship": "Citizenship",
       "otherCitizenship": "Your citizenship",
@@ -492,7 +492,7 @@
       "town": "Town",
       "conditions": "I agree to the use of my personal data for the preparation and assistance in choosing an offer for cash loan"
     },
-    "ApplicantModal": {
+    "policyholder": {
       "title": "Add another person",
       "citizenship": "Citizenship",
       "otherCitizenship": "Your citizenship",
@@ -721,7 +721,8 @@
       "street": "Street",
       "houseNumber": "House number"
     },
-    "ApplicantModal": {
+    "policyholder": {
+      "label": "Policyholder",
       "addApplicant": "Add another applicant",
       "policyholderIs": "Policyholder",
       "polish": "Polish",
@@ -803,7 +804,7 @@
       "delete": "Delete",
       "maxPeople": "You can only add 14 people"
     },
-    "ApplicantModal": {
+    "policyholder": {
       "title": "Add another applicant"
     }
   },

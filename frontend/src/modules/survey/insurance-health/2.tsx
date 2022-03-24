@@ -196,9 +196,7 @@ const Page2 = () => {
                   {policyholderIs === "foreigner" && (
                     <Input
                       name={`policyholder.${index}.citizenship`}
-                      labelName={t(
-                        "insuranceHealth.ApplicantModal.citizenship"
-                      )}
+                      labelName={t("insuranceHealth.policyholder.citizenship")}
                       type="text"
                       placeholder="Type here"
                       defaultValue={field.citizenship}
@@ -208,8 +206,8 @@ const Page2 = () => {
                     name={`policyholder.${index}.documentAdded`}
                     labelName={`${
                       policyholderIs === "polish"
-                        ? t("insuranceHealth.ApplicantModal.pesel")
-                        : t("insuranceHealth.ApplicantModal.passport")
+                        ? t("insuranceHealth.policyholder.pesel")
+                        : t("insuranceHealth.policyholder.passport")
                     }`}
                     type="text"
                     placeholder="XXXXXXXXXXX"
@@ -217,7 +215,7 @@ const Page2 = () => {
                   />
                   <Input
                     name={`policyholder.${index}.name`}
-                    labelName={t("insuranceHealth.ApplicantModal.name")}
+                    labelName={t("insuranceHealth.policyholder.name")}
                     type="text"
                     placeholder="John"
                     autoComplete="given-name"
@@ -232,33 +230,33 @@ const Page2 = () => {
                   />
                   <Input
                     name={`policyholder.${index}.country`}
-                    labelName={t("insuranceHealth.ApplicantModal.country")}
+                    labelName={t("insuranceHealth.policyholder.country")}
                     type="text"
                     placeholder="Poland"
                     defaultValue={field.country}
                   />
                   <Input
                     name={`policyholder.${index}.city`}
-                    labelName={t("insuranceHealth.ApplicantModal.city")}
+                    labelName={t("insuranceHealth.policyholder.city")}
                     type="text"
                     placeholder="Warsaw"
                     defaultValue={field.city}
                   />
                   <Input
                     name={`policyholder.${index}.postIndex`}
-                    labelName={t("insuranceHealth.ApplicantModal.postIndex")}
+                    labelName={t("insuranceHealth.policyholder.postIndex")}
                     placeholder="123-45"
                     defaultValue={field.postIndex}
                   />
                   <Input
                     name={`policyholder.${index}.street`}
-                    labelName={t("insuranceHealth.ApplicantModal.street")}
+                    labelName={t("insuranceHealth.policyholder.street")}
                     placeholder="Bialostocka"
                     defaultValue={field.street}
                   />
                   <Input
                     name={`policyholder.${index}.houseNumber`}
-                    labelName={t("insuranceHealth.ApplicantModal.houseNumber")}
+                    labelName={t("insuranceHealth.policyholder.houseNumber")}
                     defaultValue={field.houseNumber}
                   />
                 </Form>

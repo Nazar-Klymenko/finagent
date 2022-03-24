@@ -58,25 +58,35 @@ const SummaryList = ({
                     {t(`${applicationType}.Page${idx + 1}.subtitle`)}
                   </Typography>
 
-                  {Object.entries(item[1]).map((subitem: any, subidx) => {
-                    if (_.isArray(subitem[1])) {
-                      console.log(subitem);
-                      return <h1>Arra</h1>;
-                    } else {
-                      return (
-                        <Item key={subidx}>
-                          <div className="value">
-                            {t(
-                              `${applicationType}.Page${idx + 1}.${subitem[0]}`
-                            )}
-                          </div>
-                          <div className="name">
-                            {t(subitem[1]?.label) || t(subitem[1])}
-                          </div>
-                        </Item>
-                      );
+                  {Object.entries(item[1]).map(
+                    (subitem: any, subidx: number) => {
+                      if (_.isArray(subitem[1])) {
+                        return (
+                          <ArrayList
+                            key={subidx}
+                            subitem={subitem}
+                            applicationType={applicationType}
+                            subidx={subidx}
+                          />
+                        );
+                      } else {
+                        return (
+                          <Item key={subidx}>
+                            <div className="value">
+                              {t(
+                                `${applicationType}.Page${idx + 1}.${
+                                  subitem[0]
+                                }`
+                              )}
+                            </div>
+                            <div className="name">
+                              {t(subitem[1]?.label) || t(subitem[1])}
+                            </div>
+                          </Item>
+                        );
+                      }
                     }
-                  })}
+                  )}
                 </Category>
               </React.Fragment>
             );
@@ -86,6 +96,37 @@ const SummaryList = ({
   );
 };
 export { SummaryList };
+
+const ArrayList = ({ subitem, applicationType, subidx }: any): JSX.Element => {
+  const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen]);
+
+  return (
+    <>
+      <ArrayListRow onClick={toggleOpen}>
+        {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        <Typography>
+          {t(`${applicationType}.${subitem[0]}.label`) + ` ${subidx}`}
+        </Typography>
+      </ArrayListRow>
+      {isOpen &&
+        subitem[1].map((nitem: any, nidx: number) =>
+          Object.entries(nitem).map((pls: any, idxx) => (
+            <Item key={nidx}>
+              <div className="value">
+                {t(`${applicationType}.${subitem[0]}.${pls[0]}`)}
+              </div>
+              <div className="name">{t(pls[1]?.label) || t(pls[1])}</div>
+            </Item>
+          ))
+        )}
+    </>
+  );
+};
 
 const SummaryListStyled = styled("div")<Styled>`
   width: 100%;
@@ -110,7 +151,10 @@ const Header = styled("div")<Styled>`
 const ArrowWrap = styled("div")<Styled>`
   padding-right: 1.5rem;
 `;
-const List = styled("ul")<Styled>`
+
+const List = styled("ul", {
+  shouldForwardProp: (prop) => prop !== "isOpen",
+})<Styled>`
   display: flex;
   flex-direction: column;
   ${({ isOpen }) =>
@@ -134,11 +178,8 @@ const Item = styled("div")`
   padding: 8px 12px;
   font-size: 0.85rem;
 
-  &:nth-of-type(even) {
-    background: #f5f4f4;
-  }
   &:hover {
-    background: #e9e9e9;
+    background: ${({ theme }) => theme.palette.grey[200]};
   }
   .name {
     flex: 1;
@@ -150,4 +191,10 @@ const Item = styled("div")`
     padding: 0px 2px;
     min-width: 50%;
   }
+`;
+
+const ArrayListRow = styled("div")`
+  display: flex;
+  padding: 8px 12px;
+  background: ${({ theme }) => theme.palette.grey[300]};
 `;

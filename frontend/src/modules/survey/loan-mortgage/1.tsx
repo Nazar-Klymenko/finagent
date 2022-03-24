@@ -288,14 +288,14 @@ const Page1 = () => {
                 >
                   <Radio
                     name={`applicant[${index}].nationality`}
-                    labelName={t("LoanMortgage.ApplicantModal.citizenship")}
+                    labelName={t("LoanMortgage.policyholder.citizenship")}
                     options={[
                       {
-                        label: t("LoanMortgage.ApplicantModal.polish"),
+                        label: t("LoanMortgage.policyholder.polish"),
                         value: "polish",
                       },
                       {
-                        label: t("LoanMortgage.ApplicantModal.other"),
+                        label: t("LoanMortgage.policyholder.other"),
                         value: "other",
                       },
                     ]}
@@ -306,7 +306,7 @@ const Page1 = () => {
                       <Input
                         name={`applicant[${index}].otherNation`}
                         labelName={t(
-                          "LoanMortgage.ApplicantModal.otherCitizenship"
+                          "LoanMortgage.policyholder.otherCitizenship"
                         )}
                         type="text"
                         placeholder="Nation"
@@ -316,23 +316,19 @@ const Page1 = () => {
                       <Radio
                         name={`applicant[${index}].residenceDocument`}
                         labelName={t(
-                          "LoanMortgage.ApplicantModal.residenceDocument"
+                          "LoanMortgage.policyholder.residenceDocument"
                         )}
                         options={[
                           {
-                            label: t(
-                              "LoanMortgage.ApplicantModal.temporaryCard"
-                            ),
+                            label: t("LoanMortgage.policyholder.temporaryCard"),
                             value: "temporaryCard",
                           },
                           {
-                            label: t(
-                              "LoanMortgage.ApplicantModal.permanentCard"
-                            ),
+                            label: t("LoanMortgage.policyholder.permanentCard"),
                             value: "permanentCard",
                           },
                           {
-                            label: t("LoanMortgage.ApplicantModal.blueCard"),
+                            label: t("LoanMortgage.policyholder.blueCard"),
                             value: "blueCard",
                           },
                         ]}
@@ -342,16 +338,14 @@ const Page1 = () => {
                       />
                       <DateInput
                         name={`applicant[${index}].validFrom`}
-                        labelName={t("LoanMortgage.ApplicantModal.validFrom")}
+                        labelName={t("LoanMortgage.policyholder.validFrom")}
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.validFrom}
                       />
                       {residenceDocument !== "permanentCard" && (
                         <DateInput
                           name={`applicant[${index}].validUntil`}
-                          labelName={t(
-                            "LoanMortgage.ApplicantModal.validUntil"
-                          )}
+                          labelName={t("LoanMortgage.policyholder.validUntil")}
                           disablePast
                           placeholder={t("Form.Placeholder.dateFull")}
                           defaultValue={field.validUntil || null}
@@ -361,7 +355,7 @@ const Page1 = () => {
                   )}
                   <Input
                     name={`applicant[${index}].name`}
-                    labelName={t("LoanMortgage.ApplicantModal.name")}
+                    labelName={t("LoanMortgage.policyholder.name")}
                     type="text"
                     autoComplete="name"
                     defaultValue={field.name || ""}
@@ -369,54 +363,50 @@ const Page1 = () => {
 
                   <DateInput
                     name={`applicant[${index}].birthDate`}
-                    labelName={t("LoanMortgage.ApplicantModal.birthDate")}
+                    labelName={t("LoanMortgage.policyholder.birthDate")}
                     placeholder={t("Form.Placeholder.dateFull")}
                     defaultValue={field.birthDate}
                   />
                   <MuiPhoneInput
                     name={`applicant[${index}].phoneNumber`}
-                    labelName={t("LoanMortgage.ApplicantModal.phoneNumber")}
+                    labelName={t("LoanMortgage.policyholder.phoneNumber")}
                     defaultValue={field.phoneNumber}
                   />
                   <Input
                     name={`applicant[${index}].email`}
-                    labelName={t("LoanMortgage.ApplicantModal.email")}
+                    labelName={t("LoanMortgage.policyholder.email")}
                     type="text"
                     defaultValue={field.email}
                   />
                   <Input
                     name={`applicant[${index}].pesel`}
-                    labelName={t("LoanMortgage.ApplicantModal.pesel")}
+                    labelName={t("LoanMortgage.policyholder.pesel")}
                     type="text"
                     defaultValue={field.pesel}
                   />
 
                   <Radio
                     name={`applicant[${index}].basicIncome`}
-                    labelName={t("LoanMortgage.ApplicantModal.basicIncome")}
+                    labelName={t("LoanMortgage.policyholder.basicIncome")}
                     options={[
                       {
-                        label: t(
-                          "LoanMortgage.ApplicantModal.indefinitePeriod"
-                        ),
+                        label: t("LoanMortgage.policyholder.indefinitePeriod"),
                         value: "indefinitePeriod",
                       },
                       {
-                        label: t("LoanMortgage.ApplicantModal.specificTime"),
+                        label: t("LoanMortgage.policyholder.specificTime"),
                         value: "specificTime",
                       },
                       {
-                        label: t("LoanMortgage.ApplicantModal.mandate"),
+                        label: t("LoanMortgage.policyholder.mandate"),
                         value: "mandate",
                       },
                       {
-                        label: t("LoanMortgage.ApplicantModal.contract"),
+                        label: t("LoanMortgage.policyholder.contract"),
                         value: "contract",
                       },
                       {
-                        label: t(
-                          "LoanMortgage.ApplicantModal.economicActivity"
-                        ),
+                        label: t("LoanMortgage.policyholder.economicActivity"),
                         value: "economicActivity",
                       },
                     ]}
@@ -428,16 +418,14 @@ const Page1 = () => {
                     <>
                       <Radio
                         name={`applicant[${index}].firstContract`}
-                        labelName={t(
-                          "LoanMortgage.ApplicantModal.firstContract"
-                        )}
+                        labelName={t("LoanMortgage.policyholder.firstContract")}
                         options={[
                           {
-                            label: t("LoanMortgage.ApplicantModal.yes"),
+                            label: t("LoanMortgage.policyholder.yes"),
                             value: "yes",
                           },
                           {
-                            label: t("LoanMortgage.ApplicantModal.no"),
+                            label: t("LoanMortgage.policyholder.no"),
                             value: "no",
                           },
                         ]}
@@ -448,15 +436,15 @@ const Page1 = () => {
                           <Radio
                             name={`applicant[${index}].sameEmployer`}
                             labelName={t(
-                              "LoanMortgage.ApplicantModal.sameEmployer"
+                              "LoanMortgage.policyholder.sameEmployer"
                             )}
                             options={[
                               {
-                                label: t("LoanMortgage.ApplicantModal.yes"),
+                                label: t("LoanMortgage.policyholder.yes"),
                                 value: "yes",
                               },
                               {
-                                label: t("LoanMortgage.ApplicantModal.no"),
+                                label: t("LoanMortgage.policyholder.no"),
                                 value: "no",
                               },
                             ]}
@@ -466,15 +454,15 @@ const Page1 = () => {
                           <Radio
                             name={`applicant[${index}].withoutPause`}
                             labelName={t(
-                              "LoanMortgage.ApplicantModal.withoutPause"
+                              "LoanMortgage.policyholder.withoutPause"
                             )}
                             options={[
                               {
-                                label: t("LoanMortgage.ApplicantModal.yes"),
+                                label: t("LoanMortgage.policyholder.yes"),
                                 value: "yes",
                               },
                               {
-                                label: t("LoanMortgage.ApplicantModal.no"),
+                                label: t("LoanMortgage.policyholder.no"),
                                 value: "no",
                               },
                             ]}
@@ -484,17 +472,13 @@ const Page1 = () => {
                       )}
                       <DateInput
                         name={`applicant[${index}].contractFrom`}
-                        labelName={t(
-                          "LoanMortgage.ApplicantModal.contractFrom"
-                        )}
+                        labelName={t("LoanMortgage.policyholder.contractFrom")}
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.contractFrom}
                       />
                       <DateInput
                         name={`applicant[${index}].contractUntil`}
-                        labelName={t(
-                          "LoanMortgage.ApplicantModal.contractUntil"
-                        )}
+                        labelName={t("LoanMortgage.policyholder.contractUntil")}
                         disablePast
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.contractUntil}
@@ -504,9 +488,7 @@ const Page1 = () => {
                   {basicIncome === "mandate" && (
                     <Input
                       name={`applicant[${index}].averageIncome`}
-                      labelName={t(
-                        "LoanMortgage.ApplicantModal.averageIncome12"
-                      )}
+                      labelName={t("LoanMortgage.policyholder.averageIncome12")}
                       type="text"
                       defaultValue={field.averageIncome}
                     />
@@ -514,9 +496,7 @@ const Page1 = () => {
                   {basicIncome === "specificTime" && (
                     <Input
                       name={`applicant[${index}].averageIncome`}
-                      labelName={t(
-                        "LoanMortgage.ApplicantModal.averageIncome6"
-                      )}
+                      labelName={t("LoanMortgage.policyholder.averageIncome6")}
                       type="text"
                       placeholder="value"
                       defaultValue={field.averageIncome}
@@ -526,25 +506,23 @@ const Page1 = () => {
                     <>
                       <Radio
                         name={`applicant[${index}].accountancy`}
-                        labelName={t("LoanMortgage.ApplicantModal.accountancy")}
+                        labelName={t("LoanMortgage.policyholder.accountancy")}
                         options={[
                           {
-                            label: t(
-                              "LoanMortgage.ApplicantModal.generalRules"
-                            ),
+                            label: t("LoanMortgage.policyholder.generalRules"),
                             value: "generalRules",
                           },
                           {
-                            label: t("LoanMortgage.ApplicantModal.lumpSum"),
+                            label: t("LoanMortgage.policyholder.lumpSum"),
                             value: "lumpSum",
                           },
                           {
-                            label: t("LoanMortgage.ApplicantModal.taxCard"),
+                            label: t("LoanMortgage.policyholder.taxCard"),
                             value: "taxCard",
                           },
                           {
                             label: t(
-                              "LoanMortgage.ApplicantModal.fullAccounting"
+                              "LoanMortgage.policyholder.fullAccounting"
                             ),
                             value: "fullAccounting",
                           },
@@ -554,7 +532,7 @@ const Page1 = () => {
                       <Input
                         name={`applicant[${index}].averageIncome`}
                         labelName={t(
-                          "LoanMortgage.ApplicantModal.averageIncome6"
+                          "LoanMortgage.policyholder.averageIncome6"
                         )}
                         type="text"
                         placeholder="value"
@@ -569,9 +547,7 @@ const Page1 = () => {
                   ) && (
                     <Input
                       name={`applicant[${index}].averageIncome`}
-                      labelName={t(
-                        "LoanMortgage.ApplicantModal.averageIncome3"
-                      )}
+                      labelName={t("LoanMortgage.policyholder.averageIncome3")}
                       type="text"
                       placeholder="value"
                       defaultValue={field.averageIncome}
@@ -579,21 +555,21 @@ const Page1 = () => {
                   )}
                   <Input
                     name={`applicant[${index}].currency`}
-                    labelName={t("LoanMortgage.ApplicantModal.currency")}
+                    labelName={t("LoanMortgage.policyholder.currency")}
                     type="text"
                     placeholder="PLN"
                     defaultValue={field.currency}
                   />
                   <Input
                     name={`applicant[${index}].pit`}
-                    labelName={t("LoanMortgage.ApplicantModal.pit")}
+                    labelName={t("LoanMortgage.policyholder.pit")}
                     type="text"
                     placeholder="value"
                     defaultValue={field.pit}
                   />
                   <Input
                     name={`applicant[${index}].bank`}
-                    labelName={t("LoanMortgage.ApplicantModal.bank")}
+                    labelName={t("LoanMortgage.policyholder.bank")}
                     type="text"
                     placeholder="Millenium"
                     defaultValue={field.bank}

@@ -354,7 +354,7 @@
       "paymentTerm": "Termin spłaty",
       "conditions": "Wyrażam zgodę na wykorzystanie moich danych osobowych w celu przygotowania i pomocy w wyborze oferty odnośnie kredytu gotówkowego"
     },
-    "ApplicantModal": {
+    "policyholder": {
       "title": "Dodać wnioskodawcę",
       "citizenship": "Obywatelstwo",
       "otherCitizenship": "Twoje obywatelstwo",
@@ -492,7 +492,7 @@
       "town": "Miasto",
       "conditions": "Wyrażam zgodę na wykorzystanie moich danych osobowych w celu przygotowania i pomocy w wyborze oferty kredytu hipotecznego"
     },
-    "ApplicantModal": {
+    "policyholder": {
       "title": "Dodać wnioskodawcę",
       "citizenship": "Obywatelstwo",
       "otherCitizenship": "Twoje obywatelstwo",
@@ -725,7 +725,8 @@
       "street": "Ulica",
       "houseNumber": "Numer budynku"
     },
-    "ApplicantModal": {
+    "policyholder": {
+      "label": "Wnioskowadwca",
       "addApplicant": "Dodaj kolejną osobę",
       "policyholderIs": "Ubezpieczony",
       "polish": "Polak",
@@ -808,7 +809,7 @@
       "delete": "Usunąć",
       "maxPeople": "Możesz dodać tylko 14 osób"
     },
-    "ApplicantModal": {
+    "policyholder": {
       "title": "Dodać kolejnego wnioskodawcę"
     }
   },

@@ -384,7 +384,7 @@ const Page2 = () => {
                   />
                   <Input
                     name={`income[${index}].bank`}
-                    labelName={t("loanCash.ApplicantModal.bank")}
+                    labelName={t("loanCash.policyholder.bank")}
                     type="text"
                     placeholder="Millenium"
                     defaultValue={field.bank}

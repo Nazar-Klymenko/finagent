@@ -35,7 +35,7 @@ const Summary = () => {
     <PageContainer xs title="Basic.summary">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("LoanMortgage.title")}</Typography>
+      <Typography variant="h4">{t("loanMortgage.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
       <SummaryList
         header={t("Basic.summary")}

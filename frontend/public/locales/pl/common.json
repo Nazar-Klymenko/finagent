@@ -398,7 +398,7 @@
       "bank": "W jakim banku masz konto na które dostajesz wynagrodzenie?",
       "accountancy": "Księgowość"
     },
-    "IncomeModal": {
+    "income": {
       "title": "Dodaj dodatkowy dochód",
       "truckDriver": "Pracujesz jako kierowca transportu międzynarodowego (kategoria C+E)?",
       "indefinitePeriod": "Umowa o pracę na czas nieokreślony",
@@ -426,7 +426,7 @@
       "fullAccounting": "Pełna księgowość"
     }
   },
-  "LoanMortgage": {
+  "loanMortgage": {
     "title": "Kredyt hipoteczny",
 
     "ApplicantBox": {
@@ -536,7 +536,51 @@
       "bank": "Twoje konto bankowe, na które dostajesz wynagrodzenie?",
       "accountancy": "Księgowość"
     },
-    "IncomeModal": {
+    "applicant": {
+      "title": "Dodać wnioskodawcę",
+      "citizenship": "Obywatelstwo",
+      "otherCitizenship": "Twoje obywatelstwo",
+      "indefinitePeriod": "Umowa o pracę na czas nieokreślony",
+      "specificTime": "Umowa o pracę na czas określony",
+      "mandate": "Umowa zlecenia",
+      "contract": "Kontrakt",
+      "economicActivity": "Działalność gospodarcza",
+      "yes": "Tak",
+      "no": "Nie",
+      "polish": "Polskie",
+      "other": "Inne",
+      "permanentCard": "Karta stałego pobytu",
+      "temporaryCard": "Karta czasowego pobytu",
+      "blueCard": "Niebieska karta",
+      "generalRules": "Zasady ogólne",
+      "lumpSum": "Ryczałt",
+      "taxCard": "Karta podatkowa",
+      "fullAccounting": "Pełna księgowość",
+      "residenceDocument": "Rodzaj i data ważności karty pobytu",
+      "validFrom": "Ważny od",
+      "validUntil": "Ważny do",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "birthDate": "Data urodzenia",
+      "phoneNumber": "Telefon",
+      "email": "Email",
+      "pesel": "PESEL",
+      "basicIncome": "Źródło dochodu podstawowego",
+      "firstContract": "To twoja pierwsza umowa?",
+      "sameEmployer": "Ten sam pracodawca?",
+      "withoutPause": "Zmiana kontraktu bez pauzy?",
+      "contractFrom": "Kontrakt od",
+      "contractUntil": "Kontrakt do",
+      "averageIncome": "Średni miesięczny oficjalny dochód netto",
+      "averageIncome12": "Średni miesięczny oficjalny dochód netto za ostatnie 12 (min 6) miesięcy w Polsce(UE)",
+      "averageIncome6": "Średni miesięczny oficjalny dochód netto za ostatnie 6 miesięcy w Polsce(UE)",
+      "averageIncome3": "Średni miesięczny oficjalny dochód netto za ostatnie 3 miesięcy w Polsce(UE)",
+      "currency": "W jakiej walucie dostajesz dochód?",
+      "pit": "Twój udokumentowany dochód netto w Polsce za ostatni rok sprawozdawczy (PIT)",
+      "bank": "Twoje konto bankowe, na które dostajesz wynagrodzenie?",
+      "accountancy": "Księgowość"
+    },
+    "income": {
       "title": "Dodaj dodatkowy dochód",
       "truckDriver": "Pracujesz jako kierowca transportu międzynarodowego (kategoria C+E)?",
       "indefinitePeriod": "Umowa o pracę na czas nieokreślony",
@@ -810,7 +854,25 @@
       "maxPeople": "Możesz dodać tylko 14 osób"
     },
     "policyholder": {
-      "title": "Dodać kolejnego wnioskodawcę"
+      "title": "Dodać kolejnego wnioskodawcę",
+      "label": "Wnioskowadwca",
+      "addApplicant": "Dodaj kolejną osobę",
+      "policyholderIs": "Ubezpieczony",
+      "polish": "Polak",
+      "foreigner": "Obcokrajowiec",
+      "documentAdded": "Numer dokumentu",
+      "documentType": "Typ dokumentu",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "birthDate": "Data urodzenia",
+      "pesel": "PESEL",
+      "passport": "Numer paszportu",
+      "citizenship": "Obywatelstwo",
+      "country": "Kraj",
+      "city": "Miasto",
+      "postIndex": "Indeks pocztowy",
+      "street": "Ulica",
+      "houseNumber": "Numer budynku"
     }
   },
   "insuranceTransport": {

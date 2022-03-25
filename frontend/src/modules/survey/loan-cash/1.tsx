@@ -280,7 +280,7 @@ const Page1 = () => {
                   handleClose(index);
                 }}
                 formId="applicant-form"
-                title={t("loanCash.IncomeModal.title")}
+                title={t("loanCash.income.title")}
                 description=""
               >
                 <Form

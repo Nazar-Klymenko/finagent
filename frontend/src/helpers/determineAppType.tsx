@@ -40,9 +40,9 @@ export function determineAppType(type: string, object: {}) {
   delete appDataCopy.user;
   delete appDataCopy.admin_attachments;
   delete appDataCopy.user_attachments;
-  delete appDataCopy?.incomeData;
+  // delete appDataCopy?.incomeData;
   // delete appDataCopy?.insuredData?.policyholder;
-  delete appDataCopy?.applicantData?.applicant;
+  // delete appDataCopy?.applicantData?.applicant;
 
   switch (type) {
     case "insuranceBorder": {

@@ -110,7 +110,7 @@ const ArrayList = ({ subitem, applicationType, subidx }: any): JSX.Element => {
       <ArrayListRow onClick={toggleOpen}>
         {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         <Typography>
-          {t(`${applicationType}.${subitem[0]}.label`) + ` ${subidx}`}
+          {t(`${applicationType}.${subitem[0]}.label`) + ` ${subidx + 1}`}
         </Typography>
       </ArrayListRow>
       {isOpen &&

@@ -82,40 +82,40 @@ const Page3 = () => {
   };
 
   return (
-    <PageContainer xs title="LoanMortgage.title">
+    <PageContainer xs title="loanMortgage.title">
       <QuestState data={appData} />
 
-      <Typography variant="h4">{t("LoanMortgage.title")}</Typography>
+      <Typography variant="h4">{t("loanMortgage.title")}</Typography>
       <ProgressBar
         maxSteps={3}
         currentStep={3}
-        label={t("LoanMortgage.Page3.subtitle")}
+        label={t("loanMortgage.Page3.subtitle")}
       />
-      <Typography variant="h6">{t("LoanMortgage.Page3.subtitle")}</Typography>
+      <Typography variant="h6">{t("loanMortgage.Page3.subtitle")}</Typography>
       <Form methods={methods} id="form" onSubmit={handleSubmit(formSubmit)}>
-        <Typography>{t("LoanMortgage.HouseholdBox.title")}</Typography>
+        <Typography>{t("loanMortgage.HouseholdBox.title")}</Typography>
 
         <Input
           name="custody"
-          labelName={t("LoanMortgage.Page3.custody")}
+          labelName={t("loanMortgage.Page3.custody")}
           type="text"
           placeholder="number"
         />
         <Input
           name="monthlyLoanPayments"
-          labelName={t("LoanMortgage.Page3.monthlyLoanPayments")}
+          labelName={t("loanMortgage.Page3.monthlyLoanPayments")}
           type="text"
           placeholder="number"
         />
         <Input
           name="cardLimits"
-          labelName={t("LoanMortgage.Page3.cardLimits")}
+          labelName={t("loanMortgage.Page3.cardLimits")}
           type="text"
           placeholder="number"
         />
         <Select
           name="loanPurpose"
-          labelName={t("LoanMortgage.Page3.loanPurpose")}
+          labelName={t("loanMortgage.Page3.loanPurpose")}
           defaultValue={appDataValid.loanPurpose}
           placeholder="Choose purpose:"
           options={loanPurposeOptions(t)}
@@ -123,65 +123,65 @@ const Page3 = () => {
 
         <Select
           name="rialto"
-          labelName={t("LoanMortgage.Page3.rialto")}
+          labelName={t("loanMortgage.Page3.rialto")}
           defaultValue={appDataValid.rialto}
           placeholder="Choose rialto:"
           options={rialtoOptions(t)}
         />
         <Input
           name="propertyValue"
-          labelName={t("LoanMortgage.Page3.propertyValue")}
+          labelName={t("loanMortgage.Page3.propertyValue")}
           type="text"
         />
         <Input
           name="renovationValue"
-          labelName={t("LoanMortgage.Page3.renovationValue")}
+          labelName={t("loanMortgage.Page3.renovationValue")}
           type="text"
         />
         <Input
           name="contributionAmount"
-          labelName={t("LoanMortgage.Page3.contributionAmount")}
+          labelName={t("loanMortgage.Page3.contributionAmount")}
           type="text"
         />
         <Select
           name="paymentTerm"
-          labelName={t("LoanMortgage.Page3.paymentTerm")}
+          labelName={t("loanMortgage.Page3.paymentTerm")}
           defaultValue={appDataValid.paymentTerm}
           placeholder="Choose term:"
           options={paymentTermOptions}
         />
         <Select
           name="repayment"
-          labelName={t("LoanMortgage.Page3.repayment")}
+          labelName={t("loanMortgage.Page3.repayment")}
           defaultValue={appDataValid.repayment}
           placeholder="Yes / No"
           options={repaymentOptions(t)}
         />
         <Select
           name="monthlyPayments"
-          labelName={t("LoanMortgage.Page3.monthlyPayments")}
+          labelName={t("loanMortgage.Page3.monthlyPayments")}
           defaultValue={appDataValid.monthlyPayments}
           placeholder="Equal / Decreasing"
           options={monthlyPaymentsOptions(t)}
         />
         <Typography variant="h6" gutterBottom>
-          {t("LoanMortgage.Page3.propertyLocation")}
+          {t("loanMortgage.Page3.propertyLocation")}
         </Typography>
         <Input
           name="voivodeship"
-          labelName={t("LoanMortgage.Page3.voivodeship")}
+          labelName={t("loanMortgage.Page3.voivodeship")}
           type="text"
           placeholder="Malopolskie"
         />
         <Input
           name="town"
-          labelName={t("LoanMortgage.Page3.town")}
+          labelName={t("loanMortgage.Page3.town")}
           type="text"
           placeholder="Krakow"
         />
         <Checkbox
           name="conditions"
-          labelName={t("LoanMortgage.Page3.conditions")}
+          labelName={t("loanMortgage.Page3.conditions")}
         />
       </Form>
 

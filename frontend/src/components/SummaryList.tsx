@@ -54,7 +54,7 @@ const SummaryList = ({
             return (
               <React.Fragment key={idx}>
                 <Category>
-                  <Typography variant="h6" sx={{ px: "0.5rem" }}>
+                  <Typography variant="h6" sx={{ p: "0.5rem" }}>
                     {t(`${applicationType}.Page${idx + 1}.subtitle`)}
                   </Typography>
 
@@ -116,12 +116,12 @@ const ArrayList = ({ subitem, applicationType, subidx }: any): JSX.Element => {
       {isOpen &&
         subitem[1].map((nitem: any, nidx: number) =>
           Object.entries(nitem).map((pls: any, idxx) => (
-            <Item key={nidx}>
+            <ArrayItem key={nidx}>
               <div className="value">
                 {t(`${applicationType}.${subitem[0]}.${pls[0]}`)}
               </div>
               <div className="name">{t(pls[1]?.label) || t(pls[1])}</div>
-            </Item>
+            </ArrayItem>
           ))
         )}
     </>
@@ -136,7 +136,6 @@ const SummaryListStyled = styled("div")<Styled>`
   overflow: hidden;
   margin: 16px 0;
   border: 1px solid ${({ theme }) => theme.palette.grey[300]};
-  /* box-shadow: 0px 0px 14px 2px rgba(0, 0, 0, 0.082); */
 `;
 const Header = styled("div")<Styled>`
   cursor: pointer;
@@ -147,9 +146,6 @@ const Header = styled("div")<Styled>`
   padding: 8px 1.5rem;
   display: flex;
   align-items: center;
-`;
-const ArrowWrap = styled("div")<Styled>`
-  padding-right: 1.5rem;
 `;
 
 const List = styled("ul", {
@@ -194,7 +190,14 @@ const Item = styled("div")`
 `;
 
 const ArrayListRow = styled("div")`
+  cursor: pointer;
   display: flex;
   padding: 8px 12px;
   background: ${({ theme }) => theme.palette.grey[300]};
+`;
+
+const ArrayItem = styled(Item)`
+  padding-left: 16px;
+  .name {
+  }
 `;

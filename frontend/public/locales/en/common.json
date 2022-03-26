@@ -355,6 +355,16 @@
       "paymentTerm": "Payment time frame",
       "conditions": "I agree to the use of my personal data for the preparation and assistance in choosing an offer for cash loan"
     },
+    "Page3": {
+      "subtitle": "Additional information",
+      "remainingPayOff": "Amounts remaining to pay off loans and in which banks (if any), and the amount of monthly payments on them",
+      "lastApplications": "Were there any applications to the bank for obtaining a loan (refusal if any) in the previous 6-12 months?",
+      "custody": "Number of people in family without income",
+      "loanPurpose": "Purpose for obtaining the loan",
+      "loanAmount": "Desired loan amount",
+      "paymentTerm": "Payment time frame",
+      "conditions": "I agree to the use of my personal data for the preparation and assistance in choosing an offer for cash loan"
+    },
     "policyholder": {
       "title": "Add another person",
       "citizenship": "Citizenship",
@@ -400,6 +410,7 @@
       "accountancy": "Accountancy type"
     },
     "applicant": {
+      "label": "Policyholder",
       "title": "Add another person",
       "citizenship": "Citizenship",
       "otherCitizenship": "Your citizenship",

@@ -1,11 +1,12 @@
 {
   "name": "@finagent/backend",
+  "private": true,
   "version": "0.0.0",
   "description": "",
   "main": "src/index.ts",
   "scripts": {
     "build": "npx tsc -r dotenv/config",
-    "dev": "nodemon -e ts,js --exec ts-node -r dotenv/config -r tsconfig-paths/register ./src/index.ts",
+    "dev": "nodemon -L -e ts,js --exec ts-node -r dotenv/config -r tsconfig-paths/register ./src/index.ts",
     "start": "node -r dotenv/config ./dist/index"
   },
   "keywords": [],

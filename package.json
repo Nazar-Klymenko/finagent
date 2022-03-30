@@ -14,5 +14,10 @@
   },
   "devDependencies": {
     "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "frontend": "yarn workspace @finagent/frontend dev",
+    "backend": "yarn workspace @finagent/backend dev",
+    "admin": "yarn workspace @finagent/admin dev"
   }
 }

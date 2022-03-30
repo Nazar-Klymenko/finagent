@@ -1,17 +1,24 @@
 FROM node:alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY package.json .
 COPY yarn.lock .
 
+WORKDIR /app/backend
+
+COPY ./backend/package.json ./
+
+WORKDIR /app
+
 RUN yarn install --network-timeout 1000000
 
-COPY . .
+COPY ./backend/ ./backend/
 
 EXPOSE 5000
 
-CMD [ "yarn", "dev" ]
+CMD ["yarn", "backend"]
+
 
 # FROM node:alpine
 

@@ -8,7 +8,6 @@ const formatDates = (obj: any) => {
         .match(/\d\d\d\d-\d\d-\d\d\w\d\d:\d\d:\d\d\.\d\d\d\w/g) !== null
     ) {
       prop[1] = format(new Date(prop[1]), "P");
-      console.log(prop[1]);
     }
   });
 };

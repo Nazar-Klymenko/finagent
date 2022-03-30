@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { connectAuthEmulator, getAuth } from "firebase/auth";
 import { getStorage, ref } from "firebase/storage";
 
 const firebaseConfig = {
@@ -14,5 +14,7 @@ const firebaseConfig = {
 const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(firebase);
 const storage = getStorage(firebase);
+
+connectAuthEmulator(auth, "http://localhost:9099", { disableWarnings: true });
 
 export { firebase, auth, storage };

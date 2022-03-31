@@ -196,7 +196,9 @@ const Page1 = () => {
         currentStep={1}
         label={t("loanCash.Page1.subtitle")}
       />
-      <Typography variant="h6">{t("loanCash.Page1.subtitle")}</Typography>
+      <Typography variant="h6" gutterBottom>
+        {t("loanCash.Page1.subtitle")}
+      </Typography>
       <Form
         methods={methods1}
         id="form"

@@ -20,5 +20,6 @@ export const vehicleTypeOptions = (t) => {
     t("insuranceTransport.SelectVehicle.personal"),
     t("insuranceTransport.SelectVehicle.truck"),
     t("insuranceTransport.SelectVehicle.bus"),
+    t("insuranceTransport.SelectVehicle.otherVehicle"),
   ];
 };

@@ -164,7 +164,6 @@
     "title": "Create a new account",
     "Individual": {
       "fullName": "Full name",
-      "surname": "Surname",
       "email": "Email",
       "phone": "Phone",
       "password": "Password"
@@ -247,7 +246,8 @@
     "updatedAt": "Updated at",
     "Summary": {
       "title": "Application summary",
-      "subtitle": "Info about the application"
+      "subtitle": "Info about the application",
+      "summary": "Summary"
     },
     "Status": {
       "title": "Application status",
@@ -388,7 +388,7 @@
       "residenceDocument": "Type and validity of your residence card",
       "validFrom": "Valid from",
       "validUntil": "Valid until",
-      "name": "Name",
+      "name": "Full name",
       "surname": "Surname",
       "birthDate": "Date of birth",
       "phoneNumber": "Phone number",
@@ -433,7 +433,7 @@
       "residenceDocument": "Type and validity of your residence card",
       "validFrom": "Valid from",
       "validUntil": "Valid until",
-      "name": "Name",
+      "name": "Full name",
       "surname": "Surname",
       "birthDate": "Date of birth",
       "phoneNumber": "Phone number",
@@ -454,7 +454,6 @@
       "bank": "In which bank do you have an account?",
       "accountancy": "Accountancy type"
     },
-
     "income": {
       "title": "Add additional income",
       "truckDriver": "You work as an international transport driver (category C+E)",
@@ -571,7 +570,7 @@
       "residenceDocument": "Type and validity of your residence card",
       "validFrom": "Valid from",
       "validUntil": "Valid until",
-      "name": "Name",
+      "name": "Full name",
       "surname": "Surname",
       "birthDate": "Date of birth",
       "phoneNumber": "Phone number",
@@ -615,7 +614,7 @@
       "residenceDocument": "Type and validity of your residence card",
       "validFrom": "Valid from",
       "validUntil": "Valid until",
-      "name": "Name",
+      "name": "Full name",
       "surname": "Surname",
       "birthDate": "Date of birth",
       "phoneNumber": "Phone number",
@@ -692,7 +691,7 @@
       "natural": "Natural person",
       "legal": "Legal person",
       "entrepreneurial": "Entrepreneurial activity",
-      "name": "Name",
+      "name": "Full name",
       "surname": "Surname",
       "birthDate": "Date of birth",
       "pesel": "PESEL",
@@ -760,12 +759,12 @@
       "firmName": "Firm name",
       "nip": "NIP",
       "regon": "REGON",
-      "name": "Name",
       "surname": "Surname",
       "pesel": "PESEL",
       "phone": "Phone",
       "email": "Email",
-      "peopleNumber": "Number of people living in the apartment / house"
+      "peopleNumber": "Number of people living in the apartment / house",
+      "name": "Full name"
     },
     "SelectSecurity": {
       "supervision": "Permanent physical supervision",
@@ -809,7 +808,6 @@
       "foreigner": "Foreigner",
       "documentAdded": "Document number",
       "documentType": "Document type",
-      "name": "Name",
       "surname": "Surname",
       "birthDate": "Date of birth",
       "pesel": "PESEL",
@@ -819,7 +817,8 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number"
+      "houseNumber": "House number",
+      "name": "Full name"
     },
     "policyholder": {
       "label": "Policyholder",
@@ -829,7 +828,6 @@
       "foreigner": "Foreigner",
       "documentAdded": "Document number",
       "documentType": "Document type",
-      "name": "Name",
       "surname": "Surname",
       "birthDate": "Date of birth",
       "pesel": "PESEL",
@@ -839,7 +837,8 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number"
+      "houseNumber": "House number",
+      "name": "Full name"
     }
   },
   "insuranceSpecialist": {
@@ -855,7 +854,6 @@
       "insuranceStart": "Insurance period starts",
       "insuranceEnd": "Insurance period ends",
       "policyholderIs": "Policyholder is",
-      "name": "Name",
       "companyName": "Firm name",
       "surname": "Surname",
       "nip": "NIP",
@@ -868,7 +866,8 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number"
+      "houseNumber": "House number",
+      "name": "Full name"
     },
     "Page2": {
       "subtitle": "Add Applicant",
@@ -882,7 +881,6 @@
       "insuranceStart": "Insurance period starts",
       "insuranceEnd": "Insurance period ends",
       "policyholderIs": "Policyholder is",
-      "name": "Name",
       "companyName": "Firm name",
       "surname": "Surname",
       "nip": "NIP",
@@ -895,7 +893,8 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number"
+      "houseNumber": "House number",
+      "name": "Full name"
     },
     "ApplicantBox": {
       "title": "Add Applicant",
@@ -913,7 +912,6 @@
       "foreigner": "Foreigner",
       "documentAdded": "Document number",
       "documentType": "Document type",
-      "name": "Name",
       "surname": "Surname",
       "birthDate": "Date of birth",
       "pesel": "PESEL",
@@ -923,7 +921,8 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number"
+      "houseNumber": "House number",
+      "name": "Full name"
     }
   },
   "insuranceTransport": {
@@ -1017,8 +1016,7 @@
       "ac": "AC",
       "greenCard": "Green card",
       "assistance": "Assistance",
-      "fullName": "Full name",
-      "name": "Name",
+      "name": "Full name",
       "surname": "Surname",
       "phoneNumber": "Phone number",
       "postIndex": "Post index",
@@ -1108,7 +1106,6 @@
     },
     "Page3": {
       "subtitle": "Personal Info",
-      "name": "Name",
       "vehicleType": "Vehicle type",
       "surname": "Surname",
       "phoneNumber": "Phone number",
@@ -1117,7 +1114,8 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number"
+      "houseNumber": "House number",
+      "name": "Full name"
     }
   },
   "SnackBar": {

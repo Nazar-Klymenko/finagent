@@ -30,6 +30,7 @@ type FormTypes = {
     {
       policyholderIs: string;
       name: string;
+      companyName: string;
       birthDate: any;
       nip: string;
       pesel: string;
@@ -66,6 +67,7 @@ const Page2 = () => {
         {
           policyholderIs: appDataValid?.[0]?.policyholderIs,
           name: appDataValid?.[0]?.name,
+          companyName: appDataValid?.[0]?.companyName,
           nip: appDataValid?.[0]?.nip,
           birthDate: appDataValid?.[0]?.birthDate,
           pesel: appDataValid?.[0]?.pesel,
@@ -200,16 +202,21 @@ const Page2 = () => {
                     ]}
                     defaultValue={field.policyholderIs || ""}
                   />
-                  <Input
-                    name={`policyholder[${index}].name`}
-                    labelName={t(
-                      `insuranceSpecialist.Page1.${
-                        policyholderIs === "individual" ? "name" : "companyName"
-                      }`
-                    )}
-                    autoComplete="name"
-                    defaultValue={field.name || ""}
-                  />
+
+                  {policyholderIs === "individual" ? (
+                    <Input
+                      name={`policyholder[${index}].name`}
+                      labelName={t(`insuranceSpecialist.Page1.name`)}
+                      autoComplete="name"
+                      defaultValue={field.name || ""}
+                    />
+                  ) : (
+                    <Input
+                      name={`policyholder[${index}].companyName`}
+                      labelName={t(`insuranceSpecialist.Page1.companyName`)}
+                      defaultValue={field.companyName || ""}
+                    />
+                  )}
 
                   {policyholderIs !== "individual" && (
                     <Input

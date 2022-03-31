@@ -15,6 +15,6 @@ const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(firebase);
 const storage = getStorage(firebase);
 
-connectAuthEmulator(auth, "http://localhost:9099", { disableWarnings: true });
+// connectAuthEmulator(auth, "http://localhost:9099", { disableWarnings: true });
 
 export { firebase, auth, storage };

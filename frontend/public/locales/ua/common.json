@@ -318,7 +318,6 @@
   },
   "loanCash": {
     "title": "Кредит готівкою",
-    "buttonConfirm": "Підтвердити",
     "ApplicantBox": {
       "title": "Додати заявника",
       "addApplicant1": "Додати заявника 1",
@@ -389,7 +388,7 @@
       "residenceDocument": "Тип та термін дії вашої картки проживання",
       "validFrom": "Документ дійсний від",
       "validUntil": "Документ дійсний до",
-      "name": "Ім'я",
+      "name": "Ім'я та призвище",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
       "phoneNumber": "Телефон",
@@ -434,7 +433,7 @@
       "residenceDocument": "Тип та термін дії вашої картки проживання",
       "validFrom": "Документ дійсний від",
       "validUntil": "Документ дійсний до",
-      "name": "Ім'я",
+      "name": "Ім'я та призвище",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
       "phoneNumber": "Телефон",
@@ -485,7 +484,6 @@
   },
   "loanMortgage": {
     "title": "Іпотечна позика",
-    "buttonConfirm": "Підтвердити",
     "ApplicantBox": {
       "title": "Додати заявника",
       "addApplicant1": "Додати заявника 1",
@@ -572,7 +570,7 @@
       "residenceDocument": "Тип та термін дії вашої картки проживання",
       "validFrom": "Документ дійсний від",
       "validUntil": "Документ дійсний до",
-      "name": "Ім'я",
+      "name": "Ім'я та призвище",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
       "phoneNumber": "Номер телефону",
@@ -616,7 +614,7 @@
       "residenceDocument": "Тип та термін дії вашої картки проживання",
       "validFrom": "Документ дійсний від",
       "validUntil": "Документ дійсний до",
-      "name": "Ім'я",
+      "name": "Ім'я та призвище",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
       "phoneNumber": "Номер телефону",
@@ -672,8 +670,6 @@
   },
   "insuranceTravel": {
     "title": "Туристична страховка",
-    "subtitle": "Туристична страховка",
-    "buttonConfirm": "Підтвердити",
     "Page1": {
       "title": "Інформація про страхування",
       "insuranceStart": "Початок страхування",
@@ -685,7 +681,8 @@
       "group": "Групове",
       "peopleAmount": "Кількість осіб",
       "destination": "Країна подорожі",
-      "purpose": "Мета подорожі"
+      "purpose": "Мета подорожі",
+      "subtitle": "Інформація про страхування"
     },
     "Page2": {
       "title": "Особиста інформація",
@@ -694,7 +691,7 @@
       "natural": "Фізична особа",
       "legal": "Юридична особа",
       "entrepreneurial": "Фізична особа, що здійснює підприємницьку діяльність",
-      "name": "Ім'я",
+      "name": "Ім'я та призвище",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
       "pesel": "PESEL",
@@ -711,7 +708,6 @@
   },
   "insuranceEstate": {
     "title": "Страхування нерухомості",
-    "buttonConfirm": "Підтвердити",
     "Page1": {
       "title": "Інформація про нерухомість",
       "subtitle": "Інформація про нерухомість",
@@ -763,12 +759,12 @@
       "firmName": "Назва фірми",
       "nip": "NIP",
       "regon": "REGON",
-      "name": "Ім'я",
       "surname": "Прізвище",
       "pesel": "PESEL",
       "phone": "Номер телефону",
       "email": "Email",
-      "peopleNumber": "Кількість осіб які проживають в квартирі/домі"
+      "peopleNumber": "Кількість осіб які проживають в квартирі/домі",
+      "name": "Ім'я та призвище"
     },
     "SelectSecurity": {
       "supervision": "Постійне фізичне спостереження",
@@ -791,8 +787,7 @@
       "maxPeople": "Ви можете додати лише 9 осіб"
     },
     "Error": {
-      "noApplicant": "Ви повинні додати мінімум одного заявника",
-      "noHousehold": "Ви повинні додати мінімум одного заявника"
+      "noApplicant": "Ви повинні додати мінімум одного заявника"
     },
     "Page1": {
       "subtitle": "Інформація про страхування",
@@ -813,7 +808,6 @@
       "foreigner": "Іноземець",
       "documentAdded": "Номер документу",
       "documentType": "Тип документу",
-      "name": "Ім'я",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
       "pesel": "PESEL",
@@ -823,7 +817,8 @@
       "city": "Місто",
       "postIndex": "Поштовий індекс",
       "street": "Вулиця",
-      "houseNumber": "Номер дому"
+      "houseNumber": "Номер дому",
+      "name": "Ім'я та призвище"
     },
     "policyholder": {
       "label": "Застрахований",
@@ -833,7 +828,6 @@
       "foreigner": "Іноземець",
       "documentAdded": "Номер документу",
       "documentType": "Тип документу",
-      "name": "Ім'я",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
       "pesel": "PESEL",
@@ -843,7 +837,8 @@
       "city": "Місто",
       "postIndex": "Поштовий індекс",
       "street": "Вулиця",
-      "houseNumber": "Номер дому"
+      "houseNumber": "Номер дому",
+      "name": "Ім'я та призвище"
     }
   },
   "insuranceSpecialist": {
@@ -859,7 +854,6 @@
       "insuranceStart": "Страховий період починається",
       "insuranceEnd": "Страховий період закінчюется",
       "policyholderIs": "Страхувальник",
-      "name": "Ім'я",
       "companyName": "Назва фірми",
       "surname": "Прізвище",
       "nip": "NIP",
@@ -872,7 +866,8 @@
       "city": "Місто",
       "postIndex": "Поштовий індекс",
       "street": "Вулиця",
-      "houseNumber": "Номер дому"
+      "houseNumber": "Номер дому",
+      "name": "Ім'я та призвище"
     },
     "Page2": {
       "subtitle": "Додати заявника",
@@ -886,7 +881,6 @@
       "insuranceStart": "Страховий період починається",
       "insuranceEnd": "Страховий період закінчюется",
       "policyholderIs": "Страхувальник",
-      "name": "Ім'я",
       "companyName": "Назва фірми",
       "surname": "Прізвище",
       "nip": "NIP",
@@ -899,7 +893,8 @@
       "city": "Місто",
       "postIndex": "Поштовий індекс",
       "street": "Вулиця",
-      "houseNumber": "Номер дому"
+      "houseNumber": "Номер дому",
+      "name": "Ім'я та призвище"
     },
     "ApplicantBox": {
       "title": "Додати заявника",
@@ -917,7 +912,6 @@
       "foreigner": "Іноземець",
       "documentAdded": "Номер документу",
       "documentType": "Тип документу",
-      "name": "Ім'я",
       "surname": "Прізвище",
       "birthDate": "Дата народження",
       "pesel": "PESEL",
@@ -927,12 +921,12 @@
       "city": "Місто",
       "postIndex": "Поштовий індекс",
       "street": "Вулиця",
-      "houseNumber": "Номер дому"
+      "houseNumber": "Номер дому",
+      "name": "Ім'я та призвище"
     }
   },
   "insuranceTransport": {
     "title": "Транспортне страхування",
-    "buttonConfirm": "Підтвердити",
     "SelectProfession": {
       "unemployed": "Безробітний",
       "retired": "Пенсіонер",
@@ -1022,9 +1016,8 @@
       "ac": "AC",
       "greenCard": "Зелена карта",
       "assistance": "Допомога на дорозі (Assistance)",
-      "name": "Ім'я",
+      "name": "Ім'я і Прізвище",
       "surname": "Прізвище",
-      "fullName": "Ім'я і Прізвище",
       "phoneNumber": "Номер телефону",
       "postIndex": "Поштовий індекс",
       "city": "Місто",
@@ -1055,10 +1048,7 @@
     "Page3": {
       "subtitle": "Додаткова інформація",
       "vehicleType": "Тип транспортного засобу",
-
       "enginePower": "Потужність двигуна (кВт)",
-      "vehicleType": "Тип транспортного засобу",
-
       "engineVolume": "Об'єм двигуна (см3)",
       "fuelType": "Тип палива",
       "vehicleRegDate": "Дата першої реєстрації транспортного засобу",
@@ -1116,7 +1106,6 @@
     },
     "Page3": {
       "subtitle": "Особиста інформація",
-      "name": "Ім'я",
       "vehicleType": "Тип транспортного засобу",
       "surname": "Прізвище",
       "phoneNumber": "Номер телефону",
@@ -1125,7 +1114,8 @@
       "city": "Місто",
       "postIndex": "Поштовий індекс",
       "street": "Вулиця",
-      "houseNumber": "Номер будинку"
+      "houseNumber": "Номер будинку",
+      "name": "Ім'я та призвище"
     }
   },
   "SnackBar": {

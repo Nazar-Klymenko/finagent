@@ -1,4 +1,8 @@
 {
+  "404": {
+    "title": "Podana strona nie istnieje",
+    "link": "powrót do Pulpitu"
+  },
   "Pages": {
     "dashboard": "Pulpit",
     "services": "Usługi",
@@ -8,7 +12,6 @@
     "signUp": "Rejestracja",
     "settings": "Ustawienia"
   },
-
   "Form": {
     "optional": "opcjonalnie",
     "Error": {
@@ -313,10 +316,8 @@
       "errorInvalidPassword": "Nieprawidłowe hasło"
     }
   },
-
   "loanCash": {
     "title": "Kredyt gotówkowy",
-
     "ApplicantBox": {
       "title": "Dodać wnioskodawcę",
       "addApplicant1": "Dodać wnioskodawcę 1",
@@ -387,7 +388,7 @@
       "residenceDocument": "Rodzaj i data ważności karty pobytu",
       "validFrom": "Ważny od",
       "validUntil": "Ważny do",
-      "name": "Imię",
+      "name": "Imię ta nazwisko",
       "surname": "Nazwisko",
       "birthDate": "Data urodzenia",
       "phoneNumber": "Telefon",
@@ -432,7 +433,7 @@
       "residenceDocument": "Rodzaj i data ważności karty pobytu",
       "validFrom": "Ważny od",
       "validUntil": "Ważny do",
-      "name": "Imię",
+      "name": "Imię ta nazwisko",
       "surname": "Nazwisko",
       "birthDate": "Data urodzenia",
       "phoneNumber": "Telefon",
@@ -454,7 +455,6 @@
       "accountancy": "Księgowość"
     },
     "income": {
-      "label": "Dochód",
       "title": "Dodaj dodatkowy dochód",
       "truckDriver": "Pracujesz jako kierowca transportu międzynarodowego (kategoria C+E)?",
       "indefinitePeriod": "Umowa o pracę na czas nieokreślony",
@@ -484,7 +484,6 @@
   },
   "loanMortgage": {
     "title": "Kredyt hipoteczny",
-
     "ApplicantBox": {
       "title": "Dodać wnioskodawcę",
       "addApplicant1": "Dodać wnioskodawcę 1",
@@ -571,7 +570,7 @@
       "residenceDocument": "Rodzaj i data ważności karty pobytu",
       "validFrom": "Ważny od",
       "validUntil": "Ważny do",
-      "name": "Imię",
+      "name": "Imię ta nazwisko",
       "surname": "Nazwisko",
       "birthDate": "Data urodzenia",
       "phoneNumber": "Telefon",
@@ -615,7 +614,7 @@
       "residenceDocument": "Rodzaj i data ważności karty pobytu",
       "validFrom": "Ważny od",
       "validUntil": "Ważny do",
-      "name": "Imię",
+      "name": "Imię ta nazwisko",
       "surname": "Nazwisko",
       "birthDate": "Data urodzenia",
       "phoneNumber": "Telefon",
@@ -671,8 +670,6 @@
   },
   "insuranceTravel": {
     "title": "Ubezpieczenie turystyczne",
-
-    "buttonBack": "Powrót",
     "Page1": {
       "title": "Informacje o ubezpieczeniu",
       "subtitle": "Informacje o ubezpieczeniu",
@@ -694,7 +691,7 @@
       "natural": "Osoba fizyczna",
       "legal": "Osoba prawna",
       "entrepreneurial": "Działalność gospodarcza",
-      "name": "Imię",
+      "name": "Imię ta nazwisko",
       "surname": "Nazwisko",
       "birthDate": "Data urodzenia",
       "pesel": "PESEL",
@@ -711,7 +708,6 @@
   },
   "insuranceEstate": {
     "title": "Ubezpieczenie nieruchomości",
-
     "buttonBack": "Powrót",
     "Page1": {
       "title": "Informacja o nieruchomości",
@@ -764,12 +760,12 @@
       "firmName": "Nazwa firmy",
       "nip": "NIP",
       "regon": "REGON",
-      "name": "Imię",
       "surname": "Nazwisko",
       "pesel": "PESEL",
       "phone": "Telefon",
       "email": "Email",
-      "peopleNumber": "Liczba osób zamieszkujących w  mieszkaniu/dom"
+      "peopleNumber": "Liczba osób zamieszkujących w  mieszkaniu/dom",
+      "name": "Imię i nazwisko"
     },
     "SelectSecurity": {
       "supervision": "Stały dozór fizyczny",
@@ -783,7 +779,6 @@
   },
   "insuranceHealth": {
     "title": "Ubezpieczenie zdrowotne",
-
     "ApplicantBox": {
       "title": "Dodać wnioskodawcę",
       "addApplicant": "Dodać wnioskodawcę",
@@ -813,7 +808,6 @@
       "foreigner": "Obcokrajowiec",
       "documentAdded": "Numer dokumentu",
       "documentType": "Typ dokumentu",
-      "name": "Imię",
       "surname": "Nazwisko",
       "birthDate": "Data urodzenia",
       "pesel": "PESEL",
@@ -823,7 +817,8 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer budynku"
+      "houseNumber": "Numer budynku",
+      "name": "Imię ta nazwisko"
     },
     "policyholder": {
       "label": "Wnioskowadwca",
@@ -833,7 +828,6 @@
       "foreigner": "Obcokrajowiec",
       "documentAdded": "Numer dokumentu",
       "documentType": "Typ dokumentu",
-      "name": "Imię",
       "surname": "Nazwisko",
       "birthDate": "Data urodzenia",
       "pesel": "PESEL",
@@ -843,12 +837,12 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer budynku"
+      "houseNumber": "Numer budynku",
+      "name": "Imię ta nazwisko"
     }
   },
   "insuranceSpecialist": {
     "title": "Dostęp do specjalistów",
-
     "Error": {
       "noApplicant": "Musisz podać minimum jednego wnioskodawcę"
     },
@@ -860,7 +854,6 @@
       "insuranceStart": "Początek ubezpieczenia",
       "insuranceEnd": "Koniec ubezpieczenia",
       "policyholderIs": "Ubezpieczony",
-      "name": "Imię",
       "companyName": "Nazwa firmy",
       "surname": "Nazwisko",
       "nip": "NIP",
@@ -873,7 +866,8 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer domu"
+      "houseNumber": "Numer domu",
+      "name": "Imię ta nazwisko"
     },
     "Page2": {
       "subtitle": "Dodać wnioskodawcę",
@@ -887,7 +881,6 @@
       "insuranceStart": "Początek ubezpieczenia",
       "insuranceEnd": "Koniec ubezpieczenia",
       "policyholderIs": "Ubezpieczony",
-      "name": "Imię",
       "companyName": "Nazwa firmy",
       "surname": "Nazwisko",
       "nip": "NIP",
@@ -900,7 +893,8 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer domu"
+      "houseNumber": "Numer domu",
+      "name": "Imię ta nazwisko"
     },
     "ApplicantBox": {
       "title": "Dodać wnioskodawcę",
@@ -918,7 +912,6 @@
       "foreigner": "Obcokrajowiec",
       "documentAdded": "Numer dokumentu",
       "documentType": "Typ dokumentu",
-      "name": "Imię",
       "surname": "Nazwisko",
       "birthDate": "Data urodzenia",
       "pesel": "PESEL",
@@ -928,12 +921,12 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer budynku"
+      "houseNumber": "Numer budynku",
+      "name": "Imię ta nazwisko"
     }
   },
   "insuranceTransport": {
     "title": "Ubezpieczenie pojazdu",
-
     "SelectProfession": {
       "unemployed": "Bezrobotny",
       "retired": "Emeryt / rencista",
@@ -1023,8 +1016,7 @@
       "ac": "AC",
       "greenCard": "Zielona karta",
       "assistance": "Assistance",
-      "fullName": "Imię i Nazwisko",
-      "name": "Imię",
+      "name": "Imię i Nazwisko",
       "surname": "Nazwisko",
       "phoneNumber": "Telefon",
       "postIndex": "Indeks pocztowy",
@@ -1056,7 +1048,6 @@
     "Page3": {
       "subtitle": "Dodatkowe informacje",
       "vehicleType": "Typ pojazdu",
-
       "enginePower": "Moc silnika(kW)",
       "engineVolume": "Objętość silnika(ccm)",
       "fuelType": "Typ paliwa",
@@ -1094,7 +1085,6 @@
   },
   "insuranceBorder": {
     "title": "Ubezpieczenie graniczne",
-
     "Page1": {
       "subtitle": "Informacje o ubezpieczeniu",
       "documentType": "Typ dokumentu",
@@ -1116,7 +1106,6 @@
     },
     "Page3": {
       "subtitle": "Dane osobiste",
-      "name": "Imię",
       "vehicleType": "Typ pojazdu",
       "surname": "Nazwisko",
       "phoneNumber": "Telefon",
@@ -1125,7 +1114,8 @@
       "city": "Misato",
       "postIndex": "Kod pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer budynku"
+      "houseNumber": "Numer budynku",
+      "name": "Imię i nazwisko"
     }
   },
   "SnackBar": {
@@ -1140,9 +1130,5 @@
     "loginError": "Błąd podczas logowania",
     "emailWasResent": "E-mail został wysłany ponownie",
     "errorResendingEmail": "Błąd ponownego wysyłania e-maila"
-  },
-  "404": {
-    "title": "Podana strona nie istnieje",
-    "link": "powrót do Pulpitu"
   }
 }

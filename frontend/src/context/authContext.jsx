@@ -124,6 +124,7 @@ export const AuthContextProvider = ({ children }) => {
               provider: "",
             }
       );
+      localStorage.setItem("onSignIn", "false");
     });
     return () => {
       unsubscribe();

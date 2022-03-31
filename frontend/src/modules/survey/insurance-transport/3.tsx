@@ -32,6 +32,7 @@ import { pageThreeSchema } from "./helpers/schema";
 
 type FormTypes = {
   vehicleType: string;
+  vehicleTypeOther: string;
   enginePower: string;
   engineVolume: string;
   fuelType: string;
@@ -55,6 +56,7 @@ const Page3 = () => {
   const methods = useForm<FormTypes>({
       defaultValues: {
         vehicleType: appDataValid.vehicleType,
+        vehicleTypeOther: appDataValid.vehicleTypeOther,
         enginePower: appDataValid.enginePower,
         engineVolume: appDataValid.engineVolume,
         fuelType: appDataValid.fuelType,
@@ -98,7 +100,7 @@ const Page3 = () => {
       </Typography>
 
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
-        <Autocomplete
+        <Select
           name="vehicleType"
           defaultValue={appDataValid.vehicleType}
           labelName={t("insuranceTransport.Page2.vehicleType")}
@@ -107,8 +109,16 @@ const Page3 = () => {
             t("insuranceTransport.SelectVehicle.personal"),
             t("insuranceTransport.SelectVehicle.truck"),
             t("insuranceTransport.SelectVehicle.bus"),
+            t("insuranceTransport.SelectVehicle.otherVehicle"),
           ]}
         />
+        {vehicleType === t("insuranceTransport.SelectVehicle.otherVehicle") && (
+          <Input
+            name="vehicleTypeOther"
+            labelName={t("insuranceTransport.Page2.vehicleType")}
+            type="text"
+          />
+        )}
         <Select
           name="fuelType"
           labelName={t("insuranceTransport.Page3.fuelType")}

@@ -31,16 +31,20 @@ type FormTypes = {
   ac: boolean;
   greenCard: boolean;
   assistance: boolean;
+  policyholderIs: string;
   name: string;
+  companyName: string;
+  documentAddedType: string;
+  documentAdded: string;
+  nip: string;
   phoneNumber: string;
   postIndex: string;
   city: string;
   voivodeship: string;
-  street: string;
   houseNumber: string;
-  documentAddedType: string;
-  documentAdded: string;
+  street: string;
   isAppropLicence: boolean;
+  birthDate: Date | null;
   drivingLicenceDate: Date | null;
   profession: string;
   maritalStatus: string;
@@ -59,7 +63,9 @@ const Page1 = () => {
         ac: appDataValid.ac,
         greenCard: appDataValid.greenCard,
         assistance: appDataValid.assistance,
+        policyholderIs: appDataValid.policyholderIs,
         name: appDataValid.name,
+        companyName: appDataValid.companyName,
         phoneNumber: appDataValid.phoneNumber,
         postIndex: appDataValid.postIndex,
         city: appDataValid.city,
@@ -68,6 +74,8 @@ const Page1 = () => {
         houseNumber: appDataValid.houseNumber,
         documentAddedType: appDataValid.documentAddedType,
         documentAdded: appDataValid.documentAdded,
+        nip: appDataValid.nip,
+        birthDate: appDataValid.birthDate,
         isAppropLicence: appDataValid.isAppropLicence,
         drivingLicenceDate: appDataValid.drivingLicenceDate,
         profession: appDataValid.profession,
@@ -89,6 +97,8 @@ const Page1 = () => {
     setCurrentPage(2);
     router.push("./2");
   });
+
+  const policyholderIs = watch("policyholderIs", appDataValid.policyholderIs);
 
   return (
     <PageContainer xs title="insuranceTransport.title">
@@ -119,12 +129,83 @@ const Page1 = () => {
           name="assistance"
         />
 
-        <Input
-          name="name"
-          labelName={t("insuranceTransport.Page1.fullName")}
-          type="text"
-          autoComplete="name"
+        <Radio
+          name="policyholderIs"
+          labelName={t("insuranceSpecialist.Page1.policyholderIs")}
+          options={[
+            {
+              label: t("insuranceSpecialist.Page1.individual"),
+              value: "individual",
+            },
+            {
+              label: t("insuranceSpecialist.Page1.firm"),
+              value: "firm",
+            },
+            {
+              label: t("insuranceSpecialist.Page1.legal"),
+              value: "legal",
+            },
+          ]}
         />
+
+        {policyholderIs === "individual" ? (
+          <Input
+            name="name"
+            labelName={t("insuranceSpecialist.Page1.name")}
+            autoComplete="name"
+          />
+        ) : (
+          <Input
+            name="companyName"
+            labelName={t("insuranceSpecialist.Page1.companyName")}
+          />
+        )}
+
+        {policyholderIs === "individual" ? (
+          <>
+            <Radio
+              name="documentAddedType"
+              labelName={t("insuranceTransport.Page1.documentAddedType")}
+              options={[
+                {
+                  label: t("insuranceTransport.Page1.pesel"),
+                  value: "pesel",
+                },
+                {
+                  label: t("insuranceTransport.Page1.regon"),
+                  value: "regon",
+                },
+                {
+                  label: t("insuranceTransport.Page1.passport"),
+                  value: "passport",
+                },
+              ]}
+            />
+
+            <Input
+              name="documentAdded"
+              labelName={t(`insuranceTransport.Page1.${documentTypeName}`)}
+            />
+          </>
+        ) : (
+          <Input
+            name="nip"
+            labelName={t("insuranceSpecialist.Page1.nip")}
+            type="text"
+          />
+        )}
+
+        {policyholderIs === "individual" && (
+          <DateInput
+            name="birthDate"
+            labelName={t("insuranceSpecialist.Page1.birthDate")}
+            disableFuture
+            placeholder={t("Form.Placeholder.dateFull")}
+            view={["year", "month", "day"]}
+            openTo="year"
+          />
+        )}
+
         <MuiPhoneInput
           name="phoneNumber"
           labelName={t("insuranceTransport.Page1.phoneNumber")}
@@ -153,75 +234,55 @@ const Page1 = () => {
           />
         </FormBuilder.InputsWrap>
 
-        <Radio
-          name="documentAddedType"
-          labelName={t("insuranceTransport.Page1.documentAddedType")}
-          options={[
-            {
-              label: t("insuranceTransport.Page1.pesel"),
-              value: "pesel",
-            },
-            {
-              label: t("insuranceTransport.Page1.regon"),
-              value: "regon",
-            },
-            {
-              label: t("insuranceTransport.Page1.passport"),
-              value: "passport",
-            },
-          ]}
-        />
-
-        <Input
-          name="documentAdded"
-          labelName={t(`insuranceTransport.Page1.${documentTypeName}`)}
-        />
-
-        <Autocomplete
-          name="profession"
-          defaultValue={appDataValid.profession}
-          labelName={t("insuranceTransport.Page1.profession")}
-          options={[
-            t("insuranceTransport.SelectProfession.unemployed"),
-            t("insuranceTransport.SelectProfession.retired"),
-            t("insuranceTransport.SelectProfession.housewife"),
-            t("insuranceTransport.SelectProfession.engineer"),
-            t("insuranceTransport.SelectProfession.management"),
-            t("insuranceTransport.SelectProfession.driver"),
-            t("insuranceTransport.SelectProfession.doctor"),
-            t("insuranceTransport.SelectProfession.teacher"),
-            t("insuranceTransport.SelectProfession.operator"),
-            t("insuranceTransport.SelectProfession.administration"),
-            t("insuranceTransport.SelectProfession.office"),
-            t("insuranceTransport.SelectProfession.it"),
-            t("insuranceTransport.SelectProfession.customer"),
-            t("insuranceTransport.SelectProfession.sales"),
-            t("insuranceTransport.SelectProfession.physical"),
-            t("insuranceTransport.SelectProfession.poczta"),
-            t("insuranceTransport.SelectProfession.education"),
-            t("insuranceTransport.SelectProfession.technical"),
-            t("insuranceTransport.SelectProfession.lawyer"),
-            t("insuranceTransport.SelectProfession.entrepreneur"),
-            t("insuranceTransport.SelectProfession.comercial"),
-            t("insuranceTransport.SelectProfession.farmer"),
-            t("insuranceTransport.SelectProfession.uniformed"),
-            t("insuranceTransport.SelectProfession.athlete"),
-            t("insuranceTransport.SelectProfession.student"),
-            t("insuranceTransport.SelectProfession.soldier"),
-            t("insuranceTransport.SelectProfession.other"),
-          ]}
-        />
-        <Select
-          name="maritalStatus"
-          labelName={t("insuranceTransport.Page1.maritalStatus")}
-          options={[
-            t("insuranceTransport.SelectMarital.married"),
-            t("insuranceTransport.SelectMarital.single"),
-            t("insuranceTransport.SelectMarital.divorced"),
-            t("insuranceTransport.SelectMarital.widow"),
-            t("insuranceTransport.SelectMarital.separation"),
-          ]}
-        />
+        {policyholderIs === "individual" && (
+          <>
+            <Autocomplete
+              name="profession"
+              defaultValue={appDataValid.profession}
+              labelName={t("insuranceTransport.Page1.profession")}
+              options={[
+                t("insuranceTransport.SelectProfession.unemployed"),
+                t("insuranceTransport.SelectProfession.retired"),
+                t("insuranceTransport.SelectProfession.housewife"),
+                t("insuranceTransport.SelectProfession.engineer"),
+                t("insuranceTransport.SelectProfession.management"),
+                t("insuranceTransport.SelectProfession.driver"),
+                t("insuranceTransport.SelectProfession.doctor"),
+                t("insuranceTransport.SelectProfession.teacher"),
+                t("insuranceTransport.SelectProfession.operator"),
+                t("insuranceTransport.SelectProfession.administration"),
+                t("insuranceTransport.SelectProfession.office"),
+                t("insuranceTransport.SelectProfession.it"),
+                t("insuranceTransport.SelectProfession.customer"),
+                t("insuranceTransport.SelectProfession.sales"),
+                t("insuranceTransport.SelectProfession.physical"),
+                t("insuranceTransport.SelectProfession.poczta"),
+                t("insuranceTransport.SelectProfession.education"),
+                t("insuranceTransport.SelectProfession.technical"),
+                t("insuranceTransport.SelectProfession.lawyer"),
+                t("insuranceTransport.SelectProfession.entrepreneur"),
+                t("insuranceTransport.SelectProfession.comercial"),
+                t("insuranceTransport.SelectProfession.farmer"),
+                t("insuranceTransport.SelectProfession.uniformed"),
+                t("insuranceTransport.SelectProfession.athlete"),
+                t("insuranceTransport.SelectProfession.student"),
+                t("insuranceTransport.SelectProfession.soldier"),
+                t("insuranceTransport.SelectProfession.other"),
+              ]}
+            />
+            <Select
+              name="maritalStatus"
+              labelName={t("insuranceTransport.Page1.maritalStatus")}
+              options={[
+                t("insuranceTransport.SelectMarital.married"),
+                t("insuranceTransport.SelectMarital.single"),
+                t("insuranceTransport.SelectMarital.divorced"),
+                t("insuranceTransport.SelectMarital.widow"),
+                t("insuranceTransport.SelectMarital.separation"),
+              ]}
+            />
+          </>
+        )}
 
         <Checkbox
           name="isAppropLicence"

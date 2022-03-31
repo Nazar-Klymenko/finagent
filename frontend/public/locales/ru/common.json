@@ -388,7 +388,7 @@
       "residenceDocument": "Тип и срок действия Вашей карты пребывания",
       "validFrom": "Документ важен от",
       "validUntil": "Документ важен до",
-      "name": "Имя",
+      "name": "Имя и фамилия",
       "surname": "Фамилия",
       "birthDate": "Дата рождения",
       "phoneNumber": "Номер телефона",
@@ -433,7 +433,7 @@
       "residenceDocument": "Тип и срок действия Вашей карты пребывания",
       "validFrom": "Документ важен от",
       "validUntil": "Документ важен до",
-      "name": "Имя",
+      "name": "Имя и фамилия",
       "surname": "Фамилия",
       "birthDate": "Дата рождения",
       "phoneNumber": "Номер телефона",
@@ -570,7 +570,7 @@
       "residenceDocument": "Тип и срок действия Вашей карты пребывания",
       "validFrom": "Документ важен от",
       "validUntil": "Документ важен до",
-      "name": "Имя",
+      "name": "Имя и фамилия",
       "surname": "Фамилия",
       "birthDate": "Дата рождения",
       "phoneNumber": "Номер телефона",
@@ -614,7 +614,7 @@
       "residenceDocument": "Тип и срок действия Вашей карты пребывания",
       "validFrom": "Документ важен от",
       "validUntil": "Документ важен до",
-      "name": "Имя",
+      "name": "Имя и фамилия",
       "surname": "Фамилия",
       "birthDate": "Дата рождения",
       "phoneNumber": "Номер телефона",
@@ -691,7 +691,7 @@
       "natural": "Физическое лицо",
       "legal": "Юридическое лицо",
       "entrepreneurial": "Физическое лицо, осуществляющее юридическую деятельность",
-      "name": "Имя",
+      "name": "Имя и фамилия",
       "surname": "Фамилия",
       "birthDate": "Дата рождения",
       "pesel": "PESEL",
@@ -759,12 +759,12 @@
       "firmName": "Название фирмы",
       "nip": "NIP",
       "regon": "REGON",
-      "name": "Имя",
       "surname": "Фамилия",
       "pesel": "PESEL",
       "phone": "Телефон",
       "email": "Email",
-      "peopleNumber": "Количество человек, проживающих в квартире / доме"
+      "peopleNumber": "Количество человек, проживающих в квартире / доме",
+      "name": "Имя и фамилия"
     },
     "SelectSecurity": {
       "supervision": "Постоянное физическое наблюдение",
@@ -808,7 +808,6 @@
       "foreigner": "Иностранец",
       "documentAdded": "Номер документа",
       "documentType": "Тип документа",
-      "name": "Имя",
       "surname": "Фамилия",
       "birthDate": "Дата рождения",
       "pesel": "PESEL",
@@ -818,18 +817,17 @@
       "city": "Город",
       "postIndex": "Почтовый индекс",
       "street": "Улица",
-      "houseNumber": "Номер дома"
+      "houseNumber": "Номер дома",
+      "name": "Имя и фамилия"
     },
     "policyholder": {
       "label": "Застрахованный",
       "addApplicant": "Добавить дополнительного застрахованного",
-      "subtitle": "Информация о застрахованном",
       "policyholderIs": "Застрахованный",
       "polish": "Поляк",
       "foreigner": "Иностранец",
       "documentAdded": "Номер документа",
       "documentType": "Тип документа",
-      "name": "Имя",
       "surname": "Фамилия",
       "birthDate": "Дата рождения",
       "passport": "Номер паспорта",
@@ -838,7 +836,9 @@
       "city": "Город",
       "postIndex": "Почтовый индекс",
       "street": "Улица",
-      "houseNumber": "Номер дома"
+      "houseNumber": "Номер дома",
+      "pesel": "PESEL",
+      "name": "Имя и фамилия"
     }
   },
   "insuranceSpecialist": {
@@ -854,7 +854,6 @@
       "insuranceStart": "Страхование начинается",
       "insuranceEnd": "Страхование заканчивается",
       "policyholderIs": "Страхователь",
-      "name": "Имя",
       "companyName": "Название фирмы",
       "surname": "Фамилия",
       "nip": "NIP",
@@ -867,7 +866,8 @@
       "city": "Город",
       "postIndex": "Почтовый индекс",
       "street": "Улица",
-      "houseNumber": "Номер дома"
+      "houseNumber": "Номер дома",
+      "name": "Имя и фамилия"
     },
     "Page2": {
       "subtitle": "Добавить заявителя",
@@ -881,7 +881,6 @@
       "insuranceStart": "Страхование начинается",
       "insuranceEnd": "Страхование заканчивается",
       "policyholderIs": "Страхователь",
-      "name": "Имя",
       "companyName": "Название фирмы",
       "surname": "Фамилия",
       "nip": "NIP",
@@ -894,7 +893,8 @@
       "city": "Город",
       "postIndex": "Почтовый индекс",
       "street": "Улица",
-      "houseNumber": "Номер дома"
+      "houseNumber": "Номер дома",
+      "name": "Имя и фамилия"
     },
     "ApplicantBox": {
       "title": "Добавить заявителя",
@@ -907,13 +907,11 @@
       "title": "Добавить следующего заявителя",
       "label": "Застрахованный",
       "addApplicant": "Добавить дополнительного застрахованного",
-      "subtitle": "Информация о застрахованном",
       "policyholderIs": "Застрахованный",
       "polish": "Поляк",
       "foreigner": "Иностранец",
       "documentAdded": "Номер документа",
       "documentType": "Тип документа",
-      "name": "Имя",
       "surname": "Фамилия",
       "birthDate": "Дата рождения",
       "passport": "Номер паспорта",
@@ -922,7 +920,9 @@
       "city": "Город",
       "postIndex": "Почтовый индекс",
       "street": "Улица",
-      "houseNumber": "Номер дома"
+      "houseNumber": "Номер дома",
+      "pesel": "PESEL",
+      "name": "Имя и фамилия"
     }
   },
   "insuranceTransport": {
@@ -1016,8 +1016,7 @@
       "ac": "AC",
       "greenCard": "Зелёная карта",
       "assistance": "Помощь на дороге (Assistance)",
-      "fullName": "Имя и Фамилия",
-      "name": "Имя",
+      "name": "Имя и Фамилия",
       "surname": "Фамилия",
       "phoneNumber": "Телефон",
       "postIndex": "Почтовый индекс",
@@ -1049,11 +1048,9 @@
     "Page3": {
       "subtitle": "Дополнительная информация",
       "vehicleType": "Тип транспорта",
-
       "enginePower": "Мощность двигателя(квт)",
       "engineVolume": "Объем двигателя(см3)",
       "fuelType": "Тип топлива",
-      "vehicleType": "Тип транспорта",
       "vehicleRegDate": "Первая дата регистрации автомобиля",
       "techExamDate": "Дата окончания действия техосмотра",
       "purchaseYear": "Год покупки автомобиля",
@@ -1109,7 +1106,6 @@
     },
     "Page3": {
       "subtitle": "Личная информация",
-      "name": "Имя",
       "surname": "Фамилия",
       "vehicleType": "Тип транспорта",
       "phoneNumber": "Номер телефона",
@@ -1118,7 +1114,8 @@
       "city": "Город",
       "postIndex": "Почтовый индекс",
       "street": "Улица",
-      "houseNumber": "Номер дома"
+      "houseNumber": "Номер дома",
+      "name": "Имя и фамилия"
     }
   },
   "SnackBar": {

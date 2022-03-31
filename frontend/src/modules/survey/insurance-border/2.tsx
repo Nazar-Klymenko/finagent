@@ -24,6 +24,7 @@ import { pageTwoSchema } from "./helpers/schema";
 
 type FormTypes = {
   vehicleType: string;
+  vehicleTypeOther: string;
   brand: string;
   model: string;
   regNumber: string;
@@ -42,6 +43,7 @@ const Page2 = () => {
   const methods = useForm<FormTypes>({
     defaultValues: {
       vehicleType: appDataValid.vehicleType,
+      vehicleTypeOther: appDataValid.vehicleTypeOther,
       brand: appDataValid.brand,
       model: appDataValid.model,
       regNumber: appDataValid.regNumber,
@@ -57,14 +59,14 @@ const Page2 = () => {
     resolver: yupResolver(pageTwoSchema),
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, watch } = methods;
 
   const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceBorder", "vehicleData");
     setCurrentPage(3);
     router.push("./3");
   });
-
+  const vehicleType = watch("vehicleType");
   return (
     <PageContainer xs title="insuranceBorder.title">
       <QuestState data={appData} />
@@ -84,6 +86,14 @@ const Page2 = () => {
           labelName={t("insuranceBorder.Page2.vehicleType")}
           options={vehicleTypeOptions(t)}
         />
+        {vehicleType === t("insuranceTransport.SelectVehicle.otherVehicle") && (
+          <Input
+            name="vehicleTypeOther"
+            labelName={t("insuranceTransport.Page2.vehicleType")}
+            type="text"
+          />
+        )}
+
         <Input name="brand" labelName={t("insuranceBorder.Page2.brand")} />
         <Input name="model" labelName={t("insuranceBorder.Page2.model")} />
         <Input

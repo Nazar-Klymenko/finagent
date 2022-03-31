@@ -14,6 +14,7 @@ const InsuranceBorderSchema = new Schema(
     },
     vehicleData: {
       vehicleType: String,
+      vehicleTypeOther: String,
       brand: String,
       model: String,
       regNumber: String,

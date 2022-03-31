@@ -7,10 +7,21 @@ export const pageOneSchema = yup
     ac: yup.boolean(),
     greenCard: yup.boolean(),
     assistance: yup.boolean(),
+    policyholderIs: yup.string(),
     name: yup
       .string()
       .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
-      .required("Form.Error.blank"),
+      .when("policyholderIs", {
+        is: "individual",
+        then: yup.string().required("Form.Error.blank"),
+      }),
+    companyName: yup
+      .string()
+      .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
+      .when("policyholderIs", {
+        is: (val: any) => val !== "individual",
+        then: yup.string().required("Form.Error.blank"),
+      }),
     phoneNumber: yup.string().required("Form.Error.blank"),
     postIndex: yup.string().required("Form.Error.blank"),
     city: yup.string().required("Form.Error.blank"),
@@ -18,7 +29,10 @@ export const pageOneSchema = yup
     street: yup.string().required("Form.Error.blank"),
     houseNumber: yup.string().required("Form.Error.blank"),
     documentAddedType: yup.string(),
-    documentAdded: yup.string().required("Form.Error.blank"),
+    documentAdded: yup.string().when("policyholderIs", {
+      is: "individual",
+      then: yup.string().required("Form.Error.blank"),
+    }),
     isAppropLicence: yup.boolean(),
     drivingLicenceDate: yup
       .date()
@@ -31,8 +45,17 @@ export const pageOneSchema = yup
           .nullable()
           .typeError("Form.Error.invalidDate"),
       }),
-    profession: yup.string().nullable().required("Form.Error.blank"),
-    maritalStatus: yup.string().required("Form.Error.blank"),
+    profession: yup
+      .string()
+      .nullable()
+      .when("policyholderIs", {
+        is: "individual",
+        then: yup.string().required("Form.Error.blank"),
+      }),
+    maritalStatus: yup.string().when("policyholderIs", {
+      is: "individual",
+      then: yup.string().required("Form.Error.blank"),
+    }),
   })
   .test("atleastOneCheckbox", "", checkCheckboxes);
 

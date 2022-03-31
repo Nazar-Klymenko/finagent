@@ -8,6 +8,7 @@ const HealthSchema = new Schema(
       insuranceStart: String,
       insuranceEnd: String,
       name: String,
+      companyName: String,
       surname: String,
       nip: String,
       birthDate: String,
@@ -26,6 +27,7 @@ const HealthSchema = new Schema(
         {
           policyholderIs: String,
           name: String,
+          companyName: String,
           nip: String,
           birthDate: Date,
           pesel: String,

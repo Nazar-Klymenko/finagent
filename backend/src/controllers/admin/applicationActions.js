@@ -1,10 +1,7 @@
 import Application from "models/application";
 import createError from "http-errors";
 import { asyncHandler } from "helpers/asyncHandler";
-import { attachImagesAdmin } from "helpers/attachDocument";
 
-import addHistoryRecord from "utils/history";
-import sendNotification from "utils/notification";
 import { pagination } from "helpers/pagination";
 
 export const getAllApplications = asyncHandler(async (req, res) => {
@@ -100,13 +97,6 @@ export const assignApplication = asyncHandler(async (req, res) => {
   application.employee_id = req.currentUser.uid;
   application.save();
 
-  addHistoryRecord(
-    req.currentUser.uid,
-    "assign",
-    "assigned an application",
-    req.params.id
-  );
-
   res.status(200).send({ message: "application assigned successfully" });
 });
 
@@ -121,13 +111,6 @@ export const returnApplication = asyncHandler(async (req, res) => {
 
   application.employee_id = null;
   application.save();
-
-  addHistoryRecord(
-    req.currentUser.uid,
-    "return",
-    "returned an application",
-    req.params.id
-  );
 
   res.status(200).send({ message: "application assigned successfully" });
 });
@@ -144,21 +127,6 @@ export const updateFeedback = asyncHandler(async (req, res) => {
       "-_id -__v -password -isActive -createdAt -updatedAt -phone"
     );
 
-  addHistoryRecord(
-    req.currentUser.uid,
-    "updated feedback",
-    `updated feedback: ${req.body.feedback}`,
-    req.params.id
-  );
-
-  sendNotification(
-    application.user_id,
-    `New feedback on your ${application.type} application`,
-    `New feedback on your ${application.type} application`,
-    application.type,
-    application._id
-  );
-
   res.status(200).send({ application });
 });
 
@@ -166,21 +134,6 @@ export const updateStatus = asyncHandler(async (req, res) => {
   const application = await Application.findByIdAndUpdate(req.params.id, {
     status: req.body.status,
   });
-
-  addHistoryRecord(
-    req.currentUser.uid,
-    "updated status",
-    `updated status to ${req.body.status}`,
-    req.params.id
-  );
-
-  sendNotification(
-    application.user_id,
-    `New status on your ${application.type} application`,
-    `New status on your ${application.type} application`,
-    application.type,
-    application._id
-  );
 
   res.status(200).send({ message: "application updated successfully" });
 });
@@ -190,13 +143,6 @@ export const putApplicationInArchive = asyncHandler(async (req, res) => {
 
   application.archived = true;
   application.save();
-
-  addHistoryRecord(
-    req.currentUser.uid,
-    "archiving application",
-    "process successful",
-    req.params.id
-  );
 
   res.status(200).send({ message: "application archived successfully" });
 });
@@ -213,8 +159,6 @@ export const attachDocumentsAdmin = asyncHandler(async (req, res) => {
   } else {
     files = req.files.files;
   }
-
-  await attachImagesAdmin(id, files);
 
   res.status(200).send({
     message: "Documents attached successfully",

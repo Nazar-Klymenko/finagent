@@ -1,9 +1,9 @@
 import express, { Router } from "express";
 const router: Router = express.Router();
 
-import { signUp, signUpFacebook, verifyEmail } from "controllers/frontend/auth";
+import { signUp, signUpFacebook } from "controllers/frontend/auth";
 
-import { verifyAccessTokenFirebase, isEmailVerified } from "middleware/auth";
+import { verifyAccessTokenFirebase } from "middleware/auth";
 import {
   deleteUser,
   getSettings,
@@ -36,55 +36,54 @@ import {
 
 router.route("/auth/signup").post(signUp);
 router.route("/auth/signup_facebook").post(signUpFacebook);
-router.route("/auth/verify_email").post(verifyEmail);
 
 router.route("/submit/ticket").post(ticketSubmit);
 
 router
   .route("/settings")
-  .get(verifyAccessTokenFirebase, isEmailVerified, getSettings)
-  .put(verifyAccessTokenFirebase, isEmailVerified, updateSettings)
-  .delete(verifyAccessTokenFirebase, isEmailVerified, deleteUser);
+  .get(verifyAccessTokenFirebase, getSettings)
+  .put(verifyAccessTokenFirebase, updateSettings)
+  .delete(verifyAccessTokenFirebase, deleteUser);
 
 router
   .route("/notifications/")
-  .get(verifyAccessTokenFirebase, isEmailVerified, getAllNotifications);
+  .get(verifyAccessTokenFirebase, getAllNotifications);
 router
   .route("/notifications/:id")
-  .get(verifyAccessTokenFirebase, isEmailVerified, getSpecificNotification);
+  .get(verifyAccessTokenFirebase, getSpecificNotification);
 
 router
   .route("/submit/insraunce-border")
-  .post(verifyAccessTokenFirebase, isEmailVerified, insuranceBorderSubmit);
+  .post(verifyAccessTokenFirebase, insuranceBorderSubmit);
 router
   .route("/submit/insraunce-estate")
-  .post(verifyAccessTokenFirebase, isEmailVerified, insuranceEstateSubmit);
+  .post(verifyAccessTokenFirebase, insuranceEstateSubmit);
 router
   .route("/submit/insraunce-health")
-  .post(verifyAccessTokenFirebase, isEmailVerified, insuranceHealthSubmit);
+  .post(verifyAccessTokenFirebase, insuranceHealthSubmit);
 router
   .route("/submit/insraunce-specialist")
-  .post(verifyAccessTokenFirebase, isEmailVerified, insuranceSpecialistSubmit);
+  .post(verifyAccessTokenFirebase, insuranceSpecialistSubmit);
 router
   .route("/submit/insraunce-transport")
-  .post(verifyAccessTokenFirebase, isEmailVerified, insuranceTransportSubmit);
+  .post(verifyAccessTokenFirebase, insuranceTransportSubmit);
 router
   .route("/submit/insraunce-travel")
-  .post(verifyAccessTokenFirebase, isEmailVerified, insuranceTravelSubmit);
+  .post(verifyAccessTokenFirebase, insuranceTravelSubmit);
 router
   .route("/submit/loan-cash")
-  .post(verifyAccessTokenFirebase, isEmailVerified, loanCashSubmit);
+  .post(verifyAccessTokenFirebase, loanCashSubmit);
 router
   .route("/submit/loan-mortgage")
-  .post(verifyAccessTokenFirebase, isEmailVerified, loanMortgageSubmit);
+  .post(verifyAccessTokenFirebase, loanMortgageSubmit);
 
 router
   .route("/applications/specific/:id")
-  .get(verifyAccessTokenFirebase, isEmailVerified, getSpecificApplication)
-  .put(verifyAccessTokenFirebase, isEmailVerified, archiveApplication);
+  .get(verifyAccessTokenFirebase, getSpecificApplication)
+  .put(verifyAccessTokenFirebase, archiveApplication);
 
 router
   .route("/applications/:category")
-  .get(verifyAccessTokenFirebase, isEmailVerified, getAllAplications);
+  .get(verifyAccessTokenFirebase, getAllAplications);
 
 export default router;

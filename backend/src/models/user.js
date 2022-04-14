@@ -10,10 +10,13 @@ const UserSchema = new Schema(
     isActive: Boolean,
     provider: String,
     language: String,
+    isAdmin: { type: Boolean, default: false },
+    isSupervisor: { type: Boolean, default: false },
+    isApproved: { type: Boolean, default: false },
+    signupSecret: String,
   },
   {
     timestamps: true,
-    discriminatorKey: "userType",
   }
 );
 

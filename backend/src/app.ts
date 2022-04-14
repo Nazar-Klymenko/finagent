@@ -73,9 +73,9 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/user/", frontendRoutes);
 
-// app.use("/api/v1/admin/", adminRoute);
-// app.use("/api/v1/admin/auth/", adminAuthRoute);
-// app.use("/api/v1/admin/application/", adminApplicationRoute);
+app.use("/api/v1/admin/", adminRoute);
+app.use("/api/v1/admin/auth/", adminAuthRoute);
+app.use("/api/v1/admin/application/", adminApplicationRoute);
 
 const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
   res.status(error.status || 500).send({

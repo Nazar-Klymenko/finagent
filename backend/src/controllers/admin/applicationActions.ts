@@ -19,7 +19,35 @@ export const getAllAplications = asyncHandler(
 
     let applications = await Application.find(
       filters,
-      "_id user_id user status type category createdAt updatedAt"
+      "_id user_id employee_id user status type category createdAt updatedAt"
+    )
+      .populate("user")
+      .populate("employee")
+      .sort({ createdAt: -1 })
+      .limit(limit)
+      .skip(skip);
+
+    let maximumPages = await Application.find(filters).countDocuments();
+    maximumPages = Math.ceil(maximumPages / +size);
+
+    let data = { applications, maximumPages };
+    res.send(data);
+  }
+);
+export const getAllAplicationsForAdmin = asyncHandler(
+  async (req: Request, res: Response) => {
+    let { page = "1" as string, size = "4" as string } = req.query as any;
+
+    const { skip, limit } = pagination(page, size);
+
+    let filters = {
+      employee_id: req.currentUser.uid,
+      archived: false,
+    };
+
+    let applications = await Application.find(
+      filters,
+      "_id user_id employee_id user status type category createdAt updatedAt"
     )
       .populate("user")
       .populate("employee")
@@ -53,39 +81,51 @@ export const assignApplication = asyncHandler(
   }
 );
 
-// export const getSpecificApplication = asyncHandler(
-//   async (req: Request, res: Response) => {
-//     const data = await Application.findOne({
-//       _id: req.params.id,
-//     }).populate("user");
+export const updateStatus = asyncHandler(
+  async (req: Request, res: Response) => {
+    const application = await Application.findByIdAndUpdate(req.params.id, {
+      status: req.body.status,
+    });
 
-//     if (!data) {
-//       throw new createError.Forbidden();
-//     } else if (data.length === 0) {
-//       throw new createError.Forbidden();
-//     }
-//     res.send(data);
-//   }
-// );
-// export const getAllApplicationsForUser = asyncHandler(
-//   async (req: Request, res: Response) => {
-//     const ApplicationList = await Application.find({
-//       user_id: req.params.id,
-//     })
-//       .populate("user", "-_id -__v -password -isActive -createdAt -updatedAt")
-//       .populate(
-//         "employee",
-//         "-__v -password -isActive -createdAt -updatedAt -phone"
-//       );
+    res.status(200).send({ message: "application updated successfully" });
+  }
+);
 
-//     if (!ApplicationList) {
-//       res.send({ message: "You don't have any applications" });
-//     }
-//     res.send({
-//       ApplicationList,
-//     });
-//   }
-// );
+export const getSpecificApplication = asyncHandler(
+  async (req: Request, res: Response) => {
+    const data = await Application.findOne({
+      _id: req.params.id,
+    })
+      .populate("user")
+      .populate("employee");
+
+    if (!data) {
+      throw new createError.Forbidden();
+    } else if (data.length === 0) {
+      throw new createError.Forbidden();
+    }
+    res.send(data);
+  }
+);
+export const getAllApplicationsForUser = asyncHandler(
+  async (req: Request, res: Response) => {
+    const ApplicationList = await Application.find({
+      user_id: req.params.id,
+    })
+      .populate("user", "-_id -__v -password -isActive -createdAt -updatedAt")
+      .populate(
+        "employee",
+        "-__v -password -isActive -createdAt -updatedAt -phone"
+      );
+
+    if (!ApplicationList) {
+      res.send({ message: "You don't have any applications" });
+    }
+    res.send({
+      ApplicationList,
+    });
+  }
+);
 
 // export const assignApplication = asyncHandler(
 //   async (req: Request, res: Response) => {

@@ -1,61 +1,75 @@
-import React, { forwardRef } from "react";
+import React from "react";
+
+import { useTranslation } from "next-i18next";
+
+import { TextField, TextFieldProps, Typography } from "@mui/material";
+import _ from "lodash";
+import { Controller, useFormContext } from "react-hook-form";
 
 import {
   InputContainer,
   InputErrorMessage,
-  InputStyled,
   Label,
-} from "./SharedStyles";
+  Optional,
+} from "./LocalStyles";
 
-interface Props {
-  name: string;
-  labelName: string;
-  error: boolean;
-  helperText: string;
-  type: string;
-  placeholder: string;
-  defaultValue?: any;
-  autofocus: boolean;
-  autoComplete?: string;
-  ref: React.Ref<HTMLInputElement>;
+interface Props extends InputProps {
+  placeholder?: string;
+  type?: string;
+  optional?: boolean;
+  autoFocus?: boolean;
+  defaultValue?: string | undefined;
+  width?: "s" | "m" | "l";
 }
 
-const Input: React.FC<Props> = forwardRef(
-  (
-    {
-      name,
-      labelName,
-      error,
-      helperText,
-      type,
-      placeholder,
-      defaultValue,
-      autofocus,
-      autoComplete,
-    },
-    ref
-  ) => {
-    return (
-      <InputContainer error={error}>
-        <Label htmlFor={name}>{labelName}</Label>
-        <InputStyled
-          ref={ref}
-          name={name}
-          id={name}
-          type={type}
-          defaultValue={defaultValue}
-          placeholder={placeholder}
-          autoFocus={autofocus}
-          autoComplete={autoComplete}
-        />
+const Input = ({
+  name,
+  labelName,
+  autoComplete,
+  optional,
+  defaultValue,
+  width = "l",
+  ...other
+}: Props): JSX.Element => {
+  const { t } = useTranslation();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
-        <InputErrorMessage>
-          <span className="invis-star">*</span>
-          {helperText}
-        </InputErrorMessage>
-      </InputContainer>
-    );
-  }
-);
+  return (
+    <InputContainer width={width}>
+      <Label htmlFor={name}>
+        {labelName}
+        {optional && <Optional>{t("Form.optional")}</Optional>}
+      </Label>
+
+      <Controller
+        key={name}
+        name={name}
+        control={control}
+        defaultValue={defaultValue}
+        render={({ field }) => (
+          <TextField
+            inputRef={field.ref}
+            key={name}
+            onChange={field.onChange}
+            value={field.value}
+            id={name}
+            autoComplete={autoComplete}
+            error={!!_.get(errors, name)}
+            {...other}
+          />
+        )}
+      />
+
+      <InputErrorMessage>
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
+      </InputErrorMessage>
+    </InputContainer>
+  );
+};
 
 export default Input;

@@ -1,54 +1,75 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
-import styled from "styled-components/macro";
+import { useTranslation } from "next-i18next";
+
+import {
+  FormControl,
+  FormControlLabel,
+  Radio as MuiRadio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
+import _ from "lodash";
+import { Controller, useFormContext } from "react-hook-form";
+
+import { InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props {
   name: string;
+  defaultValue?: string | undefined;
   labelName: string;
-  id: string;
-  onClick?: () => void;
-  defaultChecked?: boolean;
-  ref: React.Ref<HTMLInputElement>;
+  options: { label: string; value: string }[];
 }
 
-const Radio: React.FC<Props> = forwardRef(
-  ({ name, labelName, id, onClick, defaultChecked }, ref) => {
-    return (
-      <RadioWrap>
-        <RadioLabel>
-          <RadioInput
-            onClick={onClick}
-            ref={ref}
-            name={name}
-            id={id}
-            type="radio"
-            value={id}
-            defaultChecked={defaultChecked}
-          />
-          {labelName}
-        </RadioLabel>
-      </RadioWrap>
-    );
-  }
-);
+const Radio = ({
+  name,
+  defaultValue,
+  options,
+  labelName,
+}: Props): JSX.Element => {
+  const { t } = useTranslation();
 
-const RadioWrap = styled.div`
-  display: inline;
-  margin-left: 1rem;
-  position: relative;
-  margin-bottom: 0.6rem;
-`;
-const RadioLabel = styled.label`
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  padding: 4px;
-  &:hover {
-    background: ${({ theme }) => theme.lightBlue};
-  }
-`;
-const RadioInput = styled.input`
-  margin-right: 1rem;
-`;
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <FormControl component="fieldset">
+      <Label htmlFor={name}>{labelName}</Label>
+
+      <Controller
+        control={control}
+        name={name}
+        defaultValue={defaultValue}
+        render={({ field }) => (
+          <RadioGroup
+            name={name}
+            onChange={field.onChange}
+            value={field.value}
+            id={name}
+          >
+            {options.length > 0 &&
+              options.map((option) => (
+                <FormControlLabel
+                  key={option.value}
+                  value={option.value}
+                  control={<MuiRadio color="primary" />}
+                  label={option.label}
+                  id={option.value}
+                />
+              ))}
+          </RadioGroup>
+        )}
+      />
+
+      <InputErrorMessage>
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
+      </InputErrorMessage>
+    </FormControl>
+  );
+};
 
 export default Radio;

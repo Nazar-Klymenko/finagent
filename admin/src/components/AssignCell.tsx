@@ -1,45 +1,41 @@
 import React, { useEffect, useState } from "react";
 
-import styled from "styled-components/macro";
+import AddIcon from "@mui/icons-material/Add";
+import { IconButton, TableCell } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-import { Plus } from "@components/svgs";
+import { assignAplicationAPI } from "@api/applications";
 
 interface Props {
   id: string;
-  employee: { name: string };
-  assignApplication: (id: string) => void;
+  employee: { fullName: string };
 }
 
-const AssignCell: React.FC<Props> = ({ id, employee, assignApplication }) => {
+const AssignCell: React.FC<Props> = ({ id, employee }): JSX.Element => {
   const [taken] = useState(!!employee);
 
+  const assignApplication = async (id: any) => {
+    try {
+      await assignAplicationAPI(id);
+    } catch {
+      alert("error");
+    }
+  };
+
   return !taken ? (
-    <td
-      onClick={(e) => {
-        e.stopPropagation();
-        assignApplication(id);
-      }}
-    >
-      <PlusWrap>
-        <Plus />
-      </PlusWrap>
-    </td>
+    <TableCell>
+      <IconButton
+        onClick={(e) => {
+          e.stopPropagation();
+          assignApplication(id);
+        }}
+      >
+        <AddIcon />
+      </IconButton>
+    </TableCell>
   ) : (
-    <td>{employee?.name}</td>
+    <TableCell>{employee?.fullName}</TableCell>
   );
 };
-
-const PlusWrap = styled.div`
-  cursor: pointer;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 1.6rem;
-  width: 1.6rem;
-  &:hover {
-    background: ${({ theme }) => theme.lightGray};
-  }
-`;
 
 export default AssignCell;

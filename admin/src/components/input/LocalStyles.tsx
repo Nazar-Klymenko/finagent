@@ -1,53 +1,28 @@
-import styled, { css } from "styled-components/macro";
+import { styled } from "@mui/material/styles";
 
-interface Props {
-  error?: boolean;
-}
-
-export const InputContainer = styled.div<Props>`
-  position: relative;
-  margin-bottom: 0.6rem;
-`;
-
-export const Label = styled.label`
-  font-size: 0.9rem;
-`;
-
-export const InputStyled = styled.input<Props>`
-  position: relative;
+export const InputContainer = styled("div")<{ width?: "s" | "m" | "l" }>`
   width: 100%;
-  padding: 6.5px 14px;
-  appearance: none;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.27);
-  box-sizing: border-box;
-  border-radius: 5px;
-  &:focus {
-    overflow: hidden;
-    border: 1px solid ${({ theme }) => theme.blue}!important;
-    box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.blue} !important;
-  }
-  ${({ error }) =>
-    error &&
-    css`
-      &:focus {
-        box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.red} !important;
-        border: 1px solid ${({ theme }) => theme.red} !important;
-      }
-      &:hover {
-        border: 1px solid ${({ theme }) => theme.red};
-      }
-      border: 1px solid ${({ theme }) => theme.red};
-    `}
+  display: flex;
+  flex-direction: column;
+  margin: 2px 0 0.5rem;
 `;
 
-export const InputErrorMessage = styled.div`
-  color: ${({ theme }) => theme.red};
-  font-size: 0.75rem;
-  letter-spacing: 0.03333em;
-  margin: 6px 0px 0px;
-  .invis-star {
-    opacity: 0;
-    pointer-events: none;
-  }
+export const Label = styled("label")`
+  max-width: 680px;
+  display: flex;
+  width: 100%;
+`;
+
+export const InputErrorMessage = styled("div")`
+  color: ${({ theme }) => theme.palette.error.main};
+  /* margin: 6px 0px 0px; */
+  min-height: 1.5rem;
+`;
+
+export const Optional = styled("div")`
+  font-size: 0.9rem;
+  display: flex;
+  flex: 1;
+  color: ${({ theme }) => theme.palette.text.secondary};
+  justify-content: flex-end;
 `;

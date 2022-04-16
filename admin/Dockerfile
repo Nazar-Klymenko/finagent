@@ -1,9 +1,20 @@
 FROM node:alpine
 
-RUN mkdir -p /usr/src/admin
-WORKDIR /usr/src/admin
-COPY package.json /usr/src/admin/package.json
-RUN yarn install 
-COPY ./  /usr/src/admin
-EXPOSE 3001
-CMD ["yarn", "start"]
+WORKDIR /app
+
+COPY package.json .
+COPY yarn.lock .
+
+WORKDIR /app/admin
+
+COPY ./admin/package.json ./
+
+WORKDIR /app
+
+RUN yarn install --network-timeout 1000000
+
+COPY ./admin/ ./admin/
+
+EXPOSE 3000
+
+CMD ["yarn", "admin"]

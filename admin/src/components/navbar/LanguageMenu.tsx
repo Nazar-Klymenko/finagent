@@ -1,35 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components/macro";
+import { useRouter } from "next/router";
 
-const LanguageMenu: React.FC = () => {
-  const { i18n } = useTranslation();
+import { MenuItem, Select, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-  const [lang, setLang] = useState(i18n.language.slice(0, 2));
+const LanguageMenu = (): JSX.Element => {
+  const router = useRouter(),
+    { locale, asPath } = router;
 
-  const handleLangChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const [lang, setLang] = useState(locale);
+
+  const handleLangChange = (event: any) => {
     setLang(event.target.value as string);
-    i18n.changeLanguage(event.target.value as string);
-    let date = new Date(Date.now() + 86400e3 * 90);
-    let oneDayDate = date.toUTCString();
-    document.cookie = `i18next=${
-      event.target.value as string
-    };expires=${oneDayDate}`;
+    router.push(asPath, asPath, { locale: event.target.value });
   };
-
   return (
     <LanguageMenuStyled
       disableUnderline
-      style={{
-        zIndex: 999999,
-        fontFamily: ["Poppins", "sans-serif"].join(","),
-        width: 46,
-      }}
-      labelId="demo-customized-select-label"
-      id="demo-customized-select"
+      id="language-select"
       value={lang}
       onChange={handleLangChange}
       variant="standard"
@@ -37,38 +26,42 @@ const LanguageMenu: React.FC = () => {
         disableScrollLock: true,
         anchorOrigin: {
           vertical: "bottom",
-          horizontal: "left",
+          horizontal: "right",
         },
         transformOrigin: {
           vertical: "top",
-          horizontal: "left",
+          horizontal: "right",
         },
-        getContentAnchorEl: null,
       }}
     >
-      <MenuItemStyled value={"pl"}>PL</MenuItemStyled>
-      <MenuItemStyled value={"en"}>EN</MenuItemStyled>
+      <MenuItem value="pl">
+        <Typography variant="body2" textAlign="center">
+          PL
+        </Typography>
+      </MenuItem>
+      <MenuItem value="en">
+        <Typography variant="body2" textAlign="center">
+          EN
+        </Typography>
+      </MenuItem>
     </LanguageMenuStyled>
   );
 };
-
-export default LanguageMenu;
-
 const LanguageMenuStyled = styled(Select)`
+  font-family: "Poppins", sans-serif;
+  margin: 0 8px 0 0;
+  box-shadow: none !important;
+
+  .MuiPaper-root {
+    box-shadow: none !important;
+  }
+  .MuiSelect-standard {
+    padding: 6px 24px 4px 0px;
+    box-shadow: none !important;
+  }
   .MuiSelect-select:focus {
     background-color: unset;
   }
-  .MuiInput-root {
-    @media screen and (max-width: ${({ theme }) => theme.widthTablet}) {
-      position: absolute;
-      right: 5px;
-    }
-  }
 `;
-const MenuItemStyled = styled(MenuItem)`
-  &.MuiListItem-gutters {
-    padding-left: 8px;
-    padding-right: 8px;
-    font-family: "Poppins", sans-serif;
-  }
-`;
+
+export default LanguageMenu;

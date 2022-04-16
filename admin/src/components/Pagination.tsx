@@ -1,99 +1,45 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useCallback } from "react";
 
-import styled from "styled-components/macro";
+import Link from "next/link";
+
+import { Pagination as MuiPagination, PaginationItem } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 interface Props {
   currentPage: number;
-  setCurrentPage(currentPage: number): void;
   maximumPages: number;
+  setCurrentPage: (page: number) => void;
 }
 
-const Pagination: React.FC<Props> = ({
+const _Pagination = ({
   currentPage,
-  setCurrentPage,
   maximumPages,
-}) => {
-  const [previousEnable, setPreviousEnable] = useState(false);
-  const [nextEnable, setNextEnable] = useState(true);
-
-  useEffect(() => {
-    if (currentPage > 1) {
-      setPreviousEnable(true);
-    } else {
-      setPreviousEnable(false);
-    }
-    if (currentPage < maximumPages) {
-      setNextEnable(true);
-    } else {
-      setNextEnable(false);
-    }
-  }, [currentPage, maximumPages]);
-
-  const previousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-  const nextPage = () => {
-    if (currentPage < maximumPages) {
-      setCurrentPage(currentPage + 1);
-    }
+  setCurrentPage,
+}: Props): JSX.Element => {
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
   };
 
   return (
     <PaginationStyled>
-      <div className="container">
-        <span
-          className={`button ${previousEnable ? "" : "button--disabled"}`}
-          onClick={previousPage}
-        >
-          {"<"}
-        </span>
-        <div className="page-number">{currentPage}</div>
-        <span
-          className={`button ${nextEnable ? "" : "button--disabled"}`}
-          onClick={nextPage}
-        >
-          {">"}
-        </span>
-      </div>
+      <MuiPagination
+        page={currentPage}
+        count={maximumPages || 1}
+        shape="rounded"
+        onChange={handleChange}
+      />
     </PaginationStyled>
   );
 };
 
-const PaginationStyled = styled.div`
+const PaginationStyled = styled("div")`
   padding: 20px 20px;
   display: flex;
-  flex: 1;
+  /* flex: 1; */
   align-items: flex-end;
   justify-content: flex-end;
-  .container {
-    display: flex;
-    align-items: center;
-  }
-  .page-number {
-    padding: 0px 6px;
-    min-width: 28px;
-    text-align: center;
-    &::selection {
-      background-color: transparent;
-    }
-  }
-  .button {
-    cursor: pointer;
-    padding: 6px 10px;
-    border: 1px solid ${({ theme }) => theme.border};
-    border-radius: 4px;
-    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.08);
-    &--disabled {
-      background: ${({ theme }) => theme.lightestGray};
-      cursor: not-allowed;
-    }
-    &::selection {
-      background-color: transparent;
-    }
-  }
 `;
 
-export default Pagination;
+const Pagination = React.memo(_Pagination);
+
+export { Pagination };

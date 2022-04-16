@@ -39,6 +39,7 @@ const SetStatus: React.FC<Props> = ({
   const formSubmit = handleSubmit(async (data) => {
     try {
       console.log(data);
+      //   @ts-ignore
       await setStatusAPI(data, id);
 
       reset(data);

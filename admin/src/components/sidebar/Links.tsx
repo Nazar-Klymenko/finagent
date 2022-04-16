@@ -21,8 +21,8 @@ const Links = (): JSX.Element => {
     <LinksContainer>
       {links.map((link: any, idx) => {
         return (
-          <LinkWrap>
-            <Link key={idx} href={link.href} passHref>
+          <LinkWrap key={idx}>
+            <Link href={link.href} passHref>
               <StyledLinkText
                 as="a"
                 variant="body1"

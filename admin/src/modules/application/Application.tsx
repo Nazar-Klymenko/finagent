@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
@@ -5,7 +7,7 @@ import { Box, Paper, Switch, Typography } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 
 import { determineAppType } from "@helpers/determineAppType";
 import { fetcher } from "@helpers/swrFetcher";
@@ -21,23 +23,35 @@ import { PageContainer } from "@components/layout";
 
 import { AdminFileInput } from "./AdminFileInput";
 import { ContextMenu } from "./ContextMenu";
+import { ControlButtons } from "./ControlButtons";
 import { FileBox } from "./FileBox";
 import { SetStatus } from "./SetStatus";
 import { Status } from "./Status";
 
 const Application = (): JSX.Element => {
-  const router = useRouter();
-  const { id } = router.query;
-
-  const { data, error } = useSWR(`/admin/applications/specific/${id}`, fetcher);
   const { t } = useTranslation();
   const { formatDistanceToNow, format } = useDatefnsLocalized();
+  const router = useRouter();
+  const { id } = router.query;
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down("md"));
+  // const { mutate } = useSWRConfig();
+
+  const [summaryReady, setSummaryReady] = useState([]);
+
+  const { data, error, mutate } = useSWR(
+    `/admin/applications/specific/${id}`,
+    fetcher
+  );
+
+  useEffect(() => {
+    if (data) {
+      console.log({ data });
+      setSummaryReady(determineAppType(data?.applicationType, data));
+    }
+  }, [data]);
+
   if (!data && !error) return <Loader />;
-
-  const summaryReady = determineAppType(data?.applicationType, data);
-
   return (
     <PageContainer title="Dashboard.title" dashboard>
       <DashboardInner>
@@ -100,9 +114,10 @@ const Application = (): JSX.Element => {
               array={summaryReady}
               applicationType={data.applicationType}
             />
-            {/* <Status currentStep={data.status} /> */}
+            <SetStatus id={data.id} currentStatus={data.status} />
             <AdminFileInput />
-            <SetStatus id={data.id} currentStatus={data.status}></SetStatus>
+
+            <ControlButtons id={data.id} data={data} mutate={mutate} />
           </ApplicationBody>
         </ApplicationMain>
       </DashboardInner>
@@ -195,7 +210,6 @@ const ApplicationMain = styled(Paper)`
   width: auto;
   flex-direction: column;
   overflow: hidden;
-  margin-left: 20px;
   flex: 1;
   background: white;
   border-radius: 4px;

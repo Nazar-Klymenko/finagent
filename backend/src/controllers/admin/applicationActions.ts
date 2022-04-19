@@ -83,11 +83,45 @@ export const assignApplication = asyncHandler(
 
 export const updateStatus = asyncHandler(
   async (req: Request, res: Response) => {
-    const application = await Application.findByIdAndUpdate(req.params.id, {
-      status: req.body.status,
-    });
-
+    const application = await Application.findById(req.params.id);
+    if (application.employee_id != req.currentUser.uid) {
+      throw new createError.BadRequest();
+    }
+    application.status = req.body.status;
+    application.save();
     res.status(200).send({ message: "application updated successfully" });
+  }
+);
+export const archiveApplication = asyncHandler(
+  async (req: Request, res: Response) => {
+    const application = await Application.findById(req.params.id);
+
+    if (application.employee_id != req.currentUser.uid) {
+      if (!req.isSupervisor) {
+        throw new createError.BadRequest();
+      }
+    }
+    application.archived = true;
+    application.save();
+
+    res.status(200).send({ message: "application archived successfully" });
+  }
+);
+
+export const returnApplication = asyncHandler(
+  async (req: Request, res: Response) => {
+    const application = await Application.findById(req.params.id);
+
+    if (application.employee_id != req.currentUser.uid) {
+      if (!req.isSupervisor) {
+        throw new createError.BadRequest();
+      }
+    }
+
+    application.employee_id = null;
+    application.save();
+
+    res.status(200).send({ message: "application returned successfully" });
   }
 );
 

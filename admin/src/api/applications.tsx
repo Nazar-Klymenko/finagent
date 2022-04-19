@@ -1,13 +1,8 @@
 import { axios } from "./axiosConfig";
 
-export const getAllAplications = (category: string) => {
-  return axios(`/user/applications/${category}/`, {
-    method: "GET",
-  });
-};
 export const assignAplicationAPI = (id: string) => {
   return axios(`admin/applications/assign/${id}`, {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-type": "application/json",
     },
@@ -15,7 +10,7 @@ export const assignAplicationAPI = (id: string) => {
 };
 export const setStatusAPI = (data: string, id: string) => {
   return axios(`admin/applications/status/${id}`, {
-    method: "POST",
+    method: "PUT",
     data: JSON.stringify(data),
     headers: {
       "Content-type": "application/json",
@@ -24,7 +19,12 @@ export const setStatusAPI = (data: string, id: string) => {
 };
 
 export const archiveApplicationAPI = (id: string) => {
-  return axios(`/user/applications/specific/${id}`, {
+  return axios(`/admin/applications/archive/${id}`, {
+    method: "PUT",
+  });
+};
+export const returnApplicationAPI = (id: string) => {
+  return axios(`/admin/applications/return/${id}`, {
     method: "PUT",
   });
 };

@@ -9,10 +9,12 @@ import { useRouter } from "next/router";
 import { TableCell, TableRow } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 
 import { fetcher } from "@helpers/swrFetcher";
 import withAuth from "@helpers/withAuth";
+
+import { assignAplicationAPI } from "@api/applications";
 
 import useDatefnsLocalized from "@hooks/useDatefnsLocalized";
 
@@ -30,7 +32,7 @@ const Applications: NextPage = (props) => {
   const [maximumPages, setMaximumPages] = useState(1);
   const router = useRouter();
 
-  let { data, error } = useSWR(
+  let { data, error, mutate } = useSWR(
     `/admin/applications?page=${pageIndex}&size=${pageSize}`,
     fetcher
   );
@@ -39,7 +41,15 @@ const Applications: NextPage = (props) => {
     if (data) setMaximumPages(data.maximumPages);
   }, [data]);
 
-  console.log(applications);
+  const assignApplication = async (id: any) => {
+    try {
+      await assignAplicationAPI(id);
+      mutate();
+    } catch {
+      alert("error");
+    }
+  };
+
   return (
     <PageContainer title="test">
       <Typography variant="h3" component={"h3"}>
@@ -67,8 +77,13 @@ const Applications: NextPage = (props) => {
                   router.push(`/application/${app._id}`);
                 }}
                 hover
+                sx={{ cursor: "pointer" }}
               >
-                <AssignCell id={app._id} employee={app.employee} />
+                <AssignCell
+                  assignApplication={assignApplication}
+                  id={app._id}
+                  employee={app.employee}
+                />
                 <TableCell>{app.user?.fullName}</TableCell>
                 <TableCell>{app.user?.email}</TableCell>
                 <TableCell>{app.user?.phone}</TableCell>

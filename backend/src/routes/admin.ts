@@ -8,9 +8,15 @@ import {
   getSpecificApplication,
   getAllAplicationsForAdmin,
   updateStatus,
+  returnApplication,
+  archiveApplication,
 } from "controllers/admin/applicationActions";
 
-import { verifyAccessTokenFirebase, verifyAdmin } from "middleware/auth";
+import {
+  verifyAccessTokenFirebase,
+  verifyAdmin,
+  verifySupervisor,
+} from "middleware/auth";
 
 router.route("/auth/signup").post(signUp);
 router.route("/auth/user").get(verifyAccessTokenFirebase, getUser);
@@ -26,9 +32,25 @@ router
   .get(verifyAccessTokenFirebase, verifyAdmin, getSpecificApplication);
 router
   .route("/applications/assign/:id")
-  .post(verifyAccessTokenFirebase, verifyAdmin, assignApplication);
+  .put(verifyAccessTokenFirebase, verifyAdmin, assignApplication);
+router
+  .route("/applications/return/:id")
+  .put(
+    verifyAccessTokenFirebase,
+    verifyAdmin,
+    verifySupervisor,
+    returnApplication
+  );
+router
+  .route("/applications/archive/:id")
+  .put(
+    verifyAccessTokenFirebase,
+    verifyAdmin,
+    verifySupervisor,
+    archiveApplication
+  );
 router
   .route("/applications/status/:id")
-  .post(verifyAccessTokenFirebase, verifyAdmin, updateStatus);
+  .put(verifyAccessTokenFirebase, verifyAdmin, updateStatus);
 
 export default router;

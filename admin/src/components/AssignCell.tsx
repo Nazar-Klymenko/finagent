@@ -9,18 +9,19 @@ import { assignAplicationAPI } from "@api/applications";
 interface Props {
   id: string;
   employee: { fullName: string };
+  assignApplication: (id: string) => void;
 }
 
-const AssignCell: React.FC<Props> = ({ id, employee }): JSX.Element => {
-  const [taken] = useState(!!employee);
+const AssignCell = ({
+  id,
+  employee,
+  assignApplication,
+}: Props): JSX.Element => {
+  const [taken, setTaken] = useState(!!employee);
 
-  const assignApplication = async (id: any) => {
-    try {
-      await assignAplicationAPI(id);
-    } catch {
-      alert("error");
-    }
-  };
+  useEffect(() => {
+    setTaken(!!employee);
+  }, [employee]);
 
   return !taken ? (
     <TableCell>
@@ -30,7 +31,7 @@ const AssignCell: React.FC<Props> = ({ id, employee }): JSX.Element => {
           assignApplication(id);
         }}
       >
-        <AddIcon />
+        <AddIcon fontSize="small" />
       </IconButton>
     </TableCell>
   ) : (

@@ -37,6 +37,7 @@ export function determineAppType(type: string, object: {}) {
   delete appDataCopy.id;
   delete appDataCopy.__v;
   delete appDataCopy.employee_id;
+  delete appDataCopy.employee;
   delete appDataCopy.user;
   delete appDataCopy.admin_attachments;
   delete appDataCopy.user_attachments;

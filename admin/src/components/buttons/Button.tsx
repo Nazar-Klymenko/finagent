@@ -15,7 +15,7 @@ const Button = ({ children, form, onClick, ...other }: Props): JSX.Element => {
       form={form}
       onClick={onClick}
       {...other}
-      sx={{ my: "0.5rem" }}
+      sx={{ m: "0.5rem" }}
     >
       {children}
     </MuiButton>

@@ -9,7 +9,8 @@ import { useRouter } from "next/router";
 import { TableCell, TableRow } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import useSWR from "swr";
+import { useTranslation } from "react-i18next";
+import useSWR, { useSWRConfig } from "swr";
 
 import { fetcher } from "@helpers/swrFetcher";
 import withAuth from "@helpers/withAuth";
@@ -23,61 +24,59 @@ import { Pagination } from "@components/Pagination";
 import { Table } from "@components/Table";
 import { PageContainer } from "@components/layout";
 
-const MyApplications: NextPage = (props) => {
+const Clients: NextPage = (props) => {
+  const { t } = useTranslation();
   const { formatDistanceToNow, format } = useDatefnsLocalized();
   const [pageIndex, setPageIndex] = useState(1);
   const [pageSize, setPageSize] = useState(4);
   const [maximumPages, setMaximumPages] = useState(1);
   const router = useRouter();
 
-  let { data, error } = useSWR(
-    `/admin/applications/my?page=${pageIndex}&size=${pageSize}`,
+  let { data, error, mutate } = useSWR(
+    `/admin/clients?page=${pageIndex}&size=${pageSize}`,
     fetcher
   );
-  let applications = data?.applications;
+  let clients = data?.clients;
   useEffect(() => {
     if (data) setMaximumPages(data.maximumPages);
   }, [data]);
 
-  console.log(applications);
+  console.log({ data });
   return (
     <PageContainer title="test">
       <Typography variant="h4" component={"h3"}>
-        My Applications
+        {t("Clients.title")}
       </Typography>
 
       <Table
         headers={[
-          "Applications.name",
-          "Applications.email",
-          "Applications.phone",
-          "Applications.service",
-          "Applications.type",
-          "Applications.createdAt",
-          "Applications.lastUpdate",
+          "Clients.fullName",
+          "Clients.email",
+          "Clients.phone",
+          "Clients.language",
+          "Clients.provider",
+          "Clients.isApproved",
+          "Clients.createdAt",
         ]}
       >
-        {applications?.length > 0 &&
-          applications.map((app: any) => {
+        {clients?.length > 0 &&
+          clients.map((client: any) => {
             return (
               <TableRow
-                key={app._id}
-                onClick={() => {
-                  router.push(`/application/${app._id}`);
-                }}
+                key={client._id}
+                // onClick={() => {
+                //   router.push(`/clients/${client._id}`);
+                // }}
                 hover
+                // sx={{ cursor: "pointer" }}
               >
-                <TableCell>{app.user?.fullName}</TableCell>
-                <TableCell>{app.user?.email}</TableCell>
-                <TableCell>{app.user?.phone}</TableCell>
-                <TableCell>{app.category}</TableCell>
-                <TableCell>{app.type}</TableCell>
-                <TableCell>
-                  {formatDistanceToNow(new Date(app.createdAt))}
-                </TableCell>
-                <TableCell>
-                  {formatDistanceToNow(new Date(app.updatedAt))}
-                </TableCell>
+                <TableCell>{client?.fullName}</TableCell>
+                <TableCell>{client?.email}</TableCell>
+                <TableCell>{client?.phone}</TableCell>
+                <TableCell>{client?.language}</TableCell>
+                <TableCell>{client?.provider}</TableCell>
+                <TableCell>{client?.isApproved + ""}</TableCell>
+                <TableCell>{format(new Date(client.createdAt))}</TableCell>
               </TableRow>
             );
           })}
@@ -98,7 +97,7 @@ const DataWrapper = styled("div")`
   flex-direction: column;
 `;
 
-export default withAuth(MyApplications);
+export default withAuth(Clients);
 
 export async function getStaticProps({ locale }: any) {
   return {

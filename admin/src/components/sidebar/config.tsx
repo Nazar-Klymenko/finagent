@@ -16,7 +16,7 @@ const links: NavLinks[] = [
   {
     href: "/applications",
     label: "Navbar.applications",
-    activePaths: ["/applications/all", "/applications/taken"],
+    activePaths: ["/applications/all", "/applications/taken", "/applications"],
     icon: <AssignmentIcon />,
   },
   {

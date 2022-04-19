@@ -13,7 +13,7 @@ import { PageContainer } from "@components/layout";
 const ActivateEmail: NextPage = (props) => {
   return (
     <PageContainer title="test">
-      <Typography variant="h3" component={"h3"}>
+      <Typography variant="h4" component={"h3"}>
         Activate email
       </Typography>
     </PageContainer>

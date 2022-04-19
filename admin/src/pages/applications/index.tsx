@@ -52,7 +52,7 @@ const Applications: NextPage = (props) => {
 
   return (
     <PageContainer title="test">
-      <Typography variant="h3" component={"h3"}>
+      <Typography variant="h4" component={"h3"}>
         Applications
       </Typography>
 
@@ -74,7 +74,7 @@ const Applications: NextPage = (props) => {
               <TableRow
                 key={app._id}
                 onClick={() => {
-                  router.push(`/application/${app._id}`);
+                  router.push(`/applications/${app._id}`);
                 }}
                 hover
                 sx={{ cursor: "pointer" }}

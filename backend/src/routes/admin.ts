@@ -12,6 +12,7 @@ import {
   archiveApplication,
 } from "controllers/admin/applicationActions";
 
+import { getAllClients } from "controllers/admin/clients";
 import {
   verifyAccessTokenFirebase,
   verifyAdmin,
@@ -20,6 +21,10 @@ import {
 
 router.route("/auth/signup").post(signUp);
 router.route("/auth/user").get(verifyAccessTokenFirebase, getUser);
+
+router
+  .route("/clients")
+  .get(verifyAccessTokenFirebase, verifyAdmin, getAllClients);
 
 router
   .route("/applications")

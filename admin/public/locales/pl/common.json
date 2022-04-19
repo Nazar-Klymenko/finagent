@@ -74,12 +74,13 @@
   "Clients": {
     "title": "Wszyscy klienci",
     "subtitle": "Lista klientów",
-    "name": "Imię",
-    "surname": "Nazwisko",
+    "fullName": "Imię",
     "email": "Email",
     "phone": "Telefon",
     "language": "Język",
-    "provider": "Sposób rejestracji"
+    "provider": "Sposób rejestracji",
+    "isApproved": "Email podtwierdzony",
+    "createdAt": "Data rejestracji"
   },
   "MyApplications": {
     "title": "Dodane aplikacje",

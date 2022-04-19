@@ -74,12 +74,14 @@
   "Clients": {
     "title": "All clients",
     "subtitle": "The list of our clients",
-    "name": "Name",
+    "fullName": "Name",
     "surname": "Surname",
     "email": "Email",
     "phone": "Phone",
     "language": "Language",
-    "provider": "Signup Provider"
+    "provider": "Signup Provider",
+    "isApproved": "Email approved",
+    "createdAt": "Sign up date"
   },
   "MyApplications": {
     "title": "Taken applications",

@@ -46,7 +46,6 @@ const Application = (): JSX.Element => {
 
   useEffect(() => {
     if (data) {
-      console.log({ data });
       setSummaryReady(determineAppType(data?.applicationType, data));
     }
   }, [data]);
@@ -61,7 +60,6 @@ const Application = (): JSX.Element => {
             <Typography variant="h6" sx={{ flex: "1" }}>
               {t(`Basic.ApplicationType.${data?.applicationType}`)}
             </Typography>
-            <ContextMenu id={id} isArchived={data?.archived} />
           </ApplicationHeader>
           <ApplicationBody>
             <InfoContainer>

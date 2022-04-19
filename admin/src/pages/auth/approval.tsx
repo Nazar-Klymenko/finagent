@@ -13,7 +13,7 @@ import { PageContainer } from "@components/layout";
 const Approval: NextPage = (props) => {
   return (
     <PageContainer title="test">
-      <Typography variant="h3" component={"h3"}>
+      <Typography variant="h4" component={"h3"}>
         Wait for approval
       </Typography>
     </PageContainer>

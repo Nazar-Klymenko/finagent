@@ -19,6 +19,7 @@ import { Tabs } from "@components/Tabs";
 import { BackArrow } from "@components/buttons";
 import { PageContainer } from "@components/layout";
 
+import { AdminAttachments } from "./AdminAttachments";
 import { ContextMenu } from "./ContextMenu";
 import { FileBox } from "./FileBox";
 import { Status } from "./Status";
@@ -36,6 +37,7 @@ const Application = (): JSX.Element => {
 
   const summaryReady = determineAppType(data?.applicationType, data);
 
+  console.log(data);
   return (
     <PageContainer title="Dashboard.title" dashboard>
       <DashboardInner>
@@ -100,6 +102,7 @@ const Application = (): JSX.Element => {
               applicationType={data.applicationType}
             />
             <Status currentStep={data.status} />
+            <AdminAttachments data={data} />
           </ApplicationBody>
         </ApplicationMain>
       </DashboardInner>

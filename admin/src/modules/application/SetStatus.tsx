@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 
 import { setStatusAPI } from "@api/applications";
 
+import { DirtySection } from "@components/DirtySection";
 import { Form } from "@components/Form";
 import { Button } from "@components/buttons";
 import { Radio } from "@components/input";
@@ -50,57 +51,47 @@ const SetStatus: React.FC<Props> = ({
 
   return (
     <Form id="form-status" onSubmit={formSubmit} methods={methods}>
-      {isDirty && <VLine />}
-      <Radio
-        name="status"
-        labelName={t("ApplicationOpen.Status.subtitle")}
-        options={[
-          {
-            label: t("ApplicationOpen.Status.preparing"),
-            value: "1",
-          },
-          {
-            label: t("ApplicationOpen.Status.selecting"),
-            value: "2",
-          },
-          {
-            label: t("ApplicationOpen.Status.offering"),
-            value: "3",
-          },
-          {
-            label: t("ApplicationOpen.Status.finalizing"),
-            value: "4",
-          },
-          {
-            label: t("ApplicationOpen.Status.finished"),
-            value: "5",
-          },
-        ]}
-      />
+      <DirtyWrap>
+        {isDirty && <DirtySection />}
+        <Radio
+          name="status"
+          labelName={t("ApplicationOpen.Status.subtitle")}
+          options={[
+            {
+              label: t("ApplicationOpen.Status.preparing"),
+              value: "1",
+            },
+            {
+              label: t("ApplicationOpen.Status.selecting"),
+              value: "2",
+            },
+            {
+              label: t("ApplicationOpen.Status.offering"),
+              value: "3",
+            },
+            {
+              label: t("ApplicationOpen.Status.finalizing"),
+              value: "4",
+            },
+            {
+              label: t("ApplicationOpen.Status.finished"),
+              value: "5",
+            },
+          ]}
+        />
 
-      <StatusBtnWrap>
         {isDirty && (
-          <Button form="form-status">
+          <Button form="form-status" size="small">
             {t("ApplicationOpen.AdminButton.update")}
           </Button>
         )}
-      </StatusBtnWrap>
+      </DirtyWrap>
     </Form>
   );
 };
 
-const VLine = styled("div")`
-  background: ${({ theme }) => theme.palette.primary.main};
-  width: 3px;
-  border-radius: 5px;
-  position: absolute;
-  left: -8px;
-  bottom: 0;
-  top: 0;
-`;
+const DirtyWrap = styled("div")`
 
-const StatusBtnWrap = styled("div")`
-  padding: 12px 0px;
 `;
 
 interface SecondProps {

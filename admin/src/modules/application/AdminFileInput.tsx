@@ -1,8 +1,16 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { styled } from "@mui/material/styles";
+import { ref } from "firebase/storage";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
+import { auth, storage } from "@services/firebase";
+
+import { postAttachmentAPI } from "@api/applications";
+
+import useFileUpload from "@hooks/useFileUpload";
+
+import { DirtySection } from "@components/DirtySection";
 import { Form } from "@components/Form";
 import { Button } from "@components/buttons";
 import { FileInput } from "@components/input";
@@ -10,7 +18,13 @@ import { FileInput } from "@components/input";
 type FormTypes = {
   adminFiles: File[] | null;
 };
-const AdminFileInput = (): JSX.Element => {
+interface Props {
+  id: any;
+  userid: any;
+}
+const AdminFileInput = ({ id, userid }: Props): JSX.Element => {
+  const { progress, running, paused, upload } = useFileUpload();
+
   const methods = useForm<FormTypes>({
       defaultValues: {
         adminFiles: null,
@@ -24,14 +38,27 @@ const AdminFileInput = (): JSX.Element => {
     { handleSubmit, watch } = methods;
   const _adminAttachments = watch("adminFiles" || []);
 
-  const formSubmit = handleSubmit((data) => {
+  const formSubmit = handleSubmit(async (data) => {
+    const response = await postAttachmentAPI(data, id);
+
+    console.log({ response });
+    //@ts-ignore
+    _adminAttachments.forEach((file, idx) => {
+      const storageRef = ref(
+        storage, //@ts-ignore
+        `files/${userid}/${response.data.id}/adminAttachments//${response.data.admin_attachments[idx].filename}`
+      );
+      //@ts-ignore
+      upload(storageRef, file);
+    });
+
     alert("files added");
   });
   return (
     <>
       <Form methods={methods} id="admin-attachments" onSubmit={formSubmit}>
         {/* @ts-ignore */}
-        {_adminAttachments?.length > 0 && <VLine />}
+        {_adminAttachments?.length > 0 && <DirtySection />}
         <FileInput name="adminFiles" labelName="" defaultValue={null} />
         {/* @ts-ignore */}
         {_adminAttachments?.length > 0 && (
@@ -43,16 +70,6 @@ const AdminFileInput = (): JSX.Element => {
 };
 
 export { AdminFileInput };
-
-const VLine = styled("div")`
-  background: ${({ theme }) => theme.palette.primary.main};
-  width: 3px;
-  border-radius: 5px;
-  position: absolute;
-  left: -8px;
-  bottom: 0;
-  top: 0;
-`;
 
 const adminFilesSchema = yup.object().shape({
   adminFiles: yup

@@ -60,6 +60,7 @@ const Application = (): JSX.Element => {
             <Typography variant="h6" sx={{ flex: "1" }}>
               {t(`Basic.ApplicationType.${data?.applicationType}`)}
             </Typography>
+            <ControlButtons id={data.id} data={data} mutate={mutate} />
           </ApplicationHeader>
           <ApplicationBody>
             <InfoContainer>
@@ -113,9 +114,7 @@ const Application = (): JSX.Element => {
               applicationType={data.applicationType}
             />
             <SetStatus id={data.id} currentStatus={data.status} />
-            <AdminFileInput />
-
-            <ControlButtons id={data.id} data={data} mutate={mutate} />
+            <AdminFileInput id={data.id} userid={data.user_id} />
           </ApplicationBody>
         </ApplicationMain>
       </DashboardInner>

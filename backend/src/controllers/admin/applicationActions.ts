@@ -161,6 +161,30 @@ export const getAllApplicationsForUser = asyncHandler(
   }
 );
 
+export const postAttachments = asyncHandler(
+  async (req: Request, res: Response) => {
+    // const attachments = req.body;
+    const application = await Application.findById(req.params.id);
+    console.log(req.body);
+
+    req.body.adminFiles.forEach((file: any) => {
+      console.log("fires");
+
+      application.admin_attachments.push({
+        filename: file.path,
+      });
+    });
+    application.markModified("admin_attachments");
+    await application.save();
+
+    res.send({
+      id: application.id,
+      admin_attachments: application.admin_attachments,
+      message: "attachments submitted successfully",
+    });
+  }
+);
+
 // export const assignApplication = asyncHandler(
 //   async (req: Request, res: Response) => {
 //     const application = await Application.findById(req.params.id);

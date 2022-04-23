@@ -8,6 +8,15 @@ export const assignAplicationAPI = (id: string) => {
     },
   });
 };
+export const postAttachmentAPI = (data: any, id: string) => {
+  return axios(`admin/applications/attachments/${id}`, {
+    method: "POST",
+    data: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+};
 export const setStatusAPI = (data: string, id: string) => {
   return axios(`admin/applications/status/${id}`, {
     method: "PUT",

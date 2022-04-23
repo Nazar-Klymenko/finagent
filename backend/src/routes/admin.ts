@@ -10,6 +10,7 @@ import {
   updateStatus,
   returnApplication,
   archiveApplication,
+  postAttachments,
 } from "controllers/admin/applicationActions";
 
 import { getAllClients } from "controllers/admin/clients";
@@ -57,5 +58,8 @@ router
 router
   .route("/applications/status/:id")
   .put(verifyAccessTokenFirebase, verifyAdmin, updateStatus);
+router
+  .route("/applications/attachments/:id")
+  .post(verifyAccessTokenFirebase, verifyAdmin, postAttachments);
 
 export default router;

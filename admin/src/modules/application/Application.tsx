@@ -69,7 +69,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.name")}
+                  {t("ApplicationOpen.AppInfo.name")}
                 </Typography>
                 <Typography
                   className="value"
@@ -83,7 +83,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.createdAt")}
+                  {t("ApplicationOpen.AppInfo.createdAt")}
                 </Typography>
                 <Typography
                   className="value"
@@ -97,7 +97,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.updatedAt")}
+                  {t("ApplicationOpen.AppInfo.updatedAt")}
                 </Typography>
                 <Typography
                   className="value"
@@ -109,7 +109,7 @@ const Application = (): JSX.Element => {
             </InfoContainer>
             <SummaryList
               inDashboard
-              header={t("ApplicationOpen.Summary.summary")}
+              header={t("ApplicationOpen.Summary.header")}
               array={summaryReady}
               applicationType={data.applicationType}
             />

@@ -14,8 +14,6 @@ import useSWR from "swr";
 
 import { fetcher } from "@helpers/swrFetcher";
 
-import { getAllAplications } from "@api/applications";
-
 import { useAuth } from "@context/authContext";
 
 import { Loader } from "@components/Loader";

@@ -9,18 +9,23 @@ import { auth, storage } from "@services/firebase";
 
 interface Props {
   data: any;
+  type: "adminAttachments" | "userAttachments";
 }
 
-const AdminAttachments = ({ data }: Props): JSX.Element => {
+const Attachments = ({ data, type }: Props): JSX.Element => {
   const [files, setFiles] = useState<any>([]);
 
   useEffect(() => {
     const listItem = async () => {
-      data.admin_attachments.forEach(async (a: any) => {
+      const _files =
+        type === "adminAttachments"
+          ? data.admin_attachments
+          : data.user_attachments;
+      _files.forEach(async (a: any) => {
         console.log(a);
         const storageRef = ref(
           storage, //@ts-ignore
-          `files/${auth.currentUser.uid}/${data._id}/adminAttachments/${a.filename}`
+          `files/${auth.currentUser.uid}/${data._id}/${type}/${a.filename}`
         );
         await getDownloadURL(storageRef).then((x: any) => {
           setFiles((files: any) => [...files, x]);
@@ -28,34 +33,9 @@ const AdminAttachments = ({ data }: Props): JSX.Element => {
       });
     };
     listItem();
-  }, [data]);
+  }, [data, type]);
 
   console.log(files);
-  //   useEffect(() => {
-  //     const fetchImages = async () => {
-  //       const storageRef = ref(
-  //         storage, //@ts-ignore
-  //         `files/${auth.currentUser.uid}/${data._id}/adminAttachments}`
-  //       );
-  //       let result = await storageRef;
-  //       console.log(storageRef);
-  //     };
-
-  //     fetchImages();
-
-  //     //   let urlPromises = result.items.map((imageRef) =>
-  //     //     imageRef.getDownloadURL()
-  //     //   );
-
-  //     //   return Promise.all(urlPromises);
-
-  //     // const loadImages = async () => {
-  //     //   const urls = await fetchImages();
-  //     //   setFiles(urls);
-  //     // };
-  //     // loadImages();
-  //   }, [data]);
-
   return (
     <FileBoxContainer>
       {files.map((file: any, idx: number) => {
@@ -79,4 +59,4 @@ const FileBoxContainer = styled("section")`
   border: 1px solid ${({ theme }) => theme.palette.divider};
 `;
 
-export { AdminAttachments };
+export { Attachments };

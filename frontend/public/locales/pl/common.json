@@ -703,7 +703,7 @@
       "city": "Miasto",
       "postIndex": "Kod pocztowy",
       "street": "Ulica",
-      "houseNumber": "Nr domu"
+      "houseNumber": "Numer domu/numer mieszkaniа"
     }
   },
   "insuranceEstate": {
@@ -716,7 +716,7 @@
       "city": "Miasto",
       "postIndex": "Kod pocztowy",
       "street": "Ulica",
-      "houseNumber": "Nr domu",
+      "houseNumber": "Numer domu/numer mieszkaniа",
       "estateType": "Rodzaj nieruchomości",
       "house": "Budynek",
       "apartment": "Mieszkanie",
@@ -817,7 +817,7 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer budynku",
+      "houseNumber": "Numer domu/numer mieszkaniа",
       "name": "Imię ta nazwisko"
     },
     "policyholder": {
@@ -837,7 +837,7 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer budynku",
+      "houseNumber": "Numer domu/numer mieszkaniа",
       "name": "Imię ta nazwisko"
     }
   },
@@ -866,7 +866,7 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer domu",
+      "houseNumber": "Numer domu/numer mieszkania",
       "name": "Imię ta nazwisko"
     },
     "Page2": {
@@ -893,7 +893,7 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer domu",
+      "houseNumber": "Numer domu/numer mieszkania",
       "name": "Imię ta nazwisko"
     },
     "ApplicantBox": {
@@ -921,7 +921,7 @@
       "city": "Miasto",
       "postIndex": "Indeks pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer budynku",
+      "houseNumber": "Numer domu/numer mieszkaniа",
       "name": "Imię ta nazwisko"
     }
   },
@@ -1023,7 +1023,7 @@
       "city": "Miasto",
       "voivodeship": "Województwo",
       "street": "Ulica",
-      "houseNumber": "Numer domu",
+      "houseNumber": "Numer domu/numer mieszkania",
       "documentAddedType": "Typ dokumentu",
       "documentAdded": "Numer dokumentu",
       "isAppropLicence": "Czy Twoje prawo jazdy jest odpowiednie dla pojazdu?",
@@ -1114,7 +1114,7 @@
       "city": "Misato",
       "postIndex": "Kod pocztowy",
       "street": "Ulica",
-      "houseNumber": "Numer budynku",
+      "houseNumber": "Numer domu/numer mieszkaniа",
       "name": "Imię i nazwisko"
     }
   },

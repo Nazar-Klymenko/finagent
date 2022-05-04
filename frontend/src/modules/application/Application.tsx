@@ -19,7 +19,7 @@ import { Tabs } from "@components/Tabs";
 import { BackArrow } from "@components/buttons";
 import { PageContainer } from "@components/layout";
 
-import { AdminAttachments } from "./AdminAttachments";
+import { Attachments } from "./Attachments";
 import { ContextMenu } from "./ContextMenu";
 import { FileBox } from "./FileBox";
 import { Status } from "./Status";
@@ -102,7 +102,8 @@ const Application = (): JSX.Element => {
               applicationType={data.applicationType}
             />
             <Status currentStep={data.status} />
-            <AdminAttachments data={data} />
+            <Attachments type="userAttachments" data={data} />
+            <Attachments type="adminAttachments" data={data} />
           </ApplicationBody>
         </ApplicationMain>
       </DashboardInner>

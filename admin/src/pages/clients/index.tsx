@@ -71,9 +71,9 @@ const Clients: NextPage = (props) => {
                 // sx={{ cursor: "pointer" }}
               >
                 <TableCell>{client?.fullName}</TableCell>
-                <TableCell>{client?.email}</TableCell>
-                <TableCell>{client?.phone}</TableCell>
-                <TableCell>{client?.language}</TableCell>
+                <TableCell>{client?.email || "-"}</TableCell>
+                <TableCell>{client?.phone || "-"}</TableCell>
+                <TableCell>{client?.language || "-"}</TableCell>
                 <TableCell>{client?.provider}</TableCell>
                 <TableCell>{client?.isApproved + ""}</TableCell>
                 <TableCell>{format(new Date(client.createdAt))}</TableCell>

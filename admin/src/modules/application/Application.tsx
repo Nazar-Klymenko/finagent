@@ -22,6 +22,7 @@ import { BackArrow } from "@components/buttons";
 import { PageContainer } from "@components/layout";
 
 import { AdminFileInput } from "./AdminFileInput";
+import { Attachments } from "./Attachments";
 import { ContextMenu } from "./ContextMenu";
 import { ControlButtons } from "./ControlButtons";
 import { FileBox } from "./FileBox";
@@ -114,6 +115,8 @@ const Application = (): JSX.Element => {
               applicationType={data.applicationType}
             />
             <SetStatus id={data.id} currentStatus={data.status} />
+            <Attachments data={data} type="userAttachments" />
+            <Attachments data={data} type="adminAttachments" />
             <AdminFileInput id={data.id} userid={data.user_id} />
           </ApplicationBody>
         </ApplicationMain>

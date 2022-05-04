@@ -85,8 +85,8 @@ const Applications: NextPage = (props) => {
                   employee={app.employee}
                 />
                 <TableCell>{app.user?.fullName}</TableCell>
-                <TableCell>{app.user?.email}</TableCell>
-                <TableCell>{app.user?.phone}</TableCell>
+                <TableCell>{app.user?.email || "-"}</TableCell>
+                <TableCell>{app.user?.phone || "-"}</TableCell>
                 <TableCell>{app.category}</TableCell>
                 <TableCell>{app.type}</TableCell>
                 <TableCell>

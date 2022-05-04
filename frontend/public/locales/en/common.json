@@ -703,7 +703,7 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number"
+      "houseNumber": "House number/apartment number"
     }
   },
   "insuranceEstate": {
@@ -715,7 +715,7 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number",
+      "houseNumber": "House number/apartment number",
       "estateType": "Type of real estate",
       "house": "House",
       "apartment": "Apartment",
@@ -817,7 +817,7 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number",
+      "houseNumber": "House number/apartment number",
       "name": "Full name"
     },
     "policyholder": {
@@ -837,7 +837,7 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number",
+      "houseNumber": "House number/apartment number",
       "name": "Full name"
     }
   },
@@ -866,7 +866,7 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number",
+      "houseNumber": "House number/apartment number",
       "name": "Full name"
     },
     "Page2": {
@@ -893,7 +893,7 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number",
+      "houseNumber": "House number/apartment number",
       "name": "Full name"
     },
     "ApplicantBox": {
@@ -921,7 +921,7 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number",
+      "houseNumber": "House number/apartment number",
       "name": "Full name"
     }
   },
@@ -1023,7 +1023,7 @@
       "city": "City",
       "voivodeship": "Voivodeship",
       "street": "Street",
-      "houseNumber": "House number",
+      "houseNumber": "House number/apartment number",
       "documentAddedType": "Document type",
       "documentAdded": "Document number",
       "isAppropLicence": "Is Your driving license appropriate for the vehicle?",
@@ -1114,7 +1114,7 @@
       "city": "City",
       "postIndex": "Post index",
       "street": "Street",
-      "houseNumber": "House number",
+      "houseNumber": "House number/apartment number",
       "name": "Full name"
     }
   },

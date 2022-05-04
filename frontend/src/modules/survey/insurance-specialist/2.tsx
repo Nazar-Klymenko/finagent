@@ -200,7 +200,7 @@ const Page2 = () => {
                         value: "legal",
                       },
                     ]}
-                    defaultValue={field.policyholderIs || ""}
+                    defaultValue={field.policyholderIs || "individual"}
                   />
 
                   {policyholderIs === "individual" ? (

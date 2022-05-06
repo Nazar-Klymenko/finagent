@@ -20,4 +20,14 @@ module.exports = {
     };
     return config;
   },
+  assetPrefix: BASE_PREFIX_FOR_APP,
+  async rewrites() {
+    return [
+      {
+        /** ASSET PREFIX */
+        source: `${BASE_PREFIX_FOR_APP}/_next/:path*`,
+        destination: "/_next/:path*",
+      },
+    ];
+  },
 };

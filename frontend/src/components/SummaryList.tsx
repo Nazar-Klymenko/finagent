@@ -62,12 +62,15 @@ const SummaryList = ({
                     (subitem: any, subidx: number) => {
                       if (_.isArray(subitem[1])) {
                         return (
-                          <ArrayList
-                            key={subidx}
-                            subitem={subitem}
-                            applicationType={applicationType}
-                            subidx={subidx}
-                          />
+                          subitem[1]?.length > 0 &&
+                          subitem[1].map((_x, idx) => (
+                            <ArrayList
+                              key={idx}
+                              subitem={_x}
+                              applicationType={applicationType}
+                              subidx={idx}
+                            />
+                          ))
                         );
                       } else {
                         return (

@@ -57,7 +57,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.name")}
+                  {t("Dashboard.ApplicationCard.name")}:
                 </Typography>
                 <Typography
                   className="value"
@@ -71,7 +71,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.createdAt")}
+                  {t("Dashboard.ApplicationCard.createdAt")}:
                 </Typography>
                 <Typography
                   className="value"
@@ -85,7 +85,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.updatedAt")}
+                  {t("Dashboard.ApplicationCard.updatedAt")}:
                 </Typography>
                 <Typography
                   className="value"

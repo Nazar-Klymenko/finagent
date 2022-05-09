@@ -1,7 +1,8 @@
 import * as React from "react";
 
-import createEmotionServer from "@emotion/server/create-instance";
 import Document, { Head, Html, Main, NextScript } from "next/document";
+
+import createEmotionServer from "@emotion/server/create-instance";
 
 import createEmotionCache from "@styles/createEmotionCache";
 import muiTheme from "@styles/muiTheme";
@@ -17,6 +18,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />

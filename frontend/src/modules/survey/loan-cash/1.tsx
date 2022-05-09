@@ -131,6 +131,7 @@ const Page1 = () => {
     setFormInitiated(true);
     setEditingMode(false);
     setAddingMode(false);
+    console.log({ data });
     setValues(data, "loanCash", "applicantData");
   });
 

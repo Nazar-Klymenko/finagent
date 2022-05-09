@@ -58,10 +58,8 @@ const Page4 = () => {
   const formSubmit = handleSubmit((data) => {
     console.log(data);
     setValues(data, "insuranceTransport", "additionalData");
-    setAllowSummary(true);
-    router.push("./summary");
-    // setCurrentPage(5);
-    // router.push("./5");
+    setCurrentPage(5);
+    router.push("./5");
   });
 
   return (

@@ -62,6 +62,7 @@ const Summary = () => {
         "insraunce-transport",
         appDataValid
       );
+      console.log(response);
       Object.entries(appDataValid.appendedDocuments).forEach(
         (fileArray, idx) => {
           //@ts-ignore
@@ -106,7 +107,7 @@ const Summary = () => {
       <FormBuilder.ButtonsWrap multiple>
         <Button
           onClick={() => {
-            router.push("./4");
+            router.push("./5");
           }}
           form=""
           color="secondary"

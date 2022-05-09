@@ -95,13 +95,26 @@ const Application = (): JSX.Element => {
                 </Typography>
               </Cell>
             </InfoContainer>
+
             <SummaryList
               inDashboard
               header={t("ApplicationOpen.Summary.summary")}
               array={summaryReady}
               applicationType={data.applicationType}
             />
+            <Typography variant="h6">
+              {t("ApplicationOpen.Status.title")}
+            </Typography>
+            <Typography variant="body2">
+              {t("ApplicationOpen.Status.subtitle")}
+            </Typography>
             <Status currentStep={data.status} />
+            <Typography variant="h6">
+              {t("ApplicationOpen.Attachments.title")}
+            </Typography>
+            <Typography variant="body2">
+              {t("ApplicationOpen.Attachments.subtitle")}
+            </Typography>
             <Attachments type="userAttachments" data={data} />
             <Attachments type="adminAttachments" data={data} />
           </ApplicationBody>

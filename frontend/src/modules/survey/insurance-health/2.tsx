@@ -105,6 +105,7 @@ const Page2 = () => {
     setFormInitiated(true);
     setEditingMode(false);
     setAddingMode(false);
+    console.log(data);
     console.log({ data });
     setValues(data, "insuranceHealth", "insuredData");
   });

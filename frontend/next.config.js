@@ -11,7 +11,7 @@ module.exports = {
   },
   i18n,
   typescript: {
-    ignoreBuildErrors: false,
+    ignoreBuildErrors: true,
   },
   webpackDevMiddleware: (config) => {
     config.watchOptions = {

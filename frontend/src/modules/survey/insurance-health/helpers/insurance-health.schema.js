@@ -21,7 +21,7 @@ export const pageOneSchema = () => {
 
 export const policyholderSchema = () => {
   return yup.object().shape({
-    applicant: yup.array().of(
+    policyholder: yup.array().of(
       yup.object().shape({
         name: yup.string().required("Form.Error.blank"),
         documentAdded: yup.string().required("Form.Error.blank"),

@@ -54,7 +54,7 @@ const Page2 = () => {
   const [editingIndex, setEditingIndex] = useState(0);
 
   //@ts-ignore
-  const appDataValid = appData.insuranceHealth.insuredData?.policyholder;
+  const appDataValid = appData.insuranceHealth.insuredData.policyholder;
 
   const methods = useForm<FormTypes>({
     defaultValues: {
@@ -194,7 +194,7 @@ const Page2 = () => {
                         value: "foreigner",
                       },
                     ]}
-                    defaultValue={field.policyholderIs || "polish"}
+                    defaultValue={field.policyholderIs}
                   />
                   {policyholderIs === "foreigner" && (
                     <Input
@@ -202,7 +202,7 @@ const Page2 = () => {
                       labelName={t("insuranceHealth.policyholder.citizenship")}
                       type="text"
                       placeholder="Type here"
-                      defaultValue={field.citizenship || ""}
+                      defaultValue={field.citizenship}
                     />
                   )}
                   <Input
@@ -214,7 +214,7 @@ const Page2 = () => {
                     }`}
                     type="text"
                     placeholder="XXXXXXXXXXX"
-                    defaultValue={field.documentAdded || ""}
+                    defaultValue={field.documentAdded}
                   />
                   <Input
                     name={`policyholder.${index}.name`}
@@ -222,7 +222,7 @@ const Page2 = () => {
                     type="text"
                     placeholder="John"
                     autoComplete="given-name"
-                    defaultValue={field.name || ""}
+                    defaultValue={field.name}
                   />
 
                   <DateInput
@@ -236,31 +236,31 @@ const Page2 = () => {
                     labelName={t("insuranceHealth.policyholder.country")}
                     type="text"
                     placeholder="Poland"
-                    defaultValue={field.country || ""}
+                    defaultValue={field.country}
                   />
                   <Input
                     name={`policyholder.${index}.city`}
                     labelName={t("insuranceHealth.policyholder.city")}
                     type="text"
                     placeholder="Warsaw"
-                    defaultValue={field.city || ""}
+                    defaultValue={field.city}
                   />
                   <Input
                     name={`policyholder.${index}.postIndex`}
                     labelName={t("insuranceHealth.policyholder.postIndex")}
                     placeholder="123-45"
-                    defaultValue={field.postIndex || ""}
+                    defaultValue={field.postIndex}
                   />
                   <Input
                     name={`policyholder.${index}.street`}
                     labelName={t("insuranceHealth.policyholder.street")}
                     placeholder="Bialostocka"
-                    defaultValue={field.street || ""}
+                    defaultValue={field.street}
                   />
                   <Input
                     name={`policyholder.${index}.houseNumber`}
                     labelName={t("insuranceHealth.policyholder.houseNumber")}
-                    defaultValue={field.houseNumber || ""}
+                    defaultValue={field.houseNumber}
                   />
                 </Form>
               </MuiDialog>

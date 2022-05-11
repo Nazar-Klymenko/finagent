@@ -27,7 +27,7 @@ export const policyholderSchema = () => {
         documentAdded: yup.string().required("Form.Error.blank"),
         birthDate: yup.date().nullable().required("Form.Error.missingDate"),
         citizenship: yup.string().when("policyholderIs", {
-          is: "Foreigner",
+          is: "foreigner",
           then: yup.string().required("Form.Error.blank"),
         }),
         country: yup.string().required("Form.Error.blank"),

@@ -60,16 +60,16 @@ const Page2 = () => {
     defaultValues: {
       policyholder: [
         {
-          policyholderIs: appDataValid?.[0]?.policyholderIs || "polish",
-          name: appDataValid?.[0]?.name || "",
-          citizenship: appDataValid?.[0]?.citizenship || "",
-          birthDate: appDataValid?.[0]?.birthDate || null,
-          documentAdded: appDataValid?.[0]?.documentAdded || "",
-          country: appDataValid?.[0]?.country || "",
-          city: appDataValid?.[0]?.city || "",
-          postIndex: appDataValid?.[0]?.postIndex || "",
-          street: appDataValid?.[0]?.street || "",
-          houseNumber: appDataValid?.[0]?.houseNumber || "",
+          policyholderIs: "polish",
+          name: "",
+          citizenship: "",
+          birthDate: null,
+          documentAdded: "",
+          country: "",
+          city: "",
+          postIndex: "",
+          street: "",
+          houseNumber: "",
         },
       ],
     },
@@ -140,6 +140,7 @@ const Page2 = () => {
     }
   };
 
+  console.log(errors);
   return (
     <PageContainer xs title="insuranceHealth.title">
       <QuestState data={appData} />

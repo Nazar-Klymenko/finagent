@@ -60,16 +60,16 @@ const Page2 = () => {
     defaultValues: {
       policyholder: [
         {
-          policyholderIs: appDataValid?.[0]?.policyholderIs,
-          name: appDataValid?.[0]?.name,
-          citizenship: appDataValid?.[0]?.citizenship,
-          birthDate: appDataValid?.[0]?.birthDate,
-          documentAdded: appDataValid?.[0]?.documentAdded,
-          country: appDataValid?.[0]?.country,
-          city: appDataValid?.[0]?.city,
-          postIndex: appDataValid?.[0]?.postIndex,
-          street: appDataValid?.[0]?.street,
-          houseNumber: appDataValid?.[0]?.houseNumber,
+          policyholderIs: appDataValid?.[0]?.policyholderIs || "polish",
+          name: appDataValid?.[0]?.name || "",
+          citizenship: appDataValid?.[0]?.citizenship || "",
+          birthDate: appDataValid?.[0]?.birthDate || null,
+          documentAdded: appDataValid?.[0]?.documentAdded || "",
+          country: appDataValid?.[0]?.country || "",
+          city: appDataValid?.[0]?.city || "",
+          postIndex: appDataValid?.[0]?.postIndex || "",
+          street: appDataValid?.[0]?.street || "",
+          houseNumber: appDataValid?.[0]?.houseNumber || "",
         },
       ],
     },
@@ -201,7 +201,7 @@ const Page2 = () => {
                       labelName={t("insuranceHealth.policyholder.citizenship")}
                       type="text"
                       placeholder="Type here"
-                      defaultValue={field.citizenship}
+                      defaultValue={field.citizenship || ""}
                     />
                   )}
                   <Input
@@ -213,7 +213,7 @@ const Page2 = () => {
                     }`}
                     type="text"
                     placeholder="XXXXXXXXXXX"
-                    defaultValue={field.documentAdded}
+                    defaultValue={field.documentAdded || ""}
                   />
                   <Input
                     name={`policyholder.${index}.name`}
@@ -221,13 +221,13 @@ const Page2 = () => {
                     type="text"
                     placeholder="John"
                     autoComplete="given-name"
-                    defaultValue={field.name}
+                    defaultValue={field.name || ""}
                   />
 
                   <DateInput
                     name={`policyholder.${index}.birthDate`}
                     labelName={t("insuranceHealth.Page2.birthDate")}
-                    defaultValue={field.birthDate}
+                    defaultValue={field.birthDate || null}
                     placeholder={t("Form.Placeholder.dateFull")}
                   />
                   <Input
@@ -235,31 +235,31 @@ const Page2 = () => {
                     labelName={t("insuranceHealth.policyholder.country")}
                     type="text"
                     placeholder="Poland"
-                    defaultValue={field.country}
+                    defaultValue={field.country || ""}
                   />
                   <Input
                     name={`policyholder.${index}.city`}
                     labelName={t("insuranceHealth.policyholder.city")}
                     type="text"
                     placeholder="Warsaw"
-                    defaultValue={field.city}
+                    defaultValue={field.city || ""}
                   />
                   <Input
                     name={`policyholder.${index}.postIndex`}
                     labelName={t("insuranceHealth.policyholder.postIndex")}
                     placeholder="123-45"
-                    defaultValue={field.postIndex}
+                    defaultValue={field.postIndex || ""}
                   />
                   <Input
                     name={`policyholder.${index}.street`}
                     labelName={t("insuranceHealth.policyholder.street")}
                     placeholder="Bialostocka"
-                    defaultValue={field.street}
+                    defaultValue={field.street || ""}
                   />
                   <Input
                     name={`policyholder.${index}.houseNumber`}
                     labelName={t("insuranceHealth.policyholder.houseNumber")}
-                    defaultValue={field.houseNumber}
+                    defaultValue={field.houseNumber || ""}
                   />
                 </Form>
               </MuiDialog>

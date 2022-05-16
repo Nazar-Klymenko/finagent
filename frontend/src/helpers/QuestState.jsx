@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 
 export const QuestState = ({ data }) => {
-  let show = true;
+  let show = false;
   const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => {
     setIsOpen(!isOpen);

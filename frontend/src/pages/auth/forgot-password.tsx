@@ -44,7 +44,7 @@ const ForgotPassword: NextPage = (props) => {
     if (isLoggedIn && isActive) {
       router.push("/dashboard/insurance");
     } else if (isLoggedIn && !isActive) {
-      router.push("/activate-email");
+      router.push("/auth/activate-email");
     }
   }, [isLoggedIn, isActive, router]);
 

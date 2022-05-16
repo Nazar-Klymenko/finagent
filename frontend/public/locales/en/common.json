@@ -193,7 +193,8 @@
   },
   "ActivateEmail": {
     "content": "We sent the activation link on your email address. Please activate your account.",
-    "resend": "Resend email"
+    "resend": "Resend email",
+    "title": "Activate account"
   },
   "RestorePassword": {
     "title": "Restore password",

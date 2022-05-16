@@ -62,7 +62,7 @@ const SignUp: NextPage = () => {
     if (isLoggedIn && isActive) {
       router.push("/dashboard/insurance");
     } else if (isLoggedIn && !isActive) {
-      router.push("/verify-email");
+      router.push("/activate-email");
     }
   }, [isLoggedIn, isActive, router]);
 

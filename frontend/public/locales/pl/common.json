@@ -192,6 +192,7 @@
     }
   },
   "ActivateEmail": {
+    "title": "Aktywuj konto",
     "content": "Wysłaliśmy link aktywacyjny na Twój adres e-mail. Proszę aktywować konto.",
     "resend": "Wysłać ponownie"
   },

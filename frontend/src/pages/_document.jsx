@@ -7,8 +7,6 @@ import createEmotionServer from "@emotion/server/create-instance";
 import createEmotionCache from "@styles/createEmotionCache";
 import muiTheme from "@styles/muiTheme";
 
-import favico from "../../public/favicon.ico";
-
 export default class MyDocument extends Document {
   render() {
     return (
@@ -20,7 +18,6 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
-          <link rel="icon" type="image/x-icon" href={favico} />
         </Head>
         <body>
           <Main />

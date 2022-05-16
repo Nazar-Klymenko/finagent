@@ -1,32 +1,34 @@
 import React, { useMemo } from "react";
-import { createTheme } from "@mui/material/styles";
 
-import Head from "next/head";
 import { appWithTranslation } from "next-i18next";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import Script from "next/script";
+
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { CacheProvider } from "@emotion/react";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
-import PropTypes from "prop-types";
-import { AuthContextProvider } from "@context/authContext";
-import { DataProvider } from "@context/dataContext";
-
-import Script from "next/script";
+import DateAdapter from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import CssBaseline from "@mui/material/CssBaseline";
+import { enUS, plPL, ruRU, ukUA } from "@mui/material/locale";
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import enLocale from "date-fns/locale/en-GB";
+import plLocale from "date-fns/locale/pl";
+import ruLocale from "date-fns/locale/ru";
+import ukLocale from "date-fns/locale/uk";
+import PropTypes from "prop-types";
 
 import GlobalStyles from "@styles/GlobalStyle";
 import createEmotionCache from "@styles/createEmotionCache";
 import muiTheme from "@styles/muiTheme";
 
-import { Layout } from "@components/layout";
-import { useRouter } from "next/router";
-import DateAdapter from "@mui/lab/AdapterDateFns";
+import { AuthContextProvider } from "@context/authContext";
+import { DataProvider } from "@context/dataContext";
 
-import plLocale from "date-fns/locale/pl";
-import ruLocale from "date-fns/locale/ru";
-import ukLocale from "date-fns/locale/uk";
-import enLocale from "date-fns/locale/en-GB";
-import { plPL, ukUA, enUS, ruRU } from "@mui/material/locale";
+import { Layout } from "@components/layout";
+
+import favico from "../../public/favicon.ico";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -64,6 +66,7 @@ function MyApp(props) {
       <Head>
         <title>Finagent</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="icon" type="image/x-icon" href={favico} />
       </Head>
       <GlobalStyles />
       <ThemeProvider theme={themeWithLocale}>

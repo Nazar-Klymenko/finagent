@@ -163,6 +163,7 @@ const Page2 = () => {
       {editingMode &&
         fields.map((field: any, index: number) => {
           let policyholderIs = watch(
+            //@ts-ignore
             `policyholder[${index}].policyholderIs`
           ) as unknown as string;
 

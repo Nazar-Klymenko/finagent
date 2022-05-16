@@ -162,6 +162,7 @@ const Page2 = () => {
         fields.map((field: any, index: number) => {
           //@ts-ignore
           let policyholderIs = watch(
+            //@ts-ignore
             `policyholder.${index}.policyholderIs`
           ) as unknown as string;
           return (

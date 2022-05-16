@@ -94,7 +94,9 @@ export const AuthContextProvider = ({ children }) => {
         if (user.providerData[0]?.providerId === "facebook.com") {
           emailVerified = true;
           photoURL = user.photoURL;
-        } else emailVerified = user.emailVerified;
+        } else {
+          emailVerified = user.emailVerified;
+        }
       }
       const redirectResult = await getRedirectResult(auth);
       if (redirectResult) {

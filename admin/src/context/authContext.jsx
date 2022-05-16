@@ -30,6 +30,8 @@ const AuthContext = createContext({
     isAdmin: false,
     isApproved: false,
     isSupervisor: false,
+    isAwaitingApproval: false,
+    isRejected: false,
   },
   signup: (data) => Promise,
   login: (email, password) => Promise,
@@ -39,6 +41,7 @@ const AuthContext = createContext({
   resetPassword: (email) => Promise,
   setUpdatedPassword: (currentPassword, newPassword) => Promise,
   updateDisplayName: (displayName) => Promise,
+  requestAdmin: () => Promise,
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -59,6 +62,8 @@ export const AuthContextProvider = ({ children }) => {
     isAdmin: false,
     isApproved: false,
     isSupervisor: false,
+    isAwaitingApproval: false,
+    isRejected: false,
   });
 
   useEffect(() => {
@@ -79,6 +84,8 @@ export const AuthContextProvider = ({ children }) => {
               isAdmin: _user.isAdmin,
               isApproved: _user.isApproved,
               isSupervisor: _user.isSupervisor,
+              isAwaitingApproval: _user.isAwaitingApproval,
+              isRejected: _user.isRejected,
             }
           : {
               displayName: "",
@@ -88,6 +95,8 @@ export const AuthContextProvider = ({ children }) => {
               isAdmin: false,
               isApproved: false,
               isSupervisor: false,
+              isAwaitingApproval: false,
+              isRejected: false,
             }
       );
     });
@@ -212,6 +221,9 @@ export const AuthContextProvider = ({ children }) => {
     });
   }
 
+  async function requestAdmin() {
+    await requestAdminAPI();
+  }
   const value = {
     currentUser,
     login,

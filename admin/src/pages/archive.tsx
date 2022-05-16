@@ -12,7 +12,7 @@ import { PageContainer } from "@components/layout";
 
 const Archive: NextPage = (props) => {
   return (
-    <PageContainer title="test">
+    <PageContainer title="Common.Pages.archive">
       <Typography variant="h4" component={"h3"}>
         Archive
       </Typography>

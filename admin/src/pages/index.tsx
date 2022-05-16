@@ -12,7 +12,7 @@ import { PageContainer } from "@components/layout";
 
 const Home: NextPage = (props) => {
   return (
-    <PageContainer title="test">
+    <PageContainer title="Common.Pages.index">
       <Typography variant="h4" component={"h3"}>
         Test
       </Typography>

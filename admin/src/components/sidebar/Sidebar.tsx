@@ -21,7 +21,7 @@ const Sidebar = (props: any): JSX.Element => {
       <NavbarBg className="mui-fixed">
         <InnerNavbar>
           <LogoWrap>
-            <Link href={"/dashboard/insurance"} passHref>
+            <Link href={"/applications"} passHref>
               <Logo>
                 <Image src="/logo-pale.svg" height="44" width="90" alt="" />
               </Logo>

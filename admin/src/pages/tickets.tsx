@@ -12,7 +12,7 @@ import { PageContainer } from "@components/layout";
 
 const Tickets: NextPage = (props) => {
   return (
-    <PageContainer title="test">
+    <PageContainer title="Common.Pages.tickets">
       <Typography variant="h4" component={"h3"}>
         Tickets
       </Typography>

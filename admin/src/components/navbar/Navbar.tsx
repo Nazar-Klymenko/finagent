@@ -14,7 +14,6 @@ import { useAuth } from "@context/authContext";
 
 import AuthButtons from "./AuthButtons";
 import LanguageMenu from "./LanguageMenu";
-import Links from "./Links";
 import UserMenu from "./UserMenu";
 
 const Navbar = (props: any): JSX.Element => {

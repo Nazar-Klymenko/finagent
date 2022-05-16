@@ -1,10 +1,14 @@
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
+
+import { useAuth } from "@context/authContext";
 
 import { links } from "./config";
 
@@ -12,6 +16,10 @@ const Links = (): JSX.Element => {
   const { locale, asPath } = useRouter();
   //@ts-ignore
   const { _t } = useLayoutTranslation(locale);
+  const { t } = useTranslation();
+
+  const { currentUser } = useAuth(),
+    { isSupervisor } = currentUser;
 
   function CheckActiveLink(array: string[]) {
     return array.includes(asPath);
@@ -35,6 +43,22 @@ const Links = (): JSX.Element => {
           </LinkWrap>
         );
       })}
+      {isSupervisor && (
+        <LinkWrap>
+          <Link href="/accept-operators" passHref>
+            <StyledLinkText
+              as="a"
+              variant="body1"
+              isActive={CheckActiveLink(["/accept-operators"])}
+            >
+              <Box sx={{ pr: "0.5rem" }}>
+                <SupervisorAccountIcon />
+              </Box>
+              {_t("Navbar.operators")}
+            </StyledLinkText>
+          </Link>
+        </LinkWrap>
+      )}
     </LinksContainer>
   );
 };

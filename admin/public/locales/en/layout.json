@@ -7,7 +7,8 @@
     "history": "History",
     "archive": "Archive",
     "signUp": "Sign up",
-    "logIn": "Log in"
+    "logIn": "Log in",
+    "operators": "Operators"
   },
   "UserDropdown": {
     "operators": "Operators",

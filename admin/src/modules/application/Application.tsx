@@ -53,7 +53,7 @@ const Application = (): JSX.Element => {
 
   if (!data && !error) return <Loader />;
   return (
-    <PageContainer title="Dashboard.title" dashboard>
+    <PageContainer title="Common.Pages.aplikacje" dashboard>
       <DashboardInner>
         <ApplicationMain>
           <ApplicationHeader hideBorder={md}>

@@ -13,6 +13,8 @@ const UserSchema = new Schema(
     isAdmin: { type: Boolean, default: false },
     isSupervisor: { type: Boolean, default: false },
     isApproved: { type: Boolean, default: false },
+    isAwaitingApproval: { type: Boolean, default: false },
+    isRejected: { type: Boolean, default: false },
     signupSecret: String,
   },
   {

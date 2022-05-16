@@ -38,10 +38,6 @@ const withAuth = (Component: NextPage) => {
           router.push("/auth/approval");
           return null;
         }
-        if (isActive && !isApproved) {
-          router.push("/auth/approval");
-          return null;
-        }
         if (!isSupervisor) {
           router.push("/auth/not-allowed");
           return null;

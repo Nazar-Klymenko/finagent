@@ -6,6 +6,21 @@
       "noNumber": "This field can't contain numbers"
     }
   },
+  "Common": {
+    "Pages": {
+      "index": "Admin Panel",
+      "applications": "Applications",
+      "clients": "Clients",
+      "myApplications": "My applications",
+      "tickets": "Tickets",
+      "history": "History",
+      "archive": "Archive",
+      "signUp": "Sign up",
+      "logIn": "Log in",
+      "activate": "Activate account",
+      "operators": "Operators"
+    }
+  },
   "Welcome": {
     "title": "Welcome to the Admin Panel",
     "subtitle": "Here you can manage over all the applications users sent"

@@ -3,7 +3,7 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import MailIcon from "@mui/icons-material/Mail";
-import PeopleIcon from "@mui/icons-material/People";
+import PersonIcon from "@mui/icons-material/Person";
 
 interface NavLinks {
   href: string;
@@ -29,7 +29,7 @@ const links: NavLinks[] = [
     href: "/clients",
     label: "Navbar.clients",
     activePaths: ["/clients"],
-    icon: <PeopleIcon />,
+    icon: <PersonIcon />,
   },
   {
     href: "/tickets",

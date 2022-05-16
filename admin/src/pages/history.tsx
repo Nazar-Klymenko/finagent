@@ -12,7 +12,7 @@ import { PageContainer } from "@components/layout";
 
 const History: NextPage = (props) => {
   return (
-    <PageContainer title="test">
+    <PageContainer title="Common.Pages.history">
       <Typography variant="h4" component={"h3"}>
         history
       </Typography>

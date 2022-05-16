@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 const router: Router = express.Router();
 
-import { signUp, getUser } from "controllers/admin/auth";
+import { signUp, getUser, requestAdmin } from "controllers/admin/auth";
 import {
   getAllAplications,
   assignApplication,
@@ -15,6 +15,12 @@ import {
 
 import { getAllClients } from "controllers/admin/clients";
 import {
+  getAllOperators,
+  getAwaitingOperators,
+  grantAdministatorRole,
+  declineAdministator,
+} from "controllers/admin/supervisor";
+import {
   verifyAccessTokenFirebase,
   verifyAdmin,
   verifySupervisor,
@@ -22,6 +28,9 @@ import {
 
 router.route("/auth/signup").post(signUp);
 router.route("/auth/user").get(verifyAccessTokenFirebase, getUser);
+router
+  .route("/auth/request-admin")
+  .get(verifyAccessTokenFirebase, requestAdmin);
 
 router
   .route("/clients")
@@ -61,5 +70,38 @@ router
 router
   .route("/applications/attachments/:id")
   .post(verifyAccessTokenFirebase, verifyAdmin, postAttachments);
+
+router
+  .route("/operators")
+  .get(
+    verifyAccessTokenFirebase,
+    verifyAdmin,
+    verifySupervisor,
+    getAllOperators
+  );
+router
+  .route("/operators/awaiting")
+  .get(
+    verifyAccessTokenFirebase,
+    verifyAdmin,
+    verifySupervisor,
+    getAwaitingOperators
+  );
+router
+  .route("/operators/accept/:id")
+  .put(
+    verifyAccessTokenFirebase,
+    verifyAdmin,
+    verifySupervisor,
+    grantAdministatorRole
+  );
+router
+  .route("/operators/reject/:id")
+  .put(
+    verifyAccessTokenFirebase,
+    verifyAdmin,
+    verifySupervisor,
+    declineAdministator
+  );
 
 export default router;

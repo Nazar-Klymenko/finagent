@@ -23,7 +23,7 @@ import { Pagination } from "@components/Pagination";
 import { Table } from "@components/Table";
 import { PageContainer } from "@components/layout";
 
-const MyApplications: NextPage = (props) => {
+const AcceptOperators: NextPage = (props) => {
   const { formatDistanceToNow, format } = useDatefnsLocalized();
   const [pageIndex, setPageIndex] = useState(1);
   const [pageSize, setPageSize] = useState(4);
@@ -31,17 +31,17 @@ const MyApplications: NextPage = (props) => {
   const router = useRouter();
 
   let { data, error } = useSWR(
-    `/admin/applications/my?page=${pageIndex}&size=${pageSize}`,
+    `/admin/operators?page=${pageIndex}&size=${pageSize}`,
     fetcher
   );
-  let applications = data?.applications;
+  let operators = data?.operators;
   useEffect(() => {
     if (data) setMaximumPages(data.maximumPages);
   }, [data]);
 
-  console.log(applications);
+  console.log(operators);
   return (
-    <PageContainer title="Common.Pages.myApplications">
+    <PageContainer title="Common.Pages.operators">
       <Typography variant="h4" component={"h3"}>
         My Applications
       </Typography>
@@ -57,27 +57,20 @@ const MyApplications: NextPage = (props) => {
           "Applications.lastUpdate",
         ]}
       >
-        {applications?.length > 0 &&
-          applications.map((app: any) => {
+        {operators?.length > 0 &&
+          operators.map((operator: any) => {
             return (
-              <TableRow
-                key={app._id}
-                onClick={() => {
-                  router.push(`/application/${app._id}`);
-                }}
-                hover
-              >
-                <TableCell>{app.user?.fullName}</TableCell>
-                <TableCell>{app.user?.email || "-"}</TableCell>
-                <TableCell>{app.user?.phone || "-"}</TableCell>
-                <TableCell>{app.category}</TableCell>
-                <TableCell>{app.type}</TableCell>
+              <TableRow key={operator._id} hover>
+                <TableCell>{operator.user?.fullName}</TableCell>
+                <TableCell>{operator.user?.email || "-"}</TableCell>
+                <TableCell>{operator.user?.phone || "-"}</TableCell>
                 <TableCell>
-                  {formatDistanceToNow(new Date(app.createdAt))}
+                  {formatDistanceToNow(new Date(operator.createdAt))}
                 </TableCell>
                 <TableCell>
-                  {formatDistanceToNow(new Date(app.updatedAt))}
+                  {formatDistanceToNow(new Date(operator.updatedAt))}
                 </TableCell>
+                <TableCell>{operator.secret}</TableCell>
               </TableRow>
             );
           })}
@@ -98,7 +91,7 @@ const DataWrapper = styled("div")`
   flex-direction: column;
 `;
 
-export default withAuth(MyApplications);
+export default withAuth(AcceptOperators);
 
 export async function getStaticProps({ locale }: any) {
   return {

@@ -1,6 +1,7 @@
 import User from "models/user";
 
 import { auth } from "services/firebase";
+import createError from "http-errors";
 
 import { asyncHandler } from "helpers/asyncHandler";
 import { Request, Response } from "express";
@@ -18,6 +19,7 @@ export const signUp = asyncHandler(async (req: Request, res: Response) => {
     signupSecret: secret,
     isAdmin: true,
     isApproved: false,
+    isAwaitingApproval: true,
   });
 
   const decodedToken = await auth.verifyIdToken(IdToken);
@@ -38,3 +40,17 @@ export const getUser = asyncHandler(async (req: Request, res: Response) => {
     user: user,
   });
 });
+
+export const requestAdmin = asyncHandler(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const admin = await User.findById(id);
+    if (admin.isRejected) {
+      throw new createError.Forbidden();
+    }
+    admin.isAwaitingApproval = true;
+    await admin.save();
+    res.status(200).send("success");
+  }
+);

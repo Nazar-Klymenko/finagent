@@ -6,6 +6,21 @@
       "noNumber": "This field can't contain numbers"
     }
   },
+  "Common": {
+    "Pages": {
+      "index": "Admin Panel",
+      "applications": "Aplikacje",
+      "clients": "Klienci",
+      "myApplications": "Moje aplikacje",
+      "tickets": "Tickety",
+      "history": "Historia",
+      "archive": "Archiwum",
+      "logIn": "Logowanie",
+      "signUp": "Rejestracja",
+      "activate": "Aktywacja konta",
+      "operators": "Operatorzy"
+    }
+  },
   "Welcome": {
     "title": "Witamy w Admin Panel",
     "subtitle": "Tutaj możesz zarządzać wszystkimi aplikacje wysłane przez użytkowników"

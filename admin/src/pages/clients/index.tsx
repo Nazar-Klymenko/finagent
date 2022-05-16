@@ -43,7 +43,7 @@ const Clients: NextPage = (props) => {
 
   console.log({ data });
   return (
-    <PageContainer title="test">
+    <PageContainer title="Common.Pages.clients">
       <Typography variant="h4" component={"h3"}>
         {t("Clients.title")}
       </Typography>

@@ -51,7 +51,7 @@ const Applications: NextPage = (props) => {
   };
 
   return (
-    <PageContainer title="test">
+    <PageContainer title="Common.Pages.applications">
       <Typography variant="h4" component={"h3"}>
         Applications
       </Typography>

@@ -11,8 +11,15 @@ const withAuth = (Component: NextPage) => {
   const Auth = (props: any) => {
     const router = useRouter();
     const { currentUser } = useAuth();
-    const { isLoggedIn, isSendingRequest, isActive, isApproved, isAdmin } =
-      currentUser;
+    const {
+      isLoggedIn,
+      isSendingRequest,
+      isActive,
+      isApproved,
+      isAdmin,
+      isAwaitingApproval,
+      isRejected,
+    } = currentUser;
 
     if (isSendingRequest) {
       return <Loader />;
@@ -20,12 +27,16 @@ const withAuth = (Component: NextPage) => {
 
     if (!isSendingRequest) {
       if (isLoggedIn) {
-        if (!isAdmin) {
-          router.push("/auth/request-admin");
+        if (isRejected) {
+          router.push("/auth/not-allowed");
           return null;
         }
-        if (!isActive && !isApproved) {
+        if (!isActive) {
           router.push("/auth/activate-email");
+          return null;
+        }
+        if (!isAdmin && !isAwaitingApproval) {
+          router.push("/auth/request-admin");
           return null;
         }
         if (isActive && !isApproved) {

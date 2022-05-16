@@ -260,6 +260,7 @@ const Page1 = () => {
         fields.map((field: any, index: number) => {
           //@ts-ignore
           const nationality = watch(
+            //@ts-ignore
             `applicant[${index}].nationality`
           ) as unknown as string;
           //@ts-ignore

@@ -6,8 +6,6 @@ import Page1 from "@modules/survey/loan-cash/1";
 
 import withAuthForm from "@helpers/withAuthForm";
 
-export default withAuthForm(Page1);
-
 export async function getStaticProps({ locale }: any) {
   return {
     props: {
@@ -15,3 +13,4 @@ export async function getStaticProps({ locale }: any) {
     },
   };
 }
+export default withAuthForm(Page1);

@@ -85,7 +85,7 @@ const Page1 = () => {
         {t("insuranceHealth.Page1.subtitle")}
       </Typography>
 
-      <Form methods={methods} id="form" onSubmit={formSubmit}>
+      <Form methods={methods} id="form-health" onSubmit={formSubmit}>
         <DateInput
           name="insuranceStart"
           labelName={t("insuranceHealth.Page1.insuranceStart")}
@@ -139,7 +139,7 @@ const Page1 = () => {
         )}
       </Form>
       <FormBuilder.ButtonsWrap>
-        <Button form="form" color="primary">
+        <Button form="form-health" color="primary">
           {t("Basic.buttonNext")}
         </Button>
       </FormBuilder.ButtonsWrap>

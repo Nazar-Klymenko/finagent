@@ -19,6 +19,7 @@ import { Tabs } from "@components/Tabs";
 import { BackArrow } from "@components/buttons";
 import { PageContainer } from "@components/layout";
 
+import { Attachments } from "./Attachments";
 import { ContextMenu } from "./ContextMenu";
 import { FileBox } from "./FileBox";
 import { Status } from "./Status";
@@ -36,6 +37,7 @@ const Application = (): JSX.Element => {
 
   const summaryReady = determineAppType(data?.applicationType, data);
 
+  console.log(data);
   return (
     <PageContainer title="Dashboard.title" dashboard>
       <DashboardInner>
@@ -55,7 +57,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.name")}
+                  {t("Dashboard.ApplicationCard.name")}:
                 </Typography>
                 <Typography
                   className="value"
@@ -69,7 +71,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.createdAt")}
+                  {t("Dashboard.ApplicationCard.createdAt")}:
                 </Typography>
                 <Typography
                   className="value"
@@ -83,7 +85,7 @@ const Application = (): JSX.Element => {
                   className="key"
                   sx={{ typography: { sm: "body1", xs: "body2" } }}
                 >
-                  {t("Dashboard.ApplicationCard.updatedAt")}
+                  {t("Dashboard.ApplicationCard.updatedAt")}:
                 </Typography>
                 <Typography
                   className="value"
@@ -93,13 +95,28 @@ const Application = (): JSX.Element => {
                 </Typography>
               </Cell>
             </InfoContainer>
+
             <SummaryList
               inDashboard
               header={t("ApplicationOpen.Summary.summary")}
               array={summaryReady}
               applicationType={data.applicationType}
             />
+            <Typography variant="h6">
+              {t("ApplicationOpen.Status.title")}
+            </Typography>
+            <Typography variant="body2">
+              {t("ApplicationOpen.Status.subtitle")}
+            </Typography>
             <Status currentStep={data.status} />
+            <Typography variant="h6">
+              {t("ApplicationOpen.Attachments.title")}
+            </Typography>
+            <Typography variant="body2">
+              {t("ApplicationOpen.Attachments.subtitle")}
+            </Typography>
+            <Attachments type="userAttachments" data={data} />
+            <Attachments type="adminAttachments" data={data} />
           </ApplicationBody>
         </ApplicationMain>
       </DashboardInner>

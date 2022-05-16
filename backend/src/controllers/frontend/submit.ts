@@ -128,14 +128,14 @@ export const insuranceTransportSubmit = asyncHandler(
     insuranceObj.category = "insurance";
     insuranceObj.type = "transport";
 
-    // Object.entries(userInfo.appendedDocuments).forEach((fileArray) => {
-    //   fileArray[1]?.length > 0 &&
-    //     fileArray[1].forEach((file) => {
-    //       insuranceObj.user_attachments.push({
-    //         filename: file.path,
-    //       });
-    //     });
-    // });
+    Object.entries(userInfo.appendedDocuments).forEach((fileArray: any) => {
+      fileArray[1]?.length > 0 &&
+        fileArray[1].forEach((file: any) => {
+          insuranceObj.user_attachments.push({
+            filename: file.path,
+          });
+        });
+    });
 
     insuranceObj.markModified(
       "personalData",

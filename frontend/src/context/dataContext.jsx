@@ -81,20 +81,20 @@ const defaultAppData = {
       clauseThreePrice: "",
     },
     insuredData: {
-      // policyholder: [
-      //   {
-      //     policyholderIs: "polish",
-      //     citizenship: "",
-      //     name: "",
-      //     documentAdded: "",
-      //     birthDate: null,
-      //     country: "",
-      //     city: "",
-      //     postIndex: "",
-      //     street: "",
-      //     houseNumber: "",
-      //   },
-      // ],
+      policyholder: [
+        {
+          policyholderIs: "polish",
+          citizenship: "",
+          name: "",
+          documentAdded: "",
+          birthDate: null,
+          country: "",
+          city: "",
+          postIndex: "",
+          street: "",
+          houseNumber: "",
+        },
+      ],
     },
   },
   insuranceSpecialist: {
@@ -349,6 +349,10 @@ export const DataProvider = ({ children }) => {
   const [allowSummary, setAllowSummary] = useState(false);
 
   const setValues = (values, type, category) => {
+    console.log({ values });
+    console.log({ type });
+    console.log({ category });
+    console.log({ appData });
     setAppData((prevData) => ({
       ...prevData,
       [type]: { ...prevData[type], [category]: values },

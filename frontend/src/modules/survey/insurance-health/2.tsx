@@ -54,7 +54,7 @@ const Page2 = () => {
   const [editingIndex, setEditingIndex] = useState(0);
 
   //@ts-ignore
-  const appDataValid = appData.insuranceHealth.insuredData?.policyholder;
+  const appDataValid = appData.insuranceHealth.insuredData.policyholder;
 
   const methods = useForm<FormTypes>({
     defaultValues: {
@@ -105,6 +105,8 @@ const Page2 = () => {
     setFormInitiated(true);
     setEditingMode(false);
     setAddingMode(false);
+    console.log(data);
+    console.log({ data });
     setValues(data, "insuranceHealth", "insuredData");
   });
 
@@ -138,6 +140,7 @@ const Page2 = () => {
     }
   };
 
+  console.log(errors);
   return (
     <PageContainer xs title="insuranceHealth.title">
       <QuestState data={appData} />
@@ -159,6 +162,7 @@ const Page2 = () => {
         fields.map((field: any, index: number) => {
           //@ts-ignore
           let policyholderIs = watch(
+            //@ts-ignore
             `policyholder.${index}.policyholderIs`
           ) as unknown as string;
           return (
@@ -191,7 +195,7 @@ const Page2 = () => {
                         value: "foreigner",
                       },
                     ]}
-                    defaultValue={field.policyholderIs || "polish"}
+                    defaultValue={field.policyholderIs}
                   />
                   {policyholderIs === "foreigner" && (
                     <Input
@@ -225,7 +229,7 @@ const Page2 = () => {
                   <DateInput
                     name={`policyholder.${index}.birthDate`}
                     labelName={t("insuranceHealth.Page2.birthDate")}
-                    defaultValue={field.birthDate}
+                    defaultValue={field.birthDate || null}
                     placeholder={t("Form.Placeholder.dateFull")}
                   />
                   <Input

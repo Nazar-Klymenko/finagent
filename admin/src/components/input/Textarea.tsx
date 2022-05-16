@@ -1,65 +1,74 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
-import styled from "styled-components";
+import { useTranslation } from "next-i18next";
 
-import { InputContainer, InputErrorMessage, Label } from "./SharedStyles";
+import { OutlinedInput, OutlinedInputProps, Typography } from "@mui/material";
+import _ from "lodash";
+import { Controller, useFormContext } from "react-hook-form";
 
-interface Props {
+import {
+  InputContainer,
+  InputErrorMessage,
+  Label,
+  Optional,
+} from "./LocalStyles";
+
+interface Props extends OutlinedInputProps {
   name: string;
   labelName: string;
-  error: boolean;
-  helperText: string;
-  rows: number;
-  placeholder: string;
-  ref: React.Ref<HTMLTextAreaElement>;
+  placeholder?: string;
+  optional?: boolean;
+  rows?: number;
+  defaultValue?: string | undefined;
 }
 
-interface Styled {
-  error: boolean;
-}
+const Textarea = ({
+  name,
+  labelName,
+  placeholder,
+  optional,
+  defaultValue,
+  ...other
+}: Props): JSX.Element => {
+  const { t } = useTranslation();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+  return (
+    <InputContainer>
+      <Label htmlFor={name}>
+        {labelName}
+        {optional && <Optional>{t("Form.optional")}</Optional>}
+      </Label>
 
-const Textarea: React.FC<Props> = forwardRef(
-  ({ name, labelName, error, helperText, rows, placeholder }, ref) => {
-    return (
-      <InputContainer error={error}>
-        <Label htmlFor={name}>{labelName}</Label>
-        <TextareaStyled
-          ref={ref}
-          name={name}
-          id={name}
-          rows={rows}
-          placeholder={placeholder}
-          error={error}
-        />
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={defaultValue}
+        render={({ field }) => (
+          <OutlinedInput
+            onChange={field.onChange}
+            value={field.value}
+            multiline
+            inputRef={field.ref}
+            maxRows={8}
+            fullWidth
+            placeholder={placeholder}
+            error={!!_.get(errors, name)}
+            id={name}
+            {...other}
+          />
+        )}
+      />
 
-        <InputErrorMessage>
-          <span className="invis-star">*</span>
-          {helperText}
-        </InputErrorMessage>
-      </InputContainer>
-    );
-  }
-);
-
-const TextareaStyled = styled.textarea<Styled>`
-  position: relative;
-  width: 100%;
-  resize: none;
-
-  padding: 5px 8px;
-  appearance: none;
-  background: white;
-  border: 1px solid
-    ${({ error, theme }) => (error ? theme.red : theme.inputBorder)};
-  box-shadow: "0px 0px 0px 1px"
-    ${({ error, theme }) => (error ? theme.red : theme.blue)};
-  box-sizing: border-box;
-  border-radius: 5px;
-  &:focus {
-    overflow: hidden;
-    border: 1px solid ${({ theme }) => theme.blue};
-    box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.blue};
-  }
-`;
+      <InputErrorMessage>
+        <Typography variant="caption">
+          {t(_.get(errors, `${name}.message`))}
+        </Typography>
+      </InputErrorMessage>
+    </InputContainer>
+  );
+};
 
 export default Textarea;

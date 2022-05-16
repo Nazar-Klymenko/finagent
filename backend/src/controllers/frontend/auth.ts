@@ -51,16 +51,3 @@ export const signUpFacebook = asyncHandler(
     });
   }
 );
-
-export const verifyEmail = asyncHandler(async (req: Request, res: Response) => {
-  const { email } = req.body;
-  let isEmailVerified;
-  await auth.getUserByEmail(email).then((userRecord) => {
-    isEmailVerified = userRecord.emailVerified;
-  });
-
-  res.status(200).send({
-    message: "User email verified",
-    isActive: isEmailVerified,
-  });
-});

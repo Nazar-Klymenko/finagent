@@ -1,50 +1,70 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
-import styled from "styled-components";
+import { useTranslation } from "next-i18next";
 
-import { Label } from "./SharedStyles";
+import {
+  FormControlLabel,
+  Checkbox as MuiCheckbox,
+  Typography,
+} from "@mui/material";
+import _ from "lodash";
+import { Controller, useFormContext } from "react-hook-form";
+
+import { InputContainer, InputErrorMessage } from "./LocalStyles";
 
 interface Props {
   name: string;
   labelName: string;
-  checked: boolean;
-  readOnly: boolean;
-  onChange: () => void;
-  ref: React.Ref<HTMLInputElement>;
+  defaultValue?: boolean | undefined;
+  errorSpacer?: boolean;
+  readOnly?: boolean;
+  defaultChecked?: boolean;
 }
 
-const Checkbox: React.FC<Props> = forwardRef(
-  ({ name, labelName, checked, readOnly, onChange }, ref) => {
-    return (
-      <CheckBoxContainer>
-        <Label htmlFor={name}>
-          <input
-            ref={ref}
-            className="checkbox"
-            name={name}
-            readOnly={readOnly}
-            checked={checked}
-            id={name}
-            type="checkbox"
-            onChange={onChange}
-          />
-          {labelName}
-        </Label>
-      </CheckBoxContainer>
-    );
-  }
-);
+const Checkbox = ({
+  name,
+  labelName,
+  defaultValue,
+  errorSpacer,
+  readOnly,
+}: Props): JSX.Element => {
+  const { t } = useTranslation();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
-const CheckBoxContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.6rem;
-  .input-label {
-    cursor: pointer;
-  }
-  input {
-    margin-right: 1rem;
-  }
-`;
+  return (
+    <InputContainer>
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={defaultValue}
+        render={({ field }) => (
+          <FormControlLabel
+            style={{ maxWidth: "680px" }}
+            control={
+              <MuiCheckbox
+                inputRef={field.ref}
+                checked={!!field.value}
+                disabled={readOnly}
+                onChange={(e) => field.onChange(e.target.checked)}
+              />
+            }
+            label={labelName}
+          />
+        )}
+      />
+
+      {errorSpacer && (
+        <InputErrorMessage>
+          <Typography variant="caption">
+            {t(_.get(errors, `${name}.message`))}
+          </Typography>
+        </InputErrorMessage>
+      )}
+    </InputContainer>
+  );
+};
 
 export default Checkbox;

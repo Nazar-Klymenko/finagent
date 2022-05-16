@@ -46,7 +46,7 @@ ApplicationSchema.virtual("user", {
   justOne: true,
 });
 ApplicationSchema.virtual("employee", {
-  ref: "admins",
+  ref: "users",
   localField: "employee_id",
   foreignField: "_id",
   justOne: true,

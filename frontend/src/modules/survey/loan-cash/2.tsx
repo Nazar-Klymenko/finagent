@@ -160,14 +160,17 @@ const Page2 = () => {
         fields.map((field: any, index: number) => {
           //@ts-ignore
           const truckDriver = watch(
+            //@ts-ignore
             `income[${index}].truckDriver`
           ) as unknown as string;
           //@ts-ignore
           const basicIncome = watch(
+            //@ts-ignore
             `income[${index}].basicIncome`
           ) as unknown as string;
           //@ts-ignore
           const firstContract = watch(
+            //@ts-ignore
             `income[${index}].firstContract`
           ) as unknown as string;
 

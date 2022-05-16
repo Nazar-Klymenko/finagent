@@ -1,11 +1,10 @@
-import CreateError from "http-errors";
+import createError from "http-errors";
+import User from "models/user";
 
-import { auth, adminAuth } from "services/firebase";
-
-let verifiedEmail;
+import { auth } from "services/firebase";
 
 export const verifyAccessTokenFirebase = async (req, res, next) => {
-  if (!req.headers.authorization) return next(CreateError.Unauthorized());
+  if (!req.headers.authorization) return next(createError.Unauthorized());
   const header = req.headers.authorization;
   if (
     header !== "Bearer null" &&
@@ -14,12 +13,14 @@ export const verifyAccessTokenFirebase = async (req, res, next) => {
     const idToken = req.headers.authorization.split("Bearer ")[1];
     try {
       const decodedToken = await auth.verifyIdToken(idToken);
-      //
-      verifiedEmail = decodedToken.email_verified;
 
-      if (decodedToken.firebase?.sign_in_provider === "facebook.com") {
-        verifiedEmail = true;
+      if (
+        !decodedToken.email_verified &&
+        decodedToken.firebase?.sign_in_provider !== "facebook.com"
+      ) {
+        // throw new createError.Unauthorized();
       }
+
       req["currentUser"] = decodedToken;
     } catch (err) {
       next(err);
@@ -28,26 +29,30 @@ export const verifyAccessTokenFirebase = async (req, res, next) => {
   next();
 };
 
-export const verifyAccessTokenFirebaseAdmin = async (req, res, next) => {
-  if (!req.headers.authorization) return next(CreateError.Unauthorized());
-
-  const header = req.headers.authorization;
-  if (
-    header !== "Bearer null" &&
-    req.headers?.authorization?.startsWith("Bearer ")
-  ) {
-    const idToken = req.headers.authorization.split("Bearer ")[1];
-    try {
-      const decodedToken = await adminAuth.verifyIdToken(idToken);
-      req["currentUser"] = decodedToken;
-    } catch (err) {
-      next(err);
+export const verifyAdmin = async (req, res, next) => {
+  try {
+    const admin = await User.findById(req.currentUser.uid);
+    if (admin.isAdmin && admin.isApproved) {
+      next();
+    } else {
+      throw new createError.Forbidden();
     }
+  } catch (error) {
+    next(error);
   }
-  next();
 };
 
-export const isEmailVerified = async (req, res, next) => {
-  if (!verifiedEmail) return next(CreateError.Unauthorized());
-  next();
+export const verifySupervisor = async (req, res, next) => {
+  try {
+    const admin = await User.findById(req.currentUser.uid);
+
+    if (admin.isSupervisor && admin.isApproved) {
+      req.isSupervisor = true;
+      next();
+    } else {
+      throw new createError.Forbidden();
+    }
+  } catch (error) {
+    next(error);
+  }
 };

@@ -226,14 +226,13 @@ const Page1 = () => {
             labelName={t("insuranceTransport.Page1.houseNumber")}
             width="s"
           />
-          <Input
-            name="postIndex"
-            labelName={t("insuranceTransport.Page1.postIndex")}
-            autoComplete="postal-code"
-            width="s"
-          />
         </FormBuilder.InputsWrap>
-
+        <Input
+          name="postIndex"
+          labelName={t("insuranceTransport.Page1.postIndex")}
+          autoComplete="postal-code"
+          width="s"
+        />
         {policyholderIs === "individual" && (
           <>
             <Autocomplete

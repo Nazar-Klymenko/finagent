@@ -158,11 +158,20 @@ const Page2 = () => {
       {editingMode &&
         fields.map((field: any, index: number) => {
           //@ts-ignore
-          const truckDriver = watch(`income[${index}].truckDriver`);
+          const truckDriver = watch(
+            //@ts-ignore
+            `income[${index}].truckDriver`
+          ) as unknown as string;
           //@ts-ignore
-          const basicIncome = watch(`income[${index}].basicIncome`);
+          const basicIncome = watch(
+            //@ts-ignore
+            `income[${index}].basicIncome`
+          ) as unknown as string;
           //@ts-ignore
-          const firstContract = watch(`income[${index}].firstContract`);
+          const firstContract = watch(
+            //@ts-ignore
+            `income[${index}].firstContract`
+          ) as unknown as string;
 
           return (
             editingIndex === index && (
@@ -233,7 +242,7 @@ const Page2 = () => {
                     ]}
                     defaultValue={field.basicIncome || ""}
                   />
-
+                  {/* //@ts-ignore */}
                   {(basicIncome === "specificTime" ||
                     basicIncome === "mandate" ||
                     basicIncome === "contract") && (

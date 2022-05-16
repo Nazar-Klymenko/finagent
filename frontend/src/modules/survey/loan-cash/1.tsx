@@ -131,8 +131,17 @@ const Page1 = () => {
     setFormInitiated(true);
     setEditingMode(false);
     setAddingMode(false);
+    console.log(data);
+    console.log({ data });
     setValues(data, "loanCash", "applicantData");
   });
+
+  console.log({ openDialog });
+  console.log({ formInitiated });
+  console.log({ editingMode });
+  console.log({ addingMode });
+  console.log({ editingIndex });
+  console.log({ maxFields });
 
   const handleClose = (index: number) => {
     if (addingMode) {
@@ -262,6 +271,7 @@ const Page1 = () => {
         fields.map((field: any, index: number) => {
           //@ts-ignore
           const nationality = watch(
+            //@ts-ignore
             `applicant[${index}].nationality`
           ) as unknown as string;
           //@ts-ignore
@@ -577,6 +587,7 @@ const Page1 = () => {
         fields.map((field: any, index: number) => {
           //@ts-ignore
           let applicant = watch(`applicant[${index}].name`);
+          console.log({ applicant });
           return (
             <FormBuilder.Applicant
               key={field.id}

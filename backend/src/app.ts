@@ -20,6 +20,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 
 import frontendRoutes from "./routes/frontend";
+import adminRoutes from "./routes/admin";
 
 import adminRoute from "./routes/admin/admin";
 import adminAuthRoute from "./routes/admin/auth";
@@ -72,10 +73,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/user/", frontendRoutes);
-
-app.use("/api/v1/admin/", adminRoute);
-app.use("/api/v1/admin/auth/", adminAuthRoute);
-app.use("/api/v1/admin/application/", adminApplicationRoute);
+app.use("/api/v1/admin/", adminRoutes);
 
 const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
   res.status(error.status || 500).send({

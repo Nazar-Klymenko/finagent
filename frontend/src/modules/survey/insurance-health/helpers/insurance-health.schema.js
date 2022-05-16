@@ -21,13 +21,13 @@ export const pageOneSchema = () => {
 
 export const policyholderSchema = () => {
   return yup.object().shape({
-    applicant: yup.array().of(
+    policyholder: yup.array().of(
       yup.object().shape({
         name: yup.string().required("Form.Error.blank"),
         documentAdded: yup.string().required("Form.Error.blank"),
         birthDate: yup.date().nullable().required("Form.Error.missingDate"),
         citizenship: yup.string().when("policyholderIs", {
-          is: "Foreigner",
+          is: "foreigner",
           then: yup.string().required("Form.Error.blank"),
         }),
         country: yup.string().required("Form.Error.blank"),

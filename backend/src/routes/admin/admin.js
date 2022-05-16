@@ -1,4 +1,4 @@
-import { allUsers, SpecificUser } from "controllers/admin/client";
+import { allUsers, SpecificUser } from "controllers/admin/clients";
 import { getHistory, getHistoryAll } from "controllers/admin/history";
 import {
   deleteAdmin,

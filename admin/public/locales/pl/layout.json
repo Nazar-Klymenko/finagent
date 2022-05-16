@@ -1,0 +1,18 @@
+{
+  "Navbar": {
+    "applications": "Aplikacje",
+    "clients": "Klienci",
+    "myApplications": "Moje aplikacje",
+    "tickets": "Tickety",
+    "history": "Historia",
+    "archive": "Archiwum",
+    "logIn": "Logowanie",
+    "signUp": "Rejestracja",
+    "operators": "Operatorzy"
+  },
+  "UserDropdown": {
+    "operators": "Operatorzy",
+    "settings": "Ustawienia",
+    "signOut": "Wyloguj"
+  }
+}

@@ -62,21 +62,23 @@ const Summary = () => {
         "insraunce-transport",
         appDataValid
       );
-      // Object.entries(appDataValid.appendedDocuments).forEach(
-      //   (fileArray, idx) => {
-      //     //@ts-ignore
-      //     fileArray[1]?.length > 0 &&
-      //       //@ts-ignore
-      //       fileArray[1].forEach((file) => {
-      //         const storageRef = ref(
-      //           storage, //@ts-ignore
-      //           `files/${auth.currentUser.uid}/${response.data.id}/userAttachments/${response.data.user_attachments[idx]._id}/${response.data.user_attachments[idx].filename}`
-      //         );
-      //         //@ts-ignore
-      //         upload(storageRef, file);
-      //       });
-      //   }
-      // );
+      console.log(response);
+      Object.entries(appDataValid.appendedDocuments).forEach(
+        (fileArray, idx) => {
+          //@ts-ignore
+          fileArray[1]?.length > 0 &&
+            //@ts-ignore
+            fileArray[1].forEach((file) => {
+              const storageRef = ref(
+                storage, //@ts-ignore
+                `files/${auth.currentUser.uid}/${response.data.id}/userAttachments/${response.data.user_attachments[idx].filename}`
+                // `files/${auth.currentUser.uid}/${response.data.id}/userAttachments/${response.data.user_attachments[idx]._id}/${response.data.user_attachments[idx].filename}`
+              );
+              //@ts-ignore
+              upload(storageRef, file);
+            });
+        }
+      );
 
       router.push("/dashboard/insurance");
     } catch (error) {
@@ -105,7 +107,7 @@ const Summary = () => {
       <FormBuilder.ButtonsWrap multiple>
         <Button
           onClick={() => {
-            router.push("./4");
+            router.push("./5");
           }}
           form=""
           color="secondary"

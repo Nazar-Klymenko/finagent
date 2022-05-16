@@ -59,8 +59,14 @@ export const policyholderSchema = () => {
         name: yup
           .string()
           .matches(/^([^0-9]*)$/, "Form.Error.noNumber")
-          .required("Form.Error.blank"),
-
+          .when("policyholderIs", {
+            is: "individual",
+            then: yup.string().required("Form.Error.blank"),
+          }),
+        companyName: yup.string().when("policyholderIs", {
+          is: (value) => value !== "individual",
+          then: yup.string().required("Form.Error.blank"),
+        }),
         nip: yup.string().when("policyholderIs", {
           is: (value) => value !== "individual",
           then: yup.string().required("Form.Error.blank"),

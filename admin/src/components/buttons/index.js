@@ -1,7 +1,6 @@
-import AdminButton from "./AdminButton";
 import BackArrow from "./BackArrow";
-import BackButton from "./BackButton";
-import CTA from "./CTA";
-import UserAuth from "./UserAuth";
+import Button from "./Button";
 
-export { AdminButton, BackArrow, BackButton, CTA, UserAuth };
+// import UserAuth from "./UserAuth";
+
+export { BackArrow, Button };

@@ -82,7 +82,7 @@ const Page2 = () => {
     mode: "onChange",
     reValidateMode: "onChange",
     shouldUnregister: true,
-    shouldFocusError: true,
+    // shouldFocusError: true,
     resolver: yupResolver(AdditionalIncomeSchema()),
   });
   const {

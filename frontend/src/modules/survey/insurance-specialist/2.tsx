@@ -85,7 +85,7 @@ const Page2 = () => {
     mode: "onChange",
     reValidateMode: "onChange",
     shouldFocusError: true,
-    shouldUnregister: true,
+    // shouldUnregister: true,
     resolver: yupResolver(policyholderSchema()),
   });
   const {

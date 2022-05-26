@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
 import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
@@ -25,7 +25,9 @@ import muiTheme from "@styles/muiTheme";
 
 import { AuthContextProvider } from "@context/authContext";
 import { DataProvider } from "@context/dataContext";
+import { SnackbarProvider } from "@context/snackbarContext";
 
+import { Snackbar } from "@components/Snackbar";
 import { Layout } from "@components/layout";
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -75,10 +77,13 @@ function MyApp(props) {
                 dateAdapter={DateAdapter}
                 locale={localeMap[currentLocale]}
               >
-                <CssBaseline />
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
+                <SnackbarProvider>
+                  <CssBaseline />
+                  <Layout>
+                    <Component {...pageProps} />
+                    <Snackbar></Snackbar>
+                  </Layout>
+                </SnackbarProvider>
               </LocalizationProvider>
             </DataProvider>
           </AuthContextProvider>

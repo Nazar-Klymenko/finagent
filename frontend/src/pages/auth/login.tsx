@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import { useAuth } from "@context/authContext";
+import { useSnackbar } from "@context/snackbarContext";
 
 import { Form } from "@components/Form";
 import { Button, FacebookButton } from "@components/buttons";
@@ -32,6 +33,7 @@ const Login: NextPage = (props) => {
   const { isLoggedIn, isActive } = currentUser;
 
   const [isLoading, setIsLoading] = useState(false);
+  const { setSnackbar } = useSnackbar();
 
   useEffect(() => {
     let status = localStorage.getItem("onSignIn");
@@ -90,6 +92,18 @@ const Login: NextPage = (props) => {
           <Button fullWidth form="form">
             {t("LogIn.Form.button")}
           </Button>
+          {/* 
+          <Button
+            onClick={() => {
+              setSnackbar({
+                severity: "success",
+                message: "SnackBar.successfulLogginIn",
+                open: true,
+              });
+            }}
+          >
+            TEST
+          </Button> */}
 
           <Typography variant="caption" align="center" gutterBottom>
             Or sign up using other methods

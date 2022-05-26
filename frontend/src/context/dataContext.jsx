@@ -349,10 +349,6 @@ export const DataProvider = ({ children }) => {
   const [allowSummary, setAllowSummary] = useState(false);
 
   const setValues = (values, type, category) => {
-    console.log({ values });
-    console.log({ type });
-    console.log({ category });
-    console.log({ appData });
     setAppData((prevData) => ({
       ...prevData,
       [type]: { ...prevData[type], [category]: values },

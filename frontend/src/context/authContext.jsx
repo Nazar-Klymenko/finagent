@@ -24,6 +24,8 @@ import { auth } from "@services/firebase";
 import { deleteUserAPI } from "@api/userAPI";
 import { signUpAPI, signUpFacebookAPI } from "@api/userAPI";
 
+import { useSnackbar } from "@context/snackbarContext";
+
 const AuthContext = createContext({
   currentUser: {
     displayName: "",
@@ -51,12 +53,7 @@ const AuthContext = createContext({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {
-  const dispatch = () => {
-    return null;
-  };
-  const setSnackbar = () => {
-    return null;
-  };
+  const { setSnackbar } = useSnackbar();
 
   const [currentUser, setCurrentUser] = useState({
     displayName: "",
@@ -79,9 +76,17 @@ export const AuthContextProvider = ({ children }) => {
               throw new Error();
             }
           );
-          dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
+          setSnackbar({
+            severity: "success",
+            message: "SnackBar.successfulLogginIn",
+            open: true,
+          });
         } catch (error) {
-          dispatch(setSnackbar("error", "SnackBar.loginError"));
+          setSnackbar({
+            severity: "error",
+            message: "SnackBar.loginError",
+            open: true,
+          });
         }
       }
 
@@ -157,8 +162,11 @@ export const AuthContextProvider = ({ children }) => {
       });
       await sendEmailVerification(auth.currentUser);
 
-      dispatch(setSnackbar("success", "SnackBar.confirmEmail"));
-
+      setSnackbar({
+        severity: "success",
+        message: "SnackBar.confirmEmail",
+        open: true,
+      });
       setCurrentUser((currentUser) => {
         return {
           ...currentUser,
@@ -168,13 +176,25 @@ export const AuthContextProvider = ({ children }) => {
     } catch (error) {
       switch (error.response?.status) {
         case 409: {
-          return dispatch(setSnackbar("error", "SnackBar.userExists"));
+          return setSnackbar({
+            severity: "error",
+            message: "SnackBar.userExists",
+            open: true,
+          });
         }
         case 422: {
-          return dispatch(setSnackbar("error", "SnackBar.incorrectData"));
+          return setSnackbar({
+            severity: "error",
+            message: "SnackBar.incorrectData",
+            open: true,
+          });
         }
         default: {
-          return dispatch(setSnackbar("error", "SnackBar.signUpFail"));
+          return setSnackbar({
+            severity: "error",
+            message: "SnackBar.signUpFail",
+            open: true,
+          });
         }
       }
     }
@@ -184,16 +204,26 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
 
-      dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
+      setSnackbar({
+        severity: "success",
+        message: "SnackBar.successfulLogginIn",
+        open: true,
+      });
     } catch (error) {
       switch (error.response?.status) {
         case 401: {
-          return dispatch(
-            setSnackbar("error", "SnackBar.incorrectEmailOrPassword")
-          );
+          setSnackbar({
+            severity: "error",
+            message: "SnackBar.incorrectEmailOrPassword",
+            open: true,
+          });
         }
         default: {
-          dispatch(setSnackbar("error", "SnackBar.loginError"));
+          setSnackbar({
+            severity: "error",
+            message: "SnackBar.loginError",
+            open: true,
+          });
         }
       }
     }
@@ -205,9 +235,17 @@ export const AuthContextProvider = ({ children }) => {
     provider.setCustomParameters({ auth_type: "rerequest" });
     try {
       await signInWithRedirect(auth, provider);
-      dispatch(setSnackbar("success", "SnackBar.successfulLogginIn"));
+      setSnackbar({
+        severity: "success",
+        message: "SnackBar.successfulLogginIn",
+        open: true,
+      });
     } catch (error) {
-      dispatch(setSnackbar("error", "SnackBar.loginError"));
+      setSnackbar({
+        severity: "error",
+        message: "SnackBar.loginError",
+        open: true,
+      });
       localStorage.setItem("onSignIn", "false");
     }
   }
@@ -215,9 +253,17 @@ export const AuthContextProvider = ({ children }) => {
   async function resendVerificationEmail() {
     try {
       await sendEmailVerification(auth.currentUser);
-      dispatch(setSnackbar("success", "SnackBar.emailWasResent"));
+      setSnackbar({
+        severity: "success",
+        message: "SnackBar.emailWasResent",
+        open: true,
+      });
     } catch (error) {
-      dispatch(setSnackbar("error", "SnackBar.errorResendingEmail"));
+      setSnackbar({
+        severity: "error",
+        message: "SnackBar.errorResendingEmail",
+        open: true,
+      });
     }
   }
   async function resetPassword(email) {
@@ -225,12 +271,10 @@ export const AuthContextProvider = ({ children }) => {
   }
   async function setUpdatedPassword(currentPassword, newPassword) {
     await reauthenticate(currentPassword).catch((error) => {
-      dispatch(
-        setSnackbar("error", "Settings.ChangePassword.errorInvalidPassword")
-      );
+      // setSnackbar("error", "Settings.ChangePassword.errorInvalidPassword");
     });
     await updatePassword(auth.currentUser, newPassword);
-    setSnackbar("success", "Settings.ChangePassword.alertSuccess");
+    // setSnackbar("success", "Settings.ChangePassword.alertSuccess");
   }
 
   async function logout(redirectCallback) {
@@ -244,9 +288,9 @@ export const AuthContextProvider = ({ children }) => {
       const user = auth.currentUser;
       await deleteUserAPI();
       await deleteUser(user);
-      dispatch(setSnackbar("success", "Account deleted successfully"));
+      // setSnackbar("success", "Account deleted successfully");
     } catch (error) {
-      dispatch(setSnackbar("error", "Account couldnt be deleted"));
+      // setSnackbar("error", "Account couldnt be deleted");
     }
   }
   async function deleteAccountFacebook() {
@@ -260,9 +304,9 @@ export const AuthContextProvider = ({ children }) => {
         await deleteUserAPI();
         await deleteUser(user);
       }
-      dispatch(setSnackbar("success", "Account deleted successfully"));
+      // setSnackbar("success", "Account deleted successfully");
     } catch (error) {
-      dispatch(setSnackbar("error", "ERROR"));
+      // setSnackbar("error", "ERROR");
     }
   }
   async function reauthenticate(currentPassword) {

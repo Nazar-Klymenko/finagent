@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { IconButton } from "@mui/material";
 
 import { FormBuilder } from "@components/FormBuilder";
@@ -54,8 +57,8 @@ const useReactHookFormFieldArray = (
   }, [appDataValid, append, formInitiated]);
 
   const AppendedBox = (): JSX.Element => {
-    {
-      formInitiated &&
+   return( 
+      formInitiated ?( 
         fields.map((field: any, index: number) => {
           //@ts-ignore
           let policyholder = watch(`policyholder.${index}.name`);
@@ -89,8 +92,8 @@ const useReactHookFormFieldArray = (
               </IconButton>
             </FormBuilder.Applicant>
           );
-        });
-    }
+        }))
+    
     {
       !formInitiated ? (
         <FormBuilder.ApplicantBox
@@ -123,8 +126,8 @@ const useReactHookFormFieldArray = (
         )
       );
     }
-  };
-
+  }
+)
   return {
     openDialog,
     formInitiated,

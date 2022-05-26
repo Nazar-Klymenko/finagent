@@ -2,10 +2,14 @@ import React from "react";
 
 import { useTranslation } from "next-i18next";
 
-import Alert from "@mui/material/Alert";
-import Slide, { SlideProps } from "@mui/material/Slide";
-import Snackbar from "@mui/material/Snackbar";
-import { useDispatch, useSelector } from "react-redux";
+import {
+  Alert,
+  Snackbar as MuiSnackbar,
+  Slide,
+  SlideProps,
+} from "@mui/material/";
+
+import { useSnackbar } from "@context/snackbarContext";
 
 type TransitionProps = Omit<SlideProps, "direction">;
 
@@ -13,28 +17,27 @@ function TransitionUp(props: TransitionProps) {
   return <Slide {...props} direction="up" />;
 }
 
-const MuiSnackbar: React.FC = () => {
+const Snackbar = (): JSX.Element => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const severity = useSelector(
-    (state: any) => state.alerts.alertInfo?.severity
-  );
-  const message = useSelector((state: any) => state.alerts.alertInfo?.message);
-  const alertOpen = useSelector((state: any) => state.alerts.alertInfo?.isOpen);
+
+  const { snackbar, setSnackbar } = useSnackbar(),
+    { message, severity, open } = snackbar;
 
   const handleClose = (
     event?: Event | React.SyntheticEvent<any, Event>,
     reason?: string
   ) => {
     if (reason === "clickaway") {
+      setSnackbar({ severity, message, open: false });
       return;
     }
+    setSnackbar({ severity, message, open: false });
   };
 
   return (
-    <Snackbar
+    <MuiSnackbar
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-      open={alertOpen}
+      open={open}
       autoHideDuration={3500}
       onClose={handleClose}
       TransitionComponent={TransitionUp}
@@ -48,8 +51,8 @@ const MuiSnackbar: React.FC = () => {
       >
         {t(message)}
       </Alert>
-    </Snackbar>
+    </MuiSnackbar>
   );
 };
 
-export { MuiSnackbar };
+export { Snackbar };

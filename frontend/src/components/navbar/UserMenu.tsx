@@ -23,7 +23,8 @@ import { useAuth } from "@context/authContext";
 
 const UserMenu = (): JSX.Element => {
   const { currentUser, logout } = useAuth();
-  const { locale } = useRouter();
+  const router = useRouter(),
+    { locale } = router;
   //@ts-ignore
   const { _t } = useLayoutTranslation(locale);
   const { displayName, isSendingRequest, photoURL } = currentUser;

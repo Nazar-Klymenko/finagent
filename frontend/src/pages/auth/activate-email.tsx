@@ -1,6 +1,9 @@
+import React, { useEffect } from "react";
+
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 
 import { Typography } from "@mui/material";
 
@@ -10,12 +13,21 @@ import { PageContainer } from "@components/layout";
 
 const VerifyEmailPage: NextPage = () => {
   const { t } = useTranslation();
-
-  const { resendVerificationEmail } = useAuth();
+  const router = useRouter();
+  const { currentUser, resendVerificationEmail } = useAuth();
+  const { isLoggedIn, isActive } = currentUser;
 
   const resendEmail = () => {
     resendVerificationEmail();
   };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/auth/login");
+    } else if (isLoggedIn && isActive) {
+      router.push("/dashboard");
+    }
+  }, [isLoggedIn, isActive, router]);
 
   return (
     <PageContainer title="ActivateEmail.title">

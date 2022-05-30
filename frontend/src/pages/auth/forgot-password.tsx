@@ -40,11 +40,7 @@ const ForgotPassword: NextPage = (props) => {
   } = methods;
 
   const formSubmit = handleSubmit(async (data: { email: string }) => {
-    try {
-      await resetPassword(data.email);
-    } catch (error) {
-      return Promise.reject(error);
-    }
+    resetPassword(data.email);
   });
 
   useEffect(() => {

@@ -54,7 +54,7 @@ type AuthContextTypes = {
   signup: (data: SignUpData) => void;
   login: (email: string, password: string) => void;
   loginFacebook: () => void;
-  logout: (redirectCallback: () => any) => void;
+  logout: () => void;
   deleteAccount: (password: string) => void;
   deleteAccountFacebook: () => void;
   resetPassword: (email: string) => void;
@@ -138,10 +138,10 @@ export const AuthContextProvider = ({ children }: Props) => {
           provider: user.providerData[0]?.providerId,
         });
       } else {
-        setCurrentUser((currentUser) => ({
-          ...currentUser,
+        setCurrentUser({
+          ...defaultState,
           isSendingRequest: false,
-        }));
+        });
       }
 
       localStorage.setItem("onSignIn", "false");
@@ -328,14 +328,19 @@ export const AuthContextProvider = ({ children }: Props) => {
     newPassword: string
   ) {
     await reauthenticate(currentPassword).catch((error) => {
-      // setSnackbar("error", "Settings.ChangePassword.errorInvalidPassword");
+      setSnackbar({
+        severity: "error",
+        message: "Settings.ChangePassword.errorInvalidPassword",
+      });
     });
     await updatePassword(auth.currentUser!, newPassword);
-    // setSnackbar("success", "Settings.ChangePassword.alertSuccess");
+    setSnackbar({
+      severity: "success",
+      message: "Settings.ChangePassword.alertSuccess",
+    });
   }
 
-  async function logout(redirectCallback: () => void) {
-    if (redirectCallback) redirectCallback();
+  async function logout() {
     await signOut(auth);
   }
 
@@ -417,7 +422,7 @@ const AuthContext = createContext<AuthContextTypes>({
   signup: (data: SignUpData) => Promise,
   login: (email: string, password: string) => Promise,
   loginFacebook: () => Promise,
-  logout: (redirectCallback: () => void) => Promise,
+  logout: () => Promise,
   deleteAccount: (password: string) => Promise,
   deleteAccountFacebook: () => Promise,
   resetPassword: (email: string) => Promise,

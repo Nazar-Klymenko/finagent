@@ -1083,6 +1083,9 @@
       "currentInsurance": "Zdjęcie aktualnego ubiezpieczenia",
       "registeredOnMe": "Pojazd jest już zarejestrowany na mnie / moją firmę",
       "salesContract": "Zdjęcie umowy kupna-sprzedaży"
+    },
+    "Summary": {
+      "checkbox": "Wyrażam zgodę na przetwarzanie moich danych osobowych"
     }
   },
   "insuranceBorder": {

@@ -1083,6 +1083,9 @@
       "currentInsurance": "Photo of the current insurance",
       "registeredOnMe": "The vehicle is already registered on me / my company",
       "salesContract": "Photo of the sales contract"
+    },
+    "Summary": {
+      "checkbox": "I hereby consent to the processing of the personal data that I have provided"
     }
   },
   "insuranceBorder": {

@@ -102,7 +102,11 @@ const Summary = () => {
           defaultOpen
         />
 
-        <Checkbox name="agree" labelName="klikając wyrażam zgodę" errorSpacer />
+        <Checkbox
+          name="agree"
+          labelName={t("insuranceTransport.Summary.checkbox")}
+          errorSpacer
+        />
       </Form>
       <FormBuilder.ButtonsWrap multiple>
         <Button

@@ -39,22 +39,25 @@ const SignUp: NextPage = () => {
 
   useEffect(() => {
     let status = localStorage.getItem("onSignIn");
-    if (status === "true") {
-      setIsLoading(true);
-    } else {
-      setIsLoading(false);
-    }
+    setIsLoading(status === "true" ? true : false);
   }, []);
 
   const methods = useForm<FormTypes>({
-    defaultValues: { terms: false },
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      password: "",
+      language: "",
+      terms: false,
+    },
     mode: "onChange",
     resolver: yupResolver(signUpSchema),
     shouldFocusError: true,
   });
   const { handleSubmit } = methods;
   const formSubmit = handleSubmit((data) => {
-    // data.language = interfaceLanguage;
+    data.language = router.locale || "";
     signup(data);
   });
 

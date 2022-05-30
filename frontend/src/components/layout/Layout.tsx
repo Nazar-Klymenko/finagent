@@ -5,6 +5,7 @@ import { useAuth } from "@context/authContext";
 
 import { BottomNav } from "@components/BottomNav";
 import { Footer } from "@components/Footer";
+import { Snackbar } from "@components/Snackbar";
 import { Navbar } from "@components/navbar";
 
 import MainWrapper from "./MainWrapper";
@@ -19,6 +20,7 @@ const Layout = ({ children }: any): JSX.Element => {
     <>
       <Navbar />
       <MainWrapper>{children}</MainWrapper>
+      <Snackbar />
 
       {isLoggedIn ? md ? <BottomNav /> : <Footer /> : <Footer />}
     </>

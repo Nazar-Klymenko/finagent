@@ -44,6 +44,7 @@
   },
   "Basic": {
     "buttonNext": "Next",
+    "buttonContinue": "Continue",
     "buttonBack": "Back",
     "buttonAdd": "Add",
     "buttonConfirm": "Confirm",
@@ -206,7 +207,7 @@
     },
     "noNeedRestore": "Don`t need to restore the password?",
     "logIn": "Log in",
-    "confirm": "We sent the link with activation on your email address"
+    "confirm": "We sent the link with activation to your email address"
   },
   "NewPassword": {
     "title": "New password",
@@ -1124,12 +1125,14 @@
     "error": "Error",
     "confirmEmail": "Please confirm email",
     "userExists": "This user already exists",
+    "userNotFound": "This user hasn't been found",
     "incorrectData": "You have entered incorrect data",
     "signUpFail": "Failed to sign up",
     "successfulLogginIn": "Logged in successfully",
     "incorrectEmailOrPassword": "Incorrect email or password",
     "loginError": "Error logging in",
     "emailWasResent": "Email was re-sent",
-    "errorResendingEmail": "Error re-sending email"
+    "errorResendingEmail": "Error re-sending email",
+    "confirm": "We sent the link with activation to your email address"
   }
 }

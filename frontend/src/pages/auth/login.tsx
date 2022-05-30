@@ -18,7 +18,7 @@ import { useSnackbar } from "@context/snackbarContext";
 
 import { Form } from "@components/Form";
 import { Button, FacebookButton } from "@components/buttons";
-import { Input, MuiPhoneInput, PasswordInput } from "@components/input";
+import { Input, PasswordInput } from "@components/input";
 import { AuthContainer } from "@components/layout";
 
 type FormTypes = {
@@ -33,18 +33,17 @@ const Login: NextPage = (props) => {
   const { isLoggedIn, isActive } = currentUser;
 
   const [isLoading, setIsLoading] = useState(false);
-  const { setSnackbar } = useSnackbar();
 
   useEffect(() => {
     let status = localStorage.getItem("onSignIn");
-    if (status === "true") {
-      setIsLoading(true);
-    } else {
-      setIsLoading(false);
-    }
+    setIsLoading(status === "true" ? true : false);
   }, []);
 
   const methods = useForm<FormTypes>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
     mode: "onChange",
     shouldFocusError: true,
     resolver: yupResolver(loginSchema),
@@ -92,18 +91,6 @@ const Login: NextPage = (props) => {
           <Button fullWidth form="form">
             {t("LogIn.Form.button")}
           </Button>
-          {/* 
-          <Button
-            onClick={() => {
-              setSnackbar({
-                severity: "success",
-                message: "SnackBar.successfulLogginIn",
-                open: true,
-              });
-            }}
-          >
-            TEST
-          </Button> */}
 
           <Typography variant="caption" align="center" gutterBottom>
             Or sign up using other methods

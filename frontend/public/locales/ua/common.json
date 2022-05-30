@@ -59,7 +59,8 @@
       "insuranceBorder": "Прикордонне страхування",
       "loanMortgage": "Іпотека",
       "loanCash": "Кредит готівкою"
-    }
+    },
+    "buttonContinue": "Далі"
   },
   "Summary": {
     "yes": "Так",

@@ -59,7 +59,8 @@
       "insuranceBorder": "Пограничное страхование",
       "loanMortgage": "Ипотека",
       "loanCash": "Наличный кредит"
-    }
+    },
+    "buttonContinue": "Далее"
   },
   "Summary": {
     "yes": "Да",

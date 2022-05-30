@@ -59,7 +59,8 @@
       "insuranceBorder": "Ubezpieczenie graniczne",
       "loanMortgage": "Kredyt hipoteczny",
       "loanCash": "Kredyt gotówkowy"
-    }
+    },
+    "buttonContinue": "Dalej"
   },
   "Summary": {
     "yes": "Tak",

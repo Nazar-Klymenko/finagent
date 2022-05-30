@@ -1,19 +1,13 @@
-import {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useContext,
-  useState,
-} from "react";
+import { createContext, useContext, useState } from "react";
 
 type SnackbarTypes = {
   severity: "error" | "warning" | "info" | "success";
   message: string;
-  open: boolean;
+  open?: boolean;
 };
 type SnackbarContextTypes = {
   snackbar: SnackbarTypes;
-  setSnackbar: Dispatch<SetStateAction<SnackbarTypes>>;
+  setSnackbar: (obj: SnackbarTypes) => void;
 };
 interface Props {
   children: React.ReactElement;
@@ -26,7 +20,11 @@ const defaultState = {
 } as SnackbarTypes;
 
 export const SnackbarProvider = ({ children }: Props) => {
-  const [snackbar, setSnackbar] = useState(defaultState);
+  const [snackbar, _setSnackbar] = useState(defaultState);
+
+  function setSnackbar({ severity, message, open = true }: SnackbarTypes) {
+    _setSnackbar({ severity, message, open });
+  }
 
   return (
     <SnackbarContext.Provider
@@ -42,7 +40,7 @@ export const SnackbarProvider = ({ children }: Props) => {
 
 export const SnackbarContext = createContext<SnackbarContextTypes>({
   snackbar: defaultState,
-  setSnackbar: () => Promise,
+  setSnackbar: (obj: SnackbarTypes) => Promise,
 });
 
 export const useSnackbar = () => useContext(SnackbarContext);

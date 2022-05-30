@@ -27,7 +27,7 @@ import { AuthContextProvider } from "@context/authContext";
 import { DataProvider } from "@context/dataContext";
 import { SnackbarProvider } from "@context/snackbarContext";
 
-import { Snackbar } from "@components/Snackbar";
+// import { Snackbar } from "@components/Snackbar";
 import { Layout } from "@components/layout";
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -71,22 +71,21 @@ function MyApp(props) {
       <GlobalStyles />
       <ThemeProvider theme={themeWithLocale}>
         <EmotionThemeProvider theme={themeWithLocale}>
-          <AuthContextProvider>
-            <DataProvider>
-              <LocalizationProvider
-                dateAdapter={DateAdapter}
-                locale={localeMap[currentLocale]}
-              >
-                <SnackbarProvider>
+          <SnackbarProvider>
+            <AuthContextProvider>
+              <DataProvider>
+                <LocalizationProvider
+                  dateAdapter={DateAdapter}
+                  locale={localeMap[currentLocale]}
+                >
                   <CssBaseline />
                   <Layout>
                     <Component {...pageProps} />
-                    <Snackbar></Snackbar>
                   </Layout>
-                </SnackbarProvider>
-              </LocalizationProvider>
-            </DataProvider>
-          </AuthContextProvider>
+                </LocalizationProvider>
+              </DataProvider>
+            </AuthContextProvider>
+          </SnackbarProvider>
         </EmotionThemeProvider>
       </ThemeProvider>
     </CacheProvider>

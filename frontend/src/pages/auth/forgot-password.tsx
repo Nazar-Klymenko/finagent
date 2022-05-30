@@ -34,10 +34,17 @@ const ForgotPassword: NextPage = (props) => {
     shouldFocusError: true,
     resolver: yupResolver(forgotPasswordSchema()),
   });
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { isDirty },
+  } = methods;
 
-  const formSubmit = handleSubmit((data: { email: string }) => {
-    resetPassword(data.email);
+  const formSubmit = handleSubmit(async (data: { email: string }) => {
+    try {
+      await resetPassword(data.email);
+    } catch (error) {
+      return Promise.reject(error);
+    }
   });
 
   useEffect(() => {
@@ -50,10 +57,10 @@ const ForgotPassword: NextPage = (props) => {
 
   return (
     <AuthContainer isLoading={false}>
-      <Typography gutterBottom align="center" variant="h3">
+      <Typography gutterBottom align="center" variant="h4">
         {t("RestorePassword.title")}
       </Typography>
-      <Typography variant="caption">
+      <Typography variant="body1" gutterBottom sx={{ color: "text.secondary" }}>
         {t("RestorePassword.Form.explain")}
       </Typography>
       <Form methods={methods} id="restore-password" onSubmit={formSubmit}>
@@ -63,10 +70,11 @@ const ForgotPassword: NextPage = (props) => {
           type="email"
           autoFocus={false}
           autoComplete="email"
+          defaultValue=""
         />
       </Form>
-      <Button fullWidth form="form">
-        {t("LogIn.Form.button")}
+      <Button fullWidth form="restore-password" disabled={!isDirty}>
+        {t("Basic.buttonContinue")}
       </Button>
       <AuthOptions>
         {t("RestorePassword.noNeedRestore")}
@@ -74,7 +82,6 @@ const ForgotPassword: NextPage = (props) => {
           <a>{t("RestorePassword.logIn")}</a>
         </Link>
       </AuthOptions>
-      )
     </AuthContainer>
   );
 };
@@ -82,7 +89,6 @@ export default ForgotPassword;
 
 const AuthOptions = styled("div")`
   display: flex;
-  flex-direction: column;
   align-items: center;
   span {
     font-size: 0.8rem;

@@ -108,7 +108,6 @@ const Page5 = () => {
           <>
             <Typography variant="body1">
               {t("insuranceTransport.Page5.salesContract")} (
-              {t("insuranceTransport.Page5.twoSides")})
             </Typography>
             <FileInput
               name="filesCarSale"

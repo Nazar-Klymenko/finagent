@@ -10,7 +10,13 @@
     "help": "Help",
     "logIn": "Log In",
     "signUp": "Sign Up",
-    "settings": "Settings"
+    "settings": "Settings",
+    "actions": {
+      "verifyEmail": "Veryfying email",
+      "resetPassword": "Reset password",
+      "recoverEmail": "Recover email",
+      "default": ""
+    }
   },
   "Form": {
     "optional": "optional",

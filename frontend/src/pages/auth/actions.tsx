@@ -26,7 +26,7 @@ const VerifyEmailPage: NextPage = () => {
   console.log({ mode, oobCode, apiKey, continueUrl, lang });
 
   return (
-    <PageContainer title="actions">
+    <PageContainer title={`Pages.actions.${mode || "default"}`}>
       <Typography
         variant="h6"
         color="primary"

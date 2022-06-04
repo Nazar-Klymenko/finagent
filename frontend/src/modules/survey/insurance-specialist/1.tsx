@@ -83,7 +83,7 @@ const Page1 = () => {
   });
 
   return (
-    <PageContainer xs title="insuranceSpecialist.title">
+    <PageContainer xs title={t("insuranceSpecialist.title")}>
       <QuestState data={appData} />
 
       <Typography variant="h4">{t("insuranceSpecialist.title")}</Typography>

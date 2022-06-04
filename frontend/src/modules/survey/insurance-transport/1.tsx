@@ -101,7 +101,7 @@ const Page1 = () => {
   const policyholderIs = watch("policyholderIs", appDataValid.policyholderIs);
 
   return (
-    <PageContainer xs title="insuranceTransport.title">
+    <PageContainer xs title={t("insuranceTransport.title")}>
       <Typography variant="h4">{t("insuranceTransport.title")}</Typography>
       <ProgressBar
         maxSteps={5}

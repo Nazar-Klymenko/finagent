@@ -142,7 +142,7 @@ const Page2 = () => {
 
   console.log(errors);
   return (
-    <PageContainer xs title="insuranceHealth.title">
+    <PageContainer xs title={t("insuranceHealth.title")}>
       <QuestState data={appData} />
 
       <Typography variant="h4">{t("insuranceHealth.title")}</Typography>

@@ -32,7 +32,7 @@ const Summary = () => {
   };
 
   return (
-    <PageContainer xs title="insuranceHealth.title">
+    <PageContainer xs title={t("insuranceHealth.title")}>
       <Typography variant="h4">{t("insuranceHealth.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
       <SummaryList

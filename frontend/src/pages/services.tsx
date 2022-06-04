@@ -12,7 +12,7 @@ const Services: NextPage = () => {
   const { t } = useTranslation();
 
   return (
-    <PageContainer title="Pages.services">
+    <PageContainer title={t("Pages.services")}>
       <Typography variant="h4" gutterBottom>
         {t("Services.Titles.insurances")}
       </Typography>

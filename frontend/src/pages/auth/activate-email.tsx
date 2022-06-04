@@ -30,7 +30,7 @@ const VerifyEmailPage: NextPage = () => {
   }, [isLoggedIn, isActive, router]);
 
   return (
-    <PageContainer title="ActivateEmail.title">
+    <PageContainer title={t("ActivateEmail.title")}>
       <Typography variant="h4">{t("ActivateEmail.content")}</Typography>
       <Typography
         variant="h6"

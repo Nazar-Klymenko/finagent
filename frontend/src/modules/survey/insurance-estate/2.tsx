@@ -62,7 +62,7 @@ const Page2 = () => {
   });
 
   return (
-    <PageContainer xs title="insuranceEstate.title">
+    <PageContainer xs title={t("insuranceEstate.title")}>
       <Typography variant="h4">{t("insuranceEstate.title")}</Typography>
       <ProgressBar
         maxSteps={2}

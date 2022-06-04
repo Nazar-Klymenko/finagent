@@ -52,7 +52,7 @@ const Contact: NextPage = () => {
   });
 
   return (
-    <PageContainer title="Pages.contact">
+    <PageContainer title={t("Pages.contact")}>
       <Typography variant="h4" gutterBottom>
         {t("Contact.title")}
       </Typography>

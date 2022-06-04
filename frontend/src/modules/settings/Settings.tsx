@@ -35,7 +35,7 @@ const Settings = (): JSX.Element => {
   const { data, error } = useSWR("/user/settings", fetcher);
 
   return (
-    <PageContainer title="Pages.settings" dashboard>
+    <PageContainer title={t("Pages.settings")} dashboard>
       <DashboardInner>
         {md ? <Tabs links={links} /> : <SideNav links={links} />}
         <DashboardMain>

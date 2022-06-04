@@ -66,7 +66,7 @@ const Page2 = () => {
   });
 
   return (
-    <PageContainer xs title="loanCash.title">
+    <PageContainer xs title={t("loanCash.title")}>
       <QuestState data={appData} />
 
       <Typography variant="h4">{t("loanCash.title")}</Typography>

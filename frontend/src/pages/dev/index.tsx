@@ -68,7 +68,7 @@ const Dev = () => {
   });
 
   return (
-    <PageContainer xs title="insuranceTransport.title">
+    <PageContainer xs title={t("insuranceTransport.title")}>
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>
         <MuiPhoneInput name="phone" labelName="phone" />
         <FileInput name="files" labelName="file input" />

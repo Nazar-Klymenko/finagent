@@ -30,7 +30,7 @@ const Summary = () => {
   };
 
   return (
-    <PageContainer xs title="insuranceBorder.title">
+    <PageContainer xs title={t("insuranceBorder.title")}>
       <QuestState data={appData} />
 
       <Typography variant="h6">{t("insuranceBorder.title")}</Typography>

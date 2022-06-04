@@ -45,7 +45,7 @@ const Dashboard = (): JSX.Element => {
     if (data) setMaximumPages(data.maximumPages);
   }, [data]);
   return (
-    <PageContainer title="Dashboard.title" dashboard>
+    <PageContainer title={t("Dashboard.title")} dashboard>
       <DashboardInner>
         {md ? <Tabs links={links} /> : <SideNav links={links} />}
         <DashboardMain>

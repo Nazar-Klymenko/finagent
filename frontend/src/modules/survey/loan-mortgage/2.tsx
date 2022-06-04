@@ -144,7 +144,7 @@ const Page2 = () => {
   };
 
   return (
-    <PageContainer xs title="loanMortgage.title">
+    <PageContainer xs title={t("loanMortgage.title")}>
       <QuestState data={appData} />
 
       <Typography variant="h4">{t("loanMortgage.title")}</Typography>

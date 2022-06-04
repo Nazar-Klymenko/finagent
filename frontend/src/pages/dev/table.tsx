@@ -14,7 +14,7 @@ const DevTable = () => {
   const summaryReady = summaryLabels(array);
 
   return (
-    <PageContainer xs title="table">
+    <PageContainer xs title={"table"}>
       <SummaryList
         header={t("Basic.summary")}
         applicationType="insuranceTransport"

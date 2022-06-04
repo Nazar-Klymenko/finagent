@@ -32,7 +32,7 @@ const Summary = () => {
   };
 
   return (
-    <PageContainer xs title="Basic.summary">
+    <PageContainer xs title={t("Basic.summary")}>
       <QuestState data={appData} />
 
       <Typography variant="h4">{t("loanMortgage.title")}</Typography>

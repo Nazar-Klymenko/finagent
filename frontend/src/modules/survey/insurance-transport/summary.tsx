@@ -88,7 +88,7 @@ const Summary = () => {
   });
 
   return (
-    <PageContainer xs title="insuranceTransport.title">
+    <PageContainer xs title={t("insuranceTransport.title")}>
       <Typography variant="h4">{t("insuranceTransport.title")}</Typography>
       <ProgressBar maxSteps={5} currentStep={5} label={t("Basic.summary")} />
       <Form methods={methods} id="form-transport" onSubmit={formSubmit}>

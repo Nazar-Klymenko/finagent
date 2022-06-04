@@ -1,10 +1,8 @@
 import * as React from "react";
 
-import { useTranslation } from "next-i18next";
 import Head from "next/head";
 
 // import { Box } from "@mui/material";
-import { Container } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
 
 interface Props {
@@ -20,12 +18,10 @@ const PageContainer = ({
   dashboard,
   title = "Finagent",
 }: Props): JSX.Element => {
-  const { t } = useTranslation();
-
   return (
     <BoxStyled xs={xs} dashboard={dashboard}>
       <Head>
-        <title>{t(title)} | FinAgent</title>
+        <title>{title} | FinAgent</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>

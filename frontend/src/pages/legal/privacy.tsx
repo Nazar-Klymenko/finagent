@@ -14,7 +14,7 @@ const Privacy: NextPage = () => {
   const { t } = useTranslation();
 
   return (
-    <PageContainer title="Privacy policy">
+    <PageContainer title={t("Privacy policy")}>
       <Typography variant="h4" gutterBottom>
         {/* {t("Contact.title")} */}
         Privacy policy

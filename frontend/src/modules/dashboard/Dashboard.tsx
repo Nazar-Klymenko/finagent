@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 import {
@@ -15,8 +16,6 @@ import useSWR from "swr";
 import { fetcher } from "@helpers/swrFetcher";
 
 import { getAllAplications } from "@api/applications";
-
-import { useAuth } from "@context/authContext";
 
 import { Loader } from "@components/Loader";
 import { Pagination } from "@components/Pagination";
@@ -35,6 +34,7 @@ const Dashboard = (): JSX.Element => {
   const [pageIndex, setPageIndex] = useState(1);
   const [pageSize, setPageSize] = useState(4);
   const [maximumPages, setMaximumPages] = useState(1);
+  const { t } = useTranslation();
 
   let { data, error } = useSWR(
     `/user/applications/${tab}?page=${pageIndex}&size=${pageSize}`,

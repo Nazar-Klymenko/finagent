@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,7 +9,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import WorkIcon from "@mui/icons-material/Work";
 import { IconButton, Typography } from "@mui/material";
 import { useFieldArray, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 
 import { QuestState } from "@helpers/QuestState";
 

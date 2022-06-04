@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from "react";
 
+import { useTranslation } from "next-i18next";
+
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
 import _ from "lodash";
-import { useTranslation } from "react-i18next";
 
 interface Props {
   header: string;

@@ -1,11 +1,11 @@
 import React from "react";
 
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 
 import { useData } from "@context/dataContext";
 

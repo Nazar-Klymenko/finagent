@@ -14,12 +14,14 @@ const Error404 = (): JSX.Element => {
   return (
     <PageContainer title={"404"}>
       <Container>
-        <Typography variant="h4" color="primary">
+        <Typography variant="h1" color="primary">
           404
         </Typography>
-        <Typography>{t("404.title")}</Typography>
-        <Link href="/">
-          <a> {t("404.link")}</a>
+        <Typography variant="h4">{t("404.title")}</Typography>
+        <Link href="/" passHref>
+          <Typography component="a" variant="h6">
+            {t("404.link")}
+          </Typography>
         </Link>
       </Container>
     </PageContainer>

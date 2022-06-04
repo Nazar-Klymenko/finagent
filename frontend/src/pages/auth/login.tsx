@@ -68,7 +68,7 @@ const Login: NextPage = (props) => {
   }, [isLoggedIn, isActive, router]);
 
   return (
-    <AuthContainer isLoading={isLoading}>
+    <AuthContainer isLoading={isLoading} title={t("LogIn.title")}>
       {!isLoading ? (
         <>
           <Typography gutterBottom align="center" variant="h4">
@@ -92,8 +92,13 @@ const Login: NextPage = (props) => {
             {t("LogIn.Form.button")}
           </Button>
 
-          <Typography variant="caption" align="center" gutterBottom>
-            Or sign up using other methods
+          <Typography
+            variant="caption"
+            align="center"
+            gutterBottom
+            sx={{ mt: "0.5rem" }}
+          >
+            {t("LogIn.otherOptions")}
           </Typography>
 
           <FacebookButton fullWidth onClick={loginWithFacebook}>

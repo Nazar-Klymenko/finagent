@@ -159,7 +159,8 @@
       "forgot": "Zapomniałeś hasła?",
       "noAccount": "Nie masz konta?",
       "signUp": "Rejestracja"
-    }
+    },
+    "otherOptions": "Zalogować się za pomocą innych metod"
   },
   "SignUp": {
     "title": "Utwórz nowe konto",
@@ -190,7 +191,8 @@
       "haveAccount": "Masz konto?",
       "logIn": "Zalogować się",
       "alert": "Wysłaliśmy link z aktywacją na Twój adres e-mail"
-    }
+    },
+    "otherOptions": "Zarejestrować się za pomocą innych metod"
   },
   "ActivateEmail": {
     "title": "Aktywuj konto",

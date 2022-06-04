@@ -1,15 +1,31 @@
 import * as React from "react";
 
+import Head from "next/head";
+
 import { Box } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
 
 interface Props {
-  children: any;
+  children: React.ReactElement | React.ReactElement[];
   isLoading: boolean;
+  title: string;
 }
 
-const AuthContainer = ({ children, isLoading }: Props): JSX.Element => {
-  return <BoxStyled isLoading={isLoading}>{children}</BoxStyled>;
+const AuthContainer = ({
+  children,
+  isLoading,
+  title = "Finagent",
+}: Props): JSX.Element => {
+  return (
+    <BoxStyled isLoading={isLoading}>
+      <Head>
+        <title>{title} | FinAgent</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      {children}
+    </BoxStyled>
+  );
 };
 
 export default AuthContainer;

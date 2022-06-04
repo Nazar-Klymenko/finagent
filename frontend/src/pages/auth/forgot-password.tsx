@@ -52,7 +52,7 @@ const ForgotPassword: NextPage = (props) => {
   }, [isLoggedIn, isActive, router]);
 
   return (
-    <AuthContainer isLoading={false}>
+    <AuthContainer isLoading={false} title={t("RestorePassword.title")}>
       <Typography gutterBottom align="center" variant="h4">
         {t("RestorePassword.title")}
       </Typography>

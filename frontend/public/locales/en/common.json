@@ -165,7 +165,8 @@
       "forgot": "Forgot password?",
       "noAccount": "Don`t have an account?",
       "signUp": "Sign up"
-    }
+    },
+    "otherOptions": "Or log in using other methods"
   },
   "SignUp": {
     "title": "Create a new account",
@@ -196,7 +197,8 @@
       "haveAccount": "Have an account?",
       "logIn": "Log in",
       "alert": "We sent the link with activation on your email address"
-    }
+    },
+    "otherOptions": "Or sign up using other methods"
   },
   "ActivateEmail": {
     "content": "We sent the activation link on your email address. Please activate your account.",

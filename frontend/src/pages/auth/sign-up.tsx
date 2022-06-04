@@ -55,7 +55,11 @@ const SignUp: NextPage = () => {
     resolver: yupResolver(signUpSchema),
     shouldFocusError: true,
   });
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
+
   const formSubmit = handleSubmit((data) => {
     data.language = router.locale || "";
     signup(data);
@@ -74,7 +78,7 @@ const SignUp: NextPage = () => {
   };
 
   return (
-    <AuthContainer isLoading={isLoading}>
+    <AuthContainer isLoading={isLoading} title={t("SignUp.title")}>
       {!isLoading ? (
         <>
           <Typography gutterBottom align="center" variant="h4">
@@ -111,8 +115,13 @@ const SignUp: NextPage = () => {
             {t("SignUp.Form.button")}
           </Button>
 
-          <Typography variant="caption" align="center" gutterBottom>
-            Or sign up using other methods
+          <Typography
+            variant="caption"
+            align="center"
+            gutterBottom
+            sx={{ mt: "0.5rem" }}
+          >
+            {t("SignUp.otherOptions")}
           </Typography>
 
           <FacebookButton fullWidth onClick={signupWithFacebook}>

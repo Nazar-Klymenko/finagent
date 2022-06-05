@@ -10,7 +10,10 @@
     "help": "Pomoc",
     "logIn": "Logowanie",
     "signUp": "Rejestracja",
-    "settings": "Ustawienia"
+    "settings": "Ustawienia",
+    "actions": {
+      "verifyEmail": "Weryfikuję e-mail"
+    }
   },
   "Form": {
     "optional": "opcjonalnie",

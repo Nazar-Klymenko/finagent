@@ -1,10 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
+import { useRouter } from "next/router";
+
 import { FirebaseError } from "@firebase/util";
 import { AdditionalUserInfo, AuthError, User } from "firebase/auth";
 import {
   EmailAuthProvider,
   FacebookAuthProvider,
+  applyActionCode,
+  confirmPasswordReset,
   createUserWithEmailAndPassword,
   deleteUser,
   getAdditionalUserInfo,
@@ -12,6 +16,7 @@ import {
   onAuthStateChanged,
   reauthenticateWithCredential,
   reauthenticateWithRedirect,
+  reload,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -19,6 +24,7 @@ import {
   signOut,
   updatePassword,
   updateProfile,
+  verifyPasswordResetCode,
 } from "firebase/auth";
 
 import { auth } from "@services/firebase";
@@ -61,6 +67,11 @@ type AuthContextTypes = {
   setUpdatedPassword: (currentPassword: string, newPassword: string) => void;
   updateDisplayName: (displayName: string) => void;
   resendVerificationEmail: () => void;
+  emailActionHandler: (
+    mode: "resetPassword" | "verifyEmail",
+    oobCode: string,
+    newPassword?: string
+  ) => void;
 };
 
 const defaultState = {
@@ -73,6 +84,8 @@ const defaultState = {
 } as UserState;
 
 export const AuthContextProvider = ({ children }: Props) => {
+  const router = useRouter();
+
   const { setSnackbar } = useSnackbar();
 
   const [currentUser, setCurrentUser] = useState(defaultState);
@@ -143,6 +156,7 @@ export const AuthContextProvider = ({ children }: Props) => {
           isSendingRequest: false,
         });
       }
+      auth.languageCode = router.locale || "pl";
 
       localStorage.setItem("onSignIn", "false");
     });
@@ -150,7 +164,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     return () => {
       unsubscribe();
     };
-  }, [setSnackbar]);
+  }, [setSnackbar, router]);
 
   async function signup(data: SignUpData) {
     let newData = data;
@@ -394,6 +408,77 @@ export const AuthContextProvider = ({ children }: Props) => {
     });
   }
 
+  async function emailActionHandler(
+    mode: "resetPassword" | "verifyEmail",
+    oobCode: string,
+    newPassword?: string
+  ) {
+    switch (mode) {
+      case "resetPassword":
+        verifyPasswordResetCode(auth, oobCode)
+          .then((email) => {
+            const accountEmail = email;
+
+            confirmPasswordReset(auth, oobCode, newPassword!)
+              .then((resp) => {
+                setSnackbar({ severity: "success", message: "success" });
+                signInWithEmailAndPassword(auth, email, newPassword!);
+              })
+              .catch((error) => {
+                setSnackbar({
+                  severity: "error",
+                  message: "password too weak etc",
+                });
+              });
+            return null;
+          })
+          .catch((err) => {
+            setSnackbar({ severity: "error", message: "err" });
+            return null;
+          });
+
+        break;
+      case "verifyEmail":
+        // Display reset password handler and UI.
+        applyActionCode(auth, oobCode)
+          .then(() => {
+            reload(auth.currentUser!);
+            setSnackbar({ severity: "success", message: "success" });
+            return null;
+          })
+          .catch((err) => {
+            setSnackbar({ severity: "error", message: "err" });
+            return null;
+          });
+        break;
+
+      //   });
+      // verifyPasswordResetCode(auth, actionCode)
+      //   .then(() => {
+      //     setSnackbar({ severity: "success", message: "success" });
+      //     return null;
+      //   })
+      //   .catch((err) => {
+      //     setSnackbar({ severity: "error", message: "err" });
+      //     return null;
+      //   });
+
+      // handleResetPassword(auth, actionCode, continueUrl, lang);
+      // case "recoverEmail":
+      //   // Display email recovery handler and UI.
+      //   handleRecoverEmail(auth, actionCode, lang);
+      //   break;
+      // case "verifyEmail":
+      //   // Display email verification handler and UI.
+      //   handleVerifyEmail(auth, actionCode, continueUrl, lang);
+      //   break;
+      default:
+        setSnackbar({ severity: "error", message: "wrong mode" });
+        break;
+      // Error: invalid mode.
+    }
+  }
+
   const value = {
     currentUser,
     signup,
@@ -406,6 +491,7 @@ export const AuthContextProvider = ({ children }: Props) => {
     deleteAccountFacebook,
     setUpdatedPassword,
     updateDisplayName,
+    emailActionHandler,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -429,6 +515,11 @@ const AuthContext = createContext<AuthContextTypes>({
   setUpdatedPassword: (currentPassword: string, newPassword: string) => Promise,
   updateDisplayName: (displayName: string) => Promise,
   resendVerificationEmail: () => Promise,
+  emailActionHandler: (
+    mode: "resetPassword" | "verifyEmail",
+    oobCode: string,
+    newPassword?: string
+  ) => Promise,
 });
 
 export const useAuth = () => useContext(AuthContext);

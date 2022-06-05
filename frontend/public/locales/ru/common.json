@@ -10,7 +10,10 @@
     "help": "Помощь",
     "logIn": "Войти",
     "signUp": "Регистрация",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "actions": {
+      "verifyEmail": ""
+    }
   },
   "Form": {
     "optional": "необязательно",

@@ -46,7 +46,7 @@ const PasswordInput = ({
   const handleMouseDownPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
-
+  console.log({ errors });
   return (
     <InputContainer>
       <Label htmlFor={name}>{labelName}</Label>

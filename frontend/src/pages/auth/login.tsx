@@ -14,7 +14,6 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import { useAuth } from "@context/authContext";
-import { useSnackbar } from "@context/snackbarContext";
 
 import { Form } from "@components/Form";
 import { Button, FacebookButton } from "@components/buttons";
@@ -106,9 +105,6 @@ const Login: NextPage = (props) => {
           </FacebookButton>
 
           <AuthOptions>
-            <Link href="/auth/forgot-password">
-              <a>{t("LogIn.addActions.forgot")}</a>
-            </Link>
             <span>
               {t("LogIn.addActions.noAccount")}
               <Link href="/auth/sign-up">

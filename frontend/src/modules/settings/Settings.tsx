@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 import {
@@ -25,6 +26,7 @@ import { Tabs } from "@components/Tabs";
 import { PageContainer } from "@components/layout";
 
 const Settings = (): JSX.Element => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter();
@@ -37,7 +39,16 @@ const Settings = (): JSX.Element => {
   return (
     <PageContainer title={t("Pages.settings")} dashboard>
       <DashboardInner>
-        {md ? <Tabs links={links} /> : <SideNav links={links} />}
+        {/* {md ? <Tabs links={links} /> : <SideNav links={links} />} */}
+        <Tabs
+          links={links}
+          orientation={md ? "horizontal" : "vertical"}
+          sx={{
+            borderBottom: md ? 1 : 0,
+            textAlign: "left",
+            borderColor: "divider",
+          }}
+        />
         <DashboardMain>
           <Typography variant="h6">Ustawienia</Typography>
 

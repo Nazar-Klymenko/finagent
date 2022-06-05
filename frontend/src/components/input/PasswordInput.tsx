@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
+  Box,
   IconButton,
   InputAdornment,
   OutlinedInput,
@@ -46,10 +48,22 @@ const PasswordInput = ({
   const handleMouseDownPassword = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
-  console.log({ errors });
   return (
     <InputContainer>
-      <Label htmlFor={name}>{labelName}</Label>
+      <Label htmlFor={name}>
+        {labelName}
+        <Box sx={{ display: "flex", flex: "1", justifyContent: "flex-end" }}>
+          <Link href="/auth/forgot-password" passHref>
+            <Typography
+              component="a"
+              sx={{ color: "text.secondary", textDecoration: "underline" }}
+            >
+              {t("LogIn.addActions.forgot")}
+            </Typography>
+          </Link>
+        </Box>
+      </Label>
+
       <Controller
         name={name}
         control={control}

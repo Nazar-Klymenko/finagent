@@ -16,6 +16,7 @@ const Button = ({ children, form, onClick, ...other }: Props): JSX.Element => {
       onClick={onClick}
       {...other}
       sx={{ my: "0.5rem" }}
+      disableElevation
     >
       {children}
     </MuiButton>

@@ -19,6 +19,7 @@ const FacebookButton = ({
       form=""
       color="primary"
       style={{ backgroundColor: "#3B5998", margin: "0.5rem" }}
+      disableElevation
       {...other}
     >
       {children}

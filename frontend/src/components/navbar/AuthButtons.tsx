@@ -32,6 +32,7 @@ const AuthButtons = (): JSX.Element => {
             component="a"
             variant="contained"
             disableRipple
+            disableElevation
           >
             {_t("Navbar.signUp")}
           </Button>

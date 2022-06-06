@@ -1,10 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useAuth } from "@context/authContext";
+
+import { Typography } from "@mui/material";
+
+import withAuth from "@helpers/withAuth";
 
 const Notifications: NextPage = () => {
-  return <>Notifications</>;
+  return (
+    <Typography variant="h4" textAlign="center">
+      Notifications
+    </Typography>
+  );
 };
 
-export default Notifications;
+export default withAuth(Notifications);

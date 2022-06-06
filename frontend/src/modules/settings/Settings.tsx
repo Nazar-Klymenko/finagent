@@ -45,7 +45,7 @@ const Settings = (): JSX.Element => {
     <PageContainer title={t("Pages.settings")} dashboard>
       <DashboardInner>
         <Tabs
-          links={links}
+          links={provider === "facebook.com" ? linksFacebook : links}
           orientation={md ? "horizontal" : "vertical"}
           sx={{
             borderBottom: md ? 1 : 0,
@@ -54,8 +54,6 @@ const Settings = (): JSX.Element => {
           }}
         />
         <DashboardMain>
-          <Typography variant="h6">Ustawienia {tab}</Typography>
-
           <DataWrapper>
             {tab === "personal" && <ChangeInfoPage />}
             {tab === "password" && <PasswordPage />}
@@ -72,6 +70,18 @@ const Settings = (): JSX.Element => {
 
 export { Settings };
 
+const linksFacebook = [
+  {
+    href: "/settings/personal",
+    label: "Settings.ChangeInfo.title",
+    activePaths: ["/settings/personal"],
+  },
+  {
+    href: "/settings/delete",
+    label: "Settings.Disposal.title",
+    activePaths: ["/settings/delete"],
+  },
+];
 const links = [
   {
     href: "/settings/personal",

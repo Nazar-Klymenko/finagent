@@ -56,7 +56,9 @@ const ChangeInfoPage = () => {
 
   return (
     <>
-      <Typography gutterBottom>{t("Settings.ChangeInfo.title")}</Typography>
+      <Typography gutterBottom variant="h4">
+        {t("Settings.ChangeInfo.title")}
+      </Typography>
       <Form methods={methods} id="settings-info-form" onSubmit={formSubmit}>
         <Input
           name="fullName"

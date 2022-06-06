@@ -44,7 +44,9 @@ const PasswordPage = (): JSX.Element => {
   });
   return (
     <>
-      <Typography gutterBottom>{t("Settings.ChangePassword.title")}</Typography>
+      <Typography gutterBottom variant="h4">
+        {t("Settings.ChangePassword.title")}
+      </Typography>
 
       <Form methods={methods} id="settings-password-form" onSubmit={formSubmit}>
         <PasswordInput

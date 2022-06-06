@@ -43,22 +43,22 @@ const BottomNav = (): JSX.Element => {
       >
         <BottomNavigationAction
           label={_t("NavbarBottom.dashboard")}
-          onClick={() => onLink("/dashboard")}
+          onClick={() => onLink("/dashboard/")}
           icon={<HomeRoundedIcon />}
         />
         <BottomNavigationAction
           label={_t("NavbarBottom.services")}
-          onClick={() => onLink("/services")}
+          onClick={() => onLink("/services/")}
           icon={<AssignmentRoundedIcon />}
         />
         <BottomNavigationAction
-          onClick={() => onLink("/notifications")}
+          onClick={() => onLink("/notifications/")}
           label={_t("NavbarBottom.notifications")}
           icon={<NotificationsIcon />}
         />
         <BottomNavigationAction
           label={_t("NavbarBottom.settings")}
-          onClick={() => onLink("/settings")}
+          onClick={() => onLink("/settings/")}
           icon={<SettingsRoundedIcon />}
         />
       </BottomNavigation>

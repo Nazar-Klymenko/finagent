@@ -106,18 +106,14 @@ export const AuthContextProvider = ({ children }: Props) => {
         user: User
       ) {
         try {
-          await signUpFacebookAPI({ additionalInfo, uid: user.uid }).catch(
-            (error) => {
-              deleteUser(user);
-              localStorage.setItem("onSignIn", "false");
-              throw new Error();
-            }
-          );
+          await signUpFacebookAPI({ additionalInfo, uid: user.uid });
           setSnackbar({
             severity: "success",
             message: "SnackBar.successfulLogginIn",
           });
         } catch (error) {
+          deleteUser(user);
+          localStorage.setItem("onSignIn", "false");
           setSnackbar({
             severity: "error",
             message: "SnackBar.loginError",
@@ -125,49 +121,56 @@ export const AuthContextProvider = ({ children }: Props) => {
         }
       }
 
-      let emailVerified = false;
-      let photoURL = "";
-      if (user) {
-        localStorage.setItem("onSignIn", "false");
+      try {
+        let emailVerified = false;
+        let photoURL = "";
+        if (user) {
+          localStorage.setItem("onSignIn", "false");
 
-        user.getIdToken(true);
-        if (user.providerData[0]?.providerId === "facebook.com") {
-          emailVerified = true;
-          photoURL = user.photoURL || "";
-        } else {
-          emailVerified = user.emailVerified;
-        }
-      }
-      const redirectResult = await getRedirectResult(auth);
-      console.log({ redirectResult });
-      if (redirectResult) {
-        const additionalInfo = getAdditionalUserInfo(redirectResult);
-        if (additionalInfo && additionalInfo.isNewUser) {
-          const _user = auth.currentUser;
-          if (_user) {
-            signupFacebook(additionalInfo, _user);
+          user.getIdToken(true);
+          if (user.providerData[0]?.providerId === "facebook.com") {
+            emailVerified = true;
+            photoURL = user.photoURL || "";
+          } else {
+            emailVerified = user.emailVerified;
           }
         }
-      }
+        const redirectResult = await getRedirectResult(auth);
+        if (redirectResult) {
+          const additionalInfo = getAdditionalUserInfo(redirectResult);
+          if (additionalInfo && additionalInfo.isNewUser) {
+            const _user = auth.currentUser;
+            if (_user) {
+              signupFacebook(additionalInfo, _user);
+            }
+          }
+        }
 
-      if (user) {
-        setCurrentUser({
-          displayName: user.displayName!,
-          isLoggedIn: true,
-          isActive: emailVerified,
-          isSendingRequest: false,
-          photoURL: photoURL,
-          provider: user.providerData[0]?.providerId,
-        });
-      } else {
-        setCurrentUser({
-          ...defaultState,
-          isSendingRequest: false,
+        if (user) {
+          setCurrentUser({
+            displayName: user.displayName!,
+            isLoggedIn: true,
+            isActive: emailVerified,
+            isSendingRequest: false,
+            photoURL: photoURL,
+            provider: user.providerData[0]?.providerId,
+          });
+        } else {
+          setCurrentUser({
+            ...defaultState,
+            isSendingRequest: false,
+          });
+        }
+        auth.languageCode = router.locale || "pl";
+
+        localStorage.setItem("onSignIn", "false");
+      } catch (error) {
+        localStorage.setItem("onSignIn", "false");
+        setSnackbar({
+          severity: "error",
+          message: "SnackBar.signUpFail",
         });
       }
-      auth.languageCode = router.locale || "pl";
-
-      localStorage.setItem("onSignIn", "false");
     });
 
     return () => {

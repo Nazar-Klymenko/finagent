@@ -8,6 +8,7 @@ interface Props {
   onSubmit?: any;
   methods: any;
   children: any;
+  autoComplete?: any;
 }
 const Form = ({ id, children, methods, ...props }: Props): JSX.Element => {
   return (

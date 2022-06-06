@@ -20,16 +20,6 @@ export const signUpFacebookAPI = (object) => {
   });
 };
 
-//////////APPLICATIONS/////////////
-export const getApplicationsAPI = (page, cat, status, count) => {
-  return axios(
-    `/user/application/show/${cat}/${status}?page=${page}&count=${count}`,
-    {
-      method: "GET",
-    }
-  );
-};
-
 export const getSpecificApplication = (id) => {
   return axios(`/user/application/${id}`, {
     method: "GET",
@@ -42,8 +32,8 @@ export const getSettingsAPI = () => {
 };
 
 export const updateSettingsAPI = (object) => {
-  return axios(`/user/settings/update`, {
-    method: "POST",
+  return axios(`/user/settings`, {
+    method: "PUT",
     data: JSON.stringify(object),
     headers: {
       "Content-type": "application/json",
@@ -52,11 +42,12 @@ export const updateSettingsAPI = (object) => {
 };
 
 export const deleteUserAPI = () => {
-  return axios(`/user/settings/delete_user`, {
+  return axios(`/user/settings`, {
     method: "DELETE",
   });
 };
 
+/////////////////// Notifications ///////////////////
 export const getNotificationsAPI = () => {
   return axios(`/user/notifications`, {
     method: "GET",

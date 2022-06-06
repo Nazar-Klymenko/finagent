@@ -85,6 +85,7 @@ const Login: NextPage = (props) => {
               name="password"
               labelName={t("LogIn.Form.password")}
               autoComplete="current-password"
+              resetLink
             />
           </Form>
           <Button fullWidth form="form">

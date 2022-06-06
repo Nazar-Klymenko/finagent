@@ -25,6 +25,11 @@ import { SideNav } from "@components/SideNav";
 import { Tabs } from "@components/Tabs";
 import { PageContainer } from "@components/layout";
 
+import { DeletePage } from "./settingsHelpers/DeletePage";
+import { DeletePageFacebook } from "./settingsHelpers/DeletePageFacebook";
+import { ChangeInfoPage } from "./settingsHelpers/InfoPage";
+import { PasswordPage } from "./settingsHelpers/PasswordPage";
+
 const Settings = (): JSX.Element => {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -39,7 +44,6 @@ const Settings = (): JSX.Element => {
   return (
     <PageContainer title={t("Pages.settings")} dashboard>
       <DashboardInner>
-        {/* {md ? <Tabs links={links} /> : <SideNav links={links} />} */}
         <Tabs
           links={links}
           orientation={md ? "horizontal" : "vertical"}
@@ -50,9 +54,17 @@ const Settings = (): JSX.Element => {
           }}
         />
         <DashboardMain>
-          <Typography variant="h6">Ustawienia</Typography>
+          <Typography variant="h6">Ustawienia {tab}</Typography>
 
-          <DataWrapper></DataWrapper>
+          <DataWrapper>
+            {tab === "personal" && <ChangeInfoPage />}
+            {tab === "password" && <PasswordPage />}
+            {tab === "delete" && provider === "facebook.com" ? (
+              <DeletePageFacebook />
+            ) : (
+              <DeletePage />
+            )}
+          </DataWrapper>
         </DashboardMain>
       </DashboardInner>
     </PageContainer>
@@ -92,9 +104,13 @@ const DataWrapper = styled("div")`
   flex: 1;
   display: flex;
   flex-direction: column;
+  max-width: 450px;
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    max-width: unset;
+  }
 `;
 
-const DashboardMain = styled(Paper)`
+const DashboardMain = styled("div")`
   display: flex;
   width: auto;
   flex-direction: column;
@@ -102,19 +118,12 @@ const DashboardMain = styled(Paper)`
   margin-left: 20px;
   flex: 1;
   background: white;
-  border-radius: 4px;
   position: relative;
   min-height: 100%;
   padding: 16px;
-  .empty {
-    text-align: center;
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: ${({ theme }) => theme.palette.grey[400]};
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    border-left: 1px solid ${({ theme }) => theme.palette.divider};
   }
-
   ${({ theme }) => theme.breakpoints.down("md")} {
     margin-left: 0;
     border-radius: 0;

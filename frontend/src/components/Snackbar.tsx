@@ -33,7 +33,6 @@ const Snackbar = (): JSX.Element => {
     }
     setSnackbar({ severity, message, open: false });
   };
-  console.log({ open });
   return (
     <MuiSnackbar
       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}

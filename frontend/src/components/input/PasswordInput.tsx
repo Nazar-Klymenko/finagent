@@ -23,6 +23,7 @@ interface Props {
   labelName: string;
   autoComplete?: string;
   defaultValue?: string | undefined;
+  resetLink?: boolean;
 }
 
 const PasswordInput = ({
@@ -31,6 +32,7 @@ const PasswordInput = ({
   defaultValue,
   labelName,
   autoComplete,
+  resetLink = false,
   ...other
 }: Props): JSX.Element => {
   const { t } = useTranslation();
@@ -52,16 +54,18 @@ const PasswordInput = ({
     <InputContainer>
       <Label htmlFor={name}>
         {labelName}
-        <Box sx={{ display: "flex", flex: "1", justifyContent: "flex-end" }}>
-          <Link href="/auth/forgot-password" passHref>
-            <Typography
-              component="a"
-              sx={{ color: "text.secondary", textDecoration: "underline" }}
-            >
-              {t("LogIn.addActions.forgot")}
-            </Typography>
-          </Link>
-        </Box>
+        {resetLink && (
+          <Box sx={{ display: "flex", flex: "1", justifyContent: "flex-end" }}>
+            <Link href="/auth/forgot-password" passHref>
+              <Typography
+                component="a"
+                sx={{ color: "text.secondary", textDecoration: "underline" }}
+              >
+                {t("LogIn.addActions.forgot")}
+              </Typography>
+            </Link>
+          </Box>
+        )}
       </Label>
 
       <Controller

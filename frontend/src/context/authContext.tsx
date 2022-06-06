@@ -15,6 +15,7 @@ import {
   getRedirectResult,
   onAuthStateChanged,
   reauthenticateWithCredential,
+  reauthenticateWithPopup,
   reauthenticateWithRedirect,
   reload,
   sendEmailVerification,
@@ -30,6 +31,7 @@ import {
 import { auth } from "@services/firebase";
 
 import { deleteUserAPI, signUpAPI, signUpFacebookAPI } from "@api/userAPI";
+import { updateSettingsAPI } from "@api/userAPI";
 
 import { useSnackbar } from "@context/snackbarContext";
 
@@ -61,11 +63,17 @@ type AuthContextTypes = {
   login: (email: string, password: string) => void;
   loginFacebook: () => void;
   logout: () => void;
-  deleteAccount: (password: string) => void;
-  deleteAccountFacebook: () => void;
+  deleteAccount: (password: string) => Promise<boolean>;
+  deleteAccountFacebook: () => Promise<boolean>;
   resetPassword: (email: string) => void;
-  setUpdatedPassword: (currentPassword: string, newPassword: string) => void;
-  updateDisplayName: (displayName: string) => void;
+  setUpdatedPassword: (
+    currentPassword: string,
+    newPassword: string
+  ) => Promise<boolean>;
+  setUpdatedInfo: (data: {
+    fullName: string;
+    phone: string;
+  }) => Promise<boolean>;
   resendVerificationEmail: () => void;
   emailActionHandler: (
     mode: "resetPassword" | "verifyEmail",
@@ -131,6 +139,7 @@ export const AuthContextProvider = ({ children }: Props) => {
         }
       }
       const redirectResult = await getRedirectResult(auth);
+      console.log({ redirectResult });
       if (redirectResult) {
         const additionalInfo = getAdditionalUserInfo(redirectResult);
         if (additionalInfo && additionalInfo.isNewUser) {
@@ -337,75 +346,120 @@ export const AuthContextProvider = ({ children }: Props) => {
       return false;
     }
   }
+
   async function setUpdatedPassword(
     currentPassword: string,
     newPassword: string
-  ) {
-    await reauthenticate(currentPassword).catch((error) => {
+  ): Promise<boolean> {
+    try {
+      await reauthenticate(currentPassword);
+      await updatePassword(auth.currentUser!, newPassword);
+      setSnackbar({
+        severity: "success",
+        message: "Settings.ChangePassword.alertSuccess",
+      });
+      return true;
+    } catch (error) {
       setSnackbar({
         severity: "error",
         message: "Settings.ChangePassword.errorInvalidPassword",
       });
-    });
-    await updatePassword(auth.currentUser!, newPassword);
-    setSnackbar({
-      severity: "success",
-      message: "Settings.ChangePassword.alertSuccess",
-    });
-  }
-
-  async function logout() {
-    await signOut(auth);
-  }
-
-  async function deleteAccount(currentPassword: string) {
-    try {
-      await reauthenticate(currentPassword);
-      const user = auth.currentUser;
-      await deleteUserAPI();
-      await deleteUser(user!);
-      // setSnackbar("success", "Account deleted successfully");
-    } catch (error) {
-      // setSnackbar("error", "Account couldnt be deleted");
+      return false;
     }
   }
-  async function deleteAccountFacebook() {
-    try {
-      if (auth.currentUser!.providerData[0]?.providerId === "facebook.com") {
-        const provider = new FacebookAuthProvider();
-        provider.setCustomParameters({ auth_type: "rerequest" });
-        const user = auth.currentUser;
-        await reauthenticateWithRedirect(user!, provider);
 
-        await deleteUserAPI();
-        await deleteUser(user!);
-      }
+  async function setUpdatedInfo(data: {
+    fullName: string;
+    phone: string;
+  }): Promise<boolean> {
+    try {
+      const user = auth.currentUser;
+      await updateProfile(user!, {
+        displayName: data.fullName,
+      });
+      setCurrentUser((currentUser) => {
+        return {
+          ...currentUser,
+          displayName: data.fullName,
+        };
+      });
+      await updateSettingsAPI(data);
+      setSnackbar({
+        severity: "success",
+        message: "Settings.ChangeInfo.alertSuccess",
+      });
+      return true;
+    } catch (error) {
+      setSnackbar({
+        severity: "error",
+        message: "Settings.ChangeInfo.errorResponse",
+      });
+      return false;
+    }
+  }
+
+  async function deleteAccount(currentPassword: string): Promise<boolean> {
+    try {
+      const user = auth.currentUser;
+      await reauthenticate(currentPassword);
+      await deleteUserAPI();
+      await deleteUser(user!);
       setSnackbar({
         severity: "success",
         message: "Account deleted successfully",
       });
+      return true;
     } catch (error) {
-      // setSnackbar("error", "ERROR");
+      console.log(error);
+      if (error instanceof FirebaseError) {
+        switch (error.code) {
+          case "auth/wrong-password":
+            {
+              setSnackbar({
+                severity: "error",
+                message: "Settings.ChangePassword.errorInvalidPassword",
+              });
+            }
+            break;
+          default: {
+            setSnackbar({
+              severity: "error",
+              message: "Account couldnt be deleted",
+            });
+            break;
+          }
+        }
+      }
+
+      return false;
+    }
+  }
+  async function deleteAccountFacebook(): Promise<boolean> {
+    try {
+      const provider = new FacebookAuthProvider();
+      // provider.setCustomParameters({ auth_type: "rerequest" });
+      const user = auth.currentUser;
+      await reauthenticateWithPopup(user!, provider);
+
+      await deleteUserAPI();
+      await deleteUser(user!);
+      setSnackbar({
+        severity: "success",
+        message: "Account deleted successfully",
+      });
+      return true;
+    } catch (error) {
+      setSnackbar({
+        severity: "error",
+        message: "Account couldnt be deleted",
+      });
+      return false;
     }
   }
   async function reauthenticate(currentPassword: string) {
     const user = auth.currentUser;
     const cred = EmailAuthProvider.credential(user?.email!, currentPassword);
     return reauthenticateWithCredential(user!, cred);
-  }
-
-  async function updateDisplayName(displayName: string) {
-    const user = auth.currentUser;
-
-    await updateProfile(user!, {
-      displayName: displayName,
-    });
-    setCurrentUser((currentUser) => {
-      return {
-        ...currentUser,
-        displayName: displayName,
-      };
-    });
   }
 
   async function emailActionHandler(
@@ -439,7 +493,6 @@ export const AuthContextProvider = ({ children }: Props) => {
 
         break;
       case "verifyEmail":
-        // Display reset password handler and UI.
         applyActionCode(auth, oobCode)
           .then(() => {
             reload(auth.currentUser!);
@@ -451,32 +504,13 @@ export const AuthContextProvider = ({ children }: Props) => {
             return null;
           });
         break;
-
-      //   });
-      // verifyPasswordResetCode(auth, actionCode)
-      //   .then(() => {
-      //     setSnackbar({ severity: "success", message: "success" });
-      //     return null;
-      //   })
-      //   .catch((err) => {
-      //     setSnackbar({ severity: "error", message: "err" });
-      //     return null;
-      //   });
-
-      // handleResetPassword(auth, actionCode, continueUrl, lang);
-      // case "recoverEmail":
-      //   // Display email recovery handler and UI.
-      //   handleRecoverEmail(auth, actionCode, lang);
-      //   break;
-      // case "verifyEmail":
-      //   // Display email verification handler and UI.
-      //   handleVerifyEmail(auth, actionCode, continueUrl, lang);
-      //   break;
       default:
         setSnackbar({ severity: "error", message: "wrong mode" });
         break;
-      // Error: invalid mode.
     }
+  }
+  async function logout() {
+    await signOut(auth);
   }
 
   const value = {
@@ -490,36 +524,12 @@ export const AuthContextProvider = ({ children }: Props) => {
     deleteAccount,
     deleteAccountFacebook,
     setUpdatedPassword,
-    updateDisplayName,
+    setUpdatedInfo,
     emailActionHandler,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-const AuthContext = createContext<AuthContextTypes>({
-  currentUser: {
-    displayName: "",
-    isLoggedIn: false,
-    isActive: false,
-    isSendingRequest: true,
-    photoURL: "",
-    provider: "",
-  },
-  signup: (data: SignUpData) => Promise,
-  login: (email: string, password: string) => Promise,
-  loginFacebook: () => Promise,
-  logout: () => Promise,
-  deleteAccount: (password: string) => Promise,
-  deleteAccountFacebook: () => Promise,
-  resetPassword: (email: string) => Promise,
-  setUpdatedPassword: (currentPassword: string, newPassword: string) => Promise,
-  updateDisplayName: (displayName: string) => Promise,
-  resendVerificationEmail: () => Promise,
-  emailActionHandler: (
-    mode: "resetPassword" | "verifyEmail",
-    oobCode: string,
-    newPassword?: string
-  ) => Promise,
-});
+const AuthContext = createContext({} as AuthContextTypes);
 
 export const useAuth = () => useContext(AuthContext);

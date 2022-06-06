@@ -2,7 +2,9 @@ import { useState } from "react";
 
 import { useTranslation } from "next-i18next";
 
-import { Link, Tabs as MuiTabs, Paper, Tab } from "@mui/material/";
+import { Tabs as MuiTabs, Paper, Tab } from "@mui/material/";
+
+import { Link } from "@components/Link";
 
 const Tabs = ({
   links,
@@ -26,14 +28,14 @@ const Tabs = ({
       {...other}
     >
       {links.map((link: any, idx: number) => (
-        // <Link key={idx} href={link.href} passHref>
         <Tab
           key={idx}
           label={t(link.label)}
           component={Link}
-          href={link.href}
+          href={{
+            pathname: link.href + "",
+          }}
         ></Tab>
-        // </Link>
       ))}
     </MuiTabs>
   );

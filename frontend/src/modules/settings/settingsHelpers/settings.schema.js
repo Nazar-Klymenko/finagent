@@ -9,10 +9,7 @@ export const settingsSchema = () => {
 
 export const changePasswordSchema = () => {
   return yup.object().shape({
-    currentPassword: yup
-      .string()
-      .required("Form.Error.blank")
-      .min(8, "The password has to be at lest 8 symbols"),
+    currentPassword: yup.string().required("Form.Error.blank"),
     newPassword: yup
       .string()
       .required("Form.Error.blank")
@@ -22,6 +19,6 @@ export const changePasswordSchema = () => {
 
 export const dangerZoneSchema = () => {
   return yup.object().shape({
-    password: yup.string().min(8, "The password has to be at lest 8 symbols"),
+    password: yup.string().required("Form.Error.blank"),
   });
 };

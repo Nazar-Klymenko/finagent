@@ -59,11 +59,10 @@ const Settings = (): JSX.Element => {
           <DataWrapper>
             {tab === "personal" && <ChangeInfoPage />}
             {tab === "password" && <PasswordPage />}
-            {tab === "delete" && provider === "facebook.com" ? (
+            {tab === "delete" && provider === "facebook.com" && (
               <DeletePageFacebook />
-            ) : (
-              <DeletePage />
             )}
+            {tab === "delete" && provider !== "facebook.com" && <DeletePage />}
           </DataWrapper>
         </DashboardMain>
       </DashboardInner>

@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
@@ -22,7 +21,6 @@ const BottomNav = (): JSX.Element => {
   const { _t } = useLayoutTranslation(locale);
 
   const { currentUser } = useAuth();
-  const { isLoggedIn } = currentUser;
   const [value, setValue] = React.useState(0);
 
   const onLink = (href: string) => {

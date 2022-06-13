@@ -1,6 +1,12 @@
-import { ButtonProps, Button as MuiButton } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { LoadingButtonProps } from "@mui/lab/LoadingButton";
+import {
+  ButtonProps,
+  CircularProgress,
+  Button as MuiButton,
+} from "@mui/material";
 
-interface Props extends ButtonProps {
+interface Props extends LoadingButtonProps {
   form?: string;
   children: string;
   onClick?: () => void;
@@ -8,18 +14,19 @@ interface Props extends ButtonProps {
 
 const Button = ({ children, form, onClick, ...other }: Props): JSX.Element => {
   return (
-    <MuiButton
+    <LoadingButton
+      {...other}
       variant="contained"
       type="submit"
       size="large"
       form={form}
       onClick={onClick}
-      {...other}
       sx={{ my: "0.5rem" }}
       disableElevation
+      loadingIndicator={<CircularProgress color="inherit" size={16} />}
     >
       {children}
-    </MuiButton>
+    </LoadingButton>
   );
 };
 

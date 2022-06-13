@@ -12,7 +12,7 @@ import { InputContainer, InputErrorMessage, Label } from "./LocalStyles";
 
 interface Props extends InputProps {
   defaultValue?: any;
-  placeholder: string;
+  placeholder?: string;
   view?: ["day"] | ["year", "month"] | ["year", "month", "day"] | ["year"];
   format?: "dd/MM/yyyy" | "yyyy";
   disablePast?: boolean;
@@ -67,11 +67,11 @@ const DateInput = ({
               return (
                 <TextField
                   {...params}
-                  // inputProps={{
-                  //   placeholder: placeholder,
-                  // }}
+                  inputProps={{
+                    ...params.inputProps,
+                    placeholder: placeholder,
+                  }}
                   autoComplete={autoComplete}
-                  placeholder={placeholder}
                   error={!!_.get(errors, name)}
                   helperText={null}
                 />

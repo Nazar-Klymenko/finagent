@@ -22,17 +22,9 @@ import { vehicleTypeOptions } from "./helpers/options";
 import { seatNumberOptions } from "./helpers/options";
 import { pageTwoSchema } from "./helpers/schema";
 
-type FormTypes = {
-  vehicleType: string;
-  vehicleTypeOther: string;
-  brand: string;
-  model: string;
-  regNumber: string;
-  vinNumber: string;
-  engineNumber: string;
-  engineVolume: string;
-  seatNumber: string;
-};
+import { InsuranceBorderVehicleData } from "@_types/dataContext";
+
+interface FormTypes extends InsuranceBorderVehicleData {}
 
 const Page2 = () => {
   const { t } = useTranslation();
@@ -77,7 +69,7 @@ const Page2 = () => {
         currentStep={2}
         label={t("insuranceBorder.Page2.subtitle")}
       />
-      <Typography variant="h6">
+      <Typography variant="h6" gutterBottom>
         {t("insuranceBorder.Page2.subtitle")}
       </Typography>
       <Form methods={methods} id="form" onSubmit={formSubmit}>

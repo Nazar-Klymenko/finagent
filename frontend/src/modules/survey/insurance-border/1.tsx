@@ -21,13 +21,9 @@ import { PageContainer } from "@components/layout";
 import { insurancePeriodOptions } from "./helpers/options";
 import { pageOneSchema } from "./helpers/schema";
 
-type FormTypes = {
-  documentType: string;
-  pesel: string;
-  passportNumber: string;
-  registeredNotInEU: string;
-  insurancePeriod: string;
-};
+import { InsuranceBorderInsuranceData } from "@_types/dataContext";
+
+interface FormTypes extends InsuranceBorderInsuranceData {}
 
 const Page1 = () => {
   const { t } = useTranslation();
@@ -38,6 +34,7 @@ const Page1 = () => {
 
   const methods = useForm<FormTypes>({
     defaultValues: {
+      documentType: appDataValid.documentType || "pesel",
       pesel: appDataValid.pesel,
       passportNumber: appDataValid.passportNumber,
       insurancePeriod: appDataValid.insurancePeriod,
@@ -51,7 +48,7 @@ const Page1 = () => {
   });
   const { handleSubmit, watch } = methods;
 
-  const documentTypeName = watch("documentType") || appDataValid.documentType;
+  const documentTypeName = watch("documentType");
 
   const formSubmit = handleSubmit((data) => {
     setValues(data, "insuranceBorder", "insuranceData");
@@ -69,7 +66,7 @@ const Page1 = () => {
         currentStep={1}
         label={t("insuranceBorder.Page1.subtitle")}
       />
-      <Typography variant="h6">
+      <Typography variant="h6" gutterBottom>
         {t("insuranceBorder.Page1.subtitle")}
       </Typography>
 
@@ -87,12 +84,10 @@ const Page1 = () => {
               value: "passportNumber",
             },
           ]}
-          defaultValue={appDataValid.documentType || "pesel"}
         />
-        {!(documentTypeName === "passportNumber") && (
+        {documentTypeName === "pesel" ? (
           <Input name="pesel" labelName={t("insuranceBorder.Page1.pesel")} />
-        )}
-        {documentTypeName === "passportNumber" && (
+        ) : (
           <Input
             name="passportNumber"
             labelName={t("insuranceBorder.Page1.passportNumber")}

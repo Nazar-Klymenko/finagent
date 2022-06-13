@@ -73,7 +73,9 @@ const Page1 = () => {
         currentStep={1}
         label={t("insuranceTravel.Page1.title")}
       />
-      <Typography variant="h6">{t("insuranceTravel.Page1.title")}</Typography>
+      <Typography variant="h6" gutterBottom>
+        {t("insuranceTravel.Page1.title")}
+      </Typography>
 
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <DateInput

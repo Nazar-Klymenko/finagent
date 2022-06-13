@@ -18,16 +18,9 @@ import { PageContainer } from "@components/layout";
 
 import { pageThreeSchema } from "./helpers/schema";
 
-type FormTypes = {
-  name: string;
-  phoneNumber: string;
-  email: string;
-  country: string;
-  city: string;
-  postIndex: string;
-  street: string;
-  houseNumber: string;
-};
+import { InsuranceBorderPersonalData } from "@_types/dataContext";
+
+interface FormTypes extends InsuranceBorderPersonalData {}
 
 const Page3 = () => {
   const { t } = useTranslation();
@@ -72,7 +65,7 @@ const Page3 = () => {
         currentStep={3}
         label={t("insuranceBorder.Page3.subtitle")}
       />
-      <Typography variant="h6">
+      <Typography variant="h6" gutterBottom>
         {t("insuranceBorder.Page3.subtitle")}
       </Typography>
       <Form methods={methods} id="form" onSubmit={formSubmit}>
@@ -86,33 +79,22 @@ const Page3 = () => {
           name="phoneNumber"
           labelName={t("insuranceBorder.Page3.phoneNumber")}
         />
-        <Input
-          name="email"
-          labelName={t("insuranceBorder.Page3.email")}
-          placeholder="example@mail.com"
-        />
+        <Input name="email" labelName={t("insuranceBorder.Page3.email")} />
         <Input
           name="country"
           labelName={t("insuranceBorder.Page3.country")}
           type="text"
-          placeholder="Poland"
         />
         <Input
           name="city"
           labelName={t("insuranceBorder.Page3.city")}
           type="text"
-          placeholder="Warsaw"
         />
         <Input
           name="postIndex"
           labelName={t("insuranceBorder.Page3.postIndex")}
-          placeholder="123-45"
         />
-        <Input
-          name="street"
-          labelName={t("insuranceBorder.Page3.street")}
-          placeholder="Bialostocka"
-        />
+        <Input name="street" labelName={t("insuranceBorder.Page3.street")} />
         <Input
           name="houseNumber"
           labelName={t("insuranceBorder.Page3.houseNumber")}

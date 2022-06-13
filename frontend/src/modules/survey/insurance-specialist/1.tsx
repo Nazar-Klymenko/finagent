@@ -92,7 +92,7 @@ const Page1 = () => {
         currentStep={1}
         label={t("insuranceSpecialist.Page1.subtitle")}
       />
-      <Typography variant="h6">
+      <Typography variant="h6" gutterBottom>
         {t("insuranceSpecialist.Page1.subtitle")}
       </Typography>
 

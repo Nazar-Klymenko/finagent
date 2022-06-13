@@ -157,7 +157,7 @@ const Page2 = () => {
         currentStep={2}
         label={t("insuranceSpecialist.ApplicantBox.title")}
       />
-      <Typography variant="h6">
+      <Typography variant="h6" gutterBottom>
         {t("insuranceSpecialist.ApplicantBox.title")}
       </Typography>
       {editingMode &&

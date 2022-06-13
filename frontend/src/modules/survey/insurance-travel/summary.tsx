@@ -37,7 +37,9 @@ const Summary = () => {
 
       <Typography variant="h4">{t("insuranceTravel.title")}</Typography>
       <ProgressBar maxSteps={2} currentStep={2} label={t("Basic.summary")} />
-      <Typography variant="h6">{t("Basic.summary")}</Typography>
+      <Typography variant="h6" gutterBottom>
+        {t("Basic.summary")}
+      </Typography>
 
       <SummaryList
         header={t("Basic.summary")}

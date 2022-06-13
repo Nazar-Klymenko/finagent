@@ -75,7 +75,9 @@ const Page2 = () => {
         currentStep={3}
         label={t("loanCash.Page2.subtitle")}
       />
-      <Typography variant="h6">{t("loanCash.Page2.subtitle")}</Typography>
+      <Typography variant="h6" gutterBottom>
+        {t("loanCash.Page2.subtitle")}
+      </Typography>
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <Textarea
           name="remainingPayOff"

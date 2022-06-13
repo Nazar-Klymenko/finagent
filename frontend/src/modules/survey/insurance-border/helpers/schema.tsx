@@ -1,8 +1,9 @@
 import * as yup from "yup";
 
 export const pageOneSchema = yup.object().shape({
+  documentType: yup.string(),
   pesel: yup.string().when("documentType", {
-    is: (value: string) => value !== "passportNumber",
+    is: "pesel",
     then: yup.string().required("Form.Error.blank"),
   }),
   passportNumber: yup.string().when("documentType", {

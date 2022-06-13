@@ -33,8 +33,13 @@ const Summary = () => {
     <PageContainer xs title={t("insuranceBorder.title")}>
       <QuestState data={appData} />
 
-      <Typography variant="h6">{t("insuranceBorder.title")}</Typography>
+      <Typography variant="h6" gutterBottom>
+        {t("insuranceBorder.title")}
+      </Typography>
       <ProgressBar maxSteps={3} currentStep={3} label={t("Basic.summary")} />
+      <Typography variant="h6" gutterBottom>
+        {t("Basic.summary")}
+      </Typography>
       <SummaryList
         header={t("Basic.summary")}
         applicationType="insuranceBorder"

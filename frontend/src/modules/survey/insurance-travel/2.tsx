@@ -85,7 +85,9 @@ const Page2 = () => {
         currentStep={2}
         label={t("insuranceTravel.Page2.title")}
       />
-      <Typography variant="h6">{t("insuranceTravel.Page2.title")}</Typography>
+      <Typography variant="h6" gutterBottom>
+        {t("insuranceTravel.Page2.title")}
+      </Typography>
       <Form methods={methods} id="form" onSubmit={formSubmit}>
         <Radio
           name="policyholderIs"

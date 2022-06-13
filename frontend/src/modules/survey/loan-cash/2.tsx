@@ -154,7 +154,9 @@ const Page2 = () => {
         currentStep={2}
         label={t("loanCash.Page2.subtitle")}
       />
-      <Typography variant="h6">{t("loanCash.Page2.subtitle")}</Typography>
+      <Typography variant="h6" gutterBottom>
+        {t("loanCash.Page2.subtitle")}
+      </Typography>
 
       {editingMode &&
         fields.map((field: any, index: number) => {

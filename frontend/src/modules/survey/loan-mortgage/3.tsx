@@ -91,7 +91,9 @@ const Page3 = () => {
         currentStep={3}
         label={t("loanMortgage.Page3.subtitle")}
       />
-      <Typography variant="h6">{t("loanMortgage.Page3.subtitle")}</Typography>
+      <Typography variant="h6" gutterBottom>
+        {t("loanMortgage.Page3.subtitle")}
+      </Typography>
       <Form methods={methods} id="form" onSubmit={handleSubmit(formSubmit)}>
         <Typography>{t("loanMortgage.HouseholdBox.title")}</Typography>
 

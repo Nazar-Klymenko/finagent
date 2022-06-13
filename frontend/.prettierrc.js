@@ -16,6 +16,7 @@ module.exports = {
     "^@components/(.*)$",
     "^[./]",
     "^@pages/(.*)$",
+    "^@_types/(.*)$",
   ],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,

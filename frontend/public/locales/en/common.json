@@ -518,7 +518,7 @@
       "noHousehold": "You must provide minimum 1 household"
     },
     "Page1": {
-      "subtitle": "Policyholder information",
+      "subtitle": "Personal information",
       "maritalStatus": "Marital Status",
       "married": "Married",
       "notMarried": "Not married",

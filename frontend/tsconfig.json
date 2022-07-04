@@ -29,7 +29,8 @@
       "@redux/*": ["./src/redux/*"],
       "@dev/*": ["./src/_devOnly/*"],
       "@hoc/*": ["./src/hoc/*"],
-      "@_types/*": ["src/_types/*"]
+      "@_types/*": ["src/_types/*"],
+      "@lib/*": ["src/lib/*"]
     }
   },
   "include": [

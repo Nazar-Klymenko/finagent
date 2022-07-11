@@ -1,13 +1,13 @@
 import React from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import Backdrop from "@mui/material/Backdrop";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import i18next from "i18next";
 
 import { Button } from "@components/buttons";
 
@@ -28,7 +28,7 @@ const MuiDialog = ({
   formId,
   children,
 }: Props): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
 
   return (
     <div>

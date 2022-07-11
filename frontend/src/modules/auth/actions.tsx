@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 import type { NextPage } from "next";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
+import i18next from "i18next";
 
 import { useAuth } from "@context/authContext";
 
@@ -14,7 +16,7 @@ import { ActivateEmail } from "./actionHelpers/ActivateEmail";
 import { ResetPassword } from "./actionHelpers/ResetPassword";
 
 const ActionsPage: NextPage = (props) => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const router = useRouter();
   const { mode, oobCode, apiKey, continueUrl, lang } = router.query;
   const { currentUser } = useAuth();

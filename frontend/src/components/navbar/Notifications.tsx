@@ -1,6 +1,7 @@
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 import { IconButton } from "@mui/material";
-import Link from "next/link";
+
+import Link from "@components/LinkComponent";
 
 const Notifications = (): JSX.Element => {
   return (

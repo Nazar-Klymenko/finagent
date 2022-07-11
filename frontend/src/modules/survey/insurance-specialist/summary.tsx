@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Typography } from "@mui/material";
+import i18next from "i18next";
 
 import { QuestState } from "@helpers/QuestState";
 import { determineAppType } from "@helpers/determineAppType";
@@ -19,7 +20,7 @@ import { Button } from "@components/buttons";
 import { PageContainer } from "@components/layout";
 
 const Summary = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const router = useRouter();
   const { appData } = useData();
 

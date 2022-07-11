@@ -1,13 +1,13 @@
 import React from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import {
   Alert,
   Snackbar as MuiSnackbar,
   Slide,
   SlideProps,
 } from "@mui/material/";
+import i18next from "i18next";
 
 import { useSnackbar } from "@context/snackbarContext";
 
@@ -18,7 +18,7 @@ function TransitionUp(props: TransitionProps) {
 }
 
 const Snackbar = (): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
 
   const { snackbar, setSnackbar } = useSnackbar(),
     { message, severity, open } = snackbar;

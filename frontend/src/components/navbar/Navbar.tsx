@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { useTheme } from "@mui/material";
 import { Container, LinearProgress, Skeleton, Typography } from "@mui/material";
@@ -11,6 +10,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import useRouteLoader from "@hooks/useRouteLoader";
 
 import { useAuth } from "@context/authContext";
+
+import Link from "@components/LinkComponent";
 
 import AuthButtons from "./AuthButtons";
 import LanguageMenu from "./LanguageMenu";

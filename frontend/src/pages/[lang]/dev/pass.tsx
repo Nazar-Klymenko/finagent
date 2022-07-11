@@ -1,9 +1,8 @@
 import React from "react";
 
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
+import i18next from "i18next";
 import _ from "lodash";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -18,7 +17,7 @@ type FormTypes = {
 };
 
 const Dev = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
 
   const methods = useForm<FormTypes>({
       defaultValues: {
@@ -54,10 +53,19 @@ const Dev = () => {
 
 export default Dev;
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticPaths() {
+  const paths = getAllLanguageSlugs();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const language = getLanguage(params.lang);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      language,
     },
   };
 }

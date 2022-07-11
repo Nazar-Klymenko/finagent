@@ -1,13 +1,14 @@
 import React from "react";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
+
+import Link from "@components/LinkComponent";
 
 const Footer: React.FC = () => {
   const { locale } = useRouter();

@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 
 import type { NextPage } from "next";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Box, Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
+import i18next from "i18next";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import { useAuth } from "@context/authContext";
 
 import { Form } from "@components/Form";
+import Link from "@components/LinkComponent";
 import { Button, FacebookButton } from "@components/buttons";
 import { Input, MuiPhoneInput, PasswordInput } from "@components/input";
 import { AuthContainer } from "@components/layout";
@@ -30,7 +30,7 @@ type FormTypes = {
 };
 
 const SignUp: NextPage = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const { currentUser, signup, loginFacebook } = useAuth();
   const { isLoggedIn, isActive } = currentUser;
   const router = useRouter();
@@ -179,10 +179,19 @@ const signUpSchema = yup.object().shape({
   //   .boolean()
   //   .oneOf([true], "Please read and accept the Terms and Conditions"),
 });
-export async function getStaticProps({ locale }: any) {
+export async function getStaticPaths() {
+  const paths = getAllLanguageSlugs();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const language = getLanguage(params.lang);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      language,
     },
   };
 }

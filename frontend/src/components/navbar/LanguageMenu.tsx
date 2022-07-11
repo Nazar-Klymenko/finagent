@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { i18n, useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 import { MenuItem, Select, Typography } from "@mui/material";

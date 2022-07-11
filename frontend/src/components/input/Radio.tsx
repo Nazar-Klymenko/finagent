@@ -1,7 +1,6 @@
 import React from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import {
   FormControl,
   FormControlLabel,
@@ -9,6 +8,7 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
+import i18next from "i18next";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -27,7 +27,7 @@ const Radio = ({
   options,
   labelName,
 }: Props): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
 
   const {
     control,

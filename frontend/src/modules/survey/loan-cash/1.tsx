@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { IconButton, Typography } from "@mui/material";
+import i18next from "i18next";
 import { useFieldArray, useForm } from "react-hook-form";
 
 import { QuestState } from "@helpers/QuestState";
@@ -53,7 +54,7 @@ type FormTypes2 = {
 };
 
 const Page1 = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const router = useRouter();
 
   const { appData, setValues, setCurrentPage } = useData();

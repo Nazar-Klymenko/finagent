@@ -1,10 +1,11 @@
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Box, Paper, Switch, Typography } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import i18next from "i18next";
 import useSWR from "swr";
 
 import { determineAppType } from "@helpers/determineAppType";
@@ -29,7 +30,7 @@ const Application = (): JSX.Element => {
   const { id } = router.query;
 
   const { data, error } = useSWR(`/user/applications/specific/${id}`, fetcher);
-  const { t } = useTranslation();
+  const { t } = i18next;
   const { formatDistanceToNow, format } = useDatefnsLocalized();
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down("md"));

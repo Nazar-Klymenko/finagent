@@ -1,17 +1,25 @@
 import React from "react";
 
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import Page2 from "@modules/survey/insurance-health/2";
 
 import withAuthForm from "@helpers/withAuthForm";
 
 export default withAuthForm(Page2);
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticPaths() {
+  const paths = getAllLanguageSlugs();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const language = getLanguage(params.lang);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      language,
     },
   };
 }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -20,6 +19,8 @@ import { styled } from "@mui/material/styles";
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
 
 import { useAuth } from "@context/authContext";
+
+import Link from "@components/LinkComponent";
 
 const UserMenu = (): JSX.Element => {
   const { currentUser, logout } = useAuth();

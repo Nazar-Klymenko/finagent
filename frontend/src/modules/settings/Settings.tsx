@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import {
   CircularProgress,
   Paper,
@@ -11,6 +11,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import i18next from "i18next";
 import useSWR from "swr";
 
 import { fetcher } from "@helpers/swrFetcher";
@@ -31,7 +32,7 @@ import { ChangeInfoPage } from "./settingsHelpers/InfoPage";
 import { PasswordPage } from "./settingsHelpers/PasswordPage";
 
 const Settings = (): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter();

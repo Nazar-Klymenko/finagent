@@ -1,10 +1,11 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
+
+import Link from "@components/LinkComponent";
 
 import { links } from "./config";
 

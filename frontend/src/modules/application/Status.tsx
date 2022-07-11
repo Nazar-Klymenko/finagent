@@ -1,9 +1,9 @@
 import React from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import CheckIcon from "@mui/icons-material/Check";
 import { css, styled } from "@mui/material/styles";
+import i18next from "i18next";
 
 type Props = {
   currentStep: string;
@@ -13,7 +13,7 @@ type Styled = {
 };
 
 const Status: React.FC<Props> = ({ currentStep }) => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const stepCounter = parseInt(currentStep);
 
   const checkClass = (step: number) => {

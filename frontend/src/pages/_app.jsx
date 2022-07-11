@@ -1,12 +1,12 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
 
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import { CacheProvider } from "@emotion/react";
+import { defaultLanguage, languages } from "@lib/i18n";
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,6 +17,7 @@ import enLocale from "date-fns/locale/en-GB";
 import plLocale from "date-fns/locale/pl";
 import ruLocale from "date-fns/locale/ru";
 import ukLocale from "date-fns/locale/uk";
+import i18next from "i18next";
 import PropTypes from "prop-types";
 
 import GlobalStyles from "@styles/GlobalStyle";
@@ -56,6 +57,24 @@ function MyApp(props) {
     () => createTheme(muiTheme, muiLocales[currentLocale]),
     [currentLocale]
   );
+  const { asPath, query } = router;
+
+  // Detect current language
+  const slug = asPath.split("/")[1];
+  const langSlug = languages.includes(slug) && slug;
+  const language = query.lang || langSlug || defaultLanguage;
+
+  const [clientLanguage, setClientLanguage] = useState(language);
+
+  useEffect(() => {
+    setClientLanguage(language);
+  }, [language]);
+
+  // Don't trigger `i18next.changeLanguage()` on root folder, use `router` to redirect to the specific language
+  if (asPath !== "/" && asPath !== "/404") {
+    i18next.changeLanguage(clientLanguage);
+  }
+
   return (
     <CacheProvider value={emotionCache}>
       {/*old ios polyfill */}
@@ -91,10 +110,11 @@ function MyApp(props) {
     </CacheProvider>
   );
 }
-export default appWithTranslation(MyApp);
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
+
+export default MyApp;

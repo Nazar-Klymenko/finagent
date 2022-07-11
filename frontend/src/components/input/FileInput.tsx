@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { IconButton, Typography } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
+import i18next from "i18next";
 import _ from "lodash";
 import { useDropzone } from "react-dropzone";
 import { Controller, useFormContext } from "react-hook-form";
@@ -37,7 +37,7 @@ const FileInput = ({
   width = "l",
   ...other
 }: Props): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const {
     control,
     setValue,
@@ -83,7 +83,7 @@ const Dropzone = ({
   setValue,
   name,
 }: any): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const [files, setFiles] = useState<any>(defaultValue || []);
 
   const onDrop = useCallback(

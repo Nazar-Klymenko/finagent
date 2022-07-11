@@ -1,10 +1,11 @@
 import React from "react";
 
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Typography } from "@mui/material";
+import i18next from "i18next";
 import { useForm } from "react-hook-form";
 
 import { QuestState } from "@helpers/QuestState";
@@ -29,7 +30,7 @@ type FormTypes = {
 };
 
 const Page5 = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const { appData, setValues, setAllowSummary } = useData();
   const router = useRouter();
 

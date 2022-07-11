@@ -1,15 +1,17 @@
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { IconButton, Paper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import i18next from "i18next";
 
 import useDatefnsLocalized from "@hooks/useDatefnsLocalized";
 
+import Link from "@components/LinkComponent";
+
 const Card = ({ app }: any): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const router = useRouter();
 
   const { formatDistanceToNow, format } = useDatefnsLocalized();

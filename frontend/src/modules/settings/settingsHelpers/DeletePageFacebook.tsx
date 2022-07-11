@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
+import i18next from "i18next";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 
 import { useAuth } from "@context/authContext";
 
@@ -15,7 +15,7 @@ import { Button } from "@components/buttons";
 type FormTypes = {};
 
 const DeletePageFacebook = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
 
   const [openDialog, setOpenDialog] = useState(false);
 

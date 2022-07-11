@@ -1,14 +1,15 @@
 import React from "react";
 
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import i18next from "i18next";
 
 import useLayoutTranslation from "@hooks/useLayoutTranslation";
 

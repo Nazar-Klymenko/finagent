@@ -1,17 +1,17 @@
 import React from "react";
 
 import type { NextPage } from "next";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import Image from "next/image";
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import i18next from "i18next";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -29,7 +29,7 @@ type FormData = {
 };
 
 const Contact: NextPage = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
 
   const methods = useForm<FormData>({
     mode: "onChange",
@@ -184,10 +184,19 @@ const Info = styled("div")`
   }
 `;
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticPaths() {
+  const paths = getAllLanguageSlugs();
+  return {
+    paths,
+    fallback: "blocking",
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const language = getLanguage(params?.lang);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      language,
     },
   };
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Typography } from "@mui/material";
+import i18next from "i18next";
 import _ from "lodash";
 import { Controller, useFormContext } from "react-hook-form";
 import PhoneInput from "react-phone-input-2";
@@ -28,7 +28,7 @@ const MuiPhoneInput = ({
   labelName,
   optional,
 }: Props): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const {
     control,
     formState: { errors },

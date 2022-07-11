@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
@@ -19,16 +21,13 @@ const locales = Object.assign(
     return {
       [language]: Object.assign(
         {},
-        ...Object.keys(namespaces).map((index) => {
-          const namespace = namespaces[index];
-          return {
-            [namespace]: require("../locales/" +
-              language +
-              "/" +
-              namespace +
-              ".json"),
-          };
-        })
+        {
+          [namespaces[0]]: require("../../locales/" +
+            language +
+            "/" +
+            namespaces[0] +
+            ".json"),
+        }
       ),
     };
   })
@@ -81,6 +80,9 @@ export function getAllLanguageSlugs() {
   return languages.map((lang) => {
     return { params: { lang: lang } };
   });
+}
+export function getAllLanguageSlugsExtended() {
+  return languages;
 }
 
 export function getLanguage(lang) {

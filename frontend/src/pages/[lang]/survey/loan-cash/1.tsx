@@ -1,15 +1,23 @@
 import React from "react";
 
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import Page1 from "@modules/survey/loan-cash/1";
 
 import withAuthForm from "@helpers/withAuthForm";
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticPaths() {
+  const paths = getAllLanguageSlugs();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const language = getLanguage(params.lang);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      language,
     },
   };
 }

@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 
-import Link from "next/link";
-
 import { Pagination as MuiPagination, PaginationItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
+import Link from "@components/LinkComponent";
 
 interface Props {
   currentPage: number;

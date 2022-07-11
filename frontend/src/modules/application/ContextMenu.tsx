@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
@@ -12,11 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import i18next from "i18next";
 
 import { archiveApplicationAPI } from "@api/applications";
 
 const ContextMenu = ({ id, isArchived }: any): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleCloseNavMenu = () => {

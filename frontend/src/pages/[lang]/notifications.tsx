@@ -1,17 +1,17 @@
 import type { NextPage } from "next";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import Image from "next/image";
 
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Typography } from "@mui/material";
+import i18next from "i18next";
 
 import withAuth from "@helpers/withAuth";
 
 import { PageContainer } from "@components/layout";
 
 const Notifications: NextPage = () => {
-  const { t } = useTranslation();
+  const { t } = i18next;
 
   return (
     <PageContainer title={t("Pages.notifications")}>
@@ -24,10 +24,19 @@ const Notifications: NextPage = () => {
 
 export default withAuth(Notifications);
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticPaths() {
+  const paths = getAllLanguageSlugs();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const language = getLanguage(params.lang);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      language,
     },
   };
 }

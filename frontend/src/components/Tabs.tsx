@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Tabs as MuiTabs, Paper, Tab } from "@mui/material/";
+import i18next from "i18next";
 
 import { Link } from "@components/Link";
 
@@ -11,7 +11,7 @@ const Tabs = ({
   orientation = "horizontal",
   ...other
 }: any): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

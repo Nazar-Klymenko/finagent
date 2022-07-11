@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Link from "next/link";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import i18next from "i18next";
 
+import Link from "@components/LinkComponent";
 import { PageContainer } from "@components/layout";
 
 const Error404 = (): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   return (
     <PageContainer title={"404"}>
       <Container>
@@ -39,10 +38,19 @@ const Container = styled("div")`
     color: ${({ theme }) => theme.palette.primary.main};
   }
 `;
-export async function getStaticProps({ locale }: any) {
+export async function getStaticPaths() {
+  const paths = getAllLanguageSlugs();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  const language = getLanguage(params.lang);
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      language,
     },
   };
 }

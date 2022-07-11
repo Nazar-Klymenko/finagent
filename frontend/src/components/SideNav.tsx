@@ -1,14 +1,16 @@
 import React from "react";
 
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import { Paper, Typography } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
+import i18next from "i18next";
+
+import Link from "@components/LinkComponent";
 
 const SideNav = ({ links }: any): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const { asPath } = useRouter();
 
   function CheckActiveLink(array: string[]) {

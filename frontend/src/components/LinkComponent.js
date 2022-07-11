@@ -1,9 +1,9 @@
-import Link from "next/link";
+import { Link as nLink } from "next/link";
 import { useRouter } from "next/router";
 
 import { defaultLanguage, languages } from "@lib/i18n";
 
-const LinkComponent = ({ children, locale, ...props }) => {
+const Link = ({ children, locale = "pl", ...props }) => {
   const router = useRouter();
   const { pathname, query, asPath } = router;
 
@@ -36,10 +36,10 @@ const LinkComponent = ({ children, locale, ...props }) => {
   href = href.replace(/([^:]\/)\/+/g, "$1").replace("//", "/");
 
   return (
-    <Link href={href} passHref>
+    <nLink href={href} passHref>
       {children}
-    </Link>
+    </nLink>
   );
 };
 
-export default LinkComponent;
+export default Link;

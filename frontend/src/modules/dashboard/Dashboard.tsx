@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import {
   CircularProgress,
   Paper,
@@ -11,6 +11,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import i18next from "i18next";
 import useSWR from "swr";
 
 import { fetcher } from "@helpers/swrFetcher";
@@ -34,7 +35,7 @@ const Dashboard = (): JSX.Element => {
   const [pageIndex, setPageIndex] = useState(1);
   const [pageSize, setPageSize] = useState(4);
   const [maximumPages, setMaximumPages] = useState(1);
-  const { t } = useTranslation();
+  const { t } = i18next;
 
   let { data, error } = useSWR(
     `/user/applications/${tab}?page=${pageIndex}&size=${pageSize}`,

@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react";
 
-import { useTranslation } from "next-i18next";
-
+import { getAllLanguageSlugs, getLanguage } from "@lib/i18n";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Typography } from "@mui/material";
 import { css, styled } from "@mui/material/styles";
+import i18next from "i18next";
 import _ from "lodash";
 
 interface Props {
@@ -27,7 +27,7 @@ const SummaryList = ({
   defaultOpen,
   applicationType,
 }: Props): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   const toggleOpen = useCallback(() => {
@@ -102,7 +102,7 @@ const SummaryList = ({
 export { SummaryList };
 
 const ArrayList = ({ subitem, applicationType, subidx }: any): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = i18next;
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {

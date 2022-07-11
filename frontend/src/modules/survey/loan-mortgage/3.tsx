@@ -192,7 +192,7 @@ const Page3 = () => {
           form=""
           color="secondary"
           onClick={() => {
-            router.push("./1");
+            router.push("./2");
           }}
         >
           {t("Basic.buttonBack")}

@@ -136,13 +136,6 @@ const Page1 = () => {
     setValues(data, "loanCash", "applicantData");
   });
 
-  console.log({ openDialog });
-  console.log({ formInitiated });
-  console.log({ editingMode });
-  console.log({ addingMode });
-  console.log({ editingIndex });
-  console.log({ maxFields });
-
   const handleClose = (index: number) => {
     if (addingMode) {
       removeData(index);
@@ -292,7 +285,7 @@ const Page1 = () => {
                   handleClose(index);
                 }}
                 formId="applicant-form"
-                title={t("loanCash.income.title")}
+                title={t("loanCash.applicant.title")}
                 description=""
               >
                 <Form
@@ -394,7 +387,6 @@ const Page1 = () => {
                     type="text"
                     defaultValue={field.pesel}
                   />
-
                   <Radio
                     name={`applicant[${index}].basicIncome`}
                     labelName={t("loanCash.policyholder.basicIncome")}

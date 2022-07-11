@@ -281,7 +281,7 @@ const Page1 = () => {
                   handleClose(index);
                 }}
                 formId="applicant-form"
-                title={t("loanMortgage.income.title")}
+                title={t("loanMortgage.ApplicantBox.title")}
                 description=""
               >
                 <Form

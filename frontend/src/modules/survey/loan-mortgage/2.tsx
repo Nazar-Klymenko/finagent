@@ -64,9 +64,9 @@ const Page2 = () => {
     defaultValues: {
       income: [
         {
-          truckDriver: appDataValid?.[0]?.truckDriver,
+          truckDriver: appDataValid?.[0]?.truckDriver || "no",
           industry: appDataValid?.[0]?.industry,
-          basicIncome: appDataValid?.[0]?.basicIncome,
+          basicIncome: appDataValid?.[0]?.basicIncome || "indefinitePeriod",
           firstContract: appDataValid?.[0]?.firstContract,
           sameEmployer: appDataValid?.[0]?.sameEmployer,
           withoutPause: appDataValid?.[0]?.withoutPause,
@@ -205,15 +205,14 @@ const Page2 = () => {
                         value: "no",
                       },
                     ]}
-                    defaultValue={field.truckDriver || ""}
+                    defaultValue={field.truckDriver}
                   />
                   {truckDriver === "no" && (
                     <Input
                       name={`income[${index}].industry`}
                       labelName={t("loanMortgage.income.industry")}
                       type="text"
-                      placeholder="industry"
-                      defaultValue={field.industry || ""}
+                      defaultValue={field.industry}
                     />
                   )}
 
@@ -242,11 +241,12 @@ const Page2 = () => {
                         value: "economicActivity",
                       },
                     ]}
-                    defaultValue={field.basicIncome || ""}
+                    defaultValue={field.basicIncome}
                   />
                   {/* //@ts-ignore */}
                   {(basicIncome === "specificTime" ||
                     basicIncome === "mandate" ||
+                    basicIncome === "indefinitePeriod" ||
                     basicIncome === "contract") && (
                     <>
                       <Radio
@@ -279,7 +279,7 @@ const Page2 = () => {
                                 value: "no",
                               },
                             ]}
-                            defaultValue={field.sameEmployer || ""}
+                            defaultValue={field.sameEmployer}
                           />
 
                           <Radio
@@ -295,7 +295,7 @@ const Page2 = () => {
                                 value: "no",
                               },
                             ]}
-                            defaultValue={field.withoutPause || ""}
+                            defaultValue={field.withoutPause}
                           />
                         </>
                       )}
@@ -305,13 +305,15 @@ const Page2 = () => {
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.contractFrom || null}
                       />
-                      <DateInput
-                        name={`income[${index}].contractUntil`}
-                        labelName={t("loanMortgage.income.contractUntil")}
-                        disablePast
-                        placeholder={t("Form.Placeholder.dateFull")}
-                        defaultValue={field.contractUntil || null}
-                      />
+                      {basicIncome !== "indefinitePeriod" && (
+                        <DateInput
+                          name={`income[${index}].contractUntil`}
+                          labelName={t("loanMortgage.income.contractUntil")}
+                          disablePast
+                          placeholder={t("Form.Placeholder.dateFull")}
+                          defaultValue={field.contractUntil || null}
+                        />
+                      )}
                     </>
                   )}
                   {basicIncome === "mandate" && (
@@ -320,7 +322,7 @@ const Page2 = () => {
                       labelName={t("loanMortgage.income.averageIncome12")}
                       type="text"
                       placeholder="value"
-                      defaultValue={field.averageIncome12 || ""}
+                      defaultValue={field.averageIncome12}
                     />
                   )}
                   {basicIncome === "specificTime" && (
@@ -329,7 +331,7 @@ const Page2 = () => {
                       labelName={t("loanMortgage.income.averageIncome6")}
                       type="text"
                       placeholder="value"
-                      defaultValue={field.averageIncome6 || ""}
+                      defaultValue={field.averageIncome6}
                     />
                   )}
                   {basicIncome === "economicActivity" && (
@@ -355,14 +357,14 @@ const Page2 = () => {
                             value: "fullAccounting",
                           },
                         ]}
-                        defaultValue={field.accountancy || ""}
+                        defaultValue={field.accountancy}
                       />
                       <Input
                         name={`income[${index}].averageIncome`}
                         labelName={t("loanMortgage.income.averageIncome6")}
                         type="text"
                         placeholder="value"
-                        defaultValue={field.averageIncome || ""}
+                        defaultValue={field.averageIncome}
                       />
                     </>
                   )}
@@ -376,7 +378,7 @@ const Page2 = () => {
                       labelName={t("loanMortgage.income.averageIncome3")}
                       type="text"
                       placeholder="value"
-                      defaultValue={field.averageIncome || ""}
+                      defaultValue={field.averageIncome}
                     />
                   )}
                   <Input
@@ -384,7 +386,7 @@ const Page2 = () => {
                     labelName={t("loanMortgage.income.pit")}
                     type="text"
                     placeholder="value"
-                    defaultValue={field.pit || ""}
+                    defaultValue={field.pit}
                   />
                   <Input
                     name={`income[${index}].bank`}

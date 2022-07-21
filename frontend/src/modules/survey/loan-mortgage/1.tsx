@@ -40,6 +40,7 @@ type FormTypes2 = {
       name: string;
       birthDate: Date | null;
       phoneNumber: string;
+      basicIncome: string;
       email: string;
       pesel: string;
       contractFrom: Date | null;
@@ -81,8 +82,9 @@ const Page1 = () => {
       applicant: [
         {
           otherNation: appDataValid?.[0]?.otherNation,
-          nationality: appDataValid?.[0]?.nationality,
+          nationality: appDataValid?.[0]?.nationality || "polish",
           validFrom: appDataValid?.[0]?.validFrom,
+          basicIncome: appDataValid?.[0]?.basicIncome || "indefinitePeriod",
           validUntil: appDataValid?.[0]?.validUntil,
           name: appDataValid?.[0]?.name,
           birthDate: appDataValid?.[0]?.birthDate,
@@ -264,14 +266,20 @@ const Page1 = () => {
             `applicant[${index}].nationality`
           ) as unknown as string;
           //@ts-ignore
-          const residenceDocument = watch(`applicant[${index}
-            ].residenceDocument`) as unknown as string;
+          const residenceDocument = watch(
+            //@ts-ignore
+            `applicant[${index} ].residenceDocument`
+          ) as unknown as string;
           //@ts-ignore
-          const basicIncome = watch(`applicant[${index}
-            ].basicIncome`) as unknown as string;
+          const basicIncome = watch(
+            //@ts-ignore
+            `applicant[${index}].basicIncome`
+          ) as unknown as string;
           //@ts-ignore
-          const firstContract = watch(`applicant[${index}
-            ].firstContract`) as unknown as string;
+          const firstContract = watch(
+            //@ts-ignore
+            `applicant[${index}].firstContract`
+          ) as unknown as string;
           return (
             editingIndex === index && (
               <MuiDialog
@@ -302,7 +310,7 @@ const Page1 = () => {
                         value: "other",
                       },
                     ]}
-                    defaultValue={field.nationality || "polish"}
+                    defaultValue={field.nationality}
                   />
                   {nationality === "other" && (
                     <>
@@ -363,7 +371,6 @@ const Page1 = () => {
                     autoComplete="name"
                     defaultValue={field.name || ""}
                   />
-
                   <DateInput
                     name={`applicant[${index}].birthDate`}
                     labelName={t("loanMortgage.policyholder.birthDate")}
@@ -387,7 +394,21 @@ const Page1 = () => {
                     type="text"
                     defaultValue={field.pesel}
                   />
-
+                  <Radio
+                    name={`applicant[${index}].nationality`}
+                    labelName={t("loanMortgage.policyholder.citizenship")}
+                    options={[
+                      {
+                        label: t("loanMortgage.policyholder.polish"),
+                        value: "polish",
+                      },
+                      {
+                        label: t("loanMortgage.policyholder.other"),
+                        value: "other",
+                      },
+                    ]}
+                    defaultValue={field.nationality}
+                  />
                   <Radio
                     name={`applicant[${index}].basicIncome`}
                     labelName={t("loanMortgage.policyholder.basicIncome")}
@@ -413,10 +434,11 @@ const Page1 = () => {
                         value: "economicActivity",
                       },
                     ]}
-                    defaultValue={field.basicIncome || "indefinitePeriod"}
+                    defaultValue={field.basicIncome}
                   />
                   {(basicIncome === "specificTime" ||
                     basicIncome === "mandate" ||
+                    basicIncome === "indefinitePeriod" ||
                     basicIncome === "contract") && (
                     <>
                       <Radio
@@ -479,13 +501,17 @@ const Page1 = () => {
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.contractFrom}
                       />
-                      <DateInput
-                        name={`applicant[${index}].contractUntil`}
-                        labelName={t("loanMortgage.policyholder.contractUntil")}
-                        disablePast
-                        placeholder={t("Form.Placeholder.dateFull")}
-                        defaultValue={field.contractUntil}
-                      />
+                      {basicIncome !== "indefinitePeriod" && (
+                        <DateInput
+                          name={`applicant[${index}].contractUntil`}
+                          labelName={t(
+                            "loanMortgage.policyholder.contractUntil"
+                          )}
+                          disablePast
+                          placeholder={t("Form.Placeholder.dateFull")}
+                          defaultValue={field.contractUntil}
+                        />
+                      )}
                     </>
                   )}
                   {basicIncome === "mandate" && (

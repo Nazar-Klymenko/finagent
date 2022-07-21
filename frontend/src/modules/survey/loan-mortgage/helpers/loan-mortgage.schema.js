@@ -10,6 +10,7 @@ export const ApplicantSchema = () => {
           then: yup.string().required("Form.Error.blank"),
         }),
         residenceDocument: yup.string(),
+        basicIncome: yup.string(),
 
         validFrom: yup
           .date()
@@ -36,7 +37,6 @@ export const ApplicantSchema = () => {
         phoneNumber: yup.string().required("Form.Error.blank"),
         email: yup.string().required("Form.Error.blank"),
         pesel: yup.string().required("Form.Error.blank"),
-
         contractFrom: yup
           .date()
           .nullable()
@@ -44,6 +44,7 @@ export const ApplicantSchema = () => {
             is: (value) =>
               value === "specificTime" ||
               value === "mandate" ||
+              value === "indefinitePeriod" ||
               value === "contract",
             then: yup.date().nullable().required("Form.Error.missingDate"),
           }),
@@ -71,6 +72,7 @@ export const AdditionalIncomeSchema = () => {
   return yup.object().shape({
     income: yup.array().of(
       yup.object().shape({
+        basicIncome: yup.string(),
         industry: yup.string().when("truckDriver", {
           is: "no",
           then: yup.string().required("Form.Error.blank"),

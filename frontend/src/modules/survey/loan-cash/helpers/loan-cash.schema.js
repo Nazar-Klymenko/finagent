@@ -4,6 +4,7 @@ export const ApplicantSchema = () => {
   return yup.object().shape({
     applicant: yup.array().of(
       yup.object().shape({
+        basicIncome: yup.string(),
         nationality: yup.string(),
         otherNation: yup.string().when("nationality", {
           is: "other",
@@ -71,6 +72,7 @@ export const AdditionalIncomeSchema = () => {
   return yup.object().shape({
     income: yup.array().of(
       yup.object().shape({
+        basicIncome: yup.string(),
         industry: yup.string().when("truckDriver", {
           is: "no",
           then: yup.string().required("Form.Error.blank"),

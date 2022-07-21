@@ -66,7 +66,7 @@ const Page2 = () => {
         {
           truckDriver: appDataValid?.[0]?.truckDriver,
           industry: appDataValid?.[0]?.industry,
-          basicIncome: appDataValid?.[0]?.basicIncome,
+          basicIncome: appDataValid?.[0]?.basicIncome || "indefinitePeriod",
           firstContract: appDataValid?.[0]?.firstContract,
           sameEmployer: appDataValid?.[0]?.sameEmployer,
           withoutPause: appDataValid?.[0]?.withoutPause,
@@ -243,10 +243,11 @@ const Page2 = () => {
                         value: "economicActivity",
                       },
                     ]}
-                    defaultValue={field.basicIncome || ""}
+                    defaultValue={field.basicIncome}
                   />
 
                   {(basicIncome === "specificTime" ||
+                    basicIncome === "indefinitePeriod" ||
                     basicIncome === "mandate" ||
                     basicIncome === "contract") && (
                     <>
@@ -306,13 +307,15 @@ const Page2 = () => {
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.contractFrom || null}
                       />
-                      <DateInput
-                        name={`income[${index}].contractUntil`}
-                        labelName={t("loanCash.income.contractUntil")}
-                        disablePast
-                        placeholder={t("Form.Placeholder.dateFull")}
-                        defaultValue={field.contractUntil || null}
-                      />
+                      {basicIncome !== "indefinitePeriod" && (
+                        <DateInput
+                          name={`income[${index}].contractUntil`}
+                          labelName={t("loanCash.income.contractUntil")}
+                          disablePast
+                          placeholder={t("Form.Placeholder.dateFull")}
+                          defaultValue={field.contractUntil || null}
+                        />
+                      )}
                     </>
                   )}
                   {basicIncome === "mandate" && (

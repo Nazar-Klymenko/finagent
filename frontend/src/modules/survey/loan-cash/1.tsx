@@ -39,6 +39,7 @@ type FormTypes2 = {
       validUntil: Date | null;
       name: string;
       birthDate: Date | null;
+      basicIncome: string;
       phoneNumber: string;
       email: string;
       pesel: string;
@@ -85,6 +86,7 @@ const Page1 = () => {
           nationality: appDataValid?.[0]?.nationality,
           validFrom: appDataValid?.[0]?.validFrom,
           validUntil: appDataValid?.[0]?.validUntil,
+          basicIncome: appDataValid?.[0]?.basicIncome || "indefinitePeriod",
           name: appDataValid?.[0]?.name,
           birthDate: appDataValid?.[0]?.birthDate,
           phoneNumber: appDataValid?.[0]?.phoneNumber,
@@ -268,14 +270,20 @@ const Page1 = () => {
             `applicant[${index}].nationality`
           ) as unknown as string;
           //@ts-ignore
-          const residenceDocument = watch(`applicant[${index}
-            ].residenceDocument`) as unknown as string;
+          const residenceDocument = watch(
+            //@ts-ignore
+            `applicant[${index}].residenceDocument`
+          ) as unknown as string;
           //@ts-ignore
-          const basicIncome = watch(`applicant[${index}
-            ].basicIncome`) as unknown as string;
+          const basicIncome = watch(
+            //@ts-ignore
+            `applicant[${index}].basicIncome`
+          ) as unknown as string;
           //@ts-ignore
-          const firstContract = watch(`applicant[${index}
-            ].firstContract`) as unknown as string;
+          const firstContract = watch(
+            //@ts-ignore
+            `applicant[${index}].firstContract`
+          ) as unknown as string;
           return (
             editingIndex === index && (
               <MuiDialog
@@ -412,9 +420,10 @@ const Page1 = () => {
                         value: "economicActivity",
                       },
                     ]}
-                    defaultValue={field.basicIncome || "indefinitePeriod"}
+                    defaultValue={field.basicIncome}
                   />
                   {(basicIncome === "specificTime" ||
+                    basicIncome === "indefinitePeriod" ||
                     basicIncome === "mandate" ||
                     basicIncome === "contract") && (
                     <>
@@ -474,13 +483,15 @@ const Page1 = () => {
                         placeholder={t("Form.Placeholder.dateFull")}
                         defaultValue={field.contractFrom}
                       />
-                      <DateInput
-                        name={`applicant[${index}].contractUntil`}
-                        labelName={t("loanCash.policyholder.contractUntil")}
-                        disablePast
-                        placeholder={t("Form.Placeholder.dateFull")}
-                        defaultValue={field.contractUntil}
-                      />
+                      {basicIncome !== "indefinitePeriod" && (
+                        <DateInput
+                          name={`applicant[${index}].contractUntil`}
+                          labelName={t("loanCash.policyholder.contractUntil")}
+                          disablePast
+                          placeholder={t("Form.Placeholder.dateFull")}
+                          defaultValue={field.contractUntil}
+                        />
+                      )}
                     </>
                   )}
                   {basicIncome === "mandate" && (
